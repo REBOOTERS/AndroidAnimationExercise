@@ -1,12 +1,17 @@
 package home.smart.fly.animationdemo.property;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
 import home.smart.fly.animationdemo.R;
@@ -18,21 +23,40 @@ public class PropertyAnimationActivity extends AppCompatActivity implements OnCl
     private Context mContext;
     //
     private TextView myView;
+    private int ScreenWidth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.activity_property_animation);
         findViewById(R.id.alpha).setOnClickListener(this);
         findViewById(R.id.scale).setOnClickListener(this);
         findViewById(R.id.translate).setOnClickListener(this);
         findViewById(R.id.rotate).setOnClickListener(this);
+        findViewById(R.id.set).setOnClickListener(this);
         myView = (TextView) findViewById(R.id.myView);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        ScreenWidth = displayMetrics.widthPixels;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.set:
+                ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(myView, "alpha", 1.0f, 0.5f, 0.8f, 1.0f);
+                ObjectAnimator scaleXAnim = ObjectAnimator.ofFloat(myView, "scaleX", 0.0f, 1.0f);
+                ObjectAnimator scaleYAnim = ObjectAnimator.ofFloat(myView, "scaleY", 0.0f, 2.0f);
+                ObjectAnimator rotateAnim = ObjectAnimator.ofFloat(myView, "rotation", 0, 360);
+                ObjectAnimator transXAnim = ObjectAnimator.ofFloat(myView, "translationX", 100, 400);
+                ObjectAnimator transYAnim = ObjectAnimator.ofFloat(myView, "tranlsationY", 100, 750);
+                AnimatorSet set = new AnimatorSet();
+                set.playTogether(alphaAnim, scaleXAnim, scaleYAnim, rotateAnim, transXAnim, transYAnim);
+                set.setDuration(3000);
+                set.start();
+                break;
             case R.id.alpha:
                 AlpahAnimation();
                 break;
@@ -40,7 +64,7 @@ public class PropertyAnimationActivity extends AppCompatActivity implements OnCl
                 TranslationAnimation();
                 break;
             case R.id.scale:
-//                ScaleAnimation();
+                ScaleAnimation();
                 break;
             case R.id.rotate:
                 RotateAnimation();
@@ -50,10 +74,40 @@ public class PropertyAnimationActivity extends AppCompatActivity implements OnCl
         }
     }
 
-    private void TranslationAnimation() {
-        float curX=myView.getTranslationX();
-        ObjectAnimator anim = ObjectAnimator.ofFloat(myView, "translationX", curX, curX + 100, curX + 500, curX + 900, -400,curX);
+    private void ScaleAnimation() {
+        ObjectAnimator anim = ObjectAnimator.ofFloat(myView, "scaleX", 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f);
         anim.setDuration(1000);
+        anim.setRepeatCount(-1);
+        anim.start();
+
+        anim.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                Log.e("onAnimationStart", "onAnimationStart");
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                Log.e("onAnimationEnd", "onAnimationEnd");
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                Log.e("onAnimationCancel", "onAnimationCancel");
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+                Log.e("onAnimationRepeat", "onAnimationRepeat");
+            }
+        });
+    }
+
+    private void TranslationAnimation() {
+        ObjectAnimator anim = ObjectAnimator.ofFloat(myView, "translationX", -200, 0, ScreenWidth);
+        anim.setInterpolator(new LinearInterpolator());
+        anim.setRepeatCount(-1);
+        anim.setDuration(2000);
         anim.start();
     }
 
@@ -64,7 +118,7 @@ public class PropertyAnimationActivity extends AppCompatActivity implements OnCl
     }
 
     private void AlpahAnimation() {
-        ObjectAnimator anim = ObjectAnimator.ofFloat(myView,"alpha", 1.0f, 0.8f, 0.6f, 0.4f, 0.2f, 0.0f);
+        ObjectAnimator anim = ObjectAnimator.ofFloat(myView, "alpha", 1.0f, 0.8f, 0.6f, 0.4f, 0.2f, 0.0f);
         anim.setRepeatCount(-1);
         anim.setRepeatMode(ObjectAnimator.REVERSE);
         anim.setDuration(2000);

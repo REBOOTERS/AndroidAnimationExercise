@@ -36,6 +36,14 @@
         android:text="rotate"
         android:textColor="@color/colorAccent" />
 
+    <Button
+        android:id="@+id/set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AnimationSet"
+        android:textColor="@color/colorAccent" />
+
+
     <TextView
         android:id="@+id/myView"
         android:layout_width="wrap_content"

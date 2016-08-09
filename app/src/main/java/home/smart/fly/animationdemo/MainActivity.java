@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.Button;
 
 import home.smart.fly.animationdemo.property.PropertyAnimationActivity;
+import home.smart.fly.animationdemo.property.ValueAnimationActivity;
 import home.smart.fly.animationdemo.tradition.FrameAnimationActivity;
 import home.smart.fly.animationdemo.tradition.TweenedAnimationActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Context mContext;
-    private Button frame, tweened, property;
+    private Button frame, tweened, property, value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tweened.setOnClickListener(this);
         property = (Button) findViewById(R.id.property);
         property.setOnClickListener(this);
+        value = (Button) findViewById(R.id.value);
+        value.setOnClickListener(this);
     }
 
     @Override
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.property:
                 intent = new Intent(mContext, PropertyAnimationActivity.class);
+                break;
+            case R.id.value:
+                intent = new Intent(mContext, ValueAnimationActivity.class);
                 break;
             default:
                 break;

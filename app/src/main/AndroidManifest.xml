@@ -15,9 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tradition.FrameAnimationActivity"/>
-        <activity android:name=".tradition.TweenedAnimationActivity"/>
-        <activity android:name=".property.PropertyAnimationActivity"/>
+        <activity android:name=".tradition.FrameAnimationActivity" />
+        <activity android:name=".tradition.TweenedAnimationActivity" />
+        <activity android:name=".property.PropertyAnimationActivity" />
+        <activity android:name=".property.ValueAnimationActivity" />
     </application>
 
 </manifest>
