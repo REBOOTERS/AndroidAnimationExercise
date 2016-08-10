@@ -19,6 +19,7 @@
         <activity android:name=".tradition.TweenedAnimationActivity" />
         <activity android:name=".property.PropertyAnimationActivity" />
         <activity android:name=".property.ValueAnimationActivity" />
+        <activity android:name=".property.ValueAnimationActivity2" />
     </application>
 
 </manifest>

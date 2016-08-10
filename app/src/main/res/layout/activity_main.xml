@@ -27,9 +27,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="PropertyAnimation" />
+
     <Button
         android:id="@+id/value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="PropertyValueAnimation" />
+
+    <Button
+        android:id="@+id/value2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PropertyValueAnimation2" />
 </LinearLayout>

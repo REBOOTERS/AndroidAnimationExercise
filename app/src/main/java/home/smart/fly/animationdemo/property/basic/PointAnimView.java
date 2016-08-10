@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.property;
+package home.smart.fly.animationdemo.property.basic;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -16,13 +16,15 @@ import android.view.animation.Animation;
  */
 public class PointAnimView extends View {
 
-    public static final float RADIUS = 50f;
+    public static final float RADIUS = 20f;
 
     private Point currentPoint;
 
     private Paint mPaint;
+    private Paint linePaint;
 
     private AnimatorSet animSet;
+
 
     /**
      * 实现关于color 的属性动画
@@ -59,6 +61,10 @@ public class PointAnimView extends View {
     private void init() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(Color.BLUE);
+
+        linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        linePaint.setColor(Color.BLACK);
+        linePaint.setStrokeWidth(5);
     }
 
     @Override
@@ -70,12 +76,21 @@ public class PointAnimView extends View {
         } else {
             drawCircle(canvas);
         }
+
+        drawLine(canvas);
+    }
+
+    private void drawLine(Canvas canvas) {
+        canvas.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2, linePaint);
+        canvas.drawLine(1,getHeight() / 2 - 150, 1, getHeight() / 2 + 150, linePaint);
+        canvas.drawPoint(currentPoint.getX(),currentPoint.getY(),linePaint);
+
     }
 
     private void StartAnimation() {
         Point startP = new Point(RADIUS, RADIUS);
         Point endP = new Point(getWidth() - RADIUS, getHeight() - RADIUS);
-        final ValueAnimator valueAnimator = ValueAnimator.ofObject(new PointEvaluator(), startP, endP);
+        final ValueAnimator valueAnimator = ValueAnimator.ofObject(new PointSinEvaluator(), startP, endP);
         valueAnimator.setRepeatCount(-1);
         valueAnimator.setRepeatMode(Animation.REVERSE);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -90,7 +105,7 @@ public class PointAnimView extends View {
 
 
         ObjectAnimator anim2 = ObjectAnimator.ofObject(this, "color", new ColorEvaluator(),
-                "#0000FF", "#FF0000");
+                "#000000", "#FFFFFF","#00FF00");
         anim2.setRepeatCount(-1);
         anim2.setRepeatMode(Animation.REVERSE);
         animSet = new AnimatorSet();

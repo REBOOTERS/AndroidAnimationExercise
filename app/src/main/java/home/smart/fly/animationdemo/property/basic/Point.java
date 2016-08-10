@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.property;
+package home.smart.fly.animationdemo.property.basic;
 
 /**
  * Created by co-mall on 2016/8/9.

@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.property;
+package home.smart.fly.animationdemo.property.basic;
 
 import android.animation.TypeEvaluator;
 
