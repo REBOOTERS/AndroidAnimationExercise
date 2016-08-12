@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import home.smart.fly.animationdemo.R;
+import home.smart.fly.animationdemo.property.CanvasDemoActivity;
 import home.smart.fly.animationdemo.tradition.FrameAnimationActivity;
 import home.smart.fly.animationdemo.tradition.TweenedAnimationActivity;
 
@@ -22,7 +23,7 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
     private View rootView;
 
 
-    private Button frame, tweened;
+    private Button frame, tweened,canvas;
 
     @Nullable
     @Override
@@ -43,6 +44,8 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
         frame.setOnClickListener(this);
         tweened = (Button) rootView.findViewById(R.id.tween);
         tweened.setOnClickListener(this);
+        canvas = (Button) rootView.findViewById(R.id.canvas);
+        canvas.setOnClickListener(this);
     }
 
     @Override
@@ -54,6 +57,9 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.tween:
                 intent = new Intent(mContext, TweenedAnimationActivity.class);
+                break;
+            case R.id.canvas:
+                intent = new Intent(mContext, CanvasDemoActivity.class);
                 break;
             default:
                 break;

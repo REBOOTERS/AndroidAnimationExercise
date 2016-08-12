@@ -100,8 +100,6 @@ public class PointAnimView extends View {
                 postInvalidate();
             }
         });
-//        valueAnimator.setDuration(5000);
-//        valueAnimator.start();
 
 
         ObjectAnimator anim2 = ObjectAnimator.ofObject(this, "color", new ColorEvaluator(),
