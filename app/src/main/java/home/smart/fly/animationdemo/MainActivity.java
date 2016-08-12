@@ -15,13 +15,11 @@ import home.smart.fly.animationdemo.fragments.TraditionFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Context mContext;
-    private static final String TAG = "MainActivity";
-    private FragmentManager fm;
     private Button btn_message, btn_call;
     private TraditionFragment messageFragment;
     private PropertyFragment callFragment;
-    public static final int MESSAGE_FRAGMENT_TYPE = 1;
-    public static final int CALL_FRAGMENT_TYPE = 2;
+    public static final int TRADITION_TYPE = 1;
+    public static final int PROPERTY_TYPE = 2;
     public int currentFragmentType = -1;
 
     @Override
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void initData() {
-        fm = getSupportFragmentManager();
         btn_message = (Button) findViewById(R.id.btn_message);
         btn_call = (Button) findViewById(R.id.btn_call);
         btn_message.setOnClickListener(this);
@@ -46,17 +43,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             transaction.replace(R.id.fl_content, mainFragment);
             transaction.commit();
         } else {
-            loadFragment(MESSAGE_FRAGMENT_TYPE);
+            loadFragment(TRADITION_TYPE);
         }
     }
 
     private void switchFragment(int type) {
         switch (type) {
-            case MESSAGE_FRAGMENT_TYPE:
-                loadFragment(MESSAGE_FRAGMENT_TYPE);
+            case TRADITION_TYPE:
+                loadFragment(TRADITION_TYPE);
                 break;
-            case CALL_FRAGMENT_TYPE:
-                loadFragment(CALL_FRAGMENT_TYPE);
+            case PROPERTY_TYPE:
+                loadFragment(PROPERTY_TYPE);
                 break;
         }
 
@@ -65,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void loadFragment(int type) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        if (type == CALL_FRAGMENT_TYPE) {
+        if (type == PROPERTY_TYPE) {
             if (callFragment == null) {
                 callFragment = new PropertyFragment();
 
@@ -76,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (messageFragment != null) {
                 transaction.hide(messageFragment);
             }
-            currentFragmentType = MESSAGE_FRAGMENT_TYPE;
+            currentFragmentType = TRADITION_TYPE;
         } else {
             if (messageFragment == null) {
                 messageFragment = new TraditionFragment();
@@ -87,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (callFragment != null) {
                 transaction.hide(callFragment);
             }
-            currentFragmentType = CALL_FRAGMENT_TYPE;
+            currentFragmentType = PROPERTY_TYPE;
         }
         transaction.commitAllowingStateLoss();
     }
@@ -101,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 btn_call.setTextColor(Color.WHITE);
                 btn_message.setBackgroundResource(R.drawable.left_bold);
                 btn_call.setBackgroundResource(R.drawable.right_transparent);
-                switchFragment(MESSAGE_FRAGMENT_TYPE);
+                switchFragment(TRADITION_TYPE);
 
                 break;
             case R.id.btn_call:
@@ -109,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 btn_call.setTextColor(getResources().getColor(R.color.colorPrimary));
                 btn_message.setBackgroundResource(R.drawable.left_transparent);
                 btn_call.setBackgroundResource(R.drawable.right_bold);
-                switchFragment(CALL_FRAGMENT_TYPE);
+                switchFragment(PROPERTY_TYPE);
                 break;
             default:
                 break;
