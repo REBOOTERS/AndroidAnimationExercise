@@ -1,42 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="home.smart.fly.animationdemo.MainActivity">
+    android:background="#ffffff"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/frame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="FrameAnimation" />
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary">
 
-    <Button
-        android:id="@+id/tween"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TweenedAnimation" />
 
-    <Button
-        android:id="@+id/property"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="PropertyAnimation" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="8.0dp">
 
-    <Button
-        android:id="@+id/value"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="PropertyValueAnimation" />
+            <Button
+                android:id="@+id/btn_message"
+                android:layout_width="90dip"
+                android:layout_height="25dip"
+                android:background="@drawable/left_bold"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="传统动画"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
 
-    <Button
-        android:id="@+id/value2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="PropertyValueAnimation2" />
+            <Button
+                android:id="@+id/btn_call"
+                android:layout_width="90dip"
+                android:layout_height="25dip"
+                android:background="@drawable/right_transparent"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="属性动画"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
 </LinearLayout>
