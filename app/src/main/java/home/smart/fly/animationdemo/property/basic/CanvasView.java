@@ -11,8 +11,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import home.smart.fly.animationdemo.property.basic.BezierEvaluator;
-
 /**
  * Created by co-mall on 2016/8/12.
  */
