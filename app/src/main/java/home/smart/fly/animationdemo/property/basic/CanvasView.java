@@ -81,7 +81,7 @@ public class CanvasView extends View {
         point33 = new Point(580, 980);
         point34 = new Point(700, 900);
 
-        p1 = new Point(100, 200);
+        p1 = new Point(100, 700);
         p2 = new Point(1080 - 100, 1860 - 100);
     }
 
@@ -117,9 +117,9 @@ public class CanvasView extends View {
 //        canvas.drawPoint(point34.x, point34.y, mPointPaint);
 
 
-        canvas.drawPoint(100, 200, mPointPaint);
-        canvas.drawPoint(getWidth() - 100, getHeight() - 100, mPointPaint);
-        canvas.drawPoint(Math.abs(100 - (getWidth() - 100)) * 2 / 3, 100, mPointPaint);
+        canvas.drawPoint(p1.x, p1.y, mPointPaint);
+        canvas.drawPoint(p2.x, p2.y, mPointPaint);
+        canvas.drawPoint(Math.abs(p1.x - p2.x) * 2 / 3, 100, mPointPaint);
 
         mPath2.moveTo(100, 200);
         mPath2.quadTo(Math.abs(100 - (getWidth() - 100)) * 2 / 3, 100, getWidth() - 100, getHeight() - 100);
@@ -127,9 +127,6 @@ public class CanvasView extends View {
 
         Log.e("x", "--------" + getWidth());
         Log.e("y", "--------" + getHeight());
-
-
-
     }
 
     public void startAnim() {
