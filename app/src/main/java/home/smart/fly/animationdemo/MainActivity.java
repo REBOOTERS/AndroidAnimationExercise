@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import home.smart.fly.animationdemo.fragments.PropertyFragment;
 import home.smart.fly.animationdemo.fragments.TraditionFragment;
+import home.smart.fly.animationdemo.utils.StatusBarUtil;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Context mContext;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_main);
+//        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
+        StatusBarUtil.setColor(this,getResources().getColor(R.color.colorPrimary),0);
         initData();
     }
 

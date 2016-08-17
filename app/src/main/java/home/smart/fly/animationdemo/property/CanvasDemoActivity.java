@@ -2,15 +2,15 @@ package home.smart.fly.animationdemo.property;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.property.basic.CanvasView;
+import home.smart.fly.animationdemo.utils.BaseActivity;
 
 /**
  * Created by co-mall on 2016/8/12.
  */
-public class CanvasDemoActivity extends AppCompatActivity {
+public class CanvasDemoActivity extends BaseActivity {
     private CanvasView anim;
 
     @Override

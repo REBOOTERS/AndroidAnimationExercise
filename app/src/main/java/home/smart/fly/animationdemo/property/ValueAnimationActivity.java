@@ -2,15 +2,15 @@ package home.smart.fly.animationdemo.property;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.property.basic.PointAnimView;
+import home.smart.fly.animationdemo.utils.BaseActivity;
 
 /**
  * Created by co-mall on 2016/8/9.
  */
-public class ValueAnimationActivity extends AppCompatActivity {
+public class ValueAnimationActivity extends BaseActivity {
     PointAnimView view;
 
     @Override

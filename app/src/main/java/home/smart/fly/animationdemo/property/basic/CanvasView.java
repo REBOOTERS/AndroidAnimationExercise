@@ -82,7 +82,7 @@ public class CanvasView extends View {
         point34 = new Point(700, 900);
 
         p1 = new Point(100, 200);
-        p2 = new Point(getWidth() - 100, getHeight() - 100);
+        p2 = new Point(1080 - 100, 1860 - 100);
     }
 
     @Override
@@ -119,10 +119,10 @@ public class CanvasView extends View {
 
         canvas.drawPoint(100, 200, mPointPaint);
         canvas.drawPoint(getWidth() - 100, getHeight() - 100, mPointPaint);
-        canvas.drawPoint(Math.abs(100 - (getWidth() - 100)) * 2 / 3, Math.abs(200 - (getHeight() - 100)) / 4, mPointPaint);
+        canvas.drawPoint(Math.abs(100 - (getWidth() - 100)) * 2 / 3, 100, mPointPaint);
 
         mPath2.moveTo(100, 200);
-        mPath2.quadTo(Math.abs(100 - (getWidth() - 100)) * 2 / 3, Math.abs(200 - (getHeight() - 100)) / 4, getWidth() - 100, getHeight() - 100);
+        mPath2.quadTo(Math.abs(100 - (getWidth() - 100)) * 2 / 3, 100, getWidth() - 100, getHeight() - 100);
         canvas.drawPath(mPath2, mImagePaint2);
 
         Log.e("x", "--------" + getWidth());

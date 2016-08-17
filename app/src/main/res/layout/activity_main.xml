@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:paddingLeft="8.0dp">
+            android:paddingLeft="8.0dp"
+            android:visibility="visible">
 
             <Button
                 android:id="@+id/btn_message"
@@ -49,6 +50,7 @@
     <FrameLayout
         android:id="@+id/fl_content"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:visibility="visible" />
 
 </LinearLayout>

@@ -3,7 +3,6 @@ package home.smart.fly.animationdemo.tradition;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -17,11 +16,12 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import home.smart.fly.animationdemo.R;
+import home.smart.fly.animationdemo.utils.BaseActivity;
 
 /**
  * Created by co-mall on 2016/8/8.
  */
-public class TweenedAnimationActivity extends AppCompatActivity implements View.OnClickListener {
+public class TweenedAnimationActivity extends BaseActivity implements View.OnClickListener {
     private Context mContext;
     private ImageView img;
     //

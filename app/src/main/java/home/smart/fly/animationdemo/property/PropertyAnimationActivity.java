@@ -15,11 +15,12 @@ import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
 import home.smart.fly.animationdemo.R;
+import home.smart.fly.animationdemo.utils.BaseActivity;
 
 /**
  * Created by co-mall on 2016/8/8.
  */
-public class PropertyAnimationActivity extends AppCompatActivity implements OnClickListener {
+public class PropertyAnimationActivity extends BaseActivity implements OnClickListener {
     private Context mContext;
     //
     private TextView myView;
