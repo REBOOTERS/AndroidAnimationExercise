@@ -27,5 +27,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="PropertyValueAnimation2" />
+    <Button
+        android:id="@+id/canvas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Canvas" />
 
 </LinearLayout>

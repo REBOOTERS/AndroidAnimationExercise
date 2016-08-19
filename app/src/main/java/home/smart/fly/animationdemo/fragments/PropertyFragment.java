@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import home.smart.fly.animationdemo.R;
+import home.smart.fly.animationdemo.property.CanvasDemoActivity;
 import home.smart.fly.animationdemo.property.PropertyAnimationActivity;
 import home.smart.fly.animationdemo.property.ValueAnimationActivity;
 import home.smart.fly.animationdemo.property.ValueAnimationActivity2;
@@ -23,7 +24,7 @@ public class PropertyFragment extends Fragment implements View.OnClickListener{
     private View rootView;
 
 
-    private Button property, value,value2;
+    private Button property, value,value2,canvas;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class PropertyFragment extends Fragment implements View.OnClickListener{
         value.setOnClickListener(this);
         value2 = (Button) rootView.findViewById(R.id.value2);
         value2.setOnClickListener(this);
+        canvas = (Button) rootView.findViewById(R.id.canvas);
+        canvas.setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +62,9 @@ public class PropertyFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.value2:
                 intent = new Intent(mContext, ValueAnimationActivity2.class);
+                break;
+            case R.id.canvas:
+                intent = new Intent(mContext, CanvasDemoActivity.class);
                 break;
             default:
                 break;

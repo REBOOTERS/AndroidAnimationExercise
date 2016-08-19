@@ -6,15 +6,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import home.smart.fly.animationdemo.fragments.PropertyFragment;
 import home.smart.fly.animationdemo.fragments.TraditionFragment;
-import home.smart.fly.animationdemo.utils.StatusBarUtil;
+import home.smart.fly.animationdemo.utils.BaseActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Context mContext;
     private Button btn_message, btn_call;
     private TraditionFragment messageFragment;
@@ -28,8 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_main);
-//        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
-        StatusBarUtil.setColor(this,getResources().getColor(R.color.colorPrimary),0);
         initData();
     }
 

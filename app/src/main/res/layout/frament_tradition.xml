@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:text="TweenedAnimation" />
     <Button
-        android:id="@+id/canvas"
+        android:id="@+id/blur"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Canvas" />
+        android:text="Blur" />
 
 </LinearLayout>
