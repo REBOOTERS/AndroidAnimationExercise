@@ -15,7 +15,7 @@ import home.smart.fly.animationdemo.utils.BaseActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Context mContext;
-    private Button btn_message, btn_call;
+    private Button btn_tradition, btn_property;
     private TraditionFragment messageFragment;
     private PropertyFragment callFragment;
     public static final int TRADITION_TYPE = 1;
@@ -32,10 +32,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     private void initData() {
-        btn_message = (Button) findViewById(R.id.btn_message);
-        btn_call = (Button) findViewById(R.id.btn_call);
-        btn_message.setOnClickListener(this);
-        btn_call.setOnClickListener(this);
+        btn_tradition = (Button) findViewById(R.id.btn_message);
+        btn_property = (Button) findViewById(R.id.btn_call);
+        btn_tradition.setOnClickListener(this);
+        btn_property.setOnClickListener(this);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         Fragment mainFragment = fragmentManager.findFragmentByTag("message");
@@ -94,18 +94,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_message:
-                btn_message.setTextColor(getResources().getColor(R.color.colorPrimary));
-                btn_call.setTextColor(Color.WHITE);
-                btn_message.setBackgroundResource(R.drawable.left_bold);
-                btn_call.setBackgroundResource(R.drawable.right_transparent);
+                btn_tradition.setTextColor(getResources().getColor(R.color.colorPrimary));
+                btn_property.setTextColor(Color.WHITE);
+                btn_tradition.setBackgroundResource(R.drawable.left_bold);
+                btn_property.setBackgroundResource(R.drawable.right_transparent);
                 switchFragment(TRADITION_TYPE);
 
                 break;
             case R.id.btn_call:
-                btn_message.setTextColor(Color.WHITE);
-                btn_call.setTextColor(getResources().getColor(R.color.colorPrimary));
-                btn_message.setBackgroundResource(R.drawable.left_transparent);
-                btn_call.setBackgroundResource(R.drawable.right_bold);
+                btn_tradition.setTextColor(Color.WHITE);
+                btn_property.setTextColor(getResources().getColor(R.color.colorPrimary));
+                btn_tradition.setBackgroundResource(R.drawable.left_transparent);
+                btn_property.setBackgroundResource(R.drawable.right_bold);
                 switchFragment(PROPERTY_TYPE);
                 break;
             default:
