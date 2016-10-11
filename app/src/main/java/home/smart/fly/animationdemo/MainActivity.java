@@ -16,8 +16,8 @@ import home.smart.fly.animationdemo.utils.BaseActivity;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Context mContext;
     private Button btn_tradition, btn_property;
-    private TraditionFragment messageFragment;
-    private PropertyFragment callFragment;
+    private TraditionFragment traditionFragment;
+    private PropertyFragment propertyFragment;
     public static final int TRADITION_TYPE = 1;
     public static final int PROPERTY_TYPE = 2;
     public int currentFragmentType = -1;
@@ -63,26 +63,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (type == PROPERTY_TYPE) {
-            if (callFragment == null) {
-                callFragment = new PropertyFragment();
+            if (propertyFragment == null) {
+                propertyFragment = new PropertyFragment();
 
-                transaction.add(R.id.fl_content, callFragment, "zhishi");
+                transaction.add(R.id.fl_content, propertyFragment, "property");
             } else {
-                transaction.show(callFragment);
+                transaction.show(propertyFragment);
             }
-            if (messageFragment != null) {
-                transaction.hide(messageFragment);
+            if (traditionFragment != null) {
+                transaction.hide(traditionFragment);
             }
             currentFragmentType = TRADITION_TYPE;
         } else {
-            if (messageFragment == null) {
-                messageFragment = new TraditionFragment();
-                transaction.add(R.id.fl_content, messageFragment, "wenda");
+            if (traditionFragment == null) {
+                traditionFragment = new TraditionFragment();
+                transaction.add(R.id.fl_content, traditionFragment, "traditional");
             } else {
-                transaction.show(messageFragment);
+                transaction.show(traditionFragment);
             }
-            if (callFragment != null) {
-                transaction.hide(callFragment);
+            if (propertyFragment != null) {
+                transaction.hide(propertyFragment);
             }
             currentFragmentType = PROPERTY_TYPE;
         }

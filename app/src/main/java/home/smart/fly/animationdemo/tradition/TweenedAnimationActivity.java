@@ -32,10 +32,11 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
     private RadioGroup selectStyle;
     private RadioButton rb1, rb2, rb3;
     //
-    private SeekBar pivotX, pivotY, degree;
-    private float pxValue, pyValue, deValue;
-    private TextView xValue, yValue, dValue;
+    private SeekBar pivotX, pivotY, degree, time;
+    private float pxValue, pyValue, deValue, timeValue;
+    private TextView xValue, yValue, dValue, tValue;
 
+    private Animation animation;
 
 
     @Override
@@ -47,6 +48,7 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
         findViewById(R.id.scale).setOnClickListener(this);
         findViewById(R.id.translate).setOnClickListener(this);
         findViewById(R.id.rotate).setOnClickListener(this);
+        findViewById(R.id.stopAnim).setOnClickListener(this);
         keep = (CheckBox) findViewById(R.id.keep);
         loop = (CheckBox) findViewById(R.id.loop);
         reverse = (CheckBox) findViewById(R.id.reverse);
@@ -57,9 +59,19 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
         pivotX = (SeekBar) findViewById(R.id.pivotX);
         pivotY = (SeekBar) findViewById(R.id.pivotY);
         degree = (SeekBar) findViewById(R.id.degree);
+        time = (SeekBar) findViewById(R.id.time);
+        degree.setProgress(25);
+        deValue = 360 * 25 / 100.0f;
+
+        time.setProgress(10);
+        timeValue = 100.0f * 10;
+
         xValue = (TextView) findViewById(R.id.xvalue);
         yValue = (TextView) findViewById(R.id.yvalue);
         dValue = (TextView) findViewById(R.id.dvalue);
+        dValue.setText(String.valueOf(deValue));
+        tValue = (TextView) findViewById(R.id.timeValue);
+        tValue.setText(String.valueOf(timeValue) + " ms");
 
         img = (ImageView) findViewById(R.id.img);
 
@@ -115,6 +127,31 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
 
             }
         });
+
+        time.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (progress <= 0) {
+                    progress = 1;
+                } else if (progress >= 100) {
+                    progress = 100;
+                }
+
+
+                timeValue = 100.0f * (progress);
+                tValue.setText(String.valueOf(timeValue) + " ms");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     @Override
@@ -132,13 +169,28 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
             case R.id.rotate:
                 RotateAnimation();
                 break;
+            case R.id.stopAnim:
+                if (animation != null) {
+                    animation.cancel();
+                    animation.reset();
+                }
+
+                loop.setChecked(false);
+                reverse.setChecked(false);
+                keep.setChecked(false);
+
+                pivotX.setProgress(0);
+                pivotY.setProgress(0);
+                degree.setProgress(0);
+                time.setProgress(0);
+                break;
             default:
                 break;
         }
     }
 
-    private void TranslationAnimation(){
-        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.translate_anim);
+    private void TranslationAnimation() {
+        animation = AnimationUtils.loadAnimation(mContext, R.anim.translate_anim);
         animation.setInterpolator(new LinearInterpolator());
 
         if (keep.isChecked()) {
@@ -164,7 +216,7 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
      * rotate Animation
      */
     private void RotateAnimation() {
-        RotateAnimation animation = new RotateAnimation(-deValue, deValue, Animation.RELATIVE_TO_SELF,
+        animation = new RotateAnimation(-deValue, deValue, Animation.RELATIVE_TO_SELF,
                 pxValue, Animation.RELATIVE_TO_SELF, pyValue);
         animation.setDuration(1000);
 
@@ -191,7 +243,7 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
      * alpha Animation
      */
     private void AlpahAnimation() {
-        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.alpha_anim);
+        animation = AnimationUtils.loadAnimation(mContext, R.anim.alpha_anim);
         if (keep.isChecked()) {
             animation.setFillAfter(true);
         } else {
@@ -215,7 +267,7 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
      * scale Animation
      */
     private void ScaleAnimation() {
-        Animation animation = null;
+        animation = null;
         if (rb1.isChecked()) {
             animation = AnimationUtils.loadAnimation(mContext, R.anim.scale_anim1);
         } else if (rb2.isChecked()) {
