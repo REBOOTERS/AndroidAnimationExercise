@@ -35,10 +35,6 @@ public class BlurActivity extends BaseActivity {
      */
     private TextView mProgressTv;
 
-    /**
-     * 透明度
-     */
-    private int mAlpha;
 
     /**
      * 原始图片
@@ -88,11 +84,10 @@ public class BlurActivity extends BaseActivity {
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mAlpha = progress;
-                float value = (float) (255.0f - mAlpha * 2.55);
-                Log.e("seek", "the valus is " + value);
+                float value = (float) progress/100.0f;
+                Log.e("seek", progress+"the valus is " + value);
                 mOriginImg.setAlpha(value);
-                mProgressTv.setText(String.valueOf(mAlpha));
+                mProgressTv.setText(String.valueOf(progress));
             }
 
             @Override

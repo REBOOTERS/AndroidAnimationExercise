@@ -42,6 +42,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#000" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -63,6 +69,10 @@
                 android:textColor="@color/colorAccent" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#000" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,6 +118,10 @@
                 android:textColor="@color/colorAccent" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#000" />
 
         <Button
             android:id="@+id/rotate"
@@ -216,7 +230,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/timeValue"
+                android:id="@+id/tValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -224,6 +238,13 @@
                 android:text="" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="#000" />
 
         <FrameLayout
             android:layout_width="match_parent"

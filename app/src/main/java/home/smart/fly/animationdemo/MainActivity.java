@@ -22,6 +22,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public static final int PROPERTY_TYPE = 2;
     public int currentFragmentType = -1;
 
+    //
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
