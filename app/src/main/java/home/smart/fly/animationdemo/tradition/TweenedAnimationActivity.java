@@ -14,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.utils.BaseActivity;
@@ -50,6 +51,7 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
         findViewById(R.id.translate).setOnClickListener(this);
         findViewById(R.id.rotate).setOnClickListener(this);
         findViewById(R.id.stopAnim).setOnClickListener(this);
+        findViewById(R.id.img).setOnClickListener(this);
         keep = (CheckBox) findViewById(R.id.keep);
         loop = (CheckBox) findViewById(R.id.loop);
         reverse = (CheckBox) findViewById(R.id.reverse);
@@ -139,7 +141,7 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
                 }
 
 
-                timeValue = 100* progress;
+                timeValue = 100 * progress;
                 tValue.setText(String.valueOf(timeValue) + " ms");
             }
 
@@ -187,6 +189,9 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
                 pivotY.setProgress(0);
                 degree.setProgress(25);
                 time.setProgress(10);
+                break;
+            case R.id.img:
+                Toast.makeText(mContext, "被点击了", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

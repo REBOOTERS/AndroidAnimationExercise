@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/alipay_msp_success1" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success2" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success3" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success4" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success5" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success6" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success7" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success8" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success9" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success10" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success11" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success12" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success13" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success14" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success15" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success16" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success17" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success18" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success19" android:duration="100" />
+    <item android:drawable="@drawable/alipay_msp_success20" android:duration="100" />
+
+
+</animation-list>
