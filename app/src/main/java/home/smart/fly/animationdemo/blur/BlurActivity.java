@@ -55,12 +55,13 @@ public class BlurActivity extends BaseActivity {
         initViews();
 
         // 获取图片
-        mTempBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.phone);
+        mTempBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.scene);
         mFinalBitmap = BlurImage.blur(this, mTempBitmap);
 
         // 填充模糊后的图像和原图
         mBluredImage.setImageBitmap(mFinalBitmap);
         mOriginImg.setImageBitmap(mTempBitmap);
+        mOriginImg.setAlpha(0.0f);
 
         // 处理seekbar滑动事件
         setSeekBar();
@@ -74,6 +75,7 @@ public class BlurActivity extends BaseActivity {
         mOriginImg = (ImageView) findViewById(R.id.activity_main_origin_img);
         mSeekBar = (SeekBar) findViewById(R.id.activity_main_seekbar);
         mProgressTv = (TextView) findViewById(R.id.activity_main_progress_tv);
+
     }
 
     /**

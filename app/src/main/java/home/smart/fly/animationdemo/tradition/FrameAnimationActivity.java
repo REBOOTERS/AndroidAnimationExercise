@@ -20,9 +20,9 @@ public class FrameAnimationActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frame_animation);
-        animationImg1 = (ImageView) findViewById(R.id.animation1);
+        ImageView animationImg1 = (ImageView) findViewById(R.id.animation1);
         animationImg1.setImageResource(R.drawable.frame_anim1);
-        animationDrawable1 = (AnimationDrawable) animationImg1.getDrawable();
+        AnimationDrawable animationDrawable1 = (AnimationDrawable) animationImg1.getDrawable();
         animationDrawable1.start();
 
         animationImg2 = (ImageView) findViewById(R.id.animation2);

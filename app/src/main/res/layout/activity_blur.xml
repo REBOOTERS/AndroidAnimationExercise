@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/activity_main_blured_img"
             android:scaleType="centerCrop"
-            android:src="@drawable/phone"
+            android:src="@drawable/scene"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
