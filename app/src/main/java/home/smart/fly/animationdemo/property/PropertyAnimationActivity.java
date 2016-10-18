@@ -6,13 +6,13 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.LinearInterpolator;
-import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.utils.BaseActivity;
@@ -23,8 +23,10 @@ import home.smart.fly.animationdemo.utils.BaseActivity;
 public class PropertyAnimationActivity extends BaseActivity implements OnClickListener {
     private Context mContext;
     //
-    private TextView myView;
+    private ImageView myView;
     private int ScreenWidth;
+    private ObjectAnimator anim;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,8 +38,8 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
         findViewById(R.id.translate).setOnClickListener(this);
         findViewById(R.id.rotate).setOnClickListener(this);
         findViewById(R.id.set).setOnClickListener(this);
-        myView = (TextView) findViewById(R.id.myView);
-
+        myView = (ImageView) findViewById(R.id.myView);
+        myView.setOnClickListener(this);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         ScreenWidth = displayMetrics.widthPixels;
@@ -45,6 +47,12 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
 
     @Override
     public void onClick(View v) {
+        if (anim != null && myView != null) {
+            anim.end();
+            anim.cancel();
+            myView.clearAnimation();
+            anim=null;
+        }
         switch (v.getId()) {
             case R.id.set:
                 ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(myView, "alpha", 1.0f, 0.5f, 0.8f, 1.0f);
@@ -70,13 +78,17 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
             case R.id.rotate:
                 RotateAnimation();
                 break;
+            case R.id.myView:
+                Toast.makeText(mContext,"我被点击了",Toast.LENGTH_SHORT).show();
+                break;
             default:
                 break;
         }
     }
 
     private void ScaleAnimation() {
-        ObjectAnimator anim = ObjectAnimator.ofFloat(myView, "scaleX", 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f);
+
+        anim = ObjectAnimator.ofFloat(myView, "scaleX", 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f);
         anim.setDuration(1000);
         anim.setRepeatCount(-1);
         anim.start();
@@ -105,7 +117,8 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
     }
 
     private void TranslationAnimation() {
-        ObjectAnimator anim = ObjectAnimator.ofFloat(myView, "translationX", -200, 0, ScreenWidth);
+
+        anim = ObjectAnimator.ofFloat(myView, "translationX", -200, 0, ScreenWidth,0);
         anim.setInterpolator(new LinearInterpolator());
         anim.setRepeatCount(-1);
         anim.setDuration(2000);
@@ -113,13 +126,13 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
     }
 
     private void RotateAnimation() {
-        ObjectAnimator anim = ObjectAnimator.ofFloat(myView, "rotation", 0f, 360f);
+        anim = ObjectAnimator.ofFloat(myView, "rotation", 0f, 360f);
         anim.setDuration(1000);
         anim.start();
     }
 
     private void AlpahAnimation() {
-        ObjectAnimator anim = ObjectAnimator.ofFloat(myView, "alpha", 1.0f, 0.8f, 0.6f, 0.4f, 0.2f, 0.0f);
+        anim = ObjectAnimator.ofFloat(myView, "alpha", 1.0f, 0.8f, 0.6f, 0.4f, 0.2f, 0.0f,0.2f,0.4f,0.6f,0.8f,1.0f);
         anim.setRepeatCount(-1);
         anim.setRepeatMode(ObjectAnimator.REVERSE);
         anim.setDuration(2000);

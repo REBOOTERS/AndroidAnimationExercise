@@ -44,16 +44,13 @@
         android:textColor="@color/colorAccent" />
 
 
-    <TextView
+    <ImageView
         android:id="@+id/myView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@color/colorPrimary"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Property"
-        android:textColor="#fff"
-        android:textSize="18sp" />
+        android:src="@drawable/scene" />
 
 </LinearLayout>
