@@ -13,7 +13,7 @@ import android.view.animation.LinearInterpolator;
 /**
  * Created by co-mall on 2016/8/9.
  */
-public class PointAnimView2 extends View {
+public class PointAnimView3 extends View {
 
     public static final float RADIUS = 50f;
 
@@ -24,18 +24,18 @@ public class PointAnimView2 extends View {
     private ValueAnimator valueAnimator;
 
 
-    public PointAnimView2(Context context) {
+    public PointAnimView3(Context context) {
         super(context);
         init();
     }
 
 
-    public PointAnimView2(Context context, AttributeSet attrs) {
+    public PointAnimView3(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public PointAnimView2(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PointAnimView3(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

@@ -63,6 +63,7 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
                 ObjectAnimator transYAnim = ObjectAnimator.ofFloat(myView, "tranlsationY", 100, 750);
                 AnimatorSet set = new AnimatorSet();
                 set.playTogether(alphaAnim, scaleXAnim, scaleYAnim, rotateAnim, transXAnim, transYAnim);
+//                set.playSequentially(alphaAnim, scaleXAnim, scaleYAnim, rotateAnim, transXAnim, transYAnim);
                 set.setDuration(3000);
                 set.start();
                 break;

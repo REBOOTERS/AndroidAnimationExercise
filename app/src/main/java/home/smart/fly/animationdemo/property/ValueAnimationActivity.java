@@ -22,9 +22,19 @@ public class ValueAnimationActivity extends BaseActivity {
 
     }
 
+
+
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        if (view != null) {
+//            view.pauseAnimation();
+//        }
+//    }
+
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
         if (view != null) {
             view.stopAnimation();
         }
