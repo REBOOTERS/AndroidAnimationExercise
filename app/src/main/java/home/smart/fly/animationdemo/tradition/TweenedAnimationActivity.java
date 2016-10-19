@@ -41,6 +41,10 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
     private Animation animation;
 
 
+
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -299,5 +303,6 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
 
         img.startAnimation(animation);
     }
+
 
 }
