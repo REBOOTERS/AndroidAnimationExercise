@@ -25,6 +25,13 @@ public class FrameAnimationActivity extends BaseActivity {
         AnimationDrawable animationDrawable1 = (AnimationDrawable) animationImg1.getDrawable();
         animationDrawable1.start();
 
+
+
+
+    }
+
+    @Override
+    public void initView() {
         animationImg2 = (ImageView) findViewById(R.id.animation2);
         animationImg2.setImageResource(R.drawable.frame_anim2);
         animationDrawable2 = (AnimationDrawable) animationImg2.getDrawable();
@@ -39,7 +46,5 @@ public class FrameAnimationActivity extends BaseActivity {
         animationImg4.setImageResource(R.drawable.frame_anim4);
         animationDrawable4 = (AnimationDrawable) animationImg4.getDrawable();
         animationDrawable4.start();
-
-
     }
 }

@@ -22,6 +22,11 @@ public class ValueAnimationActivity extends BaseActivity implements View.OnClick
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_value_animation);
+
+    }
+
+    @Override
+    public void initView() {
         view = (PointAnimView) findViewById(R.id.view);
         findViewById(R.id.start).setOnClickListener(this);
         findViewById(R.id.stop).setOnClickListener(this);
@@ -87,4 +92,6 @@ public class ValueAnimationActivity extends BaseActivity implements View.OnClick
                 break;
         }
     }
+
+
 }

@@ -49,6 +49,11 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
+
+    }
+
+    @Override
+    public void initView() {
         setContentView(R.layout.activity_tween_animation);
         findViewById(R.id.alpha).setOnClickListener(this);
         findViewById(R.id.scale).setOnClickListener(this);
@@ -303,6 +308,7 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
 
         img.startAnimation(animation);
     }
+
 
 
 }

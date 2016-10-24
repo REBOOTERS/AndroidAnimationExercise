@@ -51,8 +51,6 @@ public class BlurActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blur);
 
-        // 初始化视图
-        initViews();
 
         // 获取图片
         mTempBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.scene);
@@ -67,16 +65,17 @@ public class BlurActivity extends BaseActivity {
         setSeekBar();
     }
 
-    /**
-     * 初始化视图
-     */
-    private void initViews() {
+
+    @Override
+    public void initView() {
         mBluredImage = (ImageView) findViewById(R.id.activity_main_blured_img);
         mOriginImg = (ImageView) findViewById(R.id.activity_main_origin_img);
         mSeekBar = (SeekBar) findViewById(R.id.activity_main_seekbar);
         mProgressTv = (TextView) findViewById(R.id.activity_main_progress_tv);
-
     }
+
+
+
 
     /**
      * 处理seekbar滑动事件
@@ -103,4 +102,5 @@ public class BlurActivity extends BaseActivity {
             }
         });
     }
+
 }

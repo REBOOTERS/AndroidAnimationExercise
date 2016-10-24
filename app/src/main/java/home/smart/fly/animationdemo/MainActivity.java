@@ -30,11 +30,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_main);
-        initData();
     }
 
-
-    private void initData() {
+    @Override
+    public void initView() {
         btn_tradition = (Button) findViewById(R.id.btn_message);
         btn_property = (Button) findViewById(R.id.btn_call);
         btn_tradition.setOnClickListener(this);
@@ -49,6 +48,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             loadFragment(TRADITION_TYPE);
         }
     }
+
 
     private void switchFragment(int type) {
         switch (type) {
@@ -115,4 +115,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+
 }

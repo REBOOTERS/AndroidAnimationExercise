@@ -33,6 +33,10 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_property_animation);
+    }
+
+    @Override
+    public void initView() {
         findViewById(R.id.alpha).setOnClickListener(this);
         findViewById(R.id.scale).setOnClickListener(this);
         findViewById(R.id.translate).setOnClickListener(this);
@@ -51,7 +55,7 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
             anim.end();
             anim.cancel();
             myView.clearAnimation();
-            anim=null;
+            anim = null;
         }
         switch (v.getId()) {
             case R.id.set:
@@ -80,7 +84,7 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
                 RotateAnimation();
                 break;
             case R.id.myView:
-                Toast.makeText(mContext,"我被点击了",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "我被点击了", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -119,7 +123,7 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
 
     private void TranslationAnimation() {
 
-        anim = ObjectAnimator.ofFloat(myView, "translationX", -200, 0, ScreenWidth,0);
+        anim = ObjectAnimator.ofFloat(myView, "translationX", -200, 0, ScreenWidth, 0);
         anim.setInterpolator(new LinearInterpolator());
         anim.setRepeatCount(-1);
         anim.setDuration(2000);
@@ -133,10 +137,12 @@ public class PropertyAnimationActivity extends BaseActivity implements OnClickLi
     }
 
     private void AlpahAnimation() {
-        anim = ObjectAnimator.ofFloat(myView, "alpha", 1.0f, 0.8f, 0.6f, 0.4f, 0.2f, 0.0f,0.2f,0.4f,0.6f,0.8f,1.0f);
+        anim = ObjectAnimator.ofFloat(myView, "alpha", 1.0f, 0.8f, 0.6f, 0.4f, 0.2f, 0.0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f);
         anim.setRepeatCount(-1);
         anim.setRepeatMode(ObjectAnimator.REVERSE);
         anim.setDuration(2000);
         anim.start();
     }
+
+
 }

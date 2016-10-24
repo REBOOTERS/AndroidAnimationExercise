@@ -8,11 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import home.smart.fly.animationdemo.R;
-import home.smart.fly.animationdemo.property.DemoViewActivity;
+import home.smart.fly.animationdemo.property.AliPaySuccessAnimActivity;
 import home.smart.fly.animationdemo.property.PropertyAnimationActivity;
+import home.smart.fly.animationdemo.property.ShopCarAddAnimActivity;
 import home.smart.fly.animationdemo.property.ValueAnimationActivity;
 
 /**
@@ -22,8 +22,6 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
     private Context mContext;
     private View rootView;
 
-
-    private Button property, value, value2, demo;
 
     @Nullable
     @Override
@@ -40,13 +38,10 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
     }
 
     private void InitView() {
-        property = (Button) rootView.findViewById(R.id.property);
-        property.setOnClickListener(this);
-        value = (Button) rootView.findViewById(R.id.value);
-        value.setOnClickListener(this);
-
-        demo = (Button) rootView.findViewById(R.id.demo);
-        demo.setOnClickListener(this);
+        rootView.findViewById(R.id.property).setOnClickListener(this);
+        rootView.findViewById(R.id.value).setOnClickListener(this);
+        rootView.findViewById(R.id.demo).setOnClickListener(this);
+        rootView.findViewById(R.id.shopcar_add_anim).setOnClickListener(this);
     }
 
     @Override
@@ -60,7 +55,10 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
                 intent = new Intent(mContext, ValueAnimationActivity.class);
                 break;
             case R.id.demo:
-                intent = new Intent(mContext, DemoViewActivity.class);
+                intent = new Intent(mContext, AliPaySuccessAnimActivity.class);
+                break;
+            case R.id.shopcar_add_anim:
+                intent = new Intent(mContext, ShopCarAddAnimActivity.class);
                 break;
             default:
                 break;

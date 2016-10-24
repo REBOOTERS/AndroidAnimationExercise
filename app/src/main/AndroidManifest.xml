@@ -20,7 +20,8 @@
         <activity android:name=".blur.BlurActivity" />
         <activity android:name=".property.PropertyAnimationActivity" />
         <activity android:name=".property.ValueAnimationActivity" />
-        <activity android:name=".property.DemoViewActivity" />
+        <activity android:name=".property.AliPaySuccessAnimActivity" />
+        <activity android:name=".property.ShopCarAddAnimActivity"/>
     </application>
 
 </manifest>
