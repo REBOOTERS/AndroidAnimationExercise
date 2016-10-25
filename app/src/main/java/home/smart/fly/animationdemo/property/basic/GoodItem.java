@@ -3,10 +3,6 @@ package home.smart.fly.animationdemo.property.basic;
 import android.graphics.Bitmap;
 
 /**
- * @className: GoodsModel
- * @classDescription: 商品实体类
- * @author: leibing
- * @createTime: 2016/09/28
  */
 public class GoodItem {
 

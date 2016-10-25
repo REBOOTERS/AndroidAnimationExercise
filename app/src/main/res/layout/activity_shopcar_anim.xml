@@ -5,18 +5,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/shoplist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom" />
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp"
-        android:paddingRight="30dp">
+        android:background="@color/tab">
 
         <ImageView
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/car_view"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -24,6 +30,8 @@
             android:src="@drawable/menu_shop_car_selected" />
 
         <TextView
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
             android:id="@+id/car_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,13 +39,7 @@
             android:background="@drawable/corner_view"
             android:text="0"
             android:textColor="#fff" />
-    </FrameLayout>
+    </RelativeLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/shoplist"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom" />
 
 </RelativeLayout>

@@ -13,30 +13,13 @@ import home.smart.fly.animationdemo.R;
 
 
 /**
- * @className: GoodsAdapter
- * @classDescription: 购物车商品适配器
- * @author: leibing
- * @createTime: 2016/09/28
  */
-public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.MyViewHolder> {
-    // 数据源（购物车商品图片）
+public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.MyViewHolder> {
     private ArrayList<GoodItem> mData;
-    // 布局
     private LayoutInflater mLayoutInflater;
-    // 回调监听
     private CallBackListener mCallBackListener;
 
-    /**
-     * 构造函数
-     *
-     * @param context 上下文
-     * @param mData   数据源（购物车商品图片）
-     * @return
-     * @author leibing
-     * @createTime 2016/09/28
-     * @lastModify 2016/09/28
-     */
-    public GoodsAdapter(Context context, ArrayList<GoodItem> mData) {
+    public GoodsListAdapter(Context context, ArrayList<GoodItem> mData) {
         mLayoutInflater = LayoutInflater.from(context);
         this.mData = mData;
     }
