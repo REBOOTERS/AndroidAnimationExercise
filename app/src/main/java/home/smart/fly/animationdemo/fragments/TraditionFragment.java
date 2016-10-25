@@ -16,7 +16,7 @@ import home.smart.fly.animationdemo.tradition.FrameAnimationActivity;
 import home.smart.fly.animationdemo.tradition.TweenedAnimationActivity;
 
 /**
- * Created by co-mall on 2016/8/12.
+ * Created by rookie on 2016/8/12.
  */
 public class TraditionFragment extends Fragment implements View.OnClickListener {
     private Context mContext;

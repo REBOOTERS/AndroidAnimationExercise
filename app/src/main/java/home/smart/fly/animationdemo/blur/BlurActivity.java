@@ -12,7 +12,7 @@ import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.utils.BaseActivity;
 
 /**
- * Created by co-mall on 2016/8/19.
+ * Created by rookie on 2016/8/19.
  */
 public class BlurActivity extends BaseActivity {
     /**

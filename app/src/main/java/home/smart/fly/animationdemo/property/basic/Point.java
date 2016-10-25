@@ -1,7 +1,7 @@
 package home.smart.fly.animationdemo.property.basic;
 
 /**
- * Created by co-mall on 2016/8/9.
+ * Created by rookie on 2016/8/9.
  */
 public class Point {
     private float x,y;

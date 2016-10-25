@@ -10,7 +10,7 @@ import home.smart.fly.animationdemo.property.basic.PointAnimView;
 import home.smart.fly.animationdemo.utils.BaseActivity;
 
 /**
- * Created by co-mall on 2016/8/9.
+ * Created by rookie on 2016/8/9.
  */
 public class ValueAnimationActivity extends BaseActivity implements View.OnClickListener {
     PointAnimView view;

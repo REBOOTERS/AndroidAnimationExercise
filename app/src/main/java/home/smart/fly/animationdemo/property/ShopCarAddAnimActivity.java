@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -26,7 +27,7 @@ import home.smart.fly.animationdemo.property.basic.GoodsListAdapter;
 import home.smart.fly.animationdemo.utils.BaseActivity;
 
 /**
- * Created by co-mall on 2016/10/24.
+ * Created by rookie on 2016/10/24.
  */
 
 public class ShopCarAddAnimActivity extends BaseActivity implements GoodsListAdapter.CallBackListener {
@@ -75,12 +76,18 @@ public class ShopCarAddAnimActivity extends BaseActivity implements GoodsListAda
         float endX = carLocation[0] - shellLocation[0] + carImage.getWidth() / 5;
         float endY = carLocation[1] - shellLocation[1];
 
+        //控制点，控制贝塞尔曲线
+        float ctrlX = startX + 100;
+        float ctrlY = startY - 100;
+
+        Log.e("num", "-------->" + ctrlX + " " + startY + " " + ctrlY + " " + endY);
+
         // 开始绘制贝塞尔曲线
         Path path = new Path();
         // 移动到起始点（贝塞尔曲线的起点）
         path.moveTo(startX, startY);
         // 使用二阶贝塞尔曲线：注意第一个起始坐标越大，贝塞尔曲线的横向距离就会越大，一般按照下面的式子取即可
-        path.quadTo((startX + endX) / 2, startY, endX, endY);
+        path.quadTo(ctrlX, ctrlY, endX, endY);
         // mPathMeasure用来计算贝塞尔曲线的曲线长度和贝塞尔曲线中间插值的坐标，如果是true，path会形成一个闭环
         mPathMeasure = new PathMeasure(path, false);
 
@@ -120,7 +127,7 @@ public class ShopCarAddAnimActivity extends BaseActivity implements GoodsListAda
         });
 
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.setDuration(1000);
+        animatorSet.setDuration(500);
         animatorSet.setInterpolator(new AccelerateInterpolator());
         animatorSet.playTogether(scaleXanim, scaleYanim, valueAnimator);
         animatorSet.start();

@@ -18,7 +18,7 @@ import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.utils.BaseActivity;
 
 /**
- * Created by co-mall on 2016/8/8.
+ * Created by rookie on 2016/8/8.
  */
 public class PropertyAnimationActivity extends BaseActivity implements OnClickListener {
     private Context mContext;

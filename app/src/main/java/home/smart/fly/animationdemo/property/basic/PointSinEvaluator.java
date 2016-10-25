@@ -3,7 +3,7 @@ package home.smart.fly.animationdemo.property.basic;
 import android.animation.TypeEvaluator;
 
 /**
- * Created by co-mall on 2016/8/9.
+ * Created by rookie on 2016/8/9.
  */
 public class PointSinEvaluator implements TypeEvaluator {
 

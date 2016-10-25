@@ -32,5 +32,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="shopcar_add_anim" />
+    <Button
+        android:id="@+id/LayoutAnimations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LayoutAnimations" />
 
 </LinearLayout>

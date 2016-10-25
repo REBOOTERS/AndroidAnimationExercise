@@ -22,7 +22,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 
 /**
- * Created by co-mall on 2016/8/9.
+ * Created by rookie on 2016/8/9.
  */
 public class PointAnimView extends View {
 

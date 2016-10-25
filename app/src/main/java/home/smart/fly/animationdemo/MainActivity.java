@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             transaction.replace(R.id.fl_content, mainFragment);
             transaction.commit();
         } else {
-            loadFragment(TRADITION_TYPE);
+            loadFragment(PROPERTY_TYPE);
         }
     }
 

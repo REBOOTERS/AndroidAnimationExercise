@@ -10,7 +10,7 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 
 /**
- * Created by co-mall on 2016/8/19.
+ * Created by rookie on 2016/8/19.
  */
 public class BlurImage {
     /**

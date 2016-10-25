@@ -20,7 +20,7 @@ import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.utils.BaseActivity;
 
 /**
- * Created by co-mall on 2016/8/8.
+ * Created by rookie on 2016/8/8.
  */
 public class TweenedAnimationActivity extends BaseActivity implements View.OnClickListener {
     private Context mContext;

@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by co-mall on 2016/10/11.
+ * Created by rookie on 2016/10/11.
  */
 
 public class AxisView extends View {

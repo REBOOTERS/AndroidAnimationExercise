@@ -14,7 +14,7 @@ import android.util.Log;
 import android.view.View;
 
 /**
- * Created by co-mall on 2016/10/19.
+ * Created by rookie on 2016/10/19.
  */
 
 public class AlipaySuccessView extends View {
