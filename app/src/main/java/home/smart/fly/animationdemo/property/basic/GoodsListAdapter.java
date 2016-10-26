@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -51,19 +52,44 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView mShoppingCartItemIv;
+        ImageView minus, plus;
+        TextView num;
 
 
         public MyViewHolder(View view) {
             super(view);
             mShoppingCartItemIv = (ImageView) view.findViewById(R.id.iv_shopping_cart_item);
-            view.findViewById(R.id.tv_shopping_cart_item).setOnClickListener(
+            num = (TextView) view.findViewById(R.id.num);
+            minus = (ImageView) view.findViewById(R.id.minus);
+            plus = (ImageView) view.findViewById(R.id.plus);
+
+
+            plus.setOnClickListener(
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (mShoppingCartItemIv != null && mCallBackListener != null)
-                                mCallBackListener.callBackImg(mShoppingCartItemIv);
+                            if (mShoppingCartItemIv != null && mCallBackListener != null) {
+                                int temp = Integer.parseInt(num.getText().toString());
+                                num.setText(String.valueOf(++temp));
+                                mCallBackListener.callBackPlus(mShoppingCartItemIv);
+                            }
+
                         }
                     });
+
+            minus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mShoppingCartItemIv != null && mCallBackListener != null) {
+                        int temp = Integer.parseInt(num.getText().toString());
+                        if (temp > 0) {
+                            num.setText(String.valueOf(--temp));
+                            mCallBackListener.callBackMinus(mShoppingCartItemIv);
+                        }
+
+                    }
+                }
+            });
         }
 
 
@@ -75,6 +101,8 @@ public class GoodsListAdapter extends RecyclerView.Adapter<GoodsListAdapter.MyVi
     }
 
     public interface CallBackListener {
-        void callBackImg(ImageView goodsImg);
+        void callBackPlus(ImageView goodsImg);
+
+        void callBackMinus(ImageView goodsImg);
     }
 }

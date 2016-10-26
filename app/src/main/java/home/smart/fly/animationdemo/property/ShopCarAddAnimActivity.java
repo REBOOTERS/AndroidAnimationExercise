@@ -77,7 +77,7 @@ public class ShopCarAddAnimActivity extends BaseActivity implements GoodsListAda
         float endY = carLocation[1] - shellLocation[1];
 
         //控制点，控制贝塞尔曲线
-        float ctrlX = startX + 100;
+        float ctrlX = (startX + endX) / 2;
         float ctrlY = startY - 100;
 
         Log.e("num", "-------->" + ctrlX + " " + startY + " " + ctrlY + " " + endY);
@@ -120,9 +120,16 @@ public class ShopCarAddAnimActivity extends BaseActivity implements GoodsListAda
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 goodsCount++;
-                carCount.setText(String.valueOf(goodsCount));
+                if (goodsCount < 100) {
+                    carCount.setText(String.valueOf(goodsCount));
+                } else {
+                    carCount.setText("99+");
+                }
+
                 // 把执行动画的商品图片从父布局中移除
                 shellLayout.removeView(animImg);
+                shopCarAnim();
+
             }
         });
 
@@ -133,6 +140,15 @@ public class ShopCarAddAnimActivity extends BaseActivity implements GoodsListAda
         animatorSet.start();
 
 
+    }
+
+    private void shopCarAnim() {
+        ObjectAnimator scaleXanim = ObjectAnimator.ofFloat(carImage, "scaleX", 1.3f,1.2f, 1);
+        ObjectAnimator scaleYanim = ObjectAnimator.ofFloat(carImage, "scaleY", 1.3f,1.2f, 1);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(500);
+        animatorSet.playTogether(scaleXanim, scaleYanim);
+        animatorSet.start();
     }
 
 
@@ -163,8 +179,17 @@ public class ShopCarAddAnimActivity extends BaseActivity implements GoodsListAda
     }
 
     @Override
-    public void callBackImg(ImageView goodsImg) {
+    public void callBackPlus(ImageView goodsImg) {
         addToCarAnimation(goodsImg);
+    }
+
+    @Override
+    public void callBackMinus(ImageView goodsImg) {
+
+        if (goodsCount > 0) {
+            goodsCount--;
+            carCount.setText(String.valueOf(goodsCount));
+        }
     }
 
 }
