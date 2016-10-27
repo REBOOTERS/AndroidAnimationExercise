@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.property.AliPaySuccessAnimActivity;
+import home.smart.fly.animationdemo.property.CustomViewActivity;
 import home.smart.fly.animationdemo.property.LayoutAnimationsActivity;
 import home.smart.fly.animationdemo.property.PropertyAnimationActivity;
 import home.smart.fly.animationdemo.property.ShopCarAddAnimActivity;
@@ -44,6 +45,7 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.demo).setOnClickListener(this);
         rootView.findViewById(R.id.shopcar_add_anim).setOnClickListener(this);
         rootView.findViewById(R.id.LayoutAnimations).setOnClickListener(this);
+        rootView.findViewById(R.id.CustomView).setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +66,9 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.LayoutAnimations:
                 intent = new Intent(mContext, LayoutAnimationsActivity.class);
+                break;
+            case R.id.CustomView:
+                intent = new Intent(mContext, CustomViewActivity.class);
                 break;
             default:
                 break;

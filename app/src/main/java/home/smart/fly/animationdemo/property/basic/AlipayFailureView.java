@@ -8,6 +8,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -17,14 +19,16 @@ import android.view.View;
  * Created by rookie on 2016/10/19.
  */
 
-public class AlipaySuccessView extends View {
+public class AlipayFailureView extends View {
 
-    private String TAG = AlipaySuccessView.class.getSimpleName();
+    private String TAG = AlipayFailureView.class.getSimpleName();
 
 
     private Paint mCirclePanit;
     private Paint mLinePaint;
     private float mStrokeWidth = 6;
+    private float factor = 0.7f;
+    private float temp;
     private float mCenterX, mCenterY;
     private float mRadius = 250;
     private final RectF mRectF = new RectF();
@@ -38,16 +42,20 @@ public class AlipaySuccessView extends View {
     private ValueAnimator mLineRightAnimator;
 
     private boolean mIsCanHide;
+    private PathMeasure pathLeftMeasure;
+    private PathMeasure pathRightMeasure;
+    private float[] mLeftPos = new float[2];
+    private float[] mRightPos = new float[2];
 
-    public AlipaySuccessView(Context context) {
+    public AlipayFailureView(Context context) {
         this(context, null);
     }
 
-    public AlipaySuccessView(Context context, AttributeSet attrs) {
+    public AlipayFailureView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public AlipaySuccessView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AlipayFailureView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mCirclePanit = new Paint();
         mCirclePanit.setAntiAlias(true);
@@ -72,10 +80,9 @@ public class AlipaySuccessView extends View {
         mRectF.right = mCenterX + mRadius;
         mRectF.bottom = mCenterY + mRadius;
         canvas.drawArc(mRectF, 0, mDegree, false, mCirclePanit);
-        canvas.drawLine(mCenterX - mRadius / 2, mCenterY,
-                mCenterX - mRadius / 2 + mOffsetValue, mCenterY + mOffsetValue, mLinePaint);
-        canvas.drawLine(mCenterX, mCenterY + mRadius / 2,
-                mCenterX + mOffsetRightValue, mCenterY + mRadius / 2 - (3f / 2f) * mOffsetRightValue, mLinePaint);
+        canvas.drawLine(mCenterX - temp, mCenterY - temp, mLeftPos[0], mLeftPos[1], mLinePaint);
+        canvas.drawLine(mCenterX + temp, mCenterY - temp, mRightPos[0], mRightPos[1], mLinePaint);
+
 
     }
 
@@ -88,11 +95,21 @@ public class AlipaySuccessView extends View {
     private void lodingCircleMeasure() {
         int mViewWidth = getWidth();
         int mViewHeight = getHeight();
-        int mViewLength = Math.min(mViewHeight, mViewWidth);
         mCenterX = mViewWidth / 2;
         mCenterY = mViewHeight / 2;
-//        mRadius = (mViewLength - 2 * PADDING) / 2;
-//        mRadius = 590;
+
+        temp = mRadius / 2.0f * factor;
+        Path path = new Path();
+        path.moveTo(mCenterX - temp, mCenterY - temp);
+        path.lineTo(mCenterX + temp, mCenterY + temp);
+        pathLeftMeasure = new PathMeasure(path, false);
+
+        path = new Path();
+        path.moveTo(mCenterX + temp, mCenterY - temp);
+        path.lineTo(mCenterX - temp, mCenterY + temp);
+        pathRightMeasure = new PathMeasure(path, false);
+
+
     }
 
     public void loadCircle() {
@@ -103,8 +120,8 @@ public class AlipaySuccessView extends View {
         lodingCircleMeasure();
         Log.e("left", "R is -------->" + mRadius);
         mCircleAnim = ValueAnimator.ofInt(0, 360);
-        mLineLeftAnimator = ValueAnimator.ofFloat(0, mRadius / 2f);
-        mLineRightAnimator = ValueAnimator.ofFloat(0, mRadius / 2f);
+        mLineLeftAnimator = ValueAnimator.ofFloat(0, pathLeftMeasure.getLength());
+        mLineRightAnimator = ValueAnimator.ofFloat(0, pathRightMeasure.getLength());
         Log.i(TAG, "mRadius" + mRadius);
         mCircleAnim.setDuration(700);
         mLineLeftAnimator.setDuration(350);
@@ -121,6 +138,7 @@ public class AlipaySuccessView extends View {
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 mOffsetValue = (Float) valueAnimator.getAnimatedValue();
                 Log.e("left", "-------->" + mOffsetValue);
+                pathLeftMeasure.getPosTan(mOffsetValue, mLeftPos, null);
                 invalidate();
             }
         });
@@ -128,12 +146,13 @@ public class AlipaySuccessView extends View {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 mOffsetRightValue = (Float) animation.getAnimatedValue();
+                pathRightMeasure.getPosTan(mOffsetRightValue, mRightPos, null);
                 invalidate();
             }
         });
         mAnimatorSet.play(mCircleAnim).before(mLineLeftAnimator);
         mAnimatorSet.play(mLineRightAnimator).after(mLineLeftAnimator);
-//        mAnimatorSet.playSequentially(mCircleAnim,mLineLeftAnimator,mLineRightAnimator);
+//        mAnimatorSet.playTogether(mLineLeftAnimator,mLineRightAnimator,mCircleAnim);
         mAnimatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {

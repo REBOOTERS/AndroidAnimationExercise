@@ -23,6 +23,7 @@
         <activity android:name=".property.AliPaySuccessAnimActivity" />
         <activity android:name=".property.ShopCarAddAnimActivity"/>
         <activity android:name=".property.LayoutAnimationsActivity"/>
+        <activity android:name=".property.CustomViewActivity"/>
     </application>
 
 </manifest>

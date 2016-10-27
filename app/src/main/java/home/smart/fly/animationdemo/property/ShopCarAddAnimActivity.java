@@ -84,6 +84,7 @@ public class ShopCarAddAnimActivity extends BaseActivity implements GoodsListAda
 
         // 开始绘制贝塞尔曲线
         Path path = new Path();
+
         // 移动到起始点（贝塞尔曲线的起点）
         path.moveTo(startX, startY);
         // 使用二阶贝塞尔曲线：注意第一个起始坐标越大，贝塞尔曲线的横向距离就会越大，一般按照下面的式子取即可
