@@ -70,6 +70,9 @@ public class AlipayFailureView extends View {
         mLinePaint.setStrokeWidth(mStrokeWidth);
         mLinePaint.setColor(Color.WHITE);
         mLinePaint.setStyle(Paint.Style.STROKE);
+
+        initDegreeAndOffset();
+        lodingCircleMeasure();
     }
 
     @Override
@@ -80,8 +83,11 @@ public class AlipayFailureView extends View {
         mRectF.right = mCenterX + mRadius;
         mRectF.bottom = mCenterY + mRadius;
         canvas.drawArc(mRectF, 0, mDegree, false, mCirclePanit);
-        canvas.drawLine(mCenterX - temp, mCenterY - temp, mLeftPos[0], mLeftPos[1], mLinePaint);
-        canvas.drawLine(mCenterX + temp, mCenterY - temp, mRightPos[0], mRightPos[1], mLinePaint);
+        if(mLeftPos[1]>(mCenterY - temp)&&mRightPos[1]>(mCenterY - temp)){
+            canvas.drawLine(mCenterX - temp, mCenterY - temp, mLeftPos[0], mLeftPos[1], mLinePaint);
+            canvas.drawLine(mCenterX + temp, mCenterY - temp, mRightPos[0], mRightPos[1], mLinePaint);
+        }
+
 
 
     }
@@ -116,8 +122,7 @@ public class AlipayFailureView extends View {
         if (null != mAnimatorSet && mAnimatorSet.isRunning()) {
             return;
         }
-        initDegreeAndOffset();
-        lodingCircleMeasure();
+
         Log.e("left", "R is -------->" + mRadius);
         mCircleAnim = ValueAnimator.ofInt(0, 360);
         mLineLeftAnimator = ValueAnimator.ofFloat(0, pathLeftMeasure.getLength());
