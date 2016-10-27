@@ -26,8 +26,8 @@ public class AlipayFailureView extends View {
 
     private Paint mCirclePanit;
     private Paint mLinePaint;
-    private float mStrokeWidth = 6;
-    private float factor = 0.7f;
+    private float mStrokeWidth = 12;
+    private float factor = 0.8f;
     private float temp;
     private float mCenterX, mCenterY;
     private float mRadius = 250;
@@ -83,13 +83,10 @@ public class AlipayFailureView extends View {
         mRectF.right = mCenterX + mRadius;
         mRectF.bottom = mCenterY + mRadius;
         canvas.drawArc(mRectF, 0, mDegree, false, mCirclePanit);
-        if(mLeftPos[1]>(mCenterY - temp)&&mRightPos[1]>(mCenterY - temp)){
+        if (mLeftPos[1] > (mCenterY - temp) && mRightPos[1] > (mCenterY - temp)) {
             canvas.drawLine(mCenterX - temp, mCenterY - temp, mLeftPos[0], mLeftPos[1], mLinePaint);
             canvas.drawLine(mCenterX + temp, mCenterY - temp, mRightPos[0], mRightPos[1], mLinePaint);
         }
-
-
-
     }
 
     @Override
@@ -123,11 +120,9 @@ public class AlipayFailureView extends View {
             return;
         }
 
-        Log.e("left", "R is -------->" + mRadius);
         mCircleAnim = ValueAnimator.ofInt(0, 360);
         mLineLeftAnimator = ValueAnimator.ofFloat(0, pathLeftMeasure.getLength());
         mLineRightAnimator = ValueAnimator.ofFloat(0, pathRightMeasure.getLength());
-        Log.i(TAG, "mRadius" + mRadius);
         mCircleAnim.setDuration(700);
         mLineLeftAnimator.setDuration(350);
         mLineRightAnimator.setDuration(350);
@@ -157,7 +152,6 @@ public class AlipayFailureView extends View {
         });
         mAnimatorSet.play(mCircleAnim).before(mLineLeftAnimator);
         mAnimatorSet.play(mLineRightAnimator).after(mLineLeftAnimator);
-//        mAnimatorSet.playTogether(mLineLeftAnimator,mLineRightAnimator,mCircleAnim);
         mAnimatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {

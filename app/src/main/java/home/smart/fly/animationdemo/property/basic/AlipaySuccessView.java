@@ -24,7 +24,7 @@ public class AlipaySuccessView extends View {
 
     private Paint mCirclePanit;
     private Paint mLinePaint;
-    private float mStrokeWidth = 6;
+    private float mStrokeWidth = 12;
     private float mCenterX, mCenterY;
     private float mRadius = 250;
     private final RectF mRectF = new RectF();

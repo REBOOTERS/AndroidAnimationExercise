@@ -7,14 +7,30 @@
 
     <home.smart.fly.animationdemo.property.basic.AlipaySuccessView
         android:id="@+id/successview"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/white" />
 
     <home.smart.fly.animationdemo.property.basic.AlipayFailureView
         android:id="@+id/faliureview"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/failure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@color/white" />
 
 </LinearLayout>
