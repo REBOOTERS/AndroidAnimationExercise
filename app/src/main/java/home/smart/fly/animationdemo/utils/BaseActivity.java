@@ -18,4 +18,10 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public abstract void initView();
 
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0,R.anim.out_to_bottom);
+    }
 }

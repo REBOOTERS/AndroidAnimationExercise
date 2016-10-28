@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/cpb_white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,39 +10,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="home.smart.fly.animationdemo.MainActivity">
 
-    <Button
-        android:layout_margin="10dp"
-        android:id="@+id/frame"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cpb_blue"
-        android:text="FrameAnimation"
-        android:textColor="@color/white" />
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/cpb_green_dark"
+        android:text="Activity" />
 
     <Button
-        android:id="@+id/tween"
-        android:layout_margin="10dp"
+        android:id="@+id/exlpode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cpb_blue"
-        android:text="TweenedAnimation"
-        android:textColor="@color/white" />
+        android:layout_margin="10dp"
+        android:background="@color/cpb_red"
+        android:text="exlpode"
+        android:textColor="@color/cpb_white" />
+    <Button
+        android:id="@+id/slide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_red"
+        android:text="exlpode"
+        android:textColor="@color/cpb_white" />
 
-    <Button
-        android:id="@+id/blur"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/cpb_blue"
-        android:text="Blur"
-        android:textColor="@color/white" />
-    <Button
-        android:id="@+id/activitySwitch"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/cpb_blue"
-        android:text="activitySwitch"
-        android:textColor="@color/white" />
 
 </LinearLayout>

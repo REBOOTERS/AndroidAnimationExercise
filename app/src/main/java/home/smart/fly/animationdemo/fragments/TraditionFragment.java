@@ -13,6 +13,7 @@ import android.widget.Button;
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.blur.BlurActivity;
 import home.smart.fly.animationdemo.tradition.FrameAnimationActivity;
+import home.smart.fly.animationdemo.tradition.SwitchAnimActivity;
 import home.smart.fly.animationdemo.tradition.TweenedAnimationActivity;
 
 /**
@@ -23,7 +24,7 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
     private View rootView;
 
 
-    private Button frame, tweened,blur;
+    private Button frame, tweened, blur, activitySwitch;
 
     @Nullable
     @Override
@@ -47,6 +48,10 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
 
         blur = (Button) rootView.findViewById(R.id.blur);
         blur.setOnClickListener(this);
+        blur = (Button) rootView.findViewById(R.id.blur);
+        blur.setOnClickListener(this);
+        activitySwitch = (Button) rootView.findViewById(R.id.activitySwitch);
+        activitySwitch.setOnClickListener(this);
     }
 
     @Override
@@ -55,17 +60,28 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.frame:
                 intent = new Intent(mContext, FrameAnimationActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
                 break;
             case R.id.tween:
                 intent = new Intent(mContext, TweenedAnimationActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.in_from_bottom, R.anim.out_to_bottom);
                 break;
 
             case R.id.blur:
                 intent = new Intent(mContext, BlurActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+                break;
+            case R.id.activitySwitch:
+                intent = new Intent(mContext, SwitchAnimActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.in_from_bottom, R.anim.out_to_bottom);
                 break;
             default:
                 break;
         }
-        startActivity(intent);
+
     }
 }

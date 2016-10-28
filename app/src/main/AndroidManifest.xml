@@ -18,6 +18,7 @@
         <activity android:name=".tradition.FrameAnimationActivity" />
         <activity android:name=".tradition.TweenedAnimationActivity" />
         <activity android:name=".blur.BlurActivity" />
+        <activity android:name=".tradition.SwitchAnimActivity"/>
         <activity android:name=".property.PropertyAnimationActivity" />
         <activity android:name=".property.ValueAnimationActivity" />
         <activity android:name=".property.AliPayAnimActivity" />

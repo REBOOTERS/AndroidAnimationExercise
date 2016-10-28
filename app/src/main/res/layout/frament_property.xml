@@ -14,37 +14,55 @@
         android:id="@+id/property"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PropertyAnimation" />
+        android:layout_margin="10dp"
+        android:background="@color/cpb_green"
+        android:text="PropertyAnimation"
+        android:textColor="@color/cpb_white" />
 
     <Button
         android:id="@+id/value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PropertyValueAnimation" />
+        android:layout_margin="10dp"
+        android:background="@color/cpb_green"
+        android:text="PropertyValueAnimation"
+        android:textColor="@color/cpb_white" />
 
     <Button
         android:id="@+id/demo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DemoView" />
+        android:layout_margin="10dp"
+        android:background="@color/cpb_green"
+        android:text="DemoView"
+        android:textColor="@color/cpb_white" />
 
     <Button
         android:id="@+id/shopcar_add_anim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="shopcar_add_anim" />
+        android:layout_margin="10dp"
+        android:background="@color/cpb_green"
+        android:text="shopcar_add_anim"
+        android:textColor="@color/cpb_white" />
 
     <Button
         android:id="@+id/LayoutAnimations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LayoutAnimations" />
+        android:layout_margin="10dp"
+        android:background="@color/cpb_green"
+        android:text="LayoutAnimations"
+        android:textColor="@color/cpb_white" />
 
     <Button
         android:id="@+id/CustomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_green"
         android:text="CustomView"
+        android:textColor="@color/cpb_white"
         android:visibility="gone" />
 
 </LinearLayout>

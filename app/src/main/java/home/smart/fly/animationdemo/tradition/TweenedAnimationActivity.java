@@ -49,12 +49,12 @@ public class TweenedAnimationActivity extends BaseActivity implements View.OnCli
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-
+        setContentView(R.layout.activity_tween_animation);
     }
 
     @Override
     public void initView() {
-        setContentView(R.layout.activity_tween_animation);
+
         findViewById(R.id.alpha).setOnClickListener(this);
         findViewById(R.id.scale).setOnClickListener(this);
         findViewById(R.id.translate).setOnClickListener(this);

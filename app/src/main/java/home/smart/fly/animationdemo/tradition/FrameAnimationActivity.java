@@ -47,4 +47,10 @@ public class FrameAnimationActivity extends BaseActivity {
         animationDrawable4 = (AnimationDrawable) animationImg4.getDrawable();
         animationDrawable4.start();
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0,R.anim.zoomout);
+    }
 }
