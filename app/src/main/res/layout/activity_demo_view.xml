@@ -1,36 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
-    android:orientation="vertical">
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent">
 
-    <home.smart.fly.animationdemo.property.basic.AlipaySuccessView
-        android:id="@+id/successview"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center" />
-
-    <TextView
-        android:id="@+id/success"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="5dp"
-        android:textColor="@color/white" />
 
-    <home.smart.fly.animationdemo.property.basic.AlipayFailureView
-        android:id="@+id/faliureview"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/failure"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="5dp"
-        android:textColor="@color/white" />
 
-</LinearLayout>
+        <home.smart.fly.animationdemo.property.basic.AlipaySuccessView
+            android:id="@+id/successview"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/success"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="开始"
+            android:textColor="@color/white" />
+
+        <home.smart.fly.animationdemo.property.basic.AlipayFailureView
+            android:id="@+id/faliureview"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/failure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="开始"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</ScrollView>

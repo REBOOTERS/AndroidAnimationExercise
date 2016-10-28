@@ -3,6 +3,7 @@ package home.smart.fly.animationdemo.property.basic;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -14,6 +15,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.BounceInterpolator;
 
 /**
  * Created by rookie on 2016/10/19.
@@ -22,11 +24,11 @@ import android.view.View;
 public class AlipayFailureView extends View {
 
     private String TAG = AlipayFailureView.class.getSimpleName();
-
+    private static final float PADDING = 20;
 
     private Paint mCirclePanit;
     private Paint mLinePaint;
-    private float mStrokeWidth = 12;
+    private float mStrokeWidth = 10;
     private float factor = 0.8f;
     private float temp;
     private float mCenterX, mCenterY;
@@ -36,7 +38,7 @@ public class AlipayFailureView extends View {
     private Float mOffsetValue = 0f;
     private Float mOffsetRightValue = 0f;
     private AnimatorSet mAnimatorSet = new AnimatorSet();
-    private static final float PADDING = 10;
+
     private ValueAnimator mCircleAnim;
     private ValueAnimator mLineLeftAnimator;
     private ValueAnimator mLineRightAnimator;
@@ -115,7 +117,8 @@ public class AlipayFailureView extends View {
 
     }
 
-    public void loadCircle() {
+    public void loadCircle(int mRadius) {
+        this.mRadius = mRadius - PADDING;
         if (null != mAnimatorSet && mAnimatorSet.isRunning()) {
             return;
         }
@@ -156,17 +159,24 @@ public class AlipayFailureView extends View {
             @Override
             public void onAnimationEnd(Animator animation) {
                 stop();
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (mEndListner != null) {
-                            mEndListner.onCircleDone();
-                        }
-                    }
-                }, 800);
+                if (mEndListner != null) {
+                    mEndListner.onCircleDone();
+                    failureAnim();
+                }
             }
         });
         mAnimatorSet.start();
+    }
+
+    private void failureAnim() {
+        float currentX = this.getTranslationX();
+        ObjectAnimator tansXAnim = ObjectAnimator.ofFloat(this, "translationX",
+                currentX - 40,
+                currentX + 40,
+                currentX);
+        tansXAnim.setDuration(5000);
+        tansXAnim.setInterpolator(new BounceInterpolator());
+        tansXAnim.start();
     }
 
     public void stop() {
@@ -217,5 +227,10 @@ public class AlipayFailureView extends View {
 
     public void removeCircleAnimatorEndListner() {
         mEndListner = null;
+    }
+
+    public void setmmLinePaintColor(int color) {
+        mLinePaint.setColor(color);
+        invalidate();
     }
 }

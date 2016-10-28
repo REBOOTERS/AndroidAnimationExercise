@@ -3,6 +3,7 @@ package home.smart.fly.animationdemo.property.basic;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,6 +13,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.BounceInterpolator;
 
 /**
  * Created by rookie on 2016/10/19.
@@ -20,19 +22,20 @@ import android.view.View;
 public class AlipaySuccessView extends View {
 
     private String TAG = AlipaySuccessView.class.getSimpleName();
+    private static final float PADDING = 20;
 
 
     private Paint mCirclePanit;
     private Paint mLinePaint;
-    private float mStrokeWidth = 12;
+
+    private float mStrokeWidth = 10;
     private float mCenterX, mCenterY;
-    private float mRadius = 250;
+    private float mRadius = 150;
     private final RectF mRectF = new RectF();
     private int mDegree;
-    private Float mOffsetValue = 0f;
-    private Float mOffsetRightValue = 0f;
+    private Float mLeftValue = 0f;
+    private Float mRightValue = 0f;
     private AnimatorSet mAnimatorSet = new AnimatorSet();
-    private static final float PADDING = 10;
     private ValueAnimator mCircleAnim;
     private ValueAnimator mLineLeftAnimator;
     private ValueAnimator mLineRightAnimator;
@@ -73,9 +76,9 @@ public class AlipaySuccessView extends View {
         mRectF.bottom = mCenterY + mRadius;
         canvas.drawArc(mRectF, 0, mDegree, false, mCirclePanit);
         canvas.drawLine(mCenterX - mRadius / 2, mCenterY,
-                mCenterX - mRadius / 2 + mOffsetValue, mCenterY + mOffsetValue, mLinePaint);
+                mCenterX - mRadius / 2 + mLeftValue, mCenterY + mLeftValue, mLinePaint);
         canvas.drawLine(mCenterX, mCenterY + mRadius / 2,
-                mCenterX + mOffsetRightValue, mCenterY + mRadius / 2 - (3f / 2f) * mOffsetRightValue, mLinePaint);
+                mCenterX + mRightValue, mCenterY + mRadius / 2 - (3f / 2f) * mRightValue, mLinePaint);
 
     }
 
@@ -91,11 +94,11 @@ public class AlipaySuccessView extends View {
         int mViewLength = Math.min(mViewHeight, mViewWidth);
         mCenterX = mViewWidth / 2;
         mCenterY = mViewHeight / 2;
-//        mRadius = (mViewLength - 2 * PADDING) / 2;
-//        mRadius = 590;
+
     }
 
-    public void loadCircle() {
+    public void loadCircle(int mRadius) {
+        this.mRadius = mRadius - PADDING;
         if (null != mAnimatorSet && mAnimatorSet.isRunning()) {
             return;
         }
@@ -103,8 +106,8 @@ public class AlipaySuccessView extends View {
         lodingCircleMeasure();
         Log.e("left", "R is -------->" + mRadius);
         mCircleAnim = ValueAnimator.ofInt(0, 360);
-        mLineLeftAnimator = ValueAnimator.ofFloat(0, mRadius / 2f);
-        mLineRightAnimator = ValueAnimator.ofFloat(0, mRadius / 2f);
+        mLineLeftAnimator = ValueAnimator.ofFloat(0, this.mRadius / 2f);
+        mLineRightAnimator = ValueAnimator.ofFloat(0, this.mRadius / 2f);
         Log.i(TAG, "mRadius" + mRadius);
         mCircleAnim.setDuration(700);
         mLineLeftAnimator.setDuration(350);
@@ -119,37 +122,45 @@ public class AlipaySuccessView extends View {
         mLineLeftAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                mOffsetValue = (Float) valueAnimator.getAnimatedValue();
-                Log.e("left", "-------->" + mOffsetValue);
+                mLeftValue = (Float) valueAnimator.getAnimatedValue();
+                Log.e("left", "-------->" + mLeftValue);
                 invalidate();
             }
         });
         mLineRightAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                mOffsetRightValue = (Float) animation.getAnimatedValue();
+                mRightValue = (Float) animation.getAnimatedValue();
                 invalidate();
             }
         });
         mAnimatorSet.play(mCircleAnim).before(mLineLeftAnimator);
         mAnimatorSet.play(mLineRightAnimator).after(mLineLeftAnimator);
-//        mAnimatorSet.playSequentially(mCircleAnim,mLineLeftAnimator,mLineRightAnimator);
         mAnimatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 stop();
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (mEndListner != null) {
-                            mEndListner.onCircleDone();
-                        }
-                    }
-                }, 800);
+                if (mEndListner != null) {
+                    mEndListner.onCircleDone();
+                    SuccessAnim();
+                }
+
+
             }
         });
         mAnimatorSet.start();
     }
+
+    private void SuccessAnim() {
+        ObjectAnimator scaleXAnim = ObjectAnimator.ofFloat(this, "scaleX", 1.0f, 1.1f, 1.0f);
+        ObjectAnimator scaleYAnim = ObjectAnimator.ofFloat(this, "scaleY", 1.0f, 1.1f, 1.0f);
+        AnimatorSet set = new AnimatorSet();
+        set.setDuration(3000);
+        set.setInterpolator(new BounceInterpolator());
+        set.playTogether(scaleXAnim, scaleYAnim);
+        set.start();
+    }
+
 
     public void stop() {
         if (null != mCircleAnim) {
@@ -173,8 +184,8 @@ public class AlipaySuccessView extends View {
 
     public void initDegreeAndOffset() {
         mDegree = 0;
-        mOffsetValue = 0f;
-        mOffsetRightValue = 0f;
+        mLeftValue = 0f;
+        mRightValue = 0f;
     }
 
     public boolean IsCanHide() {
@@ -199,5 +210,10 @@ public class AlipaySuccessView extends View {
 
     public void removeCircleAnimatorEndListner() {
         mEndListner = null;
+    }
+
+    public void setmCirclePanitColor(int color) {
+        mCirclePanit.setColor(color);
+        invalidate();
     }
 }
