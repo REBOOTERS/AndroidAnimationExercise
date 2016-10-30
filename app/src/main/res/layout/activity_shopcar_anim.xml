@@ -18,19 +18,23 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@color/tab">
+        android:background="@color/cpb_blue">
 
         <ImageView
-            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="15dp"
             android:layout_alignParentRight="true"
             android:id="@+id/car_view"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="right"
-            android:src="@drawable/menu_shop_car_selected" />
+            android:src="@drawable/shopcar" />
 
         <TextView
-            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="15dp"
             android:layout_alignParentRight="true"
             android:id="@+id/car_count"
             android:layout_width="wrap_content"

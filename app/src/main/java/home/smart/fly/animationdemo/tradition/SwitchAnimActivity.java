@@ -6,19 +6,19 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.View;
 import android.view.Window;
 
 import home.smart.fly.animationdemo.R;
-import home.smart.fly.animationdemo.utils.BaseActivity;
 
 /**
  * Created by rookie on 2016/10/28.
  */
 
-public class SwitchAnimActivity extends BaseActivity implements View.OnClickListener {
+public class SwitchAnimActivity extends AppCompatActivity implements View.OnClickListener {
     private Context mContext;
     private Transition transition;
 
@@ -28,30 +28,37 @@ public class SwitchAnimActivity extends BaseActivity implements View.OnClickList
         mContext = this;
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_switch_anim);
+        initView();
     }
 
-    @Override
     public void initView() {
         findViewById(R.id.exlpode).setOnClickListener(this);
+        findViewById(R.id.slide).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Bundle bundle = null;
             switch (v.getId()) {
                 case R.id.exlpode:
                     transition = TransitionInflater.from(this).inflateTransition(R.transition.explode);
                     break;
+                case R.id.slide:
+                    transition = TransitionInflater.from(this).inflateTransition(R.transition.slide);
+                    break;
                 default:
                     break;
             }
+            //退出时使用
+            getWindow().setExitTransition(transition);
+            //第一次进入时使用
             getWindow().setEnterTransition(transition);
-            bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-            Intent intent = new Intent(mContext, FrameAnimationActivity.class);
-            intent.putExtras(bundle);
-            startActivity(intent);
+            //再次进入时使用
+            getWindow().setReenterTransition(transition);
+            Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            Intent intent = new Intent(mContext, TweenedAnimationActivity.class);
+            startActivity(intent,bundle);
         }
 
     }

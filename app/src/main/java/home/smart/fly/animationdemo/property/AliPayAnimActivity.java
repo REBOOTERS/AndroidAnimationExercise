@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.property.basic.AlipayFailureView;
@@ -19,7 +19,7 @@ public class AliPayAnimActivity extends BaseActivity {
     private AlipaySuccessView alipaySuccessView;
     private AlipayFailureView alipayFailureView;
 
-    private TextView success, failure;
+    private Button success, failure;
     private int radius1, radius2;
 
     @Override
@@ -32,8 +32,8 @@ public class AliPayAnimActivity extends BaseActivity {
     public void initView() {
         alipaySuccessView = (AlipaySuccessView) findViewById(R.id.successview);
         alipayFailureView = (AlipayFailureView) findViewById(R.id.faliureview);
-        success = (TextView) findViewById(R.id.success);
-        failure = (TextView) findViewById(R.id.failure);
+        success = (Button) findViewById(R.id.success);
+        failure = (Button) findViewById(R.id.failure);
 
 
 
@@ -41,7 +41,7 @@ public class AliPayAnimActivity extends BaseActivity {
             @Override
             public void onCircleDone() {
                 success.setText("支付成功！");
-                alipaySuccessView.setmCirclePanitColor(Color.WHITE);
+                alipaySuccessView.setPaintColor(Color.GREEN);
             }
         });
 
@@ -49,7 +49,7 @@ public class AliPayAnimActivity extends BaseActivity {
             @Override
             public void onCircleDone() {
                 failure.setText("支付失败！");
-                alipayFailureView.setmmLinePaintColor(Color.RED);
+                alipayFailureView.setPaintColor(getResources().getColor(R.color.cpb_red));
             }
         });
 

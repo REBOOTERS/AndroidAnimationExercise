@@ -56,7 +56,7 @@ public class AlipaySuccessView extends View {
         mCirclePanit.setAntiAlias(true);
         mCirclePanit.setStrokeJoin(Paint.Join.ROUND);
         mCirclePanit.setStrokeWidth(mStrokeWidth);
-        mCirclePanit.setColor(Color.RED);
+        mCirclePanit.setColor(Color.WHITE);
         mCirclePanit.setStyle(Paint.Style.STROKE);
 
         mLinePaint = new Paint();
@@ -212,8 +212,9 @@ public class AlipaySuccessView extends View {
         mEndListner = null;
     }
 
-    public void setmCirclePanitColor(int color) {
+    public void setPaintColor(int color) {
         mCirclePanit.setColor(color);
+        mLinePaint.setColor(color);
         invalidate();
     }
 }

@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/cpb_red"
-        android:text="exlpode"
+        android:text="slide"
         android:textColor="@color/cpb_white" />
 
 

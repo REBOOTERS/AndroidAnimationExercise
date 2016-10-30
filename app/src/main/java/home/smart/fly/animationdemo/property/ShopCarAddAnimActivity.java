@@ -172,7 +172,7 @@ public class ShopCarAddAnimActivity extends BaseActivity implements GoodsListAda
 
     private void initDatas() {
         mData = new ArrayList<>();
-        int[] icons = new int[]{R.drawable.goods_one, R.drawable.goods_two, R.drawable.goods_three};
+        int[] icons = new int[]{R.drawable.goods_one, R.drawable.googs_two, R.drawable.goods_three};
         for (int i = 0; i < 20; i++) {
             GoodItem goodItem = new GoodItem(BitmapFactory.decodeResource(getResources(), icons[i % 3]));
             mData.add(goodItem);

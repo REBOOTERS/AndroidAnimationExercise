@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/cpb_green"
-        android:text="DemoView"
+        android:text="Pay_Anim"
         android:textColor="@color/cpb_white" />
 
     <Button

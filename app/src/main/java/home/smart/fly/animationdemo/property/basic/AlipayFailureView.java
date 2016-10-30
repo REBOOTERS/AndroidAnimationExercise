@@ -15,7 +15,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.BounceInterpolator;
+import android.view.animation.CycleInterpolator;
 
 /**
  * Created by rookie on 2016/10/19.
@@ -35,8 +35,8 @@ public class AlipayFailureView extends View {
     private float mRadius = 250;
     private final RectF mRectF = new RectF();
     private int mDegree;
-    private Float mOffsetValue = 0f;
-    private Float mOffsetRightValue = 0f;
+    private Float mLeftValue = 0f;
+    private Float mRightValue = 0f;
     private AnimatorSet mAnimatorSet = new AnimatorSet();
 
     private ValueAnimator mCircleAnim;
@@ -63,7 +63,7 @@ public class AlipayFailureView extends View {
         mCirclePanit.setAntiAlias(true);
         mCirclePanit.setStrokeJoin(Paint.Join.ROUND);
         mCirclePanit.setStrokeWidth(mStrokeWidth);
-        mCirclePanit.setColor(Color.RED);
+        mCirclePanit.setColor(Color.WHITE);
         mCirclePanit.setStyle(Paint.Style.STROKE);
 
         mLinePaint = new Paint();
@@ -139,17 +139,17 @@ public class AlipayFailureView extends View {
         mLineLeftAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                mOffsetValue = (Float) valueAnimator.getAnimatedValue();
-                Log.e("left", "-------->" + mOffsetValue);
-                pathLeftMeasure.getPosTan(mOffsetValue, mLeftPos, null);
+                mLeftValue = (Float) valueAnimator.getAnimatedValue();
+                Log.e("left", "-------->" + mLeftValue);
+                pathLeftMeasure.getPosTan(mLeftValue, mLeftPos, null);
                 invalidate();
             }
         });
         mLineRightAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                mOffsetRightValue = (Float) animation.getAnimatedValue();
-                pathRightMeasure.getPosTan(mOffsetRightValue, mRightPos, null);
+                mRightValue = (Float) animation.getAnimatedValue();
+                pathRightMeasure.getPosTan(mRightValue, mRightPos, null);
                 invalidate();
             }
         });
@@ -170,12 +170,9 @@ public class AlipayFailureView extends View {
 
     private void failureAnim() {
         float currentX = this.getTranslationX();
-        ObjectAnimator tansXAnim = ObjectAnimator.ofFloat(this, "translationX",
-                currentX - 40,
-                currentX + 40,
-                currentX);
-        tansXAnim.setDuration(5000);
-        tansXAnim.setInterpolator(new BounceInterpolator());
+        ObjectAnimator tansXAnim = ObjectAnimator.ofFloat(this, "translationX",currentX+20);
+        tansXAnim.setDuration(1000);
+        tansXAnim.setInterpolator(new CycleInterpolator(3));
         tansXAnim.start();
     }
 
@@ -201,8 +198,10 @@ public class AlipayFailureView extends View {
 
     public void initDegreeAndOffset() {
         mDegree = 0;
-        mOffsetValue = 0f;
-        mOffsetRightValue = 0f;
+        mLeftValue = 0f;
+        mRightValue = 0f;
+        pathLeftMeasure=null;
+        pathRightMeasure = null;
     }
 
     public boolean IsCanHide() {
@@ -229,7 +228,8 @@ public class AlipayFailureView extends View {
         mEndListner = null;
     }
 
-    public void setmmLinePaintColor(int color) {
+    public void setPaintColor(int color) {
+        mCirclePanit.setColor(color);
         mLinePaint.setColor(color);
         invalidate();
     }
