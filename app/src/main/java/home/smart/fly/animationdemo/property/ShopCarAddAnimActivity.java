@@ -28,6 +28,7 @@ import home.smart.fly.animationdemo.property.basic.GoodItem;
 import home.smart.fly.animationdemo.property.basic.GoodsListAdapter;
 import home.smart.fly.animationdemo.property.basic.GoodsListAdapter1;
 import home.smart.fly.animationdemo.utils.BaseActivity;
+import home.smart.fly.animationdemo.utils.DpConvert;
 
 /**
  * Created by rookie on 2016/10/24.
@@ -84,8 +85,8 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
         carImage.getLocationInWindow(carLocation);
         //
         // 开始掉落的商品的起始点：商品起始点-父布局起始点+该商品图片的一半
-        float startX = animImgLocation[0] - shellLocation[0] + goodsImg.getWidth() / 2;
-        float startY = animImgLocation[1] - shellLocation[1] + goodsImg.getHeight() / 2;
+        float startX = animImgLocation[0] - shellLocation[0] + goodsImg.getWidth() / 2 - DpConvert.dip2px(mContext, 10.0f);
+        float startY = animImgLocation[1] - shellLocation[1] + goodsImg.getHeight() / 2 - DpConvert.dip2px(mContext, 10.0f);
 
         // 商品掉落后的终点坐标：购物车起始点-父布局起始点+购物车图片的1/5
         float endX = carLocation[0] - shellLocation[0] + carImage.getWidth() / 5;
@@ -225,7 +226,7 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 goodsCount1++;
-                if (goodsCount < 100) {
+                if (goodsCount1 < 100) {
                     carCount1.setText(String.valueOf(goodsCount1));
                 } else {
                     carCount1.setText("99+");
@@ -255,6 +256,7 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
         animatorSet.playTogether(scaleXanim, scaleYanim);
         animatorSet.start();
     }
+
     private void shopCarAnim1() {
         ObjectAnimator scaleXanim = ObjectAnimator.ofFloat(carImage1, "scaleX", 1.3f, 1.2f, 1);
         ObjectAnimator scaleYanim = ObjectAnimator.ofFloat(carImage1, "scaleY", 1.3f, 1.2f, 1);
@@ -291,12 +293,14 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
             @Override
             public void onClick(View v) {
                 if (typeValue == 0) {
+                    type.setImageResource(R.drawable.type_1);
                     shoplist.setLayoutManager(manager1);
                     shoplist.setAdapter(mGoodsAdpater1);
                     typeValue = 1;
                     bottom1.setVisibility(View.GONE);
                     bottom2.setVisibility(View.VISIBLE);
                 } else {
+                    type.setImageResource(R.drawable.type_0);
                     shoplist.setLayoutManager(manager);
                     shoplist.setAdapter(mGoodsAdapter);
                     typeValue = 0;
@@ -315,9 +319,10 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
 
     private void initDatas() {
         mData = new ArrayList<>();
-        int[] icons = new int[]{R.drawable.goods_one, R.drawable.googs_two, R.drawable.goods_three};
+        int[] icons = new int[]{R.drawable.goods_one, R.drawable.googs_two, R.drawable.goods_three,
+                R.drawable.goods_four};
         for (int i = 0; i < 20; i++) {
-            GoodItem goodItem = new GoodItem(BitmapFactory.decodeResource(getResources(), icons[i % 3]));
+            GoodItem goodItem = new GoodItem(BitmapFactory.decodeResource(getResources(), icons[i % 4]));
             mData.add(goodItem);
         }
     }
