@@ -13,17 +13,17 @@
 
         <home.smart.fly.animationdemo.property.basic.AlipaySuccessView
             android:id="@+id/successview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp" />
 
         <Button
-            android:background="@color/cpb_blue"
             android:id="@+id/success"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:background="@color/cpb_blue"
             android:gravity="center"
             android:padding="5dp"
             android:text="pay"
@@ -36,11 +36,11 @@
             android:layout_gravity="center" />
 
         <Button
-            android:background="@color/cpb_blue"
             android:id="@+id/failure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:background="@color/cpb_blue"
             android:gravity="center"
             android:padding="5dp"
             android:text="pay"

@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@color/cpb_green"
+        android:background="@color/cpb_blue"
         android:text="PropertyAnimation"
         android:textColor="@color/cpb_white" />
 
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@color/cpb_green"
+        android:background="@color/cpb_blue"
         android:text="PropertyValueAnimation"
         android:textColor="@color/cpb_white" />
 
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@color/cpb_green"
+        android:background="@color/cpb_blue"
         android:text="Pay_Anim"
         android:textColor="@color/cpb_white" />
 
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@color/cpb_green"
+        android:background="@color/cpb_blue"
         android:text="shopcar_add_anim"
         android:textColor="@color/cpb_white" />
 
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@color/cpb_green"
+        android:background="@color/cpb_blue"
         android:text="LayoutAnimations"
         android:textColor="@color/cpb_white" />
 
@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@color/cpb_green"
+        android:background="@color/cpb_blue"
         android:text="CustomView"
         android:textColor="@color/cpb_white"
         android:visibility="gone" />
