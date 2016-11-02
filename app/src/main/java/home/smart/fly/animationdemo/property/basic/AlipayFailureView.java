@@ -25,6 +25,7 @@ public class AlipayFailureView extends View {
 
     private String TAG = AlipayFailureView.class.getSimpleName();
     private static final float PADDING = 20;
+    private static final int DEFAULT_RADIUS = 150;
 
     private Paint mCirclePanit;
     private Paint mLinePaint;
@@ -73,8 +74,8 @@ public class AlipayFailureView extends View {
         mLinePaint.setColor(Color.WHITE);
         mLinePaint.setStyle(Paint.Style.STROKE);
 
-        initDegreeAndOffset();
-        lodingCircleMeasure();
+        reset();
+        reMeasure();
     }
 
     @Override
@@ -94,10 +95,10 @@ public class AlipayFailureView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        lodingCircleMeasure();
+        reMeasure();
     }
 
-    private void lodingCircleMeasure() {
+    private void reMeasure() {
         int mViewWidth = getWidth();
         int mViewHeight = getHeight();
         mCenterX = mViewWidth / 2;
@@ -117,7 +118,8 @@ public class AlipayFailureView extends View {
 
     }
 
-    public void loadCircle(int mRadius) {
+    public void startAnim(int mRadius) {
+        mRadius = mRadius <= 0 ? DEFAULT_RADIUS : mRadius;
         this.mRadius = mRadius - PADDING;
         if (null != mAnimatorSet && mAnimatorSet.isRunning()) {
             return;
@@ -189,14 +191,9 @@ public class AlipayFailureView extends View {
         clearAnimation();
     }
 
-    public boolean isStarted() {
-        if (null != mAnimatorSet) {
-            return mAnimatorSet.isStarted();
-        }
-        return false;
-    }
 
-    public void initDegreeAndOffset() {
+
+    public void reset() {
         mDegree = 0;
         mLeftValue = 0f;
         mRightValue = 0f;
@@ -204,29 +201,20 @@ public class AlipayFailureView extends View {
         pathRightMeasure = null;
     }
 
-    public boolean IsCanHide() {
-        return mIsCanHide;
-    }
 
-    public void setCanHide(boolean mCanHide) {
-        this.mIsCanHide = mCanHide;
-    }
 
-    private OnDoneCircleAnimListner mEndListner;
+    private OnCircleFinishListener mEndListner;
 
-    public void addCircleAnimatorEndListner(OnDoneCircleAnimListner endListenr) {
+    public void addCircleAnimatorEndListner(OnCircleFinishListener endListenr) {
         if (null == mEndListner) {
             this.mEndListner = endListenr;
         }
     }
 
-    public interface OnDoneCircleAnimListner {
+    public interface OnCircleFinishListener {
         void onCircleDone();
     }
 
-    public void removeCircleAnimatorEndListner() {
-        mEndListner = null;
-    }
 
     public void setPaintColor(int color) {
         mCirclePanit.setColor(color);

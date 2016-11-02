@@ -37,7 +37,7 @@ public class AliPayAnimActivity extends BaseActivity {
 
 
 
-        alipaySuccessView.addCircleAnimatorEndListner(new AlipaySuccessView.OnDoneCircleAnimListner() {
+        alipaySuccessView.addCircleAnimatorEndListner(new AlipaySuccessView.OnCircleFinishListener() {
             @Override
             public void onCircleDone() {
                 success.setText("支付成功！");
@@ -45,7 +45,7 @@ public class AliPayAnimActivity extends BaseActivity {
             }
         });
 
-        alipayFailureView.addCircleAnimatorEndListner(new AlipayFailureView.OnDoneCircleAnimListner() {
+        alipayFailureView.addCircleAnimatorEndListner(new AlipayFailureView.OnCircleFinishListener() {
             @Override
             public void onCircleDone() {
                 failure.setText("支付失败！");
@@ -63,7 +63,7 @@ public class AliPayAnimActivity extends BaseActivity {
         failure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alipayFailureView.loadCircle(radius2 / 2);
+                alipayFailureView.startAnim(radius2 / 2);
             }
         });
 
