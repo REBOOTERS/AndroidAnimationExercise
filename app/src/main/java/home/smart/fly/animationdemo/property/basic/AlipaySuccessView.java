@@ -52,6 +52,11 @@ public class AlipaySuccessView extends View {
 
     public AlipaySuccessView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initPaint();
+
+    }
+
+    private void initPaint() {
         mCirclePanit = new Paint();
         mCirclePanit.setAntiAlias(true);
         mCirclePanit.setStrokeJoin(Paint.Join.ROUND);
@@ -186,6 +191,8 @@ public class AlipaySuccessView extends View {
         mDegree = 0;
         mLeftValue = 0f;
         mRightValue = 0f;
+        mCirclePanit.setColor(Color.WHITE);
+        mLinePaint.setColor(Color.WHITE);
     }
 
     public boolean IsCanHide() {

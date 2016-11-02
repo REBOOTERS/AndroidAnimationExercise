@@ -84,7 +84,7 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
         int carLocation[] = new int[2];
         carImage.getLocationInWindow(carLocation);
         //
-        // 开始掉落的商品的起始点：商品起始点-父布局起始点+该商品图片的一半
+        // 起始点：图片起始点-父布局起始点+该商品图片的一半-图片的marginTop & marginLeft 的值
         float startX = animImgLocation[0] - shellLocation[0] + goodsImg.getWidth() / 2 - DpConvert.dip2px(mContext, 10.0f);
         float startY = animImgLocation[1] - shellLocation[1] + goodsImg.getHeight() / 2 - DpConvert.dip2px(mContext, 10.0f);
 
@@ -98,26 +98,20 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
 
         Log.e("num", "-------->" + ctrlX + " " + startY + " " + ctrlY + " " + endY);
 
-        // 开始绘制贝塞尔曲线
         Path path = new Path();
-
-        // 移动到起始点（贝塞尔曲线的起点）
         path.moveTo(startX, startY);
-        // 使用二阶贝塞尔曲线：注意第一个起始坐标越大，贝塞尔曲线的横向距离就会越大，一般按照下面的式子取即可
+        // 使用二阶贝塞尔曲线
         path.quadTo(ctrlX, ctrlY, endX, endY);
-        // mPathMeasure用来计算贝塞尔曲线的曲线长度和贝塞尔曲线中间插值的坐标，如果是true，path会形成一个闭环
         mPathMeasure = new PathMeasure(path, false);
 
         ObjectAnimator scaleXanim = ObjectAnimator.ofFloat(animImg, "scaleX", 1, 0.5f, 0.2f);
         ObjectAnimator scaleYanim = ObjectAnimator.ofFloat(animImg, "scaleY", 1, 0.5f, 0.2f);
 
 
-        // 属性动画实现（从0到贝塞尔曲线的长度之间进行插值计算，获取中间过程的距离值）
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, mPathMeasure.getLength());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                // 当插值计算进行时，获取中间的每个值，
                 // 这里这个值是中间过程中的曲线长度（下面根据这个值来得出中间点的坐标值）
                 float value = (Float) animation.getAnimatedValue();
                 // 获取当前点坐标封装到mCurrentPosition
@@ -160,7 +154,6 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
     }
 
     private void addToCarAnimation1(ImageView goodsImg) {
-        //获取需要进行动画的ImageView
         final ImageView animImg = new ImageView(mContext);
         animImg.setImageDrawable(goodsImg.getDrawable());
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100, 100);
@@ -173,11 +166,9 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
         int carLocation[] = new int[2];
         carImage1.getLocationInWindow(carLocation);
         //
-        // 开始掉落的商品的起始点：商品起始点-父布局起始点+该商品图片的一半
         float startX = animImgLocation[0] - shellLocation[0] + goodsImg.getWidth() / 2;
         float startY = animImgLocation[1] - shellLocation[1] + goodsImg.getHeight() / 2;
 
-        // 商品掉落后的终点坐标：购物车起始点-父布局起始点+购物车图片的1/5
         float endX = carLocation[0] - shellLocation[0] + carImage1.getWidth() / 5;
         float endY = carLocation[1] - shellLocation[1];
 
@@ -187,34 +178,22 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
 
         Log.e("num", "-------->" + ctrlX + " " + startY + " " + ctrlY + " " + endY);
 
-        // 开始绘制贝塞尔曲线
         Path path = new Path();
-
-        // 移动到起始点（贝塞尔曲线的起点）
         path.moveTo(startX, startY);
-        // 使用二阶贝塞尔曲线：注意第一个起始坐标越大，贝塞尔曲线的横向距离就会越大，一般按照下面的式子取即可
+        // 使用二阶贝塞尔曲线
         path.quadTo(ctrlX, ctrlY, endX, endY);
-        // mPathMeasure用来计算贝塞尔曲线的曲线长度和贝塞尔曲线中间插值的坐标，如果是true，path会形成一个闭环
         mPathMeasure = new PathMeasure(path, false);
 
         ObjectAnimator scaleXanim = ObjectAnimator.ofFloat(animImg, "scaleX", 1, 0.5f, 0.2f);
         ObjectAnimator scaleYanim = ObjectAnimator.ofFloat(animImg, "scaleY", 1, 0.5f, 0.2f);
 
 
-        // 属性动画实现（从0到贝塞尔曲线的长度之间进行插值计算，获取中间过程的距离值）
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, mPathMeasure.getLength());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                // 当插值计算进行时，获取中间的每个值，
-                // 这里这个值是中间过程中的曲线长度（下面根据这个值来得出中间点的坐标值）
                 float value = (Float) animation.getAnimatedValue();
-                // 获取当前点坐标封装到mCurrentPosition
-                // boolean getPosTan(float distance, float[] pos, float[] tan) ：
-                // 传入一个距离distance(0<=distance<=getLength())，然后会计算当前距离的坐标点和切线，pos会自动填充上坐标，这个方法很重要。
-                // mCurrentPosition此时就是中间距离点的坐标值
                 mPathMeasure.getPosTan(value, mCurrentPosition, null);
-                // 移动的商品图片（动画图片）的坐标设置为该中间点的坐标
                 animImg.setTranslationX(mCurrentPosition[0]);
                 animImg.setTranslationY(mCurrentPosition[1]);
             }
@@ -232,7 +211,6 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
                     carCount1.setText("99+");
                 }
 
-                // 把执行动画的商品图片从父布局中移除
                 shellLayout.removeView(animImg);
                 shopCarAnim1();
 
@@ -270,8 +248,6 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
     @Override
     public void initView() {
         initDatas();
-
-
         shoplist = (RecyclerView) findViewById(R.id.shoplist);
         manager = new LinearLayoutManager(mContext);
         shoplist.setLayoutManager(manager);
