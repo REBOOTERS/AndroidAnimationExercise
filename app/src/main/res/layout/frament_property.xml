@@ -54,6 +54,14 @@
         android:background="@color/cpb_blue"
         android:text="LayoutAnimations"
         android:textColor="@color/cpb_white" />
+    <Button
+        android:id="@+id/RevealAnimator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_blue"
+        android:text="RevealAnimator"
+        android:textColor="@color/cpb_white" />
 
     <Button
         android:id="@+id/CustomView"

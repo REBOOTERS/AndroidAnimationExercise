@@ -78,7 +78,6 @@ public class AliPayAnimActivity extends BaseActivity {
             //在布局中取长宽中较小的值作为圆的半径
             radius1 = Math.min(alipaySuccessView.getWidth(), alipaySuccessView.getHeight());
 
-
             radius2 = Math.min(alipayFailureView.getWidth(), alipayFailureView.getHeight());
 
         }
