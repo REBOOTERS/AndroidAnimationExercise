@@ -10,17 +10,8 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.LinearLayout;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-import home.smart.fly.animationdemo.Bean;
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.utils.BaseActivity;
-import home.smart.fly.animationdemo.utils.FileUtil;
 
 /**
  * Created by rookie on 2016/11/9.
@@ -85,21 +76,7 @@ public class RevealAnimatorActivity extends BaseActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String string = FileUtil.getLocalResponse(mContext, "newCity.json");
-                Gson gson=new Gson();
-                List<Bean> datas= gson.fromJson(string,new TypeToken<List<Bean>>(){}.getType());
 
-
-                Collections.sort(datas, new Comparator<Bean>() {
-                    @Override
-                    public int compare(Bean lhs, Bean rhs) {
-                        return lhs.getPinyin().compareTo(rhs.getPinyin());
-                    }
-                });
-
-                String result = gson.toJson(datas);
-
-                FileUtil.saveStrToSDCard(result, "allCity.json");
 
 
 
