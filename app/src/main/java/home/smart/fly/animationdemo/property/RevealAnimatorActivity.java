@@ -11,9 +11,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
+
+import home.smart.fly.animationdemo.Bean;
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.utils.BaseActivity;
+import home.smart.fly.animationdemo.utils.FileUtil;
 
 /**
  * Created by rookie on 2016/11/9.
@@ -79,6 +87,26 @@ public class RevealAnimatorActivity extends BaseActivity {
             @TargetApi(Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
+                String string = FileUtil.getLocalResponse(mContext);
+                Gson gson = new Gson();
+                List<Bean> lists = gson.fromJson(string, new TypeToken<List<Bean>>() {
+                }.getType());
+
+                for (Bean bean : lists) {
+                    String py = FileUtil.getPingYin(bean.getName());
+                    String fl = py.substring(0, 1).toUpperCase();
+
+                    bean.setPinyin(py);
+                    bean.setFirstLetter(fl);
+
+                }
+
+                String result = gson.toJson(lists);
+
+                boolean success = FileUtil.saveStrToSDCard(result, "newCity.json");
+
+                Toast.makeText(mContext, "the result is " + success, Toast.LENGTH_SHORT).show();
+
             }
         });
 
