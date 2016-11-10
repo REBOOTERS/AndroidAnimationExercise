@@ -1,10 +1,12 @@
 package home.smart.fly.animationdemo;
 
+import java.io.Serializable;
+
 /**
  * Created by rookie on 2016/11/10.
  */
 
-public class Bean {
+public class Bean implements Serializable{
     private String name, pinyin, firstLetter;
     double longitude, latitude;
 

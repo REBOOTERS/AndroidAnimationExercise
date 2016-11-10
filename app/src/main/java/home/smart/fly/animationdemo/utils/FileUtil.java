@@ -31,12 +31,12 @@ public class FileUtil {
      *
      * @return
      */
-    public static String getLocalResponse(Context mContext) {
+    public static String getLocalResponse(Context mContext,String FileName) {
 
         String result = "";
 
         try {
-            InputStream inputStream = mContext.getAssets().open("city.json");
+            InputStream inputStream = mContext.getAssets().open(FileName);
             StringBuffer sb = new StringBuffer();
             int len = -1;
             byte[] buffer = new byte[1024];
