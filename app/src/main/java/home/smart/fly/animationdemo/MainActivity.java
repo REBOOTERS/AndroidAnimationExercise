@@ -3,11 +3,13 @@ package home.smart.fly.animationdemo;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import home.smart.fly.animationdemo.fragments.PropertyFragment;
 import home.smart.fly.animationdemo.fragments.TraditionFragment;
@@ -23,17 +25,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public int currentFragmentType = -1;
 
     //
-
+    private LinearLayout content;
+    private Snackbar snackbar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_main);
+
+
+        snackbar = Snackbar.make(content, "确认要退出吗？", Snackbar.LENGTH_SHORT)
+                .setAction("退出", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+        snackbar.getView().setBackgroundColor(getResources().getColor(R.color.cpb_blue));
+        snackbar.setActionTextColor(getResources().getColor(R.color.white));
     }
 
     @Override
     public void initView() {
+        content = (LinearLayout) findViewById(R.id.content);
         btn_tradition = (Button) findViewById(R.id.btn_message);
         btn_property = (Button) findViewById(R.id.btn_call);
         btn_tradition.setOnClickListener(this);
@@ -119,6 +134,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(0,R.anim.zoomout);
+        overridePendingTransition(0, R.anim.zoomout);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+
+        if (snackbar != null) {
+            if (snackbar.isShown()) {
+                snackbar.dismiss();
+            } else {
+                snackbar.show();
+            }
+        }
+
+
+//        super.onBackPressed();
     }
 }
