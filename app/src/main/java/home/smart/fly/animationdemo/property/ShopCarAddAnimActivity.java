@@ -84,7 +84,7 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
         int carLocation[] = new int[2];
         carImage.getLocationInWindow(carLocation);
         //
-        // 起始点：图片起始点-父布局起始点+该商品图片的一半-图片的marginTop & marginLeft 的值
+        // 起始点：图片起始点-父布局起始点+该商品图片的一半-图片的marginTop || marginLeft 的值
         float startX = animImgLocation[0] - shellLocation[0] + goodsImg.getWidth() / 2 - DpConvert.dip2px(mContext, 10.0f);
         float startY = animImgLocation[1] - shellLocation[1] + goodsImg.getHeight() / 2 - DpConvert.dip2px(mContext, 10.0f);
 
@@ -115,8 +115,8 @@ public class ShopCarAddAnimActivity extends BaseActivity implements
                 // 这里这个值是中间过程中的曲线长度（下面根据这个值来得出中间点的坐标值）
                 float value = (Float) animation.getAnimatedValue();
                 // 获取当前点坐标封装到mCurrentPosition
-                // boolean getPosTan(float distance, float[] pos, float[] tan) ：
-                // 传入一个距离distance(0<=distance<=getLength())，然后会计算当前距离的坐标点和切线，pos会自动填充上坐标，这个方法很重要。
+                // 传入一个距离distance(0<=distance<=getLength())，然后会计算当前距离的坐标点和切线，
+                // pos会自动填充上坐标，这个方法很重要。
                 // mCurrentPosition此时就是中间距离点的坐标值
                 mPathMeasure.getPosTan(value, mCurrentPosition, null);
                 // 移动的商品图片（动画图片）的坐标设置为该中间点的坐标
