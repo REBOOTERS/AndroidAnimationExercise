@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="home.smart.fly.animationdemo">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -20,13 +20,14 @@
         <activity android:name=".tradition.FrameAnimationActivity" />
         <activity android:name=".tradition.TweenedAnimationActivity" />
         <activity android:name=".blur.BlurActivity" />
-        <activity android:name=".tradition.SwitchAnimActivity"/>
+        <activity android:name=".tradition.SwitchAnimActivity" />
+        <activity android:name=".swipeanim.SwipeAnimActivity" />
         <activity android:name=".property.PropertyAnimationActivity" />
         <activity android:name=".property.ValueAnimationActivity" />
         <activity android:name=".property.AliPayAnimActivity" />
-        <activity android:name=".property.ShopCarAddAnimActivity"/>
-        <activity android:name=".property.LayoutAnimationsActivity"/>
-        <activity android:name=".property.RevealAnimatorActivity"/>
+        <activity android:name=".property.ShopCarAddAnimActivity" />
+        <activity android:name=".property.LayoutAnimationsActivity" />
+        <activity android:name=".property.RevealAnimatorActivity" />
     </application>
 
 </manifest>

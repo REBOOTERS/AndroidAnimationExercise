@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.blur.BlurActivity;
+import home.smart.fly.animationdemo.swipeanim.SwipeAnimActivity;
 import home.smart.fly.animationdemo.tradition.FrameAnimationActivity;
 import home.smart.fly.animationdemo.tradition.SwitchAnimActivity;
 import home.smart.fly.animationdemo.tradition.TweenedAnimationActivity;
@@ -24,7 +25,7 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
     private View rootView;
 
 
-    private Button frame, tweened, blur, activitySwitch;
+    private Button frame, tweened, blur, activitySwitch, swipeAnim;
 
     @Nullable
     @Override
@@ -52,6 +53,8 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
         blur.setOnClickListener(this);
         activitySwitch = (Button) rootView.findViewById(R.id.activitySwitch);
         activitySwitch.setOnClickListener(this);
+        swipeAnim = (Button) rootView.findViewById(R.id.swipeAnim);
+        swipeAnim.setOnClickListener(this);
     }
 
     @Override
@@ -68,7 +71,6 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.in_from_bottom, R.anim.out_to_bottom);
                 break;
-
             case R.id.blur:
                 intent = new Intent(mContext, BlurActivity.class);
                 startActivity(intent);
@@ -79,6 +81,9 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.in_from_bottom, R.anim.out_to_bottom);
                 break;
+            case R.id.swipeAnim:
+                intent = new Intent(mContext, SwipeAnimActivity.class);
+                startActivity(intent);
             default:
                 break;
         }
