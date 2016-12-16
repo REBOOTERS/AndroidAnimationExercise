@@ -28,8 +28,8 @@ public class SwipeCardLayoutManager extends RecyclerView.LayoutManager {
             layoutDecorated(child, 0, 0, width, height);
             //缩放
             if (i < getItemCount() - 1) {
-                child.setScaleX(0.8f);
-                child.setScaleY(0.8f);
+                child.setScaleX(0.4f);
+                child.setScaleY(0.4f);
             }
         }
     }

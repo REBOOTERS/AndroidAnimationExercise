@@ -30,12 +30,12 @@ public class SwipeAnimActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setRemovedListener(new ItemRemovedListener() {
             @Override
-            public void onRightRemoved() {
+            public void onUpRemoved() {
                 Toast.makeText(SwipeAnimActivity.this, list.get(list.size() - 1) + " was right removed", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onLeftRemoved() {
+            public void onDownRemoved() {
                 Toast.makeText(SwipeAnimActivity.this, list.get(list.size() - 1) + " was left removed", Toast.LENGTH_SHORT).show();
             }
         });

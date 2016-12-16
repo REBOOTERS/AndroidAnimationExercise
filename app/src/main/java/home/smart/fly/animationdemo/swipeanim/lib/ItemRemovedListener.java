@@ -5,7 +5,7 @@ package home.smart.fly.animationdemo.swipeanim.lib;
  */
 
 public interface ItemRemovedListener {
-    void onRightRemoved();
+    void onUpRemoved();
 
-    void onLeftRemoved();
+    void onDownRemoved();
 }

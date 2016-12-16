@@ -125,6 +125,7 @@ public class SwipeCardRecyclerView extends RecyclerView {
         View nextView = getChildAt(getChildCount() - 2);
         nextView.setScaleX((float) factor);
         nextView.setScaleY((float) factor);
+
     }
 
     /**
@@ -142,11 +143,11 @@ public class SwipeCardRecyclerView extends RecyclerView {
         } else if (view.getY() - mTopViewY > mBorder) {
             del = true;
             targetX = getScreenWidth() * 2;
-            mRemovedListener.onRightRemoved();
+            mRemovedListener.onUpRemoved();
         } else {
             del = true;
             targetX = -view.getWidth() - getScreenWidth();
-            mRemovedListener.onLeftRemoved();
+            mRemovedListener.onDownRemoved();
         }
         View animView = view;
         TimeInterpolator interpolator;
