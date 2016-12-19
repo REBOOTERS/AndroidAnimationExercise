@@ -9,6 +9,8 @@
 
     <home.smart.fly.animationdemo.swipeanim.lib.SwipeCardRecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="150dp"
-        android:layout_height="200dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp" />
 </LinearLayout>
