@@ -30,12 +30,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         View view = LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item, null);
-        MyHolder holder = new MyHolder(view);
+        final MyHolder holder = new MyHolder(view);
 
         holder.tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "llll", Toast.LENGTH_SHORT).show();
+                int pos=holder.getAdapterPosition();
+                Toast.makeText(mContext, datas.get(pos), Toast.LENGTH_SHORT).show();
             }
         });
 

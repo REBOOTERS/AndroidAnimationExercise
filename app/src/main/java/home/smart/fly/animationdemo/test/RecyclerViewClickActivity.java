@@ -32,7 +32,7 @@ public class RecyclerViewClickActivity extends AppCompatActivity {
         }
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        LinearLayoutManager manager = new LinearLayoutManager(mContext);
+        RecyclerView.LayoutManager manager=new LinearLayoutManager(mContext);
         MyAdapter adapter = new MyAdapter(datas);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
