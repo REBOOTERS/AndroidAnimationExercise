@@ -10,7 +10,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <activity
+            android:name=".customview.activitys.BasicPosActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,6 +32,9 @@
         <activity android:name=".property.ShopCarAddAnimActivity" />
         <activity android:name=".property.LayoutAnimationsActivity" />
         <activity android:name=".property.RevealAnimatorActivity" />
+        <activity android:name=".test.RecyclerViewClickActivity" />
+        <!--customviews-->
+        <!--<activity android:name=".customview.activitys.BasicPosActivity" />-->
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import home.smart.fly.animationdemo.R;
+import home.smart.fly.animationdemo.test.RecyclerViewClickActivity;
 import home.smart.fly.animationdemo.property.AliPayAnimActivity;
 import home.smart.fly.animationdemo.property.LayoutAnimationsActivity;
 import home.smart.fly.animationdemo.property.PropertyAnimationActivity;
@@ -45,7 +46,7 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.demo).setOnClickListener(this);
         rootView.findViewById(R.id.shopcar_add_anim).setOnClickListener(this);
         rootView.findViewById(R.id.LayoutAnimations).setOnClickListener(this);
-        rootView.findViewById(R.id.CustomView).setOnClickListener(this);
+        rootView.findViewById(R.id.test).setOnClickListener(this);
         rootView.findViewById(R.id.RevealAnimator).setOnClickListener(this);
     }
 
@@ -70,6 +71,9 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.RevealAnimator:
                 intent = new Intent(mContext, RevealAnimatorActivity.class);
+                break;
+            case R.id.test:
+                intent = new Intent(mContext, RecyclerViewClickActivity.class);
                 break;
             default:
                 break;
