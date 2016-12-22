@@ -34,7 +34,7 @@
         <activity android:name=".property.RevealAnimatorActivity" />
         <activity android:name=".test.RecyclerViewClickActivity" />
         <!--customviews-->
-        <!--<activity android:name=".customview.activitys.BasicPosActivity" />-->
+        <activity android:name=".customview.activitys.BasicPosActivity" />
     </application>
 
 </manifest>

@@ -12,9 +12,6 @@ import java.util.List;
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.swipeanim.lib.SwipeCardAdapter;
 
-/**
- * Created by xingzhu on 2016/11/15.
- */
 
 public class SmartAdapter extends SwipeCardAdapter<SmartAdapter.MyHolder> {
     private Context mContext;

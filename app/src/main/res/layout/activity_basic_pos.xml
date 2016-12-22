@@ -11,7 +11,21 @@
         android:layout_height="200dp"
         android:layout_margin="20dp"
         android:background="@color/cpb_green"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        android:visibility="gone" />
+
+    <home.smart.fly.animationdemo.customview.views.MyView
+        android:id="@+id/myView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <home.smart.fly.animationdemo.customview.views.MyView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <home.smart.fly.animationdemo.customview.views.MyView
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 
     <TextView
         android:id="@+id/posTv"
