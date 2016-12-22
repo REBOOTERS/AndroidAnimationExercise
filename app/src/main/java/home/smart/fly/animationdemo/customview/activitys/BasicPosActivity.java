@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import home.smart.fly.animationdemo.R;
+import home.smart.fly.animationdemo.customview.views.MyView;
 import home.smart.fly.animationdemo.utils.BaseActivity;
 import home.smart.fly.animationdemo.utils.V;
 
@@ -19,6 +20,8 @@ public class BasicPosActivity extends BaseActivity {
     private TextView posTv;
     private LinearLayout linearLayout;
 
+    private MyView myView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,7 @@ public class BasicPosActivity extends BaseActivity {
     public void initView() {
         posTv = V.f(this, R.id.posTv);
         linearLayout = V.f(this, R.id.linearLayout);
+        myView = V.f(this, R.id.myView);
 
 
     }

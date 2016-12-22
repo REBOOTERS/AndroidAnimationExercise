@@ -2,7 +2,6 @@ package home.smart.fly.animationdemo.swipeanim.lib;
 
 import android.animation.Animator;
 import android.animation.TimeInterpolator;
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -20,9 +19,6 @@ import android.widget.ImageView;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by WangXiandeng on 2016/11/3.
- */
 
 public class SwipeCardRecyclerView extends RecyclerView {
     private float mTopViewX;
@@ -36,7 +32,7 @@ public class SwipeCardRecyclerView extends RecyclerView {
 
     private float mBorder = dip2px(120);
 
-    private ItemRemovedListener mRemovedListener;
+    private ItemTouchListener mTouchListener;
 
     private FrameLayout mDecorView;
     private int[] mDecorViewLocation = new int[2];
@@ -66,8 +62,8 @@ public class SwipeCardRecyclerView extends RecyclerView {
         mAnimatorMap = new HashMap<>();
     }
 
-    public void setRemovedListener(ItemRemovedListener listener) {
-        mRemovedListener = listener;
+    public void setRemovedListener(ItemTouchListener listener) {
+        mTouchListener = listener;
     }
 
     @Override
@@ -95,11 +91,11 @@ public class SwipeCardRecyclerView extends RecyclerView {
                 mTouchDownY = touchY;
                 break;
             case MotionEvent.ACTION_MOVE:
-                float dx = touchX - mTouchDownX;
                 float dy = touchY - mTouchDownY;
-                topView.setX(mTopViewX + dx + mTopViewOffsetX);
+                if (Math.abs(dy) > 100) {
+                    mTouchListener.hide(dy);
+                }
                 topView.setY(mTopViewY + dy + mTopViewOffsetY);
-                updateNextItem(Math.abs(topView.getX() - mTopViewX) * 0.2 / mBorder + 0.8);
                 break;
             case MotionEvent.ACTION_UP:
                 mTouchDownX = 0;
@@ -112,19 +108,16 @@ public class SwipeCardRecyclerView extends RecyclerView {
 
     /**
      * 更新下一个View的宽高
-     *
-     * @param factor
      */
-    private void updateNextItem(double factor) {
-        if (getChildCount() < 2) {
+    private void updateNextItem() {
+        if (getChildCount() < 1) {
             return;
         }
-        if (factor > 1) {
-            factor = 1;
-        }
-        View nextView = getChildAt(getChildCount() - 2);
-        nextView.setScaleX((float) factor);
-        nextView.setScaleY((float) factor);
+
+
+        View nextView = getChildAt(getChildCount() - 1);
+        nextView.setVisibility(VISIBLE);
+        mTouchListener.show();
 
     }
 
@@ -140,22 +133,21 @@ public class SwipeCardRecyclerView extends RecyclerView {
         if (Math.abs(view.getY() - mTopViewY) < mBorder) {
             targetX = mTopViewX;
             targetY = mTopViewY;
+            mTouchListener.show();
         } else if (view.getY() - mTopViewY > mBorder) {
             del = true;
-            targetX = getScreenWidth() * 2;
-            mRemovedListener.onUpRemoved();
+            targetY = getScreenHeight() * 2;
+            mTouchListener.onDownRemoved();
         } else {
             del = true;
-            targetX = -view.getWidth() - getScreenWidth();
-            mRemovedListener.onDownRemoved();
+//            targetX = -view.getWidth() - getScreenWidth();
+            targetY = -view.getWidth() - getScreenHeight();
+            mTouchListener.onUpRemoved();
         }
         View animView = view;
         TimeInterpolator interpolator;
         if (del) {
             animView = getMirrorView(view);
-            float offsetX = getX() - mDecorView.getX();
-            float offsetY = getY() - mDecorView.getY();
-            targetY = caculateExitY(mTopViewX + offsetX, mTopViewY + offsetY, animView.getX(), animView.getY(), targetX);
             interpolator = new LinearInterpolator();
         } else {
             interpolator = new OvershootInterpolator();
@@ -179,7 +171,9 @@ public class SwipeCardRecyclerView extends RecyclerView {
                     public void onAnimationEnd(Animator animation) {
                         if (finalDel) {
                             try {
+                                updateNextItem();
                                 mDecorView.removeView(finalAnimView);
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -195,14 +189,8 @@ public class SwipeCardRecyclerView extends RecyclerView {
                     @Override
                     public void onAnimationRepeat(Animator animation) {
                     }
-                })
-                .setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        if (!finalDel) {
-                            updateNextItem(Math.abs(view.getX() - mTopViewX) * 0.2 / mBorder + 0.8);
-                        }
-                    }
+
+
                 });
 
     }
@@ -213,22 +201,9 @@ public class SwipeCardRecyclerView extends RecyclerView {
         );
     }
 
-    /**
-     * 计算View退场时的纵坐标，简单的线性计算
-     *
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
-     * @param x3
-     * @return
-     */
-    private float caculateExitY(float x1, float y1, float x2, float y2, float x3) {
-        return (y2 - y1) * (x3 - x1) / (x2 - x1) + y1;
-    }
 
-    private float getScreenWidth() {
-        return getContext().getResources().getDisplayMetrics().widthPixels;
+    private float getScreenHeight() {
+        return getContext().getResources().getDisplayMetrics().heightPixels;
     }
 
     /**
