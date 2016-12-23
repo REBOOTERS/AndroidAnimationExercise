@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -66,6 +67,10 @@ public class SwipeCardRecyclerView extends RecyclerView {
         mTouchListener = listener;
     }
 
+
+
+
+
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         if (getChildCount() == 0) {
@@ -74,6 +79,7 @@ public class SwipeCardRecyclerView extends RecyclerView {
         View topView = getChildAt(getChildCount() - 1);
         float touchX = e.getX();
         float touchY = e.getY();
+        Log.e("touch ", "touchY " + touchY);
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (mAnimatorMap.containsKey(topView)) {
@@ -89,13 +95,17 @@ public class SwipeCardRecyclerView extends RecyclerView {
                 }
                 mTouchDownX = touchX;
                 mTouchDownY = touchY;
+
+                Log.e("downaction", "mTopViewY is " + mTopViewY);
                 break;
             case MotionEvent.ACTION_MOVE:
-                float dy = touchY - mTouchDownY;
-                if (Math.abs(dy) > 100) {
+                int dy = (int) (touchY - mTouchDownY);
+                Log.e("move", "########### " + dy);
+                if (Math.abs(dy) > 10) {
                     mTouchListener.hide(dy);
                 }
-                topView.setY(mTopViewY + dy + mTopViewOffsetY);
+//                topView.setY(mTopViewY + dy + mTopViewOffsetY);
+                topView.setY(dy + mTopViewY);
                 break;
             case MotionEvent.ACTION_UP:
                 mTouchDownX = 0;
@@ -141,7 +151,7 @@ public class SwipeCardRecyclerView extends RecyclerView {
         } else {
             del = true;
 //            targetX = -view.getWidth() - getScreenWidth();
-            targetY = -view.getWidth() - getScreenHeight();
+            targetY = -getScreenHeight();
             mTouchListener.onUpRemoved();
         }
         View animView = view;

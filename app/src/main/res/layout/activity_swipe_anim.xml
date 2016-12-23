@@ -35,11 +35,10 @@
 
         <ImageView
             android:id="@+id/upImg"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
             android:src="@drawable/scene"
             android:visibility="gone" />
 
@@ -52,14 +51,25 @@
             android:text="up"
             android:textColor="#000" />
 
+        <ImageView
+            android:id="@+id/downImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/scene"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/downText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/downImg"
             android:layout_alignParentBottom="true"
             android:gravity="center"
             android:text="down"
             android:textColor="#000" />
+
 
         <home.smart.fly.animationdemo.swipeanim.lib.SwipeCardRecyclerView
             android:id="@+id/recyclerView"

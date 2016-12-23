@@ -11,5 +11,5 @@ public interface ItemTouchListener {
 
     void show();
 
-    void hide(float dy);
+    void hide(int dy);
 }

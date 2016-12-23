@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".AppStartActivity"
+            android:name=".swipeanim.SwipeAnimActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -25,7 +25,7 @@
         <activity android:name=".tradition.TweenedAnimationActivity" />
         <activity android:name=".blur.BlurActivity" />
         <activity android:name=".tradition.SwitchAnimActivity" />
-        <activity android:name=".swipeanim.SwipeAnimActivity" />
+        <!--<activity android:name=".swipeanim.SwipeAnimActivity" />-->
         <activity android:name=".property.PropertyAnimationActivity" />
         <activity android:name=".property.ValueAnimationActivity" />
         <activity android:name=".property.AliPayAnimActivity" />
