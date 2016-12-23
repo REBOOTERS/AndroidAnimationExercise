@@ -110,8 +110,8 @@ public class SwipeAnimActivity extends AppCompatActivity {
 
     private void hideViews() {
 
-        head.setVisibility(View.INVISIBLE);
-        bottom.setVisibility(View.INVISIBLE);
+        head.setVisibility(View.GONE);
+        bottom.setVisibility(View.GONE);
         downText.setVisibility(View.GONE);
         upText.setVisibility(View.GONE);
 
