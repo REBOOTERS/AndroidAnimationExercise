@@ -31,7 +31,6 @@
         <activity android:name=".test.RecyclerViewClickActivity" />
         <!-- customviews -->
         <activity android:name=".customview.activitys.BasicPosActivity" />
-        <activity android:name=".swipeanim.FakeActivity"></activity>
     </application>
 
 </manifest>
