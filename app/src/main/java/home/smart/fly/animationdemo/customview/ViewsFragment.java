@@ -19,6 +19,7 @@ import java.util.List;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.customview.activitys.BasicPosActivity;
+import home.smart.fly.animationdemo.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animationdemo.utils.V;
 
 
@@ -49,8 +50,7 @@ public class ViewsFragment extends Fragment {
 
     private void InitView() {
         demos.add(new ItemInfo(R.string.app_name, BasicPosActivity.class));
-
-
+        demos.add(new ItemInfo(R.string.app_name, FakeWeiBoActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

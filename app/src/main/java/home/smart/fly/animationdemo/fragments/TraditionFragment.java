@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.blur.BlurActivity;
-import home.smart.fly.animationdemo.swipeanim.SwipeAnimActivity;
+import home.smart.fly.animationdemo.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animationdemo.tradition.FrameAnimationActivity;
 import home.smart.fly.animationdemo.tradition.SwitchAnimActivity;
 import home.smart.fly.animationdemo.tradition.TweenedAnimationActivity;
@@ -82,7 +82,7 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
                 getActivity().overridePendingTransition(R.anim.in_from_bottom, R.anim.out_to_bottom);
                 break;
             case R.id.swipeAnim:
-                intent = new Intent(mContext, SwipeAnimActivity.class);
+                intent = new Intent(mContext, FakeWeiBoActivity.class);
                 startActivity(intent);
             default:
                 break;

@@ -6,7 +6,9 @@
     <color name="tab">#90d7ec</color>
     <color name="white">#ffffff</color>
     <color name="red">#e60000</color>
+    <color name="black">#000</color>
     <color name="background">#E5E5E5</color>
+    <color name="transparent">#00000000</color>
 
 
     //
