@@ -2,6 +2,7 @@ package home.smart.fly.animationdemo.customview.activitys;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,6 +34,14 @@ public class BasicPosActivity extends BaseActivity {
         posTv = V.f(this, R.id.posTv);
         linearLayout = V.f(this, R.id.linearLayout);
         myView = V.f(this, R.id.myView);
+
+
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
 
 
     }

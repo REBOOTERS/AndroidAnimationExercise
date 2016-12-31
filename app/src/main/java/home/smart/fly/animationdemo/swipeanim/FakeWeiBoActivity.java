@@ -4,11 +4,12 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,27 +19,38 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.poi.PoiCitySearchOption;
 import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
+import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
 import com.baidu.mapapi.search.poi.PoiSortType;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.utils.StatusBarUtil;
 
 public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClickListener, BDLocationListener {
     private static final String TAG = "FakeWeiBoActivity";
+    private Context mContext;
     //head
     private TextView close;
     private TextView district;
+    private TextView name, address;
 
 
     private SmartPullView refreshView;
+    private RadarScanView radar;
 
     //
     private LinearLayout head, bottom;
+    private TextView hot, cold;
     //
-    private ImageView card;
+    private LinearLayout card;
     private AnimatorSet cardHideAnim;
     private AnimatorSet cardShowAnim;
 
@@ -50,6 +62,9 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
     private PoiCitySearchOption mCitySearchOption;
     private String keyWord;
     private LatLng latLng;
+    //
+    private List<PoiInfo> poiInfos;
+    private int index = 0;
 
 
     @Override
@@ -57,32 +72,48 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         //在使用SDK各组件之前初始化context信息，传入ApplicationContext
         //注意该方法要再setContentView方法之前实现
+        mContext = this;
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_fake_wei_bo);
         StatusBarUtil.setColor(this, getResources().getColor(R.color.background), 0);
         InitView();
         InitAnim();
         initLocationAndSearch();
+        //EventBus
+        EventBus.getDefault().register(mContext);
+
 
         mLocationClient.start();
+        index = 0;
 
 
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        radar.startAnim();
+    }
 
     private void InitView() {
         refreshView = (SmartPullView) findViewById(R.id.refreshView);
         refreshView.setOnHeaderRefreshListener(new MyHeadListener());
         refreshView.setOnFooterRefreshListener(new MyFooterListener());
         refreshView.setOnPullListener(new MyPullListener());
+        radar = (RadarScanView) findViewById(R.id.radar);
         //
         head = (LinearLayout) findViewById(R.id.head);
         bottom = (LinearLayout) findViewById(R.id.bottom);
+        hot = (TextView) findViewById(R.id.hot);
+        cold = (TextView) findViewById(R.id.cold);
         close = (TextView) findViewById(R.id.close);
         close.setOnClickListener(this);
         district = (TextView) findViewById(R.id.district);
 
-        card = (ImageView) findViewById(R.id.card);
+        card = (LinearLayout) findViewById(R.id.card);
+        name = (TextView) findViewById(R.id.name);
+        address = (TextView) findViewById(R.id.address);
 
 
     }
@@ -110,6 +141,8 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
                 super.onAnimationEnd(animation);
                 head.setVisibility(View.VISIBLE);
                 bottom.setVisibility(View.VISIBLE);
+                hot.setVisibility(View.VISIBLE);
+                cold.setVisibility(View.VISIBLE);
             }
         });
 
@@ -122,6 +155,7 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         @Override
         public void onHeaderRefresh(SmartPullView view) {
             refreshView.onHeaderRefreshComplete();
+            index = index + 1;
             cardAnimActions();
         }
 
@@ -133,6 +167,7 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         @Override
         public void onFooterRefresh(SmartPullView view) {
             refreshView.onFooterRefreshComplete();
+            index = index + 1;
             cardAnimActions();
         }
     }
@@ -145,7 +180,14 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                card.setImageResource(R.drawable.scenes);
+//                card.setImageResource(R.drawable.scenes);
+
+                if (poiInfos != null && poiInfos.size() > 0) {
+                    if (index < poiInfos.size()) {
+                        name.setText(poiInfos.get(index).name);
+                        address.setText(poiInfos.get(index).address);
+                    }
+                }
                 cardShowAnim.start();
             }
         });
@@ -159,10 +201,14 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         public void pull() {
             head.setVisibility(View.GONE);
             bottom.setVisibility(View.GONE);
+            hot.setVisibility(View.INVISIBLE);
+            cold.setVisibility(View.INVISIBLE);
         }
 
         @Override
         public void pullDone() {
+            hot.setVisibility(View.VISIBLE);
+            cold.setVisibility(View.VISIBLE);
             head.setVisibility(View.VISIBLE);
             bottom.setVisibility(View.VISIBLE);
         }
@@ -221,11 +267,29 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         district.setText(bdLocation.getAddress().district);
 
         String city = bdLocation.getCity();
-        latLng = new LatLng(bdLocation.getLatitude(),bdLocation.getLongitude());
+        latLng = new LatLng(bdLocation.getLatitude(), bdLocation.getLongitude());
         mNearbySearchOption.location(latLng).pageNum(1).pageCapacity(10).sortType(PoiSortType.distance_from_near_to_far);
         mCitySearchOption.city(city).pageNum(1).pageCapacity(10);
-        mPoiSearch.searchNearby(mNearbySearchOption);
-//        mPoiSearch.searchInCity(mCitySearchOption);
+//        mPoiSearch.searchNearby(mNearbySearchOption);
+        mPoiSearch.searchInCity(mCitySearchOption);
+    }
+
+    @Subscribe
+    public void onPoiResultEvent(PoiResult poiResult) {
+        poiInfos = poiResult.getAllPoi();
+        name.setText(poiInfos.get(0).name);
+        address.setText(poiInfos.get(0).address);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                radar.stopAnim();
+                radar.setVisibility(View.GONE);
+                refreshView.setVisibility(View.VISIBLE);
+                cardShowAnim.start();
+            }
+        }, 3000);
+
+
     }
 
     @Override

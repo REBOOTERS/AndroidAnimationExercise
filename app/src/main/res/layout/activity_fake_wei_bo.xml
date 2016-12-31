@@ -4,14 +4,22 @@
     android:id="@+id/activity_fake_wei_bo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="home.smart.fly.animationdemo.swipeanim.FakeWeiBoActivity">
+
+
+    <home.smart.fly.animationdemo.swipeanim.RadarScanView
+        android:id="@+id/radar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
     <home.smart.fly.animationdemo.swipeanim.SmartPullView
         android:id="@+id/refreshView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -24,15 +32,94 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/hot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/radar_card_guide_gesture_up"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="推荐给身边的人" />
 
-                <ImageView
+                <LinearLayout
                     android:id="@+id/card"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:scaleType="fitXY"
-                     />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/corner_view_white"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile_image"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/scene" />
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="faruxue"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="350dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/scene" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom">
+
+                            <TextView
+                                android:id="@+id/address"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:gravity="start"
+                                android:lines="2"
+                                android:text=""
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/cold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:drawableLeft="@drawable/radar_card_guide_gesture_down"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="不感兴趣" />
+
             </LinearLayout>
 
 
