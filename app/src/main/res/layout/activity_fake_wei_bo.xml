@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context="home.smart.fly.animationdemo.swipeanim.FakeWeiBoActivity">
+    tools:context=".customview.swipeanim.FakeWeiBoActivity">
 
 
-    <home.smart.fly.animationdemo.swipeanim.RadarScanView
+    <home.smart.fly.animationdemo.customview.swipeanim.RadarScanView
         android:id="@+id/radar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="visible" />
 
 
-    <home.smart.fly.animationdemo.swipeanim.SmartPullView
+    <home.smart.fly.animationdemo.customview.swipeanim.SmartPullView
         android:id="@+id/refreshView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -81,16 +82,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="350dp"
+                            android:layout_height="300dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/scene" />
+                            android:background="@color/cpb_blue"
+                             />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="bottom">
+                            android:layout_gravity="bottom"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/address"
@@ -99,6 +103,18 @@
                                 android:layout_margin="5dp"
                                 android:gravity="start"
                                 android:lines="2"
+                                android:text="1111111"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:drawablePadding="5dp"
+                                android:drawableLeft="@drawable/phone"
+                                android:id="@+id/phoneNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:layout_gravity="center_vertical|end"
                                 android:text=""
                                 android:textColor="@color/white" />
 
@@ -126,7 +142,7 @@
         </ScrollView>
 
 
-    </home.smart.fly.animationdemo.swipeanim.SmartPullView>
+    </home.smart.fly.animationdemo.customview.swipeanim.SmartPullView>
 
 
     <LinearLayout

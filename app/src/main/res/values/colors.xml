@@ -11,6 +11,9 @@
     <color name="transparent">#00000000</color>
 
 
+    <color name="tabsel">#11cd6e</color>
+
+
     //
     <color name="cpb_grey">#ffdedede</color>
     <color name="cpb_blue">#ff0099cc</color>

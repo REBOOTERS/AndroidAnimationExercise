@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.swipeanim;
+package home.smart.fly.animationdemo.customview.swipeanim;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -132,40 +132,6 @@ public class RadarScanView extends View {
         }
     }
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        switch (event.getActionMasked()) {
-//            case MotionEvent.ACTION_DOWN:
-//                //当按钮只有在图片即按钮区域内则认定为点击，其他不作点击
-//                isButtonClick = false;
-//                if (mButtonArea.contains((int) event.getX(), (int) event.getY())) {//手指按下，执行缩小动画
-//                    if (!mScaleMinAnimator.isRunning() && !mScaleMaxAnimator.isRunning() && !mRotateAnimator.isRunning()) {//如果动画正在执行则不执行动画
-//                        isButtonClick = true;
-//                        //点击了按钮，启动白色图片缩小动画
-//                        mScaleMinAnimator.start();
-//                    }
-//                }
-//                break;
-//            case MotionEvent.ACTION_CANCEL:
-//
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                if (isButtonClick) {
-//                    //当点击了按钮，启动白色图片放大动画与扫描图片旋转动画
-//                    if (!mScaleMaxAnimator.isRunning()) {//如果动画正在执行则不执行动画
-//                        mScaleMaxAnimator.start();
-//                    }
-//                    if (!mRotateAnimator.isRunning()) {//如果动画正在执行则不执行动画
-//                        mRotateAnimator.start();
-//                    }
-//                }
-//                break;
-//        }
-//        return true;
-//    }
 
     private void initScaleMinAnimator() {
         mScaleMinAnimator.setFloatValues(mRadius, mRadius * 0.87f);
@@ -208,7 +174,7 @@ public class RadarScanView extends View {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                mTipText = "正在探索周边的人...";
+                mTipText = "正在探索周边的...";
                 //旋转动画启动后启动扫描波纹动画
                 mOutGrayAnimator.start();
                 mInnerWhiteAnimator.start();

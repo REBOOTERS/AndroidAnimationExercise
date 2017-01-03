@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.swipeanim;
+package home.smart.fly.animationdemo.customview.swipeanim;
 
 import android.util.Log;
 
@@ -22,11 +22,11 @@ public class MyPoiSearchListener implements OnGetPoiSearchResultListener {
 
     @Override
     public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
-
+        Log.e("onGetPoiDetailResult", "--------->" + poiDetailResult);
     }
 
     @Override
     public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
-
+        Log.e("onGetPoiIndoorResult", "--------->" + poiIndoorResult);
     }
 }

@@ -1,17 +1,25 @@
-package home.smart.fly.animationdemo.swipeanim;
+package home.smart.fly.animationdemo.customview.swipeanim;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -20,7 +28,6 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.PoiInfo;
-import com.baidu.mapapi.search.poi.PoiCitySearchOption;
 import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
@@ -40,7 +47,14 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
     //head
     private TextView close;
     private TextView district;
-    private TextView name, address;
+    private TextView name, address, phoneNum;
+
+    //bottom
+    private LinearLayout movie, meishi, atm, bus, subway;
+    private TextView tv1, tv2, tv3, tv4, tv5;
+    private ImageView img1, img2, img3, img4, img5;
+    private Resources res;
+    private int tabselColor;
 
 
     private SmartPullView refreshView;
@@ -59,12 +73,15 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
     //
     private PoiSearch mPoiSearch;
     private PoiNearbySearchOption mNearbySearchOption;
-    private PoiCitySearchOption mCitySearchOption;
     private String keyWord;
     private LatLng latLng;
     //
     private List<PoiInfo> poiInfos;
     private int index = 0;
+
+    //permissions
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
+    private String[] permissons = {Manifest.permission.ACCESS_FINE_LOCATION};
 
 
     @Override
@@ -81,10 +98,17 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         initLocationAndSearch();
         //EventBus
         EventBus.getDefault().register(mContext);
-
-
-        mLocationClient.start();
         index = 0;
+
+
+        if (ContextCompat.checkSelfPermission(mContext,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //没有定位权限则请求
+            ActivityCompat.requestPermissions(this, permissons, MY_PERMISSIONS_REQUEST_LOCATION);
+
+        } else {
+            mLocationClient.start();
+        }
 
 
     }
@@ -92,11 +116,13 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-
         radar.startAnim();
     }
 
     private void InitView() {
+        res = mContext.getResources();
+        tabselColor = res.getColor(R.color.tabsel);
+
         refreshView = (SmartPullView) findViewById(R.id.refreshView);
         refreshView.setOnHeaderRefreshListener(new MyHeadListener());
         refreshView.setOnFooterRefreshListener(new MyFooterListener());
@@ -114,6 +140,28 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         card = (LinearLayout) findViewById(R.id.card);
         name = (TextView) findViewById(R.id.name);
         address = (TextView) findViewById(R.id.address);
+        phoneNum = (TextView) findViewById(R.id.phoneNum);
+        //
+        movie = (LinearLayout) findViewById(R.id.movie);
+        meishi = (LinearLayout) findViewById(R.id.meishi);
+        atm = (LinearLayout) findViewById(R.id.atm);
+        bus = (LinearLayout) findViewById(R.id.bus);
+        subway = (LinearLayout) findViewById(R.id.subway);
+        movie.setOnClickListener(this);
+        meishi.setOnClickListener(this);
+        atm.setOnClickListener(this);
+        bus.setOnClickListener(this);
+        subway.setOnClickListener(this);
+        tv1 = (TextView) findViewById(R.id.tv1);
+        tv2 = (TextView) findViewById(R.id.tv2);
+        tv3 = (TextView) findViewById(R.id.tv3);
+        tv4 = (TextView) findViewById(R.id.tv4);
+        tv5 = (TextView) findViewById(R.id.tv5);
+        img1 = (ImageView) findViewById(R.id.img1);
+        img2 = (ImageView) findViewById(R.id.img2);
+        img3 = (ImageView) findViewById(R.id.img3);
+        img4 = (ImageView) findViewById(R.id.img4);
+        img5 = (ImageView) findViewById(R.id.img5);
 
 
     }
@@ -186,6 +234,7 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
                     if (index < poiInfos.size()) {
                         name.setText(poiInfos.get(index).name);
                         address.setText(poiInfos.get(index).address);
+                        phoneNum.setText(poiInfos.get(index).phoneNum);
                     }
                 }
                 cardShowAnim.start();
@@ -218,13 +267,36 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
+        int index = 0;
         switch (v.getId()) {
             case R.id.close:
+                index = -1;
                 finish();
+                break;
+            case R.id.movie:
+                index = 1;
+                break;
+            case R.id.meishi:
+                index = 2;
+                break;
+            case R.id.atm:
+                index = 3;
+                break;
+            case R.id.bus:
+                index = 4;
+                break;
+            case R.id.subway:
+                index = 5;
                 break;
             default:
                 break;
         }
+
+        if (index > 0) {
+            selectedTab(index);
+        }
+
+
     }
 
     private void initLocationAndSearch() {
@@ -251,9 +323,11 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
 
         mPoiSearch = PoiSearch.newInstance();
         mPoiSearch.setOnGetPoiSearchResultListener(new MyPoiSearchListener());
-        keyWord = "电影";
-        mNearbySearchOption = new PoiNearbySearchOption().keyword(keyWord);
-        mCitySearchOption = new PoiCitySearchOption().keyword(keyWord);
+        mNearbySearchOption = new PoiNearbySearchOption()
+                .radius(5000)
+                .pageNum(1)
+                .pageCapacity(20)
+                .sortType(PoiSortType.distance_from_near_to_far);
 
     }
 
@@ -262,34 +336,114 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         if (mLocationClient != null && mLocationClient.isStarted()) {
             mLocationClient.stop();
         }
-        Log.e(TAG, "onReceiveLocation: current Thread name " + Thread.currentThread().getName());
 
         district.setText(bdLocation.getAddress().district);
-
-        String city = bdLocation.getCity();
         latLng = new LatLng(bdLocation.getLatitude(), bdLocation.getLongitude());
-        mNearbySearchOption.location(latLng).pageNum(1).pageCapacity(10).sortType(PoiSortType.distance_from_near_to_far);
-        mCitySearchOption.city(city).pageNum(1).pageCapacity(10);
-//        mPoiSearch.searchNearby(mNearbySearchOption);
-        mPoiSearch.searchInCity(mCitySearchOption);
+
+
+        movie.performClick();
     }
+
 
     @Subscribe
     public void onPoiResultEvent(PoiResult poiResult) {
-        poiInfos = poiResult.getAllPoi();
-        name.setText(poiInfos.get(0).name);
-        address.setText(poiInfos.get(0).address);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                radar.stopAnim();
-                radar.setVisibility(View.GONE);
-                refreshView.setVisibility(View.VISIBLE);
-                cardShowAnim.start();
+
+        if (poiResult != null && poiResult.getAllPoi() != null&&poiResult.getAllPoi().size()>0) {
+            poiInfos = poiResult.getAllPoi();
+            name.setText(poiInfos.get(0).name);
+            address.setText(poiInfos.get(0).address);
+            phoneNum.setText(poiInfos.get(0).phoneNum);
+
+            index = 1;
+
+            if (refreshView.getVisibility() == View.GONE) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        radar.stopAnim();
+                        radar.setVisibility(View.GONE);
+                        refreshView.setVisibility(View.VISIBLE);
+                        cardShowAnim.start();
+                    }
+                }, 3000);
             }
-        }, 3000);
+        } else {
+            radar.stopAnim();
+        }
 
 
+    }
+
+    private void resetTabs() {
+        tv1.setTextColor(Color.BLACK);
+        tv2.setTextColor(Color.BLACK);
+        tv3.setTextColor(Color.BLACK);
+        tv4.setTextColor(Color.BLACK);
+        tv5.setTextColor(Color.BLACK);
+
+        img1.setImageResource(R.drawable.movie);
+        img2.setImageResource(R.drawable.meishi);
+        img3.setImageResource(R.drawable.atm);
+        img4.setImageResource(R.drawable.busstatioin);
+        img5.setImageResource(R.drawable.subway);
+    }
+
+    private void selectedTab(int index) {
+        resetTabs();
+        switch (index) {
+            case 1:
+                tv1.setTextColor(tabselColor);
+                img1.setImageResource(R.drawable.movies);
+                keyWord = tv1.getText().toString();
+                break;
+            case 2:
+                img2.setImageResource(R.drawable.meishis);
+                tv2.setTextColor(tabselColor);
+                keyWord = tv2.getText().toString();
+                break;
+            case 3:
+                img3.setImageResource(R.drawable.atms);
+                tv3.setTextColor(tabselColor);
+                keyWord = tv3.getText().toString();
+                break;
+            case 4:
+                img4.setImageResource(R.drawable.buss);
+                tv4.setTextColor(tabselColor);
+                keyWord = tv4.getText().toString();
+                break;
+            case 5:
+                img5.setImageResource(R.drawable.subways);
+                tv5.setTextColor(tabselColor);
+                keyWord = tv5.getText().toString();
+                break;
+            default:
+                break;
+        }
+
+        if (refreshView.getVisibility() == View.VISIBLE) {
+            refreshView.setVisibility(View.GONE);
+            radar.setVisibility(View.VISIBLE);
+            radar.startAnim();
+        }
+
+        if (latLng != null && mNearbySearchOption != null && keyWord != null) {
+            mNearbySearchOption.location(latLng).keyword(keyWord);
+            mPoiSearch.searchNearby(mNearbySearchOption);
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_PERMISSIONS_REQUEST_LOCATION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                mLocationClient.start();
+            } else {
+                Toast.makeText(mContext, "没有定位权限", Toast.LENGTH_SHORT).show();
+                radar.stopAnim();
+            }
+        }
     }
 
     @Override
@@ -302,5 +456,9 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         if (mPoiSearch != null) {
             mPoiSearch.destroy();
         }
+
+        EventBus.getDefault().unregister(mContext);
     }
+
+
 }
