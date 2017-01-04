@@ -201,8 +201,6 @@ public class SmartPullView extends LinearLayout {
                 break;
             case MotionEvent.ACTION_MOVE:
                 // deltaY > 0 是向下运动,< 0是向上运动
-
-
                 int deltaY = y - mLastMotionY;
                 if (isRefreshViewScroll(deltaY)) {
                     return true;
