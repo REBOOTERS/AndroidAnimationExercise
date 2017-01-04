@@ -505,9 +505,18 @@ public class SmartPullView extends LinearLayout {
         void onHeaderRefresh(SmartPullView view);
     }
 
+    /**
+     * 监听当前是否处于滑动状态
+     */
     public interface OnPullListener {
+        /**
+         * 手指正在屏幕上滑动
+         */
         void pull();
 
+        /**
+         * 手指已从屏幕离开，结束滑动
+          */
         void pullDone();
     }
 
