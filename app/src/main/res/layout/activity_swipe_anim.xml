@@ -71,7 +71,7 @@
             android:textColor="#000" />
 
 
-        <home.smart.fly.animationdemo.swipeanim.lib.SwipeCardRecyclerView
+        <home.smart.fly.animationdemo.customview.swipeanim.lib.SwipeCardRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

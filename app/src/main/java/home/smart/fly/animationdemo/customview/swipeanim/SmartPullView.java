@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.swipeanim;
+package home.smart.fly.animationdemo.customview.swipeanim;
 
 
 import android.content.Context;

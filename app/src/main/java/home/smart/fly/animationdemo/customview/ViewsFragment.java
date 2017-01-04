@@ -19,7 +19,7 @@ import java.util.List;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.customview.activitys.BasicPosActivity;
-import home.smart.fly.animationdemo.swipeanim.FakeWeiBoActivity;
+import home.smart.fly.animationdemo.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animationdemo.utils.V;
 
 
