@@ -160,7 +160,6 @@ public class RadarScanView extends View {
     private void initRoateAnimator() {
         mRotateAnimator.setFloatValues(0, 360);
         mRotateAnimator.setDuration(1000);
-        //重复三次，模仿正在扫描
         mRotateAnimator.setRepeatCount(-1);
         mRotateAnimator.setInterpolator(new LinearInterpolator());
         mRotateAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -192,7 +191,7 @@ public class RadarScanView extends View {
                 mOutGrayRadius = 0;
                 mInnerWhiteRadius = 0;
                 mBlackRadius = 0;
-                mTipText = "未能探索到周边的人，请稍后再试";
+                mTipText = "未能探索到周边的...，请稍后再试";
                 invalidateView();
             }
         });

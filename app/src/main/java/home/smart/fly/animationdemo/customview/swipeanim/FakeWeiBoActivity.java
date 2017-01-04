@@ -15,7 +15,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -65,6 +67,8 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
     private TextView hot, cold;
     //
     private LinearLayout card;
+    private FrameLayout backFrame;
+    private int[] colors;
     private AnimatorSet cardHideAnim;
     private AnimatorSet cardShowAnim;
 
@@ -138,6 +142,7 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         district = (TextView) findViewById(R.id.district);
 
         card = (LinearLayout) findViewById(R.id.card);
+        backFrame = (FrameLayout) findViewById(R.id.frameback);
         name = (TextView) findViewById(R.id.name);
         address = (TextView) findViewById(R.id.address);
         phoneNum = (TextView) findViewById(R.id.phoneNum);
@@ -162,13 +167,10 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         img3 = (ImageView) findViewById(R.id.img3);
         img4 = (ImageView) findViewById(R.id.img4);
         img5 = (ImageView) findViewById(R.id.img5);
-
-
+        colors = new int[]{0xff0099cc, 0xffff4444, 0xff99cc00};
     }
 
     private void InitAnim() {
-
-
         cardHideAnim = new AnimatorSet();
         ObjectAnimator hideAnim = ObjectAnimator.ofFloat(card, "alpha", 1.0f, 0.0f);
         ObjectAnimator hideAnimX = ObjectAnimator.ofFloat(card, "scaleX", 1.0f, 0f);
@@ -228,8 +230,8 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-//                card.setImageResource(R.drawable.scenes);
-
+                Log.e(TAG, "onAnimationEnd: the index is " + index);
+                backFrame.setBackgroundColor(colors[index % 3]);
                 if (poiInfos != null && poiInfos.size() > 0) {
                     if (index < poiInfos.size()) {
                         name.setText(poiInfos.get(index).name);
@@ -331,48 +333,6 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    @Override
-    public void onReceiveLocation(BDLocation bdLocation) {
-        if (mLocationClient != null && mLocationClient.isStarted()) {
-            mLocationClient.stop();
-        }
-
-        district.setText(bdLocation.getAddress().district);
-        latLng = new LatLng(bdLocation.getLatitude(), bdLocation.getLongitude());
-
-
-        movie.performClick();
-    }
-
-
-    @Subscribe
-    public void onPoiResultEvent(PoiResult poiResult) {
-
-        if (poiResult != null && poiResult.getAllPoi() != null&&poiResult.getAllPoi().size()>0) {
-            poiInfos = poiResult.getAllPoi();
-            name.setText(poiInfos.get(0).name);
-            address.setText(poiInfos.get(0).address);
-            phoneNum.setText(poiInfos.get(0).phoneNum);
-
-            index = 1;
-
-            if (refreshView.getVisibility() == View.GONE) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        radar.stopAnim();
-                        radar.setVisibility(View.GONE);
-                        refreshView.setVisibility(View.VISIBLE);
-                        cardShowAnim.start();
-                    }
-                }, 3000);
-            }
-        } else {
-            radar.stopAnim();
-        }
-
-
-    }
 
     private void resetTabs() {
         tv1.setTextColor(Color.BLACK);
@@ -430,6 +390,48 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
             mNearbySearchOption.location(latLng).keyword(keyWord);
             mPoiSearch.searchNearby(mNearbySearchOption);
         }
+    }
+
+
+    @Override
+    public void onReceiveLocation(BDLocation bdLocation) {
+        if (mLocationClient != null && mLocationClient.isStarted()) {
+            mLocationClient.stop();
+        }
+
+        district.setText(bdLocation.getAddress().district);
+        latLng = new LatLng(bdLocation.getLatitude(), bdLocation.getLongitude());
+        movie.performClick();
+    }
+
+
+    @Subscribe
+    public void onPoiResultEvent(PoiResult poiResult) {
+
+        if (poiResult != null && poiResult.getAllPoi() != null && poiResult.getAllPoi().size() > 0) {
+            poiInfos = poiResult.getAllPoi();
+            name.setText(poiInfos.get(0).name);
+            address.setText(poiInfos.get(0).address);
+            phoneNum.setText(poiInfos.get(0).phoneNum);
+
+            index = 1;
+
+            if (refreshView.getVisibility() == View.GONE) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        radar.stopAnim();
+                        radar.setVisibility(View.GONE);
+                        refreshView.setVisibility(View.VISIBLE);
+                        cardShowAnim.start();
+                    }
+                }, 3000);
+            }
+        } else {
+            radar.stopAnim();
+        }
+
+
     }
 
 
