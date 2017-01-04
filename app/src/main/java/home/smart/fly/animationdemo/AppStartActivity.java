@@ -1,6 +1,7 @@
 package home.smart.fly.animationdemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources.Theme;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import home.smart.fly.animationdemo.customview.ViewsFragment;
 import home.smart.fly.animationdemo.fragments.PropertyFragment;
 import home.smart.fly.animationdemo.fragments.TraditionFragment;
+import home.smart.fly.animationdemo.property.RevealAnimatorActivity;
 
 public class AppStartActivity extends AppCompatActivity {
     private Snackbar snackbar = null;
@@ -113,6 +115,7 @@ public class AppStartActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(AppStartActivity.this, RevealAnimatorActivity.class));
             return true;
         }
 
