@@ -49,8 +49,8 @@ public class ViewsFragment extends Fragment {
     }
 
     private void InitView() {
-        demos.add(new ItemInfo(R.string.app_name, BasicPosActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, FakeWeiBoActivity.class));
+        demos.add(new ItemInfo(R.string.self_view, BasicPosActivity.class));
+        demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
