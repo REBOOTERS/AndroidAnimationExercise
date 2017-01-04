@@ -7,7 +7,7 @@ android {
         debug {
             keyAlias 'animation'
             keyPassword '123456'
-            storeFile file('D:/ASDemo/AnimationDemo/animationkey')
+            storeFile file('D:/ASDemo/AndroidAnimationExercise/animationkey')
             storePassword '123456'
         }
     }
