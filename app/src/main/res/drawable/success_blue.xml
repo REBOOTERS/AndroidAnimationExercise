@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="80" android:drawable="@drawable/alipay_msp_success_blue7" />
+    <item android:duration="80" android:drawable="@drawable/alipay_msp_success_blue8" />
+    <item android:duration="80" android:drawable="@drawable/alipay_msp_success_blue9" />
+    <item android:duration="80" android:drawable="@drawable/alipay_msp_success_blue10" />
+    <item android:duration="80" android:drawable="@drawable/alipay_msp_success_blue11" />
+    <item android:duration="80" android:drawable="@drawable/alipay_msp_success_blue12" />
+    <item android:duration="80" android:drawable="@drawable/alipay_msp_success_blue13" />
+</animation-list>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="8.0dp"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/btn_message"
+                android:layout_width="90dip"
+                android:layout_height="25dip"
+                android:background="@drawable/left_transparent"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="传统动画"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btn_call"
+                android:layout_width="90dip"
+                android:layout_height="25dip"
+                android:background="@drawable/right_bold"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="属性动画"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="visible" />
+
+</LinearLayout>

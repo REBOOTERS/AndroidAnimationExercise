@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">动画城</string>
+    <string name="title_activity_app_start">AppStartActivity</string>
+    <string name="self_view">自定义view时measure方法的考量</string>
+    <string name="fake_weibo">仿新浪微博雷达扫描效果及相关功能实现</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>

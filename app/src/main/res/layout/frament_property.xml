@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="home.smart.fly.animationdemo.MainActivity">
+
+    <Button
+        android:id="@+id/property"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_blue"
+        android:text="PropertyAnimation"
+        android:textColor="@color/cpb_white" />
+
+    <Button
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_blue"
+        android:text="PropertyValueAnimation"
+        android:textColor="@color/cpb_white" />
+
+    <Button
+        android:id="@+id/demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_blue"
+        android:text="Pay_Anim"
+        android:textColor="@color/cpb_white" />
+
+    <Button
+        android:id="@+id/shopcar_add_anim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_blue"
+        android:text="shopcar_add_anim"
+        android:textColor="@color/cpb_white" />
+
+    <Button
+        android:id="@+id/LayoutAnimations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_blue"
+        android:text="LayoutAnimations"
+        android:textColor="@color/cpb_white" />
+    <Button
+        android:id="@+id/RevealAnimator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_blue"
+        android:text="RevealAnimator"
+        android:textColor="@color/cpb_white" />
+
+    <Button
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_blue"
+        android:text="test"
+        android:textColor="@color/cpb_white"
+        android:visibility="visible" />
+
+</LinearLayout>

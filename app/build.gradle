@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+android {
+
+
+    signingConfigs {
+        debug {
+            keyAlias 'animation'
+            keyPassword '123456'
+            storeFile file('F:/2016_prj/AndroidAnimationExercise/animationkey')
+            storePassword '123456'
+        }
+    }
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+    defaultConfig {
+        applicationId "home.smart.fly.animationdemo"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        //blur
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.orhanobut:logger:1.15'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+}
