@@ -36,6 +36,7 @@ public class BasicPosActivity extends BaseActivity {
         pie.addItem("Euripides", 1, res.getColor(R.color.turquoise));
         pie.addItem("Ganymede", 3, res.getColor(R.color.slate));
 
+        assert ((Button) findViewById(R.id.Reset)) != null;
         ((Button) findViewById(R.id.Reset)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 pie.setCurrentItem(0);
