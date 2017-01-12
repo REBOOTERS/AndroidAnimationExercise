@@ -29,7 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".recyclerview.RecyclerViewActivity"
+            android:name=".AppStartActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -67,7 +67,7 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="6WGf45WoEZ068VWUtszDQGDP3vvGiRVW" /> <!-- http://lbsyun.baidu.com/apiconsole/key -->
 
-        <!--<activity android:name=".recyclerview.RecyclerViewActivity"></activity>-->
+        <activity android:name=".recyclerview.RecyclerViewActivity" />
     </application>
 
 </manifest>

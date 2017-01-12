@@ -278,7 +278,6 @@ public class RadarScanView extends View {
         canvas.drawBitmap(mScanBitmap, getMeasuredWidth() / 2 - mScanBitmap.getWidth() / 2, getMeasuredHeight() / 2 - mScanBitmap.getHeight() / 2, new Paint(Paint.ANTI_ALIAS_FLAG));
         //绘制文本提示
         mTextPaint.getTextBounds(mTipText, 0, mTipText.length(), mTextBound);
-        //此处50为文本与按钮之间间隔，可以自己设定
         canvas.drawText(mTipText, getMeasuredWidth() / 2 - mTextBound.width() / 2, getMeasuredHeight() / 2 + mScanBackgroundBitmap.getHeight() / 2 + mTextBound.height() + 50, mTextPaint);
 
     }

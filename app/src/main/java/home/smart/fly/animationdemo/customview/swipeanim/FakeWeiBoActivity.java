@@ -395,6 +395,7 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onReceiveLocation(BDLocation bdLocation) {
+        Log.e(TAG, "onReceiveLocation: "+bdLocation );
         if (mLocationClient != null && mLocationClient.isStarted()) {
             mLocationClient.stop();
         }
