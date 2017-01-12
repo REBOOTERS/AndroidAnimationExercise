@@ -1,16 +1,15 @@
 package home.smart.fly.animationdemo.customview.activitys;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import home.smart.fly.animationdemo.R;
-import home.smart.fly.animationdemo.customview.views.MyView;
+import home.smart.fly.animationdemo.customview.views.PieChart;
 import home.smart.fly.animationdemo.utils.BaseActivity;
-import home.smart.fly.animationdemo.utils.V;
 
 /**
  * Created by rookie on 2016/12/20.
@@ -18,10 +17,7 @@ import home.smart.fly.animationdemo.utils.V;
 
 public class BasicPosActivity extends BaseActivity {
     private Context mContext;
-    private TextView posTv;
-    private LinearLayout linearLayout;
 
-    private MyView myView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,38 +27,21 @@ public class BasicPosActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        posTv = V.f(this, R.id.posTv);
-        linearLayout = V.f(this, R.id.linearLayout);
-        myView = V.f(this, R.id.myView);
+        Resources res = getResources();
+        final PieChart pie = (PieChart) this.findViewById(R.id.Pie);
+        pie.addItem("Agamemnon", 2, res.getColor(R.color.seafoam));
+        pie.addItem("Bocephus", 3.5f, res.getColor(R.color.chartreuse));
+        pie.addItem("Calliope", 2.5f, res.getColor(R.color.emerald));
+        pie.addItem("Daedalus", 3, res.getColor(R.color.bluegrass));
+        pie.addItem("Euripides", 1, res.getColor(R.color.turquoise));
+        pie.addItem("Ganymede", 3, res.getColor(R.color.slate));
 
-
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-
+        ((Button) findViewById(R.id.Reset)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                pie.setCurrentItem(0);
             }
         });
-
-
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            String pos = "getLeft(): " + linearLayout.getLeft() + "\n"
-                    + "getTop(): " + linearLayout.getTop() + "\n"
-                    + "getRight(): " + linearLayout.getRight() + "\n"
-                    + "getBottom(): " + linearLayout.getBottom() + "\n"
-                    + "getX(): " + linearLayout.getX() + "\n"
-                    + "getY(): " + linearLayout.getY() + "\n"
-                    + "getTranslationX(): " + linearLayout.getTranslationX() + "\n"
-                    + "getTranslationY(): " + linearLayout.getTranslationY() + "\n"
-                    + "getWidth(): " + linearLayout.getWidth() + "\n"
-                    + "getHeight(): " + linearLayout.getHeight() + "\n";
 
-
-            posTv.setText(pos);
-        }
-    }
 }

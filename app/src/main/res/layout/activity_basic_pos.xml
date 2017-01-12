@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:custom="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_margin="20dp"
-        android:background="@color/cpb_green"
-        android:orientation="horizontal"
-        android:visibility="gone" />
-
-    <home.smart.fly.animationdemo.customview.views.MyView
-        android:id="@+id/myView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <home.smart.fly.animationdemo.customview.views.MyView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <home.smart.fly.animationdemo.customview.views.MyView
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
-
-    <TextView
-        android:id="@+id/posTv"
+    <home.smart.fly.animationdemo.customview.views.PieChart
+        android:id="@+id/Pie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp" />
+        android:layout_weight="100"
+        android:background="@android:color/white"
+        android:padding="10dp"
+        android:showText="true"
+        custom:autoCenterPointerInSlice="true"
+        custom:highlightStrength="1.12"
+        custom:labelColor="@android:color/black"
+        custom:labelHeight="20dp"
+        custom:labelPosition="left"
+        custom:labelWidth="110dp"
+        custom:labelY="85dp"
+        custom:pieRotation="0"
+        custom:pointerRadius="4dp"
+        />
+
+    <Button
+        android:id="@+id/Reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="reset"/>
+
 
 </LinearLayout>
