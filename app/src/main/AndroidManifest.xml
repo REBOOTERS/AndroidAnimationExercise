@@ -70,6 +70,8 @@
         <activity android:name=".recyclerview.RecyclerViewActivity"/>
         <activity android:name=".utils.ScreenCaptureActivity">
         </activity>
+        <activity android:name=".customview.puzzle.PuzzleActivity">
+        </activity>
     </application>
 
 </manifest>
