@@ -3,6 +3,7 @@
     <string name="title_activity_app_start">AppStartActivity</string>
     <string name="self_view">自定义view时measure方法的考量</string>
     <string name="fake_weibo">仿新浪微博雷达扫描效果及相关功能实现</string>
+    <string name="take_screen">截屏</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
