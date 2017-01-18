@@ -29,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item, parent,false);
         final MyHolder holder = new MyHolder(view);
 
         holder.tv.setOnClickListener(new View.OnClickListener() {
