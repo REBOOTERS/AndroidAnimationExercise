@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.blur;
+package home.smart.fly.animationdemo.property.blur;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

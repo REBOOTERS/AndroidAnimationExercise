@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.recyclerview;
+package home.smart.fly.animationdemo.recyclerView;
 
 /**
  * Created by rookie on 2016/12/20.
@@ -16,20 +16,20 @@ import java.util.List;
 
 import home.smart.fly.animationdemo.R;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
 
     private List<String> datas;
     private Context mContext;
 
 
-    public RecyclerViewAdapter(List<String> datas) {
+    public MyAdapter(List<String> datas) {
         this.datas = datas;
     }
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item, parent,false);
         final MyHolder holder = new MyHolder(view);
 
         holder.tv.setOnClickListener(new View.OnClickListener() {

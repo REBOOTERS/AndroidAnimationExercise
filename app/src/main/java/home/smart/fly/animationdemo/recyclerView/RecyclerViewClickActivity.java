@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.test;
+package home.smart.fly.animationdemo.recyclerView;
 
 import android.content.Context;
 import android.os.Bundle;

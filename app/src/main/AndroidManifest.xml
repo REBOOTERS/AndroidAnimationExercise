@@ -40,7 +40,7 @@
         </activity>
         <activity android:name=".tradition.FrameAnimationActivity"/>
         <activity android:name=".tradition.TweenedAnimationActivity"/>
-        <activity android:name=".blur.BlurActivity"/>
+        <activity android:name=".property.blur.BlurActivity"/>
         <activity android:name=".tradition.SwitchAnimActivity"/>
         <activity android:name=".property.PropertyAnimationActivity"/>
         <activity android:name=".property.ValueAnimationActivity"/>
@@ -48,7 +48,7 @@
         <activity android:name=".property.ShopCarAddAnimActivity"/>
         <activity android:name=".property.LayoutAnimationsActivity"/>
         <activity android:name=".property.RevealAnimatorActivity"/>
-        <activity android:name=".test.RecyclerViewClickActivity"/>
+        <activity android:name=".recyclerView.RecyclerViewClickActivity"/>
         <!-- customviews -->
         <activity android:name=".customview.activitys.BasicPosActivity"/>
         <activity android:name=".customview.swipeanim.FakeWeiBoActivity"/>
@@ -67,7 +67,6 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="6WGf45WoEZ068VWUtszDQGDP3vvGiRVW"/> <!-- http://lbsyun.baidu.com/apiconsole/key -->
 
-        <activity android:name=".recyclerview.RecyclerViewActivity"/>
         <activity android:name=".utils.ScreenCaptureActivity">
         </activity>
         <activity android:name=".customview.puzzle.PuzzleActivity">

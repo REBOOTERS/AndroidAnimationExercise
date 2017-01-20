@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import home.smart.fly.animationdemo.R;
-import home.smart.fly.animationdemo.blur.BlurActivity;
+import home.smart.fly.animationdemo.property.blur.BlurActivity;
 import home.smart.fly.animationdemo.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animationdemo.tradition.FrameAnimationActivity;
 import home.smart.fly.animationdemo.tradition.SwitchAnimActivity;

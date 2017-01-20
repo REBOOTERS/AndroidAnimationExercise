@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import home.smart.fly.animationdemo.R;
-import home.smart.fly.animationdemo.test.RecyclerViewClickActivity;
+import home.smart.fly.animationdemo.recyclerView.RecyclerViewClickActivity;
 import home.smart.fly.animationdemo.property.AliPayAnimActivity;
 import home.smart.fly.animationdemo.property.LayoutAnimationsActivity;
 import home.smart.fly.animationdemo.property.PropertyAnimationActivity;

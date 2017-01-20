@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.blur;
+package home.smart.fly.animationdemo.property.blur;
 
 import android.annotation.TargetApi;
 import android.content.Context;

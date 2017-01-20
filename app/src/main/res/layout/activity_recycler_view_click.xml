@@ -4,7 +4,7 @@
                 android:id="@+id/activity_recycler_view_click"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="home.smart.fly.animationdemo.test.RecyclerViewClickActivity">
+                tools:context="home.smart.fly.animationdemo.recyclerView.RecyclerViewClickActivity">
 
 
     <android.support.v4.widget.SwipeRefreshLayout
