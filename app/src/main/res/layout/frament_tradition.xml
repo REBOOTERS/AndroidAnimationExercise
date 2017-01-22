@@ -51,6 +51,14 @@
             android:background="@color/cpb_blue"
             android:text="activitySwitch"
             android:textColor="@color/white" />
+        <Button
+            android:id="@+id/vpAnim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/cpb_blue"
+            android:text="ViewPagerAnim"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/swipeAnim"

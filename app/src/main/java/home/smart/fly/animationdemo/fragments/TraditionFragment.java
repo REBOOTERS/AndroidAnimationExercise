@@ -11,11 +11,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import home.smart.fly.animationdemo.R;
-import home.smart.fly.animationdemo.property.blur.BlurActivity;
 import home.smart.fly.animationdemo.customview.swipeanim.FakeWeiBoActivity;
+import home.smart.fly.animationdemo.property.blur.BlurActivity;
 import home.smart.fly.animationdemo.tradition.FrameAnimationActivity;
 import home.smart.fly.animationdemo.tradition.SwitchAnimActivity;
 import home.smart.fly.animationdemo.tradition.TweenedAnimationActivity;
+import home.smart.fly.animationdemo.tradition.VPAnimActivity;
 
 /**
  * Created by rookie on 2016/8/12.
@@ -25,7 +26,7 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
     private View rootView;
 
 
-    private Button frame, tweened, blur, activitySwitch, swipeAnim;
+    private Button frame, tweened, blur, activitySwitch, vpAnim, swipeAnim;
 
     @Nullable
     @Override
@@ -53,6 +54,8 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
         blur.setOnClickListener(this);
         activitySwitch = (Button) rootView.findViewById(R.id.activitySwitch);
         activitySwitch.setOnClickListener(this);
+        vpAnim = (Button) rootView.findViewById(R.id.vpAnim);
+        vpAnim.setOnClickListener(this);
         swipeAnim = (Button) rootView.findViewById(R.id.swipeAnim);
         swipeAnim.setOnClickListener(this);
     }
@@ -80,6 +83,11 @@ public class TraditionFragment extends Fragment implements View.OnClickListener 
                 intent = new Intent(mContext, SwitchAnimActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.in_from_bottom, R.anim.out_to_bottom);
+                break;
+            case R.id.vpAnim:
+                intent = new Intent(mContext, VPAnimActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
                 break;
             case R.id.swipeAnim:
                 intent = new Intent(mContext, FakeWeiBoActivity.class);

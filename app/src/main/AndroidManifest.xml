@@ -71,6 +71,11 @@
         </activity>
         <activity android:name=".customview.puzzle.PuzzleActivity">
         </activity>
+        <activity
+            android:name=".tradition.VPAnimActivity"
+            android:label="@string/title_activity_vpanim"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>
