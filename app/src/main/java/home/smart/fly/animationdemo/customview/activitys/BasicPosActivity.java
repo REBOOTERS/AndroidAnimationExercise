@@ -29,6 +29,7 @@ public class BasicPosActivity extends BaseActivity {
     public void initView() {
         Resources res = getResources();
         final PieChart pie = (PieChart) this.findViewById(R.id.Pie);
+//        pie.setShowText(true);
         pie.addItem("Agamemnon", 2, res.getColor(R.color.seafoam));
         pie.addItem("Bocephus", 3.5f, res.getColor(R.color.chartreuse));
         pie.addItem("Calliope", 2.5f, res.getColor(R.color.emerald));
