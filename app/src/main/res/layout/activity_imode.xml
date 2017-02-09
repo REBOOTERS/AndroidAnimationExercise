@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_imode"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="home.smart.fly.animationdemo.customview.activitys.IModeActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/imode_background"/>
+
+</RelativeLayout>

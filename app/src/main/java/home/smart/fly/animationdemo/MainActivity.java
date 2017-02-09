@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mContext = this;
         setContentView(R.layout.activity_main);
 
+        
 
         snackbar = Snackbar.make(content, "确认要退出吗？", Snackbar.LENGTH_SHORT)
                 .setAction("退出", new View.OnClickListener() {

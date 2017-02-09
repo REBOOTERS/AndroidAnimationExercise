@@ -14,7 +14,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
     defaultConfig {
-        applicationId "home.smart.fly.animationdemo"
+        applicationId "home.smart.fly.animationdemo1"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
