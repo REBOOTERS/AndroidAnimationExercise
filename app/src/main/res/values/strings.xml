@@ -6,6 +6,7 @@
     <string name="take_screen">截屏</string>
     <string name="puzzle_game">拼图游戏</string>
     <string name="imode">沉寝式状态栏</string>
+    <string name="waveAnim">波浪动画</string>
     <string name="easy">easy</string>
     <string name="hard">hard</string>
     <string name="crazy">crazy</string>
@@ -16,4 +17,12 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_vpanim">VPAnimActivity</string>
+
+    <string name="label_indeterminate">Indeterminate</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="label_level">Level</string>
+    <string name="label_amplitude">Amplitude</string>
+    <string name="label_speed">Speed</string>
+    <string name="label_length">Length</string>
 </resources>

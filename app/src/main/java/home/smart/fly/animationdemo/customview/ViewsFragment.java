@@ -20,6 +20,7 @@ import java.util.List;
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.customview.activitys.BasicPosActivity;
 import home.smart.fly.animationdemo.customview.activitys.IModeActivity;
+import home.smart.fly.animationdemo.customview.activitys.WavaAnimActivity;
 import home.smart.fly.animationdemo.customview.puzzle.PuzzleActivity;
 import home.smart.fly.animationdemo.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animationdemo.utils.ScreenCaptureActivity;
@@ -57,6 +58,7 @@ public class ViewsFragment extends Fragment {
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
         demos.add(new ItemInfo(R.string.puzzle_game, PuzzleActivity.class));
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
+        demos.add(new ItemInfo(R.string.imode, WavaAnimActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
