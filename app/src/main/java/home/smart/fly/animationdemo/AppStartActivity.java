@@ -76,6 +76,8 @@ public class AppStartActivity extends AppCompatActivity {
             }
         });
 
+        spinner.setSelection(2);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,16 +166,16 @@ public class AppStartActivity extends AppCompatActivity {
     public void onBackPressed() {
 
 
-        if (snackbar != null) {
-            if (snackbar.isShown()) {
-                snackbar.dismiss();
-            } else {
-                snackbar.show();
-            }
-        }
+//        if (snackbar != null) {
+//            if (snackbar.isShown()) {
+//                snackbar.dismiss();
+//            } else {
+//                snackbar.show();
+//            }
+//        }
 
 
-//        super.onBackPressed();
+        super.onBackPressed();
     }
 
 

@@ -74,14 +74,12 @@
         <activity
             android:name=".tradition.VPAnimActivity"
             android:label="@string/title_activity_vpanim"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".customview.activitys.IModeActivity"
-            android:theme="@style/MyTheme">
-        </activity>
-        <activity android:name=".customview.activitys.WavaAnimActivity">
-        </activity>
+            android:theme="@style/MyTheme"/>
+        <activity android:name=".customview.activitys.WavaAnimActivity"/>
+        <activity android:name=".webview.AllWebViewActivity"/>
     </application>
 
 </manifest>
