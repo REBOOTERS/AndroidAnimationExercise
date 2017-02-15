@@ -17,26 +17,41 @@ public class MyView extends View {
 
     private static final String TAG = "MyView";
 
+    private Context mContext;
+
+    private static final int DEFAULT_VALUE = 300;
+    private static final int DEFAULT_PADDING = 60;
+
+    private int pivotX = DEFAULT_VALUE;
+    private int pivotY = DEFAULT_VALUE;
+    private int radius = DEFAULT_VALUE;
+
+    private int viewWidth;
+    private int padding = DEFAULT_PADDING;
+
+
     private Paint paint;
 
 
     public MyView(Context context) {
-        super(context);
-        init();
+        super(context, null);
+        init(context);
     }
 
 
     public MyView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context);
     }
 
     public MyView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context);
     }
 
-    private void init() {
+    private void init(Context context) {
+        mContext = context;
+        //
         paint = new Paint();
         paint.setColor(Color.GREEN);
         paint.setAntiAlias(true);
@@ -57,6 +72,27 @@ public class MyView extends View {
         Log.e(TAG, "init: EXACTLY " + EXACTLY);
         Log.e(TAG, "init: AT_MOST " + AT_MOST);
 
+        int screenW = new WindowHelper(mContext).getScreenW();
+        int screenH = new WindowHelper(mContext).getScreenH();
+
+        viewWidth = Math.min(screenW, screenH);
+
+        pivotX = viewWidth / 2;
+        pivotY = viewWidth / 2;
+        radius = viewWidth / 2 - padding;
+
+
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        Log.e(TAG, "onSizeChanged: "
+                + "\n w: " + w
+                + "\n h: " + h
+                + "\n oldw: " + oldw
+                + "\n oldh: " + oldh);
+
 
     }
 
@@ -65,17 +101,25 @@ public class MyView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int widhtSize = MeasureSpec.getSize(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
 
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
 
         Log.e(TAG, "onMeasure: widthMode " + widthMode);
-        Log.e(TAG, "onMeasure: widhtSize " + widhtSize);
+        Log.e(TAG, "onMeasure: widhtSize " + widthSize);
         Log.e(TAG, "onMeasure: heightMode " + heightMode);
         Log.e(TAG, "onMeasure: heightSize " + heightSize);
         Log.e(TAG, "------------------------------------");
+
+        if (widthMode == MeasureSpec.AT_MOST && heightMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(viewWidth, viewWidth);
+        } else if (widthMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(viewWidth, heightSize);
+        } else if (heightMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(widthSize, viewWidth);
+        }
 
 
     }
@@ -84,6 +128,7 @@ public class MyView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawCircle(100, 100, 150, paint);
+        canvas.drawColor(Color.LTGRAY);
+        canvas.drawCircle(pivotX, pivotY, radius, paint);
     }
 }
