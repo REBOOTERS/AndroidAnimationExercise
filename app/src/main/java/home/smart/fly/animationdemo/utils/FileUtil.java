@@ -1,6 +1,8 @@
 package home.smart.fly.animationdemo.utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
@@ -25,13 +27,65 @@ import java.io.OutputStream;
 
 
 public class FileUtil {
+    /**
+     * 保存bitmap到本地
+     *
+     * @param bitmap
+     * @param name
+     * @return
+     */
+    public static boolean savaBitmap2SDcard(Bitmap bitmap, String name) {
+        boolean result = false;
+        File fileDir = new File(Environment.getExternalStorageDirectory(), "Screenshots");
+        if (!fileDir.exists()) {
+            fileDir.mkdir();
+        }
+        String filename = name + ".jpg";
+        File fileName = new File(fileDir, filename);
+        FileOutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(fileName);
+            result = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+            outputStream.flush();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        return result;
+    }
+
+    /**
+     * 获取bitmap
+     *
+     * @param filename
+     * @return
+     */
+    public static Bitmap getBitmapFormSDcard(String filename) {
+        Bitmap bitmap = null;
+        String filepath = Environment.getExternalStorageDirectory() + File.separator + "Screenshots" + File.separator + filename;
+        bitmap = BitmapFactory.decodeFile(filepath);
+        return bitmap;
+    }
+
 
     /**
      * 从本地assets  文件读取 json 文件，模拟网络请求结果
      *
      * @return
      */
-    public static String getLocalResponse(Context mContext,String FileName) {
+    public static String getLocalResponse(Context mContext, String FileName) {
 
         String result = "";
 

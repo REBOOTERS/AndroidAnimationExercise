@@ -37,4 +37,6 @@
     <color name="orange">#ffa500</color>
     <color name="blue">#0066dd</color>
 
+    <color name="black_overlay">#66000000</color>
+
 </resources>

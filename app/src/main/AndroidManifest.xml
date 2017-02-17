@@ -80,6 +80,12 @@
             android:theme="@style/MyTheme"/>
         <activity android:name=".customview.activitys.WavaAnimActivity"/>
         <activity android:name=".webview.AllWebViewActivity"/>
+        <activity
+            android:name=".utils.FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/FullscreenTheme">
+        </activity>
     </application>
 
 </manifest>
