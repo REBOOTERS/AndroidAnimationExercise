@@ -31,7 +31,6 @@ public class ScreenCaptureActivity extends AppCompatActivity {
     public void takeScreenshot() {
         View viewRoot = getWindow().getDecorView().getRootView();
         viewRoot.setDrawingCacheEnabled(true);
-
         Bitmap temp = viewRoot.getDrawingCache();
         ScreenParam screenInfo = getScreenInfo();
         int statusBarHeight = getStatusBarHeight();
@@ -61,10 +60,9 @@ public class ScreenCaptureActivity extends AppCompatActivity {
     private class ScreenParam {
         int width, height;
 
-        public ScreenParam(int width, int height) {
+         ScreenParam(int width, int height) {
             this.width = width;
             this.height = height;
         }
-
     }
 }

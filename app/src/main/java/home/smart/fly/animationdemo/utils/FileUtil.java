@@ -73,7 +73,7 @@ public class FileUtil {
      * @return
      */
     public static Bitmap getBitmapFormSDcard(String filename) {
-        Bitmap bitmap = null;
+        Bitmap bitmap;
         String filepath = Environment.getExternalStorageDirectory() + File.separator + "Screenshots" + File.separator + filename;
         bitmap = BitmapFactory.decodeFile(filepath);
         return bitmap;
