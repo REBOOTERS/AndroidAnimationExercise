@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import home.smart.fly.animationdemo.customview.ViewsFragment;
+import home.smart.fly.animationdemo.fragments.OtherFragment;
 import home.smart.fly.animationdemo.fragments.PropertyFragment;
 import home.smart.fly.animationdemo.fragments.TraditionFragment;
 import home.smart.fly.animationdemo.property.RevealAnimatorActivity;
@@ -47,6 +48,7 @@ public class AppStartActivity extends AppCompatActivity {
                         "传动动画",
                         "属性动画",
                         "自定义View",
+                        "其他view"
                 }));
 
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -64,6 +66,10 @@ public class AppStartActivity extends AppCompatActivity {
                         break;
                     case 2:
                         transition.replace(R.id.container, new ViewsFragment()).commit();
+                        break;
+                    case 3:
+                        transition.replace(R.id.container, new OtherFragment()).commit();
+                        break;
                     default:
                         break;
                 }
