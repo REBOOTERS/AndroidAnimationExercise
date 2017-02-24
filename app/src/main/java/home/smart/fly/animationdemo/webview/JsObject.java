@@ -41,6 +41,7 @@ public class JsObject {
                 dialog.dismiss();
                 Activity activity = (Activity) mContext;
                 activity.finish();
+//                System.exit(0);
             }
         });
         builder.setTitle("Exit App");
