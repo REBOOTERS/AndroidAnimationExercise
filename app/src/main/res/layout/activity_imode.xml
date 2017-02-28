@@ -8,10 +8,11 @@
     tools:context="home.smart.fly.animationdemo.customview.activitys.IModeActivity">
 
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
 
         <LinearLayout
@@ -19,26 +20,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <android.support.v4.view.ViewPager
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                />
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                android:src="@drawable/imode_background"/>
+                android:src="@drawable/phone_background"/>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/imode_background"/>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/imode_background"/>
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -48,6 +44,7 @@
             android:id="@+id/head"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:alpha="0"
             android:background="@color/cpb_red"
             android:orientation="horizontal">
         </LinearLayout>

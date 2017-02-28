@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animationdemo.R;
+import home.smart.fly.animationdemo.customview.activitys.BottomSheetActivity;
 import home.smart.fly.animationdemo.customview.activitys.CameraActivity;
 import home.smart.fly.animationdemo.customview.puzzle.PuzzleActivity;
 import home.smart.fly.animationdemo.utils.ScreenCaptureActivity;
@@ -59,6 +60,7 @@ public class OtherFragment extends Fragment {
 //        demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
         demos.add(new ItemInfo(R.string.webviewInfo, AllWebViewActivity.class));
         demos.add(new ItemInfo(R.string.app_name, CameraActivity.class));
+        demos.add(new ItemInfo(R.string.bottomSheet, BottomSheetActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

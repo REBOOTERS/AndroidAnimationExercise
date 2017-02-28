@@ -4,12 +4,16 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.utils.DpConvert;
@@ -17,10 +21,13 @@ import home.smart.fly.animationdemo.utils.DpConvert;
 public class IModeActivity extends AppCompatActivity {
     private static final String TAG = "IModeActivity";
     private LinearLayout head;
-    private ScrollView mScrollView;
+    private NestedScrollView mScrollView;
 
     private Context mContext;
     private int headHeight = 0;
+
+    //
+    private ViewPager mViewPager;
 
 
     @Override
@@ -28,6 +35,7 @@ public class IModeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_imode);
+        //
 
 
         initView();
@@ -38,8 +46,7 @@ public class IModeActivity extends AppCompatActivity {
 
     private void initView() {
         head = (LinearLayout) findViewById(R.id.head);
-        head.setAlpha(0.0f);
-        mScrollView = (ScrollView) findViewById(R.id.scrollview);
+        mScrollView = (NestedScrollView) findViewById(R.id.scrollview);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             mScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
                 @Override
@@ -50,7 +57,40 @@ public class IModeActivity extends AppCompatActivity {
                 }
             });
         }
+
+        mViewPager = (ViewPager) findViewById(R.id.banner);
+        mViewPager.setAdapter(new MyPagerAdapter());
+
+
     }
+
+
+    private class MyPagerAdapter extends PagerAdapter {
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            LayoutInflater inflater = LayoutInflater.from(container.getContext());
+            View itemView = inflater.inflate(R.layout.recycler_view_header, container, false);
+            container.addView(itemView);
+            return itemView;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+    }
+
 
     private void setupStatusBar() {
         getSupportActionBar().hide();
