@@ -94,8 +94,12 @@
         </activity>
         <activity android:name=".customview.activitys.CameraActivity">
         </activity>
-        <activity android:name=".customview.activitys.BottomSheetActivity">
-        </activity>
+
+        <activity android:name=".customview.bottomsheet.BottomSheetActivity"/>
+        <activity android:name=".customview.bottomsheet.BeautifulBottomSheetActivity"/>
+        <activity android:name=".customview.bottomsheet.BottomSheetDialogActivity"/>
+        <activity android:name=".customview.bottomsheet.NestedScrollViewActivity"/>
+        <activity android:name=".customview.bottomsheet.RecyclerViewActivity"/>
     </application>
 
 </manifest>

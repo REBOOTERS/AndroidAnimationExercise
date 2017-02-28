@@ -81,7 +81,7 @@ public class AppStartActivity extends AppCompatActivity {
             }
         });
 
-        spinner.setSelection(2);
+        spinner.setSelection(3);
         main_contetn = (CoordinatorLayout) findViewById(R.id.main_content);
         snackbar = Snackbar.make(main_contetn, "确认要退出吗？", Snackbar.LENGTH_SHORT)
                 .setAction("退出", new View.OnClickListener() {
@@ -92,6 +92,7 @@ public class AppStartActivity extends AppCompatActivity {
                 });
         snackbar.getView().setBackgroundColor(getResources().getColor(R.color.cpb_blue));
         snackbar.setActionTextColor(getResources().getColor(R.color.white));
+
 
     }
 
