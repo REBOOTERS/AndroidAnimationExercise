@@ -6,17 +6,20 @@ import android.os.Environment;
 import android.text.TextUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by rookie on 2017/2/28.
  */
 
 public class FileHelper {
-    public static final int JPEG = 1;
-    public static final int PNG = 0;
+    static final int JPEG = 1;
+    static final int PNG = 0;
 
 
     /**
@@ -78,41 +81,55 @@ public class FileHelper {
         return uriString;
     }
 
-    /**
-     * Returns an input stream based on given URI string.
-     *
-     * @param uriString the URI string from which to obtain the input stream
-     * @param mContext  the current application context
-     * @return an input stream into the data at the given URI or null if given an invalid URI string
-     * @throws IOException
-     */
-    public static InputStream getInputStreamFromUriString(String uriString, Context mContext)
-            throws IOException {
-        InputStream returnValue = null;
-        if (uriString.startsWith("content")) {
-            Uri uri = Uri.parse(uriString);
-            returnValue = mContext.getContentResolver().openInputStream(uri);
-        } else if (uriString.startsWith("file://")) {
-            int question = uriString.indexOf("?");
-            if (question > -1) {
-                uriString = uriString.substring(0, question);
-            }
-            if (uriString.startsWith("file:///android_asset/")) {
-                Uri uri = Uri.parse(uriString);
-                String relativePath = uri.getPath().substring(15);
-                returnValue = mContext.getAssets().open(relativePath);
-            } else {
-                // might still be content so try that first
-                try {
-                    returnValue = mContext.getContentResolver().openInputStream(Uri.parse(uriString));
-                } catch (Exception e) {
-                    returnValue = null;
-                }
-
-            }
-        } else {
-            returnValue = new FileInputStream(uriString);
-        }
-        return returnValue;
+    public static String getPicutresPath(int encodingType) {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "IMG_" + timeStamp + (encodingType == JPEG ? ".jpg" : ".png");
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DCIM);
+        String galleryPath = storageDir.getAbsolutePath() + File.separator + "Camera" + File.separator + imageFileName;
+        return galleryPath;
     }
+
+    public static boolean copyResultToGalley(Context context, Uri originUri, Uri galleryUri) {
+        boolean result = false;
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
+
+        try {
+            inputStream = context.getContentResolver().openInputStream(originUri);
+            outputStream = context.getContentResolver().openOutputStream(galleryUri);
+
+            byte[] buffer = new byte[2048];
+
+            int len;
+            while ((len = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, len);
+            }
+            outputStream.flush();
+            result = true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
+
+
 }

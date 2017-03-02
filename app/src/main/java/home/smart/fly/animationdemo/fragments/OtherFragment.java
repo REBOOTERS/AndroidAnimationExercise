@@ -52,14 +52,10 @@ public class OtherFragment extends Fragment {
     }
 
     private void InitView() {
-//        demos.add(new ItemInfo(R.string.self_view, BasicPosActivity.class));
-//        demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
         demos.add(new ItemInfo(R.string.puzzle_game, PuzzleActivity.class));
-//        demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
-//        demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
         demos.add(new ItemInfo(R.string.webviewInfo, AllWebViewActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, CameraActivity.class));
+        demos.add(new ItemInfo(R.string.camera, CameraActivity.class));
         demos.add(new ItemInfo(R.string.bottomSheet, BottomSheetActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
