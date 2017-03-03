@@ -17,22 +17,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/round_background"
             android:orientation="horizontal">
 
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/open"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="open-Camera"/>
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/cpb_red"
+                android:padding="3dp"
+                android:text="open-Camera"
+                android:textColor="@color/white"/>
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/select"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="select-Gallery"/>
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/cpb_red"
+                android:padding="4dp"
+                android:text="select-from-gallery"
+                android:textColor="@color/white"/>
 
 
         </LinearLayout>
@@ -41,6 +51,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/round_background"
             android:orientation="vertical">
 
 
@@ -72,6 +84,8 @@
             android:id="@+id/rateShell"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/round_background"
             android:orientation="horizontal"
             android:visibility="gone">
 
@@ -89,7 +103,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:layout_weight="4"
+                android:layout_marginRight="5dp"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="1"
                 android:textColor="@color/black"/>
@@ -100,6 +115,8 @@
             android:id="@+id/cropShell"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/round_background"
             android:orientation="horizontal"
             android:visibility="gone">
 
@@ -117,7 +134,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:layout_weight="4"
+                android:layout_marginRight="5dp"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="1"
                 android:textColor="@color/black"/>
@@ -135,7 +153,8 @@
             android:id="@+id/image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:scaleType="fitXY"/>
     </LinearLayout>
 
 </ScrollView>
