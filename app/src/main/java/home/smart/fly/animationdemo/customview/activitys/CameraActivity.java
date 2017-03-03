@@ -44,7 +44,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
     private static final int REQUEST_CAMERA = 1;
     private static final int REQUEST_WRITE_STORAGE = 2;
-    private final String[] permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private final String[] permissions = new String[]{Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     //
     private ImageView mImageView;
