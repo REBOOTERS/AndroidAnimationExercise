@@ -71,6 +71,13 @@
                 android:text="needCompress"/>
 
             <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/sample"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="sample"/>
+
+            <android.support.v7.widget.AppCompatCheckBox
                 android:id="@+id/insert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -112,7 +119,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/cropShell"
+            android:id="@+id/cropWidthShell"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -120,16 +127,23 @@
             android:orientation="horizontal"
             android:visibility="gone">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="3"
+                android:text="width"/>
+
             <android.support.v7.widget.AppCompatSeekBar
-                android:id="@+id/cropValue"
+                android:id="@+id/cropWidthValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:max="1000"/>
+                android:max="5000"/>
 
             <TextView
-                android:id="@+id/crop"
+                android:id="@+id/cropWidth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -137,6 +151,46 @@
                 android:layout_marginRight="5dp"
                 android:layout_weight="3"
                 android:gravity="center"
+                android:lines="1"
+                android:text="1"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cropHeightShell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/round_background"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="3"
+                android:text="height"/>
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/cropHeightValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:max="5000"/>
+
+            <TextView
+                android:id="@+id/cropHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:lines="1"
                 android:text="1"
                 android:textColor="@color/black"/>
 

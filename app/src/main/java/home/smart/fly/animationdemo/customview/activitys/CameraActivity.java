@@ -18,6 +18,8 @@ import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatSeekBar;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -36,11 +38,12 @@ import home.smart.fly.animationdemo.utils.V;
 
 
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "CameraActivity";
     private Context mContext;
     private static final int REQUEST_CODE_TAKE_PIC_CAMERA = 100;
     private static final int REQUEST_CODE_CROP_PIC = 101;
     private static final int REQUEST_CODE_PICK_FROM_GALLEY = 102;
-    private static final int M_RATE = 1024 * 1024;
+    private static final float M_RATE = 1024 * 1024;
 
     private static final int REQUEST_CAMERA = 1;
     private static final int REQUEST_WRITE_STORAGE = 2;
@@ -48,16 +51,19 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
     //
     private ImageView mImageView;
-    private AppCompatCheckBox edit, compress, insert;
+    private AppCompatCheckBox edit, compress, sample, insert;
     //压缩
     private AppCompatSeekBar compressSeekBar;
     private LinearLayout rateShell;
     private TextView rate;
 
     //裁剪
-    private LinearLayout cropShell;
-    private AppCompatSeekBar cropValue;
-    private TextView crop;
+    private LinearLayout cropWidthShell;
+    private AppCompatSeekBar cropWidthValue;
+    private TextView cropWidth;
+    private LinearLayout cropHeightShell;
+    private AppCompatSeekBar cropHeightValue;
+    private TextView cropHeight;
 
 
     private TextView info;
@@ -65,6 +71,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     //
     private boolean needEdit;
     private boolean needCompress;
+    private boolean needSample;
     private boolean insertToGallery;
     private int compressRate;
     private int cropTargetHeight;
@@ -72,6 +79,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     private int destType = FileHelper.JPEG;
     private Uri imageUrl;
     private Uri copyUrl;
+
+    private int screenWidth;
+    private int screenHeight;
 
 
     @Override
@@ -94,30 +104,27 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * 打开手机相册
+     */
     private void selectFromGalley() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-
         startActivityForResult(intent, REQUEST_CODE_PICK_FROM_GALLEY);
-
     }
 
-    private void CropTheImage() {
+    private void CropTheImage(Uri imageUrl) {
         Intent cropIntent = new Intent("com.android.camera.action.CROP");
         cropIntent.setDataAndType(imageUrl, "image/*");
-        cropIntent.putExtra("crop", "true");
+        cropIntent.putExtra("cropWidth", "true");
         cropIntent.putExtra("outputX", cropTargetWidth);
         cropIntent.putExtra("outputY", cropTargetHeight);
-
-
         File copyFile = FileHelper.createFileByType(mContext, destType, String.valueOf(System.currentTimeMillis()));
         copyUrl = Uri.fromFile(copyFile);
         cropIntent.putExtra("output", copyUrl);
-
         startActivityForResult(cropIntent, REQUEST_CODE_CROP_PIC);
-
     }
 
     @Override
@@ -128,7 +135,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             case REQUEST_CODE_TAKE_PIC_CAMERA:
                 if (resultCode == Activity.RESULT_OK) {
                     if (needEdit) {
-                        CropTheImage();
+                        CropTheImage(imageUrl);
                     } else {
                         ProcessResult(imageUrl);
                     }
@@ -145,7 +152,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 if (resultCode == Activity.RESULT_OK) {
                     Uri uri = data.getData();
                     if (uri != null) {
-                        ProcessResult(uri);
+                        if (needEdit) {
+                            CropTheImage(uri);
+                        } else {
+                            ProcessResult(uri);
+                        }
                     }
                 }
             default:
@@ -153,41 +164,103 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * 根据图片Uri 获取Bitmap
+     *
+     * @param destUrl
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private void ProcessResult(Uri destUrl) {
-        Bitmap bitmap = BitmapFactory.decodeFile(FileHelper.stripFileProtocol(destUrl.toString()));
+        String pathName = FileHelper.stripFileProtocol(destUrl.toString());
+        showBitmapInfos(pathName);
+        Bitmap bitmap = BitmapFactory.decodeFile(pathName);
         if (bitmap != null) {
 
             //添加图片到相册
             if (insertToGallery) {
-                Uri galleryUri = Uri.fromFile(new File(FileHelper.getPicutresPath(destType)));
-                boolean result = FileHelper.copyResultToGalley(mContext, imageUrl, galleryUri);
-                if (result) {
-                    Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                    mediaScanIntent.setData(galleryUri);
-                    sendBroadcast(mediaScanIntent);
-                }
+                insertToGallery(destUrl);
             }
 
 
             if (needCompress) {
                 bitmap = getCompressedBitmap(bitmap);
+
             }
+
+            if (needSample) {
+                bitmap = getRealCompressedBitmap(pathName, screenWidth, screenHeight);
+            }
+
             mImageView.setImageBitmap(bitmap);
-            float byteCount = bitmap.getByteCount() / M_RATE;
+            float count = bitmap.getByteCount() / M_RATE;
             float all = bitmap.getAllocationByteCount() / M_RATE;
-            String result = "这张图片占用内存大小:\nbitmap.getByteCount()= " + byteCount + "M\n"
-                    + "bitmap.getAllocationByteCount()= " + all + "M";
+            String result = "这张图片占用内存大小:\n" +
+                    "bitmap.getByteCount()== " + count + "M\n" +
+                    "bitmap.getAllocationByteCount()= " + all + "M";
             info.setText(result);
-            bitmap = null;
+            Log.e(TAG, result);
         } else {
             T.showLToast(mContext, "fail");
         }
     }
 
+    private void insertToGallery(Uri imageUrl) {
+        Uri galleryUri = Uri.fromFile(new File(FileHelper.getPicutresPath(destType)));
+        boolean result = FileHelper.copyResultToGalley(mContext, imageUrl, galleryUri);
+        if (result) {
+            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            mediaScanIntent.setData(galleryUri);
+            sendBroadcast(mediaScanIntent);
+        }
+    }
 
+    private Bitmap getRealCompressedBitmap(String pathName, int reqWidth, int reqHeight) {
+        Bitmap bitmap;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(pathName, options);
+        int width = options.outWidth / 2;
+        int height = options.outHeight / 2;
+        int inSampleSize = 1;
+
+        while (width / inSampleSize >= reqWidth && height / inSampleSize >= reqHeight) {
+            inSampleSize = inSampleSize * 2;
+        }
+
+        options.inSampleSize = inSampleSize;
+        options.inJustDecodeBounds = false;
+        bitmap = BitmapFactory.decodeFile(pathName, options);
+        showBitmapInfos(pathName);
+        return bitmap;
+    }
+
+    /**
+     * 获取Bitmap的信息
+     *
+     * @param pathName
+     */
+    private void showBitmapInfos(String pathName) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(pathName, options);
+        int width = options.outWidth;
+        int height = options.outHeight;
+
+        Log.e(TAG, "showBitmapInfos: \n" +
+                "width=: " + width + "\n" +
+                "height=: " + height);
+        options.inJustDecodeBounds = false;
+    }
+
+    /**
+     * 将Bitmap按比例压缩后返回
+     *
+     * @param bitmap
+     * @return
+     */
     private Bitmap getCompressedBitmap(Bitmap bitmap) {
         try {
+            //创建一个用于存储压缩后Bitmap的文件
             File compressedFile = FileHelper.createFileByType(mContext, destType, "compressed");
             Uri uri = Uri.fromFile(compressedFile);
             OutputStream os = getContentResolver().openOutputStream(uri);
@@ -197,7 +270,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             if (success) {
                 T.showLToast(mContext, "success");
             }
-            bitmap = BitmapFactory.decodeFile(FileHelper.stripFileProtocol(uri.toString()));
+
+            final String pathName = FileHelper.stripFileProtocol(uri.toString());
+            showBitmapInfos(pathName);
+            bitmap = BitmapFactory.decodeFile(pathName);
             os.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -242,6 +318,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.open:
                 if (hasPermission(permissions)) {
                     mImageView.setImageDrawable(null);
+                    info.setText("");
                     openCamera();
                 } else {
                     ActivityCompat.requestPermissions(CameraActivity.this, permissions, REQUEST_CAMERA);
@@ -270,10 +347,14 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         compressSeekBar = V.f(this, R.id.compressRate);
         edit = V.f(this, R.id.edit);
         compress = V.f(this, R.id.compress);
+        sample = V.f(this, R.id.sample);
         insert = V.f(this, R.id.insert);
-        cropShell = V.f(this, R.id.cropShell);
-        cropValue = V.f(this, R.id.cropValue);
-        crop = V.f(this, R.id.crop);
+        cropWidthShell = V.f(this, R.id.cropWidthShell);
+        cropWidthValue = V.f(this, R.id.cropWidthValue);
+        cropWidth = V.f(this, R.id.cropWidth);
+        cropHeightShell = V.f(this, R.id.cropHeightShell);
+        cropHeightValue = V.f(this, R.id.cropHeightValue);
+        cropHeight = V.f(this, R.id.cropHeight);
 
         compressSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -293,13 +374,28 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-        cropValue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        cropWidthValue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 cropTargetWidth = progress;
-                cropTargetHeight = progress;
+                cropWidth.setText(String.valueOf(progress));
+            }
 
-                crop.setText("width: " + progress);
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        cropHeightValue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                cropTargetHeight = progress;
+                cropHeight.setText(String.valueOf(progress));
             }
 
             @Override
@@ -318,10 +414,13 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 needEdit = isChecked;
                 if (isChecked) {
-                    cropShell.setVisibility(View.VISIBLE);
-                    cropValue.setProgress(320);
+                    cropWidthShell.setVisibility(View.VISIBLE);
+                    cropHeightShell.setVisibility(View.VISIBLE);
+                    cropWidthValue.setProgress(1080);
+                    cropHeightValue.setProgress(960);
                 } else {
-                    cropShell.setVisibility(View.GONE);
+                    cropHeightShell.setVisibility(View.GONE);
+                    cropWidthShell.setVisibility(View.GONE);
                 }
             }
         });
@@ -338,6 +437,13 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+        sample.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                needSample = isChecked;
+            }
+        });
+
         insert.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -345,5 +451,16 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
+
+        DisplayMetrics  displayMetrics=new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenWidth=displayMetrics.widthPixels;
+        screenHeight=displayMetrics.heightPixels;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 }
