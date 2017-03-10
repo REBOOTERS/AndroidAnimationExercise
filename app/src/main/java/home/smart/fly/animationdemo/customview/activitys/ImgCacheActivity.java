@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -21,7 +24,7 @@ public class ImgCacheActivity extends AppCompatActivity {
             "=b9999_10000&sec=1488975943578&di=e8f47f35afd64be8d2d36ab5d6627928&imgtype=0&src=" +
             "http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg";
 
-    private ImageView img;
+    private ImageView img1, img2;
 
 
     @Override
@@ -32,22 +35,27 @@ public class ImgCacheActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        img = V.f(this, R.id.img);
+        img1 = V.f(this, R.id.img1);
+        img2 = V.f(this, R.id.img2);
         Bitmap bitmap = BitmapCacheUtil.getBitmapFromMemCache(IMG_URL);
         if (bitmap != null) {
-            img.setImageBitmap(bitmap);
+            img1.setImageBitmap(bitmap);
         } else {
             new ImageLoadTask().execute(IMG_URL);
         }
+
+        Glide.with(this)
+                .load(IMG_URL)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(img2);
     }
 
     private class ImageLoadTask extends AsyncTask<String, Integer, Bitmap> {
 
-
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             super.onPostExecute(bitmap);
-            img.setImageBitmap(bitmap);
+            img1.setImageBitmap(bitmap);
         }
 
         @Override
