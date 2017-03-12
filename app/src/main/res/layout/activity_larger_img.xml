@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context="home.smart.fly.animationdemo.customview.activitys.LongImgActivity">
 
-    <home.smart.fly.animationdemo.customview.longimgview.LongImageView
-        android:id="@+id/img"
+    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
