@@ -38,6 +38,7 @@
 - Android 截屏后保存图片至手机相册
 - 拼图游戏（继承自RelativeLayout的动画效果，来自鸿洋大神）
 - Android WebView 中 Java于JavaScript 互相调用
+- Android 打开Cameron或从相册选取照片，如何正确压缩图片，确保不发生OOM （[Android Bitmap 初探](https://juejin.im/post/58bc1f11ac502e006b0957b7)）
 - Bottom Action Sheet 菜单
 - Bitmap LRUCache，LruDiskCache 相关
 
