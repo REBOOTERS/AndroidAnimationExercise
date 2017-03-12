@@ -19,12 +19,14 @@ import java.util.List;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.customview.activitys.CameraActivity;
+import home.smart.fly.animationdemo.customview.activitys.ImgCacheActivity;
 import home.smart.fly.animationdemo.customview.activitys.FakeFootballActivity;
 import home.smart.fly.animationdemo.customview.bottomsheet.BottomSheetActivity;
 import home.smart.fly.animationdemo.customview.puzzle.PuzzleActivity;
 import home.smart.fly.animationdemo.utils.ScreenCaptureActivity;
 import home.smart.fly.animationdemo.utils.V;
 import home.smart.fly.animationdemo.webview.AllWebViewActivity;
+
 
 
 /**
@@ -58,6 +60,7 @@ public class OtherFragment extends Fragment {
         demos.add(new ItemInfo(R.string.webviewInfo, AllWebViewActivity.class));
         demos.add(new ItemInfo(R.string.camera, CameraActivity.class));
         demos.add(new ItemInfo(R.string.bottomSheet, BottomSheetActivity.class));
+        demos.add(new ItemInfo(R.string.bottomSheet, ImgCacheActivity.class));
         demos.add(new ItemInfo(R.string.bottomSheet, FakeFootballActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();

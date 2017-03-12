@@ -259,7 +259,7 @@
                 android:layout_marginTop="5dp" />
 
             <ImageView
-                android:id="@+id/img"
+                android:id="@+id/img1"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_margin="25dp"

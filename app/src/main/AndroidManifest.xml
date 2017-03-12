@@ -29,6 +29,7 @@
         android:required="true"/>
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/app_start"
         android:label="@string/app_name"
@@ -99,7 +100,11 @@
         <activity android:name=".customview.bottomsheet.BottomSheetDialogActivity"/>
         <activity android:name=".customview.bottomsheet.NestedScrollViewActivity"/>
         <activity android:name=".customview.bottomsheet.RecyclerViewActivity"/>
+        <activity android:name=".customview.activitys.ImgCacheActivity">
+        </activity>
         <activity android:name=".customview.activitys.FakeFootballActivity">
+        </activity>
+        <activity android:name=".customview.activitys.LongImgActivity">
         </activity>
     </application>
 

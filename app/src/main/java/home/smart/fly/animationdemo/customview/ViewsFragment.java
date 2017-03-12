@@ -20,6 +20,7 @@ import java.util.List;
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.customview.activitys.BasicPosActivity;
 import home.smart.fly.animationdemo.customview.activitys.IModeActivity;
+import home.smart.fly.animationdemo.customview.activitys.LongImgActivity;
 import home.smart.fly.animationdemo.customview.activitys.WavaAnimActivity;
 import home.smart.fly.animationdemo.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animationdemo.utils.V;
@@ -53,11 +54,9 @@ public class ViewsFragment extends Fragment {
     private void InitView() {
         demos.add(new ItemInfo(R.string.self_view, BasicPosActivity.class));
         demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
-//        demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
-//        demos.add(new ItemInfo(R.string.puzzle_game, PuzzleActivity.class));
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
-//        demos.add(new ItemInfo(R.string.webviewInfo, AllWebViewActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, LongImgActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
