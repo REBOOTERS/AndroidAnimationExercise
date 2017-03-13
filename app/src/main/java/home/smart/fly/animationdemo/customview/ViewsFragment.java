@@ -23,6 +23,7 @@ import home.smart.fly.animationdemo.customview.activitys.IModeActivity;
 import home.smart.fly.animationdemo.customview.activitys.LongImgActivity;
 import home.smart.fly.animationdemo.customview.activitys.WavaAnimActivity;
 import home.smart.fly.animationdemo.customview.swipeanim.FakeWeiBoActivity;
+import home.smart.fly.animationdemo.customview.wheel.WheelViewActivity;
 import home.smart.fly.animationdemo.utils.V;
 
 
@@ -57,6 +58,8 @@ public class ViewsFragment extends Fragment {
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
         demos.add(new ItemInfo(R.string.app_name, LongImgActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, WheelViewActivity.class));
+
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -66,10 +69,6 @@ public class ViewsFragment extends Fragment {
 
     private class MyAdpater extends RecyclerView.Adapter<MyAdpater.MyHolder> {
 
-
-        public MyAdpater() {
-
-        }
 
         @Override
         public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
