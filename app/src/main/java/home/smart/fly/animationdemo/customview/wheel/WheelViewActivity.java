@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -18,10 +19,14 @@ import java.util.ArrayList;
 
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.customview.wheel.updateFile.Address;
-import home.smart.fly.animationdemo.customview.wheel.widget.view.OptionsPickerView;
+import home.smart.fly.animationdemo.customview.wheel.widget.adapter.ArrayWheelAdapter;
+import home.smart.fly.animationdemo.customview.wheel.widget.lib.WheelView;
+import home.smart.fly.animationdemo.customview.wheel.widget.listener.OnItemSelectedListener;
 import home.smart.fly.animationdemo.customview.wheel.widget.view.WheelOptions;
+import home.smart.fly.animationdemo.customview.wheel.widget.view.WheelViewDialog;
 
 public class WheelViewActivity extends AppCompatActivity {
+    private static final String TAG = "WheelViewActivity";
 
     private Context mContext;
 
@@ -29,33 +34,27 @@ public class WheelViewActivity extends AppCompatActivity {
      * 把全国的省市区的信息以json的格式保存，解析完成后赋值为null
      */
     private JSONArray mJsonObj;
-
-    OptionsPickerView pvOptions;
-
+    WheelViewDialog mWheelViewDialog;
     static ArrayList<String> item1;
-
     static ArrayList<ArrayList<String>> item2 = new ArrayList<>();
-
     static ArrayList<ArrayList<ArrayList<String>>> item3 = new ArrayList<>();
 
     ///
     private View view;
     private WheelOptions mWheelOptions;
+    private WheelView province, city, area;
+    private TextView address;
 
 
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             // 三级联动效果
 
-            pvOptions.setPicker(item1, item2, item3, true);
-            pvOptions.setCyclic(true, true, true);
-            pvOptions.setSelectOptions(0, 0, 0);
-            pvOptions.show();
+            mWheelViewDialog.setPicker(item1, item2, item3, true);
+            mWheelViewDialog.setCyclic(true, true, true);
+            mWheelViewDialog.setSelectOptions(0, 0, 0);
+            mWheelViewDialog.show();
 
-            mWheelOptions = new WheelOptions(view);
-            mWheelOptions.setPicker(item1, item2, item3, true);
-            mWheelOptions.setCyclic(true, true, true);
-            mWheelOptions.setCurrentItems(0, 0, 0);
 
         }
 
@@ -67,10 +66,73 @@ public class WheelViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wheel_view);
         mContext = this;
-        // 选项选择器
-        pvOptions = new OptionsPickerView(mContext);
+        选项选择器弹框初始化();
+        initJsonData();
 
-        pvOptions.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
+        findViewById(R.id.showDialog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Init();
+            }
+        });
+
+
+        ////////
+        view = findViewById(R.id.optionspicker);
+        mWheelOptions = new WheelOptions(view);
+        setData();
+        mWheelOptions.setPicker(item1, item2, item3, true);
+        mWheelOptions.setCyclic(true, true, true);
+        mWheelOptions.setCurrentItems(0, 0, 0);
+        province = (WheelView) findViewById(R.id.province);
+        city = (WheelView) findViewById(R.id.city);
+        area = (WheelView) findViewById(R.id.area);
+        address = (TextView) findViewById(R.id.address);
+
+        province.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int index) {
+                city.setAdapter(new ArrayWheelAdapter(item2.get(index)));
+                city.setCurrentItem(0);
+                area.setAdapter(new ArrayWheelAdapter(item3.get(index).get(0)));
+                area.setCurrentItem(0);
+                int[] pos = mWheelOptions.getCurrentItems();
+                Log.e(TAG, "onItemSelected: province " + pos[0] + " " + pos[1] + " " + pos[2]);
+                updateAdress(pos);
+            }
+        });
+
+        city.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int index) {
+                area.setAdapter(new ArrayWheelAdapter(item3.get(province.getCurrentItem()).get(index)));
+                area.setCurrentItem(0);
+                int[] pos = mWheelOptions.getCurrentItems();
+                Log.e(TAG, "onItemSelected: city " + pos[0] + " " + pos[1] + " " + pos[2]);
+                updateAdress(pos);
+            }
+        });
+
+        area.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int index) {
+                int[] pos = mWheelOptions.getCurrentItems();
+                Log.e(TAG, "onItemSelected: area " + pos[0] + " " + pos[1] + " " + pos[2]);
+                updateAdress(pos);
+            }
+        });
+
+
+    }
+
+    private void updateAdress(int[] pos) {
+        String temp = item1.get(pos[0]) + item2.get(pos[0]).get(pos[1]) + item3.get(pos[0]).get(pos[1]).get(pos[2]);
+        address.setText(temp);
+    }
+
+    private void 选项选择器弹框初始化() {
+        mWheelViewDialog = new WheelViewDialog(mContext);
+        mWheelViewDialog.setOnoptionsSelectListener(new WheelViewDialog.OnOptionsSelectListener() {
 
             @Override
             public void onOptionsSelect(int options1, int option2, int options3) {
@@ -96,20 +158,44 @@ public class WheelViewActivity extends AppCompatActivity {
                 Toast.makeText(mContext, tx, Toast.LENGTH_SHORT).show();
             }
         });
-        initJsonData();
+    }
 
-        findViewById(R.id.showDialog).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Init();
+    private void setData() {
+        item1 = new ArrayList<>();
+        try {
+            if (mJsonObj != null && mJsonObj.length() > 0) {
+                for (int i = 0; i < mJsonObj.length(); i++) {
+                    JSONObject provs = mJsonObj.getJSONObject(i);
+                    item1.add(provs.getString("name"));
+
+                    JSONArray citys = provs.getJSONArray("city");
+                    if (citys != null && citys.length() > 0) {
+                        ArrayList<String> datas = new ArrayList<>();
+                        ArrayList<ArrayList<String>> datas2 = new ArrayList<>();
+                        for (int m = 0; m < citys.length(); m++) {
+                            JSONObject city = citys.getJSONObject(m);
+                            datas.add(city.getString("name"));
+
+                            JSONArray areas = city.getJSONArray("area");
+                            if (areas != null && areas.length() > 0) {
+                                ArrayList<String> data3 = new ArrayList<>();
+                                for (int k = 0; k < areas.length(); k++) {
+                                    data3.add(areas.get(k).toString());
+                                }
+
+                                datas2.add(data3);
+                            }
+                        }
+                        item2.add(datas);
+                        item3.add(datas2);
+                    }
+                }
+
+
             }
-        });
+        } catch (Exception e) {
 
-
-        ////////
-        view = findViewById(R.id.optionspicker);
-
-
+        }
     }
 
     public void Init() {
@@ -124,44 +210,7 @@ public class WheelViewActivity extends AppCompatActivity {
                     return;
                 }
                 initJsonData();
-
-                item1 = new ArrayList<>();
-                try {
-                    if (mJsonObj != null && mJsonObj.length() > 0) {
-                        for (int i = 0; i < mJsonObj.length(); i++) {
-                            JSONObject provs = mJsonObj.getJSONObject(i);
-                            item1.add(provs.getString("name"));
-
-                            JSONArray citys = provs.getJSONArray("city");
-                            if (citys != null && citys.length() > 0) {
-                                ArrayList<String> datas = new ArrayList<>();
-                                ArrayList<ArrayList<String>> datas2 = new ArrayList<>();
-                                for (int m = 0; m < citys.length(); m++) {
-                                    JSONObject city = citys.getJSONObject(m);
-                                    datas.add(city.getString("name"));
-
-                                    JSONArray areas = city.getJSONArray("area");
-                                    if (areas != null && areas.length() > 0) {
-                                        ArrayList<String> data3 = new ArrayList<>();
-                                        for (int k = 0; k < areas.length(); k++) {
-                                            data3.add(areas.get(k).toString());
-                                        }
-
-                                        datas2.add(data3);
-                                    }
-                                }
-                                item2.add(datas);
-                                item3.add(datas2);
-                            }
-                        }
-                    }
-
-                    handler.sendEmptyMessage(0x123);
-                } catch (Exception e) {
-                    // TODO: handle exception
-                    e.printStackTrace();
-                }
-
+                setData();
             }
         }).start();
     }
