@@ -35,7 +35,7 @@
         </RadioGroup>
     </RelativeLayout>
 
-    <home.smart.fly.animationdemo.customview.genimage.helper.FakeWebView
+    <home.smart.fly.animationdemo.customview.jianshu.helper.FakeWebView
         android:id="@+id/gpv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.customview.genimage.helper;
+package home.smart.fly.animationdemo.customview.jianshu.helper;
 
 import android.os.Build;
 import android.webkit.JavascriptInterface;

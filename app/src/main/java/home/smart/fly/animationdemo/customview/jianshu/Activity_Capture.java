@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.customview.genimage;
+package home.smart.fly.animationdemo.customview.jianshu;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -27,8 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import home.smart.fly.animationdemo.R;
-import home.smart.fly.animationdemo.customview.genimage.helper.Article;
-import home.smart.fly.animationdemo.customview.genimage.helper.FakeWebView;
+import home.smart.fly.animationdemo.customview.jianshu.helper.Article;
+import home.smart.fly.animationdemo.customview.jianshu.helper.FakeWebView;
 
 public class Activity_Capture extends AppCompatActivity {
 

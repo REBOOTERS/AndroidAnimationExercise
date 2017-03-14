@@ -1,4 +1,4 @@
-package home.smart.fly.animationdemo.customview.genimage.helper;
+package home.smart.fly.animationdemo.customview.jianshu.helper;
 
 import android.content.Context;
 import android.graphics.Bitmap;

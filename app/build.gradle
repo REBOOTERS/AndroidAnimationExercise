@@ -55,4 +55,6 @@ dependencies {
     compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.6.0'
     testCompile 'junit:junit:4.12'
     debugCompile 'com.facebook.stetho:stetho:1.4.2'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.okio:okio:1.11.0'
 }
