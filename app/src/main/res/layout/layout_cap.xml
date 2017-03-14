@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/abc_list_selector_disabled_holo_light"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layoutDirection="rtl"
+                android:text="优雅白"
+                android:textColor="#f60"/>
+
+            <RadioButton
+                android:id="@+id/rb_night"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:text="低调黑"
+                android:textColor="#f60"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+    <home.smart.fly.animationdemo.customview.genimage.helper.FakeWebView
+        android:id="@+id/gpv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:gravity="center"
+            android:onClick="Share"
+            android:text="分享"
+            android:textColor="#49BE38"
+            android:textSize="16sp"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:gravity="center"
+            android:onClick="Save"
+            android:text="保存"
+            android:textColor="#f60"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -108,6 +108,14 @@
         </activity>
         <activity android:name=".customview.wheel.WheelViewActivity">
         </activity>
+        <activity
+            android:name=".customview.genimage.FakeJianShuActivity"
+            android:theme="@style/JianshuTheme">
+        </activity>
+        <activity
+            android:name=".customview.genimage.Activity_Capture"
+            android:theme="@style/JianshuTheme">
+        </activity>
     </application>
 
 </manifest>

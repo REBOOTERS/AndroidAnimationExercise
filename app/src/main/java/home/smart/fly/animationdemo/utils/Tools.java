@@ -3,7 +3,12 @@ package home.smart.fly.animationdemo.utils;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Environment;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -62,6 +67,31 @@ public class Tools {
         }
 
         return nameStr;
+    }
+
+    /**
+     * JSON保存到SD卡(临时测试)
+     *
+     * @param filename
+     * @param filecontent
+     * @throws Exception
+     */
+    public static void saveToSDCard(String filename, String filecontent) {
+        File file = new File(Environment.getExternalStorageDirectory(),
+                filename);
+        FileOutputStream outStream;
+        try {
+            outStream = new FileOutputStream(file);
+            outStream.write(filecontent.getBytes());
+            outStream.close();
+        } catch (FileNotFoundException e) {
+            // TODO 自动生成的 catch 块
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO 自动生成的 catch 块
+            e.printStackTrace();
+        }
+
     }
 
 }
