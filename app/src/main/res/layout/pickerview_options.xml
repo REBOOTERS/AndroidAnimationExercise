@@ -17,20 +17,20 @@
         android:orientation="horizontal">
 
         <home.smart.fly.animationdemo.customview.wheel.widget.lib.WheelView
-            android:id="@+id/options1"
+            android:id="@+id/province"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             />
 
         <home.smart.fly.animationdemo.customview.wheel.widget.lib.WheelView
-            android:id="@+id/options2"
+            android:id="@+id/city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <home.smart.fly.animationdemo.customview.wheel.widget.lib.WheelView
-            android:id="@+id/options3"
+            android:id="@+id/area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />

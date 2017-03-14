@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import home.smart.fly.animationdemo.R;
 
 
-public class OptionsPickerView<T> extends Dialog implements View.OnClickListener {
+public class WheelViewDialog<T> extends Dialog implements View.OnClickListener {
   WheelOptions wheelOptions;
   private View btnSubmit, btnCancel;
   private TextView tvTitle;
@@ -21,11 +21,11 @@ public class OptionsPickerView<T> extends Dialog implements View.OnClickListener
   private static final String TAG_CANCEL = "cancel";
 
 
-  public OptionsPickerView(Context context) {
+  public WheelViewDialog(Context context) {
     this(context, R.style.Theme_Dialog_NoTitle);
   }
 
-  public OptionsPickerView(Context context, int theme) {
+  public WheelViewDialog(Context context, int theme) {
     super(context, theme);
     setContentView(R.layout.pickerview_options);
 
