@@ -1,7 +1,6 @@
 package home.smart.fly.animationdemo.customview.jianshu;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,28 +10,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
-import java.io.IOException;
-
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.customview.jianshu.helper.Article;
 import home.smart.fly.animationdemo.customview.jianshu.helper.WebViewHelper;
-import home.smart.fly.animationdemo.utils.Tools;
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class FakeJianShuActivity extends AppCompatActivity {
     private static final String TAG = "FakeJianShuActivity";
-    private static final String URL = "http://www.jianshu.com/p/869fbab4b006";
+        private static final String URL = "http://www.jianshu.com/p/869fbab4b006";
+//    private static final String URL = "http://www.jianshu.com/p/8cc7b39e0e7d";
     private WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gen_image);
-        new MyAsyncTask().execute();
-//        loadView();
+        loadView();
     }
 
     private void loadView() {
@@ -44,7 +36,8 @@ public class FakeJianShuActivity extends AppCompatActivity {
         WebViewHelper.getInstance().setUpWebView(mWebView, new WebViewHelper.OnGetDataListener() {
             @Override
             public void getDataListener(String text) {
-                Tools.saveToSDCard("html.txt", text);
+                Log.e(TAG, "getDataListener: " + text);
+//                Tools.saveToSDCard("html.txt", text);
                 Intent intent = new Intent(FakeJianShuActivity.this, Activity_Capture.class);
                 Article article = new Article(text, TextUtils.isEmpty(WebViewHelper.getInstance().getTitle()) ? "" : "《" + WebViewHelper.getInstance().getTitle() + "》");
                 intent.putExtra("data", article);
@@ -53,38 +46,6 @@ public class FakeJianShuActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    class MyAsyncTask extends AsyncTask<Void, Integer, String> {
-        Call mCall;
-
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request
-                    .Builder()
-                    .url(URL)
-                    .method("GET", null)
-                    .build();
-            mCall = client.newCall(request);
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            String result = "";
-            try {
-                Response response=mCall.execute();
-                result=response.body().string();
-                Tools.saveToSDCard("html.txt", result);
-//                result = mCall.execute().body().string();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Log.e(TAG, "doInBackground: " + result);
-            return result;
-        }
     }
 
 
@@ -105,6 +66,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         WebViewHelper.getInstance().getSelectedData(mWebView);
+//                        WebViewHelper.getInstance().getContentData(mWebView);
                     }
                 });
                 break;

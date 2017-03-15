@@ -13,30 +13,34 @@ import java.util.List;
 public class WebViewHelper {
     private List<String> mlistPath = new ArrayList<>();
     private static WebViewHelper webViewHelper;
-    private WebViewHelper(){}
+
+    private WebViewHelper() {
+    }
+
     private String title;
 
-    public static WebViewHelper getInstance(){
-        if (webViewHelper == null){
+    public static WebViewHelper getInstance() {
+        if (webViewHelper == null) {
             webViewHelper = new WebViewHelper();
         }
         return webViewHelper;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
-    public void clear(){
+
+    public void clear() {
         mlistPath.clear();
         mlistPath = null;
         webViewHelper = null;
     }
 
-    public List<String> getAllListPath(){
+    public List<String> getAllListPath() {
         return mlistPath;
     }
 
-    public void setUpWebView(WebView mWebView,OnGetDataListener onGetDataListener){
+    public void setUpWebView(WebView mWebView, OnGetDataListener onGetDataListener) {
         WebSettings mSettings = mWebView.getSettings();
         mSettings.setJavaScriptEnabled(true);//开启javascript
         mSettings.setDomStorageEnabled(true);//开启DOM
@@ -49,12 +53,12 @@ public class WebViewHelper {
         mSettings.setJavaScriptEnabled(true);
 
         mWebView.addJavascriptInterface(new WebAppInterface(onGetDataListener), "JSInterface");
-        mWebView.setWebViewClient(new WebViewClient(){
+        mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onLoadResource(WebView view, String url) {
-                if(url.toLowerCase().contains(".jpg")
-                        ||url.toLowerCase().contains(".png")
-                        ||url.toLowerCase().contains(".gif")){
+                if (url.toLowerCase().contains(".jpg")
+                        || url.toLowerCase().contains(".png")
+                        || url.toLowerCase().contains(".gif")) {
                     if (mlistPath == null)
                         mlistPath = new ArrayList<String>();
                     mlistPath.add(url);
@@ -69,6 +73,22 @@ public class WebViewHelper {
             }
         });
 
+    }
+
+    public void getContentData(WebView webView) {
+        String js = "(function getSelectedText() {" +
+                "var txt=$(\".content\").html();" +
+                "JSInterface.getText(txt);" +
+                "})()";
+
+
+        // calling the js function
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.evaluateJavascript("javascript:" + js, null);
+        } else {
+            webView.loadUrl("javascript:" + js);
+        }
+        webView.clearFocus();
     }
 
     public void getSelectedData(WebView webView) {
@@ -111,17 +131,20 @@ public class WebViewHelper {
         webView.clearFocus();
     }
 
-   static class WebAppInterface {
+    static class WebAppInterface {
         OnGetDataListener onGetDataListener;
+
         WebAppInterface(OnGetDataListener onGetDataListener) {
             this.onGetDataListener = onGetDataListener;
         }
+
         @JavascriptInterface
         public void getText(String text) {
             onGetDataListener.getDataListener(text);
         }
     }
-    public interface OnGetDataListener{
+
+    public interface OnGetDataListener {
         void getDataListener(String text);
     }
 
