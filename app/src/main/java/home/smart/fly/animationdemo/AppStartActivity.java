@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ import home.smart.fly.animationdemo.fragments.TraditionFragment;
 import home.smart.fly.animationdemo.property.RevealAnimatorActivity;
 
 public class AppStartActivity extends AppCompatActivity {
+    private static final String TAG = "AppStartActivity";
     private Snackbar snackbar = null;
     private CoordinatorLayout main_contetn;
 
@@ -93,7 +95,22 @@ public class AppStartActivity extends AppCompatActivity {
         snackbar.getView().setBackgroundColor(getResources().getColor(R.color.cpb_blue));
         snackbar.setActionTextColor(getResources().getColor(R.color.white));
 
+        showSystemInfo();
 
+    }
+
+    private void showSystemInfo() {
+        Device device = new Device(this);
+        StringBuilder sb = new StringBuilder();
+        sb.append("uuid: ").append(device.getUuid()).append("\n")
+                .append("OsVersion: ").append(device.getOSVersion()).append("\n")
+                .append("Model: ").append(device.getModel()).append("\n")
+                .append("ProductName: ").append(device.getProductName()).append("\n")
+                .append("Manufacturer: ").append(device.getManufacturer()).append("\n")
+                .append("SDKVersion: ").append(device.getSDKVersion()).append("\n")
+                .append("SerialNumber: ").append(device.getSerialNumber()).append("\n")
+                .append("TimeZoneID: ").append(device.getTimeZoneID()).append("\n");
+        Log.e(TAG, "showSystemInfo: \n" + sb.toString());
     }
 
 
