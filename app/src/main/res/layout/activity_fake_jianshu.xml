@@ -37,6 +37,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_marginLeft="10dp"
                 android:id="@+id/head"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,6 +120,7 @@
                 android:layout_margin="10dp"
                 android:padding="10dp"/>
         </LinearLayout>
+
 
 
     </android.support.v4.widget.NestedScrollView>

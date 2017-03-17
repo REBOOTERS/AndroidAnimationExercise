@@ -11,16 +11,17 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -58,6 +59,9 @@ public class FakeJianShuActivity extends AppCompatActivity {
     private HtmlBean mHtmlBean;
     private ProgressDialog mDialog;
     private AlertDialog inputDialog;
+    private AlertDialog selectDialog;
+
+    private String url = Constant.LINKS[0];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +96,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
             publichsTime.setText(s.getPublishTime());
             titleTv.setText(s.getTitle());
             words.setText(s.getWords() + "字");
+            setTitle(s.getTitle());
         }
     }
 
@@ -145,7 +150,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 genImg.setVisibility(View.INVISIBLE);
-                Intent intent = new Intent(FakeJianShuActivity.this, GenCaptureActivity.class);
+                Intent intent = new Intent(FakeJianShuActivity.this, GenScreenShotActivity.class);
                 intent.putExtra("data", mHtmlBean);
                 startActivity(intent);
             }
@@ -175,6 +180,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
                     mDialog.dismiss();
                     head.setVisibility(View.VISIBLE);
                     fab.setVisibility(View.VISIBLE);
+                    mWebView.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -185,29 +191,61 @@ public class FakeJianShuActivity extends AppCompatActivity {
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
 
-        final EditText input = new EditText(mContext);
-        input.setPadding(10, 10, 10, 10);
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("输入简书网址");
-        builder.setView(input);
+
+        setUpChoiceDialog();
+        setUpInputDialog();
+    }
+
+    /**
+     * 设置单选Dialog
+     */
+    private void setUpChoiceDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("请选择内容");
         builder.setPositiveButton("加载", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String url = input.getText().toString();
-                if (TextUtils.isEmpty(url)) {
-                    dialog.dismiss();
-                    if (url.startsWith("http://www.jianshu")) {
+                dialog.dismiss();
+                upDateView();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setSingleChoiceItems(Constant.ITEMS, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                url = Constant.LINKS[which];
+            }
+        });
+        selectDialog = builder.create();
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectDialog.show();
+            }
+        });
+    }
 
-                        if (mDialog != null) {
-                            mDialog.show();
-                            head.setVisibility(View.INVISIBLE);
-                            new MyAsyncTask().execute(url);
-                        }
-                    }
-                } else {
-                    dialog.dismiss();
-                }
-
+    /**
+     * 设置Input Dialog
+     */
+    private void setUpInputDialog() {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_input_item, null);
+        final AppCompatEditText input = (AppCompatEditText) view.findViewById(R.id.input);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("输入简书网址");
+        builder.setView(view);
+        builder.setPositiveButton("加载", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                url = input.getText().toString();
+                dialog.dismiss();
+                upDateView();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -217,14 +255,28 @@ public class FakeJianShuActivity extends AppCompatActivity {
             }
         });
         inputDialog = builder.create();
+    }
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                inputDialog.show();
+    /**
+     * 刷新视图
+     */
+    private void upDateView() {
+        if (!TextUtils.isEmpty(url)) {
+            if (url.startsWith("http://www.jianshu")) {
+
+                if (mDialog != null) {
+                    mDialog.show();
+                    head.setVisibility(View.INVISIBLE);
+                    mWebView.setVisibility(View.INVISIBLE);
+                    new MyAsyncTask().execute(url);
+                }
+            } else {
+                T.showSToast(mContext, "输入内容非简书文章链接！");
             }
-        });
+
+        } else {
+            T.showSToast(mContext, "你没有输入任何内容 ！");
+        }
     }
 
 
@@ -251,9 +303,12 @@ public class FakeJianShuActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.share:
-                Intent intent = new Intent(FakeJianShuActivity.this, GenCaptureActivity.class);
+                Intent intent = new Intent(FakeJianShuActivity.this, GenScreenShotActivity.class);
                 intent.putExtra("data", mHtmlBean);
                 startActivity(intent);
+                break;
+            case R.id.input:
+                inputDialog.show();
                 break;
             default:
                 break;

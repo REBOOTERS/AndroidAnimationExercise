@@ -36,7 +36,7 @@
                 android:checked="true"
                 android:layoutDirection="rtl"
                 android:text="优雅白"
-                android:textColor="#f60"/>
+                android:textColor="@color/cpb_white"/>
 
             <RadioButton
                 android:id="@+id/rb_night"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layoutDirection="rtl"
                 android:text="低调黑"
-                android:textColor="#f60"/>
+                android:textColor="@color/cpb_white"/>
         </RadioGroup>
     </RelativeLayout>
 

@@ -19,7 +19,7 @@ import home.smart.fly.animationdemo.customview.jianshu.helper.HtmlBean;
 import home.smart.fly.animationdemo.utils.FileUtil;
 import home.smart.fly.animationdemo.utils.T;
 
-public class GenCaptureActivity extends AppCompatActivity implements View.OnClickListener {
+public class GenScreenShotActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Context mContext;
     FakeWebView mFakeWebView;
@@ -31,7 +31,7 @@ public class GenCaptureActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        setContentView(R.layout.activity_gen_capture);
+        setContentView(R.layout.activity_gen_screen_shot);
         initView();
     }
 
