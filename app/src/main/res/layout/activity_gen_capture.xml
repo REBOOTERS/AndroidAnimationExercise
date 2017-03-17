@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/cpb_grey"
+                android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="?android:homeAsUpIndicator"/>
+
+        <RadioGroup
+            android:id="@+id/changeMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layoutDirection="rtl"
+                android:text="优雅白"
+                android:textColor="#f60"/>
+
+            <RadioButton
+                android:id="@+id/rb_night"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:text="低调黑"
+                android:textColor="#f60"/>
+        </RadioGroup>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/cpb_white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_image_save_new"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#fff"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="#f60"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <home.smart.fly.animationdemo.customview.jianshu.helper.FakeWebView
+        android:id="@+id/fakeWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/save"
+        android:layout_below="@id/head"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        />
+</RelativeLayout>

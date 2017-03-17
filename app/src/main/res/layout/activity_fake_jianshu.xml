@@ -10,7 +10,6 @@
     tools:context="home.smart.fly.animationdemo.customview.jianshu.FakeJianShuActivity">
 
     <android.support.design.widget.AppBarLayout
-        style="@style/AppTheme.PopupOverlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -22,6 +21,7 @@
             android:background="@color/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:navigationIcon="?android:homeAsUpIndicator"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/cpb_white"/>
 
     </android.support.design.widget.AppBarLayout>
@@ -37,11 +37,11 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:visibility="invisible"
                 android:id="@+id/head"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="invisible">
 
 
                 <LinearLayout
@@ -105,7 +105,6 @@
                     android:id="@+id/words"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
                     android:layout_marginLeft="10dp"
                     android:text=""
                     android:textColor="@color/cpb_grey"
@@ -116,7 +115,9 @@
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:padding="10dp"/>
         </LinearLayout>
 
 
@@ -127,7 +128,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/cpb_green_dark"
+        android:background="@color/green"
         android:gravity="center"
         android:visibility="invisible">
 
@@ -136,7 +137,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="生成图片分享"
-            android:textColor="@color/cpb_white"/>
+            android:textColor="@color/cpb_white"
+            android:textSize="16sp"/>
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -1,9 +1,12 @@
 package home.smart.fly.animationdemo.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -18,6 +21,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import static android.R.attr.path;
 
 /**
  * Created by rookie on 2016/11/10.
@@ -34,17 +39,17 @@ public class FileUtil {
      * @param name
      * @return
      */
-    public static boolean savaBitmap2SDcard(Bitmap bitmap, String name) {
+    public static boolean savaBitmap2SDcard(Context context, Bitmap bitmap, String name) {
         boolean result = false;
         File fileDir = new File(Environment.getExternalStorageDirectory(), "Screenshots");
         if (!fileDir.exists()) {
             fileDir.mkdir();
         }
         String filename = name + ".jpg";
-        File fileName = new File(fileDir, filename);
+        File file = new File(fileDir, filename);
         FileOutputStream outputStream = null;
         try {
-            outputStream = new FileOutputStream(fileName);
+            outputStream = new FileOutputStream(file);
             result = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
             outputStream.flush();
 
@@ -62,7 +67,15 @@ public class FileUtil {
             }
         }
 
-
+        // 其次把文件插入到系统图库
+        try {
+            MediaStore.Images.Media.insertImage(context.getContentResolver(),
+                    file.getAbsolutePath(), filename, null);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        // 最后通知图库更新
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + path)));
         return result;
     }
 

@@ -37,7 +37,7 @@ public class ScreenCaptureActivity extends AppCompatActivity {
         Bitmap bitmap = Bitmap.createBitmap(temp, 0, statusBarHeight, screenInfo.width, screenInfo.height - statusBarHeight);
         viewRoot.setDrawingCacheEnabled(false);
 
-        if (FileUtil.savaBitmap2SDcard(bitmap, "myfile")) {
+        if (FileUtil.savaBitmap2SDcard(this,bitmap, "myfile")) {
             Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, FullscreenActivity.class));
         } else {

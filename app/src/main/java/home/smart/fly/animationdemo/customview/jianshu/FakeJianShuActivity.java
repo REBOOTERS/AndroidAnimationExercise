@@ -31,12 +31,15 @@ import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import home.smart.fly.animationdemo.R;
+import home.smart.fly.animationdemo.customview.jianshu.helper.Constant;
 import home.smart.fly.animationdemo.customview.jianshu.helper.HtmlBean;
+import home.smart.fly.animationdemo.utils.FileUtil;
 import home.smart.fly.animationdemo.utils.T;
+
 
 public class FakeJianShuActivity extends AppCompatActivity {
     private static final String TAG = "FakeJianShuActivity";
-    private static final String URL = "http://www.jianshu.com/p/869fbab4b006";
+
     private Context mContext;
     private WebView mWebView;
 
@@ -44,7 +47,6 @@ public class FakeJianShuActivity extends AppCompatActivity {
     private TextView username, publichsTime, titleTv, words;
     private LinearLayout head, genImg;
 
-    private String text, title;
     private long lastTime;
 
     private HtmlBean mHtmlBean;
@@ -56,8 +58,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
         mContext = this;
         setContentView(R.layout.activity_fake_jianshu);
         initView();
-
-        new MyAsyncTask().execute(URL);
+        new MyAsyncTask().execute(Constant.URL);
 
     }
 
@@ -66,26 +67,24 @@ public class FakeJianShuActivity extends AppCompatActivity {
         @Override
         protected HtmlBean doInBackground(String... params) {
             mHtmlBean = getHtmlBean(params[0]);
+            if (mHtmlBean == null) {
+                String json = FileUtil.getLocalResponse(mContext, Constant.LOCAL_DATA);
+                Gson gson = new Gson();
+                mHtmlBean = gson.fromJson(json, HtmlBean.class);
+            }
             return mHtmlBean;
         }
 
         @Override
         protected void onPostExecute(HtmlBean s) {
             super.onPostExecute(s);
-            Gson gson = new Gson();
-            String json = gson.toJson(s);
-
-
             Glide.with(mContext).load(s.getUserImg()).into(userImg);
-            text = s.getContent();
-            title = s.getTitle();
+            String text = s.getContent();
             mWebView.loadDataWithBaseURL("", text, "text/html", "UTF-8", "");
             username.setText(s.getUsername());
             publichsTime.setText(s.getPublishTime());
             titleTv.setText(s.getTitle());
             words.setText(s.getWords() + "字");
-
-
         }
     }
 
@@ -139,7 +138,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 genImg.setVisibility(View.INVISIBLE);
-                Intent intent = new Intent(FakeJianShuActivity.this, Activity_Capture.class);
+                Intent intent = new Intent(FakeJianShuActivity.this, GenCaptureActivity.class);
                 intent.putExtra("data", mHtmlBean);
                 startActivity(intent);
             }
@@ -186,7 +185,6 @@ public class FakeJianShuActivity extends AppCompatActivity {
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             genImg.setVisibility(View.VISIBLE);
             T.showSToast(mContext, "再次点击文章可隐藏图片分享");
-
         }
     }
 
@@ -204,7 +202,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.share:
-                Intent intent = new Intent(FakeJianShuActivity.this, Activity_Capture.class);
+                Intent intent = new Intent(FakeJianShuActivity.this, GenCaptureActivity.class);
                 intent.putExtra("data", mHtmlBean);
                 startActivity(intent);
                 break;

@@ -113,7 +113,7 @@
             android:theme="@style/JianshuTheme">
         </activity>
         <activity
-            android:name=".customview.jianshu.Activity_Capture"
+            android:name=".customview.jianshu.GenCaptureActivity"
             android:theme="@style/JianshuTheme">
         </activity>
     </application>

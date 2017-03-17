@@ -4,26 +4,40 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Picture;
 import android.os.Build;
+import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import java.io.IOException;
-import java.net.URL;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * Created by rookie on 2017-03-14.
  */
 
 public class FakeWebView extends WebView {
-
+    private Context mContext;
     private WebView webView;
+
+    public static final int MODE_DAY = 100;
+    public static final int MODE_NIGHT = 200;
+
+    @IntDef({MODE_DAY, MODE_NIGHT})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface ViewMode {
+    }
+
+    private int mode = MODE_DAY;
+
+    private String content;
+
 
     public FakeWebView(Context context) {
         super(context);
@@ -42,56 +56,27 @@ public class FakeWebView extends WebView {
     }
 
     private void Init(Context context) {
+        mContext = context;
         webView = this;
         webView.setPadding(10, 10, 10, 10);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setVerticalScrollBarEnabled(false);
         webView.setHorizontalScrollBarEnabled(false);
-
         webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);// 屏幕自适应网页
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                //view.loadUrl(url);
                 return true;
-            }
-
-            public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-                WebResourceResponse response = null;
-                for (String path : WebViewHelper.getInstance().getAllListPath()) {
-                    if (path.toLowerCase().contains(url.replace("file://", "").toLowerCase())) {
-                        try {
-                            response = new WebResourceResponse("image/png", "UTF-8", new URL(path).openStream());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-                return response;
             }
         });
     }
 
-    /**
-     * 外部进行初始化
-     *
-     * @param strData 基本内容
-     * @param userInfo 用户信息
-     * @param userName 用户名称
-     * @param other 其他信息
-     */
+
     private boolean isFirstLoad = false;
 
-    /**
-     * 初始化页面
-     *
-     * @param strData
-     * @param userInfo
-     * @param userName
-     * @param other
-     */
-    public void init(final String strData, final String userInfo, final String userName, final String other) {
+    public void loadData(HtmlBean bean) {
+        assembleData(bean);
         if (Build.VERSION.SDK_INT >= 21) {
             isFirstLoad = true;
             webView.setWebChromeClient(new WebChromeClient() {
@@ -101,12 +86,11 @@ public class FakeWebView extends WebView {
                         if (isFirstLoad) {
                             isFirstLoad = false;
                             Log.e("TAG", "onProgressChanged");
-                            changeDay(strData, userInfo, userName, other);
+                            updateView();
                         }
                     }
                 }
             });
-            webView.loadUrl("file:///android_asset/generate_pic.html");
         } else {
             isFirstLoad = true;
             webView.setVisibility(View.INVISIBLE);
@@ -115,40 +99,36 @@ public class FakeWebView extends WebView {
                 @Override
                 public void onProgressChanged(WebView view, int newProgress) {
                     if (newProgress == 100) {
-                        changeDay(strData, userInfo, userName, other);
+                        updateView();
                         if (!isFirstLoad)
                             webView.setVisibility(View.VISIBLE);
                     }
                 }
             });
-            webView.loadUrl("file:///android_asset/generate_pic.html");
         }
+        webView.loadUrl("file:///android_asset/JianShu.html");
 
     }
 
-    /**
-     * 白
-     *
-     * @param strData 内容
-     */
-    public void changeDay(String strData, String userInfo, String userName, String other) {
-        if (userInfo == null)
-            userInfo = "";
-        if (strData == null)
-            strData = "";
-        if (userName == null)
-            userName = "";
-        if (other == null)
-            other = "";
-        strData += "<br /><br />\n" +
-                "<span style=\"font-size: small;color: gray;line-height:150%;\">" + userInfo + "</span>\n" +
-                "<br /><br />\n" +
-                "<hr style=\"margin: auto;border:0;background-color:gray;height:1px;\"/>\n" +
-                "<br />\n" +
-                "<p style=\"color: orangered;font-size: x-small;text-align: center;letter-spacing: 0.5px;\">由<strong>" + userName + "</strong>发送 " + other + "</p>";
+    private void assembleData(HtmlBean bean) {
+        final String data = bean.getContent();
+        final String title = bean.getTitle();
+        final String username = bean.getUsername();
+        final String publishTime = bean.getPublishTime();
+        String Title = "<h2>" + title + "</h2>";
+        String Footer = "<p>" + username + "</p><p>" + publishTime + "</p>";
+        content = Title + data + Footer;
+    }
 
-        webView.loadUrl("javascript:changeContent(\"" + strData.replace("\n", "\\n").replace("\"", "\\\"").replace("'", "\\'") + "\")");
-        webView.setBackgroundColor(Color.WHITE);
+
+    public void updateView() {
+        if (mode == MODE_DAY) {
+            webView.setBackgroundColor(Color.WHITE);
+        } else {
+            webView.setBackgroundColor(Color.parseColor("#263238"));
+            content = "<div style=\"color: gray;display: inline;\">" + content + "</div>";
+        }
+        webView.loadUrl("javascript:changeContent(\"" + content.replace("\n", "\\n").replace("\"", "\\\"").replace("'", "\\'") + "\")");
         if (Build.VERSION.SDK_INT < 21) {
             if (isFirstLoad) {
                 webView.postDelayed(new Runnable() {
@@ -163,33 +143,21 @@ public class FakeWebView extends WebView {
     }
 
     /**
-     * 夜
-     *
-     * @param strData  基本内容
-     * @param userInfo 用户信息
-     * @param userName 用户名称
-     * @param other    其他信息
+     * @param mode
      */
-    public void changeNight(String strData, String userInfo, String userName, String other) {
-        if (userInfo == null)
-            userInfo = "";
-        if (strData == null)
-            strData = "";
-        if (userName == null)
-            userName = "";
-        if (other == null)
-            other = "";
-        strData = "<div style=\"color: gray;display: inline;\">" + strData + "</div>";
-        strData += "<br /><br />\n" +
-                "\t\t<span style=\"font-size: small;color: gray;line-height: 150%;\">" + userInfo + "</span>\n" +
-                "\t\t<br /><br />\n" +
-                "\t\t<hr style=\"margin: auto;border:0;background-color:gray;height:0.5px;\"/>\n" +
-                "\t\t<br />\n" +
-                "\t\t<p style=\"color: orangered;font-size: x-small;text-align: center;letter-spacing: 0.5px;\">由<strong>" + userName + "</strong>发送 " + other + "</p>";
-
-        webView.loadUrl("javascript:changeContent(\"" + strData.replace("\n", "\\n").replace("\"", "\\\"").replace("'", "\\'") + "\")");
-        webView.setBackgroundColor(Color.parseColor("#263238"));
+    public void setMode(@ViewMode int mode) {
+        this.mode = mode;
+        updateView();
     }
+
+    public Bitmap getScreenView(){
+        Picture snapShot = webView.capturePicture();
+        Bitmap bmp = Bitmap.createBitmap(snapShot.getWidth(),snapShot.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bmp);
+        snapShot.draw(canvas);
+        return bmp;
+    }
+
 
     /**
      * 截屏

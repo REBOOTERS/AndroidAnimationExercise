@@ -66,11 +66,11 @@ public class MyView extends View {
 
         final int AT_MOST = 2 << MODE_SHIFT;
 
-        Log.e(TAG, "init: MODE_SHIFT " + MODE_SHIFT);
-        Log.e(TAG, "init: MODE_MASK " + MODE_MASK);
-        Log.e(TAG, "init: UNSPECIFIED " + UNSPECIFIED);
-        Log.e(TAG, "init: EXACTLY " + EXACTLY);
-        Log.e(TAG, "init: AT_MOST " + AT_MOST);
+        Log.e(TAG, "loadData: MODE_SHIFT " + MODE_SHIFT);
+        Log.e(TAG, "loadData: MODE_MASK " + MODE_MASK);
+        Log.e(TAG, "loadData: UNSPECIFIED " + UNSPECIFIED);
+        Log.e(TAG, "loadData: EXACTLY " + EXACTLY);
+        Log.e(TAG, "loadData: AT_MOST " + AT_MOST);
 
         int screenW = new WindowHelper(mContext).getScreenW();
         int screenH = new WindowHelper(mContext).getScreenH();
