@@ -16,7 +16,7 @@
        specific language governing permissions and limitations
        under the License.
 */
-package home.smart.fly.animationdemo;
+package home.smart.fly.animationdemo.utils;
 
 import android.content.Context;
 import android.os.Build;

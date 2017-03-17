@@ -27,6 +27,7 @@ import home.smart.fly.animationdemo.fragments.OtherFragment;
 import home.smart.fly.animationdemo.fragments.PropertyFragment;
 import home.smart.fly.animationdemo.fragments.TraditionFragment;
 import home.smart.fly.animationdemo.property.RevealAnimatorActivity;
+import home.smart.fly.animationdemo.utils.Device;
 
 public class AppStartActivity extends AppCompatActivity {
     private static final String TAG = "AppStartActivity";
@@ -95,7 +96,7 @@ public class AppStartActivity extends AppCompatActivity {
         snackbar.getView().setBackgroundColor(getResources().getColor(R.color.cpb_blue));
         snackbar.setActionTextColor(getResources().getColor(R.color.white));
 
-        showSystemInfo();
+//        showSystemInfo();
 
     }
 

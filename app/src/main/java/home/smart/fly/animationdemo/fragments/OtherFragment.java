@@ -71,10 +71,6 @@ public class OtherFragment extends Fragment {
     private class MyAdpater extends RecyclerView.Adapter<MyAdpater.MyHolder> {
 
 
-        public MyAdpater() {
-
-        }
-
         @Override
         public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.demo_info_item, null);

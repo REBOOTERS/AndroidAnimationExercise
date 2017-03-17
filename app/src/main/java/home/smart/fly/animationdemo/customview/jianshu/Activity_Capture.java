@@ -27,8 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import home.smart.fly.animationdemo.R;
-import home.smart.fly.animationdemo.customview.jianshu.helper.Article;
 import home.smart.fly.animationdemo.customview.jianshu.helper.FakeWebView;
+import home.smart.fly.animationdemo.customview.jianshu.helper.HtmlBean;
 
 public class Activity_Capture extends AppCompatActivity {
 
@@ -42,6 +42,9 @@ public class Activity_Capture extends AppCompatActivity {
 
     FakeWebView gpv;
     ProgressDialog pd;
+
+
+
     private Handler mHandler = new Handler_Capture(this);
 
     class Handler_Capture extends Handler {
@@ -80,25 +83,22 @@ public class Activity_Capture extends AppCompatActivity {
         setContentView(R.layout.layout_cap);
         gpv = (FakeWebView) findViewById(R.id.gpv);
 
-        Article article = (Article) getIntent().getSerializableExtra("data");
-        final String data = article.strData;
-        final String title = article.strTitle;
+        HtmlBean bean = (HtmlBean) getIntent().getSerializableExtra("data");
+        final String data = bean.getContent();
+        final String title = bean.getTitle();
+        final String username = bean.getUsername();
+        final String publishTime = bean.getPublishTime();
 
         pd = new ProgressDialog(this);
         pd.setMessage("请稍后...");
 
-        initRadioButton(data, title);
+        initRadioButton(data, title,username,publishTime);
         //初始化控件填充内容
-        gpv.init(data, title, "Mr.Zk", "via zhangke3016");
+        gpv.init(data, title, username, publishTime);
     }
 
-    /**
-     * 初始化卡片主题切换按钮
-     *
-     * @param data  选取的内容
-     * @param title 页面标题
-     */
-    private void initRadioButton(final String data, final String title) {
+
+    private void initRadioButton(final String data, final String title, final String username, final String publishTime ) {
         final RadioButton rb_day = (RadioButton) findViewById(R.id.rb_day);
         final RadioButton rb_night = (RadioButton) findViewById(R.id.rb_night);
 
@@ -107,7 +107,7 @@ public class Activity_Capture extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 rb_night.setChecked(false);
                 rb_day.setChecked(true);
-                gpv.changeDay(data, title, "Mr.Zk", "via zhangke3016");
+                gpv.changeDay(data, title, username, publishTime);
             }
         });
         rb_night.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -115,7 +115,7 @@ public class Activity_Capture extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 rb_day.setChecked(false);
                 rb_night.setChecked(true);
-                gpv.changeNight(data, title, "Mr.Zk", "via zhangke3016");
+                gpv.changeNight(data, title, username, publishTime);
             }
         });
     }
