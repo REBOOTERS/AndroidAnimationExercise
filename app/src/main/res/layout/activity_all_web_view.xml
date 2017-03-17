@@ -8,14 +8,25 @@
     android:orientation="vertical"
     tools:context="home.smart.fly.animationdemo.webview.AllWebViewActivity">
 
-    <WebView
-        android:id="@+id/webview"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </WebView>
+
+            <WebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+    </ScrollView>
 
 
     <LinearLayout
@@ -29,6 +40,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:text="Java2JavaScript"/>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="screenWebView"/>
 
     </LinearLayout>
 

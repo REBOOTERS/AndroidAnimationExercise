@@ -75,8 +75,7 @@
 
     </LinearLayout>
 
-    <home.smart.fly.animationdemo.customview.jianshu.helper.FakeWebView
-        android:id="@+id/fakeWebView"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/save"
@@ -84,6 +83,14 @@
         android:layout_marginBottom="3dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        />
+        android:layout_marginTop="8dp">
+
+        <home.smart.fly.animationdemo.customview.jianshu.helper.FakeWebView
+            android:id="@+id/fakeWebView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </ScrollView>
+
+
 </RelativeLayout>

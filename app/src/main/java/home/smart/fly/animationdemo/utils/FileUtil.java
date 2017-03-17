@@ -22,8 +22,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static android.R.attr.path;
-
 /**
  * Created by rookie on 2016/11/10.
  * <p>
@@ -41,7 +39,7 @@ public class FileUtil {
      */
     public static boolean savaBitmap2SDcard(Context context, Bitmap bitmap, String name) {
         boolean result = false;
-        File fileDir = new File(Environment.getExternalStorageDirectory(), "Screenshots");
+        File fileDir = new File(Environment.getExternalStorageDirectory() + File.separator + "DCIM" + File.separator + "Camera" + File.separator);
         if (!fileDir.exists()) {
             fileDir.mkdir();
         }
@@ -75,7 +73,7 @@ public class FileUtil {
             e.printStackTrace();
         }
         // 最后通知图库更新
-        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + path)));
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + fileDir.toString())));
         return result;
     }
 

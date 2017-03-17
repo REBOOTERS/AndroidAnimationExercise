@@ -23,6 +23,9 @@ android {
         //blur
         renderscriptTargetApi 19
         renderscriptSupportModeEnabled true
+
+        //
+        vectorDrawables.useSupportLibrary true
     }
     buildTypes {
         release {

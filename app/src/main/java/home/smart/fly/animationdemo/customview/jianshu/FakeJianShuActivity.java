@@ -2,13 +2,17 @@ package home.smart.fly.animationdemo.customview.jianshu;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,11 +51,13 @@ public class FakeJianShuActivity extends AppCompatActivity {
     private CircleImageView userImg;
     private TextView username, publichsTime, titleTv, words;
     private LinearLayout head, genImg;
+    private FloatingActionButton fab;
 
     private long lastTime;
 
     private HtmlBean mHtmlBean;
     private ProgressDialog mDialog;
+    private AlertDialog inputDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,6 +174,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
                 if (newProgress == 100) {
                     mDialog.dismiss();
                     head.setVisibility(View.VISIBLE);
+                    fab.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -176,6 +184,47 @@ public class FakeJianShuActivity extends AppCompatActivity {
         mDialog.setCancelable(false);
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
+
+        final EditText input = new EditText(mContext);
+        input.setPadding(10, 10, 10, 10);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("输入简书网址");
+        builder.setView(input);
+        builder.setPositiveButton("加载", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String url = input.getText().toString();
+                if (TextUtils.isEmpty(url)) {
+                    dialog.dismiss();
+                    if (url.startsWith("http://www.jianshu")) {
+
+                        if (mDialog != null) {
+                            mDialog.show();
+                            head.setVisibility(View.INVISIBLE);
+                            new MyAsyncTask().execute(url);
+                        }
+                    }
+                } else {
+                    dialog.dismiss();
+                }
+
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        inputDialog = builder.create();
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputDialog.show();
+            }
+        });
     }
 
 

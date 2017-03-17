@@ -123,6 +123,19 @@
 
     </android.support.v4.widget.NestedScrollView>
 
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/ic_add_black_24dp"/>
+
     <LinearLayout
         android:id="@+id/genImg"
         android:layout_width="match_parent"
