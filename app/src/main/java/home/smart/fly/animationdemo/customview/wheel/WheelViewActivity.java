@@ -44,7 +44,7 @@ public class WheelViewActivity extends AppCompatActivity {
     private WheelOptions mWheelOptions;
     private WheelView province, city, area;
     private TextView address;
-
+    int[] pos = new int[]{0, 0, 0};
 
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -89,15 +89,28 @@ public class WheelViewActivity extends AppCompatActivity {
         area = (WheelView) findViewById(R.id.area);
         address = (TextView) findViewById(R.id.address);
 
+
         province.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
-                city.setAdapter(new ArrayWheelAdapter(item2.get(index)));
-                city.setCurrentItem(0);
-                area.setAdapter(new ArrayWheelAdapter(item3.get(index).get(0)));
-                area.setCurrentItem(0);
-                int[] pos = mWheelOptions.getCurrentItems();
-                Log.e(TAG, "onItemSelected: province " + pos[0] + " " + pos[1] + " " + pos[2]);
+
+                int opt2Select = 0;
+                if (item2 != null) {
+                    opt2Select = city.getCurrentItem();//上一个opt2的选中位置
+                    //新opt2的位置，判断如果旧位置没有超过数据范围，则沿用旧位置，否则选中最后一项
+                    opt2Select = opt2Select >= item2.get(index).size() - 1 ? item2.get(index).size() - 1 : opt2Select;
+
+                    city.setAdapter(new ArrayWheelAdapter(item2
+                            .get(index)));
+                    city.setCurrentItem(opt2Select);
+                    area.setAdapter(new ArrayWheelAdapter(item3.get(index).get(opt2Select)));
+                    area.setCurrentItem(0);
+                }
+
+
+                pos[0] = index;
+                pos[1] = opt2Select;
+                pos[2] = 0;
                 updateAdress(pos);
             }
         });
@@ -105,23 +118,40 @@ public class WheelViewActivity extends AppCompatActivity {
         city.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
-                area.setAdapter(new ArrayWheelAdapter(item3.get(province.getCurrentItem()).get(index)));
-                area.setCurrentItem(0);
-                int[] pos = mWheelOptions.getCurrentItems();
-                Log.e(TAG, "onItemSelected: city " + pos[0] + " " + pos[1] + " " + pos[2]);
-                updateAdress(pos);
+
+
+                if (item3 != null) {
+                    int opt1Select = province.getCurrentItem();
+                    opt1Select = opt1Select >= item3.size() - 1 ? item3.size() - 1 : opt1Select;
+                    index = index >= item2.get(opt1Select).size() - 1 ? item2.get(opt1Select).size() - 1 : index;
+                    int opt3 = area.getCurrentItem();//上一个opt3的选中位置
+                    //新opt3的位置，判断如果旧位置没有超过数据范围，则沿用旧位置，否则选中最后一项
+                    opt3 = opt3 >= item3.get(opt1Select).get(index).size() - 1 ? item3.get(opt1Select).get(index).size() - 1 : opt3;
+
+                    area.setAdapter(new ArrayWheelAdapter(item3
+                            .get(province.getCurrentItem()).get(
+                                    index)));
+                    area.setCurrentItem(0);
+
+
+                    pos[0] = opt1Select;
+                    pos[1] = index;
+                    pos[2] = 0;
+                    updateAdress(pos);
+
+                }
             }
         });
 
         area.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
-                int[] pos = mWheelOptions.getCurrentItems();
-                Log.e(TAG, "onItemSelected: area " + pos[0] + " " + pos[1] + " " + pos[2]);
+                pos[2] = index;
                 updateAdress(pos);
             }
         });
 
+        updateAdress(pos);
 
     }
 
