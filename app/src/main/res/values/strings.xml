@@ -10,6 +10,7 @@
     <string name="webviewInfo">webview 相关内容</string>
     <string name="camera">Camera 和 Galley 使用笔记</string>
     <string name="bottomSheet">bottomSheet</string>
+    <string name="jianshu">仿简书长按生成图片效果</string>
     <string name="easy">easy</string>
     <string name="hard">hard</string>
     <string name="crazy">crazy</string>

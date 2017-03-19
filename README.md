@@ -32,6 +32,8 @@
 - 仿新浪微博雷达扫描效果及卡片动画效果（[Android 动画实战-仿微博雷达功能](https://juejin.im/post/586d0f9eda2f600055cf3021)）
 - 沉寝式模式初探
 - Drawable 波浪动画
+- Android 超长图片加载实现
+- 3D 省市联动效果滚轮，很想IOS的效果
 
 ### OtherFragment
 
@@ -41,6 +43,7 @@
 - Android 打开Camera或从相册选取照片，如何正确压缩图片，确保不发生OOM （[Android Bitmap 初探](https://juejin.im/post/58bc1f11ac502e006b0957b7)）
 - Bottom Action Sheet 菜单
 - Bitmap LRUCache，LruDiskCache 相关
+- 仿简书长按生成图片效果
 
 
 以下是部分内容截屏动画

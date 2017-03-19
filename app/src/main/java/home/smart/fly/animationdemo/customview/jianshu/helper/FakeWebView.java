@@ -159,24 +159,7 @@ public class FakeWebView extends WebView {
     }
 
 
-    /**
-     * 截屏
-     *
-     * @return
-     */
-    public Bitmap getScreen() {
-        Bitmap bmp = Bitmap.createBitmap(webView.getWidth(), 1, Bitmap.Config.ARGB_8888);
-        int rowBytes = bmp.getRowBytes();
-        bmp = null;
 
-        if (rowBytes * webView.getHeight() >= getAvailMemory()) {
-            return null;
-        }
-        bmp = Bitmap.createBitmap(webView.getWidth(), webView.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bmp);
-        webView.draw(canvas);
-        return bmp;
-    }
 
     @Override
     protected void onDetachedFromWindow() {
@@ -187,8 +170,6 @@ public class FakeWebView extends WebView {
         webView = null;
     }
 
-    private long getAvailMemory() {// 获取android当前可用内存大小
-        return Runtime.getRuntime().maxMemory();
-    }
+
 
 }

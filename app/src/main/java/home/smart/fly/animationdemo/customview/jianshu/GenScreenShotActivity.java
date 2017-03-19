@@ -8,8 +8,9 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
@@ -36,8 +37,7 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
     }
 
     private void initView() {
-        ImageView home = (ImageView) findViewById(R.id.home);
-        home.setOnClickListener(this);
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         LinearLayout sava = (LinearLayout) findViewById(R.id.save);
         sava.setOnClickListener(this);
         mFakeWebView = (FakeWebView) findViewById(R.id.fakeWebView);
@@ -61,10 +61,10 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.home:
-                finish();
-                break;
             case R.id.save:
+                mProgressDialog = new ProgressDialog(mContext);
+                mProgressDialog.setMessage("保存中...");
+                mProgressDialog.show();
                 Bitmap bitmap = mFakeWebView.getScreenView();
                 new MyAsyncTask().execute(bitmap);
                 break;
@@ -73,26 +73,37 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    class MyAsyncTask extends AsyncTask<Bitmap, Void, Void> {
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private class MyAsyncTask extends AsyncTask<Bitmap, Void, Boolean> {
+
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressDialog = new ProgressDialog(mContext);
-            mProgressDialog.setMessage("保存中...");
-            mProgressDialog.show();
+        protected Boolean doInBackground(Bitmap... params) {
+            return FileUtil.savaBitmap2SDcard(mContext, params[0], bean.getTitle());
+
         }
 
         @Override
-        protected Void doInBackground(Bitmap... params) {
-            FileUtil.savaBitmap2SDcard(mContext, params[0], bean.getTitle());
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Boolean aVoid) {
             super.onPostExecute(aVoid);
             mProgressDialog.dismiss();
-            T.showSToast(mContext, "保存图片成功!");
+            if (aVoid) {
+                T.showSToast(mContext, "保存图片成功!");
+            }else {
+                T.showSToast(mContext, "保存图片失败!");
+            }
+
         }
     }
 

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,16 +27,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import home.smart.fly.animationdemo.R;
 import home.smart.fly.animationdemo.customview.jianshu.helper.Constant;
+import home.smart.fly.animationdemo.customview.jianshu.helper.HackTool;
 import home.smart.fly.animationdemo.customview.jianshu.helper.HtmlBean;
 import home.smart.fly.animationdemo.utils.FileUtil;
 import home.smart.fly.animationdemo.utils.T;
@@ -77,18 +70,19 @@ public class FakeJianShuActivity extends AppCompatActivity {
     private class MyAsyncTask extends AsyncTask<String, Integer, HtmlBean> {
         @Override
         protected HtmlBean doInBackground(String... params) {
-            mHtmlBean = getHtmlBean(params[0]);
-            if (mHtmlBean == null) {
+            HtmlBean bean = HackTool.getInfoFromUrl(params[0]);
+            if (bean == null) {
                 String json = FileUtil.getLocalResponse(mContext, Constant.LOCAL_DATA);
                 Gson gson = new Gson();
-                mHtmlBean = gson.fromJson(json, HtmlBean.class);
+                bean = gson.fromJson(json, HtmlBean.class);
             }
-            return mHtmlBean;
+            return bean;
         }
 
         @Override
         protected void onPostExecute(HtmlBean s) {
             super.onPostExecute(s);
+            mHtmlBean = s;
             Glide.with(mContext).load(s.getUserImg()).into(userImg);
             String text = s.getContent();
             mWebView.loadDataWithBaseURL("", text, "text/html", "UTF-8", "");
@@ -100,45 +94,17 @@ public class FakeJianShuActivity extends AppCompatActivity {
         }
     }
 
-    @Nullable
-    private HtmlBean getHtmlBean(String param) {
-        HtmlBean htmlBean = null;
-
-        try {
-            //获取指定网址的页面内容
-            Document document = Jsoup.connect(param).timeout(50000).get();
-            String title = document.getElementsByClass("title").get(0).text();
-            String username = document.getElementsByClass("name").get(0).getElementsByTag("a").get(0).text();
-            String userImg = document.getElementsByClass("avatar").get(0).getElementsByTag("img").get(0).attr("src");
-            String publishTime = document.getElementsByClass("publish-time").text();
-            String words = document.getElementsByClass("wordage").text();
-            Elements content = document.getElementsByClass("show-content");
-            Element element = content.get(0);
-            Elements imgs = element.getElementsByTag("img");
-            for (Element ele_img : imgs) {
-                ele_img.attr("style", "max-width:100%;height:auto;");
-            }
-            String contentStr = content.toString();
-            //
-            htmlBean = new HtmlBean();
-            htmlBean.setContent(contentStr);
-            htmlBean.setUsername(username);
-            htmlBean.setTitle(title);
-            htmlBean.setUserImg(userImg);
-            htmlBean.setPublishTime(publishTime.split(" ")[0]);
-            htmlBean.setWords(words.split(" ")[1]);
-            return htmlBean;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return htmlBean;
-    }
-
     private void initView() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         setTitle("");
         mWebView = (WebView) findViewById(R.id.webView);
-        mWebView.setOnCreateContextMenuListener(new MyMenuListener());
+        mWebView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                genImg.setVisibility(View.VISIBLE);
+                T.showSToast(mContext, "再次点击文章可隐藏图片分享");
+            }
+        });
         userImg = (CircleImageView) findViewById(R.id.userImg);
         username = (TextView) findViewById(R.id.username);
         publichsTime = (TextView) findViewById(R.id.publishTime);
@@ -156,7 +122,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
             }
         });
 
-
+        // 点击隐藏底部按钮
         mWebView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -276,16 +242,6 @@ public class FakeJianShuActivity extends AppCompatActivity {
 
         } else {
             T.showSToast(mContext, "你没有输入任何内容 ！");
-        }
-    }
-
-
-    private class MyMenuListener implements View.OnCreateContextMenuListener {
-
-        @Override
-        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            genImg.setVisibility(View.VISIBLE);
-            T.showSToast(mContext, "再次点击文章可隐藏图片分享");
         }
     }
 
