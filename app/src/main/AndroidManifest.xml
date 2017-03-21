@@ -58,7 +58,9 @@
         <activity android:name=".recyclerView.RecyclerViewClickActivity"/>
         <!-- customviews -->
         <activity android:name=".customview.activitys.BasicPosActivity"/>
-        <activity android:name=".customview.swipeanim.FakeWeiBoActivity"/>
+        <activity android:name=".customview.swipeanim.FakeWeiBoActivity"
+            android:theme="@style/AppTheme"
+            />
 
         <!-- 百度定位相关 -->
         <service

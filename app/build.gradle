@@ -4,12 +4,12 @@ android {
 
 //如果需要使用百度LBS 功能，请去掉此处注释
     signingConfigs {
-//        debug {
-//            keyAlias 'animation'
-//            keyPassword '123456'
-//            storeFile file('F:/2016_prj/AndroidAnimationExercise/animationkey')
-//            storePassword '123456'
-//        }
+        debug {
+            keyAlias 'animation'
+            keyPassword '123456'
+            storeFile file("$rootDir/animationkey")
+            storePassword '123456'
+        }
     }
     compileSdkVersion 23
     buildToolsVersion '23.0.3'

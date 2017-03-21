@@ -127,8 +127,15 @@ public class RadarScanView extends View {
 
     public void stopAnim() {
         if (mScaleMinAnimator != null) {
-
             mScaleMinAnimator.cancel();
+        }
+
+        if (mScaleMaxAnimator != null) {
+            mScaleMaxAnimator.cancel();
+        }
+
+        if (mRotateAnimator != null) {
+            mRotateAnimator.cancel();
         }
     }
 
