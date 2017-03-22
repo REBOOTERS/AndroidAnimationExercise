@@ -111,8 +111,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     private void selectFromGalley() {
         Intent intent = new Intent();
         intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setAction(Intent.ACTION_PICK);
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(intent, REQUEST_CODE_PICK_FROM_GALLEY);
     }
 
