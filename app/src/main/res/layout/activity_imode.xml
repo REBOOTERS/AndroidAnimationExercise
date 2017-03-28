@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:alpha="0"
-            android:background="@color/cpb_red"
+            android:background="?attr/colorPrimary"
             android:orientation="horizontal">
         </LinearLayout>
     </FrameLayout>

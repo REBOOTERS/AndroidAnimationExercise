@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
@@ -46,14 +47,35 @@ public class IModeActivity extends AppCompatActivity {
 
     private void initView() {
         head = (LinearLayout) findViewById(R.id.head);
+        head.setVisibility(View.GONE);
         mScrollView = (NestedScrollView) findViewById(R.id.scrollview);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             mScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
                 @Override
-                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                    float alpha = Math.abs(scrollY) * 1000 / headHeight;
-                    Log.e(TAG, "onScrollChange: alpha " + alpha / 1000);
-                    head.setAlpha(alpha);
+                public void onScrollChange(View v, int scrollX, final int scrollY, int oldScrollX, int oldScrollY) {
+
+
+                    if (Math.abs(scrollY) > headHeight) {
+                        head.setVisibility(View.VISIBLE);
+                        head.setAlpha(1.0f);
+                    } else {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                float alpha = Math.abs(scrollY) * 1000 / headHeight;
+                                Log.e(TAG, "onScrollChange: alpha " + alpha / 1000);
+                                head.setAlpha(alpha);
+
+                                if (alpha > 0) {
+                                    head.setVisibility(View.VISIBLE);
+                                } else {
+                                    head.setVisibility(View.GONE);
+                                }
+                            }
+                        }, 300);
+                    }
+
+
                 }
             });
         }
