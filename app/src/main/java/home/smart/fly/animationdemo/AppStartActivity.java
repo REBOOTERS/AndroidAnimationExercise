@@ -96,22 +96,8 @@ public class AppStartActivity extends AppCompatActivity {
         snackbar.getView().setBackgroundColor(getResources().getColor(R.color.cpb_blue));
         snackbar.setActionTextColor(getResources().getColor(R.color.white));
 
-//        showSystemInfo();
 
-    }
 
-    private void showSystemInfo() {
-        Device device = new Device(this);
-        StringBuilder sb = new StringBuilder();
-        sb.append("uuid: ").append(device.getUuid()).append("\n")
-                .append("OsVersion: ").append(device.getOSVersion()).append("\n")
-                .append("Model: ").append(device.getModel()).append("\n")
-                .append("ProductName: ").append(device.getProductName()).append("\n")
-                .append("Manufacturer: ").append(device.getManufacturer()).append("\n")
-                .append("SDKVersion: ").append(device.getSDKVersion()).append("\n")
-                .append("SerialNumber: ").append(device.getSerialNumber()).append("\n")
-                .append("TimeZoneID: ").append(device.getTimeZoneID()).append("\n");
-        Log.e(TAG, "showSystemInfo: \n" + sb.toString());
     }
 
 
@@ -174,22 +160,6 @@ public class AppStartActivity extends AppCompatActivity {
         public void setDropDownViewTheme(Theme theme) {
             mDropDownHelper.setDropDownViewTheme(theme);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-
-
-//        if (snackbar != null) {
-//            if (snackbar.isShown()) {
-//                snackbar.dismiss();
-//            } else {
-//                snackbar.show();
-//            }
-//        }
-
-
-        super.onBackPressed();
     }
 
 
