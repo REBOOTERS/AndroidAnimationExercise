@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,7 +26,6 @@ import home.smart.fly.animationdemo.fragments.OtherFragment;
 import home.smart.fly.animationdemo.fragments.PropertyFragment;
 import home.smart.fly.animationdemo.fragments.TraditionFragment;
 import home.smart.fly.animationdemo.property.RevealAnimatorActivity;
-import home.smart.fly.animationdemo.utils.Device;
 
 public class AppStartActivity extends AppCompatActivity {
     private static final String TAG = "AppStartActivity";
@@ -84,7 +82,7 @@ public class AppStartActivity extends AppCompatActivity {
             }
         });
 
-        spinner.setSelection(3);
+        spinner.setSelection(2);
         main_contetn = (CoordinatorLayout) findViewById(R.id.main_content);
         snackbar = Snackbar.make(main_contetn, "确认要退出吗？", Snackbar.LENGTH_SHORT)
                 .setAction("退出", new View.OnClickListener() {
@@ -96,22 +94,8 @@ public class AppStartActivity extends AppCompatActivity {
         snackbar.getView().setBackgroundColor(getResources().getColor(R.color.cpb_blue));
         snackbar.setActionTextColor(getResources().getColor(R.color.white));
 
-//        showSystemInfo();
 
-    }
 
-    private void showSystemInfo() {
-        Device device = new Device(this);
-        StringBuilder sb = new StringBuilder();
-        sb.append("uuid: ").append(device.getUuid()).append("\n")
-                .append("OsVersion: ").append(device.getOSVersion()).append("\n")
-                .append("Model: ").append(device.getModel()).append("\n")
-                .append("ProductName: ").append(device.getProductName()).append("\n")
-                .append("Manufacturer: ").append(device.getManufacturer()).append("\n")
-                .append("SDKVersion: ").append(device.getSDKVersion()).append("\n")
-                .append("SerialNumber: ").append(device.getSerialNumber()).append("\n")
-                .append("TimeZoneID: ").append(device.getTimeZoneID()).append("\n");
-        Log.e(TAG, "showSystemInfo: \n" + sb.toString());
     }
 
 
@@ -174,22 +158,6 @@ public class AppStartActivity extends AppCompatActivity {
         public void setDropDownViewTheme(Theme theme) {
             mDropDownHelper.setDropDownViewTheme(theme);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-
-
-//        if (snackbar != null) {
-//            if (snackbar.isShown()) {
-//                snackbar.dismiss();
-//            } else {
-//                snackbar.show();
-//            }
-//        }
-
-
-        super.onBackPressed();
     }
 
 
