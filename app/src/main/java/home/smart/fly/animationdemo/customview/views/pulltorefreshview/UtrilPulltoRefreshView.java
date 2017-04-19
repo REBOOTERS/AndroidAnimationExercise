@@ -48,26 +48,31 @@ public class UtrilPulltoRefreshView extends LinearLayout {
 
     public UtrilPulltoRefreshView(Context context) {
         super(context);
-        initView(context);
+        init(context);
     }
 
     public UtrilPulltoRefreshView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initView(context);
+        init(context);
     }
 
     public UtrilPulltoRefreshView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView(context);
+        init(context);
     }
 
-    private void initView(Context context) {
-//        setOrientation(VERTICAL);
+    private void init(Context context) {
+        setOrientation(VERTICAL);
         inflater = LayoutInflater.from(context);
         //
+        initView();
+    }
+
+    private void initView() {
         headerView = inflater.inflate(R.layout.utril_header_layout, this, false);
         measureView(headerView);
         headViewHeight = headerView.getHeight();
+        headViewHeight=230;
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, headViewHeight);
         params.topMargin = -headViewHeight;
         addView(headerView, params);
