@@ -231,6 +231,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
         options.inSampleSize = inSampleSize;
         options.inJustDecodeBounds = false;
+
         bitmap = BitmapFactory.decodeFile(pathName, options);
         showBitmapInfos(pathName);
         return bitmap;

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
 
-//如果需要使用百度LBS 功能，请去掉此处注释
+
     signingConfigs {
         debug {
             keyAlias 'animation'
