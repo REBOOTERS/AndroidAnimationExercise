@@ -71,8 +71,7 @@ public class UtrilPulltoRefreshView extends LinearLayout {
     private void initView() {
         headerView = inflater.inflate(R.layout.utril_header_layout, this, false);
         measureView(headerView);
-        headViewHeight = headerView.getHeight();
-        headViewHeight=230;
+        headViewHeight = headerView.getMeasuredHeight();
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, headViewHeight);
         params.topMargin = -headViewHeight;
         addView(headerView, params);
@@ -198,8 +197,6 @@ public class UtrilPulltoRefreshView extends LinearLayout {
                     belong_to_ParentView = true;
                 }
             }
-
-
         }
 
 
