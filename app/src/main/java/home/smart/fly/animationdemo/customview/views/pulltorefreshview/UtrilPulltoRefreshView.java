@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import home.smart.fly.animationdemo.R;
@@ -40,6 +41,9 @@ public class UtrilPulltoRefreshView extends LinearLayout {
     private Context mContext;
     private LayoutInflater inflater;
     private View headerView;
+    private ImageView headerImage;
+
+
     private int headViewHeight;
 
     //action
@@ -70,6 +74,7 @@ public class UtrilPulltoRefreshView extends LinearLayout {
 
     private void initView() {
         headerView = inflater.inflate(R.layout.utril_header_layout, this, false);
+        headerImage = (ImageView) headerView.findViewById(R.id.headerImage);
         measureView(headerView);
         headViewHeight = headerView.getMeasuredHeight();
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, headViewHeight);
