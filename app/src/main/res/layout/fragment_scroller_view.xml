@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="home.smart.fly.animationdemo.customview.fragments.ScrollerViewFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/a6"
+            android:scaleType="fitXY"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/a6"
+            android:scaleType="fitXY"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/a6"
+            android:scaleType="fitXY"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/a6"
+            android:scaleType="fitXY"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/a6"
+            android:scaleType="fitXY"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
