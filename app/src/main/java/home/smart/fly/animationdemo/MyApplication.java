@@ -1,6 +1,6 @@
 package home.smart.fly.animationdemo;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
 
@@ -8,7 +8,7 @@ import com.facebook.stetho.Stetho;
  * Created by rookie on 2017-03-08.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();

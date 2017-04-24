@@ -1,15 +1,21 @@
 package home.smart.fly.animationdemo.customview.views.pulltorefreshview;
 
 import android.content.Context;
+import android.os.Handler;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import home.smart.fly.animationdemo.R;
 
@@ -31,6 +37,18 @@ public class UtrilPulltoRefreshView extends LinearLayout {
      * list or grid
      */
     private AdapterView<?> mAdapterView;
+    /**
+     * RecyclerView
+     */
+    private RecyclerView mRecyclerView;
+    /**
+     * ScrollView
+     */
+    private ScrollView mScrollView;
+    /**
+     * WebView
+     */
+    private WebView mWebView;
 
     private int mHeaderState;
     /**
@@ -41,9 +59,8 @@ public class UtrilPulltoRefreshView extends LinearLayout {
     private Context mContext;
     private LayoutInflater inflater;
     private View headerView;
-    private ImageView headerImage;
-
-
+    private TextView headerText;
+    private ProgressBar mProgressBar;
     private int headViewHeight;
 
     //action
@@ -74,7 +91,8 @@ public class UtrilPulltoRefreshView extends LinearLayout {
 
     private void initView() {
         headerView = inflater.inflate(R.layout.utril_header_layout, this, false);
-        headerImage = (ImageView) headerView.findViewById(R.id.headerImage);
+        headerText = (TextView) headerView.findViewById(R.id.header_text);
+        mProgressBar = (ProgressBar) headerView.findViewById(R.id.progressBar);
         measureView(headerView);
         headViewHeight = headerView.getMeasuredHeight();
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, headViewHeight);
@@ -99,6 +117,18 @@ public class UtrilPulltoRefreshView extends LinearLayout {
 
         if (view instanceof AdapterView<?>) {
             mAdapterView = (AdapterView<?>) view;
+        }
+
+        if (view instanceof RecyclerView) {
+            mRecyclerView = (RecyclerView) view;
+        }
+
+        if (view instanceof ScrollView) {
+            mScrollView = (ScrollView) view;
+        }
+
+        if (view instanceof WebView) {
+            mWebView = (WebView) view;
         }
 
     }
@@ -155,6 +185,13 @@ public class UtrilPulltoRefreshView extends LinearLayout {
 
     private void initHeaderViewToRefresh(int deltaY) {
         int topDistance = UpdateHeadViewMarginTop(deltaY);
+        if (topDistance < 0 && topDistance > -headViewHeight) {
+            headerText.setText("pull more to refresh");
+            mHeaderState = PULL_TO_REFRESH;
+        } else if (topDistance > 0 && mHeaderState != RELEASE_TO_REFRESH) {
+            headerText.setText("release to refresh");
+            mHeaderState = RELEASE_TO_REFRESH;
+        }
 
     }
 
@@ -175,6 +212,21 @@ public class UtrilPulltoRefreshView extends LinearLayout {
     private void headerRefreshing() {
         mHeaderState = REFRESHING;
         setHeaderTopMargin(0);
+        mProgressBar.setVisibility(VISIBLE);
+        headerText.setVisibility(GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshComplete();
+            }
+        }, 2000);
+    }
+
+    private void refreshComplete() {
+        setHeaderTopMargin(-headViewHeight);
+        mProgressBar.setVisibility(GONE);
+        headerText.setVisibility(VISIBLE);
+        mHeaderState = PULL_TO_REFRESH;
     }
 
     /**
@@ -200,6 +252,52 @@ public class UtrilPulltoRefreshView extends LinearLayout {
                 if (mAdapterView.getFirstVisiblePosition() == 0 && child.getTop() == 0) {
                     mPullState = PULL_DOWN_STATE;
                     belong_to_ParentView = true;
+                }
+            }
+        }
+
+
+        if (mRecyclerView != null) {
+            if (deltaY > 0) {
+                View child = mRecyclerView.getChildAt(0);
+                if (child == null) {
+                    belong_to_ParentView = false;
+                }
+                LinearLayoutManager mLinearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+                int firstPosition = mLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
+                if (firstPosition == 0) {
+                    mPullState = PULL_DOWN_STATE;
+                    belong_to_ParentView = true;
+                }
+            }
+        }
+
+        if (mScrollView != null) {
+            if (deltaY > 0) {
+                View child = mScrollView.getChildAt(0);
+                if (child == null) {
+                    belong_to_ParentView = false;
+                }
+
+                int distance = mScrollView.getScrollY();
+                if (distance == 0) {
+                    mPullState = PULL_DOWN_STATE;
+                    belong_to_ParentView = true;
+                }
+            }
+        }
+
+        if (mWebView != null) {
+            if (deltaY > 0) {
+                View child = mWebView.getChildAt(0);
+                if (child == null) {
+                    belong_to_ParentView=false;
+                }
+
+                int distance=mWebView.getScrollY();
+                if (distance == 0) {
+                    mPullState= PULL_DOWN_STATE;
+                    belong_to_ParentView=true;
                 }
             }
         }

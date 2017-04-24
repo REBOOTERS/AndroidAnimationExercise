@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/header"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/headerImage"
-        android:alpha="0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/a6" />
-
-    <TextView
-        android:id="@+id/header_text"
+    <ProgressBar
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/progressBar"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="刷新"
-        android:textColor="@color/cpb_red"
-        android:textSize="28sp" />
+        android:layout_margin="10dp"/>
 
-</RelativeLayout>
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/header_text"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="refresh"
+        android:textColor="@color/cpb_blue"
+        android:textSize="20sp"/>
+
+</LinearLayout>

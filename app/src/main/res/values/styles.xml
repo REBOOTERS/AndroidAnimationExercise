@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="JianshuTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -63,5 +64,14 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
+    <style name="MyTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MyTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="MyTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>

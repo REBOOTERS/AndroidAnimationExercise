@@ -53,7 +53,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void loadData() {
-        mWebView.loadUrl(WEB_URL);
+        mWebView.loadUrl(LOCAL_URL);
     }
 
     @Override

@@ -38,4 +38,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pickerview_cancel">取消</string>
     <string name="pickerview_submit">确定</string>
+    <string name="title_activity_utril_view">UtrilViewActivity</string>
 </resources>
