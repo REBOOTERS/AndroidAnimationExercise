@@ -6,18 +6,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.ScrollView;
-import android.widget.TextView;
-
-import home.smart.fly.animationdemo.R;
 
 /**
  * Created by co-mall on 2017/4/19.
@@ -56,16 +51,18 @@ public class UtrilPulltoRefreshView extends LinearLayout {
      */
     private int mPullState;
 
-    private Context mContext;
-    private LayoutInflater inflater;
     private View headerView;
-    private TextView headerText;
-    private ProgressBar mProgressBar;
+
     private int headViewHeight;
 
     //action
     private int lastY;
 
+    private BaseHeaderAdapter mBaseHeaderAdapter;
+
+    public void setBaseHeaderAdapter(BaseHeaderAdapter baseHeaderAdapter) {
+        mBaseHeaderAdapter = baseHeaderAdapter;
+    }
 
     public UtrilPulltoRefreshView(Context context) {
         super(context);
@@ -84,15 +81,14 @@ public class UtrilPulltoRefreshView extends LinearLayout {
 
     private void init(Context context) {
         setOrientation(VERTICAL);
-        inflater = LayoutInflater.from(context);
-        //
+        if (mBaseHeaderAdapter == null) {
+            mBaseHeaderAdapter = new ProgressBarAdapter(context);
+        }
         initView();
     }
 
     private void initView() {
-        headerView = inflater.inflate(R.layout.utril_header_layout, this, false);
-        headerText = (TextView) headerView.findViewById(R.id.header_text);
-        mProgressBar = (ProgressBar) headerView.findViewById(R.id.progressBar);
+        headerView = mBaseHeaderAdapter.getHeaderView();
         measureView(headerView);
         headViewHeight = headerView.getMeasuredHeight();
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, headViewHeight);
@@ -186,10 +182,10 @@ public class UtrilPulltoRefreshView extends LinearLayout {
     private void initHeaderViewToRefresh(int deltaY) {
         int topDistance = UpdateHeadViewMarginTop(deltaY);
         if (topDistance < 0 && topDistance > -headViewHeight) {
-            headerText.setText("pull more to refresh");
+            mBaseHeaderAdapter.pullViewToRefresh();
             mHeaderState = PULL_TO_REFRESH;
         } else if (topDistance > 0 && mHeaderState != RELEASE_TO_REFRESH) {
-            headerText.setText("release to refresh");
+            mBaseHeaderAdapter.releaseViewToRefresh();
             mHeaderState = RELEASE_TO_REFRESH;
         }
 
@@ -204,16 +200,11 @@ public class UtrilPulltoRefreshView extends LinearLayout {
         return params.topMargin;
     }
 
-    /**
-     * header refreshing
-     *
-     * @description hylin 2012-7-31上午9:10:12
-     */
+
     private void headerRefreshing() {
         mHeaderState = REFRESHING;
         setHeaderTopMargin(0);
-        mProgressBar.setVisibility(VISIBLE);
-        headerText.setVisibility(GONE);
+        mBaseHeaderAdapter.headerRefreshing();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -224,8 +215,7 @@ public class UtrilPulltoRefreshView extends LinearLayout {
 
     private void refreshComplete() {
         setHeaderTopMargin(-headViewHeight);
-        mProgressBar.setVisibility(GONE);
-        headerText.setVisibility(VISIBLE);
+        mBaseHeaderAdapter.headerRefreshComplete();
         mHeaderState = PULL_TO_REFRESH;
     }
 
@@ -236,9 +226,9 @@ public class UtrilPulltoRefreshView extends LinearLayout {
      * @return
      */
     private boolean isParentViewScroll(int deltaY) {
-        boolean belong_to_ParentView = false;
+        boolean belongToParentView = false;
         if (mHeaderState == REFRESHING) {
-            belong_to_ParentView = false;
+            belongToParentView = false;
         }
 
         if (mAdapterView != null) {
@@ -246,12 +236,12 @@ public class UtrilPulltoRefreshView extends LinearLayout {
             if (deltaY > 0) {
                 View child = mAdapterView.getChildAt(0);
                 if (child == null) {
-                    belong_to_ParentView = false;
+                    belongToParentView = false;
                 }
 
                 if (mAdapterView.getFirstVisiblePosition() == 0 && child.getTop() == 0) {
                     mPullState = PULL_DOWN_STATE;
-                    belong_to_ParentView = true;
+                    belongToParentView = true;
                 }
             }
         }
@@ -261,13 +251,13 @@ public class UtrilPulltoRefreshView extends LinearLayout {
             if (deltaY > 0) {
                 View child = mRecyclerView.getChildAt(0);
                 if (child == null) {
-                    belong_to_ParentView = false;
+                    belongToParentView = false;
                 }
                 LinearLayoutManager mLinearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
                 int firstPosition = mLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
                 if (firstPosition == 0) {
                     mPullState = PULL_DOWN_STATE;
-                    belong_to_ParentView = true;
+                    belongToParentView = true;
                 }
             }
         }
@@ -276,13 +266,13 @@ public class UtrilPulltoRefreshView extends LinearLayout {
             if (deltaY > 0) {
                 View child = mScrollView.getChildAt(0);
                 if (child == null) {
-                    belong_to_ParentView = false;
+                    belongToParentView = false;
                 }
 
                 int distance = mScrollView.getScrollY();
                 if (distance == 0) {
                     mPullState = PULL_DOWN_STATE;
-                    belong_to_ParentView = true;
+                    belongToParentView = true;
                 }
             }
         }
@@ -291,19 +281,19 @@ public class UtrilPulltoRefreshView extends LinearLayout {
             if (deltaY > 0) {
                 View child = mWebView.getChildAt(0);
                 if (child == null) {
-                    belong_to_ParentView=false;
+                    belongToParentView = false;
                 }
 
-                int distance=mWebView.getScrollY();
+                int distance = mWebView.getScrollY();
                 if (distance == 0) {
-                    mPullState= PULL_DOWN_STATE;
-                    belong_to_ParentView=true;
+                    mPullState = PULL_DOWN_STATE;
+                    belongToParentView = true;
                 }
             }
         }
 
 
-        return belong_to_ParentView;
+        return belongToParentView;
     }
 
     private void measureView(View child) {
