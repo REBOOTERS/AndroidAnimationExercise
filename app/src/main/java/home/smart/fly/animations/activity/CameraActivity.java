@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -26,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -98,7 +100,19 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //创建一个临时文件夹存储拍摄的照片
         File file = FileHelper.createFileByType(mContext, destType, "test");
-        imageUrl = Uri.fromFile(file);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Toast.makeText(mContext, "TODO", Toast.LENGTH_SHORT).show();
+            // 将文件转换成content://Uri的形式
+            imageUrl = FileProvider.getUriForFile(mContext, getPackageName() + ".provider", file);
+            // 申请临时访问权限
+            takePictureIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        } else {
+            imageUrl = Uri.fromFile(file);
+        }
+
+
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_CODE_TAKE_PIC_CAMERA);
@@ -455,10 +469,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-        DisplayMetrics  displayMetrics=new DisplayMetrics();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        screenWidth=displayMetrics.widthPixels;
-        screenHeight=displayMetrics.heightPixels;
+        screenWidth = displayMetrics.widthPixels;
+        screenHeight = displayMetrics.heightPixels;
     }
 
     @Override

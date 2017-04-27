@@ -85,7 +85,7 @@
         <activity
             android:name=".activity.IModeActivity"
             android:theme="@style/MyTheme"/>
-        <activity android:name=".activity.jianshu.WavaAnimActivity"/>
+        <activity android:name=".activity.WavaAnimActivity"/>
         <activity android:name=".webview.AllWebViewActivity"/>
         <activity
             android:name=".utils.FullscreenActivity"
@@ -115,6 +115,18 @@
         </activity>
         <activity android:name=".activity.WeiXinGalleryActivity">
         </activity>
+
+        <!--Android 7.0 FileUriExposedException-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path"
+                />
+        </provider>
     </application>
 
 </manifest>
