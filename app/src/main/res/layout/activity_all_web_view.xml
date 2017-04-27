@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="home.smart.fly.animationdemo.webview.AllWebViewActivity">
+    tools:context="home.smart.fly.animations.webview.AllWebViewActivity">
 
     <ScrollView
         android:layout_width="match_parent"

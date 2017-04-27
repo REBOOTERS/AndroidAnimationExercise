@@ -88,7 +88,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp">
 
-        <home.smart.fly.animationdemo.customview.jianshu.helper.FakeWebView
+        <home.smart.fly.animations.activity.jianshu.helper.FakeWebView
             android:id="@+id/fakeWebView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

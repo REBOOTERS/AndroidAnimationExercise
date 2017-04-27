@@ -65,7 +65,7 @@
     </LinearLayout>
 
 
-    <home.smart.fly.animationdemo.property.basic.PointAnimView
+    <home.smart.fly.animations.property.basic.PointAnimView
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

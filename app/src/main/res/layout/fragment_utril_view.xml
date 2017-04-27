@@ -6,7 +6,7 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="home.smart.fly.animationdemo.customview.activitys.UtrilViewActivity$PlaceholderFragment">
+                tools:context="home.smart.fly.animations.activity.UtrilViewActivity$PlaceholderFragment">
 
     <TextView
         android:id="@+id/section_label"

@@ -5,7 +5,7 @@
     android:id="@+id/activity_puzzle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="home.smart.fly.animationdemo.customview.puzzle.PuzzleActivity">
+    tools:context="home.smart.fly.animations.customview.puzzle.PuzzleActivity">
 
     <android.support.v7.widget.Toolbar
         android:visibility="gone"
@@ -15,7 +15,7 @@
         android:background="?attr/colorPrimary"
         />
 
-    <home.smart.fly.animationdemo.customview.puzzle.view.GamePintuLayout
+    <home.smart.fly.animations.customview.puzzle.view.GamePintuLayout
         android:id="@+id/id_gameview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

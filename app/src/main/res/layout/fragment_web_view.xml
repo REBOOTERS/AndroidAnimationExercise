@@ -2,10 +2,10 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="home.smart.fly.animationdemo.customview.fragments.WebViewFragment">
+             tools:context=".activity.subfragments.WebViewFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <home.smart.fly.animationdemo.customview.views.pulltorefreshview.UtrilPulltoRefreshView
+    <home.smart.fly.animations.customview.views.pulltorefreshview.UtrilPulltoRefreshView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -14,7 +14,7 @@
             android:id="@+id/webview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </home.smart.fly.animationdemo.customview.views.pulltorefreshview.UtrilPulltoRefreshView>
+    </home.smart.fly.animations.customview.views.pulltorefreshview.UtrilPulltoRefreshView>
 
 
 </FrameLayout>

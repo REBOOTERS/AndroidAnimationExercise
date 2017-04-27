@@ -252,7 +252,7 @@
             android:layout_height="250dp"
             android:orientation="vertical">
 
-            <home.smart.fly.animationdemo.tradition.AxisView
+            <home.smart.fly.animations.tradition.AxisView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"

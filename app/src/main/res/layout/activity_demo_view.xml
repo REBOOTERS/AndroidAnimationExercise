@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
 
-        <home.smart.fly.animationdemo.property.basic.AlipaySuccessView
+        <home.smart.fly.animations.property.basic.AlipaySuccessView
             android:id="@+id/successview"
             android:layout_width="200dp"
             android:layout_height="200dp"
@@ -28,7 +28,7 @@
             android:text="pay"
             android:textColor="@color/white" />
 
-        <home.smart.fly.animationdemo.property.basic.AlipayFailureView
+        <home.smart.fly.animations.property.basic.AlipayFailureView
             android:id="@+id/faliureview"
             android:layout_width="200dp"
             android:layout_height="200dp"

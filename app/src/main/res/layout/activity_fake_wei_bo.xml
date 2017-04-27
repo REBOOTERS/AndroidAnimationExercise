@@ -8,14 +8,14 @@
     tools:context=".customview.swipeanim.FakeWeiBoActivity">
 
 
-    <home.smart.fly.animationdemo.customview.swipeanim.RadarScanView
+    <home.smart.fly.animations.customview.swipeanim.RadarScanView
         android:id="@+id/radar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible" />
 
 
-    <home.smart.fly.animationdemo.customview.swipeanim.SmartPullView
+    <home.smart.fly.animations.customview.swipeanim.SmartPullView
         android:id="@+id/refreshView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -137,7 +137,7 @@
         </ScrollView>
 
 
-    </home.smart.fly.animationdemo.customview.swipeanim.SmartPullView>
+    </home.smart.fly.animations.customview.swipeanim.SmartPullView>
 
 
     <LinearLayout

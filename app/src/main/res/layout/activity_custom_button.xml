@@ -6,7 +6,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <home.smart.fly.animationdemo.property.widget.CircularProgressButton
+    <home.smart.fly.animations.property.widget.CircularProgressButton
         android:id="@+id/circularButton1"
         android:layout_width="196dp"
         android:layout_height="64dp"
@@ -17,7 +17,7 @@
         app:cpb_iconError="@drawable/ic_action_cancel"
         app:cpb_textIdle="Upload" />
 
-    <home.smart.fly.animationdemo.property.widget.CircularProgressButton
+    <home.smart.fly.animations.property.widget.CircularProgressButton
         android:id="@+id/circularButton2"
         android:layout_width="196dp"
         android:layout_height="64dp"

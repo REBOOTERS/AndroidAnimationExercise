@@ -5,7 +5,7 @@
     android:id="@+id/activity_imode"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="home.smart.fly.animationdemo.customview.activitys.IModeActivity">
+    tools:context="home.smart.fly.animations.activity.IModeActivity">
 
 
     <android.support.v4.widget.NestedScrollView

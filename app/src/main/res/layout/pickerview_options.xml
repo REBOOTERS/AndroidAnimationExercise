@@ -16,20 +16,20 @@
         android:background="@android:color/white"
         android:orientation="horizontal">
 
-        <home.smart.fly.animationdemo.customview.wheel.widget.lib.WheelView
+        <home.smart.fly.animations.customview.wheel.widget.lib.WheelView
             android:id="@+id/province"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             />
 
-        <home.smart.fly.animationdemo.customview.wheel.widget.lib.WheelView
+        <home.smart.fly.animations.customview.wheel.widget.lib.WheelView
             android:id="@+id/city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <home.smart.fly.animationdemo.customview.wheel.widget.lib.WheelView
+        <home.smart.fly.animations.customview.wheel.widget.lib.WheelView
             android:id="@+id/area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="home.smart.fly.animationdemo">
+          package="home.smart.fly.animations">
 
     <!-- 百度定位相关 -->
     <!-- 这个权限用于进行网络定位 -->
@@ -57,7 +57,7 @@
         <activity android:name=".property.RevealAnimatorActivity"/>
         <activity android:name=".recyclerView.RecyclerViewClickActivity"/>
         <!-- customviews -->
-        <activity android:name=".customview.activitys.BasicPosActivity"/>
+        <activity android:name=".customview.ui.activitys.BasicPosActivity"/>
         <activity
             android:name=".customview.swipeanim.FakeWeiBoActivity"
             android:theme="@style/AppTheme"/>
@@ -83,35 +83,37 @@
             android:label="@string/title_activity_vpanim"
             android:theme="@style/AppTheme"/>
         <activity
-            android:name=".customview.activitys.IModeActivity"
+            android:name=".activity.IModeActivity"
             android:theme="@style/MyTheme"/>
-        <activity android:name=".customview.activitys.WavaAnimActivity"/>
+        <activity android:name=".activity.jianshu.WavaAnimActivity"/>
         <activity android:name=".webview.AllWebViewActivity"/>
         <activity
             android:name=".utils.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/FullscreenTheme"/>
-        <activity android:name=".customview.activitys.CameraActivity"/>
+        <activity android:name=".activity.CameraActivity"/>
         <activity android:name=".customview.bottomsheet.BottomSheetActivity"/>
         <activity android:name=".customview.bottomsheet.BeautifulBottomSheetActivity"/>
         <activity android:name=".customview.bottomsheet.BottomSheetDialogActivity"/>
         <activity android:name=".customview.bottomsheet.NestedScrollViewActivity"/>
         <activity android:name=".customview.bottomsheet.RecyclerViewActivity"/>
-        <activity android:name=".customview.activitys.ImgCacheActivity"/>
-        <activity android:name=".customview.activitys.FakeFootballActivity"/>
-        <activity android:name=".customview.activitys.LongImgActivity"/>
+        <activity android:name=".activity.ImgCacheActivity"/>
+        <activity android:name=".activity.FakeFootballActivity"/>
+        <activity android:name=".activity.LongImgActivity"/>
         <activity android:name=".customview.wheel.WheelViewActivity"/>
         <activity
-            android:name=".customview.jianshu.FakeJianShuActivity"
+            android:name=".activity.jianshu.FakeJianShuActivity"
             android:theme="@style/JianshuTheme"/>
         <activity
-            android:name=".customview.jianshu.GenScreenShotActivity"
+            android:name=".activity.jianshu.GenScreenShotActivity"
             android:theme="@style/JianshuTheme"/>
         <activity
-            android:name=".customview.activitys.UtrilViewActivity"
+            android:name=".activity.UtrilViewActivity"
             android:label="@string/title_activity_utril_view"
             android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity android:name=".activity.WeiXinGalleryActivity">
         </activity>
     </application>
 
