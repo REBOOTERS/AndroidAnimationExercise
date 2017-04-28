@@ -57,7 +57,7 @@
         <activity android:name=".property.RevealAnimatorActivity"/>
         <activity android:name=".recyclerView.RecyclerViewClickActivity"/>
         <!-- customviews -->
-        <activity android:name=".customview.ui.activitys.BasicPosActivity"/>
+        <activity android:name=".customview.BasicPosActivity"/>
         <activity
             android:name=".customview.swipeanim.FakeWeiBoActivity"
             android:theme="@style/AppTheme"/>
