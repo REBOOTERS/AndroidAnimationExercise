@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -101,6 +102,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         //创建一个临时文件夹存储拍摄的照片
         File file = FileHelper.createFileByType(mContext, destType, "test");
 
+//        file = new File(mContext.getFilesDir(), "images/test.jpg");
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Toast.makeText(mContext, "TODO", Toast.LENGTH_SHORT).show();
             // 将文件转换成content://Uri的形式
@@ -119,29 +122,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    /**
-     * 打开手机相册
-     */
-    private void selectFromGalley() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_PICK);
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
-//        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(intent, REQUEST_CODE_PICK_FROM_GALLEY);
-    }
-
-    private void CropTheImage(Uri imageUrl) {
-        Intent cropIntent = new Intent("com.android.camera.action.CROP");
-        cropIntent.setDataAndType(imageUrl, "image/*");
-        cropIntent.putExtra("cropWidth", "true");
-        cropIntent.putExtra("outputX", cropTargetWidth);
-        cropIntent.putExtra("outputY", cropTargetHeight);
-        File copyFile = FileHelper.createFileByType(mContext, destType, String.valueOf(System.currentTimeMillis()));
-        copyUrl = Uri.fromFile(copyFile);
-        cropIntent.putExtra("output", copyUrl);
-        startActivityForResult(cropIntent, REQUEST_CODE_CROP_PIC);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -171,13 +151,46 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         if (needEdit) {
                             CropTheImage(uri);
                         } else {
-                            ProcessResult(uri);
+                            String[] filePathColumns = {MediaStore.Images.Media.DATA};
+                            Cursor c = getContentResolver().query(uri, filePathColumns, null, null, null);
+                            c.moveToFirst();
+                            int columnIndex = c.getColumnIndex(filePathColumns[0]);
+                            String imagePath = c.getString(columnIndex);
+                            Uri imageUri = Uri.parse(imagePath);
+                            ProcessResult(imageUri);
                         }
                     }
                 }
             default:
                 break;
         }
+    }
+
+    /**
+     * 打开手机相册
+     */
+    private void selectFromGalley() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_PICK);
+        startActivityForResult(intent, REQUEST_CODE_PICK_FROM_GALLEY);
+    }
+
+    /**
+     * 裁剪照片
+     *
+     * @param imageUrl
+     */
+    private void CropTheImage(Uri imageUrl) {
+        Intent cropIntent = new Intent("com.android.camera.action.CROP");
+        cropIntent.setDataAndType(imageUrl, "image/*");
+        cropIntent.putExtra("cropWidth", "true");
+        cropIntent.putExtra("outputX", cropTargetWidth);
+        cropIntent.putExtra("outputY", cropTargetHeight);
+        File copyFile = FileHelper.createFileByType(mContext, destType, String.valueOf(System.currentTimeMillis()));
+        copyUrl = Uri.fromFile(copyFile);
+        cropIntent.putExtra("output", copyUrl);
+        startActivityForResult(cropIntent, REQUEST_CODE_CROP_PIC);
     }
 
     /**

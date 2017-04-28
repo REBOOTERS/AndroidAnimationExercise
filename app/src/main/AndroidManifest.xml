@@ -55,7 +55,6 @@
         <activity android:name=".property.ShopCarAddAnimActivity"/>
         <activity android:name=".property.LayoutAnimationsActivity"/>
         <activity android:name=".property.RevealAnimatorActivity"/>
-        <activity android:name=".recyclerView.RecyclerViewClickActivity"/>
         <!-- customviews -->
         <activity android:name=".customview.BasicPosActivity"/>
         <activity
@@ -100,7 +99,6 @@
         <activity android:name=".customview.bottomsheet.RecyclerViewActivity"/>
         <activity android:name=".activity.ImgCacheActivity"/>
         <activity android:name=".activity.FakeFootballActivity"/>
-        <activity android:name=".activity.LongImgActivity"/>
         <activity android:name=".customview.wheel.WheelViewActivity"/>
         <activity
             android:name=".activity.jianshu.FakeJianShuActivity"
