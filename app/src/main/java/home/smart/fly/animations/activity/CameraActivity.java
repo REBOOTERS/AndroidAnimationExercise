@@ -120,7 +120,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
 
 
-
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_CODE_TAKE_PIC_CAMERA);
         }
@@ -194,9 +193,17 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         cropIntent.putExtra("cropWidth", "true");
         cropIntent.putExtra("outputX", cropTargetWidth);
         cropIntent.putExtra("outputY", cropTargetHeight);
-        File copyFile = FileHelper.createFileByType(mContext, destType, String.valueOf(System.currentTimeMillis()));
-        copyUrl = Uri.fromFile(copyFile);
-        cropIntent.putExtra("output", copyUrl);
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+            File file = new File(mContext.getCacheDir(), "test1.jpg");
+            copyUrl = Uri.fromFile(file);
+            Uri contentUri = FileProvider.getUriForFile(this, getPackageName() + ".provider", file);
+            cropIntent.putExtra("output", contentUri);
+        } else {
+            File copyFile = FileHelper.createFileByType(mContext, destType, String.valueOf(System.currentTimeMillis()));
+            copyUrl = Uri.fromFile(copyFile);
+            cropIntent.putExtra("output", copyUrl);
+        }
         startActivityForResult(cropIntent, REQUEST_CODE_CROP_PIC);
     }
 
