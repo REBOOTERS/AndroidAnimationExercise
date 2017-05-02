@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -27,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -99,25 +101,26 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //创建一个临时文件夹存储拍摄的照片
         File file = FileHelper.createFileByType(mContext, destType, "test");
+        imageUrl = Uri.fromFile(file);
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            Toast.makeText(mContext, "TODO", Toast.LENGTH_SHORT).show();
-//            // 将文件转换成content://Uri的形式
-////            imageUrl = FileProvider.getUriForFile(mContext, getPackageName() + ".provider", file);
-////            // 申请临时访问权限
-////            takePictureIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION
-////                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-//
-//            ContentValues contentValues = new ContentValues(1);
-//            contentValues.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
-//            imageUrl = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,contentValues);
-//
-//        } else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            file = new File(mContext.getCacheDir(), "test.jpg");
             imageUrl = Uri.fromFile(file);
-//        }
+
+            Toast.makeText(mContext, "TODO", Toast.LENGTH_SHORT).show();
+            // 将文件转换成content://Uri的形式
+            Uri contentUri = FileProvider.getUriForFile(mContext, getPackageName() + ".provider", file);
+            // 申请临时访问权限
+            takePictureIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+
+        } else {
+
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl);
+        }
 
 
-        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl);
+
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_CODE_TAKE_PIC_CAMERA);
         }
@@ -154,11 +157,14 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         } else {
                             String[] filePathColumns = {MediaStore.Images.Media.DATA};
                             Cursor c = getContentResolver().query(uri, filePathColumns, null, null, null);
-                            c.moveToFirst();
-                            int columnIndex = c.getColumnIndex(filePathColumns[0]);
-                            String imagePath = c.getString(columnIndex);
-                            Uri imageUri = Uri.parse(imagePath);
-                            ProcessResult(imageUri);
+                            if (c != null) {
+                                c.moveToFirst();
+                                int columnIndex = c.getColumnIndex(filePathColumns[0]);
+                                String imagePath = c.getString(columnIndex);
+                                Uri imageUri = Uri.parse(imagePath);
+                                ProcessResult(imageUri);
+                            }
+
                         }
                     }
                 }
