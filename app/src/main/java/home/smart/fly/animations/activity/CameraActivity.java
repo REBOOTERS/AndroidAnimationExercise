@@ -15,7 +15,6 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -28,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -102,18 +100,21 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         //创建一个临时文件夹存储拍摄的照片
         File file = FileHelper.createFileByType(mContext, destType, "test");
 
-//        file = new File(mContext.getFilesDir(), "images/test.jpg");
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Toast.makeText(mContext, "TODO", Toast.LENGTH_SHORT).show();
-            // 将文件转换成content://Uri的形式
-            imageUrl = FileProvider.getUriForFile(mContext, getPackageName() + ".provider", file);
-            // 申请临时访问权限
-            takePictureIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        } else {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            Toast.makeText(mContext, "TODO", Toast.LENGTH_SHORT).show();
+//            // 将文件转换成content://Uri的形式
+////            imageUrl = FileProvider.getUriForFile(mContext, getPackageName() + ".provider", file);
+////            // 申请临时访问权限
+////            takePictureIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_GRANT_READ_URI_PERMISSION
+////                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+//
+//            ContentValues contentValues = new ContentValues(1);
+//            contentValues.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
+//            imageUrl = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,contentValues);
+//
+//        } else {
             imageUrl = Uri.fromFile(file);
-        }
+//        }
 
 
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUrl);
