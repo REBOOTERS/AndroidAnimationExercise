@@ -106,11 +106,6 @@
         <activity
             android:name=".activity.jianshu.GenScreenShotActivity"
             android:theme="@style/JianshuTheme"/>
-        <activity
-            android:name=".activity.UtrilViewActivity"
-            android:label="@string/title_activity_utril_view"
-            android:theme="@style/MyTheme.NoActionBar">
-        </activity>
         <activity android:name=".activity.WeiXinGalleryActivity">
         </activity>
 
