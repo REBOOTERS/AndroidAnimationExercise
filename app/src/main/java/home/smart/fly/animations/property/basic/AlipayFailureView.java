@@ -124,7 +124,8 @@ public class AlipayFailureView extends View {
         if (null != mAnimatorSet && mAnimatorSet.isRunning()) {
             return;
         }
-
+        reset();
+        reMeasure();
         mCircleAnim = ValueAnimator.ofInt(0, 360);
         mLineLeftAnimator = ValueAnimator.ofFloat(0, pathLeftMeasure.getLength());
         mLineRightAnimator = ValueAnimator.ofFloat(0, pathRightMeasure.getLength());
