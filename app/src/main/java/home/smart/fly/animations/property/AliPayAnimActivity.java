@@ -75,6 +75,7 @@ public class AliPayAnimActivity extends BaseActivity {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             Log.e("measure ", ".......>  " + alipaySuccessView.getWidth() + "  " + alipaySuccessView.getHeight());
+            Log.e("measure ", ".......>  " + alipayFailureView.getWidth() + "  " + alipayFailureView.getHeight());
             //在布局中取长宽中较小的值作为圆的半径
             radius1 = Math.min(alipaySuccessView.getWidth(), alipaySuccessView.getHeight());
 
