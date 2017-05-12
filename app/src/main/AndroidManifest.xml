@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="home.smart.fly.animations">
 
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <!-- 百度定位相关 -->
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
@@ -17,6 +16,7 @@ import android.view.Window;
 import android.widget.LinearLayout;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.utils.ArgbAnimator;
 import home.smart.fly.animations.utils.DpConvert;
 
 public class IModeActivity extends AppCompatActivity {
@@ -30,6 +30,8 @@ public class IModeActivity extends AppCompatActivity {
     //
     private ViewPager mViewPager;
 
+    private ArgbAnimator argb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,47 +40,23 @@ public class IModeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_imode);
         //
 
-
+        argb = new ArgbAnimator(Color.TRANSPARENT, getResources().getColor(R.color.colorPrimary));
         initView();
         setupStatusBar();
-        headHeight = DpConvert.dip2px(mContext, 48);
-        Log.e(TAG, "onCreate: " + DpConvert.dip2px(mContext, 48));
+        headHeight = DpConvert.dip2px(mContext, 200);
+        Log.e(TAG, "onCreate: " + DpConvert.dip2px(mContext, 200));
     }
 
     private void initView() {
         head = (LinearLayout) findViewById(R.id.head);
         head.setVisibility(View.GONE);
         mScrollView = (NestedScrollView) findViewById(R.id.scrollview);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            mScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-                @Override
-                public void onScrollChange(View v, int scrollX, final int scrollY, int oldScrollX, int oldScrollY) {
-
-
-                    if (Math.abs(scrollY) > headHeight) {
-                        head.setVisibility(View.VISIBLE);
-                        head.setAlpha(1.0f);
-                    } else {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                float alpha = Math.abs(scrollY) * 1000 / headHeight;
-                                Log.e(TAG, "onScrollChange: alpha " + alpha / 1000);
-                                head.setAlpha(alpha);
-
-                                if (alpha > 0) {
-                                    head.setVisibility(View.VISIBLE);
-                                } else {
-                                    head.setVisibility(View.GONE);
-                                }
-                            }
-                        }, 300);
-                    }
-
-
-                }
-            });
-        }
+        mScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, final int scrollY, int oldScrollX, int oldScrollY) {
+                setToolbarBg(scrollY);
+            }
+        });
 
         mViewPager = (ViewPager) findViewById(R.id.banner);
         mViewPager.setAdapter(new MyPagerAdapter());
@@ -110,6 +88,23 @@ public class IModeActivity extends AppCompatActivity {
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
+        }
+    }
+
+
+    /**
+     * 根据偏移值计算toolbar的颜色过渡值
+     *
+     * @param scrollY
+     */
+    private int lastColor = Color.TRANSPARENT;
+
+    private void setToolbarBg(int scrollY) {
+        float fraction = (float) scrollY / mViewPager.getHeight();
+        int color = argb.getFractionColor(fraction);
+        if (color != lastColor) {
+            lastColor = color;
+            head.setBackgroundColor(color);
         }
     }
 

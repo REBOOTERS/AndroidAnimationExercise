@@ -10,7 +10,7 @@ android {
         }
     }
     compileSdkVersion 24
-    buildToolsVersion '24.0.3'
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "home.smart.fly.animationdemo"
         minSdkVersion 15
@@ -45,7 +45,7 @@ android {
             // dev utilizes minSDKVersion = 21 to allow the Android gradle plugin
             // to pre-dex each module and produce an APK that can be tested on
             // Android Lollipop without time consuming dex merging processes.
-            minSdkVersion 21
+            minSdkVersion 19
         }
         prod {
             // The actual minSdkVersion for the application.
