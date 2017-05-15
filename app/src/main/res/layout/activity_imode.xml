@@ -30,23 +30,32 @@
                 android:layout_width="match_parent"
                 android:scaleType="fitStart"
                 android:layout_height="wrap_content"
-                android:src="@drawable/phone_background"/>
+                android:src="@drawable/name"/>
 
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
     <FrameLayout
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/head"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:alpha="0"
-            android:background="?attr/colorPrimary"
             android:orientation="horizontal">
+
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/title"
+                android:text="标题"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </FrameLayout>
 </FrameLayout>

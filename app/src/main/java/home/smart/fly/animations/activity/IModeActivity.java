@@ -2,22 +2,19 @@ package home.smart.fly.animations.activity;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.ArgbAnimator;
-import home.smart.fly.animations.utils.DpConvert;
 
 public class IModeActivity extends AppCompatActivity {
     private static final String TAG = "IModeActivity";
@@ -25,12 +22,12 @@ public class IModeActivity extends AppCompatActivity {
     private NestedScrollView mScrollView;
 
     private Context mContext;
-    private int headHeight = 0;
 
     //
     private ViewPager mViewPager;
 
     private ArgbAnimator argb;
+    private TextView title;
 
 
     @Override
@@ -40,16 +37,14 @@ public class IModeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_imode);
         //
 
-        argb = new ArgbAnimator(Color.TRANSPARENT, getResources().getColor(R.color.colorPrimary));
+        argb = new ArgbAnimator(Color.TRANSPARENT, getResources().getColor(R.color.colorPrimaryDark));
         initView();
-        setupStatusBar();
-        headHeight = DpConvert.dip2px(mContext, 200);
-        Log.e(TAG, "onCreate: " + DpConvert.dip2px(mContext, 200));
     }
 
     private void initView() {
+        title = (TextView) findViewById(R.id.title);
         head = (LinearLayout) findViewById(R.id.head);
-        head.setVisibility(View.GONE);
+        head.setBackgroundColor(Color.TRANSPARENT);
         mScrollView = (NestedScrollView) findViewById(R.id.scrollview);
         mScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
@@ -100,23 +95,18 @@ public class IModeActivity extends AppCompatActivity {
     private int lastColor = Color.TRANSPARENT;
 
     private void setToolbarBg(int scrollY) {
-        float fraction = (float) scrollY / mViewPager.getHeight();
+        float fraction = (float) scrollY /(mViewPager.getHeight()) ;
         int color = argb.getFractionColor(fraction);
         if (color != lastColor) {
             lastColor = color;
             head.setBackgroundColor(color);
         }
-    }
 
-
-    private void setupStatusBar() {
-        getSupportActionBar().hide();
-        if (Build.VERSION.SDK_INT > 21) {
-            Window window = getWindow();
-            View decorview = window.getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            decorview.setSystemUiVisibility(option);
-            window.setStatusBarColor(Color.TRANSPARENT);
+        if (fraction < 1) {
+            title.setVisibility(View.INVISIBLE);
+        }else {
+            title.setVisibility(View.VISIBLE);
         }
     }
+
 }

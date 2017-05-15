@@ -23,6 +23,7 @@ import home.smart.fly.animations.activity.WavaAnimActivity;
 import home.smart.fly.animations.customview.BasicPosActivity;
 import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animations.customview.wheel.WheelViewActivity;
+import home.smart.fly.animations.property.RevealAnimatorActivity;
 import home.smart.fly.animations.utils.V;
 
 
@@ -57,6 +58,7 @@ public class ViewsFragment extends Fragment {
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
         demos.add(new ItemInfo(R.string.app_name, WheelViewActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, RevealAnimatorActivity.class));
 
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();

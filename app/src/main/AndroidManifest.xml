@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="home.smart.fly.animations">
 
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <!-- 百度定位相关 -->
@@ -86,7 +85,7 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".activity.IModeActivity"
-            android:theme="@style/MyTheme"/>
+            android:theme="@style/JianshuTheme"/>
         <activity android:name=".activity.WavaAnimActivity"/>
         <activity android:name=".webview.AllWebViewActivity"/>
         <activity
@@ -112,7 +111,7 @@
         <activity android:name=".activity.WeiXinGalleryActivity">
         </activity>
 
-        <!--Android 7.0 FileUriExposedException-->
+        <!-- Android 7.0 FileUriExposedException -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -120,9 +119,13 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path"
-                />
+                android:resource="@xml/file_path"/>
         </provider>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings">
+        </activity>
     </application>
 
 </manifest>

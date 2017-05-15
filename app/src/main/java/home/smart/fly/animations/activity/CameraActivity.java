@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -284,6 +285,50 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
      * @param pathName
      */
     private void showBitmapInfos(String pathName) {
+        try {
+            ExifInterface mExifInterface = new ExifInterface(pathName);
+            String FFNumber = mExifInterface
+                    .getAttribute(ExifInterface.TAG_APERTURE);
+            String FDateTime = mExifInterface
+                    .getAttribute(ExifInterface.TAG_DATETIME);
+            String FExposureTime = mExifInterface
+                    .getAttribute(ExifInterface.TAG_EXPOSURE_TIME);
+            String FFlash = mExifInterface
+                    .getAttribute(ExifInterface.TAG_FLASH);
+            String FFocalLength = mExifInterface
+                    .getAttribute(ExifInterface.TAG_FOCAL_LENGTH);
+            String FImageLength = mExifInterface
+                    .getAttribute(ExifInterface.TAG_IMAGE_LENGTH);
+            String FImageWidth = mExifInterface
+                    .getAttribute(ExifInterface.TAG_IMAGE_WIDTH);
+            String FISOSpeedRatings = mExifInterface
+                    .getAttribute(ExifInterface.TAG_ISO);
+            String FMake = mExifInterface
+                    .getAttribute(ExifInterface.TAG_MAKE);
+            String FModel = mExifInterface
+                    .getAttribute(ExifInterface.TAG_MODEL);
+            String FOrientation = mExifInterface
+                    .getAttribute(ExifInterface.TAG_ORIENTATION);
+            String FWhiteBalance = mExifInterface
+                    .getAttribute(ExifInterface.TAG_WHITE_BALANCE);
+
+            Log.i(TAG, "FFNumber:" + FFNumber);
+            Log.i(TAG, "FDateTime:" + FDateTime);
+            Log.i(TAG, "FExposureTime:" + FExposureTime);
+            Log.i(TAG, "FFlash:" + FFlash);
+            Log.i(TAG, "FFocalLength:" + FFocalLength);
+            Log.i(TAG, "FImageLength:" + FImageLength);
+            Log.i(TAG, "FImageWidth:" + FImageWidth);
+            Log.i(TAG, "FISOSpeedRatings:" + FISOSpeedRatings);
+            Log.i(TAG, "FMake:" + FMake);
+            Log.i(TAG, "FModel:" + FModel);
+            Log.i(TAG, "FOrientation:" + FOrientation);
+            Log.i(TAG, "FWhiteBalance:" + FWhiteBalance);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(pathName, options);

@@ -21,11 +21,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import home.smart.fly.animations.fragments.ViewsFragment;
 import home.smart.fly.animations.fragments.OtherFragment;
 import home.smart.fly.animations.fragments.PropertyFragment;
 import home.smart.fly.animations.fragments.TraditionFragment;
-import home.smart.fly.animations.property.RevealAnimatorActivity;
+import home.smart.fly.animations.fragments.ViewsFragment;
 
 public class AppStartActivity extends AppCompatActivity {
     private static final String TAG = "AppStartActivity";
@@ -82,7 +81,7 @@ public class AppStartActivity extends AppCompatActivity {
             }
         });
 
-        spinner.setSelection(3);
+        spinner.setSelection(2);
         main_contetn = (CoordinatorLayout) findViewById(R.id.main_content);
         snackbar = Snackbar.make(main_contetn, "确认要退出吗？", Snackbar.LENGTH_SHORT)
                 .setAction("退出", new View.OnClickListener() {
@@ -114,7 +113,7 @@ public class AppStartActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivity(new Intent(AppStartActivity.this, RevealAnimatorActivity.class));
+            startActivity(new Intent(AppStartActivity.this, SettingsActivity.class));
             return true;
         }
 
