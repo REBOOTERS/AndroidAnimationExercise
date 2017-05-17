@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\animator\\card_flip_left_in.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\animator\\card_flip_left_in.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\animator\\card_flip_right_out.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\animator\\card_flip_right_out.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\animator\\card_flip_left_out.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\animator\\card_flip_left_out.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\animator\\card_flip_right_in.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\animator\\card_flip_right_in.xml"
+    }
+]

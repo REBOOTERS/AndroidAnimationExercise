@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_screen_slide.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_screen_slide.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_main.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_crossfade.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_crossfade.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_zoom.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_zoom.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\list_item_example.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\list_item_example.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\excerpt_content.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\excerpt_content.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_layout_changes.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_layout_changes.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_screen_slide_page.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\fragment_screen_slide_page.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_card_back.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\fragment_card_back.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_card_flip.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_card_flip.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\fragment_card_front.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\layout\\fragment_card_front.xml"
+    }
+]

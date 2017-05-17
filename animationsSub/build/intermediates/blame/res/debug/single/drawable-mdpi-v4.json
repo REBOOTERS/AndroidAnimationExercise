@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_action_photo.png",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\src\\main\\res\\drawable-mdpi\\ic_action_photo.png"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_list_remove.png",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\src\\main\\res\\drawable-mdpi\\ic_list_remove.png"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_action_new.png",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\src\\main\\res\\drawable-mdpi\\ic_action_new.png"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_action_info.png",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\src\\main\\res\\drawable-mdpi\\ic_action_info.png"
+    }
+]

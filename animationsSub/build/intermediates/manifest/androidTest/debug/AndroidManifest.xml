@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.android.animationsdemo.test" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="25" />
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:functionalTest="false"
+        android:handleProfiling="false"
+        android:label="Tests for com.example.android.animationsdemo.test"
+        android:targetPackage="com.example.android.animationsdemo.test" />
+
+    <meta-data
+        android:name="android.support.VERSION"
+        android:value="26.0.0-alpha1" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name" >
+        <uses-library android:name="android.test.runner" />
+
+        <activity
+            android:name="com.example.android.animationsdemo.LaunchActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.android.animationsdemo.CrossfadeActivity"
+            android:label="@string/title_crossfade"
+            android:parentActivityName="com.example.android.animationsdemo.LaunchActivity"
+            android:uiOptions="splitActionBarWhenNarrow" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LaunchActivity" />
+        </activity>
+        <activity
+            android:name="com.example.android.animationsdemo.CardFlipActivity"
+            android:label="@string/title_card_flip"
+            android:parentActivityName="com.example.android.animationsdemo.LaunchActivity"
+            android:theme="@style/DarkTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LaunchActivity" />
+        </activity>
+        <activity
+            android:name="com.example.android.animationsdemo.ScreenSlideActivity"
+            android:label="@string/title_screen_slide"
+            android:parentActivityName="com.example.android.animationsdemo.LaunchActivity"
+            android:uiOptions="splitActionBarWhenNarrow" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LaunchActivity" />
+        </activity>
+        <activity
+            android:name="com.example.android.animationsdemo.ZoomActivity"
+            android:label="@string/title_zoom"
+            android:parentActivityName="com.example.android.animationsdemo.LaunchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LaunchActivity" />
+        </activity>
+        <activity
+            android:name="com.example.android.animationsdemo.LayoutChangesActivity"
+            android:label="@string/title_layout_changes"
+            android:parentActivityName="com.example.android.animationsdemo.LaunchActivity" >
+>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LaunchActivity" />
+        </activity>
+    </application>
+
+</manifest>

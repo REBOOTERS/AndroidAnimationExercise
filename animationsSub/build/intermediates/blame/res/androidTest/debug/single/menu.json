@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\menu\\activity_layout_changes.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\menu\\activity_layout_changes.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\menu\\activity_crossfade.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\menu\\activity_crossfade.xml"
+    },
+    {
+        "merged": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\res\\merged\\androidTest\\debug\\menu\\activity_screen_slide.xml",
+        "source": "E:\\2017_Proj\\AndroidAnimationExercise\\animationsSub\\build\\intermediates\\bundles\\debug\\res\\menu\\activity_screen_slide.xml"
+    }
+]
