@@ -126,6 +126,11 @@
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings">
         </activity>
+        <activity
+            android:name=".activity.CollegeActivity"
+            android:label="@string/title_activity_college"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

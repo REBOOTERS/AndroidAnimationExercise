@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.android.animationsdemo.LaunchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.activity.CollegeActivity;
 import home.smart.fly.animations.activity.IModeActivity;
 import home.smart.fly.animations.activity.WavaAnimActivity;
 import home.smart.fly.animations.customview.BasicPosActivity;
@@ -61,7 +61,7 @@ public class ViewsFragment extends Fragment {
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
         demos.add(new ItemInfo(R.string.app_name, WheelViewActivity.class));
         demos.add(new ItemInfo(R.string.app_name, RevealAnimatorActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, LaunchActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));
 
 
         recyclerView = V.f(rootView, R.id.recyclerView);
