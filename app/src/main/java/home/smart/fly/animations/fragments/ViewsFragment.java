@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.android.animationsdemo.LaunchActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +61,8 @@ public class ViewsFragment extends Fragment {
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
         demos.add(new ItemInfo(R.string.app_name, WheelViewActivity.class));
         demos.add(new ItemInfo(R.string.app_name, RevealAnimatorActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, LaunchActivity.class));
+
 
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();

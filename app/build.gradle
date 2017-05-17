@@ -77,4 +77,5 @@ dependencies {
     compile 'com.android.support:support-vector-drawable:24.2.1'
     testCompile 'junit:junit:4.12'
     debugCompile 'com.facebook.stetho:stetho:1.4.2'
+    compile project(':animationsSub')
 }
