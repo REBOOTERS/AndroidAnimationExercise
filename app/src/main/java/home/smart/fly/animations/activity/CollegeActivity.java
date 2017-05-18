@@ -1,5 +1,6 @@
 package home.smart.fly.animations.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -15,7 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -39,6 +43,7 @@ public class CollegeActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private Context mContext;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -47,11 +52,15 @@ public class CollegeActivity extends AppCompatActivity {
     private List<SchoolBeanShell> mBeanShells;
     private List<String> locations = new ArrayList<>();
 
+
+    private ImageView headImage;
+    private TextView schoolCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_college);
-
+        mContext = this;
 
         //
         String json = getStringFromAssets("school.json");
@@ -63,13 +72,13 @@ public class CollegeActivity extends AppCompatActivity {
             locations.add(mBeanShells.get(i).getName());
         }
 
+        final int[] pics = new int[]{R.drawable.a5, R.drawable.a6, R.drawable.cat};
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(mViewPager);
@@ -82,7 +91,25 @@ public class CollegeActivity extends AppCompatActivity {
             }
         });
 
+        headImage = (ImageView) findViewById(R.id.headImg);
+        schoolCount = (TextView) findViewById(R.id.schoolCount);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                schoolCount.setText(String.valueOf(mBeanShells.get(position).getSchool().size()));
+            }
 
+            @Override
+            public void onPageSelected(int position) {
+                Glide.with(mContext).load(pics[position % pics.length]).placeholder(R.drawable.a6).into(headImage);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        mViewPager.setCurrentItem(0);
     }
 
     private String getStringFromAssets(String filename) {
@@ -90,7 +117,7 @@ public class CollegeActivity extends AppCompatActivity {
             InputStream mInputStream = getAssets().open(filename);
             StringBuilder sb = new StringBuilder();
             int len = -1;
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[mInputStream.available()];
 
             while ((len = mInputStream.read(buffer)) != -1) {
                 sb.append(new String(buffer, 0, len, "utf-8"));
