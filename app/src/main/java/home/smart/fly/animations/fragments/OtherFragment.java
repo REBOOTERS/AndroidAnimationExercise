@@ -24,6 +24,7 @@ import home.smart.fly.animations.activity.WeiXinGalleryActivity;
 import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
 import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
 import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
+import home.smart.fly.animations.recyclerview.BaseRecyclerViewActivity;
 import home.smart.fly.animations.utils.ScreenCaptureActivity;
 import home.smart.fly.animations.utils.V;
 import home.smart.fly.animations.webview.AllWebViewActivity;
@@ -64,6 +65,7 @@ public class OtherFragment extends Fragment {
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
 //        demos.add(new ItemInfo(R.string.bottomSheet, FakeFootballActivity.class));
         demos.add(new ItemInfo(R.string.app_name, WeiXinGalleryActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, BaseRecyclerViewActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

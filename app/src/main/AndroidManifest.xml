@@ -131,6 +131,10 @@
             android:label="@string/title_activity_college"
             android:theme="@style/MyTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".recyclerview.BaseRecyclerViewActivity"
+            android:label="@string/title_activity_base_recycler_view">
+        </activity>
     </application>
 
 </manifest>

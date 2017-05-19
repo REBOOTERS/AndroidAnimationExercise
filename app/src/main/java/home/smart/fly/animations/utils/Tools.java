@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -92,6 +93,25 @@ public class Tools {
             e.printStackTrace();
         }
 
+    }
+
+    public static String readStrFromAssets(String filename, Context mContext) {
+        String result = "";
+        try {
+            InputStream mInputStream = mContext.getAssets().open(filename);
+            StringBuilder sb = new StringBuilder();
+            byte[] buffer = new byte[mInputStream.available()];
+            int len;
+            while ((len = mInputStream.read(buffer)) != -1) {
+                String str = new String(buffer, 0, len);
+                sb.append(str);
+            }
+            result = sb.toString();
+            mInputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

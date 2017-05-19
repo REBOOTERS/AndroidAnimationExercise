@@ -185,8 +185,15 @@ public class CollegeActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_college, container, false);
             RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);
+//            NestedScrollView mNestedScrollView = (NestedScrollView) rootView.findViewById(R.id.nestedScrollView);
+
             List<String> datas = getArguments().getStringArrayList(ARG_SECTION_DATAS);
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getContext());
+            mLinearLayoutManager.setSmoothScrollbarEnabled(true);
+            mLinearLayoutManager.setAutoMeasureEnabled(true);
+            mRecyclerView.setLayoutManager(mLinearLayoutManager);
+            mRecyclerView.setHasFixedSize(false);
+            mRecyclerView.setNestedScrollingEnabled(false);
             MyAdapter mMyAdapter = new MyAdapter(datas);
             mRecyclerView.setAdapter(mMyAdapter);
             return rootView;
