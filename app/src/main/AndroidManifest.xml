@@ -133,6 +133,7 @@
         </activity>
         <activity
             android:name=".recyclerview.BaseRecyclerViewActivity"
+            android:theme="@style/AppTheme"
             android:label="@string/title_activity_base_recycler_view">
         </activity>
     </application>
