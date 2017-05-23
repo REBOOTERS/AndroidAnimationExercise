@@ -80,4 +80,6 @@ dependencies {
 
     //bga
     compile 'cn.bingoogolapple:bga-refreshlayout:1.1.7@aar'
+    compile 'cn.bingoogolapple:bga-banner:2.1.7@aar'
+    compile 'cn.bingoogolapple:bga-adapter:1.1.8@aar'
 }

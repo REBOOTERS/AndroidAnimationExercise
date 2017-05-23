@@ -136,7 +136,10 @@
             android:label="@string/title_activity_base_recycler_view"
             android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".bga.BgaAllActivity">
+        <activity
+            android:name=".bga.BgaAllActivity"
+            android:theme="@style/AppTheme"
+            >
         </activity>
     </application>
 

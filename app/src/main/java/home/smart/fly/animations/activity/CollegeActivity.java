@@ -23,14 +23,13 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.adapter.MyAdapter;
 import home.smart.fly.animations.adapter.SchoolBeanShell;
+import home.smart.fly.animations.utils.Tools;
 
 public class CollegeActivity extends AppCompatActivity {
 
@@ -63,7 +62,7 @@ public class CollegeActivity extends AppCompatActivity {
         mContext = this;
 
         //
-        String json = getStringFromAssets("school.json");
+        String json = Tools.readStrFromAssets("school.json",mContext);
         Gson mGson = new Gson();
         mBeanShells = mGson.fromJson(json, new TypeToken<ArrayList<SchoolBeanShell>>() {
         }.getType());
@@ -110,26 +109,6 @@ public class CollegeActivity extends AppCompatActivity {
             }
         });
         mViewPager.setCurrentItem(0);
-    }
-
-    private String getStringFromAssets(String filename) {
-        try {
-            InputStream mInputStream = getAssets().open(filename);
-            StringBuilder sb = new StringBuilder();
-            int len = -1;
-            byte[] buffer = new byte[mInputStream.available()];
-
-            while ((len = mInputStream.read(buffer)) != -1) {
-                sb.append(new String(buffer, 0, len, "utf-8"));
-            }
-            mInputStream.close();
-            return sb.toString();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
 

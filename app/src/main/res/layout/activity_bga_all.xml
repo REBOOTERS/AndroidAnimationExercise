@@ -8,6 +8,17 @@
     android:orientation="vertical"
     tools:context="home.smart.fly.animations.bga.BgaAllActivity">
 
+    <android.support.v7.widget.Toolbar
+        app:theme="@style/AppTheme.AppBarOverlay"
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+    </android.support.v7.widget.Toolbar>
+
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/rl_modulename_refresh"
         android:layout_width="match_parent"

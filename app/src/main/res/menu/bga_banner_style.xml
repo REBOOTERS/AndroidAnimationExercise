@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="alpha"
+        android:id="@+id/alpha"/>
+    <item
+        android:title="rotate"
+        android:id="@+id/rotate"/>
+    <item
+        android:title="cube"
+        android:id="@+id/cube"/>
+    <item
+        android:title="flip"
+        android:id="@+id/flip"/>
+    <item
+        android:title="accordion"
+        android:id="@+id/accordion"/>
+    <item
+        android:title="zoomFade"
+        android:id="@+id/zoomFade"/>
+    <item
+        android:title="fade"
+        android:id="@+id/fade"/>
+    <item
+        android:title="stack"
+        android:id="@+id/stack"/>
+</menu>
+
+<!--<attr name="banner_transitionEffect" format="enum">-->
+<!--<enum name="defaultEffect" value="0"/>-->
+<!--<enum name="alpha" value="1"/>-->
+<!--<enum name="rotate" value="2"/>-->
+<!--<enum name="cube" value="3"/>-->
+<!--<enum name="flip" value="4"/>-->
+<!--<enum name="accordion" value="5"/>-->
+<!--<enum name="zoomFade" value="6"/>-->
+<!--<enum name="fade" value="7"/>-->
+<!--<enum name="zoomCenter" value="8"/>-->
+<!--<enum name="zoomStack" value="9"/>-->
+<!--<enum name="stack" value="10"/>-->
+<!--<enum name="depth" value="11"/>-->
+<!--<enum name="zoom" value="12"/>-->
+<!--</attr>-->
