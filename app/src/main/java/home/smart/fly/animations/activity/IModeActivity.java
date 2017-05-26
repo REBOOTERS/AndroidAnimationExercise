@@ -103,8 +103,7 @@ public class IModeActivity extends AppCompatActivity {
                 if (state == ViewPager.SCROLL_STATE_IDLE) {
                     int position = mViewPager.getCurrentItem();
                     final int lastPosition = mViewPager.getAdapter().getCount() - 1;
-                    Log.e(TAG, "onPageScrollStateChanged: lastPosition "+lastPosition );
-//                    final int lastPosition = pics.size() - 1;
+                    Log.e(TAG, "onPageScrollStateChanged: lastPosition " + lastPosition);
                     if (position == 0) {
                         mViewPager.setCurrentItem(lastPosition == 0 ? 0 : lastPosition - 1, false);
                     } else if (position == lastPosition) {

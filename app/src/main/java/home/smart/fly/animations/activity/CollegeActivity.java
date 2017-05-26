@@ -11,13 +11,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -53,14 +53,15 @@ public class CollegeActivity extends AppCompatActivity {
 
 
     private ImageView headImage;
-    private TextView schoolCount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_college);
         mContext = this;
-
+        final Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         //
         String json = Tools.readStrFromAssets("school.json",mContext);
         Gson mGson = new Gson();
@@ -91,11 +92,10 @@ public class CollegeActivity extends AppCompatActivity {
         });
 
         headImage = (ImageView) findViewById(R.id.headImg);
-        schoolCount = (TextView) findViewById(R.id.schoolCount);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                schoolCount.setText(String.valueOf(mBeanShells.get(position).getSchool().size()));
+                mToolbar.setTitle(String.valueOf(mBeanShells.get(position).getSchool().size()));
             }
 
             @Override
