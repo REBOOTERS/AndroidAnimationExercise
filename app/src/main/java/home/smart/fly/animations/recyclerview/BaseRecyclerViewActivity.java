@@ -13,7 +13,8 @@ import home.smart.fly.animations.R;
 public class BaseRecyclerViewActivity extends AppCompatActivity {
 
     private FragmentManager mFragmentManager;
-    private GridViewFragment mGridViewFragment;
+    private StaggeredGridFragment mGridViewFragment;
+    private SimpleRecyclerViewFragment mSimpleRecyclerViewFragment;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -26,16 +27,23 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    if (mSimpleRecyclerViewFragment == null) {
+                        mSimpleRecyclerViewFragment = new SimpleRecyclerViewFragment();
+                    }
+                    mFragmentTransaction.replace(R.id.content, mSimpleRecyclerViewFragment);
+                    mFragmentTransaction.commit();
+                    return true;
+                case R.id.navigation_dashboard:
                     if (mGridViewFragment == null) {
-                        mGridViewFragment = new GridViewFragment();
+                        mGridViewFragment = new StaggeredGridFragment();
                     }
                     mFragmentTransaction.replace(R.id.content, mGridViewFragment);
                     mFragmentTransaction.commit();
                     return true;
-                case R.id.navigation_dashboard:
-                    return true;
                 case R.id.navigation_notifications:
                     return true;
+
+
             }
             return false;
         }
@@ -51,7 +59,6 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
     }
-
 
 
 }

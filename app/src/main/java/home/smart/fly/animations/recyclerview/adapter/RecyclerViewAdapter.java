@@ -1,4 +1,4 @@
-package home.smart.fly.animations.adapter;
+package home.smart.fly.animations.recyclerview.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,11 +10,9 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.utils.DpConvert;
 import home.smart.fly.animations.utils.V;
 
 /**
@@ -26,7 +24,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private Context mContext;
     private List<String> demos;
-    private List<Integer> heights = new ArrayList<>();
 
 
     public RecyclerViewAdapter(List<String> demos) {
@@ -38,28 +35,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        initRandomHeights(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.image_item, null);
         MyHolder holder = new MyHolder(view);
         return holder;
     }
 
-    private void initRandomHeights(Context context) {
-        int base = DpConvert.dip2px(context, 160);
-        int factor = DpConvert.dip2px(context, 50);
-        for (int i = 0; i < demos.size(); i++) {
-            int height = (int) (base + Math.random() * factor);
-            heights.add(height);
-        }
-    }
 
     @Override
     public void onBindViewHolder(MyHolder holder, final int position) {
-        ViewGroup.LayoutParams params = holder.mImageView.getLayoutParams();
-        params.height = heights.get(position);
-        holder.mImageView.setLayoutParams(params);
 
-        Glide.with(mContext).load(demos.get(position)).placeholder(R.drawable.a6).centerCrop().into(holder.mImageView);
+
+        Glide.with(mContext).load(demos.get(position)).placeholder(R.drawable.a6).into(holder.mImageView);
         holder.itemshell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

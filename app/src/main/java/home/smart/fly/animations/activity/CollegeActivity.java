@@ -2,6 +2,7 @@ package home.smart.fly.animations.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -60,10 +61,11 @@ public class CollegeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_college);
         mContext = this;
-        final Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        final CollapsingToolbarLayout mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         //
-        String json = Tools.readStrFromAssets("school.json",mContext);
+        String json = Tools.readStrFromAssets("school.json", mContext);
         Gson mGson = new Gson();
         mBeanShells = mGson.fromJson(json, new TypeToken<ArrayList<SchoolBeanShell>>() {
         }.getType());
@@ -95,7 +97,7 @@ public class CollegeActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mToolbar.setTitle(String.valueOf(mBeanShells.get(position).getSchool().size()));
+                mCollapsingToolbarLayout.setTitle(String.valueOf(mBeanShells.get(position).getSchool().size()));
             }
 
             @Override

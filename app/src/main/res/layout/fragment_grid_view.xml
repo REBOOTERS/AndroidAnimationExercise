@@ -3,7 +3,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="@color/cpb_green"
-             tools:context="home.smart.fly.animations.recyclerview.GridViewFragment">
+             tools:context="home.smart.fly.animations.recyclerview.StaggeredGridFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/gridView"
