@@ -48,6 +48,7 @@ public class IModeActivity extends AppCompatActivity {
 
     private List<String> pics = new ArrayList<>();
 
+    private ScheduledExecutorService mScheduledExecutorService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class IModeActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.banner);
         mViewPager.setAdapter(new MyPagerAdapter());
 
-        ScheduledExecutorService mScheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        mScheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
 
         mScheduledExecutorService.scheduleAtFixedRate(new MyTask(), 3, 3, TimeUnit.SECONDS);
 
@@ -112,7 +113,6 @@ public class IModeActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
 
@@ -199,4 +199,11 @@ public class IModeActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!mScheduledExecutorService.isShutdown()) {
+            mScheduledExecutorService.shutdownNow();
+        }
+    }
 }

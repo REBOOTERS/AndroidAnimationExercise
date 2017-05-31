@@ -49,8 +49,8 @@
         </activity>
         <activity android:name=".tradition.FrameAnimationActivity"/>
         <activity android:name=".tradition.TweenedAnimationActivity"/>
-        <activity android:name=".property.blur.BlurActivity"/>
         <activity android:name=".tradition.SwitchAnimActivity"/>
+        <activity android:name=".property.blur.BlurActivity"/>
         <activity android:name=".property.PropertyAnimationActivity"/>
         <activity android:name=".property.ValueAnimationActivity"/>
         <activity android:name=".property.AliPayAnimActivity"/>
@@ -138,8 +138,9 @@
         </activity>
         <activity
             android:name=".bga.BgaAllActivity"
-            android:theme="@style/AppTheme"
-            >
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity android:name=".activity.PlayActivity">
         </activity>
     </application>
 

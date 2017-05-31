@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_wei_xin_gallery"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context="home.smart.fly.animations.activity.WeiXinGalleryActivity">
 
+
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/load"
-        android:text="加载图片"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="加载图片"/>
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -39,7 +36,6 @@
         android:layout_margin="20dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/default_avtar"/>
-
-
+    
 
 </LinearLayout>

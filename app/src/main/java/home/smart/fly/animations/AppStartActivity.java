@@ -3,6 +3,7 @@ package home.smart.fly.animations;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources.Theme;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -95,8 +96,10 @@ public class AppStartActivity extends AppCompatActivity {
         snackbar.setActionTextColor(getResources().getColor(R.color.white));
 
         final int version = android.os.Build.VERSION.SDK_INT;
+        final String mRelease = Build.VERSION.RELEASE;
 
         Log.e("version", "android.os.Build.VERSION.SDK_INT = " + version);
+        Log.e("version", "Build.VERSION.RELEASE = " + mRelease);
     }
 
 

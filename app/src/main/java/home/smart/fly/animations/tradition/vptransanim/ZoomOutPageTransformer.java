@@ -17,18 +17,20 @@ public class ZoomOutPageTransformer implements ViewPager.PageTransformer
     @SuppressLint("NewApi")
     public void transformPage(View view, float position)
     {
-        int pageWidth = view.getWidth();
-        int pageHeight = view.getHeight();
+        int pageWidth = view.getMeasuredWidth();
+        int pageHeight = view.getMeasuredHeight();
 
         Log.e("TAG", view + " , " + position + "");
 
         if (position < -1)
         { // [-Infinity,-1)
             // This page is way off-screen to the left.
-            view.setAlpha(0);
+            view.setAlpha(1);
 
         } else if (position <= 1) //a页滑动至b页 ； a页从 0.0 -1 ；b页从1 ~ 0.0
         { // [-1,1]
+
+
             // Modify the default slide transition to shrink the page as well
             float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
             float vertMargin = pageHeight * (1 - scaleFactor) / 2;
@@ -52,7 +54,7 @@ public class ZoomOutPageTransformer implements ViewPager.PageTransformer
         } else
         { // (1,+Infinity]
             // This page is way off-screen to the right.
-            view.setAlpha(0);
+            view.setAlpha(1);
         }
     }
 }

@@ -20,6 +20,7 @@ import java.util.List;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.CameraActivity;
 import home.smart.fly.animations.activity.ImgCacheActivity;
+import home.smart.fly.animations.activity.PlayActivity;
 import home.smart.fly.animations.activity.WeiXinGalleryActivity;
 import home.smart.fly.animations.bga.BgaAllActivity;
 import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
@@ -68,6 +69,7 @@ public class OtherFragment extends Fragment {
         demos.add(new ItemInfo(R.string.app_name, BgaAllActivity.class));
         demos.add(new ItemInfo(R.string.app_name, WeiXinGalleryActivity.class));
         demos.add(new ItemInfo(R.string.app_name, BaseRecyclerViewActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, PlayActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

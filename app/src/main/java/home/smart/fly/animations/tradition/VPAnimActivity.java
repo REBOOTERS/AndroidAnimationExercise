@@ -1,5 +1,6 @@
 package home.smart.fly.animations.tradition;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,9 +17,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
+
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.tradition.vptransanim.DepthPageTransformer;
+import home.smart.fly.animations.tradition.vptransanim.MyCubeTransformer;
 import home.smart.fly.animations.tradition.vptransanim.ZoomOutPageTransformer;
+import home.smart.fly.animations.utils.Tools;
 
 public class VPAnimActivity extends AppCompatActivity {
 
@@ -38,14 +47,15 @@ public class VPAnimActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
     private static final String TAG = "VPAnimActivity";
+    private List<String> pics;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.activity_vpanim);
-
+        initDatas();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -69,6 +79,13 @@ public class VPAnimActivity extends AppCompatActivity {
 
     }
 
+    private void initDatas() {
+        String data = Tools.readStrFromAssets("pics.data", mContext);
+        pics = new Gson().fromJson(data, new TypeToken<List<String>>() {
+        }.getType());
+        pics = pics.subList(0, 8);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,6 +107,9 @@ public class VPAnimActivity extends AppCompatActivity {
                 break;
             case R.id.anim2:
                 mViewPager.setPageTransformer(true, new ZoomOutPageTransformer());
+                break;
+            case R.id.anim3:
+                mViewPager.setPageTransformer(true, new MyCubeTransformer(90));
                 break;
             default:
                 break;
@@ -115,11 +135,12 @@ public class VPAnimActivity extends AppCompatActivity {
         /**
          * Returns a new instance of this fragment for the given section
          * number.
+         * @param sectionNumber
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
+        public static PlaceholderFragment newInstance(String sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            args.putString(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
         }
@@ -128,8 +149,9 @@ public class VPAnimActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_vpanim, container, false);
-            ImageView textView = (ImageView) rootView.findViewById(R.id.section_label);
-//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            ImageView section_label = (ImageView) rootView.findViewById(R.id.section_label);
+            String url = getArguments().getString(ARG_SECTION_NUMBER);
+            Glide.with(getContext()).load(url).into(section_label);
             return rootView;
         }
     }
@@ -148,26 +170,14 @@ public class VPAnimActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            String url = pics.get(position);
+            return PlaceholderFragment.newInstance(url);
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 30;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position % 3) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return null;
+            return pics.size();
         }
     }
 }
