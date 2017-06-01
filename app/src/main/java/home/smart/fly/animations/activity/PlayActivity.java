@@ -3,27 +3,41 @@ package home.smart.fly.animations.activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.customview.EasySeekBar;
 
 
 public class PlayActivity extends AppCompatActivity {
-
+    private static final String TAG = "PlayActivity";
     @BindView(R.id.image)
     ImageView mImage;
+    @BindView(R.id.rotateX)
+    EasySeekBar mRotateX;
+    @BindView(R.id.width)
+    TextView mWidth;
+    @BindView(R.id.height)
+    TextView mHeight;
     @BindView(R.id.translationX)
-    SeekBar mTranslationX;
-    @BindView(R.id.translationXvalue)
-    TextView mTranslationXvalue;
+    EasySeekBar mTranslationX;
     @BindView(R.id.translationY)
-    SeekBar mTranslationY;
-    @BindView(R.id.translationYvalue)
-    TextView mTranslationYvalue;
+    EasySeekBar mTranslationY;
+    @BindView(R.id.translationZ)
+    EasySeekBar mTranslationZ;
+    @BindView(R.id.PivotX)
+    EasySeekBar mPivotX;
+    @BindView(R.id.PivotY)
+    EasySeekBar mPivotY;
+    @BindView(R.id.negate)
+    CheckBox mNegate;
+    @BindView(R.id.rotateY)
+    EasySeekBar mRotateY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,40 +48,82 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void playView() {
-        mTranslationX.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+
+        mTranslationX.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                ViewCompat.setTranslationX(mImage, progress);
-                mTranslationXvalue.setText(String.valueOf(progress));
+            public void onChangedValue(int value) {
+                mTranslationX.setNegate(mNegate.isChecked());
+                ViewCompat.setTranslationX(mImage, value);
             }
-
+        });
+        mTranslationY.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
+            public void onChangedValue(int value) {
+                mTranslationY.setNegate(mNegate.isChecked());
+                ViewCompat.setTranslationY(mImage, value);
             }
-
+        });
+        mTranslationZ.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onChangedValue(int value) {
+                mTranslationZ.setNegate(mNegate.isChecked());
+                ViewCompat.setTranslationZ(mImage, value);
+            }
+        });
+        mPivotX.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
+            @Override
+            public void onChangedValue(int value) {
+                mPivotX.setNegate(mNegate.isChecked());
+                ViewCompat.setPivotX(mImage, value);
+            }
+        });
+        mPivotY.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
+            @Override
+            public void onChangedValue(int value) {
+                mPivotY.setNegate(mNegate.isChecked());
+                ViewCompat.setPivotY(mImage, value);
             }
         });
 
-        mTranslationY.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+        mRotateX.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                ViewCompat.setTranslationY(mImage, progress);
-                mTranslationYvalue.setText(String.valueOf(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onChangedValue(int value) {
+                mRotateX.setNegate(mNegate.isChecked());
+                ViewCompat.setRotationX(mImage, value);
             }
         });
+        mRotateY.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
+            @Override
+            public void onChangedValue(int value) {
+                mRotateY.setNegate(mNegate.isChecked());
+                ViewCompat.setRotationY(mImage, value);
+            }
+        });
+    }
+
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        Log.e(TAG, "playView: getPivotX " + mImage.getPivotX());
+        Log.e(TAG, "playView: getPivotY " + mImage.getPivotY());
+        Log.e(TAG, "playView: getWidth " + mImage.getWidth());
+        Log.e(TAG, "playView: getHeight " + mImage.getHeight());
+        Log.e(TAG, "playView: getMeasuredWidth " + mImage.getMeasuredWidth());
+        Log.e(TAG, "playView: getMeasuredHeight " + mImage.getMeasuredHeight());
+        Log.e(TAG, "playView: getElevation " + ViewCompat.getElevation(mImage));
+
+        mWidth.setText("ImageWidth= " + mImage.getMeasuredWidth());
+        mHeight.setText("ImageHeight= " + mImage.getMeasuredHeight());
+        mTranslationX.setMax(mImage.getMeasuredWidth());
+        mTranslationY.setMax(mImage.getMeasuredHeight());
+        mPivotX.setMax(mImage.getMeasuredWidth());
+        mPivotY.setMax(mImage.getMeasuredHeight());
+        mRotateX.setMax(90);
+        mRotateY.setMax(90);
+
     }
 }

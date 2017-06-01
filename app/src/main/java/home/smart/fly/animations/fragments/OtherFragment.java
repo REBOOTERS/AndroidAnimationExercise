@@ -58,6 +58,7 @@ public class OtherFragment extends Fragment {
     }
 
     private void InitView() {
+        demos.add(new ItemInfo(R.string.app_name, PlayActivity.class));
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
         demos.add(new ItemInfo(R.string.puzzle_game, PuzzleActivity.class));
         demos.add(new ItemInfo(R.string.webviewInfo, AllWebViewActivity.class));
@@ -69,7 +70,6 @@ public class OtherFragment extends Fragment {
         demos.add(new ItemInfo(R.string.app_name, BgaAllActivity.class));
         demos.add(new ItemInfo(R.string.app_name, WeiXinGalleryActivity.class));
         demos.add(new ItemInfo(R.string.app_name, BaseRecyclerViewActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, PlayActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

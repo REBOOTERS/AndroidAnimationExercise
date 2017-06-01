@@ -12,62 +12,91 @@
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:layout_marginTop="50dp"
         android:scaleType="fitXY"
         android:src="@drawable/a6"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <TextView
+            android:textColor="@color/black"
+            tools:text="11111"
+            android:id="@+id/width"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="translationX"/>
-
-        <SeekBar
-            android:id="@+id/translationX"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/translationXvalue"
+            android:textColor="@color/black"
+            tools:text="22222"
+            android:id="@+id/height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text=""/>
+            android:layout_margin="5dp"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
-    <LinearLayout
+
+    <home.smart.fly.animations.customview.EasySeekBar
+        android:id="@+id/translationX"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="20dp"
+        app:label="translationX"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="translationY"/>
+    <home.smart.fly.animations.customview.EasySeekBar
+        android:id="@+id/translationY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:label="translationY"/>
 
-        <SeekBar
-            android:id="@+id/translationY"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+    <home.smart.fly.animations.customview.EasySeekBar
+        android:id="@+id/translationZ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:label="translationZ"/>
 
-        <TextView
-            android:id="@+id/translationYvalue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text=""/>
+    <home.smart.fly.animations.customview.EasySeekBar
+        android:id="@+id/PivotX"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:label="PivotX"/>
 
-    </LinearLayout>
+    <home.smart.fly.animations.customview.EasySeekBar
+        android:id="@+id/PivotY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:label="PivotY"/>
+
+    <home.smart.fly.animations.customview.EasySeekBar
+        android:id="@+id/rotateX"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:label="RotationX"/>
+
+    <home.smart.fly.animations.customview.EasySeekBar
+        android:id="@+id/rotateY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:label="RotationY"/>
+
+
+    <CheckBox
+        android:id="@+id/negate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="negate"/>
 
 </LinearLayout>

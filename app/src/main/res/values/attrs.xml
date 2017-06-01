@@ -48,4 +48,9 @@
         <attr name="textColorCenter" format="color"/>
         <attr name="dividerColor" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="EasySeekBar">
+        <attr name="label" format="string"/>
+        <attr name="isNegate" format="boolean"/>
+    </declare-styleable>
 </resources>
