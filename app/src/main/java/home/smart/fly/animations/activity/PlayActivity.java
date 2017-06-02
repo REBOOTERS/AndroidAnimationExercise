@@ -38,6 +38,10 @@ public class PlayActivity extends AppCompatActivity {
     CheckBox mNegate;
     @BindView(R.id.rotateY)
     EasySeekBar mRotateY;
+    @BindView(R.id.scaleX)
+    EasySeekBar mScaleX;
+    @BindView(R.id.scaleY)
+    EasySeekBar mScaleY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +78,12 @@ public class PlayActivity extends AppCompatActivity {
         mPivotX.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
             @Override
             public void onChangedValue(int value) {
-                mPivotX.setNegate(mNegate.isChecked());
                 ViewCompat.setPivotX(mImage, value);
             }
         });
         mPivotY.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
             @Override
             public void onChangedValue(int value) {
-                mPivotY.setNegate(mNegate.isChecked());
                 ViewCompat.setPivotY(mImage, value);
             }
         });
@@ -99,6 +101,28 @@ public class PlayActivity extends AppCompatActivity {
             public void onChangedValue(int value) {
                 mRotateY.setNegate(mNegate.isChecked());
                 ViewCompat.setRotationY(mImage, value);
+            }
+        });
+        mScaleX.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
+            @Override
+            public void onChangedValue(int value) {
+                mScaleX.setNegate(mNegate.isChecked());
+                float scale = value / 100.0f;
+                if (scale <= 0.0f) {
+                    scale = 0.01f;
+                }
+                ViewCompat.setScaleX(mImage, scale);
+            }
+        });
+        mScaleY.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
+            @Override
+            public void onChangedValue(int value) {
+                mScaleY.setNegate(mNegate.isChecked());
+                float scale = value / 100.0f;
+                if (scale <= 0.0f) {
+                    scale = 0.01f;
+                }
+                ViewCompat.setScaleY(mImage, scale);
             }
         });
     }
@@ -124,6 +148,8 @@ public class PlayActivity extends AppCompatActivity {
         mPivotY.setMax(mImage.getMeasuredHeight());
         mRotateX.setMax(90);
         mRotateY.setMax(90);
+        mScaleY.setMax(100);
+        mScaleX.setMax(100);
 
     }
 }

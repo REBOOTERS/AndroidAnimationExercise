@@ -42,61 +42,88 @@
     </LinearLayout>
 
 
-    <home.smart.fly.animations.customview.EasySeekBar
-        android:id="@+id/translationX"
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:label="translationX"/>
+        android:layout_height="match_parent">
 
-    <home.smart.fly.animations.customview.EasySeekBar
-        android:id="@+id/translationY"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:label="translationY"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/translationX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="translationX"/>
 
-    <home.smart.fly.animations.customview.EasySeekBar
-        android:id="@+id/translationZ"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:label="translationZ"/>
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/translationY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="translationY"/>
 
-    <home.smart.fly.animations.customview.EasySeekBar
-        android:id="@+id/PivotX"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:label="PivotX"/>
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/translationZ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="translationZ"/>
 
-    <home.smart.fly.animations.customview.EasySeekBar
-        android:id="@+id/PivotY"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:label="PivotY"/>
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/PivotX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="PivotX"/>
 
-    <home.smart.fly.animations.customview.EasySeekBar
-        android:id="@+id/rotateX"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:label="RotationX"/>
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/PivotY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="PivotY"/>
 
-    <home.smart.fly.animations.customview.EasySeekBar
-        android:id="@+id/rotateY"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:label="RotationY"/>
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/rotateX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="RotationX"/>
+
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/rotateY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="RotationY"/>
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/scaleX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="scaleX"/>
+
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/scaleY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="scaleY"/>
 
 
-    <CheckBox
-        android:id="@+id/negate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="negate"/>
+            <CheckBox
+                android:id="@+id/negate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="negate"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
 </LinearLayout>

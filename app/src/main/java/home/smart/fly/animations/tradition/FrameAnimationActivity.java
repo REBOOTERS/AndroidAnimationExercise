@@ -20,18 +20,17 @@ public class FrameAnimationActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frame_animation);
-        ImageView animationImg1 = (ImageView) findViewById(R.id.animation1);
-        animationImg1.setImageResource(R.drawable.frame_anim1);
-        AnimationDrawable animationDrawable1 = (AnimationDrawable) animationImg1.getDrawable();
-        animationDrawable1.start();
-
-
 
 
     }
 
     @Override
     public void initView() {
+        animationImg1 = (ImageView) findViewById(R.id.animation1);
+        animationImg1.setImageResource(R.drawable.frame_anim1);
+        animationDrawable1 = (AnimationDrawable) animationImg1.getDrawable();
+        animationDrawable1.start();
+
         animationImg2 = (ImageView) findViewById(R.id.animation2);
         animationImg2.setImageResource(R.drawable.frame_anim2);
         animationDrawable2 = (AnimationDrawable) animationImg2.getDrawable();
@@ -51,6 +50,6 @@ public class FrameAnimationActivity extends BaseActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(0,R.anim.zoomout);
+        overridePendingTransition(0, R.anim.zoomout);
     }
 }
