@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.ArgbAnimator;
+import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.Tools;
 
 public class IModeActivity extends AppCompatActivity {
@@ -56,7 +58,7 @@ public class IModeActivity extends AppCompatActivity {
         mContext = this;
         setContentView(R.layout.activity_imode);
         //
-
+        StatusBarUtil.setColor(this, R.color.transparent, 0);
         argb = new ArgbAnimator(Color.TRANSPARENT, getResources().getColor(R.color.colorPrimaryDark));
         initDatas();
         initView();
@@ -85,9 +87,7 @@ public class IModeActivity extends AppCompatActivity {
         mViewPager.setAdapter(new MyPagerAdapter());
 
         mScheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
-
         mScheduledExecutorService.scheduleAtFixedRate(new MyTask(), 3, 3, TimeUnit.SECONDS);
-
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -113,6 +113,23 @@ public class IModeActivity extends AppCompatActivity {
                 }
             }
         });
+        mViewPager.setPageTransformer(true,new MyTransformer());
+    }
+
+
+    private class MyTransformer implements ViewPager.PageTransformer {
+
+        @Override
+        public void transformPage(View page, float position) {
+            if (position < -1) {
+                ViewCompat.setScaleY(page, 0.9f);
+            } else if (position <= 1) {
+                float scale = Math.max(0.9f, 1 - Math.abs(position));
+                ViewCompat.setScaleY(page, scale);
+            } else {
+                ViewCompat.setScaleY(page, 0.9f);
+            }
+        }
     }
 
 
@@ -190,6 +207,7 @@ public class IModeActivity extends AppCompatActivity {
         if (color != lastColor) {
             lastColor = color;
             head.setBackgroundColor(color);
+            StatusBarUtil.setColor(this,color,0);
         }
 
         if (fraction < 1) {

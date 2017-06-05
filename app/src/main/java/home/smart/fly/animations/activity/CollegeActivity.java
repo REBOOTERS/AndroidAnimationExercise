@@ -1,7 +1,9 @@
 package home.smart.fly.animations.activity;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,9 +33,12 @@ import java.util.List;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.adapter.MyAdapter;
 import home.smart.fly.animations.adapter.SchoolBeanShell;
+import home.smart.fly.animations.interfaces.AppBarStatusChangeListener;
+import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.Tools;
 
 public class CollegeActivity extends AppCompatActivity {
+    private static final String TAG = "CollegeActivity";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -54,16 +60,28 @@ public class CollegeActivity extends AppCompatActivity {
 
 
     private ImageView headImage;
+    private CollapsingToolbarLayout mToolbarLayout;
+    private AppBarLayout mAppBarLayout;
 
+    private Resources res;
+    private int black, colorPrimary;
+
+    boolean test = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_college);
+        res = getResources();
+        black = res.getColor(R.color.black);
+        colorPrimary = res.getColor(R.color.colorPrimary);
+
+        StatusBarUtil.setColor(this, black);
         mContext = this;
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        final CollapsingToolbarLayout mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        mToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         //
         String json = Tools.readStrFromAssets("school.json", mContext);
         Gson mGson = new Gson();
@@ -85,11 +103,17 @@ public class CollegeActivity extends AppCompatActivity {
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(mViewPager);
 
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (test) {
+                    StatusBarUtil.setColor(CollegeActivity.this, colorPrimary,0);
+                } else {
+                    StatusBarUtil.setColor(CollegeActivity.this, black);
+                }
+                test = !test;
             }
         });
 
@@ -97,12 +121,15 @@ public class CollegeActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mCollapsingToolbarLayout.setTitle(String.valueOf(mBeanShells.get(position).getSchool().size()));
+                mToolbarLayout.setTitle(String.valueOf(mBeanShells.get(position).getSchool().size()));
             }
 
             @Override
             public void onPageSelected(int position) {
-                Glide.with(mContext).load(pics[position % pics.length]).placeholder(R.drawable.a6).into(headImage);
+                Glide.with(mContext)
+                        .load(pics[position % pics.length])
+                        .placeholder(R.drawable.a6)
+                        .into(headImage);
             }
 
             @Override
@@ -111,6 +138,29 @@ public class CollegeActivity extends AppCompatActivity {
             }
         });
         mViewPager.setCurrentItem(0);
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                Log.e(TAG, "onOffsetChanged: " + verticalOffset);
+                int temp = mAppBarLayout.getTotalScrollRange();
+                Log.e(TAG, "onOffsetChanged: " + temp);
+
+
+                if (Math.abs(verticalOffset) >= mAppBarLayout.getTotalScrollRange()) {
+                    StatusBarUtil.setColor(CollegeActivity.this, colorPrimary,0);
+                } else {
+                    StatusBarUtil.setColor(CollegeActivity.this, black);
+                }
+            }
+        });
+
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarStatusChangeListener() {
+            @Override
+            public void onStatusChanged(AppBarLayout appBarLayout, int status) {
+
+            }
+        });
+
     }
 
 

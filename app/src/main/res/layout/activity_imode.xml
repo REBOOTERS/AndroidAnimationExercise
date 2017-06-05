@@ -5,6 +5,7 @@
     android:id="@+id/activity_imode"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="home.smart.fly.animations.activity.IModeActivity">
 
 
@@ -18,18 +19,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipChildren="false"
             android:orientation="vertical">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
                 />
 
             <ImageView
                 android:layout_width="match_parent"
-                android:scaleType="fitStart"
                 android:layout_height="wrap_content"
+                android:scaleType="fitStart"
                 android:src="@drawable/name"/>
 
 
@@ -37,25 +41,25 @@
     </android.support.v4.widget.NestedScrollView>
 
     <FrameLayout
-        android:background="@android:color/transparent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
 
         <LinearLayout
             android:id="@+id/head"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
-                android:visibility="invisible"
                 android:id="@+id/title"
-                android:text="标题"
-                android:textSize="16sp"
-                android:textColor="@color/white"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="标题"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:visibility="invisible"/>
         </LinearLayout>
     </FrameLayout>
 </FrameLayout>
