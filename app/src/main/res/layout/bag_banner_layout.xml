@@ -14,5 +14,5 @@
         app:banner_pageChangeDuration="1500"
         app:banner_placeholderDrawable="@drawable/holder"
         app:banner_tipTextSize="12sp"
-        app:banner_transitionEffect="accordion"/>
+        app:banner_transitionEffect="zoomCenter"/>
 </LinearLayout>

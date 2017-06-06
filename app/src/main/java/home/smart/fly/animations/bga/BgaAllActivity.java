@@ -2,6 +2,7 @@ package home.smart.fly.animations.bga;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,17 +21,24 @@ import java.util.List;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.bgabanner.transformer.TransitionEffect;
+import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
+import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.adapter.SchoolBeanShell;
 import home.smart.fly.animations.utils.T;
 import home.smart.fly.animations.utils.Tools;
 
 
-public class BgaAllActivity extends AppCompatActivity implements BGABanner.Adapter<ImageView, String>, BGABanner.Delegate<ImageView, String> {
+public class BgaAllActivity extends AppCompatActivity implements
+        BGARefreshLayout.BGARefreshLayoutDelegate,
+        BGABanner.Adapter<ImageView, String>,
+        BGABanner.Delegate<ImageView, String> {
     private Context mContext;
     private BGABanner mBGABanner;
     private List<String> locations = new ArrayList<>();
     private ContentAdapter mContentAdapter;
+
+    private BGARefreshLayout mBGARefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,10 @@ public class BgaAllActivity extends AppCompatActivity implements BGABanner.Adapt
         setContentView(R.layout.activity_bga_all);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        mBGARefreshLayout = (BGARefreshLayout) findViewById(R.id.rl_modulename_refresh);
+        mBGARefreshLayout.setDelegate(this);
+        BGANormalRefreshViewHolder mRefreshViewHolder = new BGANormalRefreshViewHolder(this, true);
+        mBGARefreshLayout.setRefreshViewHolder(mRefreshViewHolder);
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mContentAdapter = new ContentAdapter(mRecyclerView);
@@ -131,5 +143,26 @@ public class BgaAllActivity extends AppCompatActivity implements BGABanner.Adapt
         }
         mBGABanner.setTransitionEffect(mTransitionEffect);
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mBGARefreshLayout.endRefreshing();
+            }
+        }, 1000);
+    }
+
+    @Override
+    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mBGARefreshLayout.endLoadingMore();
+            }
+        }, 1000);
+        return true;
     }
 }
