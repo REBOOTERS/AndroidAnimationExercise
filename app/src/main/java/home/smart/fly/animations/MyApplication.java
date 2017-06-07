@@ -1,6 +1,5 @@
 package home.smart.fly.animations;
 
-import android.os.Handler;
 import android.support.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
@@ -15,6 +14,4 @@ public class MyApplication extends MultiDexApplication {
         super.onCreate();
         Stetho.initializeWithDefaults(this);
     }
-
-    Handler mHandler;
 }

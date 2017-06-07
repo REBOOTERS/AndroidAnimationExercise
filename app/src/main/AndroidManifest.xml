@@ -25,6 +25,9 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     ///////my self
     <uses-permission android:name="android.permission.CAMERA"/>
+    
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
 
     <uses-feature
         android:name="android.hardware.Camera"
@@ -141,6 +144,8 @@
             android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".activity.PlayActivity">
+        </activity>
+        <activity android:name=".activity.PendingImgActivity">
         </activity>
     </application>
 

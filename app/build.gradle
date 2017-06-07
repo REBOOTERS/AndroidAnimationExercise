@@ -79,8 +79,8 @@ dependencies {
     compile 'cn.bingoogolapple:bga-refreshlayout:1.1.7@aar'
     compile 'cn.bingoogolapple:bga-banner:2.1.7@aar'
     compile 'cn.bingoogolapple:bga-adapter:1.1.8@aar'
-    testCompile 'junit:junit:4.12'
-    debugCompile 'com.facebook.stetho:stetho:1.4.2'
     compile 'com.jakewharton:butterknife:8.6.0'
     compile 'com.jakewharton:butterknife-compiler:8.6.0'
+    testCompile 'junit:junit:4.12'
+    debugCompile 'com.facebook.stetho:stetho:1.4.2'
 }
