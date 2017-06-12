@@ -74,4 +74,12 @@
 
     <style name="MyTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="DarkTheme" parent="android:Theme.Holo">
+        <item name="android:actionBarStyle">@style/DarkActionBar</item>
+    </style>
+
+    <style name="DarkActionBar" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>
