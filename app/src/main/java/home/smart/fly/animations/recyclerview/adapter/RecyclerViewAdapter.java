@@ -42,10 +42,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     @Override
-    public void onBindViewHolder(MyHolder holder, final int position) {
+    public void onBindViewHolder(final MyHolder holder, final int position) {
 
 
         Glide.with(mContext).load(demos.get(position)).placeholder(R.drawable.a6).into(holder.mImageView);
+
+
         holder.itemshell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -11,7 +11,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="home.smart.fly.animations.activity.jianshu.WavaAnimActivity">
+    tools:context="home.smart.fly.animations.activity.WavaAnimActivity">
 
     <ImageView
         android:id="@+id/image"

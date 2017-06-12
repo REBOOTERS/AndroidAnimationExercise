@@ -106,7 +106,6 @@ public class PlayActivity extends AppCompatActivity {
         mScaleX.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
             @Override
             public void onChangedValue(int value) {
-                mScaleX.setNegate(mNegate.isChecked());
                 float scale = value / 100.0f;
                 if (scale <= 0.0f) {
                     scale = 0.01f;
@@ -117,7 +116,6 @@ public class PlayActivity extends AppCompatActivity {
         mScaleY.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
             @Override
             public void onChangedValue(int value) {
-                mScaleY.setNegate(mNegate.isChecked());
                 float scale = value / 100.0f;
                 if (scale <= 0.0f) {
                     scale = 0.01f;
@@ -125,7 +123,12 @@ public class PlayActivity extends AppCompatActivity {
                 ViewCompat.setScaleY(mImage, scale);
             }
         });
+
+
+
     }
+
+
 
 
     @Override

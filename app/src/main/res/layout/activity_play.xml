@@ -22,35 +22,37 @@
         >
 
         <TextView
-            android:textColor="@color/black"
-            tools:text="11111"
             android:id="@+id/width"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            tools:text="11111"/>
 
         <TextView
-            android:textColor="@color/black"
-            tools:text="22222"
             android:id="@+id/height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            tools:text="22222"/>
 
     </LinearLayout>
 
 
     <ScrollView
-        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
             <home.smart.fly.animations.customview.EasySeekBar
                 android:id="@+id/translationX"
                 android:layout_width="match_parent"
@@ -99,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 app:label="RotationY"/>
+
             <home.smart.fly.animations.customview.EasySeekBar
                 android:id="@+id/scaleX"
                 android:layout_width="match_parent"
@@ -123,7 +126,6 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </LinearLayout>

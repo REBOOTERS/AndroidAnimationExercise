@@ -51,6 +51,8 @@ public class ImgCacheActivity extends AppCompatActivity {
         mContext = this;
         setContentView(R.layout.activity_img_cache);
         initView();
+
+        getResources().getAssets();
     }
 
     private void initView() {

@@ -42,8 +42,8 @@ public class EasySeekBar extends LinearLayout {
 
     private void initView(Context context) {
         setOrientation(VERTICAL);
-        LayoutInflater mInlayter = LayoutInflater.from(context);
-        View view = mInlayter.inflate(R.layout.easy_seekbar_layout, this, false);
+        LayoutInflater mInflater = LayoutInflater.from(context);
+        View view = mInflater.inflate(R.layout.easy_seekbar_layout, this, false);
         TextView labelTv = (TextView) view.findViewById(R.id.label);
         mSeekBar = (SeekBar) view.findViewById(R.id.seekBar);
         final TextView value = (TextView) view.findViewById(R.id.value);
