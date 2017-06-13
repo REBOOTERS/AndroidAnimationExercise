@@ -85,7 +85,7 @@ public class ZoomActivity extends FragmentActivity {
             case android.R.id.home:
                 // Navigate "up" the demo structure to the launchpad activity.
                 // See http://developer.android.com/design/patterns/navigation.html for more.
-                NavUtils.navigateUpTo(this, new Intent(this, MainActivity.class));
+                NavUtils.navigateUpTo(this, new Intent(this, AnimationsDemo.class));
                 return true;
         }
 

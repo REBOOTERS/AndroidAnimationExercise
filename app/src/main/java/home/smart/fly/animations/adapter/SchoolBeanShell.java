@@ -1,5 +1,7 @@
 package home.smart.fly.animations.adapter;
 
+import com.baidu.mapapi.model.LatLng;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class SchoolBeanShell implements Serializable{
 
     private int id;
     private String name;
+    private LatLng mLatLng;
     private List<SchoolBean> school;
 
     public int getId() {
@@ -43,12 +46,20 @@ public class SchoolBeanShell implements Serializable{
         this.school = school;
     }
 
+    public LatLng getLatLng() {
+        return mLatLng;
+    }
+
+    public void setLatLng(LatLng latLng) {
+        mLatLng = latLng;
+    }
+
     public static class SchoolBean implements Serializable{
         /**
          * id : 1001
          * name : 清华大学
          */
-
+        private LatLng mLatLng;
         private int id;
         private String name;
 
@@ -66,6 +77,14 @@ public class SchoolBeanShell implements Serializable{
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public LatLng getLatLng() {
+            return mLatLng;
+        }
+
+        public void setLatLng(LatLng latLng) {
+            mLatLng = latLng;
         }
     }
 }

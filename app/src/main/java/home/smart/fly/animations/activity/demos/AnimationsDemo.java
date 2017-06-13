@@ -30,7 +30,7 @@ import home.smart.fly.animations.R;
  * The launchpad activity for this sample project. This activity launches other activities that
  * demonstrate implementations of common animations.
  */
-public class MainActivity extends ListActivity {
+public class AnimationsDemo extends ListActivity {
     /**
      * This class describes an individual sample (the sample title, and the activity class that
      * demonstrates this sample).
@@ -79,6 +79,6 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView listView, View view, int position, long id) {
         // Launch the sample associated with this list position.
-        startActivity(new Intent(MainActivity.this, mSamples[position].activityClass));
+        startActivity(new Intent(AnimationsDemo.this, mSamples[position].activityClass));
     }
 }

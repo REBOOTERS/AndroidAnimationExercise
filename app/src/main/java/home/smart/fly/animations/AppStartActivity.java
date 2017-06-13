@@ -32,12 +32,13 @@ public class AppStartActivity extends AppCompatActivity {
     private static final String TAG = "AppStartActivity";
     private Snackbar snackbar = null;
     private CoordinatorLayout main_contetn;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_start);
-
+        mContext = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -100,7 +101,11 @@ public class AppStartActivity extends AppCompatActivity {
 
         Log.e("version", "android.os.Build.VERSION.SDK_INT = " + version);
         Log.e("version", "Build.VERSION.RELEASE = " + mRelease);
+
+
     }
+
+
 
 
     @Override

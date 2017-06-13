@@ -83,7 +83,7 @@ public class CollegeActivity extends AppCompatActivity {
         mToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         //
-        String json = Tools.readStrFromAssets("school.json", mContext);
+        String json = Tools.readStrFromAssets("newSchool.json", mContext);
         Gson mGson = new Gson();
         mBeanShells = mGson.fromJson(json, new TypeToken<ArrayList<SchoolBeanShell>>() {
         }.getType());
@@ -109,7 +109,7 @@ public class CollegeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (test) {
-                    StatusBarUtil.setColor(CollegeActivity.this, colorPrimary,0);
+                    StatusBarUtil.setColor(CollegeActivity.this, colorPrimary, 0);
                 } else {
                     StatusBarUtil.setColor(CollegeActivity.this, black);
                 }
@@ -121,15 +121,18 @@ public class CollegeActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                mToolbarLayout.setTitle(String.valueOf(mBeanShells.get(position).getSchool().size()));
             }
 
             @Override
             public void onPageSelected(int position) {
+                mToolbarLayout.setTitle(String.valueOf(mBeanShells.get(position).getSchool().size()));
                 Glide.with(mContext)
                         .load(pics[position % pics.length])
                         .placeholder(R.drawable.a6)
                         .into(headImage);
+
+                Log.e(TAG, "the longitude is " + mBeanShells.get(position).getLatLng().longitude);
+                Log.e(TAG, "the latitude  is " + mBeanShells.get(position).getLatLng().latitude);
             }
 
             @Override
@@ -141,13 +144,10 @@ public class CollegeActivity extends AppCompatActivity {
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                Log.e(TAG, "onOffsetChanged: " + verticalOffset);
-                int temp = mAppBarLayout.getTotalScrollRange();
-                Log.e(TAG, "onOffsetChanged: " + temp);
 
 
                 if (Math.abs(verticalOffset) >= mAppBarLayout.getTotalScrollRange()) {
-                    StatusBarUtil.setColor(CollegeActivity.this, colorPrimary,0);
+                    StatusBarUtil.setColor(CollegeActivity.this, colorPrimary, 0);
                 } else {
                     StatusBarUtil.setColor(CollegeActivity.this, black);
                 }

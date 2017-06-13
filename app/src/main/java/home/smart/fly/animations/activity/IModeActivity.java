@@ -34,6 +34,7 @@ import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.Tools;
 
 public class IModeActivity extends AppCompatActivity {
+    private static final String URL = "http://upload.jianshu.io/admin_banners/web_images/3107/a9416a7506d328428321ffb84712ee5eb551463e.jpg";
     private static final String TAG = "IModeActivity";
     private LinearLayout head;
     private NestedScrollView mScrollView;
@@ -68,6 +69,7 @@ public class IModeActivity extends AppCompatActivity {
         String data = Tools.readStrFromAssets("pics.data", mContext);
         pics = new Gson().fromJson(data, new TypeToken<List<String>>() {
         }.getType());
+
         pics = pics.subList(0, 4);
     }
 

@@ -42,6 +42,10 @@ public class PlayActivity extends AppCompatActivity {
     EasySeekBar mScaleX;
     @BindView(R.id.scaleY)
     EasySeekBar mScaleY;
+    @BindView(R.id.scrollX)
+    EasySeekBar mScrollX;
+    @BindView(R.id.scrollY)
+    EasySeekBar mScrollY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,9 +111,6 @@ public class PlayActivity extends AppCompatActivity {
             @Override
             public void onChangedValue(int value) {
                 float scale = value / 100.0f;
-                if (scale <= 0.0f) {
-                    scale = 0.01f;
-                }
                 ViewCompat.setScaleX(mImage, scale);
             }
         });
@@ -117,42 +118,56 @@ public class PlayActivity extends AppCompatActivity {
             @Override
             public void onChangedValue(int value) {
                 float scale = value / 100.0f;
-                if (scale <= 0.0f) {
-                    scale = 0.01f;
-                }
                 ViewCompat.setScaleY(mImage, scale);
             }
         });
 
+        mScrollX.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
+            @Override
+            public void onChangedValue(int value) {
+                mScrollX.setNegate(mNegate.isChecked());
+                mImage.scrollTo(value, 0);
+
+            }
+        });
+
+        mScrollY.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
+            @Override
+            public void onChangedValue(int value) {
+                mScrollY.setNegate(mNegate.isChecked());
+                mImage.scrollTo(0, value);
+            }
+        });
 
 
     }
-
-
 
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        Log.e(TAG, "playView: getPivotX " + mImage.getPivotX());
-        Log.e(TAG, "playView: getPivotY " + mImage.getPivotY());
-        Log.e(TAG, "playView: getWidth " + mImage.getWidth());
-        Log.e(TAG, "playView: getHeight " + mImage.getHeight());
-        Log.e(TAG, "playView: getMeasuredWidth " + mImage.getMeasuredWidth());
-        Log.e(TAG, "playView: getMeasuredHeight " + mImage.getMeasuredHeight());
-        Log.e(TAG, "playView: getElevation " + ViewCompat.getElevation(mImage));
+        Log.e(TAG, "getPivotX " + mImage.getPivotX());
+        Log.e(TAG, "getPivotY " + mImage.getPivotY());
+        Log.e(TAG, "getWidth " + mImage.getWidth());
+        Log.e(TAG, "getHeight " + mImage.getHeight());
+        Log.e(TAG, "getMeasuredWidth " + mImage.getMeasuredWidth());
+        Log.e(TAG, "getMeasuredHeight " + mImage.getMeasuredHeight());
+        Log.e(TAG, "getElevation " + ViewCompat.getElevation(mImage));
+        Log.e(TAG, "getX: " + mImage.getX());
+        Log.e(TAG, "getY: " + mImage.getY());
+        Log.e(TAG, "getScrollX: " + mImage.getScrollX());
+        Log.e(TAG, "getScrollY: " + mImage.getScrollY());
 
         mWidth.setText("ImageWidth= " + mImage.getMeasuredWidth());
         mHeight.setText("ImageHeight= " + mImage.getMeasuredHeight());
+        mScrollX.setMax(mImage.getMeasuredWidth());
+        mScrollY.setMax(mImage.getMeasuredHeight());
         mTranslationX.setMax(mImage.getMeasuredWidth());
         mTranslationY.setMax(mImage.getMeasuredHeight());
         mPivotX.setMax(mImage.getMeasuredWidth());
         mPivotY.setMax(mImage.getMeasuredHeight());
-        mRotateX.setMax(90);
-        mRotateY.setMax(90);
-        mScaleY.setMax(100);
-        mScaleX.setMax(100);
-
+        mRotateX.setMax(360);
+        mRotateY.setMax(360);
     }
 }

@@ -12,6 +12,7 @@
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="160dp"
+        android:background="@color/colorPrimary"
         android:scaleType="fitXY"
         android:src="@drawable/a6"/>
 
@@ -39,8 +40,20 @@
             android:textColor="@color/black"
             tools:text="22222"/>
 
+
+        <CheckBox
+            android:id="@+id/negate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="isNegative"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/black"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -52,6 +65,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/scrollX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="scrollX"/>
+
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/scrollY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="scrollY"/>
 
             <home.smart.fly.animations.customview.EasySeekBar
                 android:id="@+id/translationX"
@@ -117,12 +144,6 @@
                 app:label="scaleY"/>
 
 
-            <CheckBox
-                android:id="@+id/negate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="negate"/>
         </LinearLayout>
 
     </ScrollView>
