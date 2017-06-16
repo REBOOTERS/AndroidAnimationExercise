@@ -24,7 +24,7 @@ public class LiteSwipeMenu extends ViewGroup {
     private int mDragWipeOffset; //侧边拖动的偏移值
     private int mMenuOffset; //菜单距右边的距离
     private boolean isMeasured = false; //是否已经测量过
-    private boolean isMenuShowing = false; //是否已经显示了菜单
+    private boolean isMenuOpened = false; //是否已经显示了菜单
     private onMenuSwipeListener mListener; //滑动监听
 
 
@@ -65,7 +65,7 @@ public class LiteSwipeMenu extends ViewGroup {
                     intercept = true;
                     break;
                 }
-                if (!isMenuShowing()) {
+                if (!isMenuOpened()) {
                     if (x >= Dp2Px(getContext(), mDragWipeOffset)) {
                         return false;
                     }
@@ -101,9 +101,8 @@ public class LiteSwipeMenu extends ViewGroup {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                float xDelta = x - xLast;
-                float offset = xDelta;
-                touchMove_deal(offset);
+                float offset = x - xLast;
+//                touchMove_deal(offset);
                 break;
             case MotionEvent.ACTION_UP:
                 touchUp_deal();
@@ -114,7 +113,6 @@ public class LiteSwipeMenu extends ViewGroup {
     }
 
 
-    //滑动处理
     private void touchMove_deal(float offset) {
         if (getScrollX() - offset <= 0) {
             offset = 0;
@@ -124,13 +122,12 @@ public class LiteSwipeMenu extends ViewGroup {
         scrollBy((int) (-offset), 0); //跟随拖动
 
         if (mListener != null) {
-            mListener.onProgressChange(offset);
+            mListener.onProgressChange(offset, mMenuView, mContentView);
         }
 
     }
 
 
-    //抬起处理
     private void touchUp_deal() {
         if (getScrollX() < (mScreenWidth - mMenuOffset) / 2) {
             //滑动菜单
@@ -181,20 +178,20 @@ public class LiteSwipeMenu extends ViewGroup {
 
     public interface onMenuSwipeListener {
 
-        void onProgressChange(float progress);
+        void onProgressChange(float progress, View menuView, View contentView);
     }
 
     public void setOnSwipeProgressListener(onMenuSwipeListener listener) {
         this.mListener = listener;
     }
 
-    public boolean isMenuShowing() {
+    public boolean isMenuOpened() {
         if (getScrollX() <= 0) {
-            isMenuShowing = true;
+            isMenuOpened = true;
         } else {
-            isMenuShowing = false;
+            isMenuOpened = false;
         }
-        return isMenuShowing;
+        return isMenuOpened;
     }
 
     public void openMenu() {
@@ -215,6 +212,6 @@ public class LiteSwipeMenu extends ViewGroup {
         if (Math.abs(factor) > 1.0) {
             factor = 1.0f;
         }
-        mMenuOffset = (int) (mScreenWidth*Math.abs(factor));
+        mMenuOffset = (int) (mScreenWidth * Math.abs(factor));
     }
 }

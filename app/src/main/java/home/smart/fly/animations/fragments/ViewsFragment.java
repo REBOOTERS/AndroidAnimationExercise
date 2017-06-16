@@ -20,6 +20,7 @@ import java.util.List;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.CollegeActivity;
 import home.smart.fly.animations.activity.IModeActivity;
+import home.smart.fly.animations.activity.PlayActivity;
 import home.smart.fly.animations.activity.WavaAnimActivity;
 import home.smart.fly.animations.activity.demos.AnimationsDemo;
 import home.smart.fly.animations.customview.BasicPosActivity;
@@ -56,6 +57,8 @@ public class ViewsFragment extends Fragment {
     }
 
     private void InitView() {
+        demos.add(new ItemInfo(R.string.app_name, PlayActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, MySlideViewActivity.class));
         demos.add(new ItemInfo(R.string.self_view, BasicPosActivity.class));
         demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
@@ -64,25 +67,22 @@ public class ViewsFragment extends Fragment {
         demos.add(new ItemInfo(R.string.app_name, RevealAnimatorActivity.class));
         demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));
         demos.add(new ItemInfo(R.string.app_name, AnimationsDemo.class));
-        demos.add(new ItemInfo(R.string.app_name, MySlideViewActivity.class));
-
 
 
         recyclerView = V.f(rootView, R.id.recyclerView);
-        MyAdpater myAdpater = new MyAdpater();
+        MyAdapter mAdapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setAdapter(myAdpater);
+        recyclerView.setAdapter(mAdapter);
     }
 
 
-    private class MyAdpater extends RecyclerView.Adapter<MyAdpater.MyHolder> {
+    private class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
 
 
         @Override
         public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.demo_info_item, null);
-            MyHolder holder = new MyHolder(view);
-            return holder;
+            return new MyHolder(view);
         }
 
         @Override
@@ -114,7 +114,7 @@ public class ViewsFragment extends Fragment {
             TextView title, desc;
             LinearLayout itemshell;
 
-            public MyHolder(View itemView) {
+            MyHolder(View itemView) {
                 super(itemView);
                 title = V.f(itemView, R.id.title);
                 desc = V.f(itemView, R.id.desc);
@@ -129,7 +129,7 @@ public class ViewsFragment extends Fragment {
         private final int desc;
         private final Class<? extends Activity> activitys;
 
-        public ItemInfo(int desc, Class<? extends Activity> demoClass) {
+        ItemInfo(int desc, Class<? extends Activity> demoClass) {
             this.desc = desc;
             this.activitys = demoClass;
         }

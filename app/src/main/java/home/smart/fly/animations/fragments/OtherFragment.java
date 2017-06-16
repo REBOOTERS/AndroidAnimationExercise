@@ -20,11 +20,10 @@ import java.util.List;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.CameraActivity;
 import home.smart.fly.animations.activity.ImgCacheActivity;
-import home.smart.fly.animations.activity.PlayActivity;
 import home.smart.fly.animations.activity.WeiXinGalleryActivity;
+import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
 import home.smart.fly.animations.bga.BgaAllActivity;
 import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
-import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
 import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
 import home.smart.fly.animations.recyclerview.BaseRecyclerViewActivity;
 import home.smart.fly.animations.utils.ScreenCaptureActivity;
@@ -58,7 +57,6 @@ public class OtherFragment extends Fragment {
     }
 
     private void InitView() {
-        demos.add(new ItemInfo(R.string.app_name, PlayActivity.class));
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
         demos.add(new ItemInfo(R.string.puzzle_game, PuzzleActivity.class));
         demos.add(new ItemInfo(R.string.webviewInfo, AllWebViewActivity.class));

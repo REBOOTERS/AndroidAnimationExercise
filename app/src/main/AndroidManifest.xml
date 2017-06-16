@@ -89,7 +89,9 @@
             android:name=".activity.IModeActivity"
             android:theme="@style/JianshuTheme"/>
         <activity android:name=".activity.WavaAnimActivity"/>
-        <activity android:name=".webview.AllWebViewActivity"/>
+        <activity
+            android:theme="@style/MyTheme.NoActionBar"
+            android:name=".webview.AllWebViewActivity"/>
         <activity
             android:name=".utils.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

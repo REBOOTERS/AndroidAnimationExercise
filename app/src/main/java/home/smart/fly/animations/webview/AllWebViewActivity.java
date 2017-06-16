@@ -6,14 +6,22 @@ import android.graphics.Canvas;
 import android.graphics.Picture;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.FileUtil;
+import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.T;
 import home.smart.fly.animations.utils.Tools;
 import home.smart.fly.animations.utils.V;
@@ -22,6 +30,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
     private static final String TAG = "AllWebViewActivity";
 
     private static final String WEB_URL = "https://www.baidu.com";
+    private static final String ERROR_URL = "https://www.badu.com";
     private static final String LOCAL_URL = "file:///android_asset/index.html";
 
     private Context mContext;
@@ -34,6 +43,10 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_all_web_view);
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.cpb_green), 0);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        setTitle("WebView");
         mWebView = V.f(this, R.id.webview);
         mButton = V.f(this, R.id.button);
         mButton.setOnClickListener(this);
@@ -50,10 +63,48 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         mWebView.addJavascriptInterface(new JsObject(mContext), "myObj");
         //
         mWebView.setWebChromeClient(new WebChromeClient());
+
+        mWebView.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+//                super.onReceivedError(view, request, error);
+                Log.e(TAG, "onReceivedError: " + request);
+                Log.e(TAG, "onReceivedError: " + error);
+            }
+        });
     }
 
     private void loadData() {
         mWebView.loadUrl(LOCAL_URL);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.men_web_load_url, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.local:
+                mWebView.loadUrl(LOCAL_URL);
+                break;
+            case R.id.net:
+                mWebView.loadUrl(WEB_URL);
+                break;
+            case R.id.error:
+                mWebView.loadUrl(ERROR_URL);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

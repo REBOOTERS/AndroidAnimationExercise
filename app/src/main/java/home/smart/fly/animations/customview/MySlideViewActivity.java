@@ -3,6 +3,7 @@ package home.smart.fly.animations.customview;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import home.smart.fly.animations.R;
 
@@ -17,8 +18,9 @@ public class MySlideViewActivity extends AppCompatActivity {
         LiteSwipeMenu mSwipeMenu = (LiteSwipeMenu) findViewById(R.id.mSwipeMenu);
         mSwipeMenu.setMenuOffset(0.2f);
         mSwipeMenu.setOnSwipeProgressListener(new LiteSwipeMenu.onMenuSwipeListener() {
+
             @Override
-            public void onProgressChange(float progress) {
+            public void onProgressChange(float progress, View menuView, View contentView) {
                 Log.e(TAG, "onProgressChange: " + progress);
             }
         });

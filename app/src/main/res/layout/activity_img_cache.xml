@@ -14,7 +14,9 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:contentDescription=""
+        tools:ignore="ContentDescription"/>
 
     <ImageView
         android:id="@+id/img2"
@@ -22,7 +24,8 @@
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        tools:ignore="ContentDescription"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

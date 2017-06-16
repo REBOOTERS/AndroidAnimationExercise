@@ -13,7 +13,6 @@ import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -32,6 +31,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.adapter.ImageBean;
 import home.smart.fly.animations.utils.T;
 import home.smart.fly.animations.utils.V;
 
@@ -51,8 +51,6 @@ public class ImgCacheActivity extends AppCompatActivity {
         mContext = this;
         setContentView(R.layout.activity_img_cache);
         initView();
-
-        getResources().getAssets();
     }
 
     private void initView() {
@@ -104,12 +102,14 @@ public class ImgCacheActivity extends AppCompatActivity {
     }
 
 
-    private class ImageDownLoadTask extends AsyncTask<String, Void, String> {
+    private class ImageDownLoadTask extends AsyncTask<String, Void, ImageBean> {
 
         @Override
-        protected void onPostExecute(String filepath) {
-            super.onPostExecute(filepath);
-            if (!TextUtils.isEmpty(filepath)) {
+        protected void onPostExecute(ImageBean imageBean) {
+            super.onPostExecute(imageBean);
+
+            if (imageBean != null) {
+                String filepath = imageBean.getFilepath();
                 T.showSToast(mContext, filepath);
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext);
                 mBuilder.setWhen(System.currentTimeMillis())
@@ -122,7 +122,9 @@ public class ImgCacheActivity extends AppCompatActivity {
                 //通知默认的声音 震动 呼吸灯
                 mBuilder.setDefaults(NotificationCompat.DEFAULT_ALL);
                 Intent mIntent = new Intent(mContext, PendingImgActivity.class);
-                mIntent.putExtra("imgUrl", filepath);
+                Bundle mBundle = new Bundle();
+                mBundle.putSerializable("bean", imageBean);
+                mIntent.putExtras(mBundle);
                 PendingIntent mPendingIntent = PendingIntent.getActivity(mContext
                         , 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 mBuilder.setContentIntent(mPendingIntent);
@@ -136,13 +138,14 @@ public class ImgCacheActivity extends AppCompatActivity {
         }
 
         @Override
-        protected String doInBackground(String... params) {
+        protected ImageBean doInBackground(String... params) {
 
             try {
 
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA).format(new Date());
                 String fileName = "IMG_" + timeStamp + ".jpg";
-                File localFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + fileName);
+                File localFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                        + File.separator + fileName);
                 OutputStream mOutputStream = new FileOutputStream(localFile);
                 URL url = new URL(params[0]);
                 HttpURLConnection mConnection = (HttpURLConnection) url.openConnection();
@@ -155,10 +158,15 @@ public class ImgCacheActivity extends AppCompatActivity {
                 mOutputStream.flush();
                 mInputStream.close();
                 mOutputStream.close();
-                return localFile.getAbsolutePath();
+
+                ImageBean mImageBean = new ImageBean();
+                mImageBean.setFilepath(localFile.getAbsolutePath());
+                mImageBean.setLongitude(116.400819);
+                mImageBean.setLatitude(39.916263);
+                return mImageBean;
             } catch (IOException e) {
                 e.printStackTrace();
-                return "";
+                return null;
             }
         }
     }
