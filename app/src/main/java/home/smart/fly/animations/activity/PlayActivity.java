@@ -77,6 +77,9 @@ public class PlayActivity extends AppCompatActivity {
             public void onChangedValue(int value) {
                 mTranslationZ.setNegate(mNegate.isChecked());
                 ViewCompat.setTranslationZ(mImage, value);
+
+                mImage.setTranslationX(value);
+                mImage.setTranslationZ(value);
             }
         });
         mPivotX.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
@@ -136,6 +139,7 @@ public class PlayActivity extends AppCompatActivity {
             public void onChangedValue(int value) {
                 mScrollY.setNegate(mNegate.isChecked());
                 mImage.scrollTo(0, value);
+
             }
         });
 

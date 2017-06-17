@@ -144,7 +144,9 @@
             android:name=".bga.BgaAllActivity"
             android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".activity.PlayActivity">
+        <activity android:name=".activity.PlayActivity"
+                  android:theme="@style/MyTheme.NoActionBar"
+            >
         </activity>
         <activity android:name=".activity.PendingImgActivity">
         </activity>
@@ -197,7 +199,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.demos.AnimationsDemo"/>
         </activity>
-        <activity android:name=".customview.MySlideViewActivity">
+        <activity android:name=".activity.MySlideViewActivity">
         </activity>
     </application>
 

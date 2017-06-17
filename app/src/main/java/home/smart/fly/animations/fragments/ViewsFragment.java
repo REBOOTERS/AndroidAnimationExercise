@@ -24,7 +24,7 @@ import home.smart.fly.animations.activity.PlayActivity;
 import home.smart.fly.animations.activity.WavaAnimActivity;
 import home.smart.fly.animations.activity.demos.AnimationsDemo;
 import home.smart.fly.animations.customview.BasicPosActivity;
-import home.smart.fly.animations.customview.MySlideViewActivity;
+import home.smart.fly.animations.activity.MySlideViewActivity;
 import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animations.customview.wheel.WheelViewActivity;
 import home.smart.fly.animations.property.RevealAnimatorActivity;

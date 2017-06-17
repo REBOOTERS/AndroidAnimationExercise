@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.ArgbAnimator;
@@ -89,7 +88,7 @@ public class IModeActivity extends AppCompatActivity {
         mViewPager.setAdapter(new MyPagerAdapter());
 
         mScheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
-        mScheduledExecutorService.scheduleAtFixedRate(new MyTask(), 3, 3, TimeUnit.SECONDS);
+//        mScheduledExecutorService.scheduleAtFixedRate(new MyTask(), 3, 3, TimeUnit.SECONDS);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -115,7 +114,10 @@ public class IModeActivity extends AppCompatActivity {
                 }
             }
         });
-        mViewPager.setPageTransformer(true,new MyTransformer());
+//        mViewPager.setPageTransformer(false, new MyFlipTransformer());
+//        mViewPager.setPageTransformer(false, new MyCubeTransformer());
+        mViewPager.setPageTransformer(false, new MyZoomCenterTransformer());
+
     }
 
 
@@ -130,6 +132,98 @@ public class IModeActivity extends AppCompatActivity {
                 ViewCompat.setScaleY(page, scale);
             } else {
                 ViewCompat.setScaleY(page, 0.9f);
+            }
+        }
+    }
+
+    private class MyCubeTransformer implements ViewPager.PageTransformer {
+        private float baseRotate = 90.0f;
+
+        @Override
+        public void transformPage(View view, float position) {
+            if (position < -1) {
+                ViewCompat.setPivotX(view, view.getMeasuredWidth());
+                ViewCompat.setPivotY(view, view.getMeasuredHeight() * 0.5f);
+                ViewCompat.setRotationY(view, 0);
+            } else if (position <= 0) {
+                ViewCompat.setPivotX(view, view.getMeasuredWidth());
+                ViewCompat.setPivotY(view, view.getMeasuredHeight() * 0.5f);
+                ViewCompat.setRotationY(view, baseRotate * position);
+            } else if (position <= 1) {
+                ViewCompat.setPivotX(view, 0);
+                ViewCompat.setPivotY(view, view.getMeasuredHeight() * 0.5f);
+                ViewCompat.setRotationY(view, baseRotate * position);
+            } else {
+                ViewCompat.setPivotX(view, view.getMeasuredWidth());
+                ViewCompat.setPivotY(view, view.getMeasuredHeight() * 0.5f);
+                ViewCompat.setRotationY(view, 0);
+            }
+        }
+    }
+
+    private class MyFlipTransformer implements ViewPager.PageTransformer {
+        private static final float BASE_ROTATION = 180.0f;
+
+        @Override
+        public void transformPage(View page, float position) {
+            if (position < -1) {
+
+            } else if (position <= 0) {
+                ViewCompat.setTranslationX(page, -page.getWidth() * position);
+                float rotation = (BASE_ROTATION * position);
+                ViewCompat.setRotationY(page, rotation);
+
+                if (position > -0.5) {
+                    page.setVisibility(View.VISIBLE);
+                } else {
+                    page.setVisibility(View.INVISIBLE);
+                }
+            } else if (position <= 1) {
+                ViewCompat.setTranslationX(page, -page.getWidth() * position);
+                float rotation = (BASE_ROTATION * position);
+                ViewCompat.setRotationY(page, rotation);
+
+                if (position < 0.5) {
+                    page.setVisibility(View.VISIBLE);
+                } else {
+                    page.setVisibility(View.INVISIBLE);
+                }
+            }
+        }
+    }
+
+    private class MyZoomCenterTransformer implements ViewPager.PageTransformer{
+
+        @Override
+        public void transformPage(View view, float position) {
+            if (position < -1) {
+
+            } else if (position <= 0) {
+                ViewCompat.setTranslationX(view, -view.getWidth() * position);
+
+                ViewCompat.setPivotX(view, view.getWidth() * 0.5f);
+                ViewCompat.setPivotY(view, view.getHeight() * 0.5f);
+                ViewCompat.setScaleX(view, 1 + position);
+                ViewCompat.setScaleY(view, 1 + position);
+
+                if (position < -0.95f) {
+                    ViewCompat.setAlpha(view, 0);
+                } else {
+                    ViewCompat.setAlpha(view, 1);
+                }
+            } else if (position <= 1) {
+                ViewCompat.setTranslationX(view, -view.getWidth() * position);
+
+                ViewCompat.setPivotX(view, view.getWidth() * 0.5f);
+                ViewCompat.setPivotY(view, view.getHeight() * 0.5f);
+                ViewCompat.setScaleX(view, 1 - position);
+                ViewCompat.setScaleY(view, 1 - position);
+
+                if (position > 0.95f) {
+                    ViewCompat.setAlpha(view, 0);
+                } else {
+                    ViewCompat.setAlpha(view, 1);
+                }
             }
         }
     }
@@ -209,7 +303,7 @@ public class IModeActivity extends AppCompatActivity {
         if (color != lastColor) {
             lastColor = color;
             head.setBackgroundColor(color);
-            StatusBarUtil.setColor(this,color,0);
+            StatusBarUtil.setColor(this, color, 0);
         }
 
         if (fraction < 1) {
