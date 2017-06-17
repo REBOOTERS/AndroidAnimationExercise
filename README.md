@@ -17,7 +17,6 @@
 - ViewPager 切换动画
 
 ### PropertyFragment
-
 - 属性动画特点及使用方式
 - 仿支付宝支付动画（具体分析可查看日志[Android 动画实战](http://www.jianshu.com/p/d2e06a2e65ad)）
 - 仿饿了吗商品加入购物车动画
@@ -27,13 +26,13 @@
 >关于以上两种动画的区别分析可查看日志[Android 动画总结](http://www.jianshu.com/p/420629118c10)
 
 ### ViewsFragment
-
+- PlayView[属性动画拓展（一）](http://www.jianshu.com/p/f34791f4d5ab)
 - 自定义View基础
 - 仿新浪微博雷达扫描效果及卡片动画效果（[Android 动画实战-仿微博雷达功能](https://juejin.im/post/586d0f9eda2f600055cf3021)）
 - 沉寝式模式初探
 - Drawable 波浪动画
 - Android 超长图片加载实现
-- 3D 省市联动效果滚轮，很想IOS的效果
+- 3D 省市联动效果滚轮，很像ios的效果
 
 ### OtherFragment
 
