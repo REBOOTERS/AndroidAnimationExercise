@@ -1,11 +1,7 @@
 package home.smart.fly.animations.utils;
 
-/**
- * Created by you on 2017/5/5.
- * 颜色过渡器
- */
 
-public class ArgbAnimator {
+public class ColorAnimator {
 
     /**
      * 起始颜色值, 结束颜色值
@@ -20,13 +16,7 @@ public class ArgbAnimator {
      */
     private int endA, endR, endG, endB;
 
-    /**
-     * 构造函数
-     *
-     * @param startColor 　起始颜色值
-     * @param endColor   　结束颜色值
-     */
-    public ArgbAnimator(int startColor, int endColor) {
+    public ColorAnimator(int startColor, int endColor) {
         this.startColor = startColor;
         this.endColor = endColor;
         startA = (startColor >> 24) & 0xff;

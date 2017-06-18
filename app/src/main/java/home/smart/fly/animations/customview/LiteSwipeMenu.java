@@ -102,41 +102,32 @@ public class LiteSwipeMenu extends ViewGroup {
                 break;
             case MotionEvent.ACTION_MOVE:
                 float offset = x - xLast;
-//                touchMove_deal(offset);
+                if (getScrollX() - offset <= 0) {
+                    offset = 0;
+                } else if (getScrollX() + mScreenWidth - offset > mScreenWidth * 2 - mMenuOffset) {
+                    offset = 0;
+                }
+                scrollBy((int) (-offset), 0); //跟随拖动
+
+                if (mListener != null) {
+                    mListener.onProgressChange(offset, mMenuView, mContentView);
+                }
                 break;
             case MotionEvent.ACTION_UP:
-                touchUp_deal();
+                //横向滑动的距离小于菜单宽度的一半时，菜单依旧保持打开
+                if (getScrollX() < (mScreenWidth - mMenuOffset) / 2) {
+                    //滑动菜单
+                    openMenu();
+                } else {
+                    //滑动到内容
+                    closeMenu();
+                }
                 break;
         }
         xLast = x;
         return false;
     }
 
-
-    private void touchMove_deal(float offset) {
-        if (getScrollX() - offset <= 0) {
-            offset = 0;
-        } else if (getScrollX() + mScreenWidth - offset > mScreenWidth * 2 - mMenuOffset) {
-            offset = 0;
-        }
-        scrollBy((int) (-offset), 0); //跟随拖动
-
-        if (mListener != null) {
-            mListener.onProgressChange(offset, mMenuView, mContentView);
-        }
-
-    }
-
-
-    private void touchUp_deal() {
-        if (getScrollX() < (mScreenWidth - mMenuOffset) / 2) {
-            //滑动菜单
-            openMenu();
-        } else {
-            //滑动到内容
-            closeMenu();
-        }
-    }
 
     @Override
     public void computeScroll() {

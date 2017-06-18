@@ -1,6 +1,7 @@
 package home.smart.fly.animations.activity;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,10 @@ public class MySlideViewActivity extends AppCompatActivity {
             @Override
             public void onProgressChange(float progress, View menuView, View contentView) {
                 Log.e(TAG, "onProgressChange: " + progress);
+                ViewCompat.setPivotX(contentView, contentView.getWidth() / 2);
+                ViewCompat.setPivotY(contentView, contentView.getHeight() / 2);
+                ViewCompat.setScaleX(contentView, 0.9f);
+                ViewCompat.setScaleY(contentView, 0.9f);
             }
         });
     }
