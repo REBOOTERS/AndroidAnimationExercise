@@ -77,9 +77,6 @@ public class PlayActivity extends AppCompatActivity {
             public void onChangedValue(int value) {
                 mTranslationZ.setNegate(mNegate.isChecked());
                 ViewCompat.setTranslationZ(mImage, value);
-
-                mImage.setTranslationX(value);
-                mImage.setTranslationZ(value);
             }
         });
         mPivotX.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
@@ -173,5 +170,11 @@ public class PlayActivity extends AppCompatActivity {
         mPivotY.setMax(mImage.getMeasuredHeight());
         mRotateX.setMax(360);
         mRotateY.setMax(360);
+
+        //
+        mScaleX.setMax(120);
+        mScaleY.setMax(120);
+        mScaleX.setProgresss(100);
+        mScaleY.setProgresss(100);
     }
 }

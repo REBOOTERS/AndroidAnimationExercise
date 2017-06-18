@@ -9,6 +9,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,7 +37,7 @@ public class IModeActivity extends AppCompatActivity {
     private static final String URL = "http://upload.jianshu.io/admin_banners/web_images/3107/a9416a7506d328428321ffb84712ee5eb551463e.jpg";
     private static final String TAG = "IModeActivity";
     private LinearLayout head;
-    private NestedScrollView mScrollView;
+    private NestedScrollView mNestedScrollView;
 
     private Context mContext;
 
@@ -51,7 +52,7 @@ public class IModeActivity extends AppCompatActivity {
     private List<String> pics = new ArrayList<>();
 
     private ScheduledExecutorService mScheduledExecutorService;
-
+    private SwipeRefreshLayout swipe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,17 +77,27 @@ public class IModeActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.title);
         head = (LinearLayout) findViewById(R.id.head);
         head.setBackgroundColor(Color.TRANSPARENT);
-        mScrollView = (NestedScrollView) findViewById(R.id.scrollview);
-        mScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+        mNestedScrollView = (NestedScrollView) findViewById(R.id.scrollview);
+        mNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, final int scrollY, int oldScrollX, int oldScrollY) {
-                setToolbarBg(scrollY);
+                ToolBarColorAnim(scrollY);
             }
         });
 
+        swipe = (SwipeRefreshLayout) findViewById(R.id.swipe);
+        swipe.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+
+            }
+        });
+
+        swipe.setRefreshing(false);
+
+
         mViewPager = (ViewPager) findViewById(R.id.banner);
         mViewPager.setAdapter(new MyPagerAdapter());
-
         mScheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
 //        mScheduledExecutorService.scheduleAtFixedRate(new MyTask(), 3, 3, TimeUnit.SECONDS);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -117,7 +128,6 @@ public class IModeActivity extends AppCompatActivity {
 //        mViewPager.setPageTransformer(false, new MyFlipTransformer());
 //        mViewPager.setPageTransformer(false, new MyCubeTransformer());
         mViewPager.setPageTransformer(false, new MyZoomCenterTransformer());
-
     }
 
 
@@ -192,7 +202,7 @@ public class IModeActivity extends AppCompatActivity {
         }
     }
 
-    private class MyZoomCenterTransformer implements ViewPager.PageTransformer{
+    private class MyZoomCenterTransformer implements ViewPager.PageTransformer {
 
         @Override
         public void transformPage(View view, float position) {
@@ -290,6 +300,8 @@ public class IModeActivity extends AppCompatActivity {
     }
 
 
+
+
     /**
      * 根据偏移值计算toolbar的颜色过渡值
      *
@@ -297,7 +309,7 @@ public class IModeActivity extends AppCompatActivity {
      */
     private int lastColor = Color.TRANSPARENT;
 
-    private void setToolbarBg(int scrollY) {
+    private void ToolBarColorAnim(int scrollY) {
         float fraction = (float) scrollY / (mViewPager.getHeight());
         int color = argb.getFractionColor(fraction);
         if (color != lastColor) {

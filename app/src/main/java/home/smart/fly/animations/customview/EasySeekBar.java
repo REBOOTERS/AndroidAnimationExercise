@@ -89,6 +89,10 @@ public class EasySeekBar extends LinearLayout {
         mSeekBar.setMax(value);
     }
 
+    public void setProgresss(int value) {
+        mSeekBar.setProgress(value);
+    }
+
     public void setOnProgressChangedListener(onProgressChangeListener listener) {
         this.listener = listener;
     }

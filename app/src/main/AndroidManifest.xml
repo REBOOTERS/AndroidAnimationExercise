@@ -145,7 +145,7 @@
             android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".activity.PlayActivity"
-                  android:theme="@style/MyTheme.NoActionBar"
+                  android:theme="@style/AppTheme"
             >
         </activity>
         <activity android:name=".activity.PendingImgActivity">
