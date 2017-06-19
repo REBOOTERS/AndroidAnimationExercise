@@ -13,11 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.activity.IModeActivity;
 import home.smart.fly.animations.activity.WavaAnimActivity;
 import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
 import home.smart.fly.animations.activity.jianshu.JianShuHeadActivity;
@@ -51,11 +53,14 @@ public class ImitateFragment extends Fragment {
         demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
-        demos.add(new ItemInfo(R.string.jianshu, JianShuHeadActivity.class));
+        demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
+        demos.add(new ItemInfo(R.string.jianshuhead, JianShuHeadActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdapter mAdapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setAdapter(mAdapter);
+
+        Toast.makeText(mContext, "一直在模仿，从未能超越!", Toast.LENGTH_SHORT).show();
     }
 
 

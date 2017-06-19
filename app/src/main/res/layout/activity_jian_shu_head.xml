@@ -29,6 +29,10 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitStart"
                 android:src="@drawable/jianshulists"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"/>
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

@@ -45,7 +45,12 @@ public class JianShuHeadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jian_shu_head);
         ButterKnife.bind(this);
+
         MIUISetStatusBarLightMode(getWindow(), true);
+
+
+        StatusBarUtil.setColor(this, Color.BLACK, 0);
+
         final ColorAnimator mColorAnimator = new ColorAnimator(Color.TRANSPARENT, Color.WHITE);
         mNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
@@ -55,12 +60,12 @@ public class JianShuHeadActivity extends AppCompatActivity {
                 if (color != lastColor) {
                     lastColor = color;
                     mHead.setBackgroundColor(color);
-                    StatusBarUtil.setColor(JianShuHeadActivity.this, color, color >> 24);
+//                    StatusBarUtil.setColor(JianShuHeadActivity.this, color, 0);
                 }
 
                 Log.e(TAG, "onScrollChange: fraction=" + fraction);
 
-                if (fraction >= 1) {
+                if (fraction >= 0.7f) {
                     mSearchTv.setText("搜索简书的内容和朋友");
                     ViewGroup.LayoutParams mParams = mSearchShell.getLayoutParams();
                     mParams.width = RecyclerView.LayoutParams.MATCH_PARENT;
@@ -68,13 +73,12 @@ public class JianShuHeadActivity extends AppCompatActivity {
                     TransitionManager.beginDelayedTransition(mSearchShell);
                 }
 
-                if (fraction <= 0) {
+                if (fraction <= 0.3f) {
                     mSearchTv.setText("搜索");
                     ViewGroup.LayoutParams mParams = mSearchShell.getLayoutParams();
                     mParams.width = RecyclerView.LayoutParams.WRAP_CONTENT;
                     mSearchShell.setLayoutParams(mParams);
                     TransitionManager.beginDelayedTransition(mSearchShell);
-                    StatusBarUtil.setTranslucent(JianShuHeadActivity.this);
                 }
             }
         });
@@ -83,7 +87,6 @@ public class JianShuHeadActivity extends AppCompatActivity {
 
     /**
      * 设置状态栏字体图标为深色，需要MIUIV6以上
-     *
      * @param window 需要设置的窗口
      * @param dark   是否把状态栏字体及图标颜色设置为深色
      * @return boolean 成功执行返回true

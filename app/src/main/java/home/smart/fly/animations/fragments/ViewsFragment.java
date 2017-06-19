@@ -19,7 +19,6 @@ import java.util.List;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.CollegeActivity;
-import home.smart.fly.animations.activity.IModeActivity;
 import home.smart.fly.animations.activity.MySlideViewActivity;
 import home.smart.fly.animations.activity.PlayActivity;
 import home.smart.fly.animations.activity.WavaAnimActivity;
@@ -58,7 +57,6 @@ public class ViewsFragment extends Fragment {
         demos.add(new ItemInfo(R.string.app_name, PlayActivity.class));
         demos.add(new ItemInfo(R.string.app_name, MySlideViewActivity.class));
         demos.add(new ItemInfo(R.string.self_view, BasicPosActivity.class));
-        demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
         demos.add(new ItemInfo(R.string.app_name, RevealAnimatorActivity.class));
         demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));
