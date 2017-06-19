@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import home.smart.fly.animations.fragments.ImitateFragment;
 import home.smart.fly.animations.fragments.OtherFragment;
 import home.smart.fly.animations.fragments.PropertyFragment;
 import home.smart.fly.animations.fragments.TraditionFragment;
@@ -47,12 +48,7 @@ public class AppStartActivity extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setAdapter(new MyAdapter(
                 toolbar.getContext(),
-                new String[]{
-                        "传动动画",
-                        "属性动画",
-                        "自定义View",
-                        "其他view"
-                }));
+                getResources().getStringArray(R.array.fragments)));
 
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
@@ -68,9 +64,12 @@ public class AppStartActivity extends AppCompatActivity {
                         transition.replace(R.id.container, new PropertyFragment()).commit();
                         break;
                     case 2:
-                        transition.replace(R.id.container, new ViewsFragment()).commit();
+                        transition.replace(R.id.container, new ImitateFragment()).commit();
                         break;
                     case 3:
+                        transition.replace(R.id.container, new ViewsFragment()).commit();
+                        break;
+                    case 4:
                         transition.replace(R.id.container, new OtherFragment()).commit();
                         break;
                     default:
@@ -104,8 +103,6 @@ public class AppStartActivity extends AppCompatActivity {
 
 
     }
-
-
 
 
     @Override

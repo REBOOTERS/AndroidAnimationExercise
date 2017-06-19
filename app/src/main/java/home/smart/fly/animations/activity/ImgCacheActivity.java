@@ -41,6 +41,8 @@ public class ImgCacheActivity extends AppCompatActivity {
             "=b9999_10000&sec=1488975943578&di=e8f47f35afd64be8d2d36ab5d6627928&imgtype=0&src=" +
             "http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg";
 
+
+
     private ImageView img1, img2;
     private FloatingActionButton fab;
     private Context mContext;

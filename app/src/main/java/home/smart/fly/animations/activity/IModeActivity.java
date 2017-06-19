@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.ColorAnimator;
@@ -105,7 +106,7 @@ public class IModeActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.banner);
         mViewPager.setAdapter(new MyPagerAdapter());
         mScheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
-//        mScheduledExecutorService.scheduleAtFixedRate(new MyTask(), 3, 3, TimeUnit.SECONDS);
+        mScheduledExecutorService.scheduleAtFixedRate(new MyTask(), 3, 3, TimeUnit.SECONDS);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

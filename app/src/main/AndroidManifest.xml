@@ -90,8 +90,8 @@
             android:theme="@style/JianshuTheme"/>
         <activity android:name=".activity.WavaAnimActivity"/>
         <activity
-            android:theme="@style/MyTheme.NoActionBar"
-            android:name=".webview.AllWebViewActivity"/>
+            android:name=".webview.AllWebViewActivity"
+            android:theme="@style/MyTheme.NoActionBar"/>
         <activity
             android:name=".utils.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -144,9 +144,9 @@
             android:name=".bga.BgaAllActivity"
             android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".activity.PlayActivity"
-                  android:theme="@style/AppTheme"
-            >
+        <activity
+            android:name=".activity.PlayActivity"
+            android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".activity.PendingImgActivity">
         </activity>
@@ -200,6 +200,10 @@
                 android:value=".activity.demos.AnimationsDemo"/>
         </activity>
         <activity android:name=".activity.MySlideViewActivity">
+        </activity>
+        <activity
+            android:name=".activity.jianshu.JianShuHeadActivity"
+            android:theme="@style/MyTheme.NoActionBar">
         </activity>
     </application>
 

@@ -18,21 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.activity.CollegeActivity;
-import home.smart.fly.animations.activity.IModeActivity;
-import home.smart.fly.animations.activity.MySlideViewActivity;
-import home.smart.fly.animations.activity.PlayActivity;
 import home.smart.fly.animations.activity.WavaAnimActivity;
-import home.smart.fly.animations.activity.demos.AnimationsDemo;
-import home.smart.fly.animations.customview.BasicPosActivity;
-import home.smart.fly.animations.property.RevealAnimatorActivity;
+import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
+import home.smart.fly.animations.activity.jianshu.JianShuHeadActivity;
+import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animations.utils.V;
 
 
-/**
- * Created by rookie on 2016/8/12.
- */
-public class ViewsFragment extends Fragment {
+public class ImitateFragment extends Fragment {
     private Context mContext;
     private View rootView;
 
@@ -55,16 +48,10 @@ public class ViewsFragment extends Fragment {
     }
 
     private void InitView() {
-        demos.add(new ItemInfo(R.string.app_name, PlayActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, MySlideViewActivity.class));
-        demos.add(new ItemInfo(R.string.self_view, BasicPosActivity.class));
-        demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
+        demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, RevealAnimatorActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, AnimationsDemo.class));
-
-
+        demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
+        demos.add(new ItemInfo(R.string.jianshu, JianShuHeadActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdapter mAdapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

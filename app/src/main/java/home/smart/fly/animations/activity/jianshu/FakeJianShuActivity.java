@@ -83,7 +83,8 @@ public class FakeJianShuActivity extends AppCompatActivity {
         protected void onPostExecute(HtmlBean s) {
             super.onPostExecute(s);
             mHtmlBean = s;
-            Glide.with(mContext).load(s.getUserImg()).into(userImg);
+            Glide.with(mContext).load("http:" + s.getUserImg()).placeholder(R.drawable.default_avtar).
+                    error(R.drawable.default_avtar).into(userImg);
             String text = s.getContent();
             mWebView.loadDataWithBaseURL("", text, "text/html", "UTF-8", "");
             username.setText(s.getUsername());
