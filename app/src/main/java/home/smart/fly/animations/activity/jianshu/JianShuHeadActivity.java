@@ -57,7 +57,7 @@ public class JianShuHeadActivity extends AppCompatActivity {
                 if (color != lastColor) {
                     lastColor = color;
                     mHead.setBackgroundColor(color);
-//                    StatusBarUtil.setColor(JianShuHeadActivity.this, color, 0);
+//                    StatusBarUtil.setStatusBar(JianShuHeadActivity.this, color, 0);
                 }
 
                 Log.e(TAG, "onScrollChange: fraction=" + fraction);

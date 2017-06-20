@@ -2,11 +2,7 @@ package home.smart.fly.animations.customview;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -14,10 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.Scroller;
-
-import home.smart.fly.animations.R;
 
 
 public class LiteSwipeMenu extends ViewGroup {
@@ -36,15 +29,18 @@ public class LiteSwipeMenu extends ViewGroup {
     private boolean isMenuOpened = false; //是否已经显示了菜单
     private onMenuSwipeListener mListener; //滑动监听
 
-    private View statusBarView;
-
     public LiteSwipeMenu(Context context) {
-        this(context, null);
+        super(context);
         init(context);
     }
 
     public LiteSwipeMenu(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context);
+    }
+
+    public LiteSwipeMenu(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         init(context);
     }
 
@@ -122,7 +118,6 @@ public class LiteSwipeMenu extends ViewGroup {
 
                 if (mListener != null) {
                     float progress = 1 - getScrollX() * 1.0f / (mScreenWidth - mMenuOffset);
-//                    statusBarView.setTranslationX(progress * (mScreenWidth - mMenuOffset));
                     mListener.onProgressChange(progress, mMenuView, mContentView);
                 }
                 break;
@@ -225,25 +220,8 @@ public class LiteSwipeMenu extends ViewGroup {
     }
 
 
-    public void setStatusBarViewColor(Activity activity, int color) {
-        statusBarView = LiteMenuHelper.setColor(activity, color);
-        statusBarView.setBackgroundColor(color);
-
-        ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
-        Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.name);
-        Drawable mDrawable = new BitmapDrawable(mBitmap);
-        decorView.setBackground(mDrawable);
-
-
-        mContentView = getChildAt(1);
-        LinearLayout ll = new LinearLayout(activity);
-        ll.setLayoutParams(new LinearLayout.LayoutParams(mScreenWidth, mScreenHeight));
-        ll.setOrientation(LinearLayout.VERTICAL);
-        ll.setBackgroundColor(Color.WHITE);
-        removeViewAt(1);
-        ll.addView(LiteMenuHelper.createStatusBarView(activity, color)); //填充空白界面
-        ll.addView(mContentView);
-        addView(ll);
+    public void attachWithActivity(Activity activity) {
+        LiteMenuHelper.setStatusBar(activity);
     }
 
 
