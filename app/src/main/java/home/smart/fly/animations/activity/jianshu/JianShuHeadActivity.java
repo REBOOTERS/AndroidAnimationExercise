@@ -45,10 +45,7 @@ public class JianShuHeadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jian_shu_head);
         ButterKnife.bind(this);
-
         MIUISetStatusBarLightMode(getWindow(), true);
-
-
         StatusBarUtil.setColor(this, Color.BLACK, 0);
 
         final ColorAnimator mColorAnimator = new ColorAnimator(Color.TRANSPARENT, Color.WHITE);
@@ -87,6 +84,7 @@ public class JianShuHeadActivity extends AppCompatActivity {
 
     /**
      * 设置状态栏字体图标为深色，需要MIUIV6以上
+     *
      * @param window 需要设置的窗口
      * @param dark   是否把状态栏字体及图标颜色设置为深色
      * @return boolean 成功执行返回true

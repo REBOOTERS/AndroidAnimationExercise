@@ -1,6 +1,12 @@
 package home.smart.fly.animations.customview;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -8,7 +14,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Scroller;
+
+import home.smart.fly.animations.R;
 
 
 public class LiteSwipeMenu extends ViewGroup {
@@ -27,9 +36,11 @@ public class LiteSwipeMenu extends ViewGroup {
     private boolean isMenuOpened = false; //是否已经显示了菜单
     private onMenuSwipeListener mListener; //滑动监听
 
+    private View statusBarView;
 
     public LiteSwipeMenu(Context context) {
         this(context, null);
+        init(context);
     }
 
     public LiteSwipeMenu(Context context, AttributeSet attrs) {
@@ -110,7 +121,9 @@ public class LiteSwipeMenu extends ViewGroup {
                 scrollBy((int) (-offset), 0); //跟随拖动
 
                 if (mListener != null) {
-                    mListener.onProgressChange(offset, mMenuView, mContentView);
+                    float progress = 1 - getScrollX() * 1.0f / (mScreenWidth - mMenuOffset);
+//                    statusBarView.setTranslationX(progress * (mScreenWidth - mMenuOffset));
+                    mListener.onProgressChange(progress, mMenuView, mContentView);
                 }
                 break;
             case MotionEvent.ACTION_UP:
@@ -161,6 +174,7 @@ public class LiteSwipeMenu extends ViewGroup {
         if (b) {
             mContentView.setClickable(true);
             mMenuView.setClickable(true);
+            mMenuView.setBackgroundColor(Color.TRANSPARENT);
             mMenuView.layout(0, 0, mScreenWidth - mMenuOffset, mScreenHeight);
             mContentView.layout(mScreenWidth - mMenuOffset, 0, mScreenWidth - mMenuOffset + mScreenWidth, mScreenHeight);
             scrollTo(mScreenWidth - mMenuOffset, 0);
@@ -187,11 +201,15 @@ public class LiteSwipeMenu extends ViewGroup {
 
     public void openMenu() {
         mScroller.startScroll(getScrollX(), 0, 0 - getScrollX(), 0);
+        if (mListener != null) {
+            mListener.onProgressChange(1, mMenuView, mContentView);
+        }
         invalidate();
     }
 
     public void closeMenu() {
         mScroller.startScroll(getScrollX(), 0, mScreenWidth - mMenuOffset - getScrollX(), 0);
+        mListener.onProgressChange(0, mMenuView, mContentView);
         invalidate();
     }
 
@@ -205,4 +223,28 @@ public class LiteSwipeMenu extends ViewGroup {
         }
         mMenuOffset = (int) (mScreenWidth * Math.abs(factor));
     }
+
+
+    public void setStatusBarViewColor(Activity activity, int color) {
+        statusBarView = LiteMenuHelper.setColor(activity, color);
+        statusBarView.setBackgroundColor(color);
+
+        ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+        Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.name);
+        Drawable mDrawable = new BitmapDrawable(mBitmap);
+        decorView.setBackground(mDrawable);
+
+
+        mContentView = getChildAt(1);
+        LinearLayout ll = new LinearLayout(activity);
+        ll.setLayoutParams(new LinearLayout.LayoutParams(mScreenWidth, mScreenHeight));
+        ll.setOrientation(LinearLayout.VERTICAL);
+        ll.setBackgroundColor(Color.WHITE);
+        removeViewAt(1);
+        ll.addView(LiteMenuHelper.createStatusBarView(activity, color)); //填充空白界面
+        ll.addView(mContentView);
+        addView(ll);
+    }
+
+
 }

@@ -199,7 +199,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.demos.AnimationsDemo"/>
         </activity>
-        <activity android:name=".activity.MySlideViewActivity">
+        <activity
+            android:name=".activity.MySwipeMenuActivity"
+            android:theme="@style/MyTheme.NoActionBar"
+            >
         </activity>
         <activity
             android:name=".activity.jianshu.JianShuHeadActivity"
