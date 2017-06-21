@@ -3,7 +3,7 @@ package home.smart.fly.animations.recyclerview.linearlayoutmanager;
 import android.support.v7.widget.RecyclerView;
 
 /**
- * Created by co-mall on 2017/5/27.
+ * Created by rookie on 2017/5/27.
  */
 
 public class MyLinearLayoutManager extends RecyclerView.LayoutManager {

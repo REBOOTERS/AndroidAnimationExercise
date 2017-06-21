@@ -4,30 +4,33 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Scroller;
 
 
+/**
+ * 一个轻量级的SwipeMenu控件，将滑动时滑动比例及滑动参数通过接口传递至
+ * 视图层，进行动画处理
+ */
 public class LiteSwipeMenu extends ViewGroup {
 
-    private float xIntercept = 0;
-    private float yIntercept = 0;
+    private float xLastIntercept = 0;
+    private float yLastIntercept = 0;
     private float xLast = 0;
     private Scroller mScroller;
     private int mScreenWidth;
     private int mScreenHeight;
-    private View mMenuView;
-    private View mContentView;
+    private View mMenuView; //菜单视图
+    private View mContentView; //内容视图
     private int mMenuOffset; //菜单距右边的距离
     private boolean isMeasured = false; //是否已经测量过
-    private boolean isMenuOpened = false; //是否已经显示了菜单
-    private onMenuSwipeListener mListener; //滑动监听
+    private int mTouchSlop; //系统可识别最小滑动距离
 
-    private Context mContext;
+    private onMenuSwipeListener mListener;
+
 
     public LiteSwipeMenu(Context context) {
         super(context);
@@ -44,22 +47,18 @@ public class LiteSwipeMenu extends ViewGroup {
         init(context);
     }
 
-
-    //添加背景图获取屏幕宽高
     private void init(Context context) {
-        mContext = context;
         mScroller = new Scroller(context);
-        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics metrics = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(metrics);
-        mScreenWidth = metrics.widthPixels;
-        mScreenHeight = metrics.heightPixels;
+        mScreenWidth = LiteMenuHelper.getScreenWidth(context);
+        mScreenHeight = LiteMenuHelper.getScreenHeight(context);
+        mTouchSlop= ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         float x = ev.getX();
         float y = ev.getY();
+        //是否拦截事件
         boolean intercept = false;
         int action = ev.getAction();
         switch (action) {
@@ -67,12 +66,12 @@ public class LiteSwipeMenu extends ViewGroup {
                 intercept = false;
                 break;
             case MotionEvent.ACTION_MOVE:
-                float xDelta = x - xIntercept;
-                float yDelta = y - yIntercept;
-
+                float xDelta = x - xLastIntercept;
+                float yDelta = y - yLastIntercept;
+                //视图总滑动距离小于屏幕宽度
                 if (x + getScrollX() < mScreenWidth) {
-
-                    if (Math.abs(xDelta) > Math.abs(yDelta) && Math.abs(xDelta) > 20) { //X滑动主导
+                    //1.消除纵向滑动冲突；2.忽略小于系统级别的滑动
+                    if (Math.abs(xDelta) > Math.abs(yDelta) && Math.abs(xDelta) > mTouchSlop) { //X滑动主导
                         intercept = true;
                     } else {
                         intercept = false;
@@ -84,8 +83,8 @@ public class LiteSwipeMenu extends ViewGroup {
                 break;
         }
         xLast = x;
-        xIntercept = x;
-        yIntercept = y;
+        xLastIntercept = x;
+        yLastIntercept = y;
         return intercept;
     }
 
@@ -107,19 +106,19 @@ public class LiteSwipeMenu extends ViewGroup {
                 } else if (getScrollX() + mScreenWidth - offset > mScreenWidth * 2 - mMenuOffset) {
                     offset = 0;
                 }
+                //整个视图按照滑动变化，步进式的滑动
                 scrollBy((int) (-offset), 0);
+                // 获取菜单视图在横向滑动中的比例
                 float progress = 1 - getScrollX() * 1.0f / (mScreenWidth - mMenuOffset);
                 if (mListener != null) {
-                    mListener.onProgressChange(progress, getScrollX(), mMenuView);
+                    mListener.onProgressChange(progress, getScrollX());
                 }
                 break;
             case MotionEvent.ACTION_UP:
                 //横向滑动的距离小于菜单宽度的一半时，菜单依旧保持打开
                 if (getScrollX() < (mScreenWidth - mMenuOffset) / 2) {
-                    //滑动菜单
                     openMenu();
                 } else {
-                    //滑动到内容
                     closeMenu();
                 }
                 break;
@@ -164,6 +163,7 @@ public class LiteSwipeMenu extends ViewGroup {
             mMenuView.setBackgroundColor(Color.TRANSPARENT);
             mMenuView.layout(0, 0, mScreenWidth - mMenuOffset, mScreenHeight);
             mContentView.layout(mScreenWidth - mMenuOffset, 0, mScreenWidth - mMenuOffset + mScreenWidth, mScreenHeight);
+            //将视图向左移动，保持菜单隐藏
             scrollTo(mScreenWidth - mMenuOffset, 0);
         }
     }
@@ -171,9 +171,9 @@ public class LiteSwipeMenu extends ViewGroup {
 
     public void openMenu() {
 
-        mScroller.startScroll(getScrollX(), 0, 0 - getScrollX(), 0,500);
+        mScroller.startScroll(getScrollX(), 0, 0 - getScrollX(), 0, 500);
         if (mListener != null) {
-            mListener.onProgressChange(1, 0, mMenuView);
+            mListener.onProgressChange(1, 0);
         }
         invalidate();
     }
@@ -181,12 +181,16 @@ public class LiteSwipeMenu extends ViewGroup {
     public void closeMenu() {
         mScroller.startScroll(getScrollX(), 0, mScreenWidth - mMenuOffset - getScrollX(), 0);
         if (mListener != null) {
-            mListener.onProgressChange(0, mScreenWidth - mMenuOffset, mMenuView);
+            mListener.onProgressChange(0, mScreenWidth - mMenuOffset);
         }
         invalidate();
     }
 
 
+    /**
+     * 设置菜单右边距，这里按屏幕宽度 百分比取值
+     * @param factor 百分比系数（0-1.0 之前)
+     */
     public void setMenuOffset(float factor) {
         if (Math.abs(factor) > 1.0) {
             factor = 1.0f;
@@ -195,13 +199,17 @@ public class LiteSwipeMenu extends ViewGroup {
     }
 
 
+    /**
+     * 获取视图的Activity实例，同时设置状态栏为透明色,保持菜单栏和视图内容可以沉寝式的显示。
+     * @param activity
+     */
     public void attachWithActivity(Activity activity) {
-        LiteMenuHelper.setStatusBar(activity);
+        LiteMenuHelper.addStatusBar(activity);
     }
 
     public interface onMenuSwipeListener {
 
-        void onProgressChange(float progress, int scrollX, View menuView);
+        void onProgressChange(float progress, int scrollX);
     }
 
     public void setOnSwipeProgressListener(onMenuSwipeListener listener) {

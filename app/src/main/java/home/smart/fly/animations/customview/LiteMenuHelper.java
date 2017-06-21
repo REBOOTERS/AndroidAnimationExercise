@@ -4,13 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 /**
- * Created by co-mall on 2017/6/20.
+ * Created by rookie on 2017/6/20.
  */
 
 public class LiteMenuHelper {
@@ -40,7 +41,12 @@ public class LiteMenuHelper {
         return statusBarView;
     }
 
-    public static void setStatusBar(Activity activity) {
+
+    /**
+     * 在根视图基础上添加一个透明的状态栏
+     * @param activity
+     */
+    public static void addStatusBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // 设置状态栏透明
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -56,6 +62,21 @@ public class LiteMenuHelper {
             rootView.setFitsSystemWindows(false);
             rootView.setClipToPadding(false);
         }
+    }
+
+
+    public static int getScreenWidth(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics metrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(metrics);
+        return metrics.widthPixels;
+    }
+
+    public static int getScreenHeight(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics metrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(metrics);
+        return metrics.heightPixels;
     }
 
 

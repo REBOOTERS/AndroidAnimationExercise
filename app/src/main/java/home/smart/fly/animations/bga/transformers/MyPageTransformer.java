@@ -5,7 +5,7 @@ import android.view.View;
 import cn.bingoogolapple.bgabanner.transformer.DefaultPageTransformer;
 
 /**
- * Created by co-mall on 2017/5/27.
+ * Created by rookie on 2017/5/27.
  */
 
 public class MyPageTransformer extends DefaultPageTransformer {

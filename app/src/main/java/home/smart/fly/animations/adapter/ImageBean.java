@@ -3,7 +3,7 @@ package home.smart.fly.animations.adapter;
 import java.io.Serializable;
 
 /**
- * Created by co-mall on 2017/6/16.
+ * Created by rookie on 2017/6/16.
  */
 
 public class ImageBean implements Serializable {

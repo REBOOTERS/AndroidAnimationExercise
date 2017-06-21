@@ -3,7 +3,7 @@ package home.smart.fly.animations.recyclerview;
 import java.util.List;
 
 /**
- * Created by co-mall on 2017/5/19.
+ * Created by rookie on 2017/5/19.
  */
 
 public class TempBean {

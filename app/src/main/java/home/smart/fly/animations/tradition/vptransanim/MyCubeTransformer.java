@@ -4,7 +4,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 /**
- * Created by co-mall on 2017/5/31.
+ * Created by rookie on 2017/5/31.
  */
 
 public class MyCubeTransformer implements ViewPager.PageTransformer {

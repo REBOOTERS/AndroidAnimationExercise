@@ -13,7 +13,7 @@ import android.widget.TextView;
 import home.smart.fly.animations.R;
 
 /**
- * Created by co-mall on 2017/6/1.
+ * Created by rookie on 2017/6/1.
  */
 
 public class EasySeekBar extends LinearLayout {

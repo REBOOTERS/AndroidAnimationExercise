@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by co-mall on 2017/6/12.
+ * Created by rookie on 2017/6/12.
  */
 
 public class SlideView extends View {

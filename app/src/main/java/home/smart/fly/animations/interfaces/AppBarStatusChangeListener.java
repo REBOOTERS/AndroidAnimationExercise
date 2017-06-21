@@ -3,7 +3,7 @@ package home.smart.fly.animations.interfaces;
 import android.support.design.widget.AppBarLayout;
 
 /**
- * Created by co-mall on 2017/6/5.
+ * Created by rookie on 2017/6/5.
  */
 
 public abstract class AppBarStatusChangeListener implements AppBarLayout.OnOffsetChangedListener {

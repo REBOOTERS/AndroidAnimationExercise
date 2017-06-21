@@ -16,7 +16,7 @@ import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.V;
 
 /**
- * Created by co-mall on 2017/5/17.
+ * Created by rookie on 2017/5/17.
  */
 
 

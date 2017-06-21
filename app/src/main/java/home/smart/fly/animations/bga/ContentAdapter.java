@@ -7,7 +7,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 import home.smart.fly.animations.R;
 
 /**
- * Created by co-mall on 2017/5/23.
+ * Created by rookie on 2017/5/23.
  */
 
 public class ContentAdapter extends BGARecyclerViewAdapter<String> {

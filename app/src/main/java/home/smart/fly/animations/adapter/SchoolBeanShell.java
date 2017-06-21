@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by co-mall on 2017/5/17.
+ * Created by rookie on 2017/5/17.
  */
 
 public class SchoolBeanShell implements Serializable{

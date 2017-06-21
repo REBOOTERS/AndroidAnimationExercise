@@ -1,7 +1,7 @@
 package home.smart.fly.animations.customview.wheel.updateFile;
 
 /**
- * Created by co-mall on 2016/7/29.
+ * Created by rookie on 2016/7/29.
  */
 public class Address {
   String nanme,id;
