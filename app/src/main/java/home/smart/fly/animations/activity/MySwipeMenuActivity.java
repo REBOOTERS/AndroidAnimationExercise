@@ -1,10 +1,12 @@
 package home.smart.fly.animations.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -12,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.customview.LiteMenuHelper;
 import home.smart.fly.animations.customview.LiteSwipeMenu;
@@ -111,7 +114,13 @@ public class MySwipeMenuActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
+    @OnClick(R.id.avatar)
+    public void click(View view) {
+        startActivity(new Intent(this, PullRecyclerViewActivity.class));
+    }
 
 }

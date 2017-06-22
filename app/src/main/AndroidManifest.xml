@@ -208,6 +208,7 @@
             android:name=".activity.jianshu.JianShuHeadActivity"
             android:theme="@style/MyTheme.NoActionBar">
         </activity>
+        <activity android:name=".activity.PullRecyclerViewActivity"/>
     </application>
 
 </manifest>

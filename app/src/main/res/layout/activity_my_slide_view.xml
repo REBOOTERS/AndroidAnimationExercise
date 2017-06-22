@@ -15,11 +15,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/a5"/>
+            android:layout_height="200dp"
+            android:background="@drawable/a5"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_avtar"/>
+        </RelativeLayout>
+
 
         <ImageView
             android:layout_width="match_parent"

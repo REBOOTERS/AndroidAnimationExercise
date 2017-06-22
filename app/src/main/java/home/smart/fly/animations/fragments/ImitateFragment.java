@@ -21,6 +21,7 @@ import java.util.List;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.IModeActivity;
 import home.smart.fly.animations.activity.MySwipeMenuActivity;
+import home.smart.fly.animations.activity.PullRecyclerViewActivity;
 import home.smart.fly.animations.activity.WavaAnimActivity;
 import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
 import home.smart.fly.animations.activity.jianshu.JianShuHeadActivity;
@@ -57,12 +58,13 @@ public class ImitateFragment extends Fragment {
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
         demos.add(new ItemInfo(R.string.jianshuhead, JianShuHeadActivity.class));
         demos.add(new ItemInfo(R.string.swipemenu, MySwipeMenuActivity.class));
+        demos.add(new ItemInfo(R.string.pullzoom, PullRecyclerViewActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdapter mAdapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setAdapter(mAdapter);
 
-        Toast.makeText(mContext, "一直在模仿，从未能超越 ! ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, getResources().getString(R.string.toast), Toast.LENGTH_SHORT).show();
     }
 
 
