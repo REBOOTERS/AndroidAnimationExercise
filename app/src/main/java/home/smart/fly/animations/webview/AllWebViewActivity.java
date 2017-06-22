@@ -62,9 +62,23 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         //
         mWebView.addJavascriptInterface(new JsObject(mContext), "myObj");
         //
-        mWebView.setWebChromeClient(new WebChromeClient());
+        mWebView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+                Log.e(TAG, "onReceivedTitle: " + title);
+                Log.e(TAG, "threadName: " + Thread.currentThread().getName());
+
+            }
+        });
 
         mWebView.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                Log.e(TAG, "onPageFinished: " + url);
+            }
 
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
