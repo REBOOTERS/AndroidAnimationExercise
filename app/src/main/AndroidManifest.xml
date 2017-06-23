@@ -201,14 +201,15 @@
         </activity>
         <activity
             android:name=".activity.MySwipeMenuActivity"
-            android:theme="@style/MyTheme.NoActionBar"
-            >
+            android:theme="@style/MyTheme.NoActionBar">
         </activity>
         <activity
             android:name=".activity.jianshu.JianShuHeadActivity"
             android:theme="@style/MyTheme.NoActionBar">
         </activity>
         <activity android:name=".activity.PullRecyclerViewActivity"/>
+        <activity android:name=".activity.FlipViewActivity">
+        </activity>
     </application>
 
 </manifest>

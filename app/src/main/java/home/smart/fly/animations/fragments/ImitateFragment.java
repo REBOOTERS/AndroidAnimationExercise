@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.activity.FlipViewActivity;
 import home.smart.fly.animations.activity.IModeActivity;
 import home.smart.fly.animations.activity.MySwipeMenuActivity;
 import home.smart.fly.animations.activity.PullRecyclerViewActivity;
@@ -59,6 +60,7 @@ public class ImitateFragment extends Fragment {
         demos.add(new ItemInfo(R.string.jianshuhead, JianShuHeadActivity.class));
         demos.add(new ItemInfo(R.string.swipemenu, MySwipeMenuActivity.class));
         demos.add(new ItemInfo(R.string.pullzoom, PullRecyclerViewActivity.class));
+        demos.add(new ItemInfo(R.string.pullzoom, FlipViewActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdapter mAdapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

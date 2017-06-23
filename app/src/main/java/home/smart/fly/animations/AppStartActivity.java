@@ -23,6 +23,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import home.smart.fly.animations.fragments.ImitateFragment;
 import home.smart.fly.animations.fragments.OtherFragment;
 import home.smart.fly.animations.fragments.PropertyFragment;
@@ -100,7 +103,35 @@ public class AppStartActivity extends AppCompatActivity {
 
         Log.e("version", "android.os.Build.VERSION.SDK_INT = " + version);
         Log.e("version", "Build.VERSION.RELEASE = " + mRelease);
+        
+        testAs();
 
+
+    }
+
+    private void testAs() {
+        List<String> list=new ArrayList<>();
+        for (int mI = 0; mI < list.size(); mI++) {
+            if (mI>5) {
+
+            }
+
+            Object ob = new Object();
+            if (ob == null) {
+
+            }
+
+            if (ob != null) {
+
+            }
+
+
+
+        }
+
+        for (int mI = list.size() - 1; mI >= 0; mI--) {
+            
+        }
 
     }
 

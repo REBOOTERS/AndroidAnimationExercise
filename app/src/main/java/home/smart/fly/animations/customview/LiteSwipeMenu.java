@@ -71,7 +71,7 @@ public class LiteSwipeMenu extends ViewGroup {
                 //视图总滑动距离小于屏幕宽度
                 if (x + getScrollX() < mScreenWidth) {
                     //1.消除纵向滑动冲突；2.忽略小于系统级别的滑动
-                    if (Math.abs(xDelta) > Math.abs(yDelta) && Math.abs(xDelta) > mTouchSlop) { //X滑动主导
+                    if (Math.abs(xDelta) > Math.abs(yDelta) && Math.abs(xDelta) > mTouchSlop) {
                         intercept = true;
                     } else {
                         intercept = false;
@@ -115,7 +115,7 @@ public class LiteSwipeMenu extends ViewGroup {
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                //横向滑动的距离小于菜单宽度的一半时，菜单依旧保持打开
+                //横向滑动的距离小于屏幕宽度的一半时，菜单依旧保持打开
                 if (getScrollX() < (mScreenWidth - mMenuOffset) / 2) {
                     openMenu();
                 } else {
