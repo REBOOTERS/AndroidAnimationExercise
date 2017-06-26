@@ -23,9 +23,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import home.smart.fly.animations.fragments.ImitateFragment;
 import home.smart.fly.animations.fragments.OtherFragment;
 import home.smart.fly.animations.fragments.PropertyFragment;
@@ -86,7 +83,7 @@ public class AppStartActivity extends AppCompatActivity {
             }
         });
 
-        spinner.setSelection(2);
+        spinner.setSelection(3);
         main_contetn = (CoordinatorLayout) findViewById(R.id.main_content);
         snackbar = Snackbar.make(main_contetn, "确认要退出吗？", Snackbar.LENGTH_SHORT)
                 .setAction("退出", new View.OnClickListener() {
@@ -103,35 +100,6 @@ public class AppStartActivity extends AppCompatActivity {
 
         Log.e("version", "android.os.Build.VERSION.SDK_INT = " + version);
         Log.e("version", "Build.VERSION.RELEASE = " + mRelease);
-        
-        testAs();
-
-
-    }
-
-    private void testAs() {
-        List<String> list=new ArrayList<>();
-        for (int mI = 0; mI < list.size(); mI++) {
-            if (mI>5) {
-
-            }
-
-            Object ob = new Object();
-            if (ob == null) {
-
-            }
-
-            if (ob != null) {
-
-            }
-
-
-
-        }
-
-        for (int mI = list.size() - 1; mI >= 0; mI--) {
-            
-        }
 
     }
 
@@ -155,7 +123,6 @@ public class AppStartActivity extends AppCompatActivity {
             startActivity(new Intent(AppStartActivity.this, SettingsActivity.class));
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -195,8 +162,6 @@ public class AppStartActivity extends AppCompatActivity {
         public void setDropDownViewTheme(Theme theme) {
             mDropDownHelper.setDropDownViewTheme(theme);
         }
-
-
     }
 
 }

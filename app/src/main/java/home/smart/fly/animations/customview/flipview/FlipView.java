@@ -248,7 +248,6 @@ public class FlipView extends FrameLayout {
                 return i;
             }
         }
-
         // Id no longer is dataset, keep current page
         return mCurrentPageIndex;
     }

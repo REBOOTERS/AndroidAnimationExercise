@@ -7,4 +7,21 @@
         <item>自定义View</item>
         <item>其他view</item>
     </string-array>
+
+    <string-array name="flows">
+        <item>传动动画</item>
+        <item>属性动画</item>
+        <item>模拟第三方APP</item>
+        <item>自定义View</item>
+        <item>其他view</item>
+        <item>属性动画</item>
+        <item>模拟第三方APP</item>
+        <item>传动动画</item>
+        <item>属性动画</item>
+        <item>模拟第三方APP</item>
+        <item>自定义View</item>
+        <item>其他view</item>
+        <item>属性动画</item>
+        <item>模拟第三方APP</item>
+    </string-array>
 </resources>

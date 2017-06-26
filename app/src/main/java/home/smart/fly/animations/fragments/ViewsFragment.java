@@ -19,6 +19,7 @@ import java.util.List;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.CollegeActivity;
+import home.smart.fly.animations.activity.FlowLayoutActivity;
 import home.smart.fly.animations.activity.PlayActivity;
 import home.smart.fly.animations.activity.WavaAnimActivity;
 import home.smart.fly.animations.activity.demos.AnimationsDemo;
@@ -59,6 +60,7 @@ public class ViewsFragment extends Fragment {
         demos.add(new ItemInfo(R.string.app_name, RevealAnimatorActivity.class));
         demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));
         demos.add(new ItemInfo(R.string.app_name, AnimationsDemo.class));
+        demos.add(new ItemInfo(R.string.flowlayout, FlowLayoutActivity.class));
 
 
         recyclerView = V.f(rootView, R.id.recyclerView);

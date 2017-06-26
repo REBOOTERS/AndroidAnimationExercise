@@ -210,6 +210,8 @@
         <activity android:name=".activity.PullRecyclerViewActivity"/>
         <activity android:name=".activity.FlipViewActivity">
         </activity>
+        <activity android:name=".activity.FlowLayoutActivity">
+        </activity>
     </application>
 
 </manifest>
