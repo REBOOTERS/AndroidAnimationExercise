@@ -7,6 +7,7 @@ import android.graphics.Picture;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -140,7 +141,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
                 Bitmap bmp = Bitmap.createBitmap(snapShot.getWidth(), snapShot.getHeight(), Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(bmp);
                 snapShot.draw(canvas);
-                if (FileUtil.savaBitmap2SDcard(mContext, bmp, "1111")) {
+                if (!TextUtils.isEmpty(FileUtil.savaBitmap2SDcard(mContext, bmp, "1111"))) {
                     T.showSToast(mContext, "success");
                 }
                 break;

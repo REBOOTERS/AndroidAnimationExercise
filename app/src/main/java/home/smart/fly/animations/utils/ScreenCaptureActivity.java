@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,7 +38,7 @@ public class ScreenCaptureActivity extends AppCompatActivity {
         Bitmap bitmap = Bitmap.createBitmap(temp, 0, statusBarHeight, screenInfo.width, screenInfo.height - statusBarHeight);
         viewRoot.setDrawingCacheEnabled(false);
 
-        if (FileUtil.savaBitmap2SDcard(this,bitmap, "myfile")) {
+        if (!TextUtils.isEmpty(FileUtil.savaBitmap2SDcard(this, bitmap, "myfile"))) {
             Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, FullscreenActivity.class));
         } else {
@@ -60,7 +61,7 @@ public class ScreenCaptureActivity extends AppCompatActivity {
     private class ScreenParam {
         int width, height;
 
-         ScreenParam(int width, int height) {
+        ScreenParam(int width, int height) {
             this.width = width;
             this.height = height;
         }

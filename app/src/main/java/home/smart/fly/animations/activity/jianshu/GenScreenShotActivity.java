@@ -1,22 +1,33 @@
 package home.smart.fly.animations.activity.jianshu;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
+import java.io.File;
+
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.jianshu.helper.FakeWebView;
 import home.smart.fly.animations.activity.jianshu.helper.HtmlBean;
+import home.smart.fly.animations.adapter.ImageBean;
 import home.smart.fly.animations.utils.FileUtil;
 import home.smart.fly.animations.utils.T;
 
@@ -86,22 +97,66 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
         return super.onOptionsItemSelected(item);
     }
 
-    private class MyAsyncTask extends AsyncTask<Bitmap, Void, Boolean> {
+    private class MyAsyncTask extends AsyncTask<Bitmap, Void, String> {
 
         @Override
-        protected Boolean doInBackground(Bitmap... params) {
-            return FileUtil.savaBitmap2SDcard(mContext, params[0], bean.getTitle());
-
+        protected String doInBackground(Bitmap... params) {
+            return FileUtil.savaBitmap2SDcard(mContext, params[0], "test");
         }
 
         @Override
-        protected void onPostExecute(Boolean aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(String path) {
+            super.onPostExecute(path);
             mProgressDialog.dismiss();
-            if (aVoid) {
-                T.showSToast(mContext, "保存图片成功!");
-            }else {
-                T.showSToast(mContext, "保存图片失败!");
+            ImageBean imageBean = new ImageBean();
+            imageBean.setFilepath(path);
+
+            if (imageBean != null) {
+                String filepath = imageBean.getFilepath();
+                T.showSToast(mContext, filepath);
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext);
+                mBuilder.setWhen(System.currentTimeMillis())
+                        .setTicker("下载图片成功")
+                        .setContentTitle("点击查看")
+                        .setSmallIcon(R.mipmap.app_start)
+                        .setContentText("图片保存在:" + filepath)
+                        .setAutoCancel(true)
+                        .setOngoing(false);
+                //通知默认的声音 震动 呼吸灯
+                mBuilder.setDefaults(NotificationCompat.DEFAULT_ALL);
+
+
+//                Intent mIntent = new Intent(mContext, PendingImgActivity.class);
+//                Bundle mBundle = new Bundle();
+//                mBundle.putSerializable("bean", imageBean);
+//                mIntent.putExtras(mBundle);
+
+                Intent mIntent = new Intent();
+                mIntent.setAction(android.content.Intent.ACTION_VIEW);
+
+                Uri contentUri;
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    // 将文件转换成content://Uri的形式
+                    contentUri = FileProvider.getUriForFile(mContext, getPackageName() + ".provider", new File(path));
+                    // 申请临时访问权限
+                    mIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                } else {
+                    contentUri = Uri.fromFile(new File(path));
+                }
+
+                mIntent.setDataAndType(contentUri, "image/*");
+
+
+                PendingIntent mPendingIntent = PendingIntent.getActivity(mContext
+                        , 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                mBuilder.setContentIntent(mPendingIntent);
+                Notification mNotification = mBuilder.build();
+                mNotification.flags |= Notification.FLAG_AUTO_CANCEL;
+                NotificationManager mManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                mManager.notify(0, mNotification);
+            } else {
+                T.showSToast(mContext, "fail");
             }
 
         }

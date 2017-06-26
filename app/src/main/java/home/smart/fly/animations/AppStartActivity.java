@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources.Theme;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
@@ -97,9 +98,13 @@ public class AppStartActivity extends AppCompatActivity {
 
         final int version = android.os.Build.VERSION.SDK_INT;
         final String mRelease = Build.VERSION.RELEASE;
+        String filepath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        String filepath1 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
 
         Log.e("version", "android.os.Build.VERSION.SDK_INT = " + version);
         Log.e("version", "Build.VERSION.RELEASE = " + mRelease);
+        Log.e("version", "Environment.getExternalStorageDirectory() = " + filepath);
+        Log.e("version", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DCIM) = " + filepath1);
 
     }
 

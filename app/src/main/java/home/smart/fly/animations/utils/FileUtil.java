@@ -34,8 +34,9 @@ public class FileUtil {
      * @param name
      * @return
      */
-    public static boolean savaBitmap2SDcard(Context context, Bitmap bitmap, String name) {
-        boolean result = false;
+    public static String savaBitmap2SDcard(Context context, Bitmap bitmap, String name) {
+
+        String result = "";
         File fileDir = new File(Environment.getExternalStorageDirectory() + File.separator + "DCIM" + File.separator + "Camera" + File.separator);
         if (!fileDir.exists()) {
             fileDir.mkdir();
@@ -45,9 +46,9 @@ public class FileUtil {
         FileOutputStream outputStream = null;
         try {
             outputStream = new FileOutputStream(file);
-            result = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
             outputStream.flush();
-
+            result = file.getAbsolutePath();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -61,16 +62,6 @@ public class FileUtil {
                 }
             }
         }
-
-        // 其次把文件插入到系统图库
-//        try {
-//            MediaStore.Images.Media.insertImage(context.getContentResolver(),
-//                    file.getAbsolutePath(), filename, null);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-        // 最后通知图库更新
-//        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + fileDir.toString())));
         return result;
     }
 
