@@ -17,6 +17,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -101,41 +102,33 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
 
         @Override
         protected String doInBackground(Bitmap... params) {
-            return FileUtil.savaBitmap2SDcard(mContext, params[0], "test");
+            return FileUtil.savaBitmap2SDcard(mContext, params[0], bean.getTitle());
         }
 
         @Override
         protected void onPostExecute(String path) {
             super.onPostExecute(path);
             mProgressDialog.dismiss();
-            ImageBean imageBean = new ImageBean();
-            imageBean.setFilepath(path);
 
-            if (imageBean != null) {
-                String filepath = imageBean.getFilepath();
-                T.showSToast(mContext, filepath);
+
+            if (!TextUtils.isEmpty(path)) {
+                ImageBean imageBean = new ImageBean();
+                imageBean.setFilepath(path);
+                T.showSToast(mContext, path);
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext);
                 mBuilder.setWhen(System.currentTimeMillis())
                         .setTicker("下载图片成功")
                         .setContentTitle("点击查看")
                         .setSmallIcon(R.mipmap.app_start)
-                        .setContentText("图片保存在:" + filepath)
+                        .setContentText("图片保存在:" + path)
                         .setAutoCancel(true)
                         .setOngoing(false);
                 //通知默认的声音 震动 呼吸灯
                 mBuilder.setDefaults(NotificationCompat.DEFAULT_ALL);
 
-
-//                Intent mIntent = new Intent(mContext, PendingImgActivity.class);
-//                Bundle mBundle = new Bundle();
-//                mBundle.putSerializable("bean", imageBean);
-//                mIntent.putExtras(mBundle);
-
                 Intent mIntent = new Intent();
                 mIntent.setAction(android.content.Intent.ACTION_VIEW);
-
                 Uri contentUri;
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     // 将文件转换成content://Uri的形式
                     contentUri = FileProvider.getUriForFile(mContext, getPackageName() + ".provider", new File(path));
@@ -146,6 +139,7 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
                 }
 
                 mIntent.setDataAndType(contentUri, "image/*");
+                startActivity(mIntent);
 
 
                 PendingIntent mPendingIntent = PendingIntent.getActivity(mContext

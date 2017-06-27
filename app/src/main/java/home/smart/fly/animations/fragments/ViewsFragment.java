@@ -23,6 +23,8 @@ import home.smart.fly.animations.activity.FlowLayoutActivity;
 import home.smart.fly.animations.activity.PlayActivity;
 import home.smart.fly.animations.activity.WavaAnimActivity;
 import home.smart.fly.animations.activity.demos.AnimationsDemo;
+import home.smart.fly.animations.activity.transtions.StackViewActivity;
+import home.smart.fly.animations.activity.transtions.SwitcherActivity;
 import home.smart.fly.animations.customview.BasicPosActivity;
 import home.smart.fly.animations.property.RevealAnimatorActivity;
 import home.smart.fly.animations.utils.V;
@@ -61,6 +63,8 @@ public class ViewsFragment extends Fragment {
         demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));
         demos.add(new ItemInfo(R.string.app_name, AnimationsDemo.class));
         demos.add(new ItemInfo(R.string.flowlayout, FlowLayoutActivity.class));
+        demos.add(new ItemInfo(R.string.flowlayout, SwitcherActivity.class));
+        demos.add(new ItemInfo(R.string.flowlayout, StackViewActivity.class));
 
 
         recyclerView = V.f(rootView, R.id.recyclerView);

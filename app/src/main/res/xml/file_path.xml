@@ -8,5 +8,5 @@
         path="."/>
     <external-path
         name="root"
-        path="/DCIM/Camera/"/>
+        path=""/>
 </paths>

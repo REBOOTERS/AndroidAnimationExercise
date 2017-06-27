@@ -212,6 +212,14 @@
         </activity>
         <activity android:name=".activity.FlowLayoutActivity">
         </activity>
+        <activity android:name=".activity.transtions.SwitcherActivity">
+        </activity>
+        <activity android:name=".activity.transtions.StackViewActivity">
+        </activity>
+        <activity android:name=".activity.transtions.ViewFlipperAcitivity">
+        </activity>
+        <activity android:name=".activity.InputActivity">
+        </activity>
     </application>
 
 </manifest>
