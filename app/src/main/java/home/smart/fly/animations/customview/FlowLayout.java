@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by co-mall on 2017/6/26.
+ * Created by Rookie on 2017/6/26.
  */
 
 public class FlowLayout extends ViewGroup {

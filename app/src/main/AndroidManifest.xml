@@ -39,8 +39,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
+        <!--<activity-->
+        <!--android:name=".AppStartActivity"-->
+        <!---->
+        <!--android:label="@string/app_name"-->
+        <!--android:theme="@style/AppTheme">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN"/>-->
+
+        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
         <activity
-            android:name=".AppStartActivity"
+            android:name=".activity.MyDrawingBoardActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -220,6 +231,8 @@
         </activity>
         <activity android:name=".activity.InputActivity">
         </activity>
+        <!--<activity android:name=".activity.MyDrawingBoardActivity">-->
+        <!--</activity>-->
     </application>
 
 </manifest>
