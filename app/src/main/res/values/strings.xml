@@ -16,6 +16,7 @@
     <string name="swipemenu">侧滑菜单效果</string>
     <string name="pullzoom">下拉放大效果</string>
     <string name="flowlayout">标签流水布局</string>
+    <string name="dragBubbleView">dragBubbleView</string>
     <string name="easy">easy</string>
     <string name="hard">hard</string>
     <string name="crazy">crazy</string>

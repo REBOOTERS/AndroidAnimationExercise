@@ -1,6 +1,7 @@
 package home.smart.fly.animations.customview.canvas;
 
 
+import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -19,7 +20,7 @@ import android.view.View;
  * Created by Rookie on 2017/6/29.
  */
 
-public class DrawingBoard extends View {
+public class DrawingBoard1 extends View {
     private static final String TAG = "DrawingBoard";
 
     public static final float BASE = 400.0f;
@@ -37,27 +38,26 @@ public class DrawingBoard extends View {
     private PointF endP;
 
 
-    private PointF controllP;
+    private PointF controllP1, controllP2;
 
 
     private Path path;
 
 
     //Animations
-    private ValueAnimator mValueAnimator;
+    private AnimatorSet mAnimatorSet;
 
-
-    public DrawingBoard(Context context) {
+    public DrawingBoard1(Context context) {
         super(context);
         init(context);
     }
 
-    public DrawingBoard(Context context, @Nullable AttributeSet attrs) {
+    public DrawingBoard1(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public DrawingBoard(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DrawingBoard1(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -99,25 +99,42 @@ public class DrawingBoard extends View {
 
         startP = new PointF(-BASE, 0);
         endP = new PointF(BASE, 0);
-        controllP = new PointF(0, -BASE);
+        controllP1 = new PointF(-BASE / 2, -BASE);
+        controllP2 = new PointF(BASE / 2, BASE);
         path = new Path();
 
 
-        mValueAnimator = ValueAnimator.ofFloat(-BASE, BASE);
-        mValueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        mValueAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        mValueAnimator.setDuration(3000);
-        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator mValueAnimator1 = ValueAnimator.ofFloat(-BASE, BASE);
+        mValueAnimator1.setRepeatCount(ValueAnimator.INFINITE);
+        mValueAnimator1.setRepeatMode(ValueAnimator.REVERSE);
+        mValueAnimator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float value = (float) animation.getAnimatedValue();
                 Log.e(TAG, "onAnimationUpdate: value=" + value);
-                controllP.y = value;
-                controllP.x = (float) (BASE * Math.sin(value * Math.PI / BASE));
+                controllP1.y = value * 0.8f;
+                controllP1.x = (float) (BASE * 0.5f * Math.sin(value * Math.PI / BASE));
+//                invalidate();
+            }
+        });
+        ValueAnimator mValueAnimator2 = ValueAnimator.ofFloat(BASE, -BASE);
+        mValueAnimator2.setRepeatCount(ValueAnimator.INFINITE);
+        mValueAnimator2.setRepeatMode(ValueAnimator.REVERSE);
+        mValueAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (float) animation.getAnimatedValue();
+                Log.e(TAG, "onAnimationUpdate: value=" + value);
+                controllP2.y = value * 1.2f;
+                controllP2.x = (float) (BASE * 0.5f * Math.sin(value * Math.PI / BASE));
                 invalidate();
             }
         });
-        mValueAnimator.start();
+
+        mAnimatorSet = new AnimatorSet();
+        mAnimatorSet.playTogether(mValueAnimator1, mValueAnimator2);
+        mAnimatorSet.setDuration(3000);
+        mAnimatorSet.start();
 
     }
 
@@ -165,16 +182,18 @@ public class DrawingBoard extends View {
         canvas.translate(widht / 2, height / 2);
         canvas.drawPoint(startP.x, startP.y, pointPaint);
         canvas.drawPoint(endP.x, endP.y, pointPaint);
-        canvas.drawPoint(controllP.x, controllP.y, pointPaint);
+        canvas.drawPoint(controllP1.x, controllP1.y, pointPaint);
+        canvas.drawPoint(controllP2.x, controllP2.y, pointPaint);
 
 
         //controll line
-        canvas.drawLine(startP.x, startP.y, controllP.x, controllP.y, linePaint);
-        canvas.drawLine(endP.x, endP.y, controllP.x, controllP.y, linePaint);
+        canvas.drawLine(startP.x, startP.y, controllP1.x, controllP1.y, linePaint);
+        canvas.drawLine(controllP1.x, controllP1.y, controllP2.x, controllP2.y, linePaint);
+        canvas.drawLine(controllP2.x, controllP2.y, endP.x, endP.y, linePaint);
 
 
         path.moveTo(startP.x, startP.y);
-        path.quadTo(controllP.x, controllP.y, endP.x, endP.y);
+        path.quadTo(controllP1.x, controllP1.y, endP.x, endP.y);
         canvas.drawPath(path, mPaint);
 
     }
@@ -182,7 +201,7 @@ public class DrawingBoard extends View {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        mValueAnimator.cancel();
+        mAnimatorSet.cancel();
     }
 
     @Override
@@ -191,8 +210,8 @@ public class DrawingBoard extends View {
         float y = event.getY() - height / 2;
         Log.e(TAG, "onTouchEvent: x=" + x);
         Log.e(TAG, "onTouchEvent: y=" + y);
-        controllP.x = x;
-        controllP.y = y;
+        controllP1.x = x;
+        controllP1.y = y;
         invalidate();
         return true;
 

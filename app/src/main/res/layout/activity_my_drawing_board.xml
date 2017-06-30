@@ -8,27 +8,18 @@
     android:orientation="vertical"
     tools:context="home.smart.fly.animations.activity.MyDrawingBoardActivity">
 
-    <RelativeLayout
+
+    <home.smart.fly.animations.customview.canvas.DrawingBoard
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        />
 
-        <home.smart.fly.animations.customview.canvas.DrawingBoard
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
-    </RelativeLayout>
-
-    <RelativeLayout
+    <home.smart.fly.animations.customview.canvas.DrawingBoard1
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <home.smart.fly.animations.customview.canvas.SuperDrawingBoard
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </RelativeLayout>
+        android:layout_weight="1"
+        />
 
 
 </LinearLayout>

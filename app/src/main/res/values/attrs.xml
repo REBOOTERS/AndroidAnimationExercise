@@ -64,4 +64,12 @@
             <enum name="rubber_band" value="1"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="DragBubbleView">
+        <attr name="bubbleRadius" format="dimension" />
+        <attr name="bubbleColor" format="color" />
+        <attr name="text" format="string" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
+    </declare-styleable>
 </resources>
