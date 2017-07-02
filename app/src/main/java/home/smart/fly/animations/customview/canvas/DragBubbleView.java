@@ -103,6 +103,8 @@ public class DragBubbleView extends View {
     private OnBubbleStateListener mOnBubbleStateListener;
     private int mPosition;
 
+    private Paint helpPaint;
+
     public DragBubbleView(Context context) {
         this(context, null);
     }
@@ -114,7 +116,7 @@ public class DragBubbleView extends View {
     public DragBubbleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.DragBubbleView, defStyleAttr, 0);
-        mBubbleRadius = ta.getDimension(R.styleable.DragBubbleView_bubbleRadius, dp2px(context, 12));
+        mBubbleRadius = ta.getDimension(R.styleable.DragBubbleView_bubbleRadius, dp2px(context, 22));
         mBubbleColor = ta.getColor(R.styleable.DragBubbleView_bubbleColor, Color.RED);
         mText = ta.getString(R.styleable.DragBubbleView_text);
         mTextSize = ta.getDimension(R.styleable.DragBubbleView_textSize, dp2px(context, 12));
@@ -144,6 +146,11 @@ public class DragBubbleView extends View {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), mExplosionDrawables[i]);
             mExplosionBitmaps[i] = bitmap;
         }
+
+        helpPaint = new Paint();
+        helpPaint.setColor(Color.GREEN);
+        helpPaint.setStrokeWidth(10);
+        helpPaint.setStyle(Paint.Style.FILL);
     }
 
     @Override
@@ -200,12 +207,21 @@ public class DragBubbleView extends View {
             float cos = (mBubbleCenterX - mCircleCenterX) / d;
             mCircleStartX = mCircleCenterX - mCircleRadius * sin;
             mCircleStartY = mCircleCenterY + mCircleRadius * cos;
+            mCircleEndX = mCircleCenterX + mCircleRadius * sin;
+            mCircleEndY = mCircleCenterY - mCircleRadius * cos;
+
             mBubbleEndX = mBubbleCenterX - mBubbleRadius * sin;
             mBubbleEndY = mBubbleCenterY + mBubbleRadius * cos;
             mBubbleStartX = mBubbleCenterX + mBubbleRadius * sin;
             mBubbleStartY = mBubbleCenterY - mBubbleRadius * cos;
-            mCircleEndX = mCircleCenterX + mCircleRadius * sin;
-            mCircleEndY = mCircleCenterY - mCircleRadius * cos;
+
+            //划出贝塞尔曲线控制点，及起始点辅助理解
+            canvas.drawPoint(mControlX,mControlY,helpPaint);
+            canvas.drawPoint(mCircleStartX,mCircleStartY,helpPaint);
+            canvas.drawPoint(mCircleEndX,mCircleEndY,helpPaint);
+            canvas.drawPoint(mBubbleStartX,mBubbleStartY,helpPaint);
+            canvas.drawPoint(mBubbleEndX,mBubbleEndY,helpPaint);
+
             //画二阶贝赛尔曲线
             mBezierPath.reset();
             mBezierPath.moveTo(mCircleStartX, mCircleStartY);
@@ -253,7 +269,6 @@ public class DragBubbleView extends View {
                     mBubbleCenterY = event.getY();
                     //计算气泡圆心与黏连小球圆心的间距
                     d = (float) Math.hypot(mBubbleCenterX - mCircleCenterX, mBubbleCenterY - mCircleCenterY);
-//                float d = (float) Math.sqrt(Math.pow(mBubbleCenterX - mCircleCenterX, 2) + Math.pow(mBubbleCenterY - mCircleCenterY, 2));
                     if (mState == STATE_DRAG) {//如果可拖拽
                         //间距小于可黏连的最大距离
                         if (d < maxD - maxD / 4) {//减去(maxD/4)的像素大小，是为了让黏连小球半径到一个较小值快消失时直接消失
@@ -274,11 +289,11 @@ public class DragBubbleView extends View {
             case MotionEvent.ACTION_UP:
                 getParent().requestDisallowInterceptTouchEvent(false);
                 if (mState == STATE_DRAG) {//正在拖拽时松开手指，气泡恢复原来位置并颤动一下
-                    setBubbleRestoreAnim();
+//                    setBubbleRestoreAnim();
                 } else if (mState == STATE_MOVE) {//正在移动时松开手指
                     //如果在移动状态下间距回到两倍半径之内，我们认为用户不想取消该气泡
                     if (d < 2 * mBubbleRadius) {//那么气泡恢复原来位置并颤动一下
-                        setBubbleRestoreAnim();
+//                        setBubbleRestoreAnim();
                     } else {//气泡消失
                         setBubbleDismissAnim();
                     }

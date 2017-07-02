@@ -23,7 +23,7 @@ import android.view.View;
 public class DrawingBoard1 extends View {
     private static final String TAG = "DrawingBoard";
 
-    public static final float BASE = 400.0f;
+    public static final float BASE = 200.0f;
 
     private Context mContext;
     private int screenW, screenH;

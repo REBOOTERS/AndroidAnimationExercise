@@ -22,7 +22,7 @@ import android.view.View;
 public class DrawingBoard extends View {
     private static final String TAG = "DrawingBoard";
 
-    public static final float BASE = 400.0f;
+    public static final float BASE = 200.0f;
 
     private Context mContext;
     private int screenW, screenH;
@@ -113,7 +113,8 @@ public class DrawingBoard extends View {
                 float value = (float) animation.getAnimatedValue();
                 Log.e(TAG, "onAnimationUpdate: value=" + value);
                 controllP.y = value;
-                controllP.x = (float) (BASE * Math.sin(value * Math.PI / BASE));
+                controllP.x = value;
+//                controllP.x = (float) (BASE * Math.sin(value * Math.PI / BASE));
                 invalidate();
             }
         });
