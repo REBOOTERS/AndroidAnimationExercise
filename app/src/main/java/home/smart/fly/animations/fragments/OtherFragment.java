@@ -26,7 +26,7 @@ import home.smart.fly.animations.bga.BgaAllActivity;
 import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
 import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
 import home.smart.fly.animations.recyclerview.BaseRecyclerViewActivity;
-import home.smart.fly.animations.utils.ScreenCaptureActivity;
+import home.smart.fly.animations.activity.ScreenCaptureActivity;
 import home.smart.fly.animations.utils.V;
 import home.smart.fly.animations.webview.AllWebViewActivity;
 

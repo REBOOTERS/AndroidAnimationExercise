@@ -182,4 +182,13 @@ public class BubbleView extends View {
 
 
     }
+
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+    }
 }

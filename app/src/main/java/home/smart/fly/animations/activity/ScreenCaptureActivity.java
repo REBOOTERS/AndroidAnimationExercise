@@ -1,4 +1,4 @@
-package home.smart.fly.animations.utils;
+package home.smart.fly.animations.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.utils.FileUtil;
 
 public class ScreenCaptureActivity extends AppCompatActivity {
     private ImageView ivScreenshot;

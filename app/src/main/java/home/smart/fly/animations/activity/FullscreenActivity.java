@@ -1,4 +1,4 @@
-package home.smart.fly.animations.utils;
+package home.smart.fly.animations.activity;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.utils.FileUtil;
+import home.smart.fly.animations.utils.V;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

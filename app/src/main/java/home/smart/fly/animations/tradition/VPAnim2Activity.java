@@ -1,18 +1,15 @@
 package home.smart.fly.animations.tradition;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -24,12 +21,9 @@ import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.tradition.vptransanim.DepthPageTransformer;
-import home.smart.fly.animations.tradition.vptransanim.MyCubeTransformer;
-import home.smart.fly.animations.tradition.vptransanim.ZoomOutPageTransformer;
 import home.smart.fly.animations.utils.Tools;
 
-public class VPAnimActivity extends AppCompatActivity {
+public class VPAnim2Activity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -54,71 +48,82 @@ public class VPAnimActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        setContentView(R.layout.activity_vpanim);
+        setContentView(R.layout.activity_vpanim2);
         initDatas();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setPageMargin(20);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setPageTransformer(true, new DepthPageTransformer());
+        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setPageTransformer(true, new MyTranformer());
+
+//
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, VPAnim2Activity.class));
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+    }
+
+
+    private class MyTranformer implements ViewPager.PageTransformer {
+
+        private static final float MIN_SCALE = 0.85f;
+        private static final float MIN_ALPHA = 0.5f;
+
+        @SuppressLint("NewApi")
+        public void transformPage(View view, float position) {
+            int pageWidth = view.getMeasuredWidth();
+            int pageHeight = view.getMeasuredHeight();
+
+            Log.e("TAG", view + " , " + position + "");
+
+            if (position < -1) { // [-Infinity,-1)
+                // This page is way off-screen to the left.
+                view.setAlpha(1);
+                view.setScaleX(MIN_SCALE);
+                view.setScaleY(MIN_SCALE);
+            } else if (position <= 1) //a页滑动至b页 ； a页从 0.0 -1 ；b页从1 ~ 0.0
+            { // [-1,1]
+
+
+                // Modify the default slide transition to shrink the page as well
+                float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
+                float vertMargin = pageHeight * (1 - scaleFactor) / 2;
+                float horzMargin = pageWidth * (1 - scaleFactor) / 2;
+                if (position < 0) {
+                    view.setTranslationX(horzMargin - vertMargin / 2);
+                } else {
+                    view.setTranslationX(-horzMargin + vertMargin / 2);
+                }
+
+                // Scale the page down (between MIN_SCALE and 1)
+                view.setScaleX(scaleFactor);
+                view.setScaleY(scaleFactor);
+
+                // Fade the page relative to its size.
+//                view.setAlpha(MIN_ALPHA + (scaleFactor - MIN_SCALE)
+//                        / (1 - MIN_SCALE) * (1 - MIN_ALPHA));
+
+            } else { // (1,+Infinity]
+                // This page is way off-screen to the right.
+                view.setAlpha(1);
+                view.setScaleX(MIN_SCALE);
+                view.setScaleY(MIN_SCALE);
             }
-        });
-
+        }
     }
 
     private void initDatas() {
         String data = Tools.readStrFromAssets("pics.data", mContext);
         pics = new Gson().fromJson(data, new TypeToken<List<String>>() {
         }.getType());
-        pics = pics.subList(0, 8);
+        pics = pics.subList(0, 20);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_vpanim, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.file_path.
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.anim1:
-                mViewPager.setPageTransformer(true, new DepthPageTransformer());
-                break;
-            case R.id.anim2:
-                mViewPager.setPageTransformer(true, new ZoomOutPageTransformer());
-                break;
-            case R.id.anim3:
-                mViewPager.setPageTransformer(true, new MyCubeTransformer(90));
-                break;
-            default:
-                break;
-        }
-
-
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * A placeholder fragment containing a simple view.

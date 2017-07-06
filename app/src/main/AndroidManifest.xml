@@ -79,12 +79,16 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="6WGf45WoEZ068VWUtszDQGDP3vvGiRVW"/> <!-- http://lbsyun.baidu.com/apiconsole/key -->
 
-        <activity android:name=".utils.ScreenCaptureActivity"/>
+        <activity android:name=".activity.ScreenCaptureActivity"/>
         <activity android:name=".customview.puzzle.PuzzleActivity"/>
         <activity
             android:name=".tradition.VPAnimActivity"
             android:label="@string/title_activity_vpanim"
             android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".tradition.VPAnim2Activity"
+            android:theme="@style/AppTheme"
+            />
         <activity
             android:name=".activity.IModeActivity"
             android:theme="@style/JianshuTheme"/>
@@ -93,7 +97,7 @@
             android:name=".webview.AllWebViewActivity"
             android:theme="@style/MyTheme.NoActionBar"/>
         <activity
-            android:name=".utils.FullscreenActivity"
+            android:name=".activity.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/FullscreenTheme"/>
@@ -223,12 +227,8 @@
         <activity android:name=".activity.MyDrawingBoardActivity">
         </activity>
         <activity android:name=".activity.DragBubbleViewActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
         </activity>
+
     </application>
 
 </manifest>
