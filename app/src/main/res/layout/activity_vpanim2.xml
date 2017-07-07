@@ -6,19 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     android:layout_centerInParent="true"
-    android:background="#aadc71ff"
+    android:background="@color/cpb_blue"
     android:clipChildren="false"
     >
 
     <android.support.v4.view.ViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="130dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:clipChildren="false"
-        >
-    </android.support.v4.view.ViewPager>
+        />
 
 </FrameLayout>

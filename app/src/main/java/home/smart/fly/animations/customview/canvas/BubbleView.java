@@ -176,11 +176,7 @@ public class BubbleView extends View {
         path.lineTo(bubbleStartP.x, bubbleStartP.y);
         path.quadTo(controlP.x, controlP.y, centerEndP.x, centerEndP.y);
         path.close();
-
-
         canvas.drawPath(path, mPaint);
-
-
     }
 
 

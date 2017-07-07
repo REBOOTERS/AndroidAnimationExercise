@@ -84,7 +84,7 @@ public class AppStartActivity extends AppCompatActivity {
             }
         });
 
-        spinner.setSelection(0);
+        spinner.setSelection(3);
         main_contetn = (CoordinatorLayout) findViewById(R.id.main_content);
         snackbar = Snackbar.make(main_contetn, "确认要退出吗？", Snackbar.LENGTH_SHORT)
                 .setAction("退出", new View.OnClickListener() {
@@ -99,13 +99,37 @@ public class AppStartActivity extends AppCompatActivity {
         final int version = android.os.Build.VERSION.SDK_INT;
         final String mRelease = Build.VERSION.RELEASE;
         String filepath = Environment.getExternalStorageDirectory().getAbsolutePath();
-        String filepath1 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
+        //
+        String getDataDirectory = Environment.getDataDirectory().getAbsolutePath();
+        String getRootDirectory = Environment.getRootDirectory().getAbsolutePath();
+        String getDownloadCacheDirectory = Environment.getDownloadCacheDirectory().getAbsolutePath();
+        //
+        String DIRECTORY_DCIM = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
+        String DIRECTORY_DOCUMENTS = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
+        String DIRECTORY_PICTURES = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        String DIRECTORY_DOWNLOADS = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
+        //
+        String getCacheDir = mContext.getCacheDir().getAbsolutePath();
+        String getExternalCacheDir = mContext.getExternalCacheDir().getAbsolutePath();
+        String getExternalCacheDirs = mContext.getExternalCacheDirs().toString();
 
-        Log.e("version", "android.os.Build.VERSION.SDK_INT = " + version);
-        Log.e("version", "Build.VERSION.RELEASE = " + mRelease);
-        Log.e("version", "Environment.getExternalStorageDirectory() = " + filepath);
-        Log.e("version", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DCIM) = " + filepath1);
 
+        Log.e("device_info", "android.os.Build.VERSION.SDK_INT = " + version);
+        Log.e("device_info", "Build.VERSION.RELEASE = " + mRelease);
+        Log.e("device_info", "--------------------------------------------------");
+        Log.e("device_info", "Environment.getExternalStorageDirectory() = " + filepath);
+        Log.e("device_info", "Environment.getDataDirectory() = " + getDataDirectory);
+        Log.e("device_info", "Environment.getRootDirectory() = " + getRootDirectory);
+        Log.e("device_info", "Environment.getDownloadCacheDirectory() = " + getDownloadCacheDirectory);
+        Log.e("device_info", "--------------------------------------------------");
+        Log.e("device_info", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DCIM) = " + DIRECTORY_DCIM);
+        Log.e("device_info", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOCUMENTS) = " + DIRECTORY_DOCUMENTS);
+        Log.e("device_info", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_PICTURES) = " + DIRECTORY_PICTURES);
+        Log.e("device_info", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOWNLOADS) = " + DIRECTORY_DOWNLOADS);
+        Log.e("device_info", "--------------------------------------------------");
+        Log.e("device_info", "mContext.getCacheDir() = " + getCacheDir);
+        Log.e("device_info", "mContext.getExternalCacheDir() = " + getExternalCacheDir);
+        Log.e("device_info", "mContext.getExternalCacheDirs() = " + getExternalCacheDirs);
     }
 
 

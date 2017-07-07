@@ -2,7 +2,6 @@ package home.smart.fly.animations.customview.canvas;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.PointFEvaluator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -289,11 +288,11 @@ public class DragBubbleView extends View {
             case MotionEvent.ACTION_UP:
                 getParent().requestDisallowInterceptTouchEvent(false);
                 if (mState == STATE_DRAG) {//正在拖拽时松开手指，气泡恢复原来位置并颤动一下
-//                    setBubbleRestoreAnim();
+                    setBubbleRestoreAnim();
                 } else if (mState == STATE_MOVE) {//正在移动时松开手指
                     //如果在移动状态下间距回到两倍半径之内，我们认为用户不想取消该气泡
                     if (d < 2 * mBubbleRadius) {//那么气泡恢复原来位置并颤动一下
-//                        setBubbleRestoreAnim();
+                        setBubbleRestoreAnim();
                     } else {//气泡消失
                         setBubbleDismissAnim();
                     }

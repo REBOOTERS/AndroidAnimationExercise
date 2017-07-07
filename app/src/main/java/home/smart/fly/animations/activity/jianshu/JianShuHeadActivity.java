@@ -21,7 +21,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.ColorAnimator;
-import home.smart.fly.animations.utils.StatusBarUtil;
 
 
 public class JianShuHeadActivity extends AppCompatActivity {
@@ -46,7 +45,7 @@ public class JianShuHeadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_jian_shu_head);
         ButterKnife.bind(this);
         MIUISetStatusBarLightMode(getWindow(), true);
-        StatusBarUtil.setColor(this, Color.BLACK, 0);
+//        StatusBarUtil.setColor(this, Color.BLACK, 0);
 
         final ColorAnimator mColorAnimator = new ColorAnimator(Color.TRANSPARENT, Color.WHITE);
         mNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {

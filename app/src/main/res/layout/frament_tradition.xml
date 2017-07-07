@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/cpb_white"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="home.smart.fly.animations.AppStartActivity">
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cpb_white"
+            android:orientation="vertical"
+            tools:context="home.smart.fly.animations.AppStartActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:divider="@drawable/divider_line"
+        android:dividerPadding="3dp"
+        android:orientation="vertical"
+        android:showDividers="middle">
 
         <Button
             android:id="@+id/frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="0dp"
             android:background="@color/cpb_blue"
             android:text="FrameAnimation"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/tween"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="0dp"
             android:background="@color/cpb_blue"
             android:text="TweenedAnimation"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/blur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="0dp"
             android:background="@color/cpb_blue"
             android:text="Blur"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/activitySwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="0dp"
             android:background="@color/cpb_blue"
             android:text="activitySwitch"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"/>
+
         <Button
             android:id="@+id/vpAnim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="0dp"
             android:background="@color/cpb_blue"
             android:text="ViewPagerAnim"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/swipeAnim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="0dp"
             android:background="@color/cpb_blue"
             android:text="swipeAnim"
             android:textColor="@color/white"
-            android:visibility="gone" />
+            android:visibility="gone"/>
     </LinearLayout>
 
 
