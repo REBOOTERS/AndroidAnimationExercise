@@ -71,11 +71,7 @@ public class LiteSwipeMenu extends ViewGroup {
                 //视图总滑动距离小于屏幕宽度
                 if (x + getScrollX() < mScreenWidth) {
                     //1.消除纵向滑动冲突；2.忽略小于系统级别的滑动
-                    if (Math.abs(xDelta) > Math.abs(yDelta) && Math.abs(xDelta) > mTouchSlop) {
-                        intercept = true;
-                    } else {
-                        intercept = false;
-                    }
+                    intercept = Math.abs(xDelta) > Math.abs(yDelta) && Math.abs(xDelta) > mTouchSlop;
                 }
                 break;
             case MotionEvent.ACTION_UP:

@@ -118,9 +118,18 @@ public class MySwipeMenuActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.avatar)
+    @OnClick({R.id.avatar, R.id.smallAvatar})
     public void click(View view) {
-        startActivity(new Intent(this, PullRecyclerViewActivity.class));
+        switch (view.getId()) {
+            case R.id.avatar:
+                startActivity(new Intent(this, PullRecyclerViewActivity.class));
+                break;
+            case R.id.smallAvatar:
+
+                mMSwipeMenu.openMenu();
+                break;
+        }
+
     }
 
 }
