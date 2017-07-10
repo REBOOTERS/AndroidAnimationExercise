@@ -2,16 +2,16 @@ package home.smart.fly.animations.activity;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.utils.FileUtil;
 import home.smart.fly.animations.utils.V;
 
 /**
@@ -56,7 +56,6 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     };
     private View mControlsView;
-    private View mControlsView1;
     private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
@@ -66,7 +65,6 @@ public class FullscreenActivity extends AppCompatActivity {
                 actionBar.show();
             }
             mControlsView.setVisibility(View.VISIBLE);
-            mControlsView1.setVisibility(View.VISIBLE);
         }
     };
     private boolean mVisible;
@@ -99,7 +97,6 @@ public class FullscreenActivity extends AppCompatActivity {
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mControlsView1 = findViewById(R.id.fullscreen_content_controls1);
         mContentView = findViewById(R.id.fullscreen_content);
 
 
@@ -113,11 +110,11 @@ public class FullscreenActivity extends AppCompatActivity {
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
+//         while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
         ImageView mImageView = V.f(this, R.id.image);
-        Bitmap bitmap = FileUtil.getBitmapFormSDcard("myfile.jpg");
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.a5);
         mImageView.setImageBitmap(bitmap);
     }
 
@@ -146,7 +143,6 @@ public class FullscreenActivity extends AppCompatActivity {
             actionBar.hide();
         }
         mControlsView.setVisibility(View.GONE);
-        mControlsView1.setVisibility(View.GONE);
         mVisible = false;
 
         // Schedule a runnable to remove the status and navigation bar after a delay

@@ -17,6 +17,13 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+
+        <home.smart.fly.animations.customview.DragView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"/>
 
 
@@ -29,21 +36,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
-
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls1"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:background="#77000000">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Title"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
 
 
         <LinearLayout

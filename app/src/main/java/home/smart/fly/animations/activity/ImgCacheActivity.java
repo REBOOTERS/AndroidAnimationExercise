@@ -47,6 +47,7 @@ public class ImgCacheActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private Context mContext;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,11 @@ public class ImgCacheActivity extends AppCompatActivity {
                 new ImageDownLoadTask().execute(IMG_URL);
             }
         });
+
+
+
+
+
     }
 
     private class ImageLoadTask extends AsyncTask<String, Integer, Bitmap> {

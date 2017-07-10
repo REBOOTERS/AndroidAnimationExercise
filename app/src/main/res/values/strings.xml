@@ -5,6 +5,7 @@
     <string name="self_view">自定义view时measure方法的考量</string>
     <string name="fake_weibo">仿新浪微博雷达扫描效果及相关功能实现</string>
     <string name="take_screen">截屏</string>
+    <string name="full_screen">全屏</string>
     <string name="puzzle_game">拼图游戏</string>
     <string name="imode">沉寝式状态栏</string>
     <string name="waveAnim">波浪动画</string>

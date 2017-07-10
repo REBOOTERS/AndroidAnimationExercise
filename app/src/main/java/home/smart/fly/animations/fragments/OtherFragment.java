@@ -19,6 +19,7 @@ import java.util.List;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.CameraActivity;
+import home.smart.fly.animations.activity.FullscreenActivity;
 import home.smart.fly.animations.activity.ImgCacheActivity;
 import home.smart.fly.animations.activity.InputActivity;
 import home.smart.fly.animations.activity.WeiXinGalleryActivity;
@@ -58,6 +59,7 @@ public class OtherFragment extends Fragment {
 
     private void InitView() {
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
+        demos.add(new ItemInfo(R.string.full_screen, FullscreenActivity.class));
         demos.add(new ItemInfo(R.string.puzzle_game, PuzzleActivity.class));
         demos.add(new ItemInfo(R.string.webviewInfo, AllWebViewActivity.class));
         demos.add(new ItemInfo(R.string.camera, CameraActivity.class));
