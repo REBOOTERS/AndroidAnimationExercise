@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--你需要给top view center view bottom view
+    分别设置以下三个id，才有效-->
+    <item type="id" name="scaleLayout_top" />
+    <item type="id" name="scaleLayout_center" />
+    <item type="id" name="scaleLayout_bottom" />
+
+    <declare-styleable name="ScaleLayout">
+               
+       <!--default state 默认是缩小的还是？-->
+        <attr name="state">
+            <flag name="open" value="0" />
+            <flag name="close" value="1" />
+        </attr>
+
+        <!--是否启用推荐的minScale, 启用的话会覆盖原有的minScale-->
+        <attr name="suggestScaleEnable" format="boolean"/>
+
+        <!--默认是上滑缩小，下滑放大， 也可以设置为上滑放大，下滑缩小-->
+        <attr name="slideUpOrDownEnable" format="boolean"/>
+
+        <!--是否启用滑动缩放功能-->
+        <attr name="slideScaleEnable" format="boolean"/>
+    </declare-styleable>
+</resources>

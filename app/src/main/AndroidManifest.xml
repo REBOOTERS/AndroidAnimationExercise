@@ -229,6 +229,11 @@
         </activity>
         <activity android:name=".activity.WeiXinGalleryActivity">
         </activity>
+        <activity
+            android:name=".activity.XiaoMiGalleryActivity"
+            android:label="@string/title_activity_xiao_mi_gallery"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
