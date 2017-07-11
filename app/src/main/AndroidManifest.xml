@@ -87,8 +87,7 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".tradition.VPAnim2Activity"
-            android:theme="@style/AppTheme"
-            />
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".activity.IModeActivity"
             android:theme="@style/JianshuTheme"/>
@@ -116,7 +115,7 @@
         <activity
             android:name=".activity.jianshu.GenScreenShotActivity"
             android:theme="@style/JianshuTheme"/>
-        <activity android:name=".activity.WeiXinGalleryActivity">
+        <activity android:name=".activity.LoadCircleImageActivity">
         </activity>
 
         <!-- Android 7.0 FileUriExposedException -->
@@ -228,7 +227,8 @@
         </activity>
         <activity android:name=".activity.DragBubbleViewActivity">
         </activity>
-
+        <activity android:name=".activity.WeiXinGalleryActivity">
+        </activity>
     </application>
 
 </manifest>

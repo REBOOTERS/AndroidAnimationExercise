@@ -22,7 +22,7 @@ import home.smart.fly.animations.activity.CameraActivity;
 import home.smart.fly.animations.activity.FullscreenActivity;
 import home.smart.fly.animations.activity.ImgCacheActivity;
 import home.smart.fly.animations.activity.InputActivity;
-import home.smart.fly.animations.activity.WeiXinGalleryActivity;
+import home.smart.fly.animations.activity.LoadCircleImageActivity;
 import home.smart.fly.animations.bga.BgaAllActivity;
 import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
 import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
@@ -66,7 +66,7 @@ public class OtherFragment extends Fragment {
         demos.add(new ItemInfo(R.string.bottomSheet, BottomSheetActivity.class));
         demos.add(new ItemInfo(R.string.bottomSheet, ImgCacheActivity.class));
         demos.add(new ItemInfo(R.string.app_name, BgaAllActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, WeiXinGalleryActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, LoadCircleImageActivity.class));
         demos.add(new ItemInfo(R.string.app_name, BaseRecyclerViewActivity.class));
         demos.add(new ItemInfo(R.string.app_name, InputActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);

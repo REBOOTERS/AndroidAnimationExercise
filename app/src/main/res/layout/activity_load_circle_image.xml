@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_wei_xin_gallery"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="home.smart.fly.animations.activity.LoadCircleImageActivity">
+
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加载图片"/>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userAvatar"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/default_avtar"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="2dp"/>
+
+    <ImageView
+        android:id="@+id/userAvatar1"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/default_avtar"/>
+
+
+</LinearLayout>

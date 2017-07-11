@@ -59,6 +59,7 @@
                 android:gravity="bottom">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/smallAvatar"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_margin="10dp"
