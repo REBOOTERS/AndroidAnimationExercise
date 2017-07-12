@@ -18,13 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:visibility="gone"/>
-
-
-        <home.smart.fly.animations.customview.DragView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"/>
+            android:visibility="visible"/>
 
 
     </RelativeLayout>

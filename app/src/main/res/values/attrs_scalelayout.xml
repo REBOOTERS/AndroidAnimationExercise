@@ -7,7 +7,7 @@
     <item type="id" name="scaleLayout_center" />
     <item type="id" name="scaleLayout_bottom" />
 
-    <declare-styleable name="ScaleLayout">
+    <declare-styleable name="DrayViewLayout">
                
        <!--default state 默认是缩小的还是？-->
         <attr name="state">

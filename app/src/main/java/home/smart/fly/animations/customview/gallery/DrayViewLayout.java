@@ -7,11 +7,13 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 
 import java.util.ArrayList;
@@ -19,13 +21,10 @@ import java.util.ArrayList;
 import home.smart.fly.animations.BuildConfig;
 import home.smart.fly.animations.R;
 
-/**
- * @author deadline
- * @time 2016/10/12.
- */
-public class ScaleLayout extends FrameLayout {
 
-    private static final String TAG = ScaleLayout.class.getSimpleName();
+public class DrayViewLayout extends FrameLayout {
+
+    private static final String TAG = DrayViewLayout.class.getSimpleName();
 
     /**
      * 可以缩小到的最小比例
@@ -72,7 +71,7 @@ public class ScaleLayout extends FrameLayout {
     /**
      * touchSlop
      */
-    private int mTouchSlop = 5;
+    private int mTouchSlop;
 
     /**
      * 根据down up之间滑动的距离计算缩放比例
@@ -102,27 +101,27 @@ public class ScaleLayout extends FrameLayout {
     private ArrayList<OnStateChangedListener> mStateListenerList;
 
 
-    public ScaleLayout(Context context) {
+    public DrayViewLayout(Context context) {
         this(context, null);
     }
 
-    public ScaleLayout(Context context, AttributeSet attrs) {
+    public DrayViewLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ScaleLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DrayViewLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ScaleLayout, 0, 0);
-        mState = a.getInteger(R.styleable.ScaleLayout_state, STATE_CLOSE);
-        mSuggestScaleEnable = a.getBoolean(R.styleable.ScaleLayout_suggestScaleEnable, false);
-
-        a.recycle();
-        setupScaleLayout();
+        init(context, attrs);
     }
 
-    private void setupScaleLayout() {
+    private void init(Context context, AttributeSet attrs) {
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DrayViewLayout, 0, 0);
+        mState = a.getInteger(R.styleable.DrayViewLayout_state, STATE_CLOSE);
+        mSuggestScaleEnable = a.getBoolean(R.styleable.DrayViewLayout_suggestScaleEnable, false);
 
+        a.recycle();
+        mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         setWillNotDraw(false);
         mScaleListenerList = new ArrayList<>();
         mStateListenerList = new ArrayList<>();
@@ -225,6 +224,7 @@ public class ScaleLayout extends FrameLayout {
         setState(state, true);
     }
 
+
     /**
      * 设置状态变化
      *
@@ -271,6 +271,8 @@ public class ScaleLayout extends FrameLayout {
 
                 });
                 animator.start();
+            } else {
+                mState = state;
             }
         }
     }
@@ -284,6 +286,7 @@ public class ScaleLayout extends FrameLayout {
 
         return mState == STATE_OPEN;
     }
+
 
     /**
      * @param from scale
@@ -358,6 +361,15 @@ public class ScaleLayout extends FrameLayout {
 
         mCenterView.setScaleX(scale);
         mCenterView.setScaleY(scale);
+
+        if (scale >= 1.0) {
+            mState = STATE_OPEN;
+        }
+
+        if (scale <= mMinScale) {
+            mState = STATE_CLOSE;
+        }
+
 
     }
 
@@ -539,30 +551,17 @@ public class ScaleLayout extends FrameLayout {
                     intercept = false;
                 } else {
                     intercept = deltaY > deltaX && deltaY > mTouchSlop;
-
                 }
                 break;
         }
         return intercept;
     }
 
-    /**
-     * 该方法中实现了
-     * 上滑缩小下滑放大功能
-     * 也可设置为 上滑放大下滑缩小
-     *
-     * @param ev
-     * @return
-     */
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
 
-        if (!isEnabled()) {
-            return super.onTouchEvent(ev);
-        }
 
-
-        switch (ev.getActionMasked()) {
+        switch (ev.getAction()) {
 
             case MotionEvent.ACTION_DOWN:
                 downY = ev.getY();
@@ -573,28 +572,53 @@ public class ScaleLayout extends FrameLayout {
                 if (mCanScaleListener != null && !mCanScaleListener.onGetCanScale(ev.getY() - downY > 0)) {
                     return super.onTouchEvent(ev);
                 }
-                if (Math.abs(ev.getY() - downY) > mTouchSlop) {
 
 
-                    mSlopLength += (ev.getY() - downY);
+                float deltaY = ev.getY() - downY;
 
-                    float scale;
 
-                    scale = 1 + (0.8f * mSlopLength / getMeasuredHeight());
+                if (Math.abs(deltaY) > mTouchSlop) {
 
-                    scale = Math.min(scale, 1f);
+                    if (deltaY < 0) {
+                        if (mState == STATE_CLOSE) {
+                            mSlopLength += (ev.getY() - downY);
+                            float scale;
+                            scale = 1 + (0.8f * mSlopLength / getMeasuredHeight());
+                            scale = Math.min(scale, 1f);
+                            mCurrentScale = Math.max(mMinScale, scale);
+                            doSetScale();
+                        } else {
+                            Log.e(TAG, "onTouchEvent: up come here= " + mState);
 
-                    mCurrentScale = Math.max(mMinScale, scale);
 
-                    doSetScale();
+                        }
 
+
+                    } else {
+                        if (mState == STATE_OPEN) {
+                            mSlopLength += (ev.getY() - downY);
+                            float scale;
+                            scale = 1 + (0.8f * mSlopLength / getMeasuredHeight());
+                            scale = Math.min(scale, 1f);
+                            mCurrentScale = Math.max(mMinScale, scale);
+                            doSetScale();
+                        } else {
+                            Log.e(TAG, "onTouchEvent: down come here= " + mState);
+                            mCenterView.setPivotX(getCenterViewPivotX());
+                            mCenterView.setPivotY(getCenterViewPivotY());
+                            ViewCompat.setScaleX(mCenterView, 0.5f);
+                            ViewCompat.setScaleY(mCenterView, 0.5f);
+                        }
+                    }
                     downY = ev.getY();
+
                 }
+
 
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                if (mCurrentScale > mMinScale && mCurrentScale < 1f) {
+                if (mCurrentScale >= mMinScale && mCurrentScale < 1f) {
 
                     float half = (1 - mMinScale) / 2;
 
@@ -606,6 +630,7 @@ public class ScaleLayout extends FrameLayout {
                         setState(STATE_OPEN, true);
                     }
                 }
+                Log.e(TAG, "onTouchEvent: mState= " + mState);
                 break;
         }
 

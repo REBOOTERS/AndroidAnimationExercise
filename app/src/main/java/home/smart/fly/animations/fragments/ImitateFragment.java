@@ -23,6 +23,7 @@ import home.smart.fly.animations.activity.FlipViewActivity;
 import home.smart.fly.animations.activity.IModeActivity;
 import home.smart.fly.animations.activity.MySwipeMenuActivity;
 import home.smart.fly.animations.activity.PullRecyclerViewActivity;
+import home.smart.fly.animations.activity.WXGalleryActivity;
 import home.smart.fly.animations.activity.WeiXinGalleryActivity;
 import home.smart.fly.animations.activity.XiaoMiGalleryActivity;
 import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
@@ -57,6 +58,7 @@ public class ImitateFragment extends Fragment {
         demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
         demos.add(new ItemInfo(R.string.fake_weibo, XiaoMiGalleryActivity.class));
         demos.add(new ItemInfo(R.string.fake_weibo, WeiXinGalleryActivity.class));
+        demos.add(new ItemInfo(R.string.fake_weibo, WXGalleryActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
         demos.add(new ItemInfo(R.string.jianshuhead, JianShuHeadActivity.class));

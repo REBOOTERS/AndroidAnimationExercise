@@ -8,14 +8,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.customview.gallery.ScaleLayout;
+import home.smart.fly.animations.customview.gallery.DrayViewLayout;
 
 public class XiaoMiGalleryActivity extends AppCompatActivity {
 
 
     ImageView ImageView;
     TextView mTop;
-    ScaleLayout mScaleLayout;
+    DrayViewLayout mScaleLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +27,10 @@ public class XiaoMiGalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_xiao_mi_gallery);
 
 
-        mScaleLayout = (ScaleLayout) findViewById(R.id.scale_layout);
+        mScaleLayout = (DrayViewLayout) findViewById(R.id.scale_layout);
 //        mScaleLayout.setSuggestScaleEnable(true);
         ImageView = (ImageView) findViewById(R.id.scaleLayout_center);
-        mScaleLayout.setOnGetCanScaleListener(new ScaleLayout.OnGetCanScaleListener() {
+        mScaleLayout.setOnGetCanScaleListener(new DrayViewLayout.OnGetCanScaleListener() {
             @Override
             public boolean onGetCanScale(boolean isScrollDown) {
 //                return !touchImageView.isZoomed();
@@ -43,7 +43,7 @@ public class XiaoMiGalleryActivity extends AppCompatActivity {
         ImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mScaleLayout.setState(ScaleLayout.STATE_CLOSE);
+                mScaleLayout.setState(DrayViewLayout.STATE_CLOSE);
             }
         });
     }

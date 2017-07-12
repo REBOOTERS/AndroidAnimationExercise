@@ -234,6 +234,9 @@
             android:label="@string/title_activity_xiao_mi_gallery"
             android:theme="@style/MyTheme.NoActionBar">
         </activity>
+        <activity android:name=".activity.WXGalleryActivity"
+                  android:theme="@style/MyTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
