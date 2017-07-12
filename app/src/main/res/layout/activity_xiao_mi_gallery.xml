@@ -7,9 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="home.smart.fly.animations.activity.XiaoMiGalleryActivity"
-    tools:showIn="@layout/activity_xiao_mi_gallery">
+    >
+
 
     <TextView
         android:id="@id/scaleLayout_top"
@@ -28,9 +28,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginBottom="50dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -60,12 +60,12 @@
 
     </LinearLayout>
 
-    <home.smart.fly.animations.customview.gallery.TouchImageView
+    <ImageView
         android:id="@id/scaleLayout_center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/a5"
-        app:matchChildWidth="@+id/child_view"/>
+        android:src="@drawable/name"
+        />
 
 </home.smart.fly.animations.customview.gallery.ScaleLayout>
