@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,9 +21,9 @@ import home.smart.fly.animations.BuildConfig;
 import home.smart.fly.animations.R;
 
 
-public class DrayViewLayout extends FrameLayout {
+public class DragViewLayout extends FrameLayout {
 
-    private static final String TAG = DrayViewLayout.class.getSimpleName();
+    private static final String TAG = DragViewLayout.class.getSimpleName();
 
     /**
      * 可以缩小到的最小比例
@@ -101,24 +100,24 @@ public class DrayViewLayout extends FrameLayout {
     private ArrayList<OnStateChangedListener> mStateListenerList;
 
 
-    public DrayViewLayout(Context context) {
+    public DragViewLayout(Context context) {
         this(context, null);
     }
 
-    public DrayViewLayout(Context context, AttributeSet attrs) {
+    public DragViewLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public DrayViewLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DragViewLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         init(context, attrs);
     }
 
     private void init(Context context, AttributeSet attrs) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DrayViewLayout, 0, 0);
-        mState = a.getInteger(R.styleable.DrayViewLayout_state, STATE_CLOSE);
-        mSuggestScaleEnable = a.getBoolean(R.styleable.DrayViewLayout_suggestScaleEnable, false);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DragViewLayout, 0, 0);
+        mState = a.getInteger(R.styleable.DragViewLayout_state, STATE_CLOSE);
+        mSuggestScaleEnable = a.getBoolean(R.styleable.DragViewLayout_suggestScaleEnable, false);
 
         a.recycle();
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -579,37 +578,12 @@ public class DrayViewLayout extends FrameLayout {
 
                 if (Math.abs(deltaY) > mTouchSlop) {
 
-                    if (deltaY < 0) {
-                        if (mState == STATE_CLOSE) {
-                            mSlopLength += (ev.getY() - downY);
-                            float scale;
-                            scale = 1 + (0.8f * mSlopLength / getMeasuredHeight());
-                            scale = Math.min(scale, 1f);
-                            mCurrentScale = Math.max(mMinScale, scale);
-                            doSetScale();
-                        } else {
-                            Log.e(TAG, "onTouchEvent: up come here= " + mState);
-
-
-                        }
-
-
-                    } else {
-                        if (mState == STATE_OPEN) {
-                            mSlopLength += (ev.getY() - downY);
-                            float scale;
-                            scale = 1 + (0.8f * mSlopLength / getMeasuredHeight());
-                            scale = Math.min(scale, 1f);
-                            mCurrentScale = Math.max(mMinScale, scale);
-                            doSetScale();
-                        } else {
-                            Log.e(TAG, "onTouchEvent: down come here= " + mState);
-                            mCenterView.setPivotX(getCenterViewPivotX());
-                            mCenterView.setPivotY(getCenterViewPivotY());
-                            ViewCompat.setScaleX(mCenterView, 0.5f);
-                            ViewCompat.setScaleY(mCenterView, 0.5f);
-                        }
-                    }
+                    mSlopLength += (ev.getY() - downY);
+                    float scale;
+                    scale = 1 + (0.8f * mSlopLength / getMeasuredHeight());
+                    scale = Math.min(scale, 1f);
+                    mCurrentScale = Math.max(mMinScale, scale);
+                    doSetScale();
                     downY = ev.getY();
 
                 }

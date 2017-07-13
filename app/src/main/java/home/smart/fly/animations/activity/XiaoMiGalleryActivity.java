@@ -8,14 +8,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.customview.gallery.DrayViewLayout;
+import home.smart.fly.animations.customview.gallery.DragViewLayout;
 
 public class XiaoMiGalleryActivity extends AppCompatActivity {
 
 
     ImageView ImageView;
     TextView mTop;
-    DrayViewLayout mScaleLayout;
+    DragViewLayout mScaleLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +23,11 @@ public class XiaoMiGalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_xiao_mi_gallery);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_xiao_mi_gallery);
-
-
-        mScaleLayout = (DrayViewLayout) findViewById(R.id.scale_layout);
+        mScaleLayout = (DragViewLayout) findViewById(R.id.scale_layout);
 //        mScaleLayout.setSuggestScaleEnable(true);
         ImageView = (ImageView) findViewById(R.id.scaleLayout_center);
-        mScaleLayout.setOnGetCanScaleListener(new DrayViewLayout.OnGetCanScaleListener() {
+        mScaleLayout.setOnGetCanScaleListener(new DragViewLayout.OnGetCanScaleListener() {
             @Override
             public boolean onGetCanScale(boolean isScrollDown) {
 //                return !touchImageView.isZoomed();
@@ -43,7 +40,7 @@ public class XiaoMiGalleryActivity extends AppCompatActivity {
         ImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mScaleLayout.setState(DrayViewLayout.STATE_CLOSE);
+                mScaleLayout.setState(DragViewLayout.STATE_CLOSE);
             }
         });
     }
