@@ -54,33 +54,37 @@
 
 以下是部分内容截屏动画
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/head_alpha.gif"/>
+## 仿简书生成长图文章效果
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/qq.gif"/>
-
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/menu_3d.gif"/>
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/jianshu.gif"/>
 
 
-## Frame Animation & Tweened Animation ##
+## 动图理解scrollTo &  translate 区别
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/frame.gif"/>
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/rotate1.gif"/>
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/move.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/-move.gif"/>
 
+## 仿QQ侧滑菜单效果
 
-
-## Alipay PayAnimation  & Add goods to ShoppingCar Animation ##
-
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/alipay.gif"/>
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/shopcar.gif"/>
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/qq.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/menu_3d.gif"/>
 
 
-## many traditional Animation ##
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/translate.gif"/>
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/anim1.gif"/>
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/anim2.gif"/>
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/click1.gif"/>
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/click2.gif"/>
+
+## 帧动画 & 补间动画 ##
+
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/frame.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/rotate1.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/translate.gif"/>
+
+
+
+## 支付效果  & 贝塞尔曲线实现购物车添加动画 ##
+
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/alipay.gif"/>     <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/shopcar.gif"/>
+
+
+## 属性动画实例 ##
+
+
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/anim1.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/anim2.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/click2.gif"/>
 
 
 
