@@ -60,7 +60,6 @@
         <activity android:name=".property.LayoutAnimationsActivity"/>
         <activity android:name=".property.RevealAnimatorActivity"/>
         <!-- customviews -->
-        <activity android:name=".customview.BasicPosActivity"/>
         <activity
             android:name=".customview.swipeanim.FakeWeiBoActivity"
             android:theme="@style/AppTheme"/>
@@ -107,7 +106,8 @@
         <activity android:name=".customview.bottomsheet.NestedScrollViewActivity"/>
         <activity android:name=".customview.bottomsheet.RecyclerViewActivity"/>
         <activity android:name=".activity.ImgCacheActivity"/>
-        <activity android:name=".activity.FakeFootballActivity"/>
+        <activity android:name=".activity.FakeFootballActivity"
+            android:theme="@style/MyTheme.NoActionBar"/>
         <activity android:name=".customview.wheel.WheelViewActivity"/>
         <activity
             android:name=".activity.jianshu.FakeJianShuActivity"
@@ -224,8 +224,6 @@
         <activity android:name=".activity.InputActivity">
         </activity>
         <activity android:name=".activity.MyDrawingBoardActivity">
-        </activity>
-        <activity android:name=".activity.DragBubbleViewActivity">
         </activity>
         <activity android:name=".activity.WeiXinGalleryActivity">
         </activity>

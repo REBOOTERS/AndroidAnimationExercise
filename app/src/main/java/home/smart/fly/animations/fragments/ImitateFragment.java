@@ -19,16 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.activity.FakeFootballActivity;
 import home.smart.fly.animations.activity.FlipViewActivity;
 import home.smart.fly.animations.activity.IModeActivity;
 import home.smart.fly.animations.activity.MySwipeMenuActivity;
-import home.smart.fly.animations.activity.PendingImgActivity;
 import home.smart.fly.animations.activity.PullRecyclerViewActivity;
-import home.smart.fly.animations.activity.WeiXinGalleryActivity;
-import home.smart.fly.animations.activity.XiaoMiGalleryActivity;
 import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
 import home.smart.fly.animations.activity.jianshu.JianShuHeadActivity;
 import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
+import home.smart.fly.animations.customview.wheel.WheelViewActivity;
 import home.smart.fly.animations.utils.V;
 
 
@@ -56,10 +55,13 @@ public class ImitateFragment extends Fragment {
 
     private void InitView() {
         demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
-        demos.add(new ItemInfo(R.string.fake_weibo, XiaoMiGalleryActivity.class));
-        demos.add(new ItemInfo(R.string.fake_weibo, WeiXinGalleryActivity.class));
-        demos.add(new ItemInfo(R.string.fake_weibo, PendingImgActivity.class));
+        demos.add(new ItemInfo(R.string.fake_weibo, FakeFootballActivity.class));
+//        demos.add(new ItemInfo(R.string.fake_weibo, XiaoMiGalleryActivity.class));
+//        demos.add(new ItemInfo(R.string.fake_weibo, WeiXinGalleryActivity.class));
+//        demos.add(new ItemInfo(R.string.fake_weibo, PendingImgActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
+        demos.add(new ItemInfo(R.string.wheelView, WheelViewActivity.class));
+
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
         demos.add(new ItemInfo(R.string.jianshuhead, JianShuHeadActivity.class));
         demos.add(new ItemInfo(R.string.swipemenu, MySwipeMenuActivity.class));

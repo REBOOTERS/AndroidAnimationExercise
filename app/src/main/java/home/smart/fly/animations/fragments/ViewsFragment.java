@@ -19,7 +19,6 @@ import java.util.List;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.CollegeActivity;
-import home.smart.fly.animations.activity.DragBubbleViewActivity;
 import home.smart.fly.animations.activity.FlowLayoutActivity;
 import home.smart.fly.animations.activity.MyDrawingBoardActivity;
 import home.smart.fly.animations.activity.PlayActivity;
@@ -27,7 +26,6 @@ import home.smart.fly.animations.activity.WavaAnimActivity;
 import home.smart.fly.animations.activity.demos.AnimationsDemo;
 import home.smart.fly.animations.activity.transtions.StackViewActivity;
 import home.smart.fly.animations.activity.transtions.SwitcherActivity;
-import home.smart.fly.animations.customview.BasicPosActivity;
 import home.smart.fly.animations.property.RevealAnimatorActivity;
 import home.smart.fly.animations.utils.V;
 
@@ -60,8 +58,6 @@ public class ViewsFragment extends Fragment {
     private void InitView() {
         demos.add(new ItemInfo(R.string.app_name, PlayActivity.class));
         demos.add(new ItemInfo(R.string.app_name, MyDrawingBoardActivity.class));
-        demos.add(new ItemInfo(R.string.dragBubbleView, DragBubbleViewActivity.class));
-        demos.add(new ItemInfo(R.string.self_view, BasicPosActivity.class));
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
         demos.add(new ItemInfo(R.string.app_name, RevealAnimatorActivity.class));
         demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));

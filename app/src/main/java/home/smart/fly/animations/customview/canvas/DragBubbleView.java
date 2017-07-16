@@ -23,6 +23,7 @@ import android.view.animation.LinearInterpolator;
 
 import home.smart.fly.animations.R;
 
+
 public class DragBubbleView extends View {
 
     private Paint mBubblePaint;
@@ -100,9 +101,7 @@ public class DragBubbleView extends View {
     private static final int STATE_DISMISS = 0x03;
     /* 气泡状态的监听 */
     private OnBubbleStateListener mOnBubbleStateListener;
-    private int mPosition;
 
-    private Paint helpPaint;
 
     public DragBubbleView(Context context) {
         this(context, null);
@@ -115,7 +114,7 @@ public class DragBubbleView extends View {
     public DragBubbleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.DragBubbleView, defStyleAttr, 0);
-        mBubbleRadius = ta.getDimension(R.styleable.DragBubbleView_bubbleRadius, dp2px(context, 22));
+        mBubbleRadius = ta.getDimension(R.styleable.DragBubbleView_bubbleRadius, dp2px(context, 12));
         mBubbleColor = ta.getColor(R.styleable.DragBubbleView_bubbleColor, Color.RED);
         mText = ta.getString(R.styleable.DragBubbleView_text);
         mTextSize = ta.getDimension(R.styleable.DragBubbleView_textSize, dp2px(context, 12));
@@ -146,10 +145,7 @@ public class DragBubbleView extends View {
             mExplosionBitmaps[i] = bitmap;
         }
 
-        helpPaint = new Paint();
-        helpPaint.setColor(Color.GREEN);
-        helpPaint.setStrokeWidth(10);
-        helpPaint.setStyle(Paint.Style.FILL);
+
     }
 
     @Override
@@ -190,6 +186,8 @@ public class DragBubbleView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.drawColor(Color.BLACK);
+
         //画拖拽气泡
         if (mState != STATE_DISMISS) {
             canvas.drawCircle(mBubbleCenterX, mBubbleCenterY, mBubbleRadius, mBubblePaint);
@@ -214,12 +212,7 @@ public class DragBubbleView extends View {
             mBubbleStartX = mBubbleCenterX + mBubbleRadius * sin;
             mBubbleStartY = mBubbleCenterY - mBubbleRadius * cos;
 
-            //划出贝塞尔曲线控制点，及起始点辅助理解
-            canvas.drawPoint(mControlX,mControlY,helpPaint);
-            canvas.drawPoint(mCircleStartX,mCircleStartY,helpPaint);
-            canvas.drawPoint(mCircleEndX,mCircleEndY,helpPaint);
-            canvas.drawPoint(mBubbleStartX,mBubbleStartY,helpPaint);
-            canvas.drawPoint(mBubbleEndX,mBubbleEndY,helpPaint);
+
 
             //画二阶贝赛尔曲线
             mBezierPath.reset();

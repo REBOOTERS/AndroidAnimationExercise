@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * Created by engineer on 2017/7/1.
@@ -74,32 +73,7 @@ public class BubbleView extends View {
 
         initPointsValue();
 
-        valueAnimator = ValueAnimator.ofFloat(0, 180);
-        valueAnimator.setDuration(1000);
-        valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                Log.e(TAG, "onAnimationUpdate: " + animation.getAnimatedFraction());
-                float fraction = animation.getAnimatedFraction();
-                if (fraction < 0.2) {
-                    fraction = 0.2f;
-                }
-
-                if (fraction > 0.8f) {
-                    fraction = 0.8f;
-                }
-                fraction = (fraction < 0.5f) ? (1 - fraction) : fraction;
-                degree = (float) animation.getAnimatedValue();
-                centerRadius = (int) (bubbleRadius * fraction);
-                initPointsValue();
-                invalidate();
-            }
-        });
-        valueAnimator.start();
-//        valueAnimator = ValueAnimator.ofInt(-200, 200);
+//        valueAnimator = ValueAnimator.ofFloat(0, 180);
 //        valueAnimator.setDuration(1000);
 //        valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
 //        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
@@ -108,8 +82,6 @@ public class BubbleView extends View {
 //            @Override
 //            public void onAnimationUpdate(ValueAnimator animation) {
 //                Log.e(TAG, "onAnimationUpdate: " + animation.getAnimatedFraction());
-//                distance = (int) animation.getAnimatedValue();
-//                bubbleP.x = distance;
 //                float fraction = animation.getAnimatedFraction();
 //                if (fraction < 0.2) {
 //                    fraction = 0.2f;
@@ -118,15 +90,42 @@ public class BubbleView extends View {
 //                if (fraction > 0.8f) {
 //                    fraction = 0.8f;
 //                }
-//                fraction = (fraction > 0.5f) ? (1 - fraction) : fraction;
-//                centerRadius = (int) (bubbleRadius * fraction * 2);
-//
-//
+//                fraction = (fraction < 0.5f) ? (1 - fraction) : fraction;
+//                degree = (float) animation.getAnimatedValue();
+//                centerRadius = (int) (bubbleRadius * fraction);
 //                initPointsValue();
 //                invalidate();
 //            }
 //        });
 //        valueAnimator.start();
+        valueAnimator = ValueAnimator.ofInt(-200, 200);
+        valueAnimator.setDuration(1000);
+//        valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Log.e(TAG, "onAnimationUpdate: " + animation.getAnimatedFraction());
+                distance = (int) animation.getAnimatedValue();
+                bubbleP.x = distance;
+                float fraction = animation.getAnimatedFraction();
+                if (fraction < 0.2) {
+                    fraction = 0.2f;
+                }
+
+                if (fraction > 0.8f) {
+                    fraction = 0.8f;
+                }
+                fraction = (fraction > 0.5f) ? (1 - fraction) : fraction;
+                centerRadius = (int) (bubbleRadius * fraction * 2);
+
+
+                initPointsValue();
+                invalidate();
+            }
+        });
+        valueAnimator.start();
 
     }
 

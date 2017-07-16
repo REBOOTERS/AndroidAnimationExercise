@@ -118,7 +118,7 @@ public class DrawingBoard extends View {
                 invalidate();
             }
         });
-        mValueAnimator.start();
+//        mValueAnimator.start();
 
     }
 
