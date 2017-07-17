@@ -29,8 +29,6 @@ public class BallGameView extends View {
     private Paint mPaint;
 
 
-
-
     private int screenW;
     //整个view 宽高
     private int viewW, viewH;
@@ -52,7 +50,7 @@ public class BallGameView extends View {
     //11名球员位置
     private Point[] positions = new Point[PLAYER_COUNT];
     //
-    private int currentPos=-1;
+    private int currentPos = -1;
     //
 
 
@@ -72,13 +70,25 @@ public class BallGameView extends View {
     }
 
     private void init(Context context) {
-        res=getResources();
+        res = getResources();
         screenW = Tools.getScreenWidth(context);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
 
         positions[0] = new Point(360, 410);
         positions[1] = new Point(660, 410);
+
+        positions[2] = new Point(60, 610);
+        positions[3] = new Point(360, 610);
+        positions[4] = new Point(660, 610);
+        positions[5] = new Point(860, 610);
+
+        positions[6] = new Point(60, 810);
+        positions[7] = new Point(360, 810);
+        positions[8] = new Point(660, 810);
+        positions[9] = new Point(860, 810);
+
+        positions[10] = new Point(560, 910);
 
 
         backgroundBitmap = BitmapFactory.decodeResource(res, R.drawable.battle_bg);
@@ -105,10 +115,10 @@ public class BallGameView extends View {
         //绘制背景
         canvas.drawBitmap(backgroundBitmap, bitmapRect, mViewRect, mPaint);
         //绘制初始的11个球员
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < players.length; i++) {
             if (i == currentPos) {
                 canvas.drawBitmap(selectedBitmap, positions[i].x - playW / 2, positions[i].y - playW / 2, mPaint);
-            }else {
+            } else {
                 canvas.drawBitmap(players[i], positions[i].x - playW / 2, positions[i].y - playW / 2, mPaint);
             }
 
@@ -119,14 +129,14 @@ public class BallGameView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        lastX = (int) event.getX();
-        lastY = (int) event.getY();
+        lastX = (int) event.getX() ;
+        lastY = (int) event.getY() ;
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
 
 
-                for (int i = 0; i < 2; i++) {
+                for (int i = 0; i < positions.length; i++) {
                     int deltaX = positions[i].x - lastX;
                     int deltaY = positions[i].y - lastY;
 
@@ -135,7 +145,7 @@ public class BallGameView extends View {
                         currentPos = i;
                         setSelectedPlayer();
 
-                        return  true;
+                        return true;
                     }
 
 
@@ -162,7 +172,8 @@ public class BallGameView extends View {
 
         }
 
-        return super.onTouchEvent(event);
+        return false;
+
     }
 
     private void setSelectedPlayer() {
