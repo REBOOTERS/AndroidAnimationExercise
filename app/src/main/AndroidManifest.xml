@@ -106,7 +106,8 @@
         <activity android:name=".customview.bottomsheet.NestedScrollViewActivity"/>
         <activity android:name=".customview.bottomsheet.RecyclerViewActivity"/>
         <activity android:name=".activity.ImgCacheActivity"/>
-        <activity android:name=".activity.FakeFootballActivity"
+        <activity
+            android:name=".activity.FakeFootballActivity"
             android:theme="@style/MyTheme.NoActionBar"/>
         <activity android:name=".customview.wheel.WheelViewActivity"/>
         <activity
@@ -151,7 +152,9 @@
             android:name=".activity.PlayActivity"
             android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".activity.PendingImgActivity" android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.PendingImgActivity"
+            android:theme="@style/AppTheme">
         </activity>
         //demos
         <activity
@@ -231,6 +234,8 @@
             android:name=".activity.XiaoMiGalleryActivity"
             android:label="@string/title_activity_xiao_mi_gallery"
             android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity android:name=".activity.CircleViewActivity">
         </activity>
     </application>
 

@@ -1,4 +1,4 @@
-package sample.tencent.com.myapplication;
+package home.smart.fly.animations.customview.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
