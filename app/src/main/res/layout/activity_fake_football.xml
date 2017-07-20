@@ -3,6 +3,7 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,6 +19,7 @@
 
 
         <home.smart.fly.animations.customview.views.BallGameView
+            android:id="@+id/gameView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />

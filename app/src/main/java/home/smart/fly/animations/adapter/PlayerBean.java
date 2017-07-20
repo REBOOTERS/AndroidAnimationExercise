@@ -16,6 +16,16 @@ public class PlayerBean {
     private String person_img;
     private String name;
     private boolean isSelected;
+    //每个球员在场上的位置[0-10],对应 BallGameView 上的数组
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
     public boolean isSelected() {
         return isSelected;

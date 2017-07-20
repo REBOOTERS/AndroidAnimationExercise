@@ -1,20 +1,32 @@
 package home.smart.fly.animations.customview.views;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.adapter.Player;
 import home.smart.fly.animations.utils.Tools;
 
 /**
@@ -27,6 +39,7 @@ public class BallGameView extends View {
     private static final int PLAYER_COUNT = 11;
 
     private Paint mPaint;
+    private TextPaint mTextPaint;
 
 
     private int screenW;
@@ -34,6 +47,10 @@ public class BallGameView extends View {
     private int viewW, viewH;
     //球员宽高
     private int playW, playH;
+    //金色背景宽高
+    private int goldW, goldH;
+    // 普通背景kg
+    private int grayW, grayH;
     //背景图片原始大小
     private Rect bitmapRect;
     //绘制区域大小
@@ -43,10 +60,15 @@ public class BallGameView extends View {
     private int lastX, lastY;
     //背景图
     private Bitmap backgroundBitmap;
-    //11名球员位图
-    private Bitmap[] players = new Bitmap[PLAYER_COUNT];
     //被选中位置
     private Bitmap selectedBitmap;
+    //球员被选中标记
+    private Bitmap playSelectedBitmap;
+    //球员背景图
+    private Bitmap playeBgBitmap;
+    //11名球员位图
+    private Player[] players = new Player[PLAYER_COUNT];
+
     //11名球员位置
     private Point[] positions = new Point[PLAYER_COUNT];
     //
@@ -74,6 +96,10 @@ public class BallGameView extends View {
         screenW = Tools.getScreenWidth(context);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
+        mTextPaint = new TextPaint();
+        mTextPaint.setTextAlign(Paint.Align.CENTER);
+        mTextPaint.setColor(Color.WHITE);
+        mTextPaint.setTextSize(35);
 
 
         backgroundBitmap = BitmapFactory.decodeResource(res, R.drawable.battle_bg);
@@ -86,11 +112,20 @@ public class BallGameView extends View {
         playH = play.getHeight();
 
         for (int i = 0; i < PLAYER_COUNT; i++) {
-            players[i] = play;
+            Player mPlayer = new Player();
+            mPlayer.setBitmap(play);
+            players[i] = mPlayer;
         }
 
         //
         selectedBitmap = BitmapFactory.decodeResource(res, R.drawable.battle_element_checked);
+
+        playSelectedBitmap = BitmapFactory.decodeResource(res, R.drawable.bg_battle_element_selected);
+        goldW = playSelectedBitmap.getWidth();
+        goldH = playSelectedBitmap.getHeight();
+        playeBgBitmap = BitmapFactory.decodeResource(res, R.drawable.bg_battle_element_normal);
+        grayW = playeBgBitmap.getWidth();
+        grayH = playeBgBitmap.getHeight();
 
     }
 
@@ -102,9 +137,36 @@ public class BallGameView extends View {
         //绘制初始的11个球员
         for (int i = 0; i < players.length; i++) {
             if (i == currentPos) {
-                canvas.drawBitmap(selectedBitmap, positions[i].x - playW / 2, positions[i].y - playW / 2, mPaint);
+
+                if (players[i].isSetReal()) {
+                    //绘制球员头像
+                    canvas.drawBitmap(players[i].getBitmap(), positions[i].x - playW / 2,
+                            positions[i].y - playW / 2, mPaint);
+                    //绘制选中球员金色底座
+                    canvas.drawBitmap(playSelectedBitmap, positions[i].x - goldW / 2,
+                            positions[i].y - goldH / 2, mPaint);
+
+                    //绘制球员姓名
+                    canvas.drawText(players[i].getName(), positions[i].x,
+                            positions[i].y + playW, mTextPaint);
+
+                } else {
+                    canvas.drawBitmap(selectedBitmap, positions[i].x - playW / 2,
+                            positions[i].y - playW / 2, mPaint);
+                }
+
+
             } else {
-                canvas.drawBitmap(players[i], positions[i].x - playW / 2, positions[i].y - playW / 2, mPaint);
+                canvas.drawBitmap(players[i].getBitmap(), positions[i].x - playW / 2,
+                        positions[i].y - playW / 2, mPaint);
+                if (players[i].isSetReal()) {
+                    canvas.drawText(players[i].getName(), positions[i].x,
+                            positions[i].y + playW, mTextPaint);
+
+                    //绘制已设置正常图片球员背景
+                    canvas.drawBitmap(playeBgBitmap, positions[i].x - grayW / 2,
+                            positions[i].y + 200, mPaint);
+                }
             }
 
         }
@@ -166,9 +228,58 @@ public class BallGameView extends View {
     }
 
 
-    public void updatePlayer(Bitmap bitmap) {
-        players[currentPos] = bitmap;
-        invalidate();
+    public void updatePlayer(final Bitmap bitmap, final String name, int[] location, final ViewGroup contentView) {
+
+        Path mPath = new Path();
+        mPath.moveTo(location[0], location[1]);
+        mPath.lineTo(positions[currentPos].x - playW / 2, positions[currentPos].y - playW / 2);
+
+
+        final ImageView animImage = new ImageView(getContext());
+        animImage.setImageBitmap(bitmap);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(120, 120);
+        contentView.addView(animImage, params);
+
+
+        final float[] animPositions = new float[2];
+        final PathMeasure mPathMeasure = new PathMeasure(mPath, false);
+
+        ValueAnimator mValueAnimator = ValueAnimator.ofFloat(0, mPathMeasure.getLength());
+        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (float) animation.getAnimatedValue();
+                mPathMeasure.getPosTan(value, animPositions, null);
+
+                animImage.setTranslationX(animPositions[0]);
+                animImage.setTranslationY(animPositions[1]);
+
+            }
+        });
+
+        mValueAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+
+                contentView.removeView(animImage);
+
+                players[currentPos].setBitmap(bitmap);
+                players[currentPos].setSetReal(true);
+                players[currentPos].setName(name);
+
+                invalidate();
+            }
+        });
+        mValueAnimator.setDuration(500);
+        mValueAnimator.setInterpolator(new AccelerateInterpolator());
+        mValueAnimator.start();
+
+
+    }
+
+    public int getCurrentPos() {
+        return currentPos;
     }
 
     @Override
