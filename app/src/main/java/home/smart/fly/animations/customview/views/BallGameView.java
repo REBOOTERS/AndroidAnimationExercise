@@ -75,21 +75,6 @@ public class BallGameView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
 
-        positions[0] = new Point(360, 410);
-        positions[1] = new Point(660, 410);
-
-        positions[2] = new Point(60, 610);
-        positions[3] = new Point(360, 610);
-        positions[4] = new Point(660, 610);
-        positions[5] = new Point(860, 610);
-
-        positions[6] = new Point(60, 810);
-        positions[7] = new Point(360, 810);
-        positions[8] = new Point(660, 810);
-        positions[9] = new Point(860, 810);
-
-        positions[10] = new Point(560, 910);
-
 
         backgroundBitmap = BitmapFactory.decodeResource(res, R.drawable.battle_bg);
         //确保整张背景图，都能完整的显示出来
@@ -129,8 +114,8 @@ public class BallGameView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        lastX = (int) event.getX() ;
-        lastY = (int) event.getY() ;
+        lastX = (int) event.getX();
+        lastY = (int) event.getY();
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -201,5 +186,29 @@ public class BallGameView extends View {
         viewH = h;
         //目标区域，在整个视图的大小中，绘制Bitmap
         mViewRect = new Rect(0, 0, viewW, viewH);
+
+        Log.e(TAG, "onSizeChanged: w= " + w);
+        Log.e(TAG, "onSizeChanged: h= " + h);
+
+        int x = w / 2;
+        int y = h / 2;
+
+        int spaceX = w / 8;
+        int spaceY = h / 8;
+
+        positions[0] = new Point(x - spaceX, y - spaceX * 2);
+        positions[1] = new Point(x + spaceX, y - spaceX * 2);
+
+        positions[2] = new Point(x - spaceX * 3, y);
+        positions[3] = new Point(x - spaceX, y);
+        positions[4] = new Point(x + spaceX, y);
+        positions[5] = new Point(x + spaceX * 3, y);
+
+        positions[6] = new Point(x - spaceX * 3, y + spaceX * 2);
+        positions[7] = new Point(x - spaceX, y + spaceX * 2);
+        positions[8] = new Point(x + spaceX, y + spaceX * 2);
+        positions[9] = new Point(x + spaceX * 3, y + spaceX * 2);
+
+        positions[10] = new Point(x, h - spaceY);
     }
 }
