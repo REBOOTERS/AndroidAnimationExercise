@@ -5,16 +5,19 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.adapter.Player;
 import home.smart.fly.animations.utils.Tools;
 
 /**
@@ -27,6 +30,7 @@ public class BallGameView extends View {
     private static final int PLAYER_COUNT = 11;
 
     private Paint mPaint;
+    private TextPaint mTextPaint;
 
 
     private int screenW;
@@ -44,7 +48,9 @@ public class BallGameView extends View {
     //背景图
     private Bitmap backgroundBitmap;
     //11名球员位图
-    private Bitmap[] players = new Bitmap[PLAYER_COUNT];
+//    private Bitmap[] players = new Bitmap[PLAYER_COUNT];
+
+    private Player[] players = new Player[PLAYER_COUNT];
     //被选中位置
     private Bitmap selectedBitmap;
     //11名球员位置
@@ -74,6 +80,9 @@ public class BallGameView extends View {
         screenW = Tools.getScreenWidth(context);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
+        mTextPaint = new TextPaint();
+        mTextPaint.setColor(Color.BLACK);
+        mTextPaint.setTextSize(18);
 
 
         backgroundBitmap = BitmapFactory.decodeResource(res, R.drawable.battle_bg);
@@ -86,7 +95,9 @@ public class BallGameView extends View {
         playH = play.getHeight();
 
         for (int i = 0; i < PLAYER_COUNT; i++) {
-            players[i] = play;
+            Player mPlayer = new Player();
+            mPlayer.setBitmap(play);
+            players[i] = mPlayer;
         }
 
         //
@@ -102,9 +113,20 @@ public class BallGameView extends View {
         //绘制初始的11个球员
         for (int i = 0; i < players.length; i++) {
             if (i == currentPos) {
-                canvas.drawBitmap(selectedBitmap, positions[i].x - playW / 2, positions[i].y - playW / 2, mPaint);
+
+                if (players[i].isSetReal()) {
+                    canvas.drawBitmap(players[i].getBitmap(), positions[i].x - playW / 2, positions[i].y - playW / 2, mPaint);
+                    canvas.drawText(players[i].getName(), positions[i].x - playW / 2, positions[i].y + playW * 1.2f, mTextPaint);
+                } else {
+                    canvas.drawBitmap(selectedBitmap, positions[i].x - playW / 2, positions[i].y - playW / 2, mPaint);
+                }
+
+
             } else {
-                canvas.drawBitmap(players[i], positions[i].x - playW / 2, positions[i].y - playW / 2, mPaint);
+                canvas.drawBitmap(players[i].getBitmap(), positions[i].x - playW / 2, positions[i].y - playW / 2, mPaint);
+                if (players[i].isSetReal()) {
+                    canvas.drawText(players[i].getName(), positions[i].x - playW / 2, positions[i].y + playW * 1.2f, mTextPaint);
+                }
             }
 
         }
@@ -166,8 +188,11 @@ public class BallGameView extends View {
     }
 
 
-    public void updatePlayer(Bitmap bitmap) {
-        players[currentPos] = bitmap;
+    public void updatePlayer(Bitmap bitmap, String name) {
+        players[currentPos].setBitmap(bitmap);
+        players[currentPos].setSetReal(true);
+        players[currentPos].setName(name);
+
         invalidate();
     }
 

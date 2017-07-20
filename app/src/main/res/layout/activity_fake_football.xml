@@ -18,6 +18,7 @@
 
 
         <home.smart.fly.animations.customview.views.BallGameView
+            android:id="@+id/gameView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
