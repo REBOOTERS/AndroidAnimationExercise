@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -16,6 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 import home.smart.fly.animations.R;
@@ -25,6 +30,10 @@ import home.smart.fly.animations.utils.Tools;
 
 public class FakeFootballActivity extends AppCompatActivity {
 
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.next)
+    TextView next;
     private Context mContext;
 
     private List<PlayerBean> mPlayerBeanList = new ArrayList<>();
@@ -36,12 +45,25 @@ public class FakeFootballActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fake_football);
-        StatusBarUtil.setColor(this,getResources().getColor(R.color.transblue),0);
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.transblue), 0);
         ButterKnife.bind(this);
         mContext = this;
         initData();
     }
 
+    @OnClick({R.id.back, R.id.next})
+    public void Click(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
+            case R.id.next:
+                Toast.makeText(mContext, "next", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
     private void initData() {
         String json = Tools.readStrFromAssets("player.json", mContext);
         Gson mGson = new Gson();

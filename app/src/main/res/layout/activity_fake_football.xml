@@ -48,6 +48,7 @@
         android:background="#c0141932">
 
         <ImageView
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -60,6 +61,7 @@
             android:src="@drawable/icon_sliding_dqd_logo"/>
 
         <TextView
+            android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -67,7 +69,7 @@
             android:layout_margin="10dp"
             android:text="下一步"
             android:textColor="@color/white"
-            android:textSize="15sp"/>
+            android:textSize="17sp"/>
 
     </RelativeLayout>
 </FrameLayout>

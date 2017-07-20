@@ -15,6 +15,15 @@ public class PlayerBean {
     private String person_id;
     private String person_img;
     private String name;
+    private boolean isSelected;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public String getPerson_id() {
         return person_id;
