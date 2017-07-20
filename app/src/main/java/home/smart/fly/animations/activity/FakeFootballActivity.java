@@ -20,6 +20,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.adapter.PlayerBean;
+import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.Tools;
 
 public class FakeFootballActivity extends AppCompatActivity {
@@ -35,6 +36,7 @@ public class FakeFootballActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fake_football);
+        StatusBarUtil.setColor(this,getResources().getColor(R.color.transblue),0);
         ButterKnife.bind(this);
         mContext = this;
         initData();
