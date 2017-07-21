@@ -18,6 +18,7 @@ import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +58,6 @@ public class BallGameView extends View {
     private Rect mViewRect;
 
     private Resources res;
-    private int lastX, lastY;
     //背景图
     private Bitmap backgroundBitmap;
     //被选中位置
@@ -74,7 +74,8 @@ public class BallGameView extends View {
     //
     private int currentPos = -1;
     //
-
+    private GestureDetector m_gestureDetector;
+    private boolean moveEnable;
 
     public BallGameView(Context context) {
         super(context);
@@ -92,6 +93,7 @@ public class BallGameView extends View {
     }
 
     private void init(Context context) {
+        m_gestureDetector = new GestureDetector(context, onGestureListener);
         res = getResources();
         screenW = Tools.getScreenWidth(context);
         mPaint = new Paint();
@@ -176,8 +178,10 @@ public class BallGameView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        lastX = (int) event.getX();
-        lastY = (int) event.getY();
+        m_gestureDetector.onTouchEvent(event);
+
+        int lastX = (int) event.getX();
+        int lastY = (int) event.getY();
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -191,25 +195,18 @@ public class BallGameView extends View {
                         position = i;
                         currentPos = i;
                         setSelectedPlayer();
-
+                        moveEnable = true;
+                        Log.e(TAG, "onTouchEvent: position= " + position);
                         return true;
                     }
 
 
                 }
+                moveEnable = false;
                 Log.e(TAG, "onTouchEvent: position= " + position);
                 return false;
 
-            case MotionEvent.ACTION_MOVE:
 
-                if (position == -1) {
-                    return true;
-                }
-
-                positions[position].x = lastX;
-                positions[position].y = lastY;
-                invalidate();
-                return true;
             case MotionEvent.ACTION_UP:
                 position = -1;
                 break;
@@ -219,9 +216,45 @@ public class BallGameView extends View {
 
         }
 
-        return false;
+        return super.onTouchEvent(event);
 
     }
+
+
+    GestureDetector.OnGestureListener onGestureListener = new GestureDetector.SimpleOnGestureListener() {
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            if (moveEnable) {
+                positions[position].y -= distanceY;
+                positions[position].x -= distanceX;
+                //处理边界问题
+//                if (positions[position].x < radius) {
+//                    positions[position].x = radius;
+//                } else if (centerX > getWidth() - radius) {
+//                    positions[position].x = getWidth() - radius;
+//                }
+//                if (positions[position].y < radius) {
+//                    positions[position].y = radius;
+//                } else if (centerY > getHeight() - radius) {
+//                    positions[position].y = getHeight() - radius;
+//                }
+                //修改圆心后，通知重绘
+                postInvalidate();
+            }
+            return true;
+        }
+    };
+
+    /**
+     * 计算两点间的距离
+     */
+    private int getDistanceByPoint(int x1, int y1, int x2, int y2) {
+        double temp = Math.abs((x2 - x1) * (x2 - x1) - (y2 - y1) * (y2 - y1));
+        int result = (int) Math.sqrt(temp);
+        Log.e(TAG, "getDistanceByPoint: result=" + result);
+        return result;
+    }
+
 
     private void setSelectedPlayer() {
         invalidate();
@@ -231,7 +264,7 @@ public class BallGameView extends View {
     public void updatePlayer(final Bitmap bitmap, final String name, int[] location, final ViewGroup contentView) {
 
         Path mPath = new Path();
-        mPath.moveTo(location[0], location[1]);
+        mPath.moveTo(location[0] + bitmap.getWidth() / 2, location[1] - bitmap.getHeight() / 2);
         mPath.lineTo(positions[currentPos].x - playW / 2, positions[currentPos].y - playW / 2);
 
 
@@ -301,6 +334,16 @@ public class BallGameView extends View {
         Log.e(TAG, "onSizeChanged: w= " + w);
         Log.e(TAG, "onSizeChanged: h= " + h);
 
+        initBubblePositions(w, h);
+    }
+
+    /**
+     * 根据整个View的宽高，大体估算出一个4-4-2 阵型位置，放置初始的11名球员位置
+     *
+     * @param w
+     * @param h
+     */
+    private void initBubblePositions(int w, int h) {
         int x = w / 2;
         int y = h / 2;
 
