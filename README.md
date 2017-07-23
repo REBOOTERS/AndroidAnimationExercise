@@ -9,6 +9,19 @@
 主要内容是**Android动画、Android自定义View 相关的知识**，**包含一些常见应用中动画效果的模仿实例**.
 随着时间的推移，里面积累的很多代码，大致用5个Fragment 做了分类：
 
+
+
+## ImitateFragment （模仿三方应用特效）
+
+- 仿新浪微博雷达扫描效果及卡片动画效果（[Android 动画实战-仿微博雷达功能](https://juejin.im/post/586d0f9eda2f600055cf3021)）
+- [仿懂球帝APP我是教练游戏效果](https://juejin.im/post/5974c0c3f265da6c4c50160f)
+- 仿简书长按生成图片效果
+- 沉寝式模式初探
+- 仿简书头部SearchView
+- 仿手Q侧滑菜单效果
+- 仿QQ空间下拉顶部放大效果
+
+
 ### TraditionFragment (传统动画）
 
 - 传统动画即帧动画和补间动画相关的代码
@@ -26,14 +39,7 @@
 >关于以上两种动画的区别分析可查看日志[Android 动画总结](http://www.jianshu.com/p/420629118c10)
 
 
-## ImitateFragment （模仿三方应用特效）
 
-- 仿新浪微博雷达扫描效果及卡片动画效果（[Android 动画实战-仿微博雷达功能](https://juejin.im/post/586d0f9eda2f600055cf3021)）
-- 仿简书长按生成图片效果
-- 沉寝式模式初探
-- 仿简书头部SearchView
-- 仿手Q侧滑菜单效果
-- 仿QQ空间下拉顶部放大效果
 
 ### ViewsFragment （自定义View先关）
 - PlayView[属性动画拓展（一）](http://www.jianshu.com/p/f34791f4d5ab)
@@ -53,6 +59,11 @@
 
 
 以下是部分内容截屏动画
+
+## [仿懂球帝APP我是教练游戏效果](https://juejin.im/post/5974c0c3f265da6c4c50160f)
+
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/football.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/football2.gif"/>
+
 
 ## 仿简书生成长图文章效果
 
