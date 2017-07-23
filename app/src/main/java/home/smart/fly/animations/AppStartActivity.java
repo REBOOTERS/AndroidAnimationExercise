@@ -24,6 +24,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.File;
+
 import home.smart.fly.animations.fragments.ImitateFragment;
 import home.smart.fly.animations.fragments.OtherFragment;
 import home.smart.fly.animations.fragments.PropertyFragment;
@@ -111,7 +113,13 @@ public class AppStartActivity extends AppCompatActivity {
         //
         String getCacheDir = mContext.getCacheDir().getAbsolutePath();
         String getExternalCacheDir = mContext.getExternalCacheDir().getAbsolutePath();
-        String getExternalCacheDirs = mContext.getExternalCacheDirs().toString();
+
+
+        String[] files = new String[mContext.getExternalCacheDirs().length];
+        for(int i=0;i<mContext.getExternalCacheDirs().length;i++) {
+            File mFile=mContext.getExternalCacheDirs()[i];
+            files[i]=mFile.getAbsolutePath()+"\n";
+        }
 
 
         Log.e("device_info", "android.os.Build.VERSION.SDK_INT = " + version);
@@ -129,7 +137,7 @@ public class AppStartActivity extends AppCompatActivity {
         Log.e("device_info", "--------------------------------------------------");
         Log.e("device_info", "mContext.getCacheDir() = " + getCacheDir);
         Log.e("device_info", "mContext.getExternalCacheDir() = " + getExternalCacheDir);
-        Log.e("device_info", "mContext.getExternalCacheDirs() = " + getExternalCacheDirs);
+        Log.e("device_info", "mContext.getExternalCacheDirs() = \n" + files.toString());
     }
 
 

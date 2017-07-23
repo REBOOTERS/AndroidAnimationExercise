@@ -10,6 +10,7 @@ public class Player {
 
     Bitmap mBitmap;
     String name;
+    //气泡（球员）被设置了真实的头像
     boolean isSetReal;
     boolean isSelected;
 
@@ -21,9 +22,14 @@ public class Player {
         mBitmap = bitmap;
     }
 
+
+    /**
+     * 气泡（球员）被设置了真实的头像
+     */
     public boolean isSetReal() {
         return isSetReal;
     }
+
 
     public void setSetReal(boolean setReal) {
         isSetReal = setReal;

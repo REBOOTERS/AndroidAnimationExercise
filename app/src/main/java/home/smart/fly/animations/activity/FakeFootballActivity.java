@@ -1,13 +1,16 @@
 package home.smart.fly.animations.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -19,8 +22,17 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,9 +65,6 @@ public class FakeFootballActivity extends AppCompatActivity implements BGAOnRVIt
 
     private List<PlayerBean> mPlayerBeanList = new ArrayList<>();
 
-    //选中的气泡位置
-    private int bubblePosition;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,12 +82,68 @@ public class FakeFootballActivity extends AppCompatActivity implements BGAOnRVIt
                 finish();
                 break;
             case R.id.next:
-                Toast.makeText(mContext, "next", Toast.LENGTH_SHORT).show();
+                mGameView.clearInvalidView();
+
+                mGameView.setDrawingCacheEnabled(true);
+                Bitmap mBitmap = mGameView.getDrawingCache();
+
+                if (mBitmap != null) {
+                    new SavePicTask().execute(mBitmap);
+                } else {
+                    Toast.makeText(mContext, "fail", Toast.LENGTH_SHORT).show();
+                }
+
+
                 break;
             default:
                 break;
         }
     }
+
+    private class SavePicTask extends AsyncTask<Bitmap, Void, String> {
+
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (!TextUtils.isEmpty(s)) {
+                Intent mIntent = new Intent(mContext, GameViewSaveActivity.class);
+                mIntent.putExtra("picUrl", s);
+                mContext.startActivity(mIntent);
+            } else {
+                Toast.makeText(mContext, "fail", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        protected String doInBackground(Bitmap... params) {
+            Bitmap mBitmap = params[0];
+            String filePath = "";
+            Calendar now = new GregorianCalendar();
+            SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault());
+            String fileName = simpleDate.format(now.getTime());
+            //保存在应用内目录，免去申请读取权限的麻烦
+
+            File mFile = new File(mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), fileName + ".jpg");
+            try {
+                OutputStream mOutputStream = new FileOutputStream(mFile);
+                mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, mOutputStream);
+                mOutputStream.flush();
+                mOutputStream.close();
+                filePath = mFile.getAbsolutePath();
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            return filePath;
+        }
+    }
+
 
     private void initData() {
         String json = Tools.readStrFromAssets("player.json", mContext);
@@ -98,9 +163,9 @@ public class FakeFootballActivity extends AppCompatActivity implements BGAOnRVIt
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
 
-        bubblePosition = mGameView.getCurrentPos();
+        int mBubblePosition = mGameView.getCurrentPos();
 
-        if (bubblePosition == -1) {
+        if (mBubblePosition == -1) {
             Toast.makeText(mContext, "先点击气泡，再添加球员", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -116,24 +181,20 @@ public class FakeFootballActivity extends AppCompatActivity implements BGAOnRVIt
 
             int width = avatar.getWidth();
             int height = avatar.getHeight();
-            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmap);
-            avatar.draw(canvas);
-            canvas.save();
-
+            Bitmap bitmap = Tools.View2Bitmap(avatar, width, height);
             int[] location = new int[2];
             itemView.getLocationOnScreen(location);
             if (bitmap != null) {
-                mGameView.updatePlayer(bitmap, mPlayerBeanList.get(position).getName(), location,content);
+                mGameView.updatePlayer(bitmap, mPlayerBeanList.get(position).getName(), location, content);
                 for (int i = 0; i < mPlayerBeanList.size(); i++) {
-                    if (mPlayerBeanList.get(i).getPosition() == bubblePosition) {
+                    if (mPlayerBeanList.get(i).getPosition() == mBubblePosition) {
                         //同一个位置，先把上次选中的球员，设置为未选中
                         mPlayerBeanList.get(i).setSelected(false);
                     }
                 }
                 //将此次更新的球员设置为气泡上选中的球员
                 mPlayerBeanList.get(position).setSelected(true);
-                mPlayerBeanList.get(position).setPosition(bubblePosition);
+                mPlayerBeanList.get(position).setPosition(mBubblePosition);
                 adapter.notifyDataSetChanged();
             }
 

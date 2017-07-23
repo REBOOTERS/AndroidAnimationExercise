@@ -14,6 +14,7 @@ import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -40,7 +41,11 @@ public class BallGameView extends View {
     private static final int PLAYER_COUNT = 11;
 
     private Paint mPaint;
+    private Paint mRectPaint;
     private TextPaint mTextPaint;
+    private TextPaint mTipPaint;
+
+    private String tips = "先点气泡，再点球员";
 
 
     private int screenW;
@@ -56,11 +61,15 @@ public class BallGameView extends View {
     private Rect bitmapRect;
     //绘制区域大小
     private Rect mViewRect;
+    //透明圆角背景 RectF
+    private RectF mRoundRect;
+    //可移动位置，在纵垂直方向的上下边界
+    private int minY, maxY;
 
     private Resources res;
     //背景图
     private Bitmap backgroundBitmap;
-    //被选中位置
+    //被选中带金色底座的位图
     private Bitmap selectedBitmap;
     //球员被选中标记
     private Bitmap playSelectedBitmap;
@@ -71,11 +80,15 @@ public class BallGameView extends View {
 
     //11名球员位置
     private Point[] positions = new Point[PLAYER_COUNT];
-    //
+    //当前选中球员
     private int currentPos = -1;
     //
     private GestureDetector m_gestureDetector;
     private boolean moveEnable;
+    //是否全部气泡完成 设置
+    private boolean isFull;
+    // 属性动画
+    private ValueAnimator mValueAnimator;
 
     public BallGameView(Context context) {
         super(context);
@@ -93,15 +106,28 @@ public class BallGameView extends View {
     }
 
     private void init(Context context) {
+        isFull = false;
         m_gestureDetector = new GestureDetector(context, onGestureListener);
         res = getResources();
         screenW = Tools.getScreenWidth(context);
+        //
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
+        //
         mTextPaint = new TextPaint();
         mTextPaint.setTextAlign(Paint.Align.CENTER);
         mTextPaint.setColor(Color.WHITE);
         mTextPaint.setTextSize(35);
+
+        //
+        mTipPaint = new TextPaint();
+        mTipPaint.setTextAlign(Paint.Align.CENTER);
+        mTipPaint.setColor(Color.YELLOW);
+        mTipPaint.setTextSize(35);
+        //
+        mRectPaint = new Paint();
+        mRectPaint.setStyle(Paint.Style.FILL);
+        mRectPaint.setColor(Color.argb(128, 0, 0, 0));
 
 
         backgroundBitmap = BitmapFactory.decodeResource(res, R.drawable.battle_bg);
@@ -136,8 +162,17 @@ public class BallGameView extends View {
         super.onDraw(canvas);
         //绘制背景
         canvas.drawBitmap(backgroundBitmap, bitmapRect, mViewRect, mPaint);
-        //绘制初始的11个球员
+        //绘制提示文字透明背景
+        canvas.drawRoundRect(mRoundRect, 8, 8, mRectPaint);
+        //绘制底部提示文字 ( TextPiant 文字垂直居中实现 http://blog.csdn.net/hursing/article/details/18703599)
+        Paint.FontMetricsInt fontMetrics = mTipPaint.getFontMetricsInt();
+        float baseY = (mRoundRect.bottom + mRoundRect.top) / 2 - (fontMetrics.top + fontMetrics.bottom) / 2;
+        canvas.drawText(tips, screenW / 2, baseY, mTipPaint);
+
+
+        //绘制初始的11个气泡
         for (int i = 0; i < players.length; i++) {
+            //绘制当前选中的球员
             if (i == currentPos) {
 
                 if (players[i].isSetReal()) {
@@ -161,16 +196,18 @@ public class BallGameView extends View {
             } else {
                 canvas.drawBitmap(players[i].getBitmap(), positions[i].x - playW / 2,
                         positions[i].y - playW / 2, mPaint);
+
+                //设置了真实头像的气泡
                 if (players[i].isSetReal()) {
+
+                    //绘制球员姓名
                     canvas.drawText(players[i].getName(), positions[i].x,
                             positions[i].y + playW, mTextPaint);
-
                     //绘制已设置正常图片球员背景
                     canvas.drawBitmap(playeBgBitmap, positions[i].x - grayW / 2,
                             positions[i].y + 200, mPaint);
                 }
             }
-
         }
     }
 
@@ -178,46 +215,61 @@ public class BallGameView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (mValueAnimator != null) {
+            if (mValueAnimator.isRunning()) {
+                return false;
+            }
+        }
+
+
         m_gestureDetector.onTouchEvent(event);
 
         int lastX = (int) event.getX();
         int lastY = (int) event.getY();
 
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
 
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            for (int i = 0; i < positions.length; i++) {
+                int deltaX = positions[i].x - lastX;
+                int deltaY = positions[i].y - lastY;
 
-                for (int i = 0; i < positions.length; i++) {
-                    int deltaX = positions[i].x - lastX;
-                    int deltaY = positions[i].y - lastY;
-
-                    if (Math.abs(deltaX) < playW / 2 && Math.abs(deltaY) < playW / 2) {
-                        position = i;
-                        currentPos = i;
-                        setSelectedPlayer();
-                        moveEnable = true;
-                        Log.e(TAG, "onTouchEvent: position= " + position);
-                        return true;
-                    }
-
-
+                // 手指 -- ACTION_DOWN 时，落在了某一个气泡上时，刷新选中气泡（球员）的bitmap
+                if (Math.abs(deltaX) < playW / 2 && Math.abs(deltaY) < playW / 2) {
+                    position = i;
+                    currentPos = i;
+                    invalidate();
+                    moveEnable = true;
+                    Log.e(TAG, "onTouchEvent: position= " + position);
+                    return true;
                 }
-                moveEnable = false;
-                Log.e(TAG, "onTouchEvent: position= " + position);
-                return false;
 
 
-            case MotionEvent.ACTION_UP:
-                position = -1;
-                break;
-            default:
-                break;
+            }
 
-
+            //没有点击中任意一个气泡，点击在外部是，重置气泡（球员）状态
+            resetBubbleView();
+            moveEnable = false;
+            return false;
         }
+
 
         return super.onTouchEvent(event);
 
+    }
+
+    private void resetBubbleView() {
+        currentPos = -1;
+        invalidate();
+    }
+
+    /**
+     * 清除画布上的辅助元素（包括底部提示，金色底座等，方便生成最终的截图）
+     */
+    public void clearInvalidView() {
+        currentPos = -1;
+        mTipPaint.setColor(Color.TRANSPARENT);
+        mRectPaint.setColor(Color.TRANSPARENT);
+        invalidate();
     }
 
 
@@ -225,42 +277,36 @@ public class BallGameView extends View {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             if (moveEnable) {
-                positions[position].y -= distanceY;
                 positions[position].x -= distanceX;
-                //处理边界问题
-//                if (positions[position].x < radius) {
-//                    positions[position].x = radius;
-//                } else if (centerX > getWidth() - radius) {
-//                    positions[position].x = getWidth() - radius;
-//                }
-//                if (positions[position].y < radius) {
-//                    positions[position].y = radius;
-//                } else if (centerY > getHeight() - radius) {
-//                    positions[position].y = getHeight() - radius;
-//                }
-                //修改圆心后，通知重绘
-                postInvalidate();
+                positions[position].y -= distanceY;
+
+
+                //滑动时，考虑一下上下边界的问题，不要把球员移除场外
+                // 横向就不考虑了，因为底图是3D 摆放的，上窄下宽，无法计算
+                // 主要限制一下，纵向滑动值
+                if (positions[position].y < minY) {
+                    positions[position].y = minY;
+                } else if (positions[position].y > maxY) {
+                    positions[position].y = maxY;
+                }
+
+                Log.e(TAG, "onScroll: y=" + positions[position].y);
+
+                //跟随手指，移动气泡（球员）
+                invalidate();
             }
             return true;
         }
     };
 
     /**
-     * 计算两点间的距离
+     * 在下方球员区域，选中球员后，根据位置执行动画，将球员放置在选中的气泡中
+     *
+     * @param bitmap      被选中球员bitmap
+     * @param name        被选中球员名字
+     * @param location    被选中球员在屏幕中位置
+     * @param contentView 根视图（方便实现动画）
      */
-    private int getDistanceByPoint(int x1, int y1, int x2, int y2) {
-        double temp = Math.abs((x2 - x1) * (x2 - x1) - (y2 - y1) * (y2 - y1));
-        int result = (int) Math.sqrt(temp);
-        Log.e(TAG, "getDistanceByPoint: result=" + result);
-        return result;
-    }
-
-
-    private void setSelectedPlayer() {
-        invalidate();
-    }
-
-
     public void updatePlayer(final Bitmap bitmap, final String name, int[] location, final ViewGroup contentView) {
 
         Path mPath = new Path();
@@ -277,7 +323,7 @@ public class BallGameView extends View {
         final float[] animPositions = new float[2];
         final PathMeasure mPathMeasure = new PathMeasure(mPath, false);
 
-        ValueAnimator mValueAnimator = ValueAnimator.ofFloat(0, mPathMeasure.getLength());
+        mValueAnimator = ValueAnimator.ofFloat(0, mPathMeasure.getLength());
         mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -301,7 +347,9 @@ public class BallGameView extends View {
                 players[currentPos].setSetReal(true);
                 players[currentPos].setName(name);
 
-                invalidate();
+                updateBubbleAndTips();
+
+
             }
         });
         mValueAnimator.setDuration(500);
@@ -309,6 +357,44 @@ public class BallGameView extends View {
         mValueAnimator.start();
 
 
+    }
+
+    /**
+     * 根据气泡数据，更新视图
+     */
+    private void updateBubbleAndTips() {
+        for (int i = 0; i < PLAYER_COUNT; i++) {
+            if (!players[i].isSetReal()) {
+                // 还有某个气泡没有设置真实的球员 头像
+                isFull = false;
+                break;
+            }
+
+            isFull = true;
+        }
+
+        if (isFull) {
+            //当全部气泡都有文字时，修改底部提示文字
+            mRoundRect.left = mRoundRect.left - 100;
+            mRoundRect.right = mRoundRect.right + 100;
+
+            mRoundRect.left = mRoundRect.left < screenW / 2 - 300 ? screenW / 2 - 300 : mRoundRect.left;
+            mRoundRect.right = mRoundRect.right > screenW / 2 + 300 ? screenW / 2 + 300 : mRoundRect.right;
+
+            //绘制底部提示文字
+            tips = "点击右上角下一步，预览惊喜";
+        }
+
+        invalidate();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (mValueAnimator != null) {
+            //动画未结束时，Activity-finish，强制结束动画，避免内存泄漏
+            mValueAnimator.cancel();
+        }
     }
 
     public int getCurrentPos() {
@@ -328,13 +414,16 @@ public class BallGameView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         viewW = w;
         viewH = h;
+
+
+        initBubblePositions(w, h);
         //目标区域，在整个视图的大小中，绘制Bitmap
         mViewRect = new Rect(0, 0, viewW, viewH);
+        mRoundRect = new RectF(screenW / 2 - 200, maxY + 15, screenW / 2 + 200, getHeight() - 15);
 
         Log.e(TAG, "onSizeChanged: w= " + w);
         Log.e(TAG, "onSizeChanged: h= " + h);
 
-        initBubblePositions(w, h);
     }
 
     /**
@@ -364,5 +453,12 @@ public class BallGameView extends View {
         positions[9] = new Point(x + spaceX * 3, y + spaceX * 2);
 
         positions[10] = new Point(x, h - spaceY);
+
+
+        //此处滑动时上下边界，正常情况下应该是背景图中上下两条边线的那个位置的值
+        // 但是，实在是不知道如何从一张图中获取某条线的位置（哪位大神如果知道，不吝赐教）
+        //因此，这里的上下边界 是根据自己手机上滑动位置,取得大概值 o(╯□╰)o
+        minY = h / 5;
+        maxY = (int) (h * 0.948);
     }
 }

@@ -3,8 +3,8 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cpb_grey"
@@ -18,27 +18,39 @@
         android:orientation="vertical">
 
 
-        <home.smart.fly.animations.customview.views.BallGameView
-            android:id="@+id/gameView"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:scaleType="fitXY"
             />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/cpb_white"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="球员"
-            android:textColor="@color/green"/>
-
-        <android.support.v7.widget.RecyclerView
+        <LinearLayout
             android:id="@+id/playerLists"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@drawable/battle_bg_bottom"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/battle_save_picture"/>
+
+            <ImageView
+                android:id="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:src="@drawable/battle_share_icon"/>
+
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -64,13 +76,13 @@
             android:src="@drawable/icon_sliding_dqd_logo"/>
 
         <TextView
-            android:id="@+id/next"
+            android:id="@+id/finish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
-            android:text="下一步"
+            android:text="完成"
             android:textColor="@color/white"
             android:textSize="17sp"/>
 

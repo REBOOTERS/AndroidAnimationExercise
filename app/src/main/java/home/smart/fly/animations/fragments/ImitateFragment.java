@@ -56,11 +56,8 @@ public class ImitateFragment extends Fragment {
 
     private void InitView() {
         demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
-        demos.add(new ItemInfo(R.string.fake_weibo, CircleViewActivity.class));
-        demos.add(new ItemInfo(R.string.fake_weibo, FakeFootballActivity.class));
-//        demos.add(new ItemInfo(R.string.fake_weibo, XiaoMiGalleryActivity.class));
-//        demos.add(new ItemInfo(R.string.fake_weibo, WeiXinGalleryActivity.class));
-//        demos.add(new ItemInfo(R.string.fake_weibo, PendingImgActivity.class));
+        demos.add(new ItemInfo(R.string.ball, CircleViewActivity.class));
+        demos.add(new ItemInfo(R.string.fake_football, FakeFootballActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
         demos.add(new ItemInfo(R.string.wheelView, WheelViewActivity.class));
 
@@ -68,7 +65,7 @@ public class ImitateFragment extends Fragment {
         demos.add(new ItemInfo(R.string.jianshuhead, JianShuHeadActivity.class));
         demos.add(new ItemInfo(R.string.swipemenu, MySwipeMenuActivity.class));
         demos.add(new ItemInfo(R.string.pullzoom, PullRecyclerViewActivity.class));
-        demos.add(new ItemInfo(R.string.pullzoom, FlipViewActivity.class));
+        demos.add(new ItemInfo(R.string.flipView, FlipViewActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdapter mAdapter = new MyAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

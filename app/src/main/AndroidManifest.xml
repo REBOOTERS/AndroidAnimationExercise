@@ -237,6 +237,9 @@
         </activity>
         <activity android:name=".activity.CircleViewActivity">
         </activity>
+        <activity android:name=".activity.GameViewSaveActivity"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
