@@ -38,6 +38,7 @@ public class AppStartActivity extends AppCompatActivity {
     private CoordinatorLayout main_contetn;
     private Context mContext;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,15 +112,18 @@ public class AppStartActivity extends AppCompatActivity {
         String DIRECTORY_PICTURES = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
         String DIRECTORY_DOWNLOADS = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
         //
-        String getCacheDir = mContext.getCacheDir().getAbsolutePath();
+        String cacheDir = mContext.getCacheDir().getAbsolutePath();
+        String filesDir = mContext.getFilesDir().getAbsolutePath();
+        //
         String getExternalCacheDir = mContext.getExternalCacheDir().getAbsolutePath();
-        String getExternalFilesDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        String getExternalFilesDir_DIRECTORY_PICTURES = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        String getExternalFilesDir_DIRECTORY_DOCUMENTS = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
 
 
         String[] files = new String[mContext.getExternalCacheDirs().length];
-        for(int i=0;i<mContext.getExternalCacheDirs().length;i++) {
-            File mFile=mContext.getExternalCacheDirs()[i];
-            files[i]=mFile.getAbsolutePath()+"\n";
+        for (int i = 0; i < mContext.getExternalCacheDirs().length; i++) {
+            File mFile = mContext.getExternalCacheDirs()[i];
+            files[i] = mFile.getAbsolutePath() + "\n";
         }
 
 
@@ -136,10 +140,16 @@ public class AppStartActivity extends AppCompatActivity {
         Log.e("device_info", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_PICTURES) = " + DIRECTORY_PICTURES);
         Log.e("device_info", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOWNLOADS) = " + DIRECTORY_DOWNLOADS);
         Log.e("device_info", "--------------------------------------------------");
-        Log.e("device_info", "mContext.getCacheDir() = " + getCacheDir);
+        Log.e("device_info", "mContext.getCacheDir() = " + cacheDir);
+        Log.e("device_info", "mContext.getFilesDir() = " + filesDir);
+        Log.e("device_info", "--------------------------------------------------");
         Log.e("device_info", "mContext.getExternalCacheDir() = " + getExternalCacheDir);
-        Log.e("device_info", "mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) = " + getExternalFilesDir);
-        Log.e("device_info", "mContext.getExternalCacheDirs() = \n" + files.toString());
+        Log.e("device_info", "mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) = " + getExternalFilesDir_DIRECTORY_PICTURES);
+        Log.e("device_info", "mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) = " + getExternalFilesDir_DIRECTORY_DOCUMENTS);
+        Log.e("device_info", "mContext.getExternalCacheDirs() = \n");
+        for (String str : files) {
+            Log.e("device_info", str);
+        }
     }
 
 
