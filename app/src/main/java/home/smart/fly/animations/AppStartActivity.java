@@ -1,5 +1,6 @@
 package home.smart.fly.animations;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources.Theme;
@@ -150,6 +151,12 @@ public class AppStartActivity extends AppCompatActivity {
         for (String str : files) {
             Log.e("device_info", str);
         }
+
+        ActivityManager mManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        int size=mManager.getMemoryClass();
+
+        Log.e("device_info", "mManager.getMemoryClass()  当前应用可用内存 = "+size+" M");
+
     }
 
 
