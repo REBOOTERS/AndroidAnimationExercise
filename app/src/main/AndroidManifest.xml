@@ -246,6 +246,8 @@
         <receiver android:name=".widget.PanoWidgetProvider" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                //
+                <action android:name="home.smart.fly.animations.widget.action.REFRESH"/>
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
