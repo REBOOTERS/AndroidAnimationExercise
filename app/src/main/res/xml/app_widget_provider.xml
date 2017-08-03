@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/app_widget_layout"
+    android:minHeight="200dp"
+    android:minResizeHeight="200dp"
+    android:minResizeWidth="294dp"
+    android:minWidth="294dp"
+    android:previewImage="@drawable/a5"
+    android:resizeMode="vertical|horizontal"
+    android:updatePeriodMillis="86400000"
+    android:widgetCategory="home_screen|keyguard"
+    />
