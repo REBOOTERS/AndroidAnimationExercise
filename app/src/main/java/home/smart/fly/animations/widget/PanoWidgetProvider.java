@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -18,6 +19,10 @@ import home.smart.fly.animations.activity.CollegeActivity;
 public class PanoWidgetProvider extends AppWidgetProvider {
 
     private static final String ACTION_REFRESH = "home.smart.fly.animations.widget.action.REFRESH";
+    public static final String SP_NAME = "widget_sp";
+    public static final String INDEX_KEY = "index";
+
+    private SharedPreferences sp;
 
 
     @Override
@@ -31,10 +36,12 @@ public class PanoWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-
+        sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
 
         // Create an Intent to launch CollegeActivity
         Intent intent = new Intent(context, CollegeActivity.class);
+        int index = sp.getInt(INDEX_KEY, 0);
+        intent.putExtra("index", index);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
         // Get the layout for the App Widget and attach an on-click listener
@@ -51,6 +58,8 @@ public class PanoWidgetProvider extends AppWidgetProvider {
 
         // Tell the AppWidgetManager to perform an update on the current app widget
         appWidgetManager.updateAppWidget(appWidgetIds, views);
+
+        context.startService(new Intent(context, AppWidgetService.class));
     }
 
     @Override
@@ -61,10 +70,12 @@ public class PanoWidgetProvider extends AppWidgetProvider {
     @Override
     public void onEnabled(Context context) {
         super.onEnabled(context);
+        context.startService(new Intent(context, AppWidgetService.class));
     }
 
     @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
+        context.stopService(new Intent(context, AppWidgetService.class));
     }
 }

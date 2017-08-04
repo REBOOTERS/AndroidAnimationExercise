@@ -242,18 +242,26 @@
             android:theme="@style/MyTheme.NoActionBar">
         </activity>
 
-        <!--widget-->
-        <receiver android:name=".widget.PanoWidgetProvider" android:label="@string/app_name">
+        <!-- widget -->
+        <receiver
+            android:name=".widget.PanoWidgetProvider"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 //
                 <action android:name="home.smart.fly.animations.widget.action.REFRESH"/>
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/app_widget_provider"
-                />
+                android:resource="@xml/app_widget_provider"/>
         </receiver>
+
+        <service
+            android:name=".widget.AppWidgetService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>

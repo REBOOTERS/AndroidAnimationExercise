@@ -76,6 +76,11 @@ public class CollegeActivity extends AppCompatActivity {
         black = res.getColor(R.color.black);
         colorPrimary = res.getColor(R.color.colorPrimary);
 
+        if (getIntent() != null) {
+            int index = getIntent().getIntExtra("index", 0);
+            Log.e(TAG, "onCreate: index=" + index);
+        }
+
         StatusBarUtil.setColor(this, black);
         mContext = this;
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
