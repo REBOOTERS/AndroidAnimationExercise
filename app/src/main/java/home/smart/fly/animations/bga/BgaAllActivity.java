@@ -57,6 +57,9 @@ public class BgaAllActivity extends AppCompatActivity implements
         mContentAdapter.addHeaderView(getHeadView());
         mRecyclerView.setAdapter(mContentAdapter.getHeaderAndFooterAdapter());
         initData();
+
+        //
+        mBGARefreshLayout.beginRefreshing();
     }
 
     private void initData() {

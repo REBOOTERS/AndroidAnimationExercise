@@ -262,6 +262,9 @@
             android:enabled="true"
             android:exported="false">
         </service>
+
+        <activity android:name=".activity.PdfActivity">
+        </activity>
     </application>
 
 </manifest>

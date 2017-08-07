@@ -23,6 +23,7 @@ import home.smart.fly.animations.activity.FullscreenActivity;
 import home.smart.fly.animations.activity.ImgCacheActivity;
 import home.smart.fly.animations.activity.InputActivity;
 import home.smart.fly.animations.activity.LoadCircleImageActivity;
+import home.smart.fly.animations.activity.PdfActivity;
 import home.smart.fly.animations.bga.BgaAllActivity;
 import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
 import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
@@ -60,6 +61,7 @@ public class OtherFragment extends Fragment {
     private void InitView() {
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
         demos.add(new ItemInfo(R.string.full_screen, FullscreenActivity.class));
+        demos.add(new ItemInfo(R.string.full_screen, PdfActivity.class));
         demos.add(new ItemInfo(R.string.puzzle_game, PuzzleActivity.class));
         demos.add(new ItemInfo(R.string.webviewInfo, AllWebViewActivity.class));
         demos.add(new ItemInfo(R.string.camera, CameraActivity.class));

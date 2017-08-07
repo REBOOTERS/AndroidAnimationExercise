@@ -62,6 +62,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         settings.setJavaScriptEnabled(true);
         //
         mWebView.addJavascriptInterface(new JsObject(mContext), "myObj");
+        mWebView.addJavascriptInterface(new LoadHtmlObject(), "myHtml");
         //
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -79,6 +80,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 Log.e(TAG, "onPageFinished: " + url);
+                view.loadUrl("javascript:window.myHtml.printSourceCode('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
             }
 
             @Override

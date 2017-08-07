@@ -76,6 +76,9 @@ public class FakeJianShuActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 bean = gson.fromJson(json, HtmlBean.class);
             }
+
+
+
             return bean;
         }
 
