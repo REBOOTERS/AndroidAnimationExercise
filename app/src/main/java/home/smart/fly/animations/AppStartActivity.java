@@ -26,6 +26,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import home.smart.fly.animations.fragments.ImitateFragment;
 import home.smart.fly.animations.fragments.OtherFragment;
@@ -38,6 +40,8 @@ public class AppStartActivity extends AppCompatActivity {
     private Snackbar snackbar = null;
     private CoordinatorLayout main_contetn;
     private Context mContext;
+
+    private List<String> datas = new ArrayList<>();
 
 
     @Override

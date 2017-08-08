@@ -265,6 +265,8 @@
 
         <activity android:name=".activity.PdfActivity">
         </activity>
+        <activity android:name=".activity.MailActivity">
+        </activity>
     </application>
 
 </manifest>
