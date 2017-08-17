@@ -7,6 +7,7 @@ import android.content.res.Resources.Theme;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import home.smart.fly.animations.fragments.ImitateFragment;
@@ -42,6 +44,7 @@ public class AppStartActivity extends AppCompatActivity {
     private Context mContext;
 
     private List<String> datas = new ArrayList<>();
+    private List<String> links = new LinkedList<>();
 
 
     @Override
@@ -106,6 +109,8 @@ public class AppStartActivity extends AppCompatActivity {
 
         final int version = android.os.Build.VERSION.SDK_INT;
         final String mRelease = Build.VERSION.RELEASE;
+        final String mSerial= Build.SERIAL;
+        String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         String filepath = Environment.getExternalStorageDirectory().getAbsolutePath();
         //
         String getDataDirectory = Environment.getDataDirectory().getAbsolutePath();
@@ -133,7 +138,9 @@ public class AppStartActivity extends AppCompatActivity {
 
 
         Log.e("device_info", "android.os.Build.VERSION.SDK_INT = " + version);
-        Log.e("device_info", "Build.VERSION.RELEASE = " + mRelease);
+        Log.e("device_info", "android.os.Build.VERSION.RELEASE = " + mRelease);
+        Log.e("device_info", "android.os.Build.SERIAL = " + mSerial);
+        Log.e("device_info", "Secure.ANDROID_ID = " + android_id);
         Log.e("device_info", "--------------------------------------------------");
         Log.e("device_info", "Environment.getExternalStorageDirectory() = " + filepath);
         Log.e("device_info", "Environment.getDataDirectory() = " + getDataDirectory);
@@ -151,7 +158,7 @@ public class AppStartActivity extends AppCompatActivity {
         Log.e("device_info", "mContext.getExternalCacheDir() = " + getExternalCacheDir);
         Log.e("device_info", "mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) = " + getExternalFilesDir_DIRECTORY_PICTURES);
         Log.e("device_info", "mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) = " + getExternalFilesDir_DIRECTORY_DOCUMENTS);
-        Log.e("device_info", "mContext.getExternalCacheDirs() = \n");
+        Log.e("device_info", "mContext.getExternalCacheDirs() size= "+files.length+" \n [ ");
         for (String str : files) {
             Log.e("device_info", str);
         }
@@ -159,7 +166,7 @@ public class AppStartActivity extends AppCompatActivity {
         ActivityManager mManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         int size = mManager.getMemoryClass();
 
-        Log.e("device_info", "mManager.getMemoryClass()  当前应用可用内存 = " + size + " M");
+        Log.e("device_info", "mManager.getMemoryClass()  应用可用内存 = " + size + " M");
 
     }
 

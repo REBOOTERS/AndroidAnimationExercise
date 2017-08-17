@@ -26,13 +26,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="get"/>
+        android:text="获取输入"/>
 
     <Button
         android:id="@+id/format"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="format"/>
+        android:text="去除换行"/>
+
+    <Button
+        android:id="@+id/getMac1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="获取Mac地址方式1"/>
+
+    <Button
+        android:id="@+id/getMac2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="获取Mac地址方式2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cpb_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="Mac Address: "/>
+
+        <TextView
+            android:id="@+id/macAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
