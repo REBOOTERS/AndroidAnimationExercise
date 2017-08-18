@@ -268,10 +268,19 @@
         <activity android:name=".activity.MailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
+
                 <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/*" />
+
+                <data android:mimeType="text/*"/>
             </intent-filter>
         </activity>
+        <activity android:name=".activity.MatisseDemoActivity" >
+        </activity>
+        <activity android:name=".activity.PhotoProcessActivity"/>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@
     <string name="swipemenu">侧滑菜单效果</string>
     <string name="pullzoom">下拉放大效果</string>
     <string name="flipView">FlipView 效果</string>
+    <string name="Matisse">Matisse 相册效果</string>
     <string name="flowlayout">标签流水布局</string>
     <string name="dragBubbleView">dragBubbleView</string>
     <string name="easy">easy</string>
@@ -76,6 +77,9 @@
         <item>0</item>
         <item>-1</item>
     </string-array>
+
+    <string name="permission_request_denied">Permission request denied</string>
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
 
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
