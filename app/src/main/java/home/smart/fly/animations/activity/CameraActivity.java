@@ -110,7 +110,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
             Toast.makeText(mContext, "TODO", Toast.LENGTH_SHORT).show();
             // 将文件转换成content://Uri的形式
-            Uri contentUri = FileProvider.getUriForFile(mContext, getPackageName() + ".provider", file);
+            Uri contentUri = FileProvider.getUriForFile(mContext, getPackageName() + ".fileprovider", file);
             // 申请临时访问权限
             takePictureIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);

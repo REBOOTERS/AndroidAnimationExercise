@@ -95,7 +95,7 @@ public class AppStartActivity extends AppCompatActivity {
             }
         });
 
-        spinner.setSelection(4);
+        spinner.setSelection(2);
         main_contetn = (CoordinatorLayout) findViewById(R.id.main_content);
         snackbar = Snackbar.make(main_contetn, "确认要退出吗？", Snackbar.LENGTH_SHORT)
                 .setAction("退出", new View.OnClickListener() {
@@ -107,7 +107,15 @@ public class AppStartActivity extends AppCompatActivity {
         snackbar.getView().setBackgroundColor(getResources().getColor(R.color.cpb_blue));
         snackbar.setActionTextColor(getResources().getColor(R.color.white));
 
-        final int version = android.os.Build.VERSION.SDK_INT;
+        PrintSystemDirInfo();
+
+    }
+
+    /**
+     * 打印系统目录信息
+     */
+    private void PrintSystemDirInfo() {
+        final int version = Build.VERSION.SDK_INT;
         final String mRelease = Build.VERSION.RELEASE;
         final String mSerial= Build.SERIAL;
         String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -167,7 +175,6 @@ public class AppStartActivity extends AppCompatActivity {
         int size = mManager.getMemoryClass();
 
         Log.e("device_info", "mManager.getMemoryClass()  应用可用内存 = " + size + " M");
-
     }
 
 

@@ -5,8 +5,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.media.ExifInterface;
 import android.os.Environment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -24,6 +26,8 @@ import java.util.Locale;
  */
 
 public class Tools {
+    private static final String TAG = "Tools";
+
     /**
      * 获取系统时间 从月份开始到秒结束
      *
@@ -139,6 +143,92 @@ public class Tools {
         view.draw(canvas);
         canvas.save();
         return bitmap;
+    }
+
+    public static void getPhotoInfo(String url) {
+        try {
+            ExifInterface exifInterface = new ExifInterface(url);
+            String FFNumber = exifInterface
+                    .getAttribute(ExifInterface.TAG_F_NUMBER);
+            String FDateTime = exifInterface
+                    .getAttribute(ExifInterface.TAG_DATETIME);
+            String FExposureTime = exifInterface
+                    .getAttribute(ExifInterface.TAG_EXPOSURE_TIME);
+            String FFlash = exifInterface
+                    .getAttribute(ExifInterface.TAG_FLASH);
+            String FFocalLength = exifInterface
+                    .getAttribute(ExifInterface.TAG_FOCAL_LENGTH);
+            String FImageLength = exifInterface
+                    .getAttribute(ExifInterface.TAG_IMAGE_LENGTH);
+            String FImageWidth = exifInterface
+                    .getAttribute(ExifInterface.TAG_IMAGE_WIDTH);
+            String FISOSpeedRatings = exifInterface
+                    .getAttribute(ExifInterface.TAG_ISO_SPEED_RATINGS);
+            String FMake = exifInterface
+                    .getAttribute(ExifInterface.TAG_MAKE);
+            String FModel = exifInterface
+                    .getAttribute(ExifInterface.TAG_MODEL);
+            String FOrientation = exifInterface
+                    .getAttribute(ExifInterface.TAG_ORIENTATION);
+            String FWhiteBalance = exifInterface
+                    .getAttribute(ExifInterface.TAG_WHITE_BALANCE);
+            String gps_altitude = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
+            String gps_longitude = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
+            String gps_distace = exifInterface.getAttribute(ExifInterface.TAG_GPS_DEST_DISTANCE);
+
+
+            float[] latlng = new float[2];
+            exifInterface.getLatLong(latlng);
+
+            Log.e(TAG, "FFNumber:" + FFNumber);
+            Log.e(TAG, "FDateTime:" + FDateTime);
+            Log.e(TAG, "FExposureTime:" + FExposureTime);
+            Log.e(TAG, "FFlash:" + FFlash);
+            Log.e(TAG, "FFocalLength:" + FFocalLength);
+            Log.e(TAG, "FImageLength:" + FImageLength);
+            Log.e(TAG, "FImageWidth:" + FImageWidth);
+            Log.e(TAG, "FISOSpeedRatings:" + FISOSpeedRatings);
+            Log.e(TAG, "FMake:" + FMake);
+            Log.e(TAG, "FModel:" + FModel);
+            Log.e(TAG, "FOrientation:" + FOrientation);
+            Log.e(TAG, "FWhiteBalance:" + FWhiteBalance);
+            Log.e(TAG, "gps_altitude:" + gps_altitude);
+            Log.e(TAG, "gps_altitude:" + exifGpsConvert(gps_altitude));
+            Log.e(TAG, "gps_longitude:" + gps_longitude);
+            Log.e(TAG, "gps_longitude:" + latlng[0]);
+            Log.e(TAG, "gps_longitude:" + latlng[1]);
+            Log.e(TAG, "gps_longitude:" + exifGpsConvert(gps_longitude));
+            Log.e(TAG, "gps_distace:" + gps_distace);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static double exifGpsConvert(String gps) {
+
+        double degree, min, sec;
+
+        String[] arrays1 = gps.split(",");
+        if (arrays1.length > 2) {
+            degree = format(arrays1[0]);
+            min = format(arrays1[1]) / 60.0f;
+            sec = format(arrays1[2]) / 10000;
+            sec = sec / 3600;
+
+            double value = degree + min + sec;
+            return value;
+        } else {
+            return 0;
+        }
+
+
+    }
+
+    public static double format(String string) {
+        return Double.parseDouble(string.split("/")[0]);
     }
 
 }

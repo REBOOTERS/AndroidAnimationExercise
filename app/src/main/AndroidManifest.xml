@@ -122,7 +122,7 @@
         <!-- Android 7.0 FileUriExposedException -->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.provider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -274,7 +274,7 @@
                 <data android:mimeType="text/*"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MatisseDemoActivity" >
+        <activity android:name=".activity.MatisseDemoActivity">
         </activity>
         <activity android:name=".activity.PhotoProcessActivity"/>
         <activity

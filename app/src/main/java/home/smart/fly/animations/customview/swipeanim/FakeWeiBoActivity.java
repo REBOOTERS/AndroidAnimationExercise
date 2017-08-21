@@ -30,6 +30,11 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.PoiInfo;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
@@ -87,6 +92,8 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
     private String[] permissons = {Manifest.permission.ACCESS_FINE_LOCATION};
 
+    //
+    private GeoCoder mGeoCoder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -331,6 +338,22 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
                 .pageCapacity(20)
                 .sortType(PoiSortType.distance_from_near_to_far);
 
+
+        ////////////////
+        mGeoCoder = GeoCoder.newInstance();
+        mGeoCoder.setOnGetGeoCodeResultListener(new OnGetGeoCoderResultListener() {
+            @Override
+            public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
+                Log.e(TAG, "onGetGeoCodeResult: " + geoCodeResult.toString());
+            }
+
+            @Override
+            public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+                Log.e(TAG, "onGetReverseGeoCodeResult: " + reverseGeoCodeResult.toString());
+            }
+        });
+
+
     }
 
 
@@ -403,6 +426,9 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         district.setText(bdLocation.getAddress().district);
         latLng = new LatLng(bdLocation.getLatitude(), bdLocation.getLongitude());
         movie.performClick();
+
+//        mGeoCoder.reverseGeoCode(new ReverseGeoCodeOption().location(latLng));
+        mGeoCoder.reverseGeoCode(new ReverseGeoCodeOption().location(new LatLng(39.977818,116.401535)));
     }
 
 
@@ -469,6 +495,10 @@ public class FakeWeiBoActivity extends AppCompatActivity implements View.OnClick
         }
 
         EventBus.getDefault().unregister(mContext);
+
+        if (mGeoCoder != null) {
+            mGeoCoder.destroy();
+        }
     }
 
 

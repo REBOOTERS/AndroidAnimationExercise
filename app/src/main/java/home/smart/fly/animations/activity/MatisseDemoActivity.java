@@ -18,19 +18,17 @@ import com.zhihu.matisse.engine.impl.PicassoEngine;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
-import java.io.File;
 import java.util.List;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.GifSizeFilter;
+import home.smart.fly.animations.utils.Tools;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-import static android.R.attr.maxHeight;
-import static android.R.attr.maxWidth;
-
 
 public class MatisseDemoActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "MatisseDemoActivity";
 
     private static final int REQUEST_CODE_CHOOSE = 23;
 
@@ -116,11 +114,22 @@ public class MatisseDemoActivity extends AppCompatActivity implements View.OnCli
 
             List<Uri> mUris = Matisse.obtainResult(data);
             List<String> mStrings = Matisse.obtainPathResult(data);
-            Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
-            UCrop.of(mUris.get(0), destinationUri)
-                    .withAspectRatio(16, 9)
-                    .withMaxResultSize(maxWidth, maxHeight)
-                    .start(this);
+
+//            try {
+//                ExifInterface mExifInterface = new ExifInterface(mStrings.get(0));
+//                Log.e(TAG, "onActivityResult: " + mExifInterface.getAttribute(ExifInterface.TAG_GPS_ALTITUDE));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
+            Tools.getPhotoInfo(mStrings.get(0));
+
+
+//            Uri destinationUri = Uri.fromFile(new File(getCacheDir(), "test.jpg"));
+//            UCrop.of(mUris.get(0), destinationUri)
+//                    .withAspectRatio(16, 9)
+//                    .withMaxResultSize(maxWidth, maxHeight)
+//                    .start(this);
         }
 
         if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
