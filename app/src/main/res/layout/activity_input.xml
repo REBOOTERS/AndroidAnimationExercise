@@ -1,77 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:scrollbars="none"
     tools:context="home.smart.fly.animations.activity.InputActivity">
-
-    <EditText
-        android:id="@+id/input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"/>
-
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"/>
-
-
-    <Button
-        android:id="@+id/get"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="获取输入"/>
-
-    <Button
-        android:id="@+id/format"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="去除换行"/>
-
-    <Button
-        android:id="@+id/getMac1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="获取Mac地址方式1"/>
-
-    <Button
-        android:id="@+id/getMac2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="获取Mac地址方式2"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cpb_white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        >
+        android:orientation="vertical">
+
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/link"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:text="Mac Address: "/>
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="auto_link_all"/>
+
+
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
 
         <TextView
-            android:id="@+id/macAddress"
-            android:layout_width="0dp"
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
+
+
+        <Button
+            android:id="@+id/get"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_weight="2"/>
+            android:text="获取输入"/>
+
+        <Button
+            android:id="@+id/format"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="去除换行"/>
+
+        <Button
+            android:id="@+id/getMac1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="获取Mac地址方式1"/>
+
+        <Button
+            android:id="@+id/getMac2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="获取Mac地址方式2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cpb_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Mac Address: "/>
+
+            <TextView
+                android:id="@+id/macAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
 
     </LinearLayout>
-
-
-</LinearLayout>
+</ScrollView>

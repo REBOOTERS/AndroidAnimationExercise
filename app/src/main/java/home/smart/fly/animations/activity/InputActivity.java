@@ -5,10 +5,12 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,6 +41,8 @@ public class InputActivity extends AppCompatActivity {
     TextView mResult;
     @BindView(R.id.macAddress)
     TextView mMacAddress;
+    @BindView(R.id.link)
+    TextView mLink;
 
 
     @Override
@@ -47,10 +51,12 @@ public class InputActivity extends AppCompatActivity {
         setContentView(R.layout.activity_input);
         ButterKnife.bind(this);
 
+        mLink.getPaint().setFlags(TextPaint.UNDERLINE_TEXT_FLAG);
+        mLink.getPaint().setAntiAlias(true);
 
     }
 
-    @OnClick({get, R.id.format, R.id.getMac1, R.id.getMac2})
+    @OnClick({get, R.id.format, R.id.getMac1, R.id.getMac2,R.id.link})
     public void Click(View view) {
         switch (view.getId()) {
             case get:
@@ -68,6 +74,9 @@ public class InputActivity extends AppCompatActivity {
                 break;
             case R.id.getMac2:
                 getMacAddress2();
+                break;
+            case R.id.link:
+                Toast.makeText(this, "link !", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

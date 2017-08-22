@@ -193,11 +193,9 @@ public class Tools {
             Log.e(TAG, "FOrientation:" + FOrientation);
             Log.e(TAG, "FWhiteBalance:" + FWhiteBalance);
             Log.e(TAG, "gps_altitude:" + gps_altitude);
-            Log.e(TAG, "gps_altitude:" + exifGpsConvert(gps_altitude));
             Log.e(TAG, "gps_longitude:" + gps_longitude);
-            Log.e(TAG, "gps_longitude:" + latlng[0]);
+            Log.e(TAG, "gps_latitude:" + latlng[0]);
             Log.e(TAG, "gps_longitude:" + latlng[1]);
-            Log.e(TAG, "gps_longitude:" + exifGpsConvert(gps_longitude));
             Log.e(TAG, "gps_distace:" + gps_distace);
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -207,28 +205,5 @@ public class Tools {
 
     }
 
-    public static double exifGpsConvert(String gps) {
-
-        double degree, min, sec;
-
-        String[] arrays1 = gps.split(",");
-        if (arrays1.length > 2) {
-            degree = format(arrays1[0]);
-            min = format(arrays1[1]) / 60.0f;
-            sec = format(arrays1[2]) / 10000;
-            sec = sec / 3600;
-
-            double value = degree + min + sec;
-            return value;
-        } else {
-            return 0;
-        }
-
-
-    }
-
-    public static double format(String string) {
-        return Double.parseDouble(string.split("/")[0]);
-    }
 
 }
