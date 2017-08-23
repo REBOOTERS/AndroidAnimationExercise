@@ -6,9 +6,13 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yalantis.ucrop.UCrop;
 import com.zhihu.matisse.Matisse;
@@ -20,6 +24,11 @@ import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
+import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
+import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.GifSizeFilter;
 import home.smart.fly.animations.utils.Tools;
@@ -27,20 +36,53 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 
-public class MatisseDemoActivity extends AppCompatActivity implements View.OnClickListener {
+public class MatisseDemoActivity extends AppCompatActivity implements View.OnClickListener, BGAOnRVItemClickListener {
     private static final String TAG = "MatisseDemoActivity";
 
     private static final int REQUEST_CODE_CHOOSE = 23;
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
 
+    private MyAdapter mMyAdapter;
+    private List<String> mStrings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matisse_demo);
+        ButterKnife.bind(this);
         findViewById(R.id.zhihu).setOnClickListener(this);
         findViewById(R.id.dracula).setOnClickListener(this);
-        findViewById(R.id.custom).setOnClickListener(this);
+
+        mMyAdapter = new MyAdapter(mRecyclerView);
+        mMyAdapter.setOnRVItemClickListener(this);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        mRecyclerView.setAdapter(mMyAdapter);
+
+
     }
+
+    @Override
+    public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+        Intent mIntent = new Intent(this, MatissePhotoActivity.class);
+        mIntent.putExtra("url", mStrings.get(position));
+        startActivity(mIntent);
+        overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+    }
+
+    private class MyAdapter extends BGARecyclerViewAdapter<String> {
+
+
+        public MyAdapter(RecyclerView recyclerView) {
+            super(recyclerView, R.layout.image_item);
+        }
+
+        @Override
+        protected void fillData(BGAViewHolderHelper helper, int position, String model) {
+            Glide.with(mContext).load(model).into(helper.getImageView(R.id.image));
+        }
+    }
+
 
     @Override
     public void onClick(final View v) {
@@ -113,7 +155,7 @@ public class MatisseDemoActivity extends AppCompatActivity implements View.OnCli
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
 
             List<Uri> mUris = Matisse.obtainResult(data);
-            List<String> mStrings = Matisse.obtainPathResult(data);
+            mStrings = Matisse.obtainPathResult(data);
 
 //            try {
 //                ExifInterface mExifInterface = new ExifInterface(mStrings.get(0));
@@ -121,6 +163,7 @@ public class MatisseDemoActivity extends AppCompatActivity implements View.OnCli
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }
+            mMyAdapter.setData(mStrings);
 
             Tools.getPhotoInfo(mStrings.get(0));
 

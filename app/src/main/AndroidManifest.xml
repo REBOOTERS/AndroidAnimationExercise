@@ -281,6 +281,9 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyTheme.NoActionBar"/>
+        <activity android:name=".activity.MatissePhotoActivity" android:theme="@style/AppTheme">
+        </activity>
+        <activity android:name=".activity.PhotoBrowse"/>
     </application>
 
 </manifest>
