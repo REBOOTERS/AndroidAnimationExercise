@@ -116,7 +116,7 @@ public class MatisseDemoActivity extends AppCompatActivity implements View.OnCli
                                     break;
                                 case R.id.dracula:
                                     Matisse.from(MatisseDemoActivity.this)
-                                            .choose(MimeType.of(MimeType.JPEG))
+                                            .choose(MimeType.of(MimeType.JPEG,MimeType.PNG))
                                             .theme(R.style.Matisse_Dracula)
                                             .countable(false)
                                             .maxSelectable(1)
