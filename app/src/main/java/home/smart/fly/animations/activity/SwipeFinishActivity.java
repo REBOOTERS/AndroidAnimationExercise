@@ -6,11 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.gw.swipeback.SwipeBackLayout;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.helper.SwipeBackLayout;
 
 public class SwipeFinishActivity extends AppCompatActivity {
 
