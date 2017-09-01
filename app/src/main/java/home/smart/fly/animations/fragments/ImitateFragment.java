@@ -27,6 +27,7 @@ import home.smart.fly.animations.activity.MatisseDemoActivity;
 import home.smart.fly.animations.activity.MySwipeMenuActivity;
 import home.smart.fly.animations.activity.PhotoBrowse;
 import home.smart.fly.animations.activity.PullRecyclerViewActivity;
+import home.smart.fly.animations.activity.SwipeFinishActivity;
 import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
 import home.smart.fly.animations.activity.jianshu.JianShuHeadActivity;
 import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
@@ -68,6 +69,8 @@ public class ImitateFragment extends Fragment {
         demos.add(new ItemInfo(R.string.swipemenu, MySwipeMenuActivity.class));
         demos.add(new ItemInfo(R.string.pullzoom, PullRecyclerViewActivity.class));
         demos.add(new ItemInfo(R.string.flipView, FlipViewActivity.class));
+        demos.add(new ItemInfo(R.string.swipeFinish, SwipeFinishActivity.class));
+
         demos.add(new ItemInfo(R.string.Matisse, MatisseDemoActivity.class));
         demos.add(new ItemInfo(R.string.Matisse, PhotoBrowse.class));
 

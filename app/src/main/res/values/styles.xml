@@ -90,4 +90,10 @@
         <item name="colorButtonNormal">@color/dracula_primary</item>
     </style>
 
+    <style name="Swipe.Back.Activity.Theme" parent="Swipe.Back.Activity.Theme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>

@@ -26,6 +26,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -45,6 +47,8 @@ public class AppStartActivity extends AppCompatActivity {
 
     private List<String> datas = new ArrayList<>();
     private List<String> links = new LinkedList<>();
+
+    private Glide mGlide;
 
 
     @Override
