@@ -22,6 +22,7 @@ import home.smart.fly.animations.activity.CollegeActivity;
 import home.smart.fly.animations.activity.FlowLayoutActivity;
 import home.smart.fly.animations.activity.MyDrawingBoardActivity;
 import home.smart.fly.animations.activity.PlayActivity;
+import home.smart.fly.animations.activity.ViewTransformActivity;
 import home.smart.fly.animations.activity.WavaAnimActivity;
 import home.smart.fly.animations.activity.demos.AnimationsDemo;
 import home.smart.fly.animations.activity.transtions.StackViewActivity;
@@ -56,6 +57,7 @@ public class ViewsFragment extends Fragment {
     }
 
     private void InitView() {
+        demos.add(new ItemInfo(R.string.app_name, ViewTransformActivity.class));
         demos.add(new ItemInfo(R.string.app_name, PlayActivity.class));
         demos.add(new ItemInfo(R.string.app_name, MyDrawingBoardActivity.class));
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));

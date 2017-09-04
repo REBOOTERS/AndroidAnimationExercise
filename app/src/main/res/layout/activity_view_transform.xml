@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="home.smart.fly.animations.activity.ViewTransformActivity">
+
+
+    <RelativeLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/cpb_blue"
+        android:gravity="center">
+
+        <home.smart.fly.animations.customview.TransformView
+            android:id="@+id/transformView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <CheckBox
+        android:id="@+id/fixed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:checked="true"
+        android:text="fixed"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+
+        <RadioGroup
+            android:id="@+id/FlipViewSel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:checked="true"
+                android:id="@+id/UDFlipView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UDFlipView"/>
+
+            <RadioButton
+                android:id="@+id/LRFlipView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="LRFlipView"/>
+
+
+            <RadioButton
+                android:id="@+id/nullFlipView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="nullFlipView"/>
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/rotateX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="RotationX"/>
+
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/rotateY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="RotationY"/>
+
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/scaleX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="scaleX"/>
+
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/scaleY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="scaleY"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

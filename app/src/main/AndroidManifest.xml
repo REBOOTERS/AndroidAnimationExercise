@@ -286,7 +286,11 @@
             android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".activity.PhotoBrowse"/>
-        <activity android:name=".activity.SwipeFinishActivity" android:theme="@style/Swipe.Back.Activity.Theme">
+        <activity
+            android:name=".activity.SwipeFinishActivity"
+            android:theme="@style/Swipe.Back.Activity.Theme">
+        </activity>
+        <activity android:name=".activity.ViewTransformActivity">
         </activity>
     </application>
 
