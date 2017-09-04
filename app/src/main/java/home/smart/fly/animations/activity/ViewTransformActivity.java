@@ -19,7 +19,6 @@ public class ViewTransformActivity extends AppCompatActivity {
     @BindView(R.id.transformView)
     TransformView transformView;
 
-
     @BindView(R.id.rotateX)
     EasySeekBar rotateX;
     @BindView(R.id.rotateY)

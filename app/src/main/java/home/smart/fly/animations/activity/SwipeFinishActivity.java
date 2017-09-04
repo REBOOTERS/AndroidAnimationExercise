@@ -11,6 +11,8 @@ import butterknife.ButterKnife;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.helper.SwipeBackLayout;
 
+
+
 public class SwipeFinishActivity extends AppCompatActivity {
 
 
@@ -34,8 +36,10 @@ public class SwipeFinishActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 if (checkedId == R.id.left) {
                     mSwipeBackLayout.setDirectionMode(SwipeBackLayout.FROM_LEFT);
-                } else {
+                } else if (checkedId == R.id.right) {
                     mSwipeBackLayout.setDirectionMode(SwipeBackLayout.FROM_RIGHT);
+                } else {
+                    mSwipeBackLayout.setDirectionMode(SwipeBackLayout.FROM_ANY);
                 }
             }
         });

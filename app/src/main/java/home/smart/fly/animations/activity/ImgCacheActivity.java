@@ -32,6 +32,7 @@ import java.util.Locale;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.adapter.ImageBean;
+import home.smart.fly.animations.utils.BitmapCacheUtil;
 import home.smart.fly.animations.utils.T;
 import home.smart.fly.animations.utils.V;
 

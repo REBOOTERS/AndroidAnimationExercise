@@ -12,6 +12,7 @@ import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,13 +31,14 @@ public class SwipeBackLayout extends ViewGroup {
     public static final int FROM_TOP = 1;
     public static final int FROM_RIGHT = 2;
     public static final int FROM_BOTTOM = 3;
+    public static final int FROM_ANY = -1;
 
-    @IntDef({FROM_LEFT, FROM_TOP, FROM_RIGHT, FROM_BOTTOM})
+    @IntDef({FROM_LEFT, FROM_TOP, FROM_RIGHT, FROM_BOTTOM,FROM_ANY})
     @Retention(RetentionPolicy.SOURCE)
     public @interface DirectionMode {
     }
 
-    private int mDirectionMode = FROM_LEFT;
+    private int mDirectionMode = FROM_ANY;
 
     private final ViewDragHelper mDragHelper;
     private View mDragContentView;
@@ -153,6 +155,8 @@ public class SwipeBackLayout extends ViewGroup {
                         if (distanceX > mTouchSlop && distanceX > distanceY) {
                             return super.onInterceptTouchEvent(ev);
                         }
+                    } else {
+                        return super.onInterceptTouchEvent(ev);
                     }
                 }
                 break;
@@ -200,6 +204,8 @@ public class SwipeBackLayout extends ViewGroup {
                 leftOffset = Math.min(Math.max(left, getPaddingLeft()), width);
             } else if (mDirectionMode == FROM_RIGHT && !Util.canViewScrollLeft(innerScrollView, downX, downY, false)) {
                 leftOffset = Math.min(Math.max(left, -width), getPaddingRight());
+            }else {
+                leftOffset=left;
             }
             return leftOffset;
         }
@@ -211,6 +217,8 @@ public class SwipeBackLayout extends ViewGroup {
                 topOffset = Math.min(Math.max(top, getPaddingTop()), height);
             } else if (mDirectionMode == FROM_BOTTOM && !Util.canViewScrollDown(innerScrollView, downX, downY, false)) {
                 topOffset = Math.min(Math.max(top, -height), getPaddingBottom());
+            }else {
+                topOffset=top;
             }
             return topOffset;
         }
@@ -227,6 +235,7 @@ public class SwipeBackLayout extends ViewGroup {
                     break;
                 case FROM_TOP:
                 case FROM_BOTTOM:
+                case FROM_ANY:
                     swipeBackFraction = 1.0f * top / height;
                     break;
             }
@@ -252,6 +261,9 @@ public class SwipeBackLayout extends ViewGroup {
                         break;
                     case FROM_BOTTOM:
                         smoothScrollToY(-height);
+                    case FROM_ANY:
+                        break;
+                    default:
                         break;
                 }
             } else {
@@ -263,6 +275,8 @@ public class SwipeBackLayout extends ViewGroup {
                     case FROM_BOTTOM:
                     case FROM_TOP:
                         smoothScrollToY(getPaddingTop());
+                        break;
+                    case FROM_ANY:
                         break;
                 }
             }

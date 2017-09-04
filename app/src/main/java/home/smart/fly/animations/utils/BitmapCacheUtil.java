@@ -1,4 +1,4 @@
-package home.smart.fly.animations.activity;
+package home.smart.fly.animations.utils;
 
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
