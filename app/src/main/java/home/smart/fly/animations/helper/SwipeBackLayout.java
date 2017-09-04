@@ -20,9 +20,6 @@ import android.view.ViewGroup;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/**
- * Created by GongWen on 17/8/24.
- */
 
 public class SwipeBackLayout extends ViewGroup {
     private static final String TAG = "SwipeBackLayout";
@@ -33,7 +30,7 @@ public class SwipeBackLayout extends ViewGroup {
     public static final int FROM_BOTTOM = 3;
     public static final int FROM_ANY = -1;
 
-    @IntDef({FROM_LEFT, FROM_TOP, FROM_RIGHT, FROM_BOTTOM,FROM_ANY})
+    @IntDef({FROM_LEFT, FROM_TOP, FROM_RIGHT, FROM_BOTTOM, FROM_ANY})
     @Retention(RetentionPolicy.SOURCE)
     public @interface DirectionMode {
     }
@@ -156,7 +153,7 @@ public class SwipeBackLayout extends ViewGroup {
                             return super.onInterceptTouchEvent(ev);
                         }
                     } else {
-                        return super.onInterceptTouchEvent(ev);
+//                        return super.onInterceptTouchEvent(ev);
                     }
                 }
                 break;
@@ -199,26 +196,33 @@ public class SwipeBackLayout extends ViewGroup {
 
         @Override
         public int clampViewPositionHorizontal(View child, int left, int dx) {
+
+            if (mDirectionMode == FROM_ANY) {
+                return left;
+            }
+
             leftOffset = getPaddingLeft();
             if (mDirectionMode == FROM_LEFT && !Util.canViewScrollRight(innerScrollView, downX, downY, false)) {
                 leftOffset = Math.min(Math.max(left, getPaddingLeft()), width);
             } else if (mDirectionMode == FROM_RIGHT && !Util.canViewScrollLeft(innerScrollView, downX, downY, false)) {
                 leftOffset = Math.min(Math.max(left, -width), getPaddingRight());
-            }else {
-                leftOffset=left;
             }
             return leftOffset;
         }
 
         @Override
         public int clampViewPositionVertical(View child, int top, int dy) {
+
+            if (mDirectionMode == FROM_ANY) {
+                return top;
+            }
+
+
             topOffset = getPaddingTop();
             if (mDirectionMode == FROM_TOP && !Util.canViewScrollUp(innerScrollView, downX, downY, false)) {
                 topOffset = Math.min(Math.max(top, getPaddingTop()), height);
             } else if (mDirectionMode == FROM_BOTTOM && !Util.canViewScrollDown(innerScrollView, downX, downY, false)) {
                 topOffset = Math.min(Math.max(top, -height), getPaddingBottom());
-            }else {
-                topOffset=top;
             }
             return topOffset;
         }
