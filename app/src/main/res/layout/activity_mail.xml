@@ -9,10 +9,21 @@
     tools:context="home.smart.fly.animations.activity.MailActivity">
 
     <Button
-        android:id="@+id/sendMail"
+        android:id="@+id/sendMailNative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="send_mail"/>
+        android:background="@color/cpb_blue"
+        android:text="send_mail_native"
+        android:textColor="@color/cpb_white"/>
+
+    <Button
+        android:id="@+id/sendMailApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/cpb_blue"
+        android:text="send_mail_with_App"
+        android:textColor="@color/cpb_white"/>
 
 </LinearLayout>
