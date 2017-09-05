@@ -2,11 +2,15 @@ package home.smart.fly.animations.activity;
 
 import android.app.ProgressDialog;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -16,6 +20,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.io.File;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -29,13 +35,14 @@ import home.smart.fly.animations.utils.SendEmail;
 public class MailActivity extends AppCompatActivity {
     private static final String TAG = "MailActivity";
     private ProgressDialog mProgressDialog;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mail);
         ButterKnife.bind(this);
-
+        mContext = this;
         Intent receiveIntent = getIntent();
 
         if (receiveIntent != null) {
@@ -62,7 +69,7 @@ public class MailActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick({R.id.sendMailNative, R.id.sendMailApp})
+    @OnClick({R.id.sendMailNative, R.id.sendMailApp,R.id.test})
     public void Click(View view) {
         switch (view.getId()) {
             case R.id.sendMailNative:
@@ -71,30 +78,61 @@ public class MailActivity extends AppCompatActivity {
             case R.id.sendMailApp:
                 sendMailWithApp();
                 break;
+            case R.id.test:
+                test();
+                break;
             default:
                 break;
         }
     }
 
+    private void test() {
+        File mFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "one_api.txt");
+        Uri mUri = null;
+
+
+        Intent mIntent = new Intent(mContext, FileProviderActivity.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mUri = FileProvider.getUriForFile(mContext, getPackageName() + ".fileprovider", mFile);
+            // 申请临时访问权限
+            mIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        } else {
+            mUri = Uri.parse(mFile.getAbsolutePath());
+        }
+
+        mIntent.putExtra(Intent.EXTRA_STREAM, mUri);
+        startActivity(mIntent);
+    }
+
     private void sendMailWithApp() {
+        File mFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "one_api.txt");
+        Uri mUri = null;
+
+
         Uri uri = Uri.parse("mailto:zhuyongqing89@163.com");
-        Intent mIntent = new Intent(Intent.ACTION_SENDTO, uri);
-        mIntent.setType("message/rfc822");
+        Intent mIntent = new Intent(Intent.ACTION_VIEW, uri);
+//        mIntent.setType("message/rfc822");
         String[] tos = {"zhuyongqing89@163.com"};
         mIntent.putExtra(Intent.EXTRA_EMAIL, tos);
 
         mIntent.putExtra(Intent.EXTRA_TEXT, "body");
         mIntent.putExtra(Intent.EXTRA_SUBJECT, "subject");
 
-//        mIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard/Chrysanthemum.jpg"));
-//        mIntent.setType("image/*");
-//        mIntent.setType("message/rfc882");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mUri = FileProvider.getUriForFile(mContext, getPackageName() + ".fileprovider", mFile);
+            // 申请临时访问权限
+            mIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        } else {
+            mUri = Uri.parse(mFile.getAbsolutePath());
+        }
+
+        mIntent.putExtra(Intent.EXTRA_STREAM, mUri);
         Intent.createChooser(mIntent, "Choose Email Client");
         startActivity(mIntent);
     }
 
     private void sendMailNative() {
-        //耗时操作要起线程...有几个新手都是这个问题
 
         final EditText mEditText = new EditText(this);
         mEditText.setWidth(DpConvert.dip2px(this, 200));

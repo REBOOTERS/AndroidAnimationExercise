@@ -106,7 +106,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             file = new File(mContext.getCacheDir(), "test.jpg");
-            imageUrl = Uri.fromFile(file);
 
             Toast.makeText(mContext, "TODO", Toast.LENGTH_SHORT).show();
             // 将文件转换成content://Uri的形式

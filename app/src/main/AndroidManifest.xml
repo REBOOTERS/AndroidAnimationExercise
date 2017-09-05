@@ -292,6 +292,8 @@
         </activity>
         <activity android:name=".activity.ViewTransformActivity">
         </activity>
+        <activity android:name=".activity.FileProviderActivity">
+        </activity>
     </application>
 
 </manifest>
