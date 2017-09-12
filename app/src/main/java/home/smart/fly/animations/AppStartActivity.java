@@ -50,7 +50,6 @@ public class AppStartActivity extends AppCompatActivity {
 
     private Glide mGlide;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
