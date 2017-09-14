@@ -47,6 +47,8 @@ public class WaveView extends View {
     /*是否自增长*/
     private boolean autoIncrement = true;
 
+    private Path circlePath;
+
     public WaveView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
@@ -75,13 +77,15 @@ public class WaveView extends View {
         textPaint.setAntiAlias(true);
         textPaint.setTextSize(dip2px(context, 20));
         textPaint.setColor(Color.BLACK);
+
+        circlePath = new Path();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //裁剪画布为圆形
-        Path circlePath = new Path();
+
         circlePath.addCircle(width / 2, height / 2, width / 2, Path.Direction.CW);
         canvas.clipPath(circlePath);
         canvas.drawPaint(circlePaint);
