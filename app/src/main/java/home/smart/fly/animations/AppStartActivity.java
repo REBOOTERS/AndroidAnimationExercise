@@ -118,9 +118,7 @@ public class AppStartActivity extends AppCompatActivity {
     /**
      * 打印系统目录信息
      */
-    private void PrintSystemDirInfo() {
-
-        Log.e("device_info", "mManager.getMemoryClass()  应用可用内存 = " + System.getenv().toString());
+    private void PrintSystemDirInfo() {        Log.e("device_info", "mManager.getMemoryClass()  应用可用内存 = " + System.getenv().toString());
 
 
         final int version = Build.VERSION.SDK_INT;
@@ -183,6 +181,8 @@ public class AppStartActivity extends AppCompatActivity {
         int size = mManager.getMemoryClass();
 
         Log.e("device_info", "mManager.getMemoryClass()  应用可用内存 = " + size + " M");
+
+
     }
 
 

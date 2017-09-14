@@ -22,7 +22,9 @@ public class FileProviderActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
         if (mIntent != null) {
             Uri str = mIntent.getParcelableExtra(Intent.EXTRA_STREAM);
-            Log.e(TAG, "onCreate: str" + str);
+            Log.e(TAG, "onCreate: str=" + str);
+
+
 
             String file = getRealFilePath(this, str);
             Log.e(TAG, "onCreate: file=" + file);
@@ -42,7 +44,7 @@ public class FileProviderActivity extends AppCompatActivity {
                     null, null, null, null);
             if (null != cursor) {
                 if (cursor.moveToFirst()) {
-                    int index = cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA);
+                    int index = cursor.getColumnIndex(MediaStore.Files.FileColumns.DISPLAY_NAME);
                     if (index > -1) {
                         data = cursor.getString(index);
                     }
