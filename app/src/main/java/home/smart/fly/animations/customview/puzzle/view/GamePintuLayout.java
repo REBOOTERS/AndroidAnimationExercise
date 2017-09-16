@@ -317,7 +317,6 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener {
     }
 
 
-
     /**
      * 获得图片的真正索引
      *
@@ -351,6 +350,7 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener {
     private void setUpAnimLayout() {
         if (mAnimLayout == null) {
             mAnimLayout = new RelativeLayout(getContext());
+            mAnimLayout.setBackgroundResource(R.color.cpb_green);
             addView(mAnimLayout);
         }
 

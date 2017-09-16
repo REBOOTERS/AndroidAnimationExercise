@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Transformation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -49,7 +50,7 @@ public class AppStartActivity extends AppCompatActivity {
     private List<String> links = new LinkedList<>();
 
     private Glide mGlide;
-
+    private Transformation mTransformation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

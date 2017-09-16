@@ -1,143 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="home.smart.fly.animations.activity.WavaAnimActivity">
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    android:scrollbars="none">
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="home.smart.fly.animations.activity.WavaAnimActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_indeterminate"/>
 
-        <RadioGroup
-            android:id="@+id/modes"
+        <ImageView
+            android:id="@+id/image"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkedButton="@+id/rb_no"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/rb_yes"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/yes"/>
+                android:text="@string/label_indeterminate"/>
 
-            <RadioButton
-                android:id="@+id/rb_no"
+            <RadioGroup
+                android:id="@+id/modes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/no"/>
-        </RadioGroup>
-    </LinearLayout>
+                android:checkedButton="@+id/rb_no"
+                android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/rb_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"/>
 
-        <TextView
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:text="@string/label_level"/>
+                <RadioButton
+                    android:id="@+id/rb_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no"/>
+            </RadioGroup>
+        </LinearLayout>
 
-        <SeekBar
-            android:id="@+id/level_seek"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:progress="4000"
-            android:max="10000"/>
-    </LinearLayout>
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_level"/>
 
-        <TextView
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:text="@string/label_amplitude"/>
+            <SeekBar
+                android:id="@+id/level_seek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10000"
+                android:progress="4000"/>
+        </LinearLayout>
 
-        <SeekBar
-            android:id="@+id/amplitude_seek"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:progress="20"
-            android:max="100"/>
-    </LinearLayout>
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_amplitude"/>
 
-        <TextView
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:text="@string/label_length"/>
+            <SeekBar
+                android:id="@+id/amplitude_seek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="20"/>
+        </LinearLayout>
 
-        <SeekBar
-            android:id="@+id/length_seek"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:progress="200"
-            android:max="600"/>
-    </LinearLayout>
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_length"/>
 
-        <TextView
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:text="@string/label_speed"/>
+            <SeekBar
+                android:id="@+id/length_seek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="600"
+                android:progress="200"/>
+        </LinearLayout>
 
-        <SeekBar
-            android:id="@+id/speed_seek"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:progress="5"
-            android:max="50"/>
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_speed"/>
+
+            <SeekBar
+                android:id="@+id/speed_seek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="50"
+                android:progress="5"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"/>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/cpb_green"/>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:orientation="horizontal">
+
+            <home.smart.fly.animations.customview.views.WaveView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/image2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"/>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="8dp"/>
-
-</LinearLayout>
-
+</ScrollView>
