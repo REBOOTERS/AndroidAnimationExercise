@@ -1,6 +1,7 @@
 package home.smart.fly.animations.recyclerview.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.recyclerview.VegaRecyclerViewActivity;
 import home.smart.fly.animations.utils.V;
 
 /**
@@ -51,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.itemshell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mContext.startActivity(new Intent(mContext, VegaRecyclerViewActivity.class));
             }
         });
     }

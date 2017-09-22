@@ -1,4 +1,4 @@
-package home.smart.fly.animations.recyclerview.linearlayoutmanager;
+package home.smart.fly.animations.recyclerview.customlayoutmanager;
 
 import android.support.v7.widget.RecyclerView;
 

@@ -294,6 +294,8 @@
         </activity>
         <activity android:name=".activity.FileProviderActivity">
         </activity>
+        <activity android:name=".recyclerview.VegaRecyclerViewActivity">
+        </activity>
     </application>
 
 </manifest>
