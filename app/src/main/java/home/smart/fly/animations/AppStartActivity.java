@@ -40,6 +40,7 @@ import home.smart.fly.animations.fragments.PropertyFragment;
 import home.smart.fly.animations.fragments.TraditionFragment;
 import home.smart.fly.animations.fragments.ViewsFragment;
 
+
 public class AppStartActivity extends AppCompatActivity {
     private static final String TAG = "AppStartActivity";
     private Snackbar snackbar = null;
@@ -119,7 +120,7 @@ public class AppStartActivity extends AppCompatActivity {
     /**
      * 打印系统目录信息
      */
-    private void PrintSystemDirInfo() {        Log.e("device_info", "mManager.getMemoryClass()  应用可用内存 = " + System.getenv().toString());
+    private void PrintSystemDirInfo() {
 
 
         final int version = Build.VERSION.SDK_INT;

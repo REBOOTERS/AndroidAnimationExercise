@@ -30,6 +30,8 @@ public class SwipeBackLayout extends ViewGroup {
     public static final int FROM_BOTTOM = 3;
     public static final int FROM_ANY = -1;
 
+    public static final int BASE_BELOCITY = 1000;
+
     @IntDef({FROM_LEFT, FROM_TOP, FROM_RIGHT, FROM_BOTTOM, FROM_ANY})
     @Retention(RetentionPolicy.SOURCE)
     public @interface DirectionMode {
@@ -49,8 +51,11 @@ public class SwipeBackLayout extends ViewGroup {
     private int maskAlpha = 125;
     private float downX, downY;
 
+    private boolean enableFastSwipe;
+
     private int leftOffset = 0;
     private int topOffset = 0;
+    private int anyX, anyY;
 
     public SwipeBackLayout(@NonNull Context context) {
         this(context, null);
@@ -187,6 +192,30 @@ public class SwipeBackLayout extends ViewGroup {
         }
     }
 
+    private void smoothScrollToAny() {
+        int transX, transY;
+
+        if (anyX > 0) {
+            transX = width;
+        } else {
+            transX = -width;
+        }
+
+        if (anyY > 0) {
+            transY = height;
+        } else {
+            transY = -height;
+
+        }
+
+
+        if (mDragHelper.settleCapturedViewAt(transX, transY)) {
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+
+
+    }
+
     private class DragHelperCallback extends ViewDragHelper.Callback {
 
         @Override
@@ -198,6 +227,7 @@ public class SwipeBackLayout extends ViewGroup {
         public int clampViewPositionHorizontal(View child, int left, int dx) {
 
             if (mDirectionMode == FROM_ANY) {
+                anyX = left;
                 return left;
             }
 
@@ -214,6 +244,7 @@ public class SwipeBackLayout extends ViewGroup {
         public int clampViewPositionVertical(View child, int top, int dy) {
 
             if (mDirectionMode == FROM_ANY) {
+                anyY = top;
                 return top;
             }
 
@@ -230,6 +261,7 @@ public class SwipeBackLayout extends ViewGroup {
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
             super.onViewPositionChanged(changedView, left, top, dx, dy);
+
             left = Math.abs(left);
             top = Math.abs(top);
             switch (mDirectionMode) {
@@ -239,8 +271,10 @@ public class SwipeBackLayout extends ViewGroup {
                     break;
                 case FROM_TOP:
                 case FROM_BOTTOM:
-                case FROM_ANY:
                     swipeBackFraction = 1.0f * top / height;
+                    break;
+                case FROM_ANY:
+                    swipeBackFraction = Math.max(1.0f * left / width, 1.0f * top / height);
                     break;
             }
             if (mSwipeBackListener != null) {
@@ -251,8 +285,20 @@ public class SwipeBackLayout extends ViewGroup {
         @Override
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             super.onViewReleased(releasedChild, xvel, yvel);
+
+
+            Log.e(TAG, "onViewReleased: xvel=" + xvel);
+            Log.e(TAG, "onViewReleased: yvel=" + yvel);
+
+            boolean faseSwipe = false;
+
+            if (enableFastSwipe && Math.abs(xvel) > BASE_BELOCITY || Math.abs(yvel) > BASE_BELOCITY) {
+                faseSwipe = true;
+            }
+
+
             leftOffset = topOffset = 0;
-            if (swipeBackFraction >= swipeBackFactor) {
+            if (swipeBackFraction >= swipeBackFactor || faseSwipe) {
                 switch (mDirectionMode) {
                     case FROM_LEFT:
                         smoothScrollToX(width);
@@ -266,6 +312,7 @@ public class SwipeBackLayout extends ViewGroup {
                     case FROM_BOTTOM:
                         smoothScrollToY(-height);
                     case FROM_ANY:
+                        smoothScrollToAny();
                         break;
                     default:
                         break;
@@ -281,6 +328,8 @@ public class SwipeBackLayout extends ViewGroup {
                         smoothScrollToY(getPaddingTop());
                         break;
                     case FROM_ANY:
+                        smoothScrollToX(getPaddingLeft());
+                        smoothScrollToY(getPaddingTop());
                         break;
                 }
             }
@@ -311,6 +360,7 @@ public class SwipeBackLayout extends ViewGroup {
         }
     }
 
+
     public void finish() {
         ((Activity) getContext()).finish();
     }
@@ -326,6 +376,10 @@ public class SwipeBackLayout extends ViewGroup {
 
     public float getSwipeBackFactor() {
         return swipeBackFactor;
+    }
+
+    public void setEnableFastSwipe(boolean enableFastSwipe) {
+        this.enableFastSwipe = enableFastSwipe;
     }
 
     public void setMaskAlpha(int maskAlpha) {
