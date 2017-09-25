@@ -3,16 +3,15 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:divider="@drawable/divider_line"
               android:orientation="vertical"
-              android:showDividers="middle"
+              android:background="@color/cpb_white"
               tools:context="home.smart.fly.animations.AppStartActivity">
 
     <Button
         android:id="@+id/property"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
+        android:layout_margin="10dp"
         android:background="@color/cpb_blue"
         android:text="PropertyAnimation"
         android:textColor="@color/cpb_white"/>
@@ -21,7 +20,7 @@
         android:id="@+id/value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
+        android:layout_margin="10dp"
         android:background="@color/cpb_blue"
         android:text="PropertyValueAnimation"
         android:textColor="@color/cpb_white"/>
@@ -30,7 +29,7 @@
         android:id="@+id/demo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
+        android:layout_margin="10dp"
         android:background="@color/cpb_blue"
         android:text="Pay_Anim"
         android:textColor="@color/cpb_white"/>
@@ -39,7 +38,7 @@
         android:id="@+id/shopcar_add_anim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
+        android:layout_margin="10dp"
         android:background="@color/cpb_blue"
         android:text="shopcar_add_anim"
         android:textColor="@color/cpb_white"/>
@@ -48,7 +47,7 @@
         android:id="@+id/LayoutAnimations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
+        android:layout_margin="10dp"
         android:background="@color/cpb_blue"
         android:text="LayoutAnimations"
         android:textColor="@color/cpb_white"/>
@@ -57,9 +56,17 @@
         android:id="@+id/RevealAnimator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
+        android:layout_margin="10dp"
         android:background="@color/cpb_blue"
         android:text="RevealAnimator"
+        android:textColor="@color/cpb_white"/>
+    <Button
+        android:id="@+id/DecorView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/cpb_blue"
+        android:text="DecorView"
         android:textColor="@color/cpb_white"/>
 
 

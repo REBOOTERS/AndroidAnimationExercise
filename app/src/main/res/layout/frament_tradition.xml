@@ -10,7 +10,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/divider_line"
         android:dividerPadding="3dp"
         android:orientation="vertical"
         android:showDividers="middle">
@@ -19,7 +18,7 @@
             android:id="@+id/frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
+            android:layout_margin="10dp"
             android:background="@color/cpb_blue"
             android:text="FrameAnimation"
             android:textColor="@color/white"/>
@@ -28,7 +27,7 @@
             android:id="@+id/tween"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
+            android:layout_margin="10dp"
             android:background="@color/cpb_blue"
             android:text="TweenedAnimation"
             android:textColor="@color/white"/>
@@ -37,7 +36,7 @@
             android:id="@+id/blur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
+            android:layout_margin="10dp"
             android:background="@color/cpb_blue"
             android:text="Blur"
             android:textColor="@color/white"/>
@@ -46,7 +45,7 @@
             android:id="@+id/activitySwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
+            android:layout_margin="10dp"
             android:background="@color/cpb_blue"
             android:text="activitySwitch"
             android:textColor="@color/white"/>
@@ -55,7 +54,7 @@
             android:id="@+id/vpAnim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
+            android:layout_margin="10dp"
             android:background="@color/cpb_blue"
             android:text="ViewPagerAnim"
             android:textColor="@color/white"/>
@@ -64,7 +63,7 @@
             android:id="@+id/swipeAnim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
+            android:layout_margin="10dp"
             android:background="@color/cpb_blue"
             android:text="swipeAnim"
             android:textColor="@color/white"

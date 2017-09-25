@@ -40,13 +40,7 @@ public class ValueAnimationActivity extends BaseActivity implements View.OnClick
     }
 
 
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        if (view != null) {
-//            view.pauseAnimation();
-//        }
-//    }
+
 
     @Override
     protected void onStop() {

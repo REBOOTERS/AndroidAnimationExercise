@@ -294,7 +294,10 @@
         </activity>
         <activity android:name=".activity.FileProviderActivity">
         </activity>
-        <activity android:name=".FantasyViewActivity">
+        <activity android:name=".FantasyViewActivity"/>
+        <activity android:name=".recyclerview.VegaRecyclerViewActivity">
+        </activity>
+        <activity android:name=".property.DecorViewActivity">
         </activity>
     </application>
 

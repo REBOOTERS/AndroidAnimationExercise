@@ -15,6 +15,7 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
     private FragmentManager mFragmentManager;
     private StaggeredGridFragment mGridViewFragment;
     private SimpleRecyclerViewFragment mSimpleRecyclerViewFragment;
+    private VegaRecyclerViewFragment mVegaRecyclerViewFragment;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -41,6 +42,11 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
                     mFragmentTransaction.commit();
                     return true;
                 case R.id.navigation_notifications:
+                    if (mVegaRecyclerViewFragment == null) {
+                        mVegaRecyclerViewFragment = new VegaRecyclerViewFragment();
+                    }
+                    mFragmentTransaction.replace(R.id.container, mVegaRecyclerViewFragment);
+                    mFragmentTransaction.commit();
                     return true;
 
 
