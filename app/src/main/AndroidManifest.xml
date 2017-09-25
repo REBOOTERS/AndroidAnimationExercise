@@ -296,6 +296,8 @@
         </activity>
         <activity android:name=".recyclerview.VegaRecyclerViewActivity">
         </activity>
+        <activity android:name=".property.DecorViewActivity">
+        </activity>
     </application>
 
 </manifest>

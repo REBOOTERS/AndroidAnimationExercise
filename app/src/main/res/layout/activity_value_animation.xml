@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/cpb_white"
+                android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,43 +24,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="BounceInterpolator" />
+                android:text="BounceInterpolator"/>
 
             <RadioButton
                 android:id="@+id/rb2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AccelerateDecelerateInterpolator" />
+                android:text="AccelerateDecelerateInterpolator"/>
 
             <RadioButton
                 android:id="@+id/rb3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DecelerateInterpolator" />
+                android:text="DecelerateInterpolator"/>
 
             <RadioButton
                 android:id="@+id/rb4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AnticipateInterpolator" />
+                android:text="AnticipateInterpolator"/>
 
             <RadioButton
                 android:id="@+id/rb5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LinearInterpolator" />
+                android:text="LinearInterpolator"/>
 
             <RadioButton
                 android:id="@+id/rb6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LinearOutSlowInInterpolator" />
+                android:text="LinearOutSlowInInterpolator"/>
 
             <RadioButton
                 android:id="@+id/rb7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OvershootInterpolator" />
+                android:text="OvershootInterpolator"/>
 
         </RadioGroup>
     </LinearLayout>
@@ -68,14 +69,14 @@
     <home.smart.fly.animations.property.basic.PointAnimView
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
-        android:layout_margin="5dp"
-        android:background="@drawable/round_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/round_background"
         android:orientation="horizontal">
 
         <android.support.v7.widget.AppCompatButton
@@ -83,14 +84,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="start" />
+            android:text="start"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/stop"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="stop" />
+            android:text="stop"/>
 
     </LinearLayout>
 

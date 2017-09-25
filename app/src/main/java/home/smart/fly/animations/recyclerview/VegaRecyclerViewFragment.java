@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import home.smart.fly.animations.R;
@@ -55,6 +56,7 @@ public class VegaRecyclerViewFragment extends Fragment {
         Gson gson = new Gson();
         pics = gson.fromJson(json, new TypeToken<List<String>>() {
         }.getType());
+        Collections.reverse(pics);
     }
 
 }

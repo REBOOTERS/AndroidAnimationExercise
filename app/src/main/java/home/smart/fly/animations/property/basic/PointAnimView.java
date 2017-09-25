@@ -7,6 +7,7 @@ import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -20,6 +21,8 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
+
+import home.smart.fly.animations.R;
 
 /**
  * Created by rookie on 2016/8/9.
@@ -90,7 +93,6 @@ public class PointAnimView extends View {
         if (currentPoint == null) {
             currentPoint = new Point(RADIUS, RADIUS);
             drawCircle(canvas);
-//            StartAnimation();
         } else {
             drawCircle(canvas);
         }
@@ -105,7 +107,17 @@ public class PointAnimView extends View {
 
     }
 
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        initAnimation();
+    }
+
     public void StartAnimation() {
+        animSet.start();
+    }
+
+    private void initAnimation() {
         Point startP = new Point(RADIUS, RADIUS);
         Point endP = new Point(getWidth() - RADIUS, getHeight() - RADIUS);
         final ValueAnimator valueAnimator = ValueAnimator.ofObject(new PointSinEvaluator(), startP, endP);
@@ -120,8 +132,15 @@ public class PointAnimView extends View {
         });
 
 //
-        ObjectAnimator animColor = ObjectAnimator.ofObject(this, "color", new ArgbEvaluator(), Color.GREEN,
-                Color.YELLOW, Color.BLUE, Color.WHITE, Color.RED);
+        Resources mResources=getResources();
+
+        int green = mResources.getColor(R.color.cpb_green_dark);
+        int primary = mResources.getColor(R.color.colorPrimary);
+        int red = mResources.getColor(R.color.cpb_red_dark);
+        int orange = mResources.getColor(R.color.orange);
+        int accent = mResources.getColor(R.color.colorAccent);
+
+        ObjectAnimator animColor = ObjectAnimator.ofObject(this, "color", new ArgbEvaluator(), green, primary, red, orange, accent);
         animColor.setRepeatCount(-1);
         animColor.setRepeatMode(ValueAnimator.REVERSE);
 
@@ -142,8 +161,6 @@ public class PointAnimView extends View {
         animSet.play(valueAnimator).with(animColor).with(animScale);
         animSet.setDuration(5000);
         animSet.setInterpolator(interpolatorType);
-        animSet.start();
-
     }
 
     private void drawCircle(Canvas canvas) {
