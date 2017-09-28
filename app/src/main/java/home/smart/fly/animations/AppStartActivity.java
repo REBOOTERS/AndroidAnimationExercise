@@ -115,6 +115,9 @@ public class AppStartActivity extends AppCompatActivity {
 
         PrintSystemDirInfo();
 
+        //
+
+
     }
 
     /**
@@ -193,6 +196,13 @@ public class AppStartActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_app_start, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        //仿home键效果
+        moveTaskToBack(true);
     }
 
     @Override

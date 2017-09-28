@@ -20,6 +20,7 @@ import java.util.List;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.CameraActivity;
 import home.smart.fly.animations.activity.FullscreenActivity;
+import home.smart.fly.animations.activity.HugoActivity;
 import home.smart.fly.animations.activity.ImgCacheActivity;
 import home.smart.fly.animations.activity.InputActivity;
 import home.smart.fly.animations.activity.LoadCircleImageActivity;
@@ -73,6 +74,7 @@ public class OtherFragment extends Fragment {
         demos.add(new ItemInfo(R.string.app_name, LoadCircleImageActivity.class));
         demos.add(new ItemInfo(R.string.app_name, BaseRecyclerViewActivity.class));
         demos.add(new ItemInfo(R.string.app_name, InputActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, HugoActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

@@ -3,6 +3,7 @@ package home.smart.fly.animations.recyclerview.customlayoutmanager;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,7 +14,8 @@ public class VegaLayoutManager extends RecyclerView.LayoutManager {
     private int mDecoratedMeasuredHeight;
     private int scroll = 0;
     private SparseArray<Rect> locationRects = new SparseArray<>();
-    private SparseArray<Boolean> attachedItems = new SparseArray<>();
+    private SparseBooleanArray attachedItems = new SparseBooleanArray();
+//    private SparseArray<Boolean> attachedItems = new SparseArray<>();
     private boolean needSnap = false;
     private int lastDy = 0;
     private int maxScroll = -1;

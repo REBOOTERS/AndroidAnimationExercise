@@ -299,6 +299,7 @@
         </activity>
         <activity android:name=".property.DecorViewActivity">
         </activity>
+        <activity android:name=".activity.HugoActivity"/>
     </application>
 
 </manifest>
