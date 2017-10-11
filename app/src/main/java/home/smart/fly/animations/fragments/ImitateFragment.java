@@ -18,9 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import home.smart.fly.animations.FantasyViewActivity;
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.activity.CircleViewActivity;
 import home.smart.fly.animations.activity.FakeFootballActivity;
 import home.smart.fly.animations.activity.FlipViewActivity;
 import home.smart.fly.animations.activity.IModeActivity;
@@ -59,9 +57,7 @@ public class ImitateFragment extends Fragment {
     }
 
     private void InitView() {
-        demos.add(new ItemInfo(R.string.app_name, FantasyViewActivity.class));
         demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
-        demos.add(new ItemInfo(R.string.ball, CircleViewActivity.class));
         demos.add(new ItemInfo(R.string.fake_football, FakeFootballActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
         demos.add(new ItemInfo(R.string.wheelView, WheelViewActivity.class));

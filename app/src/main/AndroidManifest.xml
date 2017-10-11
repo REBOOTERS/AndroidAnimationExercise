@@ -235,8 +235,6 @@
             android:label="@string/title_activity_xiao_mi_gallery"
             android:theme="@style/MyTheme.NoActionBar">
         </activity>
-        <activity android:name=".activity.CircleViewActivity">
-        </activity>
         <activity
             android:name=".activity.GameViewSaveActivity"
             android:theme="@style/MyTheme.NoActionBar">
@@ -294,12 +292,10 @@
         </activity>
         <activity android:name=".activity.FileProviderActivity">
         </activity>
-        <activity android:name=".FantasyViewActivity"/>
         <activity android:name=".recyclerview.VegaRecyclerViewActivity">
         </activity>
         <activity android:name=".property.DecorViewActivity">
         </activity>
-        <activity android:name=".activity.HugoActivity"/>
     </application>
 
 </manifest>
