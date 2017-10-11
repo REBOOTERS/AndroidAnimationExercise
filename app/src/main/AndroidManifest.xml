@@ -142,7 +142,7 @@
         <activity
             android:name=".recyclerview.BaseRecyclerViewActivity"
             android:label="@string/title_activity_base_recycler_view"
-            android:theme="@style/AppTheme">
+            android:theme="@style/MyTheme">
         </activity>
         <activity
             android:name=".bga.BgaAllActivity"

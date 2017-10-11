@@ -45,6 +45,7 @@ public class SimpleRecyclerViewFragment extends Fragment {
         RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);
         RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(pics);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+//        mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(mAdapter);
         return rootView;
     }
