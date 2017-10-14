@@ -23,13 +23,28 @@
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
-    <CheckBox
-        android:id="@+id/fixed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:checked="true"
-        android:text="fixed"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/fixed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:checked="true"
+            android:text="fixed"/>
+
+        <CheckBox
+            android:id="@+id/negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:checked="false"
+            android:text="negative"/>
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,6 +110,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 app:label="RotationY"/>
+            <home.smart.fly.animations.customview.EasySeekBar
+                android:id="@+id/rotateZ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:label="RotationZ"/>
 
             <home.smart.fly.animations.customview.EasySeekBar
                 android:id="@+id/scaleX"

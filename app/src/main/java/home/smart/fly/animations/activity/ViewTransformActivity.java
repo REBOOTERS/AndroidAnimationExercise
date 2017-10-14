@@ -31,6 +31,10 @@ public class ViewTransformActivity extends AppCompatActivity {
     CheckBox fixed;
     @BindView(R.id.FlipViewSel)
     RadioGroup FlipViewSel;
+    @BindView(R.id.rotateZ)
+    EasySeekBar rotateZ;
+    @BindView(R.id.negative)
+    CheckBox negative;
 
 
     @Override
@@ -49,6 +53,15 @@ public class ViewTransformActivity extends AppCompatActivity {
             }
         });
 
+        negative.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                rotateX.setNegate(isChecked);
+                rotateY.setNegate(isChecked);
+                rotateZ.setNegate(isChecked);
+            }
+        });
+
         FlipViewSel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -58,7 +71,7 @@ public class ViewTransformActivity extends AppCompatActivity {
                 } else if (checkedId == R.id.UDFlipView) {
                     transformView.setUpDownFlipView(true);
                     transformView.setLeftRightFlipView(false);
-                }else {
+                } else {
                     transformView.setUpDownFlipView(false);
                     transformView.setLeftRightFlipView(false);
                 }
@@ -76,6 +89,12 @@ public class ViewTransformActivity extends AppCompatActivity {
             @Override
             public void onChangedValue(int value) {
                 transformView.setDegreeY(value);
+            }
+        });
+        rotateZ.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
+            @Override
+            public void onChangedValue(int value) {
+                transformView.setDegreeZ(value);
             }
         });
         scaleX.setOnProgressChangedListener(new EasySeekBar.onProgressChangeListener() {
@@ -99,6 +118,7 @@ public class ViewTransformActivity extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
         rotateX.setMax(180);
         rotateY.setMax(180);
+        rotateZ.setMax(360);
         scaleX.setMax(100);
         scaleY.setMax(100);
         scaleX.setProgresss(0);

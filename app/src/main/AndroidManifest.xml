@@ -296,6 +296,8 @@
         </activity>
         <activity android:name=".property.DecorViewActivity">
         </activity>
+        <activity android:name=".activity.Flip3DViewActivity">
+        </activity>
     </application>
 
 </manifest>

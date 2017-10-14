@@ -33,7 +33,7 @@ public class TransformView extends View {
     private Point center;
     private int viewW, viewH;
     //
-    private float degreeX, degreeY;
+    private float degreeX, degreeY, degreeZ;
     private float scaleX = 1, scaleY = 1;
     private boolean isFixed = true;
 
@@ -96,6 +96,8 @@ public class TransformView extends View {
         mMatrix.reset();
         mCamera.rotateX(degreeX);
         mCamera.rotateY(degreeY);
+        mCamera.rotateZ(degreeZ);
+
         mCamera.getMatrix(mMatrix);
         mCamera.restore();
         if (isFixed) {
@@ -161,6 +163,11 @@ public class TransformView extends View {
 
     public void setDegreeY(float degree) {
         this.degreeY = degree;
+        invalidate();
+    }
+
+    public void setDegreeZ(float degreeZ) {
+        this.degreeZ = degreeZ;
         invalidate();
     }
 

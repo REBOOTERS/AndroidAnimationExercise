@@ -57,13 +57,13 @@ public class ImitateFragment extends Fragment {
     }
 
     private void InitView() {
-        demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
         demos.add(new ItemInfo(R.string.fake_football, FakeFootballActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
         demos.add(new ItemInfo(R.string.wheelView, WheelViewActivity.class));
 
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
         demos.add(new ItemInfo(R.string.jianshuhead, JianShuHeadActivity.class));
+        demos.add(new ItemInfo(R.string.fake_weibo, FakeWeiBoActivity.class));
         demos.add(new ItemInfo(R.string.swipemenu, MySwipeMenuActivity.class));
         demos.add(new ItemInfo(R.string.pullzoom, PullRecyclerViewActivity.class));
         demos.add(new ItemInfo(R.string.flipView, FlipViewActivity.class));
