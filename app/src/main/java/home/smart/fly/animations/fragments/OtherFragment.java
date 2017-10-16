@@ -25,11 +25,12 @@ import home.smart.fly.animations.activity.InputActivity;
 import home.smart.fly.animations.activity.LoadCircleImageActivity;
 import home.smart.fly.animations.activity.MailActivity;
 import home.smart.fly.animations.activity.PdfActivity;
+import home.smart.fly.animations.activity.ScreenCaptureActivity;
+import home.smart.fly.animations.activity.ViewPagerNestedActivity;
 import home.smart.fly.animations.bga.BgaAllActivity;
 import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
 import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
 import home.smart.fly.animations.recyclerview.BaseRecyclerViewActivity;
-import home.smart.fly.animations.activity.ScreenCaptureActivity;
 import home.smart.fly.animations.utils.V;
 import home.smart.fly.animations.webview.AllWebViewActivity;
 
@@ -61,6 +62,7 @@ public class OtherFragment extends Fragment {
 
     private void InitView() {
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
+        demos.add(new ItemInfo(R.string.viewpager_nested, ViewPagerNestedActivity.class));
         demos.add(new ItemInfo(R.string.full_screen, FullscreenActivity.class));
         demos.add(new ItemInfo(R.string.full_screen, PdfActivity.class));
         demos.add(new ItemInfo(R.string.app_name, MailActivity.class));

@@ -298,6 +298,11 @@
         </activity>
         <activity android:name=".activity.Flip3DViewActivity">
         </activity>
+        <activity
+            android:name=".activity.ViewPagerNestedActivity"
+            android:label="@string/title_activity_view_pager_nested"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
