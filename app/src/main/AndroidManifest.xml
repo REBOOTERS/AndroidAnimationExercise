@@ -303,6 +303,8 @@
             android:label="@string/title_activity_view_pager_nested"
             android:theme="@style/MyTheme.NoActionBar">
         </activity>
+        <activity android:name=".activity.LaunchOtherAppActivity">
+        </activity>
     </application>
 
 </manifest>
