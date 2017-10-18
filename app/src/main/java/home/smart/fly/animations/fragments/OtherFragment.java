@@ -63,6 +63,7 @@ public class OtherFragment extends Fragment {
 
     private void InitView() {
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
+        demos.add(new ItemInfo(R.string.launch_app, LaunchOtherAppActivity.class));
         demos.add(new ItemInfo(R.string.viewpager_nested, ViewPagerNestedActivity.class));
         demos.add(new ItemInfo(R.string.full_screen, FullscreenActivity.class));
         demos.add(new ItemInfo(R.string.full_screen, PdfActivity.class));
@@ -76,7 +77,6 @@ public class OtherFragment extends Fragment {
         demos.add(new ItemInfo(R.string.app_name, LoadCircleImageActivity.class));
         demos.add(new ItemInfo(R.string.base_recyclerview, BaseRecyclerViewActivity.class));
         demos.add(new ItemInfo(R.string.app_name, InputActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, LaunchOtherAppActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
