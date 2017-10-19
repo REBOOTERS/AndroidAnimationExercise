@@ -8,16 +8,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 
 import home.smart.fly.animations.R;
@@ -64,32 +59,10 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         mWebView.addJavascriptInterface(new JsObject(mContext), "myObj");
         mWebView.addJavascriptInterface(new LoadHtmlObject(), "myHtml");
         //
-        mWebView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onReceivedTitle(WebView view, String title) {
-                super.onReceivedTitle(view, title);
-                Log.e(TAG, "onReceivedTitle: " + title);
-                Log.e(TAG, "threadName: " + Thread.currentThread().getName());
 
-            }
-        });
+        mWebView.setWebViewClient(new MyWebViewClient());
+        mWebView.setWebChromeClient(new MyWebChromeClient());
 
-        mWebView.setWebViewClient(new WebViewClient() {
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                Log.e(TAG, "onPageFinished: " + url);
-                view.loadUrl("javascript:window.myHtml.printSourceCode('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
-            }
-
-            @Override
-            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-//                super.onReceivedError(view, request, error);
-                Log.e(TAG, "onReceivedError: " + request);
-                Log.e(TAG, "onReceivedError: " + error);
-            }
-        });
     }
 
     private void loadData() {
