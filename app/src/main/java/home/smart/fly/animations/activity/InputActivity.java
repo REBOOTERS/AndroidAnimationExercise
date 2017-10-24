@@ -6,6 +6,7 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -29,8 +30,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import home.smart.fly.animations.R;
-
-import static home.smart.fly.animations.R.id.get;
+import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.widget.clearbadge.ShortcutBadger;
 
 public class InputActivity extends AppCompatActivity {
     private static final String TAG = "InputActivity";
@@ -56,10 +57,24 @@ public class InputActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({get, R.id.format, R.id.getMac1, R.id.getMac2,R.id.link})
+    @OnClick({R.id.set_badge_num, R.id.get, R.id.format, R.id.getMac1, R.id.getMac2, R.id.link})
     public void Click(View view) {
         switch (view.getId()) {
-            case get:
+            case R.id.set_badge_num:
+                int count = 0;
+                if (!TextUtils.isEmpty(mInput.getText().toString())) {
+                    count = Integer.parseInt(mInput.getText().toString());
+                }
+
+                if (ShortcutBadger.applyCount(this, count)) {
+                    T.showSToast(this, "success");
+                } else {
+                    T.showSToast(this, "fail");
+                }
+
+
+                break;
+            case R.id.get:
                 mResult.setText(mInput.getText().toString());
                 break;
             case R.id.format:
