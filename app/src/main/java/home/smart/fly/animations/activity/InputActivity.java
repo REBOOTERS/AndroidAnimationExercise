@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.T;
-import home.smart.fly.animations.widget.clearbadge.ShortcutBadger;
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class InputActivity extends AppCompatActivity {
     private static final String TAG = "InputActivity";
@@ -106,14 +106,14 @@ public class InputActivity extends AppCompatActivity {
     }
 
     private void getMacAddress2() {
-        String mac = getAdresseMAC(getApplicationContext());
+        String mac = getAddressMAC(getApplicationContext());
         mMacAddress.setText(mac);
     }
 
     private static final String marshmallowMacAddress = "02:00:00:00:00:00";
     private static final String fileAddressMac = "/sys/class/net/wlan0/address";
 
-    public static String getAdresseMAC(Context context) {
+    public static String getAddressMAC(Context context) {
         WifiManager wifiMan = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInf = wifiMan.getConnectionInfo();
 

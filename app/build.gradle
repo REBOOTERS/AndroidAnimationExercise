@@ -91,6 +91,7 @@ dependencies {
     compile 'com.github.yalantis:ucrop:2.2.1'
     compile 'com.bm.photoview:library:1.4.1'
     compile 'com.gongwen:swipeback:1.0.1'
+    compile "me.leolin:ShortcutBadger:1.1.19@aar"
     testCompile 'junit:junit:4.12'
     debugCompile 'com.facebook.stetho:stetho:1.4.2'
 }
