@@ -224,7 +224,7 @@
         </activity>
         <activity android:name=".activity.transtions.ViewFlipperAcitivity">
         </activity>
-        <activity android:name=".activity.InputActivity">
+        <activity android:name=".activity.InputActivity" android:label="Input">
         </activity>
         <activity android:name=".activity.MyDrawingBoardActivity">
         </activity>
