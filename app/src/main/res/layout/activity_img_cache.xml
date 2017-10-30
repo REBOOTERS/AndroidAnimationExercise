@@ -9,9 +9,9 @@
     tools:context="home.smart.fly.animations.activity.ImgCacheActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/img1"
@@ -19,8 +19,8 @@
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:scaleType="fitXY"
             android:contentDescription=""
+            android:scaleType="fitXY"
             tools:ignore="ContentDescription"/>
 
         <ImageView
@@ -32,6 +32,12 @@
             android:scaleType="fitXY"
             tools:ignore="ContentDescription"/>
 
+        <ImageView
+            android:id="@+id/vectorImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_notifications_black_24dp"/>
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -40,11 +46,16 @@
             android:layout_margin="16dp"
             app:fabSize="mini"
             app:srcCompat="@drawable/ic_add_black_24dp"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="16dp"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_add_black_24dp"/>
     </LinearLayout>
-
-
-
-
 
 
 </FrameLayout>
