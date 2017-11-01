@@ -14,6 +14,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.FileUtil;
@@ -28,10 +29,14 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
     private static final String WEB_URL = "https://www.baidu.com";
     private static final String ERROR_URL = "https://www.badu.com";
     private static final String LOCAL_URL = "file:///android_asset/index.html";
+    private static final String ALI_PAY_URL = "file:///android_asset/launch_alipay_app.html";
+    private static final String WEIXIN_PAY_URL = "http://wechat.66card.com/vcweixin/common/toTestH5Weixin?company=c4p ";
 
     private Context mContext;
     private WebView mWebView;
     private Button mButton;
+
+    private LinearLayout tools;
 
 
     @Override
@@ -53,6 +58,9 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void setUpWebView() {
+        tools = (LinearLayout) findViewById(R.id.tools);
+        tools.setVisibility(View.VISIBLE);
+
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
         //
@@ -60,8 +68,9 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         mWebView.addJavascriptInterface(new LoadHtmlObject(), "myHtml");
         //
 
-        mWebView.setWebViewClient(new MyWebViewClient());
+        mWebView.setWebViewClient(new MyWebViewClient(mContext));
         mWebView.setWebChromeClient(new MyWebChromeClient());
+
 
     }
 
@@ -69,6 +78,15 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         mWebView.loadUrl(LOCAL_URL);
     }
 
+
+    @Override
+    public void onBackPressed() {
+        if (mWebView.canGoBack()) {
+            mWebView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,12 +102,23 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.local:
                 mWebView.loadUrl(LOCAL_URL);
+                tools.setVisibility(View.VISIBLE);
                 break;
             case R.id.net:
                 mWebView.loadUrl(WEB_URL);
+                tools.setVisibility(View.VISIBLE);
                 break;
             case R.id.error:
                 mWebView.loadUrl(ERROR_URL);
+                tools.setVisibility(View.GONE);
+                break;
+            case R.id.weixinpay:
+                mWebView.loadUrl(WEIXIN_PAY_URL);
+                tools.setVisibility(View.GONE);
+                break;
+            case R.id.alipay:
+                mWebView.loadUrl(ALI_PAY_URL);
+                tools.setVisibility(View.GONE);
                 break;
             default:
                 break;
