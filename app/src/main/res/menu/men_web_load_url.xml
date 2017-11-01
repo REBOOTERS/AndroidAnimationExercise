@@ -17,4 +17,14 @@
         android:orderInCategory="100"
         android:title="ErrorLink"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/weixinpay"
+        android:orderInCategory="100"
+        android:title="WeiXinPay"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/alipay"
+        android:orderInCategory="100"
+        android:title="AliPay"
+        app:showAsAction="never" />
 </menu>
