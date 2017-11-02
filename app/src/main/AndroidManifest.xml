@@ -224,7 +224,9 @@
         </activity>
         <activity android:name=".activity.transtions.ViewFlipperAcitivity">
         </activity>
-        <activity android:name=".activity.InputActivity">
+        <activity
+            android:name=".activity.InputActivity"
+            android:label="Input">
         </activity>
         <activity android:name=".activity.MyDrawingBoardActivity">
         </activity>
@@ -297,6 +299,17 @@
         <activity android:name=".property.DecorViewActivity">
         </activity>
         <activity android:name=".activity.Flip3DViewActivity">
+        </activity>
+        <activity
+            android:name=".activity.ViewPagerNestedActivity"
+            android:label="@string/title_activity_view_pager_nested"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activity.LaunchOtherAppActivity"
+            android:label="@string/launch_app">
+        </activity>
+        <activity android:name=".activity.BitmapMeshActivity">
         </activity>
     </application>
 

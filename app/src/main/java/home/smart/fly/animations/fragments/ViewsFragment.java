@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.activity.BitmapMeshActivity;
 import home.smart.fly.animations.activity.CollegeActivity;
 import home.smart.fly.animations.activity.FlowLayoutActivity;
 import home.smart.fly.animations.activity.MyDrawingBoardActivity;
@@ -57,6 +58,7 @@ public class ViewsFragment extends Fragment {
 
     private void InitView() {
         demos.add(new ItemInfo(R.string.app_name, ViewTransformActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, BitmapMeshActivity.class));
         demos.add(new ItemInfo(R.string.app_name, PlayActivity.class));
         demos.add(new ItemInfo(R.string.app_name, MyDrawingBoardActivity.class));
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
