@@ -311,6 +311,8 @@
         </activity>
         <activity android:name=".activity.BitmapMeshActivity">
         </activity>
+        <activity android:name=".activity.PolygonViewActivity">
+        </activity>
     </application>
 
 </manifest>
