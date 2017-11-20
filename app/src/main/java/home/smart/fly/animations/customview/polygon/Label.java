@@ -5,14 +5,12 @@ package home.smart.fly.animations.customview.polygon;
  */
 
 public class Label {
-    private String name;
     private int value;
-    private int color;
+    private String name;
 
-    public Label(String name, int value, int color) {
-        this.name = name;
+    public Label(String name, int value) {
         this.value = value;
-        this.color = color;
+        this.name = name;
     }
 
     public String getName() {
@@ -29,13 +27,5 @@ public class Label {
 
     public void setValue(int value) {
         this.value = value;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
     }
 }

@@ -1,6 +1,5 @@
 package home.smart.fly.animations.customview.polygon;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,8 +10,6 @@ import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -51,11 +48,12 @@ public class PolygonView extends View {
     private float angle = (float) (Math.PI * 2 / count);
 
     private List<List<PointF>> datas = new ArrayList<>();
+    private boolean backgroundDone = false;
 
     private List<PointF> player = new ArrayList<>();
     private List<PointF> label = new ArrayList<>();
 
-    private List<PlayerAbility> mPlayerAbilities = new ArrayList<>();
+    private List<Label> mLabels = new ArrayList<>();
 
 
     public PolygonView(Context context) {
@@ -98,59 +96,33 @@ public class PolygonView extends View {
         mPointPaint.setColor(mOverlayStrokeColor);
 
         mTextPaint = new TextPaint();
-        mTextPaint.setTextSize(40);
+        mTextPaint.setTextSize(55);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
         //
         mLabelPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mLabelPaint.setStyle(Paint.Style.FILL);
         mLabelPaint.setColor(Color.RED);
 
-
-        mPlayerAbilities = new ArrayList<>();
-        mPlayerAbilities.add(new PlayerAbility("shoot", 82));
-        mPlayerAbilities.add(new PlayerAbility("speed", 93));
-        mPlayerAbilities.add(new PlayerAbility("power", 90));
-        mPlayerAbilities.add(new PlayerAbility("defense", 80));
-        mPlayerAbilities.add(new PlayerAbility("pandai", 33));
-        mPlayerAbilities.add(new PlayerAbility("pass", 90));
-
-        setPlayerDatas();
-
-
-        ValueAnimator mValueAnimator = ValueAnimator.ofInt(10, 90, 10);
-        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int value = (int) animation.getAnimatedValue();
-                mPlayerAbilities.get(0).setValue(value);
-                float r = radius * value / 100;
-                float x = (float) (r * Math.cos(0 * angle - Math.PI / 2));
-                float y = (float) (r * Math.sin(0 * angle - Math.PI / 2));
-                player.get(0).set(new PointF(x, y));
-                invalidate();
-            }
-        });
-        mValueAnimator.setDuration(5000);
-        mValueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        mValueAnimator.start();
-
     }
 
+    public void setLabels(List<Label> labels) {
+        mLabels = labels;
 
-    private void setPlayerDatas() {
-        for (int i = 0; i < mPlayerAbilities.size(); i++) {
-            float r = radius * mPlayerAbilities.get(i).getValue() / 100;
+        for (int i = 0; i < mLabels.size(); i++) {
+            float r = radius * mLabels.get(i).getValue() / 100;
             float x = (float) (r * Math.cos(i * angle - Math.PI / 2));
             float y = (float) (r * Math.sin(i * angle - Math.PI / 2));
             player.add(new PointF(x, y));
         }
 
-        for (int i = 0; i < mPlayerAbilities.size(); i++) {
+        for (int i = 0; i < mLabels.size(); i++) {
             float r = radius + 100;
             float x = (float) (r * Math.cos(i * angle - Math.PI / 2));
             float y = (float) (r * Math.sin(i * angle - Math.PI / 2));
             label.add(new PointF(x, y));
         }
+
+        invalidate();
     }
 
 
@@ -158,12 +130,21 @@ public class PolygonView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.translate(viewWidth / 2, viewHeight / 2);
-        drawPolygonBackground(canvas);
+        //背景绘制一次即可
+        if (!backgroundDone) {
+            drawPolygonBackground(canvas);
+        }
+
+
         drawOverlay(canvas);
         drawLaybel(canvas);
     }
 
     private void drawLaybel(Canvas canvas) {
+        if (mLabels.isEmpty()) {
+            return;
+        }
+
         canvas.save();
 
         Path mPath = new Path();
@@ -179,6 +160,14 @@ public class PolygonView extends View {
                 mPath.lineTo(x, y);
             }
 
+            if (mLabels.get(i).getValue() >= 90) {
+                mLabelPaint.setColor(Color.RED);
+            } else if (mLabels.get(i).getValue() >= 60) {
+                mLabelPaint.setColor(Color.argb(255, 255, 125, 4));
+            } else {
+                mLabelPaint.setColor(Color.GRAY);
+            }
+
             if (i % count == 0) {
 
 
@@ -189,10 +178,10 @@ public class PolygonView extends View {
                 Paint.FontMetricsInt mFontMetricsInt = mTextPaint.getFontMetricsInt();
                 float baseY = (mRectF.top + mRectF.bottom) / 2 -
                         (mFontMetricsInt.top + mFontMetricsInt.bottom) / 2;
-                canvas.drawText(String.valueOf(mPlayerAbilities.get(i).getValue()),
+                canvas.drawText(String.valueOf(mLabels.get(i).getValue()),
                         x + mRectF.width() / 2 + 15, baseY, mTextPaint);
                 mTextPaint.setColor(Color.BLACK);
-                canvas.drawText(mPlayerAbilities.get(i).getName(), x - labelWidth, baseY, mTextPaint);
+                canvas.drawText(mLabels.get(i).getName(), x - labelWidth, baseY, mTextPaint);
             } else if (i % count == count / 2) {
                 RectF mRectF = new RectF(x + 15, -50 + y - labelHeight / 2,
                         x + labelWidth * 2 + 15, -50 + y + labelHeight / 2);
@@ -201,13 +190,13 @@ public class PolygonView extends View {
                 Paint.FontMetricsInt mFontMetricsInt = mTextPaint.getFontMetricsInt();
                 float baseY = (mRectF.top + mRectF.bottom) / 2 -
                         (mFontMetricsInt.top + mFontMetricsInt.bottom) / 2;
-                canvas.drawText(String.valueOf(mPlayerAbilities.get(i).getValue()),
+                canvas.drawText(String.valueOf(mLabels.get(i).getValue()),
                         x + mRectF.width() / 2 + 15, baseY, mTextPaint);
                 mTextPaint.setColor(Color.BLACK);
-                canvas.drawText(mPlayerAbilities.get(i).getName(), x - labelWidth, baseY, mTextPaint);
+                canvas.drawText(mLabels.get(i).getName(), x - labelWidth, baseY, mTextPaint);
             } else {
                 mTextPaint.setColor(Color.BLACK);
-                canvas.drawText(mPlayerAbilities.get(i).getName(), x, y, mTextPaint);
+                canvas.drawText(mLabels.get(i).getName(), x, y, mTextPaint);
                 RectF mRectF = new RectF(x - labelWidth, y + 15,
                         x + labelWidth, y + labelHeight + 15);
                 canvas.drawRoundRect(mRectF, 5, 5, mLabelPaint);
@@ -215,7 +204,7 @@ public class PolygonView extends View {
                 Paint.FontMetricsInt mFontMetricsInt = mTextPaint.getFontMetricsInt();
                 float baseY = (mRectF.top + mRectF.bottom) / 2 -
                         (mFontMetricsInt.top + mFontMetricsInt.bottom) / 2;
-                canvas.drawText(String.valueOf(mPlayerAbilities.get(i).getValue()),
+                canvas.drawText(String.valueOf(mLabels.get(i).getValue()),
                         x, baseY, mTextPaint);
             }
 
@@ -228,6 +217,10 @@ public class PolygonView extends View {
     }
 
     private void drawOverlay(Canvas canvas) {
+        if (mLabels.isEmpty()) {
+            return;
+        }
+
         canvas.save();
         Path mPath = new Path();
         float x = 0, y = 0;
@@ -296,42 +289,9 @@ public class PolygonView extends View {
         }
 
         canvas.restore();
+        backgroundDone = true;
     }
 
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-
-        int action = event.getActionMasked();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                return true;
-            case MotionEvent.ACTION_MOVE:
-                float x = event.getX();
-                float y = event.getY();
-
-                Log.e(TAG, "onTouchEvent: come here x=" + x);
-                Log.e(TAG, "onTouchEvent: come here y=" + y);
-                Log.e(TAG, "onTouchEvent: come here playX=" + player.get(0).x);
-                Log.e(TAG, "onTouchEvent: come here playY=" + player.get(0).y);
-
-
-                for (int i = 0; i < count; i++) {
-                    if (Math.abs(player.get(i).x - viewWidth / 2 - x) < 0.5
-                            || Math.abs(viewHeight / 2 - player.get(i).y - y) < 50) {
-
-                        player.get(i).set(new PointF(viewWidth / 2 - Math.abs(x),
-                                viewHeight / 2 - Math.abs(y)));
-                        invalidate();
-                    }
-
-                }
-
-                return true;
-        }
-        return super.onTouchEvent(event);
-
-    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {

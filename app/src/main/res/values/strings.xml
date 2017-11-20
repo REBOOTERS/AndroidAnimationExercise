@@ -264,5 +264,9 @@
     <string name="click_close">点我关闭</string>
     <string name="title_activity_view_page_nested">ViewPageNestedActivity</string>
     <string name="title_activity_view_pager_nested">ViewPagerNestedActivity</string>
+    <string name="title_activity_main2">PolygonViewActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
 
 </resources>
