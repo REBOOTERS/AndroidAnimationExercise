@@ -313,6 +313,11 @@
         </activity>
         <activity android:name=".activity.PolygonViewActivity">
         </activity>
+        <activity
+            android:name=".customview.polygon.Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
