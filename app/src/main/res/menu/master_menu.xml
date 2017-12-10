@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/linearGradient"
+          android:title="linearGradient"
+          app:showAsAction="never"/>
+    <item android:title="radialGradient"
+          android:id="@+id/radialGradient"
+          />
+    <item android:id="@+id/sweepGradient"
+          android:title="sweepGradient"/>
+    <item android:id="@+id/bitmapShader"
+          android:title="bitmapShader"/>
+
+    <item android:id="@+id/composeShader" android:title="composeShader"/>
+</menu>

@@ -18,6 +18,7 @@
     <string name="camera">Camera 和 Galley 使用笔记</string>
     <string name="bottomSheet">bottomSheet</string>
     <string name="wheelView">省市联动3D效果</string>
+    <string name="master">Master</string>
     <string name="jianshu">仿简书长按生成图片效果</string>
     <string name="base_recyclerview">RecyclerView 使用</string>
     <string name="jianshuhead">仿简书头部搜索栏效果</string>
