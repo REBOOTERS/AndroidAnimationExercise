@@ -25,12 +25,14 @@ import home.smart.fly.animations.activity.IModeActivity;
 import home.smart.fly.animations.activity.MatisseDemoActivity;
 import home.smart.fly.animations.activity.MySwipeMenuActivity;
 import home.smart.fly.animations.activity.PhotoBrowse;
+import home.smart.fly.animations.activity.PolygonViewActivity;
 import home.smart.fly.animations.activity.PullRecyclerViewActivity;
 import home.smart.fly.animations.activity.SwipeFinishActivity;
 import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
 import home.smart.fly.animations.activity.jianshu.JianShuHeadActivity;
 import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animations.customview.wheel.WheelViewActivity;
+import home.smart.fly.animations.master.ui.MasterPaintActivity;
 import home.smart.fly.animations.utils.V;
 
 
@@ -60,6 +62,8 @@ public class ImitateFragment extends Fragment {
         demos.add(new ItemInfo(R.string.fake_football, FakeFootballActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
         demos.add(new ItemInfo(R.string.wheelView, WheelViewActivity.class));
+        demos.add(new ItemInfo(R.string.wheelView, PolygonViewActivity.class));
+        demos.add(new ItemInfo(R.string.master, MasterPaintActivity.class));
 
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));
         demos.add(new ItemInfo(R.string.jianshuhead, JianShuHeadActivity.class));

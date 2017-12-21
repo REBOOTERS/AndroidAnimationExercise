@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.customview.RxTextViewVertical;
 import home.smart.fly.animations.customview.wheel.updateFile.Address;
 import home.smart.fly.animations.customview.wheel.widget.adapter.ArrayWheelAdapter;
 import home.smart.fly.animations.customview.wheel.widget.lib.WheelView;
@@ -39,6 +40,10 @@ public class WheelViewActivity extends AppCompatActivity {
     static ArrayList<ArrayList<String>> item2 = new ArrayList<>();
     static ArrayList<ArrayList<ArrayList<String>>> item3 = new ArrayList<>();
 
+
+    private RxTextViewVertical mRxTextViewVertical1;
+    private RxTextViewVertical mRxTextViewVertical2;
+    private RxTextViewVertical mRxTextViewVertical3;
     ///
     private View view;
     private WheelOptions mWheelOptions;
@@ -75,7 +80,9 @@ public class WheelViewActivity extends AppCompatActivity {
                 Init();
             }
         });
-
+        mRxTextViewVertical1 = (RxTextViewVertical) findViewById(R.id.runText1);
+        mRxTextViewVertical2 = (RxTextViewVertical) findViewById(R.id.runText2);
+        mRxTextViewVertical3 = (RxTextViewVertical) findViewById(R.id.runText3);
 
         ////////
         view = findViewById(R.id.optionspicker);
@@ -100,8 +107,7 @@ public class WheelViewActivity extends AppCompatActivity {
                     //新opt2的位置，判断如果旧位置没有超过数据范围，则沿用旧位置，否则选中最后一项
                     opt2Select = opt2Select >= item2.get(index).size() - 1 ? item2.get(index).size() - 1 : opt2Select;
 
-                    city.setAdapter(new ArrayWheelAdapter(item2
-                            .get(index)));
+                    city.setAdapter(new ArrayWheelAdapter(item2.get(index)));
                     city.setCurrentItem(opt2Select);
                     area.setAdapter(new ArrayWheelAdapter(item3.get(index).get(opt2Select)));
                     area.setCurrentItem(0);
@@ -153,6 +159,53 @@ public class WheelViewActivity extends AppCompatActivity {
 
         updateAdress(pos);
 
+
+        mRxTextViewVertical1.setTextList(item1);
+        mRxTextViewVertical1.setText(26, 5, 0xff766156);//设置属性
+        mRxTextViewVertical1.setTextStillTime(3000);//设置停留时长间隔
+        mRxTextViewVertical1.setAnimTime(300);//设置进入和退出的时间间隔
+        mRxTextViewVertical1.setOnItemClickListener(new RxTextViewVertical.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(mContext, "点击了 : " + item1.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
+        mRxTextViewVertical2.setTextList(item2.get(2));
+        mRxTextViewVertical2.setText(26, 5, 0xff766156);//设置属性
+        mRxTextViewVertical2.setTextStillTime(3000);//设置停留时长间隔
+        mRxTextViewVertical2.setAnimTime(300);//设置进入和退出的时间间隔
+        mRxTextViewVertical2.setOnItemClickListener(new RxTextViewVertical.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(mContext, "点击了 : " + item1.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
+        mRxTextViewVertical3.setTextList(item3.get(2).get(0));
+        mRxTextViewVertical3.setText(26, 5, 0xff766156);//设置属性
+        mRxTextViewVertical3.setTextStillTime(3000);//设置停留时长间隔
+        mRxTextViewVertical3.setAnimTime(300);//设置进入和退出的时间间隔
+        mRxTextViewVertical3.setOnItemClickListener(new RxTextViewVertical.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(mContext, "点击了 : " + item1.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mRxTextViewVertical1.startAutoScroll();
+        mRxTextViewVertical2.startAutoScroll();
+        mRxTextViewVertical3.startAutoScroll();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mRxTextViewVertical1.stopAutoScroll();
+        mRxTextViewVertical2.stopAutoScroll();
+        mRxTextViewVertical3.stopAutoScroll();
     }
 
     private void updateAdress(int[] pos) {

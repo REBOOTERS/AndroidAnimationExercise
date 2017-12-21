@@ -8,17 +8,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.FileUtil;
@@ -33,10 +29,14 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
     private static final String WEB_URL = "https://www.baidu.com";
     private static final String ERROR_URL = "https://www.badu.com";
     private static final String LOCAL_URL = "file:///android_asset/index.html";
+    private static final String ALI_PAY_URL = "file:///android_asset/launch_alipay_app.html";
+    private static final String WEIXIN_PAY_URL = "http://wechat.66card.com/vcweixin/common/toTestH5Weixin?company=c4p ";
 
     private Context mContext;
     private WebView mWebView;
     private Button mButton;
+
+    private LinearLayout tools;
 
 
     @Override
@@ -58,44 +58,35 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void setUpWebView() {
+        tools = (LinearLayout) findViewById(R.id.tools);
+        tools.setVisibility(View.VISIBLE);
+
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
         //
         mWebView.addJavascriptInterface(new JsObject(mContext), "myObj");
         mWebView.addJavascriptInterface(new LoadHtmlObject(), "myHtml");
         //
-        mWebView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onReceivedTitle(WebView view, String title) {
-                super.onReceivedTitle(view, title);
-                Log.e(TAG, "onReceivedTitle: " + title);
-                Log.e(TAG, "threadName: " + Thread.currentThread().getName());
 
-            }
-        });
+        mWebView.setWebViewClient(new MyWebViewClient(mContext));
+        mWebView.setWebChromeClient(new MyWebChromeClient());
 
-        mWebView.setWebViewClient(new WebViewClient() {
 
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                Log.e(TAG, "onPageFinished: " + url);
-                view.loadUrl("javascript:window.myHtml.printSourceCode('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
-            }
-
-            @Override
-            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-//                super.onReceivedError(view, request, error);
-                Log.e(TAG, "onReceivedError: " + request);
-                Log.e(TAG, "onReceivedError: " + error);
-            }
-        });
     }
 
     private void loadData() {
         mWebView.loadUrl(LOCAL_URL);
     }
 
+
+    @Override
+    public void onBackPressed() {
+        if (mWebView.canGoBack()) {
+            mWebView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,12 +102,23 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.local:
                 mWebView.loadUrl(LOCAL_URL);
+                tools.setVisibility(View.VISIBLE);
                 break;
             case R.id.net:
                 mWebView.loadUrl(WEB_URL);
+                tools.setVisibility(View.VISIBLE);
                 break;
             case R.id.error:
                 mWebView.loadUrl(ERROR_URL);
+                tools.setVisibility(View.GONE);
+                break;
+            case R.id.weixinpay:
+                mWebView.loadUrl(WEIXIN_PAY_URL);
+                tools.setVisibility(View.GONE);
+                break;
+            case R.id.alipay:
+                mWebView.loadUrl(ALI_PAY_URL);
+                tools.setVisibility(View.GONE);
                 break;
             default:
                 break;

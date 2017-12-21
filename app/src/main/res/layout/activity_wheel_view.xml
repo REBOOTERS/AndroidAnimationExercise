@@ -20,6 +20,8 @@
             android:text="show"/>
 
         <TextView
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
             android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,6 +56,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <home.smart.fly.animations.customview.RxTextViewVertical
+            android:id="@+id/runText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
+
+        <home.smart.fly.animations.customview.RxTextViewVertical
+            android:id="@+id/runText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
+
+        <home.smart.fly.animations.customview.RxTextViewVertical
+            android:id="@+id/runText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
+
     </LinearLayout>
 
 

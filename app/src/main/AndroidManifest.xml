@@ -224,7 +224,9 @@
         </activity>
         <activity android:name=".activity.transtions.ViewFlipperAcitivity">
         </activity>
-        <activity android:name=".activity.InputActivity">
+        <activity
+            android:name=".activity.InputActivity"
+            android:label="Input">
         </activity>
         <activity android:name=".activity.MyDrawingBoardActivity">
         </activity>
@@ -303,7 +305,15 @@
             android:label="@string/title_activity_view_pager_nested"
             android:theme="@style/MyTheme.NoActionBar">
         </activity>
-        <activity android:name=".activity.LaunchOtherAppActivity">
+        <activity
+            android:name=".activity.LaunchOtherAppActivity"
+            android:label="@string/launch_app">
+        </activity>
+        <activity android:name=".activity.BitmapMeshActivity">
+        </activity>
+        <activity android:name=".activity.PolygonViewActivity">
+        </activity>
+        <activity android:name=".master.ui.MasterPaintActivity" android:hardwareAccelerated="false">
         </activity>
     </application>
 

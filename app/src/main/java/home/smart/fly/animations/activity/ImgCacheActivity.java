@@ -7,9 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
@@ -43,11 +47,10 @@ public class ImgCacheActivity extends AppCompatActivity {
             "http%3A%2F%2Ftupian.enterdesk.com%2F2013%2Fxll%2F011%2F13%2F2%2F7.jpg";
 
 
-
-    private ImageView img1, img2;
-    private FloatingActionButton fab;
+    private ImageView img1, img2, vectorImg;
+    private FloatingActionButton fab, fab1;
     private Context mContext;
-
+    private boolean temp = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +84,25 @@ public class ImgCacheActivity extends AppCompatActivity {
         });
 
 
+        vectorImg = (ImageView) findViewById(R.id.vectorImg);
+        fab1 = (FloatingActionButton) findViewById(R.id.fab_1);
+        final Drawable mDrawable = vectorImg.getDrawable();
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+
+                if (temp) {
+                    mDrawable.setTint(Color.RED);
+                } else {
+                    mDrawable.setTint(Color.WHITE);
+                }
+
+                temp = !temp;
 
 
+            }
+        });
 
     }
 
