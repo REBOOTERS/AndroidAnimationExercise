@@ -3,6 +3,7 @@ package home.smart.fly.animations.master.ui;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,12 +21,12 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.master.Tools;
 import home.smart.fly.animations.master.adapter.ModeSelectorAdapter;
-import home.smart.fly.animations.master.widget.MasterView;
+import home.smart.fly.animations.master.widget.MasterPaintView;
 
 public class MasterPaintActivity extends AppCompatActivity {
     private static final String TAG = "MasterPaintActivity";
     @BindView(R.id.master)
-    MasterView master;
+    MasterPaintView master;
     @BindView(R.id.modeList)
     RecyclerView modeList;
 
@@ -40,6 +41,7 @@ public class MasterPaintActivity extends AppCompatActivity {
 
         ModeSelectorAdapter mModeSelectorAdapter = new ModeSelectorAdapter(modeList);
         modeList.setLayoutManager(new LinearLayoutManager(this));
+        modeList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         modeList.setAdapter(mModeSelectorAdapter);
         mModeSelectorAdapter.setOnRVItemClickListener(new BGAOnRVItemClickListener() {
             @Override

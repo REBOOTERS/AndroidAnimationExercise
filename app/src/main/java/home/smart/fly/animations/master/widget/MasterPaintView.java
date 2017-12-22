@@ -28,7 +28,7 @@ import home.smart.fly.animations.R;
  * desc   :
  * version: 1.0
  */
-public class MasterView extends View {
+public class MasterPaintView extends View {
 
     private Paint mPaint;
     private int centerX, centerY;
@@ -48,16 +48,16 @@ public class MasterView extends View {
     private int radius;
 
 
-    public MasterView(Context context) {
+    public MasterPaintView(Context context) {
         this(context, null);
 
     }
 
-    public MasterView(Context context, @Nullable AttributeSet attrs) {
+    public MasterPaintView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MasterView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public MasterPaintView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initPaint();
     }
@@ -66,7 +66,7 @@ public class MasterView extends View {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         res = getResources();
         source = BitmapFactory.decodeResource(res, R.drawable.cat);
-        cover = BitmapFactory.decodeResource(res, R.drawable.star);
+        cover = BitmapFactory.decodeResource(res, R.drawable.circle);
         mStartColor = res.getColor(R.color.cpb_red);
         mEndColor = res.getColor(R.color.cpb_green);
 
@@ -94,7 +94,8 @@ public class MasterView extends View {
     }
 
     public void drawRadialsGradient() {
-        Shader radialGradient = new RadialGradient(centerX, centerY, radius, mStartColor, mEndColor, Shader.TileMode.CLAMP);
+        Shader radialGradient = new RadialGradient(centerX, centerY,
+                radius, mStartColor, mEndColor, Shader.TileMode.CLAMP);
         reDraw(radialGradient);
     }
 
@@ -104,7 +105,7 @@ public class MasterView extends View {
     }
 
     public void drawBitmapShader() {
-        Shader bitmapShader = new BitmapShader(source, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        Shader bitmapShader = new BitmapShader(cover, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         reDraw(bitmapShader);
     }
 

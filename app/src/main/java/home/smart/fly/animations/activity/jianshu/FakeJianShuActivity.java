@@ -89,6 +89,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
             Glide.with(mContext).load("http:" + s.getUserImg()).placeholder(R.drawable.default_avtar).
                     error(R.drawable.default_avtar).into(userImg);
             String text = s.getContent();
+            text.replace("data-original-src","src");
             mWebView.loadDataWithBaseURL("", text, "text/html", "UTF-8", "");
             username.setText(s.getUsername());
             publichsTime.setText(s.getPublishTime());
