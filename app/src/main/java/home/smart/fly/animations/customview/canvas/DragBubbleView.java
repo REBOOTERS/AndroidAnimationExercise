@@ -186,7 +186,7 @@ public class DragBubbleView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawColor(Color.BLACK);
+        canvas.drawColor(Color.GRAY);
 
         //画拖拽气泡
         if (mState != STATE_DISMISS) {

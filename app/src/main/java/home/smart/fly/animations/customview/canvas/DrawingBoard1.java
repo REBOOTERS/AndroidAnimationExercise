@@ -178,7 +178,7 @@ public class DrawingBoard1 extends View {
 
         path.reset();
 
-        canvas.drawColor(Color.BLACK);
+        canvas.drawColor(Color.GRAY);
         canvas.translate(widht / 2, height / 2);
         canvas.drawPoint(startP.x, startP.y, pointPaint);
         canvas.drawPoint(endP.x, endP.y, pointPaint);

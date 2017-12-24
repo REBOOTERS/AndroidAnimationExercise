@@ -161,7 +161,7 @@ public class BubbleView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawColor(Color.BLACK);
+        canvas.drawColor(Color.GRAY);
         canvas.translate(width / 2, height / 2);
         canvas.rotate(degree);
         path.reset();

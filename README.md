@@ -1,8 +1,5 @@
 
 
-
-
-
 # AndroidAnimationExercise
 
 这是一个关于Android中各种View的集合，里面包含自己日常开发和博客总结中的代码。
@@ -65,6 +62,10 @@
 ## [仿懂球帝APP我是教练游戏效果](https://juejin.im/post/5974c0c3f265da6c4c50160f)
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/football.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/football2.gif"/>
+
+
+## 仿懂球帝球员数据网状图
+
 
 
 ## 仿简书生成长图文章效果
