@@ -66,11 +66,15 @@
 
 ## 仿懂球帝球员数据网状图
 
-
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/polyganoView.png"/>
 
 ## 仿简书生成长图文章效果
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/jianshu.gif"/>
+
+## 贝塞尔曲线应用
+
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/bessel.gif"/>
 
 
 ## 动图理解scrollTo &  translate 区别
