@@ -10,6 +10,8 @@
 [Apk 下载体验](https://fir.im/tm15)
 
 
+扫一扫体验
+
 ![扫一扫体验](https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/download.png)
 
 
