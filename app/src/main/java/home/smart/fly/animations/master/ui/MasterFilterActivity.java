@@ -5,6 +5,8 @@ import android.graphics.LightingColorFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Window;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.xw.repo.BubbleSeekBar;
@@ -34,6 +36,8 @@ public class MasterFilterActivity extends AppCompatActivity {
     TextView colorMultiply;
     @BindView(R.id.colorAdd)
     TextView colorAdd;
+    @BindView(R.id.container)
+    ScrollView container;
 
     private ColorFilter mColorFilter;
 
@@ -43,9 +47,11 @@ public class MasterFilterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_master_filter);
         ButterKnife.bind(this);
         testFilter();
+        setTitle("Paint ColorFilter 使用实例");
     }
 
     private void calculate() {
@@ -115,6 +121,7 @@ public class MasterFilterActivity extends AppCompatActivity {
                 calculate();
             }
         });
+
 
     }
 

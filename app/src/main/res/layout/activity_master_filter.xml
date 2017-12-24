@@ -12,9 +12,10 @@
     <home.smart.fly.animations.master.widget.MasterFilterView
         android:id="@+id/filterView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="200dp"/>
 
     <ScrollView
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -48,6 +49,7 @@
                     app:bsb_max="255"
                     app:bsb_min="0"
                     app:bsb_progress="255"
+                    app:bsb_show_section_text="true"
                     />
 
                 <com.xw.repo.BubbleSeekBar
@@ -60,6 +62,7 @@
                     app:bsb_max="255"
                     app:bsb_min="0"
                     app:bsb_progress="255"
+                    app:bsb_show_section_text="true"
                     />
 
                 <com.xw.repo.BubbleSeekBar
@@ -72,6 +75,7 @@
                     app:bsb_max="255"
                     app:bsb_min="0"
                     app:bsb_progress="255"
+                    app:bsb_show_section_text="true"
                     />
 
             </LinearLayout>
@@ -83,6 +87,7 @@
 
                 <TextView
                     android:id="@+id/colorAdd"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -99,6 +104,7 @@
                     app:bsb_max="255"
                     app:bsb_min="0"
                     app:bsb_progress="0"
+                    app:bsb_show_section_text="true"
                     />
 
                 <com.xw.repo.BubbleSeekBar
@@ -111,6 +117,7 @@
                     app:bsb_max="255"
                     app:bsb_min="0"
                     app:bsb_progress="0"
+                    app:bsb_show_section_text="true"
                     />
 
                 <com.xw.repo.BubbleSeekBar
@@ -123,6 +130,7 @@
                     app:bsb_max="255"
                     app:bsb_min="0"
                     app:bsb_progress="0"
+                    app:bsb_show_section_text="true"
                     />
 
             </LinearLayout>

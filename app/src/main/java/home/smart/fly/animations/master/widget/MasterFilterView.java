@@ -14,6 +14,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.utils.DpConvert;
 
 /**
  * author : engineer
@@ -58,7 +59,7 @@ public class MasterFilterView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawColor(Color.parseColor("#455A64"));
-        canvas.drawBitmap(mBitmap,mBitmapRect,mDestRectF,mPaint);
+        canvas.drawBitmap(mBitmap, mBitmapRect, mDestRectF, mPaint);
 
 
     }
@@ -66,8 +67,8 @@ public class MasterFilterView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int min = Math.min(getMeasuredHeight(), getMeasuredWidth());
-        setMeasuredDimension(min, min);
-        mDestRectF = new RectF(0, 0, min, min);
+        int height = DpConvert.dip2px(getContext(), 200);
+        setMeasuredDimension(getMeasuredWidth(), height);
+        mDestRectF = new RectF(0, 0, getMeasuredWidth(), height);
     }
 }

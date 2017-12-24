@@ -317,7 +317,8 @@
             android:name=".master.ui.MasterPaintActivity"
             android:hardwareAccelerated="false">
         </activity>
-        <activity android:name=".master.ui.MasterFilterActivity">
+        <activity android:name=".master.ui.MasterFilterActivity"
+                  >
         </activity>
     </application>
 
