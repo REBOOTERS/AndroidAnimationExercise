@@ -61,7 +61,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
 
-    compile 'com.google.code.gson:gson:2.8.0'
     testCompile 'junit:junit:4.12'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.android.support:appcompat-v7:26.1.0'
@@ -96,4 +95,11 @@ dependencies {
     compile 'com.xw.repo:bubbleseekbar:3.10-lite'
     testCompile 'junit:junit:4.12'
     debugCompile 'com.facebook.stetho:stetho:1.5.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+repositories {
+    mavenCentral()
 }

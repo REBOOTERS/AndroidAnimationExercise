@@ -41,6 +41,7 @@
         android:theme="@style/MyTheme">
         <activity
             android:name=".AppStartActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -317,8 +318,11 @@
             android:name=".master.ui.MasterPaintActivity"
             android:hardwareAccelerated="false">
         </activity>
-        <activity android:name=".master.ui.MasterFilterActivity"
-                  >
+        <activity android:name=".master.ui.MasterFilterActivity">
+        </activity>
+        <activity
+            android:name=".activity.OrientationActivity"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 

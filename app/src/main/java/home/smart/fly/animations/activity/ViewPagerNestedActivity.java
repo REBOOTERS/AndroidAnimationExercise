@@ -17,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -40,7 +42,7 @@ public class ViewPagerNestedActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
+    private static boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,6 @@ public class ViewPagerNestedActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -150,6 +151,26 @@ public class ViewPagerNestedActivity extends AppCompatActivity {
                             mSwipeRefreshLayout.setRefreshing(false);
                         }
                     }, 1000);
+                }
+            });
+
+
+            final ImageView mImageView = rootView.findViewById(R.id.image);
+//            mImageView.setPivotX(Tools.getScreenWidth(getContext()));
+//            mImageView.setPivotY(Tools.getScreenHeight(getContext()));
+            Button mButton = rootView.findViewById(R.id.button);
+            mButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (flag) {
+                        mImageView.animate().scaleX(1.0f).setDuration(400);
+                        mImageView.animate().scaleY(1.0f).setDuration(400);
+                    } else {
+                        mImageView.animate().scaleX(0.5f).setDuration(400);
+                        mImageView.animate().scaleY(0.5f).setDuration(400);
+                    }
+                    flag = !flag;
+
                 }
             });
 
