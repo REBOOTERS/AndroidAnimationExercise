@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.activity.PhysicsViewActivity;
 import home.smart.fly.animations.property.AliPayAnimActivity;
 import home.smart.fly.animations.property.DecorViewActivity;
 import home.smart.fly.animations.property.LayoutAnimationsActivity;
@@ -48,6 +49,7 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.LayoutAnimations).setOnClickListener(this);
         rootView.findViewById(R.id.RevealAnimator).setOnClickListener(this);
         rootView.findViewById(R.id.DecorView).setOnClickListener(this);
+        rootView.findViewById(R.id.PhysicsAnim).setOnClickListener(this);
     }
 
     @Override
@@ -74,6 +76,9 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.DecorView:
                 intent = new Intent(mContext, DecorViewActivity.class);
+                break;
+            case R.id.PhysicsAnim:
+                intent=new Intent(mContext, PhysicsViewActivity.class);
                 break;
             default:
                 break;

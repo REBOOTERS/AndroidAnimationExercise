@@ -30,7 +30,6 @@ public class HackTool {
                 ele_img.attr("style", "max-width:100%;height:auto;");
             }
             String contentStr = content.toString();
-            //
             htmlBean = new HtmlBean();
             htmlBean.setContent(contentStr);
             htmlBean.setUsername(username);

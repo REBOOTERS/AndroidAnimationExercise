@@ -73,10 +73,10 @@ public class FakeJianShuActivity extends AppCompatActivity {
             HtmlBean bean = HackTool.getInfoFromUrl(params[0]);
             if (bean == null) {
                 String json = FileUtil.getLocalResponse(mContext, Constant.LOCAL_DATA);
+
                 Gson gson = new Gson();
                 bean = gson.fromJson(json, HtmlBean.class);
             }
-
 
 
             return bean;
@@ -89,7 +89,8 @@ public class FakeJianShuActivity extends AppCompatActivity {
             Glide.with(mContext).load("http:" + s.getUserImg()).placeholder(R.drawable.default_avtar).
                     error(R.drawable.default_avtar).into(userImg);
             String text = s.getContent();
-            text.replace("data-original-src","src");
+            text=text.replace("data-original-src", "src");
+            text=text.replace("//upload-images", "http://upload-images");
             mWebView.loadDataWithBaseURL("", text, "text/html", "UTF-8", "");
             username.setText(s.getUsername());
             publichsTime.setText(s.getPublishTime());

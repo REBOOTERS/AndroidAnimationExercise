@@ -324,6 +324,12 @@
             android:name=".activity.OrientationActivity"
             android:screenOrientation="landscape">
         </activity>
+        <activity android:name=".activity.PhysicsViewActivity">
+        </activity>
+        <activity android:name=".activity.ClockViewActivity"
+                  android:theme="@style/MyTheme.NoActionBar"
+                  android:hardwareAccelerated="true">
+        </activity>
     </application>
 
 </manifest>
