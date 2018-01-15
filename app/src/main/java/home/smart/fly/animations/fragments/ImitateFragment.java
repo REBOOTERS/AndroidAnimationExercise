@@ -61,7 +61,7 @@ public class ImitateFragment extends Fragment {
     private void InitView() {
         demos.add(new ItemInfo(R.string.fake_football, FakeFootballActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, ClockViewActivity.class));
+        demos.add(new ItemInfo(R.string.clockView, ClockViewActivity.class));
         demos.add(new ItemInfo(R.string.wheelView, WheelViewActivity.class));
         demos.add(new ItemInfo(R.string.polygonView, PolygonViewActivity.class));
         demos.add(new ItemInfo(R.string.imode, IModeActivity.class));

@@ -37,6 +37,7 @@ public class ClockView extends View {
     private int BLACK = Color.BLACK;
     private int WHITE = Color.WHITE;
     private int RED = Color.RED;
+    private int backgroundColor=0xff0099cc;
 
     private int centerX, centerY;
     private int radius;
@@ -70,12 +71,12 @@ public class ClockView extends View {
 
     private void initPaint(Context context) {
         mCirclePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mCirclePaint.setColor(BLACK);
+        mCirclePaint.setColor(WHITE);
         mCirclePaint.setStrokeWidth(12);
         mCirclePaint.setStyle(Paint.Style.STROKE);
 
         mArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mArcPaint.setColor(RED);
+        mArcPaint.setColor(BLACK);
         mArcPaint.setStyle(Paint.Style.STROKE);
         mArcPaint.setStrokeWidth(12);
 
@@ -142,7 +143,7 @@ public class ClockView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawColor(WHITE);
+        canvas.drawColor(backgroundColor);
         canvas.drawCircle(centerX, centerY, radius, mCirclePaint);
 //        canvas.drawRect(mRectF,mArcPaint);
         canvas.drawText(formatCountdownTime(counter), centerX, centerY, mTextPaint);

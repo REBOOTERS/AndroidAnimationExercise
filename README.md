@@ -78,6 +78,11 @@
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/jianshu.gif"/>
 
+## 简易时钟效果
+
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/ACTION_MOVE_TO_CHANGE.gif"/>
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/CLOCK_VIEW.gif"/>
+
 ## 贝塞尔曲线应用
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/bessel.gif"/>

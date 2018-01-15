@@ -29,9 +29,9 @@ class ClockViewActivity : AppCompatActivity() {
         pause.setOnClickListener {
             clockView.pause()
             if (pauseValue) {
-                pause.text = "resume"
+                pause.text = "PAUSE"
             } else {
-                pause.text = "pause"
+                pause.text = "RESUME"
             }
             pauseValue = !pauseValue;
         }
