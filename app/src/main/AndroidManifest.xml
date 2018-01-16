@@ -326,9 +326,14 @@
         </activity>
         <activity android:name=".activity.PhysicsViewActivity">
         </activity>
-        <activity android:name=".activity.ClockViewActivity"
-                  android:theme="@style/MyTheme.NoActionBar"
-                  android:hardwareAccelerated="true">
+        <activity
+            android:name=".activity.ClockViewActivity"
+            android:hardwareAccelerated="true"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activity.ViewStubActivity"
+            android:theme="@style/MyTheme.NoActionBar">
         </activity>
     </application>
 

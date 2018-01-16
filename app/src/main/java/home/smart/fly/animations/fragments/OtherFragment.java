@@ -29,6 +29,7 @@ import home.smart.fly.animations.activity.OrientationActivity;
 import home.smart.fly.animations.activity.PdfActivity;
 import home.smart.fly.animations.activity.ScreenCaptureActivity;
 import home.smart.fly.animations.activity.ViewPagerNestedActivity;
+import home.smart.fly.animations.activity.ViewStubActivity;
 import home.smart.fly.animations.bga.BgaAllActivity;
 import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
 import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
@@ -78,7 +79,8 @@ public class OtherFragment extends Fragment {
         demos.add(new ItemInfo(R.string.circle_view, LoadCircleImageActivity.class));
         demos.add(new ItemInfo(R.string.base_recyclerview, BaseRecyclerViewActivity.class));
         demos.add(new ItemInfo(R.string.input_view, InputActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, OrientationActivity.class));
+        demos.add(new ItemInfo(R.string.orientation, OrientationActivity.class));
+        demos.add(new ItemInfo(R.string.ViewStub, ViewStubActivity.class));
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));

@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_clock_view.*
 
 class ClockViewActivity : AppCompatActivity() {
 
-    var pauseValue = false
+    private var pauseValue = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

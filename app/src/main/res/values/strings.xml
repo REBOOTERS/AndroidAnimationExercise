@@ -27,6 +27,8 @@
     <string name="bga_view">BGA 全家桶系列</string>
     <string name="circle_view">Glide 加载圆形图片</string>
     <string name="input_view">EditText - 获取mac 地址</string>
+    <string name="orientation">Activity 横竖屏切换</string>
+    <string name="ViewStub">layout ViewStub/merge/inlude</string>
     <string name="wheelView">省市联动3D效果</string>
     <string name="polygonView">PolygonView</string>
     <string name="master">Paint 设置Shader效果</string>
