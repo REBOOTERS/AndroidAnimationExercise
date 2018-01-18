@@ -23,6 +23,7 @@ import home.smart.fly.animations.activity.ClockViewActivity;
 import home.smart.fly.animations.activity.FakeFootballActivity;
 import home.smart.fly.animations.activity.FlipViewActivity;
 import home.smart.fly.animations.activity.IModeActivity;
+import home.smart.fly.animations.activity.LottieAnimationViewActivity;
 import home.smart.fly.animations.activity.MatisseDemoActivity;
 import home.smart.fly.animations.activity.MySwipeMenuActivity;
 import home.smart.fly.animations.activity.PhotoBrowse;
@@ -60,6 +61,7 @@ public class ImitateFragment extends Fragment {
 
     private void InitView() {
         demos.add(new ItemInfo(R.string.fake_football, FakeFootballActivity.class));
+        demos.add(new ItemInfo(R.string.lottie_anim, LottieAnimationViewActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
         demos.add(new ItemInfo(R.string.clockView, ClockViewActivity.class));
         demos.add(new ItemInfo(R.string.wheelView, WheelViewActivity.class));

@@ -98,6 +98,7 @@ dependencies {
     debugCompile 'com.facebook.stetho:stetho:1.5.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:support-dynamic-animation:26.1.0'
+    compile 'com.airbnb.android:lottie:2.2.0'
 }
 
 

@@ -335,6 +335,11 @@
             android:name=".activity.ViewStubActivity"
             android:theme="@style/MyTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.LottieAnimationViewActivity"
+            android:label="@string/title_activity_lottie_animation_view"
+            android:theme="@style/JianshuTheme">
+        </activity>
     </application>
 
 </manifest>
