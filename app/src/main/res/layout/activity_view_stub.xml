@@ -10,6 +10,8 @@
 
     <include layout="@layout/include_view"/>
 
+    <include layout="@layout/include_view_1"/>
+
     <Button
         android:id="@+id/load"
         android:layout_width="match_parent"
