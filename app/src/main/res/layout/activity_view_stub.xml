@@ -5,63 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context="home.smart.fly.animations.activity.ViewStubActivity">
 
-    <include layout="@layout/include_view"/>
-
-    <ScrollView
+    <Button
+        android:id="@+id/load"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="load_ViewStub"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
-                android:text="include A Horizontal LinearLayout"
-                android:textColor="@color/cpb_red"/>
-
-            <include layout="@layout/include_view_1"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
-                android:text="include A Vertical LinearLayout"
-                android:textColor="@color/cpb_red"/>
-
-            <include layout="@layout/include_view_2"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
-                android:text="A ViewStub"
-                android:textColor="@color/cpb_red"/>
-
-            <Button
-                android:id="@+id/load"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="load_ViewStub"/>
-
-            <ViewStub
-                android:id="@+id/stub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout="@layout/view_stub"/>
-        </LinearLayout>
-
-    </ScrollView>
+    <ViewStub
+        android:id="@+id/stub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout="@layout/view_stub"/>
 </LinearLayout>

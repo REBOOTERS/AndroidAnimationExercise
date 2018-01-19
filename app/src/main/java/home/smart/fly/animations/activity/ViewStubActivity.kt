@@ -6,7 +6,6 @@ import android.widget.Toast
 import home.smart.fly.animations.R
 import home.smart.fly.animations.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_view_stub.*
-import kotlinx.android.synthetic.main.include_view.*
 
 class ViewStubActivity : AppCompatActivity() {
 
@@ -20,7 +19,5 @@ class ViewStubActivity : AppCompatActivity() {
             Toast.makeText(this, "ViewStub.inflate() consume only once !",Toast.LENGTH_SHORT).show()
             load.isEnabled = false
         }
-
-        back.setOnClickListener { finish() }
     }
 }

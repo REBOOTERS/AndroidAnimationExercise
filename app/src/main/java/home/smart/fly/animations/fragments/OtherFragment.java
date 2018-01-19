@@ -25,6 +25,7 @@ import home.smart.fly.animations.activity.InputActivity;
 import home.smart.fly.animations.activity.LaunchOtherAppActivity;
 import home.smart.fly.animations.activity.LoadCircleImageActivity;
 import home.smart.fly.animations.activity.MailActivity;
+import home.smart.fly.animations.activity.MergeIncludeViewActivity;
 import home.smart.fly.animations.activity.OrientationActivity;
 import home.smart.fly.animations.activity.PdfActivity;
 import home.smart.fly.animations.activity.ScreenCaptureActivity;
@@ -65,6 +66,8 @@ public class OtherFragment extends Fragment {
 
     private void InitView() {
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
+        demos.add(new ItemInfo(R.string.ViewStub, ViewStubActivity.class));
+        demos.add(new ItemInfo(R.string.ViewMerge, MergeIncludeViewActivity.class));
         demos.add(new ItemInfo(R.string.launch_app, LaunchOtherAppActivity.class));
         demos.add(new ItemInfo(R.string.viewpager_nested, ViewPagerNestedActivity.class));
         demos.add(new ItemInfo(R.string.full_screen, FullscreenActivity.class));
@@ -80,7 +83,8 @@ public class OtherFragment extends Fragment {
         demos.add(new ItemInfo(R.string.base_recyclerview, BaseRecyclerViewActivity.class));
         demos.add(new ItemInfo(R.string.input_view, InputActivity.class));
         demos.add(new ItemInfo(R.string.orientation, OrientationActivity.class));
-        demos.add(new ItemInfo(R.string.ViewStub, ViewStubActivity.class));
+
+
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdpater myAdpater = new MyAdpater();
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
