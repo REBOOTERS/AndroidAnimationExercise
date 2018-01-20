@@ -82,6 +82,15 @@
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/ACTION_MOVE_TO_CHANGE.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/CLOCK_VIEW.gif"/>
 
+
+## 物理动画
+
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/physical_animation.gif"/>
+
+## Lottie Animation 
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/LottieAnimation.gif"/>
+
+
 ## 贝塞尔曲线应用
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/bessel.gif"/>
