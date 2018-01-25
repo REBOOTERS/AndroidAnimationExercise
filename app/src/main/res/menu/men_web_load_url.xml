@@ -13,6 +13,11 @@
         android:title="BaiduLink"
         app:showAsAction="never" />
     <item
+        android:id="@+id/pdf"
+        android:orderInCategory="100"
+        android:title="Load A PDF URL"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/error"
         android:orderInCategory="100"
         android:title="ErrorLink"

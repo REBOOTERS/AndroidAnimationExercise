@@ -4,9 +4,12 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources.Theme;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -52,6 +55,10 @@ public class AppStartActivity extends AppCompatActivity {
 
     private Glide mGlide;
     private Transformation mTransformation;
+
+    private AsyncTask mAsyncTask;
+    private Handler mHandler;
+    private Looper mLooper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
