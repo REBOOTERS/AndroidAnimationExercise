@@ -29,6 +29,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
     private static final String WEB_URL = "https://www.baidu.com";
     private static final String PDF_URL = "http://ei-test.51fapiao.cn:9080/FPFX/actions/dd05d5e72d35f0dac23f6362f05f85cb834110";
     private static final String ERROR_URL = "https://www.badu.com";
+    private static final String TWXQ="file:///android_asset/twxq.html";
     private static final String LOCAL_URL = "file:///android_asset/index.html";
     private static final String ALI_PAY_URL = "file:///android_asset/launch_alipay_app.html";
     private static final String WEIXIN_PAY_URL = "http://wechat.66card.com/vcweixin/common/toTestH5Weixin?company=c4p ";
@@ -64,6 +65,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
 
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
+        settings.setUseWideViewPort(true);
         //
         mWebView.addJavascriptInterface(new JsObject(mContext), "myObj");
         mWebView.addJavascriptInterface(new LoadHtmlObject(), "myHtml");
@@ -99,11 +101,20 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                if(mWebView.canGoBack()){
+                    mWebView.goBack();
+                }else {
+                    finish();
+                }
+
                 break;
             case R.id.local:
                 mWebView.loadUrl(LOCAL_URL);
                 tools.setVisibility(View.VISIBLE);
+                break;
+            case R.id.twxq:
+                mWebView.loadUrl(TWXQ);
+                tools.setVisibility(View.GONE);
                 break;
             case R.id.pdf:
                 mWebView.loadUrl(PDF_URL);
