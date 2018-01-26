@@ -29,7 +29,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
     private static final String WEB_URL = "https://www.baidu.com";
     private static final String PDF_URL = "http://ei-test.51fapiao.cn:9080/FPFX/actions/dd05d5e72d35f0dac23f6362f05f85cb834110";
     private static final String ERROR_URL = "https://www.badu.com";
-    private static final String TWXQ="file:///android_asset/twxq.html";
+    private static final String TWXQ="file:///android_asset/twxq_1.html";
     private static final String LOCAL_URL = "file:///android_asset/index.html";
     private static final String ALI_PAY_URL = "file:///android_asset/launch_alipay_app.html";
     private static final String WEIXIN_PAY_URL = "http://wechat.66card.com/vcweixin/common/toTestH5Weixin?company=c4p ";
