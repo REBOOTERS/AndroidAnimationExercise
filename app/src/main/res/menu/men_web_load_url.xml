@@ -37,4 +37,9 @@
         android:orderInCategory="100"
         android:title="AliPay"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/nested"
+        android:orderInCategory="100"
+        android:title="ScrollView 嵌套WebView"
+        app:showAsAction="never" />
 </menu>

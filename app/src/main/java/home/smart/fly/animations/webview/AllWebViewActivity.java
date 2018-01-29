@@ -1,6 +1,7 @@
 package home.smart.fly.animations.webview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Picture;
@@ -135,6 +136,10 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
             case R.id.alipay:
                 mWebView.loadUrl(ALI_PAY_URL);
                 tools.setVisibility(View.GONE);
+                break;
+            case R.id.nested:
+                Intent mIntent = new Intent(mContext, NestedWebViewActivity.class);
+                startActivity(mIntent);
                 break;
             default:
                 break;
