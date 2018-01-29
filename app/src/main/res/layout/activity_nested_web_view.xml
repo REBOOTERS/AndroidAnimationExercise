@@ -25,7 +25,7 @@
             android:textColor="@color/white"
             />
 
-        <WebView
+        <home.smart.fly.animations.webview.CustomWebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
