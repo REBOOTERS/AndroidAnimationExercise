@@ -1,6 +1,7 @@
 package home.smart.fly.animations;
 
 import android.app.ActivityManager;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources.Theme;
@@ -59,6 +60,8 @@ public class AppStartActivity extends AppCompatActivity {
     private AsyncTask mAsyncTask;
     private Handler mHandler;
     private Looper mLooper;
+
+    private NotificationManager mNotificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +126,7 @@ public class AppStartActivity extends AppCompatActivity {
         PrintSystemDirInfo();
 
         //
+
 
 
     }

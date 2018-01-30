@@ -31,8 +31,8 @@ class CustomWebView : WebView {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when (event?.actionMasked) {
             MotionEvent.ACTION_MOVE -> {
-                var Y = event.y
-                var deltaY: Float = Y - oldY
+                val Y = event.y
+                val deltaY: Float = Y - oldY
 
                 Log.e(TAG, "deltaY==" + deltaY)
 

@@ -74,8 +74,6 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
 
         mWebView.setWebViewClient(new MyWebViewClient(mContext));
         mWebView.setWebChromeClient(new MyWebChromeClient());
-
-
     }
 
     private void loadData() {

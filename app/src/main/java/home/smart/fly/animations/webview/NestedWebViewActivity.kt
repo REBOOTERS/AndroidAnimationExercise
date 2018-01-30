@@ -19,7 +19,7 @@ class NestedWebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nested_web_view)
         webView.loadUrl(BASE_URL)
-        var settings = webView.settings
+        val settings = webView.settings
         settings.javaScriptEnabled = true
         settings.useWideViewPort = true
 
