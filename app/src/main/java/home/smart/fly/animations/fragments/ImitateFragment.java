@@ -30,6 +30,7 @@ import home.smart.fly.animations.activity.PhotoBrowse;
 import home.smart.fly.animations.activity.PolygonViewActivity;
 import home.smart.fly.animations.activity.PullRecyclerViewActivity;
 import home.smart.fly.animations.activity.SwipeFinishActivity;
+import home.smart.fly.animations.activity.ViewsActivity;
 import home.smart.fly.animations.activity.jianshu.FakeJianShuActivity;
 import home.smart.fly.animations.activity.jianshu.JianShuHeadActivity;
 import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
@@ -61,6 +62,7 @@ public class ImitateFragment extends Fragment {
 
     private void InitView() {
         demos.add(new ItemInfo(R.string.fake_football, FakeFootballActivity.class));
+        demos.add(new ItemInfo(R.string.app_name, ViewsActivity.class));
         demos.add(new ItemInfo(R.string.lottie_anim, LottieAnimationViewActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
         demos.add(new ItemInfo(R.string.clockView, ClockViewActivity.class));
@@ -75,6 +77,7 @@ public class ImitateFragment extends Fragment {
         demos.add(new ItemInfo(R.string.swipeFinish, SwipeFinishActivity.class));
         demos.add(new ItemInfo(R.string.Matisse, MatisseDemoActivity.class));
         demos.add(new ItemInfo(R.string.Matisse, PhotoBrowse.class));
+
 
         recyclerView = V.f(rootView, R.id.recyclerView);
         MyAdapter mAdapter = new MyAdapter();

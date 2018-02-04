@@ -344,6 +344,11 @@
         </activity>
         <activity android:name=".webview.NestedWebViewActivity">
         </activity>
+        <activity
+            android:name=".activity.ViewsActivity"
+            android:label="@string/title_activity_views"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
