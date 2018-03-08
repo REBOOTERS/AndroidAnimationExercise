@@ -82,6 +82,10 @@
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/qq.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/menu_3d.gif"/>
 
+## 波浪效果的不同实现
+
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/wave_animation.gif"/>
+
 ## 简易时钟效果
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/ACTION_MOVE_TO_CHANGE.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/CLOCK_VIEW.gif"/>
