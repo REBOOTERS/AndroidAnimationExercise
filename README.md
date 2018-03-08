@@ -78,6 +78,10 @@
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/jianshu.gif"/>
 
+## 仿QQ侧滑菜单效果
+
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/qq.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/menu_3d.gif"/>
+
 ## 简易时钟效果
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/ACTION_MOVE_TO_CHANGE.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/CLOCK_VIEW.gif"/>
@@ -91,18 +95,14 @@
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/LottieAnimation.gif"/>
 
 
-## 贝塞尔曲线应用
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/bessel.gif"/>
 
 
 ## 动图理解scrollTo &  translate 区别
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/move.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/-move.gif"/>
 
-## 仿QQ侧滑菜单效果
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/qq.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/menu_3d.gif"/>
 
 
 
@@ -113,10 +113,9 @@
 
 
 
-## 支付效果  & 贝塞尔曲线实现购物车添加动画 ##
+## 支付效果   ##
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/alipay.gif"/>     <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/shopcar.gif"/>
-
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/alipay.gif"/>
 
 ## 属性动画实例 ##
 

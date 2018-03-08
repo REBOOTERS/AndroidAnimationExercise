@@ -27,113 +27,123 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_indeterminate"/>
 
-            <RadioGroup
-                android:id="@+id/modes"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checkedButton="@+id/rb_no"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/rb_yes"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"/>
+                    android:text="@string/label_indeterminate"/>
 
-                <RadioButton
-                    android:id="@+id/rb_no"
+                <RadioGroup
+                    android:id="@+id/modes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no"/>
-            </RadioGroup>
-        </LinearLayout>
+                    android:checkedButton="@+id/rb_no"
+                    android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"/>
 
-            <TextView
-                android:layout_width="65dp"
-                android:layout_height="wrap_content"
-                android:text="@string/label_level"/>
+                    <RadioButton
+                        android:id="@+id/rb_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"/>
+                </RadioGroup>
+            </LinearLayout>
 
-            <SeekBar
-                android:id="@+id/level_seek"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="10000"
-                android:progress="4000"/>
-        </LinearLayout>
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_level"/>
 
-            <TextView
-                android:layout_width="65dp"
-                android:layout_height="wrap_content"
-                android:text="@string/label_amplitude"/>
+                <SeekBar
+                    android:id="@+id/level_seek"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="10000"
+                    android:progress="4000"/>
+            </LinearLayout>
 
-            <SeekBar
-                android:id="@+id/amplitude_seek"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="100"
-                android:progress="20"/>
-        </LinearLayout>
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_amplitude"/>
 
-            <TextView
-                android:layout_width="65dp"
-                android:layout_height="wrap_content"
-                android:text="@string/label_length"/>
+                <SeekBar
+                    android:id="@+id/amplitude_seek"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progress="20"/>
+            </LinearLayout>
 
-            <SeekBar
-                android:id="@+id/length_seek"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="600"
-                android:progress="200"/>
-        </LinearLayout>
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_length"/>
 
-            <TextView
-                android:layout_width="65dp"
-                android:layout_height="wrap_content"
-                android:text="@string/label_speed"/>
+                <SeekBar
+                    android:id="@+id/length_seek"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="600"
+                    android:progress="200"/>
+            </LinearLayout>
 
-            <SeekBar
-                android:id="@+id/speed_seek"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="50"
-                android:progress="5"/>
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_speed"/>
+
+                <SeekBar
+                    android:id="@+id/speed_seek"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="50"
+                    android:progress="5"/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <ImageView
@@ -148,12 +158,7 @@
             android:layout_height="100dp"
             android:layout_margin="8dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/cpb_green"/>
+
 
         <LinearLayout
             android:layout_width="200dp"
