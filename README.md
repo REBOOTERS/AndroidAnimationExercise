@@ -82,7 +82,9 @@
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/qq.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/menu_3d.gif"/>
 
+## 波浪动画
 
+<img src="https://raw.githubusercontent.com/REBOOTERS/AndroidAnimationExercise/master/screen/wave_animation.gif"/>
 
 ## 简易时钟效果
 
