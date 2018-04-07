@@ -1,0 +1,13 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="home.smart.fly.animations.activity.fragments.CircleMenuFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <home.smart.fly.animations.customview.CircleMenu
+        android:id="@+id/circleMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>

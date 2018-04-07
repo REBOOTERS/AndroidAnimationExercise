@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/local"
+        android:orderInCategory="100"
+        android:title="assets/index.html"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/twxq"
+        android:orderInCategory="100"
+        android:title="图文详情"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/net"
+        android:orderInCategory="100"
+        android:title="BaiduLink"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/pdf"
+        android:orderInCategory="100"
+        android:title="Load A PDF URL"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/error"
+        android:orderInCategory="100"
+        android:title="ErrorLink"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/weixinpay"
+        android:orderInCategory="100"
+        android:title="WeiXinPay"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/alipay"
+        android:orderInCategory="100"
+        android:title="AliPay"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/nested"
+        android:orderInCategory="100"
+        android:title="ScrollView 嵌套WebView"
+        app:showAsAction="never" />
+</menu>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cpb_grey"
+    android:orientation="vertical"
+    tools:context="home.smart.fly.animations.activity.FakeFootballActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cpb_grey"
+        android:orientation="vertical">
+
+
+        <home.smart.fly.animations.customview.views.BallGameView
+            android:id="@+id/gameView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cpb_white"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="球员"
+            android:textColor="@color/green"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/playerLists"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#c0141932">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_margin="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_back_white"/>
+
+        <ImageView
+            android:layout_width="95dp"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_sliding_dqd_logo"/>
+
+        <TextView
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:text="下一步"
+            android:textColor="@color/white"
+            android:textSize="17sp"/>
+
+    </RelativeLayout>
+</FrameLayout>

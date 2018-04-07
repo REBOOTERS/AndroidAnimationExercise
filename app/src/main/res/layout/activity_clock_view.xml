@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="home.smart.fly.animations.activity.ClockViewActivity">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:inputType="numberDecimal"
+            android:hint="please input time"
+            android:id="@+id/value"
+            android:text="60"
+            android:layout_margin="16dp"
+            android:layout_width="0dp"
+            android:layout_weight="9"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/set"
+            android:text="init"
+            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+    <home.smart.fly.animations.customview.ClockView
+        android:layout_margin="16dp"
+        android:id="@+id/clockView"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_below="@id/clockView"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:text="start"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:id="@+id/start"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:text="pause"
+            android:layout_width="0dp"
+            android:id="@+id/pause"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:text="stop"
+            android:layout_width="0dp"
+            android:id="@+id/stop"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

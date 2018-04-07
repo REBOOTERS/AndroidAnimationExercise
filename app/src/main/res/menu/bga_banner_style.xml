@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="alpha"
+        android:id="@+id/alpha"/>
+    <item
+        android:title="rotate"
+        android:id="@+id/rotate"/>
+    <item
+        android:title="cube"
+        android:id="@+id/cube"/>
+    <item
+        android:title="flip"
+        android:id="@+id/flip"/>
+    <item
+        android:title="accordion"
+        android:id="@+id/accordion"/>
+    <item
+        android:title="zoomFade"
+        android:id="@+id/zoomFade"/>
+    <item
+        android:title="fade"
+        android:id="@+id/fade"/>
+    <item
+        android:title="stack"
+        android:id="@+id/stack"/>
+</menu>
+

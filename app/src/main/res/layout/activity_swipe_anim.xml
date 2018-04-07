@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <include
+        android:id="@+id/head"
+        layout="@layout/swipe_head_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="50dp" />
+
+
+    <include
+        android:id="@+id/bottom"
+        layout="@layout/swipe_head_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="50dp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/head"
+        android:gravity="center">
+
+
+        <ImageView
+            android:id="@+id/upImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/scene"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/upText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/upImg"
+            android:gravity="center"
+            android:text="up"
+            android:textColor="#000" />
+
+        <ImageView
+            android:id="@+id/downImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/scene"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/downText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/downImg"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="down"
+            android:textColor="#000" />
+
+
+        <home.smart.fly.animations.customview.swipeanim.lib.SwipeCardRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/downText"
+            android:layout_below="@id/upText"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="home.smart.fly.animations">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <!-- 百度定位相关 -->
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    ///////my self
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+
+    <uses-feature
+        android:name="android.hardware.Camera"
+        android:required="true"/>
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/app_start"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/MyTheme">
+        <activity
+            android:name=".AppStartActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".tradition.FrameAnimationActivity"/>
+        <activity android:name=".tradition.TweenedAnimationActivity"/>
+        <activity android:name=".tradition.SwitchAnimActivity"/>
+        <activity android:name=".property.blur.BlurActivity"/>
+        <activity android:name=".property.PropertyAnimationActivity"/>
+        <activity android:name=".property.ValueAnimationActivity"/>
+        <activity android:name=".property.AliPayAnimActivity"/>
+        <activity android:name=".property.ShopCarAddAnimActivity"/>
+        <activity android:name=".property.LayoutAnimationsActivity"/>
+        <activity android:name=".property.RevealAnimatorActivity"/>
+        <!-- customviews -->
+        <activity
+            android:name=".customview.swipeanim.FakeWeiBoActivity"
+            android:theme="@style/AppTheme"/>
+
+        <!-- 百度定位相关 -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2"/>
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="6WGf45WoEZ068VWUtszDQGDP3vvGiRVW"/> <!-- http://lbsyun.baidu.com/apiconsole/key -->
+
+        <activity android:name=".activity.ScreenCaptureActivity"/>
+        <activity android:name=".customview.puzzle.PuzzleActivity"/>
+        <activity
+            android:name=".tradition.VPAnimActivity"
+            android:label="@string/title_activity_vpanim"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".tradition.VPAnim2Activity"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".activity.IModeActivity"
+            android:theme="@style/JianshuTheme"/>
+        <activity android:name=".activity.WavaAnimActivity"/>
+        <activity
+            android:name=".webview.AllWebViewActivity"
+            android:theme="@style/MyTheme.NoActionBar"/>
+        <activity
+            android:name=".activity.FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/FullscreenTheme"/>
+        <activity android:name=".activity.CameraActivity"/>
+        <activity android:name=".customview.bottomsheet.BottomSheetActivity"/>
+        <activity android:name=".customview.bottomsheet.BeautifulBottomSheetActivity"/>
+        <activity android:name=".customview.bottomsheet.BottomSheetDialogActivity"/>
+        <activity android:name=".customview.bottomsheet.NestedScrollViewActivity"/>
+        <activity android:name=".customview.bottomsheet.RecyclerViewActivity"/>
+        <activity android:name=".activity.ImgCacheActivity"/>
+        <activity
+            android:name=".activity.FakeFootballActivity"
+            android:theme="@style/MyTheme.NoActionBar"/>
+        <activity android:name=".customview.wheel.WheelViewActivity"/>
+        <activity
+            android:name=".activity.jianshu.FakeJianShuActivity"
+            android:theme="@style/JianshuTheme"/>
+        <activity
+            android:name=".activity.jianshu.GenScreenShotActivity"
+            android:theme="@style/JianshuTheme"/>
+        <activity android:name=".activity.LoadCircleImageActivity">
+        </activity>
+
+        <!-- Android 7.0 FileUriExposedException -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path"/>
+        </provider>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings">
+        </activity>
+        <activity
+            android:name=".activity.CollegeActivity"
+            android:label="@string/title_activity_college"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".recyclerview.BaseRecyclerViewActivity"
+            android:label="@string/title_activity_base_recycler_view"
+            android:theme="@style/MyTheme">
+        </activity>
+        <activity
+            android:name=".bga.BgaAllActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".activity.PlayActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".activity.PendingImgActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        //demos
+        <activity
+            android:name=".activity.demos.AnimationsDemo"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".activity.demos.CrossfadeActivity"
+            android:label="@string/title_crossfade"
+            android:parentActivityName=".activity.demos.AnimationsDemo"
+            android:uiOptions="splitActionBarWhenNarrow">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.demos.AnimationsDemo"/>
+        </activity>
+        <activity
+            android:name=".activity.demos.CardFlipActivity"
+            android:label="@string/title_card_flip"
+            android:parentActivityName=".activity.demos.AnimationsDemo"
+            android:theme="@style/DarkTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.demos.AnimationsDemo"/>
+        </activity>
+        <activity
+            android:name=".activity.demos.ScreenSlideActivity"
+            android:label="@string/title_screen_slide"
+            android:parentActivityName=".activity.demos.AnimationsDemo"
+            android:uiOptions="splitActionBarWhenNarrow">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.demos.AnimationsDemo"/>
+        </activity>
+        <activity
+            android:name=".activity.demos.ZoomActivity"
+            android:label="@string/title_zoom"
+            android:parentActivityName=".activity.demos.AnimationsDemo">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.demos.AnimationsDemo"/>
+        </activity>
+        <activity
+            android:name=".activity.demos.LayoutChangesActivity"
+            android:label="@string/title_layout_changes"
+            android:parentActivityName=".activity.demos.AnimationsDemo">
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.demos.AnimationsDemo"/>
+        </activity>
+        <activity
+            android:name=".activity.MySwipeMenuActivity"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activity.jianshu.JianShuHeadActivity"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity android:name=".activity.PullRecyclerViewActivity"/>
+        <activity android:name=".activity.FlipViewActivity">
+        </activity>
+        <activity android:name=".activity.FlowLayoutActivity">
+        </activity>
+        <activity android:name=".activity.transtions.SwitcherActivity">
+        </activity>
+        <activity android:name=".activity.transtions.StackViewActivity">
+        </activity>
+        <activity android:name=".activity.transtions.ViewFlipperAcitivity">
+        </activity>
+        <activity
+            android:name=".activity.InputActivity"
+            android:label="Input">
+        </activity>
+        <activity android:name=".activity.MyDrawingBoardActivity">
+        </activity>
+        <activity android:name=".activity.WeiXinGalleryActivity">
+        </activity>
+        <activity
+            android:name=".activity.XiaoMiGalleryActivity"
+            android:label="@string/title_activity_xiao_mi_gallery"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activity.GameViewSaveActivity"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+
+        <!-- widget -->
+        <receiver
+            android:name=".widget.PanoWidgetProvider"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                //
+                <action android:name="home.smart.fly.animations.widget.action.REFRESH"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_provider"/>
+        </receiver>
+
+        <service
+            android:name=".widget.AppWidgetService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
+
+        <activity android:name=".activity.PdfActivity">
+        </activity>
+        <activity android:name=".activity.MailActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:mimeType="text/*"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.MatisseDemoActivity">
+        </activity>
+        <activity android:name=".activity.PhotoProcessActivity"/>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar"/>
+        <activity
+            android:name=".activity.MatissePhotoActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity android:name=".activity.PhotoBrowse"/>
+        <activity
+            android:name=".activity.SwipeFinishActivity"
+            android:theme="@style/Swipe.Back.Activity.Theme">
+        </activity>
+        <activity android:name=".activity.ViewTransformActivity">
+        </activity>
+        <activity android:name=".activity.FileProviderActivity">
+        </activity>
+        <activity android:name=".recyclerview.VegaRecyclerViewActivity">
+        </activity>
+        <activity android:name=".property.DecorViewActivity">
+        </activity>
+        <activity android:name=".activity.Flip3DViewActivity">
+        </activity>
+        <activity
+            android:name=".activity.ViewPagerNestedActivity"
+            android:label="@string/title_activity_view_pager_nested"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activity.LaunchOtherAppActivity"
+            android:label="@string/launch_app">
+        </activity>
+        <activity android:name=".activity.BitmapMeshActivity">
+        </activity>
+        <activity android:name=".activity.PolygonViewActivity">
+        </activity>
+        <activity
+            android:name=".master.ui.MasterPaintActivity"
+            android:hardwareAccelerated="false">
+        </activity>
+        <activity android:name=".master.ui.MasterFilterActivity">
+        </activity>
+        <activity
+            android:name=".activity.OrientationActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".activity.PhysicsViewActivity">
+        </activity>
+        <activity
+            android:name=".activity.ClockViewActivity"
+            android:hardwareAccelerated="true"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity android:name=".activity.ViewStubActivity">
+        </activity>
+        <activity
+            android:name=".activity.LottieAnimationViewActivity"
+            android:label="@string/title_activity_lottie_animation_view"
+            android:theme="@style/JianshuTheme">
+        </activity>
+        <activity
+            android:name=".activity.MergeIncludeViewActivity"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+        <activity android:name=".webview.NestedWebViewActivity">
+        </activity>
+        <activity
+            android:name=".activity.ViewsActivity"
+            android:label="@string/title_activity_views"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
+    </application>
+
+</manifest>
