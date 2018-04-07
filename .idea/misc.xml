@@ -31,4 +31,7 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\zyq\AppData\Roaming\Subversion</configuration>
+  </component>
 </project>
