@@ -349,6 +349,11 @@
             android:label="@string/title_activity_views"
             android:theme="@style/MyTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.multifragments.MultiFragmentsActivity"
+            android:label="@string/title_activity_multi_fragments"
+            android:theme="@style/MyTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

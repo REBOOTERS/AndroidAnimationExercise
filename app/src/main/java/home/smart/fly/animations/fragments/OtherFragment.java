@@ -31,6 +31,7 @@ import home.smart.fly.animations.activity.PdfActivity;
 import home.smart.fly.animations.activity.ScreenCaptureActivity;
 import home.smart.fly.animations.activity.ViewPagerNestedActivity;
 import home.smart.fly.animations.activity.ViewStubActivity;
+import home.smart.fly.animations.activity.multifragments.MultiFragmentsActivity;
 import home.smart.fly.animations.bga.BgaAllActivity;
 import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
 import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
@@ -65,6 +66,7 @@ public class OtherFragment extends Fragment {
     }
 
     private void InitView() {
+        demos.add(new ItemInfo(R.string.title_activity_multi_fragments, MultiFragmentsActivity.class));
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
         demos.add(new ItemInfo(R.string.ViewStub, ViewStubActivity.class));
         demos.add(new ItemInfo(R.string.ViewMerge, MergeIncludeViewActivity.class));

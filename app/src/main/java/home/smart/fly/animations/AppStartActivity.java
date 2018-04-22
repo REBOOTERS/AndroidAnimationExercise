@@ -1,16 +1,12 @@
 package home.smart.fly.animations;
 
 import android.app.ActivityManager;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources.Theme;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Looper;
 import android.provider.Settings;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -24,25 +20,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Transformation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import home.smart.fly.animations.fragments.ImitateFragment;
 import home.smart.fly.animations.fragments.OtherFragment;
 import home.smart.fly.animations.fragments.PropertyFragment;
 import home.smart.fly.animations.fragments.TraditionFragment;
 import home.smart.fly.animations.fragments.ViewsFragment;
+import hugo.weaving.DebugLog;
 
 
 public class AppStartActivity extends AppCompatActivity {
@@ -51,17 +42,6 @@ public class AppStartActivity extends AppCompatActivity {
     private CoordinatorLayout main_contetn;
     private Context mContext;
 
-    private List<String> datas = new ArrayList<>();
-    private List<String> links = new LinkedList<>();
-
-    private Glide mGlide;
-    private Transformation mTransformation;
-
-    private AsyncTask mAsyncTask;
-    private Handler mHandler;
-    private Looper mLooper;
-
-    private NotificationManager mNotificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +114,7 @@ public class AppStartActivity extends AppCompatActivity {
     /**
      * 打印系统目录信息
      */
+    @DebugLog
     private void PrintSystemDirInfo() {
 
 
