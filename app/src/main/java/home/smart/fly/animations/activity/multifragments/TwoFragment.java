@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.customview.CustomTintImageView;
 
 
 public class TwoFragment extends Fragment {
@@ -18,6 +19,8 @@ public class TwoFragment extends Fragment {
     }
 
     private View rootView;
+    private CustomTintImageView mCustomTintImageView;
+    private boolean selected = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,7 +36,15 @@ public class TwoFragment extends Fragment {
             rootView = inflater.inflate(R.layout.fragment_two, container, false);
             loadData();
         }
+        mCustomTintImageView=rootView.findViewById(R.id.check);
+        mCustomTintImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selected=!selected;
+                mCustomTintImageView.setChecked(selected);
 
+            }
+        });
 
         return rootView;
     }

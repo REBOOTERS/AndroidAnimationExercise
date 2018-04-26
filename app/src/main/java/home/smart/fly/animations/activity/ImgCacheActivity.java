@@ -15,8 +15,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.ImageView;
 

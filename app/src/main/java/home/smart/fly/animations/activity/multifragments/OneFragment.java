@@ -26,7 +26,6 @@ public class OneFragment extends Fragment {
     private View rootView;
     private CustomImageView check;
     private boolean selected = false;
-    ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
