@@ -41,8 +41,6 @@ class NestedWebViewActivity : AppCompatActivity() {
             }
         }
 
-
-
     }
 
 
