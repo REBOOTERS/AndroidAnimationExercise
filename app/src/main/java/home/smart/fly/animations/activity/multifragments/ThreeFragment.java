@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import home.smart.fly.animations.R;
 
@@ -19,6 +20,7 @@ public class ThreeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    boolean a=true;
 
     private static final String TAG = "ThreeFragment";
     public ThreeFragment() {
@@ -69,6 +71,18 @@ public class ThreeFragment extends Fragment {
             loadData();
         }
 
+        final ImageView imageView = rootView.findViewById(R.id.image);
+        rootView.findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(a){
+                    imageView.setImageResource(R.drawable.a5);
+                }else {
+                    imageView.setImageResource(R.drawable.cat);
+                }
+                a=!a;
+            }
+        });
 
         return rootView;
     }

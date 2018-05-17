@@ -7,6 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 import home.smart.fly.animations.R;
 
@@ -17,6 +21,7 @@ public class FourFragment extends Fragment {
     private static final String TAG = "FourFragment";
 
     private View rootView;
+    boolean a=true;
 
     public FourFragment() {
         // Required empty public constructor
@@ -38,7 +43,20 @@ public class FourFragment extends Fragment {
             rootView = inflater.inflate(R.layout.fragment_four, container, false);
             loadData();
         }
+        final SubsamplingScaleImageView imageView = rootView.findViewById(R.id.image);
+        imageView.setImage(ImageSource.resource(R.drawable.cat));
 
+        rootView.findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(a){
+                    imageView.setImage(ImageSource.resource(R.drawable.a5));
+                }else {
+                    imageView.setImage(ImageSource.resource(R.drawable.cat));
+                }
+                a=!a;
+            }
+        });
 
         return rootView;
     }
