@@ -59,8 +59,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
-
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -91,7 +89,7 @@ dependencies {
     implementation 'com.github.yalantis:ucrop:2.2.1'
     implementation 'com.bm.photoview:library:1.4.1'
     implementation 'com.gongwen:swipeback:1.0.1'
-    implementation "me.leolin:ShortcutBadger:1.1.19@aar"
+    implementation 'me.leolin:ShortcutBadger:1.1.19@aar'
     implementation 'com.xw.repo:bubbleseekbar:3.10-lite'
     testImplementation 'junit:junit:4.12'
     debugApi 'com.facebook.stetho:stetho:1.5.0'
@@ -99,6 +97,7 @@ dependencies {
     implementation 'com.android.support:support-dynamic-animation:27.1.1'
     implementation 'com.airbnb.android:lottie:2.3.1'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
+    implementation project(':imitate')
 }
 
 

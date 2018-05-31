@@ -26,6 +26,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.engineer.imitate.KotlinActivity;
+
 import java.io.File;
 
 import home.smart.fly.animations.fragments.ImitateFragment;
@@ -80,6 +82,8 @@ public class AppStartActivity extends AppCompatActivity {
                     case 4:
                         transition.replace(R.id.container, new OtherFragment()).commit();
                         break;
+                    case 5:
+                        startActivity(new Intent(mContext, KotlinActivity.class));
                     default:
                         break;
                 }
