@@ -32,8 +32,8 @@ class SlideLayoutManager : RecyclerView.LayoutManager {
 
             val childViewHolder = mRecyclerView.getChildViewHolder(v)
 
-            if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
-                mItemTouchHelper.startSwipe(childViewHolder)
+            if (event?.action == MotionEvent.ACTION_DOWN) {
+                mItemTouchHelper?.startSwipe(childViewHolder)
             }
             return false
         }

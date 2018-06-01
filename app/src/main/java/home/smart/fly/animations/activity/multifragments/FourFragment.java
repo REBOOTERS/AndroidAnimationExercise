@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
@@ -44,7 +43,7 @@ public class FourFragment extends Fragment {
             loadData();
         }
         final SubsamplingScaleImageView imageView = rootView.findViewById(R.id.image);
-        imageView.setImage(ImageSource.resource(R.drawable.cat));
+        imageView.setImage(ImageSource.resource(R.drawable.totoro));
 
         rootView.findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +51,7 @@ public class FourFragment extends Fragment {
                 if(a){
                     imageView.setImage(ImageSource.resource(R.drawable.a5));
                 }else {
-                    imageView.setImage(ImageSource.resource(R.drawable.cat));
+                    imageView.setImage(ImageSource.resource(R.drawable.totoro));
                 }
                 a=!a;
             }

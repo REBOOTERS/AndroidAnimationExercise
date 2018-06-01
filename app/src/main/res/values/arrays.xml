@@ -6,7 +6,6 @@
         <item>模拟第三方APP</item>
         <item>自定义View</item>
         <item>其他view</item>
-        <item>Kotlin</item>
     </string-array>
 
     <string-array name="flows">

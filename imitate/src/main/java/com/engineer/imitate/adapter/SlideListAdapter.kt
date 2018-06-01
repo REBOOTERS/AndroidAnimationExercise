@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.engineer.imitate.R
 
@@ -17,7 +18,7 @@ class SlideListAdapter:RecyclerView.Adapter<SlideListAdapter.MyHolder> {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         return MyHolder(LayoutInflater.from(parent.context)
-                .inflate(R.layout.slide_card_layout,null))
+                .inflate(R.layout.slide_card_layout,parent,false))
     }
 
     override fun getItemCount(): Int {
@@ -25,16 +26,15 @@ class SlideListAdapter:RecyclerView.Adapter<SlideListAdapter.MyHolder> {
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        holder.textView.text = datas[position]
     }
 
 
     class MyHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-         lateinit var textView:TextView
+         lateinit var imageView: ImageView
 
         init {
             if (itemView != null) {
-                textView = itemView.findViewById(R.id.textView)
+                imageView = itemView.findViewById(R.id.image)
             }
         }
     }

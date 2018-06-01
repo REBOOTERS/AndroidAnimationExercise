@@ -26,7 +26,7 @@ public class SwitcherActivity extends AppCompatActivity implements ViewSwitcher.
     // 左右滑动时手指松开的X坐标
     private float touchUpX;
 
-    private int[] arrayPictures = {R.drawable.a5, R.drawable.a6, R.drawable.cat};
+    private int[] arrayPictures = {R.drawable.a5, R.drawable.a6, R.drawable.totoro};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -105,7 +105,7 @@ public class GamePintuLayout extends RelativeLayout implements OnClickListener {
     private void initBitmap() {
         if (mBitmap == null)
             mBitmap = BitmapFactory.decodeResource(getResources(),
-                    R.drawable.cat);
+                    R.drawable.totoro);
 
         /**
          * 将图片切成mColumn*mColumn份

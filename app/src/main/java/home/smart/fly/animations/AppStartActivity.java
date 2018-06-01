@@ -82,8 +82,6 @@ public class AppStartActivity extends AppCompatActivity {
                     case 4:
                         transition.replace(R.id.container, new OtherFragment()).commit();
                         break;
-                    case 5:
-                        startActivity(new Intent(mContext, KotlinActivity.class));
                     default:
                         break;
                 }
@@ -111,7 +109,9 @@ public class AppStartActivity extends AppCompatActivity {
 
         //
 
-
+        findViewById(R.id.fab).setOnClickListener(v -> {
+            startActivity(new Intent(mContext,KotlinActivity.class));
+        });
 
     }
 
