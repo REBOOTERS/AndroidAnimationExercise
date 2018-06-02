@@ -1,6 +1,5 @@
 package com.engineer.imitate.widget.view.layoutmanager
 
-import android.support.v4.view.MotionEventCompat
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.MotionEvent
@@ -33,7 +32,7 @@ class SlideLayoutManager : RecyclerView.LayoutManager {
             val childViewHolder = mRecyclerView.getChildViewHolder(v)
 
             if (event?.action == MotionEvent.ACTION_DOWN) {
-                mItemTouchHelper?.startSwipe(childViewHolder)
+                mItemTouchHelper.startSwipe(childViewHolder)
             }
             return false
         }

@@ -35,7 +35,6 @@ import home.smart.fly.animations.fragments.OtherFragment;
 import home.smart.fly.animations.fragments.PropertyFragment;
 import home.smart.fly.animations.fragments.TraditionFragment;
 import home.smart.fly.animations.fragments.ViewsFragment;
-import hugo.weaving.DebugLog;
 
 
 public class AppStartActivity extends AppCompatActivity {
@@ -118,7 +117,6 @@ public class AppStartActivity extends AppCompatActivity {
     /**
      * 打印系统目录信息
      */
-    @DebugLog
     private void PrintSystemDirInfo() {
 
 

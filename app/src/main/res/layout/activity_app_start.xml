@@ -18,8 +18,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="?android:attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
@@ -43,11 +43,14 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@android:drawable/btn_minus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:backgroundTint="@color/white"
+        app:backgroundTintMode="src_in"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_kotlin_logo"/>
 
 
 </android.support.design.widget.CoordinatorLayout>
