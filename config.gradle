@@ -6,7 +6,7 @@ ext {
 
     support_versioin = '27.1.1'
 
-    kotlin_version = '1.2.41'
+    kotlin_version = '1.2.50'
     gradle_version = '3.1.3'
 
 
