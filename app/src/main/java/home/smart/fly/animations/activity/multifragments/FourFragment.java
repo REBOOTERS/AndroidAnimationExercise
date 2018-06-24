@@ -43,7 +43,7 @@ public class FourFragment extends Fragment {
             loadData();
         }
         final SubsamplingScaleImageView imageView = rootView.findViewById(R.id.image);
-        imageView.setImage(ImageSource.resource(R.drawable.totoro));
+        imageView.setImage(ImageSource.resource(R.drawable.cat));
 
         rootView.findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +51,7 @@ public class FourFragment extends Fragment {
                 if(a){
                     imageView.setImage(ImageSource.resource(R.drawable.a5));
                 }else {
-                    imageView.setImage(ImageSource.resource(R.drawable.totoro));
+                    imageView.setImage(ImageSource.resource(R.drawable.cat));
                 }
                 a=!a;
             }

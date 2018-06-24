@@ -34,7 +34,7 @@
                 android:layout_margin="10dp"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
-                android:src="@drawable/totoro"/>
+                android:src="@drawable/cat"/>
 
             <Button
                 android:id="@+id/button"

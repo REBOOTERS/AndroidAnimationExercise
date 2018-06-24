@@ -97,7 +97,7 @@ public class CollegeActivity extends AppCompatActivity {
             locations.add(mBeanShells.get(i).getName());
         }
 
-        final int[] pics = new int[]{R.drawable.a5, R.drawable.a6, R.drawable.totoro};
+        final int[] pics = new int[]{R.drawable.a5, R.drawable.a6, R.drawable.cat};
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 

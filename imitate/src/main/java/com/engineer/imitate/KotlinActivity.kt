@@ -8,19 +8,25 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.engineer.imitate.R.id.tabs
+import com.engineer.imitate.R.id.toolbar
 import com.engineer.imitate.fragments.CircleLoadingFragment
 import com.engineer.imitate.fragments.SlideFragment
 import kotlinx.android.synthetic.main.activity_kotlin.*
 
 class KotlinActivity : AppCompatActivity() {
 
-    private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
+    private lateinit var mSectionsPagerAdapter: SectionsPagerAdapter
+
+    private lateinit var fragments: MutableList<Fragment>
+    private lateinit var titles: MutableList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin)
-
+        toolbar.setTitle(R.string.kotlin)
         setSupportActionBar(toolbar)
+        initFragments()
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
@@ -32,6 +38,17 @@ class KotlinActivity : AppCompatActivity() {
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
         tabs.setupWithViewPager(container)
 
+    }
+
+    fun initFragments() {
+        fragments = ArrayList()
+        titles = ArrayList()
+
+        fragments.add(SlideFragment())
+        fragments.add(CircleLoadingFragment())
+
+        titles.add("Slide")
+        titles.add("CircleLoading")
     }
 
 
@@ -59,20 +76,16 @@ class KotlinActivity : AppCompatActivity() {
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment {
-            return when (position) {
-                0 -> SlideFragment()
-                1 -> CircleLoadingFragment()
-                else -> SlideFragment()
-            }
+            return fragments[position]
         }
 
         override fun getCount(): Int {
             // Show 3 total pages.
-            return 3
+            return fragments.size
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
-            return "_$position"
+            return title[position].toString()
         }
     }
 

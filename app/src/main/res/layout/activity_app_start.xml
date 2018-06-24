@@ -49,8 +49,8 @@
         android:layout_margin="16dp"
         android:backgroundTint="@color/white"
         app:backgroundTintMode="src_in"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/ic_kotlin_logo"/>
+        app:fabSize="mini"
+        app:srcCompat="@drawable/k"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -19,7 +19,7 @@ public class AppWidgetService extends Service implements Runnable {
     private boolean live = false;
     private int index;
 
-    static int[] ids = {R.drawable.a5, R.drawable.a6, R.drawable.totoro,};
+    static int[] ids = {R.drawable.a5, R.drawable.a6, R.drawable.cat,};
 
 
     public AppWidgetService() {

@@ -15,7 +15,7 @@
         android:layout_height="180dp"
         android:background="@color/cpb_red"
         android:scaleType="fitXY"
-        android:src="@drawable/totoro"/>
+        android:src="@drawable/cat"/>
 
     <LinearLayout
         android:layout_width="match_parent"

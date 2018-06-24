@@ -78,7 +78,7 @@ public class ThreeFragment extends Fragment {
                 if(a){
                     imageView.setImageResource(R.drawable.a5);
                 }else {
-                    imageView.setImageResource(R.drawable.totoro);
+                    imageView.setImageResource(R.drawable.cat);
                 }
                 a=!a;
             }

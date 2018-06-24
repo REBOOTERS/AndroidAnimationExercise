@@ -71,7 +71,7 @@ public class TransformView extends View {
 
     private void initBitmap() {
         if (UpDownFlipView || LeftRightFlipView) {
-            mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.totoro);
+            mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cat);
             center = new Point((viewW - mBitmap.getWidth()) / 2,
                     (viewH - mBitmap.getHeight()) / 2);
             //

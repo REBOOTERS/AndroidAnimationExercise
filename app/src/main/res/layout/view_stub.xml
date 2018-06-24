@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:src="@drawable/totoro"
+        android:src="@drawable/cat"
         android:layout_width="200dp"
         android:layout_height="200dp"/>
 

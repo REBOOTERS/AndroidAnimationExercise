@@ -65,7 +65,7 @@ public class MasterPaintView extends View {
     private void initPaint() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         res = getResources();
-        source = BitmapFactory.decodeResource(res, R.drawable.totoro);
+        source = BitmapFactory.decodeResource(res, R.drawable.cat);
         cover = BitmapFactory.decodeResource(res, R.drawable.circle);
         mStartColor = res.getColor(R.color.cpb_red);
         mEndColor = res.getColor(R.color.cpb_green);

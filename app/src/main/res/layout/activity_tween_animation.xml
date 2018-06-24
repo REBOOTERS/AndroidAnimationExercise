@@ -264,7 +264,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="25dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/totoro" />
+                android:src="@drawable/cat" />
 
         </FrameLayout>
 
