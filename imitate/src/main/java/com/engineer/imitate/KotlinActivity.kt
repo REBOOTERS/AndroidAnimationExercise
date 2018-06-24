@@ -8,8 +8,6 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.engineer.imitate.R.id.tabs
-import com.engineer.imitate.R.id.toolbar
 import com.engineer.imitate.fragments.CircleLoadingFragment
 import com.engineer.imitate.fragments.SlideFragment
 import kotlinx.android.synthetic.main.activity_kotlin.*
