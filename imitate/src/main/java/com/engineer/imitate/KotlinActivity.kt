@@ -35,7 +35,7 @@ class KotlinActivity : AppCompatActivity() {
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
         tabs.setupWithViewPager(container)
-
+        tabs.tabMode=TabLayout.MODE_SCROLLABLE
     }
 
     fun initFragments() {
@@ -83,7 +83,7 @@ class KotlinActivity : AppCompatActivity() {
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
-            return title[position].toString()
+            return titles[position]
         }
     }
 
