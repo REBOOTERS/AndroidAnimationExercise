@@ -31,6 +31,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.GifSizeFilter;
+import home.smart.fly.animations.utils.Glide4Engine;
 import home.smart.fly.animations.utils.Tools;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -111,7 +112,7 @@ public class MatisseDemoActivity extends AppCompatActivity implements View.OnCli
                                                     getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
                                             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                                             .thumbnailScale(0.85f)
-                                            .imageEngine(new GlideEngine())
+                                            .imageEngine(new Glide4Engine())
                                             .forResult(REQUEST_CODE_CHOOSE);
                                     break;
                                 case R.id.dracula:

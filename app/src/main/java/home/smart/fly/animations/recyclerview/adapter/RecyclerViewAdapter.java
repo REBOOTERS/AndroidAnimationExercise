@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.image_item, parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.image_item, parent, false);
         MyHolder holder = new MyHolder(view);
         return holder;
     }
@@ -47,7 +48,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(final MyHolder holder, final int position) {
 
 
-        Glide.with(mContext).load(demos.get(position)).placeholder(R.drawable.a6).into(holder.mImageView);
+        Glide.with(mContext)
+                .load(demos.get(position))
+                .apply(new RequestOptions().placeholder(R.drawable.a6))
+                .into(holder.mImageView);
 
 
         holder.itemshell.setOnClickListener(new View.OnClickListener() {

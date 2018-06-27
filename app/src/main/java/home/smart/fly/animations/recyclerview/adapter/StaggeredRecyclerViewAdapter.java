@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,10 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
         params.height = heights.get(position);
         holder.mImageView.setLayoutParams(params);
 
-        Glide.with(mContext).load(demos.get(position)).placeholder(R.drawable.a6).into(holder.mImageView);
+        Glide.with(mContext).
+                load(demos.get(position))
+                .apply(new RequestOptions().placeholder(R.drawable.a6))
+                .into(holder.mImageView);
         holder.itemshell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

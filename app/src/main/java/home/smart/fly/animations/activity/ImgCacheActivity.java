@@ -22,6 +22,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -72,7 +73,7 @@ public class ImgCacheActivity extends AppCompatActivity {
 
         Glide.with(this)
                 .load(IMG_URL)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.RESOURCE))
                 .into(img2);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);

@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -133,7 +134,7 @@ public class CollegeActivity extends AppCompatActivity {
                 mToolbarLayout.setTitle(String.valueOf(mBeanShells.get(position).getSchool().size()));
                 Glide.with(mContext)
                         .load(pics[position % pics.length])
-                        .placeholder(R.drawable.a6)
+                        .apply(new RequestOptions().placeholder(R.drawable.a6))
                         .into(headImage);
 
                 Log.e(TAG, "the longitude is " + mBeanShells.get(position).getLatLng().longitude);

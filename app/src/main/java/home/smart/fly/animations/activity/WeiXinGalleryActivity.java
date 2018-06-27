@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -64,7 +65,8 @@ public class WeiXinGalleryActivity extends AppCompatActivity {
 
         @Override
         protected void fillData(BGAViewHolderHelper helper, int position, String model) {
-            Glide.with(mContext).load(pics.get(position)).placeholder(R.drawable.a5)
+            Glide.with(mContext).load(pics.get(position)).
+                    apply(new RequestOptions().placeholder(R.drawable.a5))
                     .into(helper.getImageView(R.id.image));
         }
     }

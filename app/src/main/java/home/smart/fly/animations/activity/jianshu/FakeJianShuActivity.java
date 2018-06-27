@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -86,8 +87,11 @@ public class FakeJianShuActivity extends AppCompatActivity {
         protected void onPostExecute(HtmlBean s) {
             super.onPostExecute(s);
             mHtmlBean = s;
-            Glide.with(mContext).load("http:" + s.getUserImg()).placeholder(R.drawable.default_avtar).
-                    error(R.drawable.default_avtar).into(userImg);
+            Glide.with(mContext).load("http:" + s.getUserImg())
+                    .apply(new RequestOptions()
+                            .placeholder(R.drawable.default_avtar)
+                            .error(R.drawable.default_avtar))
+                    .into(userImg);
             String text = s.getContent();
             text=text.replace("data-original-src", "src");
             text=text.replace("//upload-images", "http://upload-images");
