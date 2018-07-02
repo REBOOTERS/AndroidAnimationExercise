@@ -32,7 +32,8 @@ class TextDrawableFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var progress = CircularProgressDrawable(mContext)
         progress.setStyle(CircularProgressDrawable.DEFAULT)
-        textView.setCompoundDrawables(progress,null,null,null)
+//        textView.setCompoundDrawables(progress,null,null,null)
+        textView.setCompoundDrawablesWithIntrinsicBounds(progress,null,null,null)
     }
 
 
