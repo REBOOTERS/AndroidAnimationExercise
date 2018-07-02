@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/white"
+        app:backgroundTint="@color/colorPrimary"
         app:backgroundTintMode="src_in"
         app:fabSize="mini"
         app:srcCompat="@drawable/k"/>

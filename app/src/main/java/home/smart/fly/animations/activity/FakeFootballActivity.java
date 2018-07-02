@@ -6,11 +6,13 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -41,15 +43,16 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.adapter.MyAdapter;
 import home.smart.fly.animations.adapter.PlayerBean;
 import home.smart.fly.animations.customview.views.BallGameView;
 import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.Tools;
 
-public class FakeFootballActivity extends AppCompatActivity implements BGAOnRVItemClickListener {
+public class FakeFootballActivity extends AppCompatActivity  {
 
     @BindView(R.id.gameView)
-    BallGameView mGameView;
+    public BallGameView mGameView;
     @BindView(R.id.playerLists)
     RecyclerView playerLists;
 
@@ -60,7 +63,7 @@ public class FakeFootballActivity extends AppCompatActivity implements BGAOnRVIt
     @BindView(R.id.content)
     FrameLayout content;
     private Context mContext;
-    private MyAdapter adapter;
+    private PlayAdapter adapter;
 
 
     private List<PlayerBean> mPlayerBeanList = new ArrayList<>();
@@ -151,74 +154,123 @@ public class FakeFootballActivity extends AppCompatActivity implements BGAOnRVIt
         mPlayerBeanList = mGson.fromJson(json, new TypeToken<List<PlayerBean>>() {
         }.getType());
 
-        adapter = new MyAdapter(playerLists);
-        adapter.setOnRVItemClickListener(this);
+        adapter = new PlayAdapter(mPlayerBeanList);
         GridLayoutManager manager = new GridLayoutManager(mContext, 2, LinearLayoutManager.HORIZONTAL, false);
         playerLists.setLayoutManager(manager);
         playerLists.setAdapter(adapter);
-        adapter.setData(mPlayerBeanList);
+        adapter.setOnRVItemClickListener(new PlayAdapter.OnRVItemClickListener() {
+            @Override
+            public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+                int mBubblePosition = mGameView.getCurrentPos();
+
+                if (mBubblePosition == -1) {
+                    Toast.makeText(mContext, "先点击气泡，再添加球员", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                if (mPlayerBeanList.get(position).isSelected()) {
+                    Toast.makeText(mContext, "球员已被选择!", Toast.LENGTH_SHORT).show();
+                } else {
+
+
+                    View avatar = itemView.findViewById(R.id.img);
+
+
+                    int width = avatar.getWidth();
+                    int height = avatar.getHeight();
+                    Bitmap bitmap = Tools.View2Bitmap(avatar, width, height);
+                    int[] location = new int[2];
+                    itemView.getLocationOnScreen(location);
+                    if (bitmap != null) {
+                        mGameView.updatePlayer(bitmap, mPlayerBeanList.get(position).getName(), location, content);
+                        for (int i = 0; i < mPlayerBeanList.size(); i++) {
+                            if (mPlayerBeanList.get(i).getPosition() == mBubblePosition) {
+                                //同一个位置，先把上次选中的球员，设置为未选中
+                                mPlayerBeanList.get(i).setSelected(false);
+                            }
+                        }
+                        //将此次更新的球员设置为气泡上选中的球员
+                        mPlayerBeanList.get(position).setSelected(true);
+                        mPlayerBeanList.get(position).setPosition(mBubblePosition);
+                        adapter.notifyDataSetChanged();
+                    }
+
+                }
+            }
+        });
     }
 
 
-    @Override
-    public void onRVItemClick(ViewGroup parent, View itemView, int position) {
 
-        int mBubblePosition = mGameView.getCurrentPos();
 
-        if (mBubblePosition == -1) {
-            Toast.makeText(mContext, "先点击气泡，再添加球员", Toast.LENGTH_SHORT).show();
-            return;
+    private static class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.MyHolder>{
+
+
+
+        public interface  OnRVItemClickListener {
+            void onRVItemClick(ViewGroup parent, View itemView, int position);
         }
 
+        private OnRVItemClickListener mOnRVItemClickListener;
 
-        if (mPlayerBeanList.get(position).isSelected()) {
-            Toast.makeText(mContext, "球员已被选择!", Toast.LENGTH_SHORT).show();
-        } else {
+        public void setOnRVItemClickListener(OnRVItemClickListener onRVItemClickListener) {
+            mOnRVItemClickListener = onRVItemClickListener;
+        }
 
+        private List<PlayerBean> mPlayerBeanList;
+        private Context mContext;
 
-            View avatar = itemView.findViewById(R.id.img);
+        public PlayAdapter(List<PlayerBean> playerBeanList) {
+            mPlayerBeanList = playerBeanList;
+        }
 
-
-            int width = avatar.getWidth();
-            int height = avatar.getHeight();
-            Bitmap bitmap = Tools.View2Bitmap(avatar, width, height);
-            int[] location = new int[2];
-            itemView.getLocationOnScreen(location);
-            if (bitmap != null) {
-                mGameView.updatePlayer(bitmap, mPlayerBeanList.get(position).getName(), location, content);
-                for (int i = 0; i < mPlayerBeanList.size(); i++) {
-                    if (mPlayerBeanList.get(i).getPosition() == mBubblePosition) {
-                        //同一个位置，先把上次选中的球员，设置为未选中
-                        mPlayerBeanList.get(i).setSelected(false);
+        @NonNull
+        @Override
+        public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            mContext = parent.getContext();
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dqd_player_item,parent,false);
+            MyHolder myHolder = new MyHolder(view);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mOnRVItemClickListener != null) {
+                        mOnRVItemClickListener.onRVItemClick(parent,view,myHolder.getAdapterPosition());
                     }
                 }
-                //将此次更新的球员设置为气泡上选中的球员
-                mPlayerBeanList.get(position).setSelected(true);
-                mPlayerBeanList.get(position).setPosition(mBubblePosition);
-                adapter.notifyDataSetChanged();
-            }
-
-        }
-
-    }
-
-
-    private class MyAdapter extends BGARecyclerViewAdapter<PlayerBean> {
-
-
-        public MyAdapter(RecyclerView recyclerView) {
-            super(recyclerView, R.layout.dqd_player_item);
+            });
+            return myHolder;
         }
 
         @Override
-        protected void fillData(BGAViewHolderHelper helper, int position, PlayerBean model) {
-            helper.setText(R.id.name, model.getName());
-            Glide.with(mContext).load(model.getPerson_img()).into(helper.getImageView(R.id.img));
+        public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+            PlayerBean model = mPlayerBeanList.get(position);
+            holder.mPlayerName.setText(model.getName());
+            Glide.with(mContext).load(model.getPerson_img()).into(holder.mPlayerImg);
             if (model.isSelected()) {
-                helper.setImageResource(R.id.isSel, R.drawable.battle_player_state_checked);
+                holder.mPlayerSel.setImageResource( R.drawable.battle_player_state_checked);
             } else {
-                helper.setImageResource(R.id.isSel, R.drawable.battle_player_state_unchecked);
+                holder.mPlayerSel.setImageResource( R.drawable.battle_player_state_unchecked);
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return 0;
+        }
+
+        static class MyHolder extends RecyclerView.ViewHolder{
+            private TextView mPlayerName;
+            private ImageView mPlayerImg;
+            private ImageView mPlayerSel;
+
+            public MyHolder(View itemView) {
+                super(itemView);
+                mPlayerName = itemView.findViewById(R.id.name);
+                mPlayerImg = itemView.findViewById(R.id.img);
+                mPlayerSel = itemView.findViewById(R.id.isSel);
             }
         }
     }
+
 }

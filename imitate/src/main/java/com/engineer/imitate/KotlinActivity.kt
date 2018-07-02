@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.engineer.imitate.fragments.CircleLoadingFragment
 import com.engineer.imitate.fragments.SlideFragment
+import com.engineer.imitate.fragments.TextDrawableFragment
 import kotlinx.android.synthetic.main.activity_kotlin.*
 
 class KotlinActivity : AppCompatActivity() {
@@ -44,9 +45,11 @@ class KotlinActivity : AppCompatActivity() {
 
         fragments.add(SlideFragment())
         fragments.add(CircleLoadingFragment())
+        fragments.add(TextDrawableFragment())
 
         titles.add("Slide")
         titles.add("CircleLoading")
+        titles.add(("TextDrawable"))
     }
 
 
