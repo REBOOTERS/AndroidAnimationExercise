@@ -95,7 +95,7 @@ dependencies {
     implementation 'me.leolin:ShortcutBadger:1.1.19@aar'
     implementation 'com.xw.repo:bubbleseekbar:3.10-lite'
     testImplementation 'junit:junit:4.12'
-    debugApi 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:support-dynamic-animation:$support_versioin"
     implementation 'com.airbnb.android:lottie:2.3.1'
