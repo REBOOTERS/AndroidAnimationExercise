@@ -2,6 +2,9 @@
 
 # AndroidAnimationExercise
 
+[![Build Status](https://travis-ci.org/REBOOTERS/AndroidAnimationExercise.svg?branch=master)](https://travis-ci.org/REBOOTERS/AndroidAnimationExercise)
+
+
 这是一个关于Android中各种View的集合，里面包含自己日常开发和博客总结中的代码。
 主要内容是**Android动画、Android自定义View 相关的知识**，**包含一些常见应用中动画效果的模仿实例**.
 随着时间的推移，里面积累的很多代码，大致用5个Fragment 做了分类：
