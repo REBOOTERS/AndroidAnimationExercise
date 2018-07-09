@@ -31,4 +31,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
+
+
+    <RelativeLayout
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:background="@color/cpb_green"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="22sp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/name"
+            android:singleLine="true"
+            android:text="1111111111111123111ddd111w3"
+            android:layout_width="wrap_content"
+            android:maxWidth="300dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="22sp"
+            android:textColor="@color/cpb_red"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/name"
+            android:id="@+id/time"
+            android:text="15:00"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 </LinearLayout>
