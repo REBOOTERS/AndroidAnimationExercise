@@ -39,17 +39,13 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
-import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
-import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.adapter.MyAdapter;
 import home.smart.fly.animations.adapter.PlayerBean;
 import home.smart.fly.animations.customview.views.BallGameView;
 import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.Tools;
 
-public class FakeFootballActivity extends AppCompatActivity  {
+public class FakeFootballActivity extends AppCompatActivity {
 
     @BindView(R.id.gameView)
     public BallGameView mGameView;
@@ -155,7 +151,8 @@ public class FakeFootballActivity extends AppCompatActivity  {
         }.getType());
 
         adapter = new PlayAdapter(mPlayerBeanList);
-        GridLayoutManager manager = new GridLayoutManager(mContext, 2, LinearLayoutManager.HORIZONTAL, false);
+        GridLayoutManager manager = new GridLayoutManager(mContext,
+                2, LinearLayoutManager.HORIZONTAL, false);
         playerLists.setLayoutManager(manager);
         playerLists.setAdapter(adapter);
         adapter.setOnRVItemClickListener(new PlayAdapter.OnRVItemClickListener() {
@@ -202,13 +199,10 @@ public class FakeFootballActivity extends AppCompatActivity  {
     }
 
 
+    private static class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.MyHolder> {
 
 
-    private static class PlayAdapter extends RecyclerView.Adapter<PlayAdapter.MyHolder>{
-
-
-
-        public interface  OnRVItemClickListener {
+        public interface OnRVItemClickListener {
             void onRVItemClick(ViewGroup parent, View itemView, int position);
         }
 
@@ -229,14 +223,12 @@ public class FakeFootballActivity extends AppCompatActivity  {
         @Override
         public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             mContext = parent.getContext();
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dqd_player_item,parent,false);
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.dqd_player_item, parent, false);
             MyHolder myHolder = new MyHolder(view);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mOnRVItemClickListener != null) {
-                        mOnRVItemClickListener.onRVItemClick(parent,view,myHolder.getAdapterPosition());
-                    }
+            view.setOnClickListener(v -> {
+                if (mOnRVItemClickListener != null) {
+                    mOnRVItemClickListener.onRVItemClick(parent, view, myHolder.getAdapterPosition());
                 }
             });
             return myHolder;
@@ -248,18 +240,18 @@ public class FakeFootballActivity extends AppCompatActivity  {
             holder.mPlayerName.setText(model.getName());
             Glide.with(mContext).load(model.getPerson_img()).into(holder.mPlayerImg);
             if (model.isSelected()) {
-                holder.mPlayerSel.setImageResource( R.drawable.battle_player_state_checked);
+                holder.mPlayerSel.setImageResource(R.drawable.battle_player_state_checked);
             } else {
-                holder.mPlayerSel.setImageResource( R.drawable.battle_player_state_unchecked);
+                holder.mPlayerSel.setImageResource(R.drawable.battle_player_state_unchecked);
             }
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return mPlayerBeanList.size();
         }
 
-        static class MyHolder extends RecyclerView.ViewHolder{
+        static class MyHolder extends RecyclerView.ViewHolder {
             private TextView mPlayerName;
             private ImageView mPlayerImg;
             private ImageView mPlayerSel;

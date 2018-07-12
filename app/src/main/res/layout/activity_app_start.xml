@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:id="@+id/main_content"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:background="@color/cpb_white"
-                                                 android:fitsSystemWindows="true"
-                                                 tools:context="home.smart.fly.animations.AppStartActivity">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cpb_white"
+    android:fitsSystemWindows="true"
+    tools:context="home.smart.fly.animations.AppStartActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -46,10 +47,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="50dp"
         app:backgroundTint="@color/colorPrimary"
         app:backgroundTintMode="src_in"
-        app:fabSize="mini"
+        app:elevation="20dp"
+        app:fabSize="normal"
         app:srcCompat="@drawable/k"/>
 
 

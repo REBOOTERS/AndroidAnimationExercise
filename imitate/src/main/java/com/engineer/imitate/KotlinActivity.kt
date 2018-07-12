@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import com.engineer.imitate.R.id.tabs
+import com.engineer.imitate.R.id.toolbar
 import com.engineer.imitate.fragments.CircleLoadingFragment
 import com.engineer.imitate.fragments.SlideFragment
 import com.engineer.imitate.fragments.TextDrawableFragment
@@ -24,7 +27,8 @@ class KotlinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin)
         toolbar.setTitle(R.string.kotlin)
-        setSupportActionBar(toolbar)
+        toolbar.visibility = View.GONE
+//        setSupportActionBar(toolbar)
         initFragments()
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -50,6 +54,8 @@ class KotlinActivity : AppCompatActivity() {
         titles.add("Slide")
         titles.add("CircleLoading")
         titles.add(("TextDrawable"))
+
+        //  https://github.com/quiph/RecyclerView-FastScroller
     }
 
 

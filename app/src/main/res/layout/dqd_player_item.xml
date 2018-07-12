@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="10dp"
-    android:orientation="vertical">
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              xmlns:tool="http://schemas.android.com/tools"
+              android:layout_marginBottom="10dp"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -26,7 +27,6 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/img"
             android:layout_alignEnd="@id/img"
-            android:layout_alignRight="@id/img"
             android:src="@drawable/battle_player_state_unchecked" />
 
 
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="11111111111111111"
+        tool:text="11111111111111111"
         android:textColor="@color/black"
-        android:textSize="10sp" />
+        android:textSize="12sp" />
 </LinearLayout>
