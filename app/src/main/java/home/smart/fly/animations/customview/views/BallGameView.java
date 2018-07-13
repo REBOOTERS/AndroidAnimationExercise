@@ -405,7 +405,7 @@ public class BallGameView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int viewW = screenW;
-        int viewH = (int) (screenW * 1.3);
+        int viewH = (int) (screenW * 1.25);
         setMeasuredDimension(viewW, viewH);
     }
 
