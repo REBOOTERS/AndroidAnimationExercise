@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_margin="20dp" />
 
-        <com.engineer.imitate.widget.custom.CircleLoading
+        <com.engineer.imitate.widget.custom.CircleLoadingPro
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -35,13 +35,13 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.engineer.imitate.widget.custom.CircleLoading
+        <com.engineer.imitate.widget.custom.CircleLoadingUltimate
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_margin="20dp" />
 
-        <com.engineer.imitate.widget.custom.CircleLoading
+        <com.engineer.imitate.widget.custom.CircleLoadingLite
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"

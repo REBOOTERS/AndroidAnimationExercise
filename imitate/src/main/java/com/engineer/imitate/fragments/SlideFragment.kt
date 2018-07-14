@@ -106,8 +106,8 @@ class SlideFragment : Fragment() {
             index += 1
 
             when (direction) {
-                ItemConfig.SLIDED_LEFT -> Toast.makeText(context, "left", Toast.LENGTH_SHORT).show()
-                ItemConfig.SLIDED_RIGHT -> Toast.makeText(context, "right", Toast.LENGTH_SHORT).show()
+                ItemConfig.SLIDED_LEFT -> Toast.makeText(context, "赞", Toast.LENGTH_SHORT).show()
+                ItemConfig.SLIDED_RIGHT -> Toast.makeText(context, "讨厌", Toast.LENGTH_SHORT).show()
             }
         }
 
