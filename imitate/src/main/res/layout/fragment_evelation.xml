@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".fragments.EvelationFragment">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="5dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/cpb_red" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_gravity="center_vertical"
+            app:fabSize="normal"
+            android:src="@drawable/ic_add_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+    <com.xw.repo.BubbleSeekBar
+        android:id="@+id/cardElevationSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:bsb_bubble_color="@color/cpb_green"
+        app:bsb_bubble_text_color="@color/colorPrimaryDark"
+        app:bsb_max="100"
+        app:bsb_min="0"
+        app:bsb_progress="0"
+        app:bsb_show_section_text="true" />
+
+    <com.xw.repo.BubbleSeekBar
+        android:id="@+id/cardRadiusSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:bsb_bubble_color="@color/cpb_green"
+        app:bsb_bubble_text_color="@color/colorPrimaryDark"
+        app:bsb_max="45"
+        app:bsb_min="0"
+        app:bsb_progress="0"
+        app:bsb_show_section_text="true" />
+
+
+</LinearLayout>

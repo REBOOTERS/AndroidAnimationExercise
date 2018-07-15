@@ -1,4 +1,4 @@
-package com.engineer.imitate.widget.custom
+package com.engineer.imitate.widget.custom.loading
 
 import android.animation.ValueAnimator
 import android.content.Context

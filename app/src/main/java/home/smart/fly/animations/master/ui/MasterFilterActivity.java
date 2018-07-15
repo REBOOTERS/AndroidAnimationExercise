@@ -75,48 +75,50 @@ public class MasterFilterActivity extends AppCompatActivity {
 
         red.setOnProgressChangedListener(new SeekBarListener() {
             @Override
-            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-                super.onProgressChanged(bubbleSeekBar, progress, progressFloat);
+            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat,boolean fromUser) {
+                super.onProgressChanged(bubbleSeekBar, progress, progressFloat,fromUser);
                 r = progress;
                 calculate();
             }
         });
         green.setOnProgressChangedListener(new SeekBarListener() {
             @Override
-            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-                super.onProgressChanged(bubbleSeekBar, progress, progressFloat);
+            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat,boolean fromUser) {
+                super.onProgressChanged(bubbleSeekBar, progress, progressFloat,fromUser);
                 g = progress;
                 calculate();
             }
         });
         blue.setOnProgressChangedListener(new SeekBarListener() {
             @Override
-            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-                super.onProgressChanged(bubbleSeekBar, progress, progressFloat);
+            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat,boolean fromUser) {
+                super.onProgressChanged(bubbleSeekBar, progress, progressFloat,fromUser);
                 b = progress;
                 calculate();
             }
         });
         red1.setOnProgressChangedListener(new SeekBarListener() {
             @Override
-            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-                super.onProgressChanged(bubbleSeekBar, progress, progressFloat);
+            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat,boolean fromUser) {
+                super.onProgressChanged(bubbleSeekBar, progress, progressFloat,fromUser);
                 r1 = progress;
                 calculate();
             }
         });
         green1.setOnProgressChangedListener(new SeekBarListener() {
+
+
             @Override
-            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-                super.onProgressChanged(bubbleSeekBar, progress, progressFloat);
+            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat,boolean fromUser) {
+                super.onProgressChanged(bubbleSeekBar, progress, progressFloat,fromUser);
                 g1 = progress;
                 calculate();
             }
         });
         blue1.setOnProgressChangedListener(new SeekBarListener() {
             @Override
-            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-                super.onProgressChanged(bubbleSeekBar, progress, progressFloat);
+            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat,boolean fromUser) {
+                super.onProgressChanged(bubbleSeekBar, progress, progressFloat,fromUser);
                 b1 = progress;
                 calculate();
             }
@@ -128,8 +130,9 @@ public class MasterFilterActivity extends AppCompatActivity {
 
     private class SeekBarListener implements BubbleSeekBar.OnProgressChangedListener {
 
+
         @Override
-        public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
+        public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
 
         }
 
@@ -139,8 +142,10 @@ public class MasterFilterActivity extends AppCompatActivity {
         }
 
         @Override
-        public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
+        public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
 
         }
+
+
     }
 }

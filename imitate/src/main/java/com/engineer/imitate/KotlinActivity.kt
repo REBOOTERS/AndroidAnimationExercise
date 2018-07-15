@@ -12,6 +12,7 @@ import android.view.View
 import com.engineer.imitate.R.id.tabs
 import com.engineer.imitate.R.id.toolbar
 import com.engineer.imitate.fragments.CircleLoadingFragment
+import com.engineer.imitate.fragments.EvelationFragment
 import com.engineer.imitate.fragments.SlideFragment
 import com.engineer.imitate.fragments.TextDrawableFragment
 import kotlinx.android.synthetic.main.activity_kotlin.*
@@ -27,8 +28,7 @@ class KotlinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin)
         toolbar.setTitle(R.string.kotlin)
-        toolbar.visibility = View.GONE
-//        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar)
         initFragments()
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -50,10 +50,12 @@ class KotlinActivity : AppCompatActivity() {
         fragments.add(SlideFragment())
         fragments.add(CircleLoadingFragment())
         fragments.add(TextDrawableFragment())
+        fragments.add(EvelationFragment())
 
-        titles.add("Slide")
-        titles.add("CircleLoading")
-        titles.add(("TextDrawable"))
+        titles.add("探探")
+        titles.add("Loading")
+        titles.add("TextDrawable")
+        titles.add("evelation")
 
         //  https://github.com/quiph/RecyclerView-FastScroller
     }
