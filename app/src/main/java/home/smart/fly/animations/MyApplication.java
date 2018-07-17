@@ -2,6 +2,7 @@ package home.smart.fly.animations;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -19,5 +20,12 @@ public class MyApplication extends MultiDexApplication {
             return;
         }
         LeakCanary.install(this);
+
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog();
+            ARouter.openDebug();
+        }
+
+        ARouter.init(this);
     }
 }

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R.id.tabs
 import com.engineer.imitate.R.id.toolbar
 import com.engineer.imitate.fragments.CircleLoadingFragment
@@ -16,7 +17,7 @@ import com.engineer.imitate.fragments.EvelationFragment
 import com.engineer.imitate.fragments.SlideFragment
 import com.engineer.imitate.fragments.TextDrawableFragment
 import kotlinx.android.synthetic.main.activity_kotlin.*
-
+@Route(path="/index/kotlin")
 class KotlinActivity : AppCompatActivity() {
 
     private lateinit var mSectionsPagerAdapter: SectionsPagerAdapter

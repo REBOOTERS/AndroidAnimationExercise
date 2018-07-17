@@ -27,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.engineer.imitate.KotlinActivity;
 
 import java.io.File;
@@ -112,7 +113,7 @@ public class AppStartActivity extends AppCompatActivity {
         //
 
         findViewById(R.id.fab).setOnClickListener(v -> {
-            startActivity(new Intent(mContext,KotlinActivity.class));
+            ARouter.getInstance().build("/index/kotlin").navigation();
         });
 
     }
