@@ -1,1 +1,1 @@
-include ':app', ':imitate'
+include ':app', ':imitate', ':phenix'

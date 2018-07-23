@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidAnimationExercise.iml" filepath="$PROJECT_DIR$/AndroidAnimationExercise.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/imitate/imitate.iml" filepath="$PROJECT_DIR$/imitate/imitate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/phenix/phenix.iml" filepath="$PROJECT_DIR$/phenix/phenix.iml" />
     </modules>
   </component>
 </project>

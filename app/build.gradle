@@ -107,12 +107,11 @@ dependencies {
     implementation 'com.airbnb.android:lottie:2.3.1'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
     implementation project(':imitate')
-
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     annotationProcessor "com.alibaba:arouter-compiler:$ext.arouter_compiler"
-
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$ext.leakcanary"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$ext.leakcanary"
+    implementation project(':phenix')
 }
 
 

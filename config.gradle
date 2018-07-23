@@ -5,6 +5,7 @@ ext {
     targetSdkVersion = 27
 
     support_versioin = '27.1.1'
+    constraint_layout = '1.1.2'
 
     kotlin_version = '1.2.51'
     gradle_version = '3.1.3'

@@ -59,6 +59,7 @@ class KotlinActivity : AppCompatActivity() {
         titles.add("evelation")
 
         //  https://github.com/quiph/RecyclerView-FastScroller
+        //  https://github.com/HJ-Money/MTransition
     }
 
 

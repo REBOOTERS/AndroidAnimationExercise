@@ -112,9 +112,7 @@ public class AppStartActivity extends AppCompatActivity {
 
         //
 
-        findViewById(R.id.fab).setOnClickListener(v -> {
-            ARouter.getInstance().build("/index/kotlin").navigation();
-        });
+        findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance().build("/index/kotlin").navigation());
 
     }
 
