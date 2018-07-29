@@ -44,6 +44,8 @@
     <string name="flipView">FlipView 效果</string>
     <string name="swipeFinish">Swipe Finish  Activity</string>
     <string name="Matisse">Matisse 相册效果</string>
+    <string name="PreviewOne">预览大图效果 1</string>
+    <string name="PreviewTwo">预览大图效果 2</string>
     <string name="flowlayout">标签流水布局</string>
     <string name="switcher">switcher</string>
     <string name="stackView">stackView</string>
@@ -139,7 +141,7 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="multi_select_list_preference_default_value"/>
+    <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
 

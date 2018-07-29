@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,7 @@ import home.smart.fly.animations.utils.V;
 /**
  * Created by rookie on 2016/8/12.
  */
+@Route(path = RoutePaths.VIEWS)
 public class ViewsFragment extends Fragment {
     private Context mContext;
     private View rootView;

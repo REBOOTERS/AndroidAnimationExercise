@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animations.property.blur.BlurActivity;
@@ -21,6 +23,7 @@ import home.smart.fly.animations.tradition.VPAnimActivity;
 /**
  * Created by rookie on 2016/8/12.
  */
+@Route(path = RoutePaths.TRADITION)
 public class TraditionFragment extends Fragment implements View.OnClickListener {
     private Context mContext;
     private View rootView;

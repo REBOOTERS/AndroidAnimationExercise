@@ -5,7 +5,7 @@ import com.xw.repo.BubbleSeekBar
 /**
  *
  * @FileName:com.engineer.imitate.interfaces.SimpleProgressChangeListener.java
- * @author: zhuyongging
+ * @author: rookie
  * @date: 2018-07-15 12:04
  * @version V1.0
  */

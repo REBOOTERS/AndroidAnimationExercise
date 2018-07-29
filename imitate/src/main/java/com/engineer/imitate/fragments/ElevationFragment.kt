@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.facade.annotation.Route
 
 import com.engineer.imitate.R
 import com.engineer.imitate.interfaces.SimpleProgressChangeListener
@@ -24,7 +25,8 @@ private const val TAG = "EvelationFragment"
  * A simple [Fragment] subclass.
  *
  */
-class EvelationFragment : Fragment() {
+@Route(path = "/anim/elevation")
+class ElevationFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

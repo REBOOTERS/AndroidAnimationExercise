@@ -1,18 +1,20 @@
 package com.engineer.phenix
 
 import android.content.Context
+import android.content.Intent
 import com.engineer.phenix.bean.ImageBean
+import com.engineer.phenix.ui.PreViewActivity
 
 /**
  *
- * @author: zhuyongging
+ * @author: rookie
  * @date: 2018-07-22 21:56
  * @version V1.0
  */
 
 public class ParamBuilder {
     private var context: Context
-    private lateinit var datas:MutableList<ImageBean>
+    private var datas:MutableList<ImageBean> = ArrayList()
     private var index:Int=0
 
     constructor(context: Context,datas:MutableList<ImageBean>){
@@ -37,7 +39,7 @@ public class ParamBuilder {
             }
         }
 
-
+        context.startActivity(Intent(context,PreViewActivity::class.java))
     }
 
 

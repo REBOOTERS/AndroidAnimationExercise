@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.adapter.SlideListAdapter
 import com.engineer.imitate.widget.view.layoutmanager.ItemConfig
@@ -23,6 +24,7 @@ import java.util.*
  * A simple [Fragment] subclass.
  *
  */
+@Route(path = "/anim/slide")
 class SlideFragment : Fragment() {
 
     private var datas: MutableList<String> = ArrayList()

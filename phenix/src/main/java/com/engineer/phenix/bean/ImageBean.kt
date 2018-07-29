@@ -3,7 +3,7 @@ package com.engineer.phenix.bean
 /**
  *
  * @FileName:com.engineer.phenix.bean.ImageBean.java
- * @author: zhuyongging
+ * @author: rookie
  * @date: 2018-07-20 17:28
  * @version V1.0
  */

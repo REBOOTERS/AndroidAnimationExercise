@@ -40,8 +40,8 @@ public class ImageLoader {
         return null;
     }
 
-    public static void clearMemory(Activity activity) {
-        Glide.get(activity).clearMemory();
+    public static void clearMemory(Context context) {
+        Glide.get(context).clearMemory();
     }
 
     public static void cleanDiskCache(final Context context) {

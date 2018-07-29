@@ -8,6 +8,7 @@ import android.support.v4.widget.CircularProgressDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.facade.annotation.Route
 
 import com.engineer.imitate.R
 import kotlinx.android.synthetic.main.fragment_text_drawable.*
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_text_drawable.*
  * A simple [Fragment] subclass.
  *
  */
+@Route(path = "/anim/textDrawable")
 class TextDrawableFragment : Fragment() {
 
     private lateinit var mContext: Context

@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,7 @@ import home.smart.fly.animations.webview.AllWebViewActivity;
 /**
  * Created by rookie on 2016/8/12.
  */
+@Route(path = RoutePaths.OTHER)
 public class OtherFragment extends Fragment {
     private Context mContext;
     private View rootView;

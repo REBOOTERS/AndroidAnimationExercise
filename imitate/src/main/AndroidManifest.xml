@@ -6,7 +6,11 @@
         <activity
             android:name=".KotlinActivity"
             android:label="@string/title_activity_kotlin"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".KotlinRootActivity"
+            android:label="@string/title_activity_kotlin_root"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

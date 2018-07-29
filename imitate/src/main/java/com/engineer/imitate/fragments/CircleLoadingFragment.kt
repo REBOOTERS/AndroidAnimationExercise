@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.facade.annotation.Route
 
 import com.engineer.imitate.R
 
@@ -15,6 +16,8 @@ import com.engineer.imitate.R
  * A simple [Fragment] subclass.
  *
  */
+
+@Route(path = "/anim/circleLoading")
 class CircleLoadingFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

@@ -3,15 +3,18 @@ package com.engineer.phenix.internal.glide.engine;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
+import com.bumptech.glide.Registry;
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheWrapper;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
+import com.bumptech.glide.module.LibraryGlideModule;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +36,7 @@ import okio.ForwardingSource;
 import okio.Okio;
 import okio.Source;
 
-public class OkHttpProgressGlideModule implements GlideModule {
+public class OkHttpProgressGlideModule extends LibraryGlideModule {
 
 	public static DiskCache cache;
 
@@ -45,29 +48,29 @@ public class OkHttpProgressGlideModule implements GlideModule {
 		DispatchingProgressListener.expect(url, listener);
 	}
 
-	@Override public void applyOptions(Context context, GlideBuilder builder) {
-		builder.setDecodeFormat(DecodeFormat.PREFER_ARGB_8888);
-		// 设置缓存目录
-		File cacheDir = new File(context.getCacheDir(), DiskCache.Factory.DEFAULT_DISK_CACHE_DIR);
-		if (cacheDir == null) {
-			return;
-		}
-		cache = DiskLruCacheWrapper.get(cacheDir, DiskCache.Factory.DEFAULT_DISK_CACHE_SIZE);// 250 MB
-		builder.setDiskCache(new DiskCache.Factory() {
-			@Override public DiskCache build() {
-				return cache;
-			}
-		});
-	}
-
-	@Override public void registerComponents(Context context, Glide glide) {
-		OkHttpClient.Builder builder = new OkHttpClient.Builder();
-		builder.networkInterceptors().add(createInterceptor(new DispatchingProgressListener()));
-		builder.connectTimeout(30, TimeUnit.SECONDS);
-		builder.writeTimeout(30, TimeUnit.SECONDS);
-		builder.readTimeout(30, TimeUnit.SECONDS);
-		glide.register(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(builder.build()));
-	}
+//	@Override public void applyOptions(Context context, GlideBuilder builder) {
+//		builder.setDecodeFormat(DecodeFormat.PREFER_ARGB_8888);
+//		// 设置缓存目录
+//		File cacheDir = new File(context.getCacheDir(), DiskCache.Factory.DEFAULT_DISK_CACHE_DIR);
+//		if (cacheDir == null) {
+//			return;
+//		}
+//		cache = DiskLruCacheWrapper.get(cacheDir, DiskCache.Factory.DEFAULT_DISK_CACHE_SIZE);// 250 MB
+//		builder.setDiskCache(new DiskCache.Factory() {
+//			@Override public DiskCache build() {
+//				return cache;
+//			}
+//		});
+//	}
+//
+//	@Override public void registerComponents(Context context, Glide glide) {
+//		OkHttpClient.Builder builder = new OkHttpClient.Builder();
+//		builder.networkInterceptors().add(createInterceptor(new DispatchingProgressListener()));
+//		builder.connectTimeout(30, TimeUnit.SECONDS);
+//		builder.writeTimeout(30, TimeUnit.SECONDS);
+//		builder.readTimeout(30, TimeUnit.SECONDS);
+//		glide.register(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(builder.build()));
+//	}
 
 	private static Interceptor createInterceptor(final ResponseProgressListener listener) {
 		return new Interceptor() {
@@ -79,6 +82,11 @@ public class OkHttpProgressGlideModule implements GlideModule {
 					.build();
 			}
 		};
+	}
+
+	@Override
+	public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
+
 	}
 
 	public interface UIProgressListener {

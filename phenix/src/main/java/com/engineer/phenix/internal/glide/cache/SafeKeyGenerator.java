@@ -24,8 +24,6 @@ public class SafeKeyGenerator {
 				safeKey = Util.sha256BytesToHex(messageDigest.digest());
 			} catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
 			}
 			synchronized (loadIdToSafeHash) {
 				loadIdToSafeHash.put(key, safeKey);

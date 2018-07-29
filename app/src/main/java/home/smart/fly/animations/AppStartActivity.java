@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -28,13 +29,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.engineer.imitate.KotlinActivity;
+import com.engineer.imitate.Routes;
 
 import java.io.File;
 
 import home.smart.fly.animations.fragments.ImitateFragment;
 import home.smart.fly.animations.fragments.OtherFragment;
 import home.smart.fly.animations.fragments.PropertyFragment;
+import home.smart.fly.animations.fragments.RoutePaths;
 import home.smart.fly.animations.fragments.TraditionFragment;
 import home.smart.fly.animations.fragments.ViewsFragment;
 
@@ -69,26 +71,8 @@ public class AppStartActivity extends AppCompatActivity {
                 // When the given dropdown item is selected, show its contents in the
                 // container view.
                 FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
-                switch (position) {
-                    case 0:
-                        transition.replace(R.id.container, new TraditionFragment()).commit();
-                        break;
-                    case 1:
-                        transition.replace(R.id.container, new PropertyFragment()).commit();
-                        break;
-                    case 2:
-                        transition.replace(R.id.container, new ImitateFragment()).commit();
-                        break;
-                    case 3:
-                        transition.replace(R.id.container, new ViewsFragment()).commit();
-                        break;
-                    case 4:
-                        transition.replace(R.id.container, new OtherFragment()).commit();
-                        break;
-                    default:
-                        break;
-                }
-
+                Fragment fragment = (Fragment) ARouter.getInstance().build(RoutePaths.paths[position]).navigation();
+                transition.replace(R.id.container,fragment).commit();
             }
 
             @Override
@@ -112,7 +96,7 @@ public class AppStartActivity extends AppCompatActivity {
 
         //
 
-        findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance().build("/index/kotlin").navigation());
+        findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance().build(Routes.INDEX).navigation());
 
     }
 

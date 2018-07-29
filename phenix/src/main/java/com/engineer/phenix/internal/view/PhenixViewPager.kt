@@ -8,7 +8,7 @@ import android.view.MotionEvent
 /**
  *
  * @FileName:com.engineer.phenix.internal.view.PhenixViewPager.java
- * @author: zhuyongging
+ * @author: rookie
  * @date: 2018-07-20 17:50
  * @version V1.0
  */

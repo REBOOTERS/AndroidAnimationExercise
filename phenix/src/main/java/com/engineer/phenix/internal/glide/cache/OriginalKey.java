@@ -41,8 +41,12 @@ public class OriginalKey implements Key {
 		return result;
 	}
 
-	@Override public void updateDiskCacheKey(MessageDigest messageDigest) throws UnsupportedEncodingException {
-		messageDigest.update(id.getBytes(STRING_CHARSET_NAME));
+	@Override public void updateDiskCacheKey(MessageDigest messageDigest) {
+		try {
+			messageDigest.update(id.getBytes(STRING_CHARSET_NAME));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		signature.updateDiskCacheKey(messageDigest);
 	}
 }

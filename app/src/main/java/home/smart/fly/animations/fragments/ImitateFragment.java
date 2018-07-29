@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ import home.smart.fly.animations.activity.IModeActivity;
 import home.smart.fly.animations.activity.LottieAnimationViewActivity;
 import home.smart.fly.animations.activity.MatisseDemoActivity;
 import home.smart.fly.animations.activity.MySwipeMenuActivity;
+import home.smart.fly.animations.activity.PhenixDemoActivity;
 import home.smart.fly.animations.activity.PhotoBrowse;
 import home.smart.fly.animations.activity.PolygonViewActivity;
 import home.smart.fly.animations.activity.PullRecyclerViewActivity;
@@ -37,7 +40,7 @@ import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animations.customview.wheel.WheelViewActivity;
 import home.smart.fly.animations.utils.V;
 
-
+@Route(path = RoutePaths.IMITATE)
 public class ImitateFragment extends Fragment {
     private Context mContext;
     private View rootView;
@@ -76,7 +79,8 @@ public class ImitateFragment extends Fragment {
         demos.add(new ItemInfo(R.string.flipView, FlipViewActivity.class));
         demos.add(new ItemInfo(R.string.swipeFinish, SwipeFinishActivity.class));
         demos.add(new ItemInfo(R.string.Matisse, MatisseDemoActivity.class));
-        demos.add(new ItemInfo(R.string.Matisse, PhotoBrowse.class));
+        demos.add(new ItemInfo(R.string.PreviewOne, PhotoBrowse.class));
+        demos.add(new ItemInfo(R.string.PreviewTwo, PhenixDemoActivity.class));
 
 
         recyclerView = V.f(rootView, R.id.recyclerView);

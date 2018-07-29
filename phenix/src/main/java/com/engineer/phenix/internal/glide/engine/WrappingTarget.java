@@ -1,11 +1,13 @@
 package com.engineer.phenix.internal.glide.engine;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.bumptech.glide.request.Request;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 
 public class WrappingTarget<Z> implements Target<Z> {
 	protected final Target<Z> target;
@@ -18,16 +20,23 @@ public class WrappingTarget<Z> implements Target<Z> {
 		if (target != null) target.getSize(cb);
 	}
 
+	@Override
+	public void removeCallback(@NonNull SizeReadyCallback cb) {
+
+	}
+
 	@Override public void onLoadStarted(Drawable placeholder) {
 		if (target != null) target.onLoadStarted(placeholder);
 	}
 
-	@Override public void onLoadFailed(Exception e, Drawable errorDrawable) {
-		if (target != null) target.onLoadFailed(e, errorDrawable);
+	@Override
+	public void onLoadFailed(@Nullable Drawable errorDrawable) {
+
 	}
 
-	@Override public void onResourceReady(Z resource, GlideAnimation<? super Z> glideAnimation) {
-		if (target != null) target.onResourceReady(resource, glideAnimation);
+	@Override
+	public void onResourceReady(@NonNull Z resource, @Nullable Transition<? super Z> transition) {
+
 	}
 
 	@Override public void onLoadCleared(Drawable placeholder) {

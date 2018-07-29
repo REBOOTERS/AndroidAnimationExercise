@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.PhysicsViewActivity;
 import home.smart.fly.animations.property.AliPayAnimActivity;
@@ -22,6 +24,7 @@ import home.smart.fly.animations.property.ValueAnimationActivity;
 /**
  * Created by rookie on 2016/8/12.
  */
+@Route(path = RoutePaths.PROPERTY)
 public class PropertyFragment extends Fragment implements View.OnClickListener {
     private Context mContext;
     private View rootView;
