@@ -4,20 +4,26 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.engineer.imitate.module.FragmentItem
+import com.engineer.imitate.util.isNetworkConnected
+import com.list.rados.fast_list.bind
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
 import kotlinx.android.synthetic.main.content_kotlin_root.*
+import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
-@Route(path=Routes.INDEX)
+@Route(path = Routes.INDEX)
 class KotlinRootActivity : AppCompatActivity() {
 
     private val BASE_URL = "file:///android_asset/index.html"
     private lateinit var hybridHelper: HybridHelper
 
-    private lateinit var transaction:FragmentTransaction
+    private lateinit var transaction: FragmentTransaction
     private lateinit var currentFragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,18 +32,52 @@ class KotlinRootActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
 
-        hybrid.settings.javaScriptEnabled =true
-        hybrid.settings.allowFileAccess = true
-        hybridHelper = HybridHelper(this)
-        hybridHelper.setOnItemClickListener(SimpleClickListener())
-        hybrid.addJavascriptInterface(hybridHelper,"hybrid")
-        hybrid.loadUrl(BASE_URL)
+        loadView()
 
 
     }
 
-    private inner class SimpleClickListener:HybridHelper.OnItemClickListener{
-        override fun onClick(fragment: Fragment,title:String) {
+    private fun loadView() {
+        if (isNetworkConnected()) {
+            hybrid.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+            hybrid.settings.javaScriptEnabled = true
+            hybrid.settings.allowFileAccess = true
+            hybridHelper = HybridHelper(this)
+            hybridHelper.setOnItemClickListener(SimpleClickListener())
+            hybrid.addJavascriptInterface(hybridHelper, "hybrid")
+            hybrid.loadUrl(BASE_URL)
+        } else {
+            hybrid.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            val list = listOf(
+                    FragmentItem("/anim/circleLoading", "circle-loading"),
+                    FragmentItem("/anim/slide", "slide"),
+                    FragmentItem("/anim/textDrawable", "textDrawable"),
+                    FragmentItem("/anim/elevation", "elevation"),
+                    FragmentItem("/anim/fresco", "fresco")
+            )
+            recyclerView.bind(list, R.layout.recycler_view_item) { item: FragmentItem ->
+                name.text = item.name
+                path.text = item.path
+//                shell.setOnClickListener({
+//                    val fragment: Fragment = ARouter
+//                            .getInstance()
+//                            .build(item.path)
+//                            .navigation(context) as Fragment
+//
+//                    transaction = supportFragmentManager.beginTransaction()
+//                    transaction.replace(R.id.content, fragment).commit()
+//                })
+            }
+                    .layoutManager(LinearLayoutManager(this))
+        }
+
+
+    }
+
+    private inner class SimpleClickListener : HybridHelper.OnItemClickListener {
+        override fun onClick(fragment: Fragment, title: String) {
             runOnUiThread {
                 if (!TextUtils.isEmpty(title)) {
                     setTitle(title)
@@ -46,10 +86,15 @@ class KotlinRootActivity : AppCompatActivity() {
                 index.visibility = View.GONE
                 currentFragment = fragment
                 transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.content,fragment).commit()
+                transaction.replace(R.id.content, fragment).commit()
             }
         }
 
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_kotlin_root, menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -59,7 +104,14 @@ class KotlinRootActivity : AppCompatActivity() {
             } else {
                 finish()
             }
-
+        } else if (item.itemId == R.id.action_refresh) {
+            if (hybrid.visibility == View.VISIBLE) {
+                hybrid.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            } else {
+                hybrid.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -67,16 +119,16 @@ class KotlinRootActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (content.visibility == View.VISIBLE) {
             releaseFragment()
-        }else{
+        } else {
             super.onBackPressed()
 
         }
     }
 
-    private fun releaseFragment(){
+    private fun releaseFragment() {
         content.visibility = View.GONE
         index.visibility = View.VISIBLE
-        if(transaction!=null && !transaction.isEmpty){
+        if (transaction != null && !transaction.isEmpty) {
             transaction.remove(currentFragment)
         }
     }

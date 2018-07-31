@@ -9,6 +9,7 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
     <string name="action_settings">Settings</string>
+    <string name="action_refresh">refresh</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_kotlin_root">KotlinRootActivity</string>
     <string name="large_text">
