@@ -59,4 +59,6 @@ dependencies {
 
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
+
+    api 'com.facebook.fresco:fresco:1.10.0'
 }
