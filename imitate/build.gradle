@@ -63,4 +63,6 @@ dependencies {
 
     api 'com.facebook.fresco:fresco:1.10.0'
     implementation 'bg.devlabs.fastlist:fast-list:1.2'
+    implementation 'com.zhihu.android:matisse:0.5.2-beta1'
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
 }
