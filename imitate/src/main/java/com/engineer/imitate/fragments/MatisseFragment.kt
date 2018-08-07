@@ -2,13 +2,20 @@ package com.engineer.imitate.fragments
 
 
 import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.bumptech.glide.Glide
 import com.engineer.imitate.R
 import com.engineer.imitate.util.Glide4Engine
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -24,6 +31,11 @@ import kotlinx.android.synthetic.main.fragment_matisse.*
  */
 @Route(path = "/anim/matisse")
 class MatisseFragment : Fragment() {
+
+
+    private var datas: MutableList<String> = ArrayList()
+    private lateinit var adapter: MyListAdapter
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -49,6 +61,47 @@ class MatisseFragment : Fragment() {
                                 .imageEngine(Glide4Engine())
                                 .forResult(100)
                     }
+        }
+
+        adapter = MyListAdapter()
+        recyclerView.layoutManager = GridLayoutManager(context,2)
+        recyclerView.adapter = adapter
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == 100) {
+            var result = Matisse.obtainPathResult(data)
+            if (result != null) {
+                datas.clear()
+                datas.addAll(result)
+                adapter.notifyDataSetChanged()
+            }
+        }
+    }
+
+
+    private inner class MyListAdapter: RecyclerView.Adapter<MyListAdapter.Holder>() {
+
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+            context = parent.context
+            var view = LayoutInflater.from(parent.context).inflate(R.layout.image_item,parent,false)
+            return Holder(view)
+        }
+
+        override fun getItemCount(): Int {
+            return datas.size
+        }
+
+        override fun onBindViewHolder(holder: Holder, position: Int) {
+            Glide.with(context).load(datas[position]).into(holder.image)
+        }
+
+        private lateinit var context: Context
+
+        private inner class Holder(view:View): RecyclerView.ViewHolder(view) {
+            var image:ImageView =view.findViewById(R.id.image);
         }
     }
 

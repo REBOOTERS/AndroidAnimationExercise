@@ -39,41 +39,49 @@ class KotlinRootActivity : AppCompatActivity() {
 
     private fun loadView() {
         if (isNetworkConnected()) {
-            hybrid.visibility = View.VISIBLE
-            recyclerView.visibility = View.GONE
-            hybrid.settings.javaScriptEnabled = true
-            hybrid.settings.allowFileAccess = true
-            hybridHelper = HybridHelper(this)
-            hybridHelper.setOnItemClickListener(SimpleClickListener())
-            hybrid.addJavascriptInterface(hybridHelper, "hybrid")
-            hybrid.loadUrl(BASE_URL)
+            loadWebView()
         } else {
-            hybrid.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
-            val list = listOf(
-                    FragmentItem("/anim/circleLoading", "circle-loading"),
-                    FragmentItem("/anim/slide", "slide"),
-                    FragmentItem("/anim/textDrawable", "textDrawable"),
-                    FragmentItem("/anim/elevation", "elevation"),
-                    FragmentItem("/anim/fresco", "fresco")
-            )
-            recyclerView.bind(list, R.layout.recycler_view_item) { item: FragmentItem ->
-                name.text = item.name
-                path.text = item.path
-//                shell.setOnClickListener({
-//                    val fragment: Fragment = ARouter
-//                            .getInstance()
-//                            .build(item.path)
-//                            .navigation(context) as Fragment
-//
-//                    transaction = supportFragmentManager.beginTransaction()
-//                    transaction.replace(R.id.content, fragment).commit()
-//                })
-            }
-                    .layoutManager(LinearLayoutManager(this))
+            loadRecyclerView()
         }
 
 
+    }
+
+    private fun loadRecyclerView() {
+        hybrid.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
+        val list = listOf(
+                FragmentItem("/anim/circleLoading", "circle-loading"),
+                FragmentItem("/anim/slide", "slide"),
+                FragmentItem("/anim/textDrawable", "textDrawable"),
+                FragmentItem("/anim/elevation", "elevation"),
+                FragmentItem("/anim/fresco", "fresco")
+        )
+        recyclerView.bind(list, R.layout.recycler_view_item) { item: FragmentItem ->
+            name.text = item.name
+            path.text = item.path
+    //                shell.setOnClickListener({
+    //                    val fragment: Fragment = ARouter
+    //                            .getInstance()
+    //                            .build(item.path)
+    //                            .navigation(context) as Fragment
+    //
+    //                    transaction = supportFragmentManager.beginTransaction()
+    //                    transaction.replace(R.id.content, fragment).commit()
+    //                })
+        }
+                .layoutManager(LinearLayoutManager(this))
+    }
+
+    private fun loadWebView() {
+        hybrid.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+        hybrid.settings.javaScriptEnabled = true
+        hybrid.settings.allowFileAccess = true
+        hybridHelper = HybridHelper(this)
+        hybridHelper.setOnItemClickListener(SimpleClickListener())
+        hybrid.addJavascriptInterface(hybridHelper, "hybrid")
+        hybrid.loadUrl(BASE_URL)
     }
 
     private inner class SimpleClickListener : HybridHelper.OnItemClickListener {
@@ -92,10 +100,11 @@ class KotlinRootActivity : AppCompatActivity() {
 
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_kotlin_root, menu)
         return true
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
@@ -105,13 +114,12 @@ class KotlinRootActivity : AppCompatActivity() {
                 finish()
             }
         } else if (item.itemId == R.id.action_refresh) {
-            if (hybrid.visibility == View.VISIBLE) {
-                hybrid.visibility = View.GONE
-                recyclerView.visibility = View.VISIBLE
+            if (recyclerView.visibility == View.VISIBLE) {
+                loadWebView()
             } else {
-                hybrid.visibility = View.VISIBLE
-                recyclerView.visibility = View.GONE
+                loadRecyclerView()
             }
+            return true
         }
         return super.onOptionsItemSelected(item)
     }
