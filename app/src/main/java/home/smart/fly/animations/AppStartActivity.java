@@ -132,7 +132,10 @@ public class AppStartActivity extends AppCompatActivity {
         String[] files = new String[mContext.getExternalCacheDirs().length];
         for (int i = 0; i < mContext.getExternalCacheDirs().length; i++) {
             File mFile = mContext.getExternalCacheDirs()[i];
-            files[i] = mFile.getAbsolutePath() + "\n";
+            if (mFile != null) {
+                files[i] = mFile.getAbsolutePath() + "\n";
+
+            }
         }
 
 
@@ -159,7 +162,9 @@ public class AppStartActivity extends AppCompatActivity {
         Log.e("device_info", "mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) = " + getExternalFilesDir_DIRECTORY_DOCUMENTS);
         Log.e("device_info", "mContext.getExternalCacheDirs() size= " + files.length + " \n [ ");
         for (String str : files) {
-            Log.e("device_info", str);
+            if (str != null) {
+                Log.e("device_info", str);
+            }
         }
 
         ActivityManager mManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);

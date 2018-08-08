@@ -10,9 +10,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.engineer.fastlist.bind
 import com.engineer.imitate.module.FragmentItem
 import com.engineer.imitate.util.isNetworkConnected
-import com.list.rados.fast_list.bind
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
 import kotlinx.android.synthetic.main.content_kotlin_root.*
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
