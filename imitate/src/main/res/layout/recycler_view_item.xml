@@ -5,14 +5,15 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:id="@+id/shell"
+    android:background="@color/black"
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:layout_margin="6dp"
         android:id="@+id/name"
         tools:text="Fresco"
-        android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -20,8 +21,14 @@
         android:layout_margin="6dp"
         android:id="@+id/path"
         tools:text="/anim/Fresco"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <View
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
 
 
 </LinearLayout>

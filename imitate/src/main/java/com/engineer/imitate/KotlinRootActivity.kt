@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.fastlist.bind
 import com.engineer.imitate.module.FragmentItem
 import com.engineer.imitate.util.isNetworkConnected
@@ -60,15 +61,15 @@ class KotlinRootActivity : AppCompatActivity() {
         recyclerView.bind(list, R.layout.recycler_view_item) { item: FragmentItem ->
             name.text = item.name
             path.text = item.path
-    //                shell.setOnClickListener({
-    //                    val fragment: Fragment = ARouter
-    //                            .getInstance()
-    //                            .build(item.path)
-    //                            .navigation(context) as Fragment
-    //
-    //                    transaction = supportFragmentManager.beginTransaction()
-    //                    transaction.replace(R.id.content, fragment).commit()
-    //                })
+                    shell.setOnClickListener {
+                        val fragment: Fragment = ARouter
+                                .getInstance()
+                                .build(item.path)
+                                .navigation(context) as Fragment
+
+                        transaction = supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.content, fragment).commit()
+                    }
         }
                 .layoutManager(LinearLayoutManager(this))
     }
