@@ -4,14 +4,11 @@ package com.engineer.imitate.fragments
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.widget.CircularProgressDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
-
 import com.engineer.imitate.R
-import kotlinx.android.synthetic.main.fragment_text_drawable.*
 
 
 /**
@@ -32,10 +29,6 @@ class TextDrawableFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var progress = CircularProgressDrawable(mContext)
-        progress.setStyle(CircularProgressDrawable.DEFAULT)
-//        textView.setCompoundDrawables(progress,null,null,null)
-        textView.setCompoundDrawablesWithIntrinsicBounds(progress,null,null,null)
     }
 
 

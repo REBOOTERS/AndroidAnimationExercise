@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.fastlist.bind
@@ -62,11 +63,17 @@ class KotlinRootActivity : AppCompatActivity() {
             name.text = item.name
             path.text = item.path
                     shell.setOnClickListener {
+
+                        Toast.makeText(context,"here",Toast.LENGTH_SHORT).show()
+
                         val fragment: Fragment = ARouter
                                 .getInstance()
                                 .build(item.path)
                                 .navigation(context) as Fragment
 
+                        currentFragment =fragment
+                        content.visibility = View.VISIBLE
+                        index.visibility = View.GONE
                         transaction = supportFragmentManager.beginTransaction()
                         transaction.replace(R.id.content, fragment).commit()
                     }

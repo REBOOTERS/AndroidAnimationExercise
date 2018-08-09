@@ -63,10 +63,10 @@
     </RelativeLayout>
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/openDialog"
+        android:id="@+id/test"
         android:layout_margin="20dp"
         android:padding="10dp"
-        android:text="open dialog"
+        android:text="test"
         android:textColor="@color/white"
         android:background="@color/cpb_red"
         android:layout_width="wrap_content"
