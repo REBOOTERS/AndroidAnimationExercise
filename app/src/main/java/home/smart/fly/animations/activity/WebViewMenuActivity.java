@@ -1,0 +1,108 @@
+package home.smart.fly.animations.activity;
+
+import android.os.Build;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.ActionMode;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.webkit.WebView;
+
+import java.util.Optional;
+
+import home.smart.fly.animations.R;
+
+public class WebViewMenuActivity extends AppCompatActivity {
+    private static final String TAG = "WebViewMenuActivity";
+
+    private WebView mWebView;
+
+
+    private ActionMode mActionMode1;
+    private ActionMode mActionMode2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_web_view_menu);
+
+        mWebView = findViewById(R.id.webView);
+        mWebView.loadUrl("file:///android_asset/article.html");
+        registerForContextMenu(mWebView);
+
+
+        mWebView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    mActionMode1 = mWebView.startActionMode(new ActionMode.Callback2() {
+                        @Override
+                        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                            return false;
+                        }
+
+                        @Override
+                        public void onDestroyActionMode(ActionMode mode) {
+
+                        }
+                    });
+                }
+
+
+                mActionMode2 = mWebView.startActionMode(new ActionMode.Callback() {
+                    @Override
+                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                        Log.e(TAG, "onCreateActionMode: mode==" + mode);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                        Log.e(TAG, "onPrepareActionMode: mode==" + mode);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                        Log.e(TAG, "onActionItemClicked: mode==" + mode);
+                        return false;
+                    }
+
+                    @Override
+                    public void onDestroyActionMode(ActionMode mode) {
+                        Log.e(TAG, "onDestroyActionMode: mode==" + mode);
+                    }
+                });
+
+                Log.e(TAG, "onLongClick: mActionMode1==" + mActionMode1);
+                Log.e(TAG, "onLongClick: mActionMode2==" + mActionMode2);
+
+                return false;
+            }
+        });
+    }
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        WebView.HitTestResult testResult = mWebView.getHitTestResult();
+        Log.e(TAG, "onCreateContextMenu: testResult==" + testResult.getExtra());
+        Log.e(TAG, "onCreateContextMenu: type==" + testResult.getType());
+    }
+}

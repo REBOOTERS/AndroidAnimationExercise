@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.activity.WebViewMenuActivity;
 import home.smart.fly.animations.utils.FileUtil;
 import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.T;
@@ -138,6 +139,9 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
             case R.id.nested:
                 Intent mIntent = new Intent(mContext, NestedWebViewActivity.class);
                 startActivity(mIntent);
+                break;
+            case R.id.menu:
+                startActivity(new Intent(mContext, WebViewMenuActivity.class));
                 break;
             default:
                 break;

@@ -42,4 +42,9 @@
         android:orderInCategory="100"
         android:title="ScrollView 嵌套WebView"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menu"
+        android:orderInCategory="100"
+        android:title="ScrollView 长按菜单探索"
+        app:showAsAction="never" />
 </menu>
