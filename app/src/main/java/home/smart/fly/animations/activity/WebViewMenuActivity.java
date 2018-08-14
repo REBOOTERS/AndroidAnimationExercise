@@ -33,68 +33,6 @@ public class WebViewMenuActivity extends AppCompatActivity {
         mWebView = findViewById(R.id.webView);
         mWebView.loadUrl("file:///android_asset/article.html");
         registerForContextMenu(mWebView);
-
-
-        mWebView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    mActionMode1 = mWebView.startActionMode(new ActionMode.Callback2() {
-                        @Override
-                        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                            return false;
-                        }
-
-                        @Override
-                        public void onDestroyActionMode(ActionMode mode) {
-
-                        }
-                    });
-                }
-
-
-                mActionMode2 = mWebView.startActionMode(new ActionMode.Callback() {
-                    @Override
-                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                        Log.e(TAG, "onCreateActionMode: mode==" + mode);
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                        Log.e(TAG, "onPrepareActionMode: mode==" + mode);
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                        Log.e(TAG, "onActionItemClicked: mode==" + mode);
-                        return false;
-                    }
-
-                    @Override
-                    public void onDestroyActionMode(ActionMode mode) {
-                        Log.e(TAG, "onDestroyActionMode: mode==" + mode);
-                    }
-                });
-
-                Log.e(TAG, "onLongClick: mActionMode1==" + mActionMode1);
-                Log.e(TAG, "onLongClick: mActionMode2==" + mActionMode2);
-
-                return false;
-            }
-        });
     }
 
 
