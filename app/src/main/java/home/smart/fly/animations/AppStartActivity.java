@@ -3,11 +3,13 @@ package home.smart.fly.animations;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources.Theme;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -32,6 +34,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.engineer.imitate.Routes;
 
 import java.io.File;
+import java.util.Map;
+import java.util.Set;
 
 import home.smart.fly.animations.fragments.ImitateFragment;
 import home.smart.fly.animations.fragments.OtherFragment;
@@ -49,12 +53,15 @@ public class AppStartActivity extends AppCompatActivity {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+    private SharedPreferences mPreferences; // 简单粗暴保存一下位置，后期封装一下 TODO
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_start);
         mContext = this;
+        mPreferences = getSharedPreferences("fragment_pos",MODE_PRIVATE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -73,6 +80,7 @@ public class AppStartActivity extends AppCompatActivity {
                 FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
                 Fragment fragment = (Fragment) ARouter.getInstance().build(RoutePaths.paths[position]).navigation();
                 transition.replace(R.id.container,fragment).commit();
+                saveLastSelect(position);
             }
 
             @Override
@@ -80,7 +88,7 @@ public class AppStartActivity extends AppCompatActivity {
             }
         });
 
-        spinner.setSelection(2);
+        spinner.setSelection(getLastPosition());
         main_contetn = (CoordinatorLayout) findViewById(R.id.main_content);
         snackbar = Snackbar.make(main_contetn, "确认要退出吗？", Snackbar.LENGTH_SHORT)
                 .setAction("退出", new View.OnClickListener() {
@@ -98,6 +106,14 @@ public class AppStartActivity extends AppCompatActivity {
 
         findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance().build(Routes.INDEX).navigation());
 
+    }
+
+    private void saveLastSelect(int lastPosition){
+        mPreferences.edit().putInt("pos",lastPosition).apply();
+    }
+
+    private int getLastPosition(){
+        return  mPreferences.getInt("pos",2);
     }
 
     /**

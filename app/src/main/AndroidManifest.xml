@@ -310,7 +310,8 @@
             android:label="@string/title_activity_multi_fragments"
             android:theme="@style/MyTheme.NoActionBar" />
         <activity android:name=".activity.PhenixDemoActivity" />
-        <activity android:name=".activity.WebViewMenuActivity"></activity>
+        <activity android:name=".activity.WebViewMenuActivity" />
+        <activity android:name=".activity.OptionalActivity"></activity>
     </application>
 
 </manifest>

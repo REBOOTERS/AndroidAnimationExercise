@@ -29,6 +29,7 @@
     <string name="circle_view">Glide 加载圆形图片</string>
     <string name="input_view">EditText - 获取mac 地址</string>
     <string name="orientation">Activity 横竖屏切换</string>
+    <string name="optional">Java 8 Optional 使用</string>
     <string name="ViewStub">layout ViewStub</string>
     <string name="ViewMerge">layout Merge Include</string>
     <string name="wheelView">省市联动3D效果</string>
