@@ -1,4 +1,4 @@
-package home.smart.fly.animations.fragments;
+package home.smart.fly.animations.fragments.base;
 
 /**
  * @version V1.0

@@ -1,23 +1,15 @@
 package home.smart.fly.animations.fragments;
 
-import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.Settings;
+import android.util.Log;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.CameraActivity;
@@ -38,8 +30,10 @@ import home.smart.fly.animations.activity.multifragments.MultiFragmentsActivity;
 import home.smart.fly.animations.bga.BgaAllActivity;
 import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
 import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
+import home.smart.fly.animations.fragments.base.BaseFragment;
+import home.smart.fly.animations.fragments.base.ItemInfo;
+import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.recyclerview.BaseRecyclerViewActivity;
-import home.smart.fly.animations.utils.V;
 import home.smart.fly.animations.webview.AllWebViewActivity;
 
 
@@ -47,29 +41,10 @@ import home.smart.fly.animations.webview.AllWebViewActivity;
  * Created by rookie on 2016/8/12.
  */
 @Route(path = RoutePaths.OTHER)
-public class OtherFragment extends Fragment {
-    private Context mContext;
-    private View rootView;
-
-    private RecyclerView recyclerView;
-
-    private List<ItemInfo> demos = new ArrayList<>();
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.frament_custom_views, null);
-        InitView();
-        return rootView;
-    }
+public class OtherFragment extends BaseFragment {
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context;
-    }
-
-    private void InitView() {
+    public void InitView() {
         demos.add(new ItemInfo(R.string.title_activity_multi_fragments, MultiFragmentsActivity.class));
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
         demos.add(new ItemInfo(R.string.ViewStub, ViewStubActivity.class));
@@ -91,71 +66,80 @@ public class OtherFragment extends Fragment {
         demos.add(new ItemInfo(R.string.orientation, OrientationActivity.class));
         demos.add(new ItemInfo(R.string.optional, OptionalActivity.class));
 
-
-        recyclerView = V.f(rootView, R.id.recyclerView);
-        MyAdpater myAdpater = new MyAdpater();
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setAdapter(myAdpater);
+        PrintSystemDirInfo();
     }
 
-
-    private class MyAdpater extends RecyclerView.Adapter<MyAdpater.MyHolder> {
-
-
-        @Override
-        public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.demo_info_item, null);
-            MyHolder holder = new MyHolder(view);
-            return holder;
-        }
-
-        @Override
-        public void onBindViewHolder(MyHolder holder, final int position) {
-            holder.title.setText(demos.get(position).activitys.getSimpleName());
-            holder.desc.setText(demos.get(position).desc);
-            holder.itemshell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, demos.get(position).activitys);
-                    startActivity(intent);
-                }
-            });
-        }
+    /**
+     * 打印系统目录信息
+     */
+    private void PrintSystemDirInfo() {
 
 
-        @Override
-        public long getItemId(int id) {
-            return id;
-        }
+        final int version = Build.VERSION.SDK_INT;
+        final String mRelease = Build.VERSION.RELEASE;
+        final String mSerial = Build.SERIAL;
+        String android_id = Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
+        String filepath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        //
+        String getDataDirectory = Environment.getDataDirectory().getAbsolutePath();
+        String getRootDirectory = Environment.getRootDirectory().getAbsolutePath();
+        String getDownloadCacheDirectory = Environment.getDownloadCacheDirectory().getAbsolutePath();
+        //
+        String DIRECTORY_DCIM = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
+        String DIRECTORY_DOCUMENTS = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
+        String DIRECTORY_PICTURES = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        String DIRECTORY_DOWNLOADS = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
+        //
+        String cacheDir = mContext.getCacheDir().getAbsolutePath();
+        String filesDir = mContext.getFilesDir().getAbsolutePath();
+        //
+        String getExternalCacheDir = mContext.getExternalCacheDir().getAbsolutePath();
+        String getExternalFilesDir_DIRECTORY_PICTURES = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        String getExternalFilesDir_DIRECTORY_DOCUMENTS = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
 
-        @Override
-        public int getItemCount() {
-            return demos.size();
-        }
 
+        String[] files = new String[mContext.getExternalCacheDirs().length];
+        for (int i = 0; i < mContext.getExternalCacheDirs().length; i++) {
+            File mFile = mContext.getExternalCacheDirs()[i];
+            if (mFile != null) {
+                files[i] = mFile.getAbsolutePath() + "\n";
 
-        class MyHolder extends RecyclerView.ViewHolder {
-            TextView title, desc;
-            LinearLayout itemshell;
-
-            public MyHolder(View itemView) {
-                super(itemView);
-                title = V.f(itemView, R.id.title);
-                desc = V.f(itemView, R.id.desc);
-                itemshell = V.f(itemView, R.id.itemshell);
             }
         }
 
-    }
 
-
-    private class ItemInfo {
-        private final int desc;
-        private final Class<? extends Activity> activitys;
-
-        public ItemInfo(int desc, Class<? extends Activity> demoClass) {
-            this.desc = desc;
-            this.activitys = demoClass;
+        Log.e("device_info", "android.os.Build.VERSION.SDK_INT = " + version);
+        Log.e("device_info", "android.os.Build.VERSION.RELEASE = " + mRelease);
+        Log.e("device_info", "android.os.Build.SERIAL = " + mSerial);
+        Log.e("device_info", "Secure.ANDROID_ID = " + android_id);
+        Log.e("device_info", "--------------------------------------------------");
+        Log.e("device_info", "Environment.getExternalStorageDirectory() = " + filepath);
+        Log.e("device_info", "Environment.getDataDirectory() = " + getDataDirectory);
+        Log.e("device_info", "Environment.getRootDirectory() = " + getRootDirectory);
+        Log.e("device_info", "Environment.getDownloadCacheDirectory() = " + getDownloadCacheDirectory);
+        Log.e("device_info", "--------------------------------------------------");
+        Log.e("device_info", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DCIM) = " + DIRECTORY_DCIM);
+        Log.e("device_info", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOCUMENTS) = " + DIRECTORY_DOCUMENTS);
+        Log.e("device_info", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_PICTURES) = " + DIRECTORY_PICTURES);
+        Log.e("device_info", "Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOWNLOADS) = " + DIRECTORY_DOWNLOADS);
+        Log.e("device_info", "--------------------------------------------------");
+        Log.e("device_info", "mContext.getCacheDir() = " + cacheDir);
+        Log.e("device_info", "mContext.getFilesDir() = " + filesDir);
+        Log.e("device_info", "--------------------------------------------------");
+        Log.e("device_info", "mContext.getExternalCacheDir() = " + getExternalCacheDir);
+        Log.e("device_info", "mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) = " + getExternalFilesDir_DIRECTORY_PICTURES);
+        Log.e("device_info", "mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) = " + getExternalFilesDir_DIRECTORY_DOCUMENTS);
+        Log.e("device_info", "mContext.getExternalCacheDirs() size= " + files.length + " \n [ ");
+        for (String str : files) {
+            if (str != null) {
+                Log.e("device_info", str);
+            }
         }
+
+        ActivityManager mManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        int size = mManager.getMemoryClass();
+
+        Log.e("device_info", "mManager.getMemoryClass()  应用可用内存 = " + size + " M");
+
     }
 }

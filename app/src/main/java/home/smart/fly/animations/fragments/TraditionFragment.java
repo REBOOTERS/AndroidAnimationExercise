@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
+import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.property.blur.BlurActivity;
 import home.smart.fly.animations.tradition.FrameAnimationActivity;
 import home.smart.fly.animations.tradition.SwitchAnimActivity;
