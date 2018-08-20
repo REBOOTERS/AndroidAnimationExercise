@@ -1,67 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".fragments.EvelationFragment">
+    tools:context=".fragments.ElevationFragment">
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardBackgroundColor="@color/cpb_red"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="20dp"
-            app:cardCornerRadius="5dp">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/cpb_red" />
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_gravity="center_vertical"
-            app:fabSize="normal"
-            android:src="@drawable/ic_add_black_24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_add_black_24dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintLeft_toRightOf="@+id/cardView"
+        app:layout_constraintStart_toEndOf="@+id/cardView" />
 
 
     <com.xw.repo.BubbleSeekBar
         android:id="@+id/cardElevationSeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="20dp"
         app:bsb_bubble_color="@color/cpb_green"
         app:bsb_bubble_text_color="@color/colorPrimaryDark"
         app:bsb_max="100"
         app:bsb_min="0"
         app:bsb_progress="0"
-        app:bsb_show_section_text="true" />
+        app:bsb_show_section_text="true"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <com.xw.repo.BubbleSeekBar
         android:id="@+id/cardRadiusSeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="20dp"
         app:bsb_bubble_color="@color/cpb_green"
         app:bsb_bubble_text_color="@color/colorPrimaryDark"
         app:bsb_max="45"
         app:bsb_min="0"
         app:bsb_progress="0"
-        app:bsb_show_section_text="true" />
+        app:bsb_show_section_text="true"
+        app:layout_constraintStart_toStartOf="@+id/cardElevationSeekBar"
+        app:layout_constraintTop_toBottomOf="@+id/cardElevationSeekBar" />
 
 
-</LinearLayout>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/ripple_background"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="button"
+        android:textColor="@color/cpb_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardRadiusSeekBar" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="11111111111111"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+
+</android.support.constraint.ConstraintLayout>

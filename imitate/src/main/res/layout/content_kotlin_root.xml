@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cpb_white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".KotlinRootActivity"
     tools:showIn="@layout/activity_kotlin_root">
@@ -15,12 +16,13 @@
 
 
         <WebView
-            android:padding="10dp"
+            android:layout_margin="10dp"
             android:id="@+id/hybrid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
         <android.support.v7.widget.RecyclerView
+            android:visibility="gone"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

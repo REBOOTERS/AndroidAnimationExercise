@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
@@ -24,7 +23,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
 
     private Context mContext;
 
-    private List<ItemInfo> demos = new ArrayList<>();
+    private List<ItemInfo> demos;
 
     public MyAdapter(List<ItemInfo> demos) {
         this.demos = demos;
@@ -41,12 +40,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
     public void onBindViewHolder(MyHolder holder, final int position) {
         holder.title.setText(demos.get(position).activitys.getSimpleName());
         holder.desc.setText(demos.get(position).desc);
-        holder.itemshell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, demos.get(position).activitys);
-                mContext.startActivity(intent);
-            }
+        holder.itemshell.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, demos.get(position).activitys);
+            mContext.startActivity(intent);
         });
     }
 

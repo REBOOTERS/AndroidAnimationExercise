@@ -17,7 +17,7 @@ import com.engineer.imitate.module.FragmentItem
 import com.engineer.imitate.util.isNetworkConnected
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
 import kotlinx.android.synthetic.main.content_kotlin_root.*
-import kotlinx.android.synthetic.main.recycler_view_item.view.*
+import kotlinx.android.synthetic.main.view_item.view.*
 
 @Route(path = Routes.INDEX)
 class KotlinRootActivity : AppCompatActivity() {
@@ -32,11 +32,7 @@ class KotlinRootActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin_root)
         setSupportActionBar(toolbar)
-
-
         loadView()
-
-
     }
 
     private fun loadView() {
@@ -45,8 +41,6 @@ class KotlinRootActivity : AppCompatActivity() {
         } else {
             loadRecyclerView()
         }
-
-
     }
 
     private fun loadRecyclerView() {
@@ -57,26 +51,27 @@ class KotlinRootActivity : AppCompatActivity() {
                 FragmentItem("/anim/slide", "slide"),
                 FragmentItem("/anim/textDrawable", "textDrawable"),
                 FragmentItem("/anim/elevation", "elevation"),
-                FragmentItem("/anim/fresco", "fresco")
+                FragmentItem("/anim/fresco", "fresco"),
+                FragmentItem("/anim/matisse", "matisse")
         )
-        recyclerView.bind(list, R.layout.recycler_view_item) { item: FragmentItem ->
-            name.text = item.name
+        recyclerView.bind(list, R.layout.view_item) { item: FragmentItem ->
+            desc.text = item.name
             path.text = item.path
-                    shell.setOnClickListener {
+            shell.setOnClickListener {
 
-                        Toast.makeText(context,"here",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "here", Toast.LENGTH_SHORT).show()
 
-                        val fragment: Fragment = ARouter
-                                .getInstance()
-                                .build(item.path)
-                                .navigation(context) as Fragment
+                val fragment: Fragment = ARouter
+                        .getInstance()
+                        .build(item.path)
+                        .navigation(context) as Fragment
 
-                        currentFragment =fragment
-                        content.visibility = View.VISIBLE
-                        index.visibility = View.GONE
-                        transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.content, fragment).commit()
-                    }
+                currentFragment = fragment
+                content.visibility = View.VISIBLE
+                index.visibility = View.GONE
+                transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.content, fragment).commit()
+            }
         }
                 .layoutManager(LinearLayoutManager(this))
     }
