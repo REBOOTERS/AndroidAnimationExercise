@@ -78,9 +78,14 @@
         app:layout_constraintTop_toBottomOf="@+id/cardRadiusSeekBar" />
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="11111111111111"
+        android:background="@drawable/ripple_background"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textSize="16sp"
+        android:text="click me"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="20dp"
