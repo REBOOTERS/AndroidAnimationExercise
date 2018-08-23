@@ -32,15 +32,41 @@ public class WebViewMenuActivity extends AppCompatActivity {
 
         mWebView = findViewById(R.id.webView);
         mWebView.loadUrl("file:///android_asset/article.html");
-        registerForContextMenu(mWebView);
+
+        mWebView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                ActionMode mode = mWebView.startActionMode(new ActionMode.Callback() {
+                    @Override
+                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onDestroyActionMode(ActionMode mode) {
+
+                    }
+                });
+
+                Log.e(TAG, "onLongClick: mode=="+mode );
+
+                return false;
+            }
+        });
+
     }
 
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        WebView.HitTestResult testResult = mWebView.getHitTestResult();
-        Log.e(TAG, "onCreateContextMenu: testResult==" + testResult.getExtra());
-        Log.e(TAG, "onCreateContextMenu: type==" + testResult.getType());
-    }
+
 }
