@@ -7,10 +7,10 @@ ext {
     support_versioin = '27.1.1'
     constraint_layout = '1.1.2'
 
-    kotlin_version = '1.2.51'
+    kotlin_version = '1.2.61'
     gradle_version = '3.1.3'
 
-    leakcanary = '1.5.4'
+    leakcanary = '1.6.1'
     glide = '4.7.1'
     arouter_api = '1.3.1'
     arouter_compiler = '1.1.4'

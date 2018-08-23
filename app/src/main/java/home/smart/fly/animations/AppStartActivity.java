@@ -24,7 +24,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.engineer.imitate.Routes;
 
 import home.smart.fly.animations.fragments.base.RoutePaths;
 
@@ -82,7 +81,7 @@ public class AppStartActivity extends AppCompatActivity {
                 });
         snackbar.getView().setBackgroundColor(getResources().getColor(R.color.cpb_blue));
         snackbar.setActionTextColor(getResources().getColor(R.color.white));
-        findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance().build(Routes.INDEX).navigation());
+        findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance().build("/index/kotlin").navigation());
 
     }
 

@@ -1,4 +1,9 @@
-apply plugin: 'com.android.library'
+if(imitate_isModule.toBoolean()){
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -30,6 +35,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    sourceSets {
+        main {
+            if (imitate_isModule.toBoolean()) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
 }
 
 kapt {
@@ -56,8 +71,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
-    api 'com.facebook.fresco:fresco:1.10.0'
+    implementation 'com.facebook.fresco:fresco:1.10.0'
     implementation 'com.zhihu.android:matisse:0.5.2-beta2'
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$ext.leakcanary"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$ext.leakcanary"
     implementation project(':fast-list')
 }
