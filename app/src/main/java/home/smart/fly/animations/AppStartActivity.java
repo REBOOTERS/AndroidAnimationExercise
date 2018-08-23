@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +23,10 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.Postcard;
+import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import home.smart.fly.animations.fragments.base.RoutePaths;
@@ -81,7 +85,24 @@ public class AppStartActivity extends AppCompatActivity {
                 });
         snackbar.getView().setBackgroundColor(getResources().getColor(R.color.cpb_blue));
         snackbar.setActionTextColor(getResources().getColor(R.color.white));
-        findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance().build("/index/kotlin").navigation());
+        findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance().build("/index/kotlin").navigation(mContext, new NavCallback() {
+            @Override
+            public void onArrival(Postcard postcard) {
+                Log.e(TAG, "onArrival: postcard=="+postcard );
+            }
+
+            @Override
+            public void onLost(Postcard postcard) {
+                super.onLost(postcard);
+                Log.e(TAG, "onLost: postcard=="+postcard );
+
+                snackbar = Snackbar.make(main_contetn, "imitate 没有以 module 的形式运行，请修改 gradle.properties", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("知道了", v1 -> snackbar.dismiss());
+                snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                snackbar.setActionTextColor(getResources().getColor(R.color.white));
+                snackbar.show();
+            }
+        }));
 
     }
 

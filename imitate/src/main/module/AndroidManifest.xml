@@ -3,7 +3,10 @@
     package="com.engineer.imitate">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <application android:name=".ImitateApplication">
+    <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application android:name=".ImitateApplication" android:icon="@mipmap/kotlin">
         <activity
             android:name=".KotlinRootActivity"
             android:label="@string/title_activity_kotlin_root"

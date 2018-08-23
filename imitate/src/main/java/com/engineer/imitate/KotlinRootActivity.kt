@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -14,7 +15,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.fastlist.bind
 import com.engineer.imitate.module.FragmentItem
+import com.engineer.imitate.util.StreamUtils
 import com.engineer.imitate.util.isNetworkConnected
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import java8.util.Optional
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
 import kotlinx.android.synthetic.main.content_kotlin_root.*
 import kotlinx.android.synthetic.main.view_item.view.*
@@ -22,7 +28,7 @@ import kotlinx.android.synthetic.main.view_item.view.*
 @Route(path = Routes.INDEX)
 class KotlinRootActivity : AppCompatActivity() {
 
-    private val BASE_URL = "file:///android_asset/index.html"
+    private val BASE_URL = "index.html"
     private lateinit var hybridHelper: HybridHelper
 
     private lateinit var transaction: FragmentTransaction
@@ -84,7 +90,28 @@ class KotlinRootActivity : AppCompatActivity() {
         hybridHelper = HybridHelper(this)
         hybridHelper.setOnItemClickListener(SimpleClickListener())
         hybrid.addJavascriptInterface(hybridHelper, "hybrid")
-        hybrid.loadUrl(BASE_URL)
+
+
+        Observable.create<String> { emitter ->
+            kotlin.run {
+                Optional.ofNullable(assets.open(BASE_URL))
+                        .ifPresentOrElse({
+                            val result = StreamUtils.readFully(it)
+                            emitter.onNext(result)
+                            emitter.onComplete()
+                        }, { emitter.onError(Throwable("input is null")) })
+            }
+        }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    hybrid.loadDataWithBaseURL("",it,"text/html","utf-8",null)
+                },
+                        {
+                            Log.e("tag", it.toString())
+                            loadRecyclerView()
+                        })
+
+
     }
 
     private inner class SimpleClickListener : HybridHelper.OnItemClickListener {
