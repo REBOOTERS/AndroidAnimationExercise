@@ -46,8 +46,6 @@
 >关于以上两种动画的区别分析可查看日志[Android 动画总结](http://www.jianshu.com/p/420629118c10)
 
 
-
-
 ### ViewsFragment （自定义View先关）
 - PlayView[属性动画拓展（一）](http://www.jianshu.com/p/f34791f4d5ab)
 - 自定义View基础
@@ -65,6 +63,13 @@
 
 
 
+随着累计的动画效果越来越多，导致工程内代码越来越多，app 运行和编译时间变长。因此采用了**组件化**的方式，单独抽取了 imitate moulde . 
+
+imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往这个里写，app这个module只作为以往的积累，尽量不再更改。 **本着组件化的思想，imitate 可以作为 app  的依赖组件，也可以单独运行，修改 gradle.properties 中的配置信息即可。**
+
+在组件化的过程中，使用 [ARouter](https://github.com/alibaba/ARouter) 非常方便。完全解决了页面跳转的问题。
+
+
 以下是部分内容截屏动画
 
 ## [仿懂球帝APP我是教练游戏效果](https://juejin.im/post/5974c0c3f265da6c4c50160f)
@@ -72,13 +77,17 @@
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/football.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/football2.gif"/>
 
 
-## 仿懂球帝球员数据网状图
+## 仿懂球帝球员数据网状图 && 仿简书生成长图文章效果
 
-<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/polyganoView.png"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/polyganoView.png"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/jianshu.gif"/>
 
-## 仿简书生成长图文章效果
+## 仿探探效果 & 约束布局（ConstraintLayout AnimationSet） 动画
 
-<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/jianshu.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/slide.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/constraint_set_anim.gif"/>
+
+## 动图理解scrollTo &  translate 区别
+
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/move.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/-move.gif"/>
 
 ## 仿QQ侧滑菜单效果
 
@@ -96,12 +105,6 @@
 ## 物理动画 & Lottie Animation 
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/LottieAnimation.gif"/><img width=300 height=390 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/physical_animation.gif"/>
-ƒ
-
-## 动图理解scrollTo &  translate 区别
-
-<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/move.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/-move.gif"/>
-
 
 
 
@@ -113,10 +116,10 @@
 
 
 
-## 支付效果   ##
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/alipay.gif"/>
+## 支付效果  & loading
 
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/loading.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/alipay.gif"/>
 ## 属性动画实例 ##
 
 
