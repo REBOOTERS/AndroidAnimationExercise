@@ -61,7 +61,7 @@
 - Bottom Action Sheet 菜单
 - Bitmap LRUCache，LruDiskCache 相关
 
-
+### What's New
 
 随着累计的动画效果越来越多，导致工程内代码越来越多，app 运行和编译时间变长。因此采用了**组件化**的方式，单独抽取了 imitate moulde . 
 
