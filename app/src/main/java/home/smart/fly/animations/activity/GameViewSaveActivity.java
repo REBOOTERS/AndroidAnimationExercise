@@ -26,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.utils.NotificationHelper;
 import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.T;
 
@@ -84,23 +85,14 @@ public class GameViewSaveActivity extends AppCompatActivity {
     private void SaveAndNotify() {
         if (!TextUtils.isEmpty(picUrl)) {
             T.showSToast(mContext, "图片保存在：" + picUrl);
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext);
-            mBuilder.setWhen(System.currentTimeMillis())
-                    .setTicker("下载图片成功")
-                    .setContentTitle("点击查看")
-                    .setSmallIcon(R.mipmap.app_start)
-                    .setContentText("图片保存在:" + picUrl)
-                    .setAutoCancel(true)
-                    .setOngoing(false);
-            //通知默认的声音 震动 呼吸灯
-            mBuilder.setDefaults(NotificationCompat.DEFAULT_ALL);
+
 
             Intent mIntent = new Intent();
             mIntent.setAction(Intent.ACTION_VIEW);
             Uri contentUri;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 // 将文件转换成content://Uri的形式
-                contentUri = FileProvider.getUriForFile(mContext, getPackageName() + ".provider", new File(picUrl));
+                contentUri = FileProvider.getUriForFile(mContext, getPackageName() + ".fileprovider", new File(picUrl));
                 // 申请临时访问权限
                 mIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             } else {
@@ -112,11 +104,8 @@ public class GameViewSaveActivity extends AppCompatActivity {
 
             PendingIntent mPendingIntent = PendingIntent.getActivity(mContext
                     , 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            mBuilder.setContentIntent(mPendingIntent);
-            Notification mNotification = mBuilder.build();
-            mNotification.flags |= Notification.FLAG_AUTO_CANCEL;
-            NotificationManager mManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            mManager.notify(0, mNotification);
+            new NotificationHelper(mContext).createNotification("点击查看","图片保存在: + path",mPendingIntent);
+
         } else {
             T.showSToast(mContext, "图片保存失败");
         }

@@ -7,8 +7,8 @@
         name="root"
         path="."/>
     <external-path
-        name="root"
-        path=""/>
+        name="external_files"
+        path="."/>
     <external-path
         name="my_images"
         path="Pictures"/>
