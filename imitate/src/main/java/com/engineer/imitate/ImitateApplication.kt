@@ -8,7 +8,7 @@ import com.squareup.leakcanary.LeakCanary
 
 /**
  *
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-08-21 19:14
  * @version V1.0
  */

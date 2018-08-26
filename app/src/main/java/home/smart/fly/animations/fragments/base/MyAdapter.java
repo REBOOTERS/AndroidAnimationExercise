@@ -16,7 +16,7 @@ import home.smart.fly.animations.utils.V;
 
 /**
  * @version V1.0
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-08-20 11:01
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{

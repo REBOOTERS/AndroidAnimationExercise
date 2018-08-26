@@ -11,7 +11,7 @@ import android.support.v4.app.NotificationCompat;
 import home.smart.fly.animations.R;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-08-26
  * @desc
  */

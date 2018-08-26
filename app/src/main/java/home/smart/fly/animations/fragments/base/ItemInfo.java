@@ -4,7 +4,7 @@ import android.app.Activity;
 
 /**
  * @version V1.0
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-08-20 10:59
  */
 public class ItemInfo {

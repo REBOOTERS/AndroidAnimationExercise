@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="fakefootball"
+        android:enabled="true"
+        android:icon="@drawable/messi"
+        android:shortcutShortLabel="@string/football"
+        android:shortcutLongLabel="@string/fake_football"
+        android:shortcutDisabledMessage="@string/fake_football">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="home.smart.fly.animations"
+            android:targetClass="home.smart.fly.animations.activity.FakeFootballActivity" />
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+    <shortcut
+        android:shortcutId="webview"
+        android:enabled="true"
+        android:icon="@drawable/ic_explore_black_24dp"
+        android:shortcutShortLabel="@string/webview"
+        android:shortcutLongLabel="@string/webview1 "
+        android:shortcutDisabledMessage="@string/webview1">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="home.smart.fly.animations"
+            android:targetClass="home.smart.fly.animations.webview.AllWebViewActivity" />
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+</shortcuts>

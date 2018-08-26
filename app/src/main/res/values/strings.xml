@@ -11,6 +11,9 @@
     <string name="fake_weibo">仿新浪微博雷达扫描效果及相关功能实现</string>
     <string name="ball">小球虽手指移动效果</string>
     <string name="fake_football">仿懂球帝APP我是教练游戏效果</string>
+    <string name="football">足球11人</string>
+    <string name="webview">webView</string>
+    <string name="webview1">How to use webView</string>
     <string name="lottie_anim">Airbnb Lottie 动画</string>
     <string name="flip_3d_View">FlipView 3D 效果</string>
     <string name="take_screen">截屏</string>

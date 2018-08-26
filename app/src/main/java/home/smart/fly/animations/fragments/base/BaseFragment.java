@@ -18,7 +18,7 @@ import home.smart.fly.animations.utils.V;
 
 /**
  * @version V1.0
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-08-20 10:57
  */
 public abstract class BaseFragment extends Fragment {
