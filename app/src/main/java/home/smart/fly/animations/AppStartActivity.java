@@ -75,28 +75,18 @@ public class AppStartActivity extends AppCompatActivity {
         });
 
         spinner.setSelection(getLastPosition());
-        main_contetn = (CoordinatorLayout) findViewById(R.id.main_content);
-        snackbar = Snackbar.make(main_contetn, "确认要退出吗？", Snackbar.LENGTH_SHORT)
-                .setAction("退出", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                    }
-                });
-        snackbar.getView().setBackgroundColor(getResources().getColor(R.color.cpb_blue));
-        snackbar.setActionTextColor(getResources().getColor(R.color.white));
-        findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance().build("/index/kotlin").navigation(mContext, new NavCallback() {
+        main_contetn = findViewById(R.id.main_content);
+        findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance()
+                .build("/index/kotlin").navigation(mContext, new NavCallback() {
             @Override
             public void onArrival(Postcard postcard) {
-                Log.e(TAG, "onArrival: postcard=="+postcard );
             }
 
             @Override
             public void onLost(Postcard postcard) {
                 super.onLost(postcard);
-                Log.e(TAG, "onLost: postcard=="+postcard );
 
-                snackbar = Snackbar.make(main_contetn, "imitate 没有以 module 的形式运行，请修改 gradle.properties", Snackbar.LENGTH_INDEFINITE)
+                snackbar = Snackbar.make(main_contetn, R.string.module_info, Snackbar.LENGTH_LONG)
                         .setAction("知道了", v1 -> snackbar.dismiss());
                 snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 snackbar.setActionTextColor(getResources().getColor(R.color.white));

@@ -94,7 +94,7 @@ dependencies {
     implementation "com.android.support:support-dynamic-animation:$support_versioin"
     implementation 'com.airbnb.android:lottie:2.3.1'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
-    if (!imitate_isModule.toBoolean()) {
+    if (!imitate_isApp.toBoolean()) {
         implementation project(':imitate')
     }
     implementation "com.alibaba:arouter-api:$ext.arouter_api"

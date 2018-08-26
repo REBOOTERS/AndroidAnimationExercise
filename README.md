@@ -69,44 +69,38 @@
 
 ## [仿懂球帝APP我是教练游戏效果](https://juejin.im/post/5974c0c3f265da6c4c50160f)
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/football.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/football2.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/football.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/football2.gif"/>
 
 
 ## 仿懂球帝球员数据网状图
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/polyganoView.png"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/polyganoView.png"/>
 
 ## 仿简书生成长图文章效果
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/jianshu.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/jianshu.gif"/>
 
 ## 仿QQ侧滑菜单效果
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/qq.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/menu_3d.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/qq.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/menu_3d.gif"/>
 
 ## 波浪动画
-
+ 
 <img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/wave_animation.gif"/>
 
 ## 简易时钟效果
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/ACTION_MOVE_TO_CHANGE.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/CLOCK_VIEW.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/ACTION_MOVE_TO_CHANGE.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/CLOCK_VIEW.gif"/>
 
 
-## 物理动画
+## 物理动画 & Lottie Animation 
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/physical_animation.gif"/>
-
-## Lottie Animation 
-<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/LottieAnimation.gif"/>
-
-
-
-
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/LottieAnimation.gif"/><img width=300 height=390 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/physical_animation.gif"/>
+ƒ
 
 ## 动图理解scrollTo &  translate 区别
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/move.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/-move.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/move.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/-move.gif"/>
 
 
 
@@ -115,7 +109,7 @@
 
 ## 帧动画 & 补间动画 ##
 
-<img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/frame.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/rotate1.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/translate.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/frame.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/rotate1.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/translate.gif"/>
 
 
 

@@ -54,6 +54,7 @@
     <string name="easy">easy</string>
     <string name="hard">hard</string>
     <string name="crazy">crazy</string>
+    <string name="module_info">imitate 没有以 module 的形式运行，请修改 gradle.properties 的配置</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

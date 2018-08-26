@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.view_item.view.*
 class KotlinRootActivity : AppCompatActivity() {
 
     private val BASE_URL = "index.html"
+    private val ORIGINAL_URL = "file:///android_asset/index.html"
     private lateinit var hybridHelper: HybridHelper
 
     private lateinit var transaction: FragmentTransaction
@@ -58,15 +59,13 @@ class KotlinRootActivity : AppCompatActivity() {
                 FragmentItem("/anim/textDrawable", "textDrawable"),
                 FragmentItem("/anim/elevation", "elevation"),
                 FragmentItem("/anim/fresco", "fresco"),
-                FragmentItem("/anim/matisse", "matisse")
+                FragmentItem("/anim/matisse", "matisse"),
+                FragmentItem("/anim/constraint","constraint animation")
         )
         recyclerView.bind(list, R.layout.view_item) { item: FragmentItem ->
             desc.text = item.name
             path.text = item.path
             shell.setOnClickListener {
-
-                Toast.makeText(context, "here", Toast.LENGTH_SHORT).show()
-
                 val fragment: Fragment = ARouter
                         .getInstance()
                         .build(item.path)
@@ -78,8 +77,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
             }
-        }
-                .layoutManager(LinearLayoutManager(this))
+        }.layoutManager(LinearLayoutManager(this))
     }
 
     private fun loadWebView() {
@@ -104,7 +102,9 @@ class KotlinRootActivity : AppCompatActivity() {
         }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    hybrid.loadDataWithBaseURL("",it,"text/html","utf-8",null)
+                    // 内容包含远程 JS 无法正常加载 TODO 修改 jquery mobile 为本地
+//                    hybrid.loadDataWithBaseURL("", it, "text/html", "utf-8", null)
+                    hybrid.loadUrl(ORIGINAL_URL)
                 },
                         {
                             Log.e("tag", it.toString())

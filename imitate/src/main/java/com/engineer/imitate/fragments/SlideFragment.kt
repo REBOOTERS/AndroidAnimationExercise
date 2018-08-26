@@ -80,13 +80,12 @@ class SlideFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        initData()
         return inflater.inflate(R.layout.fragment_slide, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initData()
         list.adapter = SlideListAdapter(datas)
         mItemTouchHelperCallback = ItemTouchHelperCallback(list.adapter, datas)
         mItemTouchHelper = ItemTouchHelper(mItemTouchHelperCallback)
