@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ClipBoardActivity">
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/copyEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/clipboard"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/pasteEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/clipboard"
+        app:layout_constraintLeft_toLeftOf="@+id/copyEdit"
+        app:layout_constraintRight_toRightOf="@+id/copyEdit"
+        app:layout_constraintTop_toBottomOf="@+id/copyEdit" />
+
+    <Button
+        android:id="@+id/copy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="copy"
+        app:layout_constraintLeft_toLeftOf="@+id/pasteEdit"
+        app:layout_constraintTop_toBottomOf="@+id/pasteEdit" />
+
+    <Button
+        android:id="@+id/paste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="paste"
+        app:layout_constraintRight_toRightOf="@+id/pasteEdit"
+        app:layout_constraintTop_toBottomOf="@+id/pasteEdit" />
+
+</android.support.constraint.ConstraintLayout>

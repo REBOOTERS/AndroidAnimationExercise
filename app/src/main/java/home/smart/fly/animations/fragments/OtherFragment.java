@@ -13,6 +13,7 @@ import java.io.File;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.activity.CameraActivity;
+import home.smart.fly.animations.activity.ClipBoardActivity;
 import home.smart.fly.animations.activity.FullscreenActivity;
 import home.smart.fly.animations.activity.ImgCacheActivity;
 import home.smart.fly.animations.activity.InputActivity;
@@ -65,6 +66,7 @@ public class OtherFragment extends BaseFragment {
         demos.add(new ItemInfo(R.string.input_view, InputActivity.class));
         demos.add(new ItemInfo(R.string.orientation, OrientationActivity.class));
         demos.add(new ItemInfo(R.string.optional, OptionalActivity.class));
+        demos.add(new ItemInfo(R.string.clipboard, ClipBoardActivity.class));
 
         PrintSystemDirInfo();
     }

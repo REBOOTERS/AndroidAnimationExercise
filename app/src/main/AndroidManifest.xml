@@ -23,7 +23,8 @@
     <!-- 访问网络，网络定位需要上网 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- SD卡读取权限，用户写入离线定位数据 -->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
     ///////my self
     <uses-permission android:name="android.permission.CAMERA" />
@@ -54,7 +55,7 @@
 
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity android:name=".tradition.FrameAnimationActivity" />
         <activity android:name=".tradition.TweenedAnimationActivity" />
@@ -317,7 +318,8 @@
             android:theme="@style/MyTheme.NoActionBar" />
         <activity android:name=".activity.PhenixDemoActivity" />
         <activity android:name=".activity.WebViewMenuActivity" />
-        <activity android:name=".activity.OptionalActivity"></activity>
+        <activity android:name=".activity.OptionalActivity" />
+        <activity android:name=".activity.ClipBoardActivity"></activity>
     </application>
 
 </manifest>
