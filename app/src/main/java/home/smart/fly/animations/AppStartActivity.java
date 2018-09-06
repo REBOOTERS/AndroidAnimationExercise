@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources.Theme;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -12,7 +13,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,17 +23,17 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import java.util.Objects;
+
 import home.smart.fly.animations.fragments.base.RoutePaths;
 
 
 public class AppStartActivity extends AppCompatActivity {
-    private static final String TAG = "AppStartActivity";
     private Snackbar snackbar = null;
     private CoordinatorLayout main_contetn;
     private Context mContext;
@@ -48,12 +48,12 @@ public class AppStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_app_start);
         mContext = this;
         mPreferences = getSharedPreferences("fragment_pos",MODE_PRIVATE);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         // Setup spinner
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(new MyAdapter(
                 toolbar.getContext(),
                 getResources().getStringArray(R.array.fragments)));
@@ -140,13 +140,13 @@ public class AppStartActivity extends AppCompatActivity {
     private static class MyAdapter extends ArrayAdapter<String> implements ThemedSpinnerAdapter {
         private final ThemedSpinnerAdapter.Helper mDropDownHelper;
 
-        public MyAdapter(Context context, String[] objects) {
+        private MyAdapter(Context context, String[] objects) {
             super(context, android.R.layout.simple_list_item_1, objects);
             mDropDownHelper = new ThemedSpinnerAdapter.Helper(context);
         }
 
         @Override
-        public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
             View view;
 
             if (convertView == null) {
@@ -157,7 +157,7 @@ public class AppStartActivity extends AppCompatActivity {
                 view = convertView;
             }
 
-            TextView textView = (TextView) view.findViewById(android.R.id.text1);
+            TextView textView = view.findViewById(android.R.id.text1);
             textView.setText(getItem(position));
             return view;
         }

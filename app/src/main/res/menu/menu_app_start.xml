@@ -2,6 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="home.smart.fly.animations.AppStartActivity">
+
+    <item
+        android:id="@+id/change_theme"
+        android:icon="@drawable/ic_card_24dp"
+        android:title="@string/action_add_item"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

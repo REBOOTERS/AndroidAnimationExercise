@@ -15,7 +15,6 @@ class Phenix {
     private lateinit var context: Context
     private lateinit var datas: MutableList<ImageBean>
 
-    private constructor()
 
     companion object {
         fun getInstance(): Phenix {

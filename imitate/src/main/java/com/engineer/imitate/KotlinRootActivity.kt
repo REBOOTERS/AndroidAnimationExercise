@@ -1,5 +1,6 @@
 package com.engineer.imitate
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
@@ -10,7 +11,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.fastlist.bind
@@ -19,6 +19,7 @@ import com.engineer.imitate.util.StreamUtils
 import com.engineer.imitate.util.isNetworkConnected
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java8.util.Optional
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
@@ -34,6 +35,8 @@ class KotlinRootActivity : AppCompatActivity() {
 
     private lateinit var transaction: FragmentTransaction
     private lateinit var currentFragment: Fragment
+
+    private lateinit var disposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,6 +83,7 @@ class KotlinRootActivity : AppCompatActivity() {
         }.layoutManager(LinearLayoutManager(this))
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun loadWebView() {
         hybrid.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
@@ -90,7 +94,7 @@ class KotlinRootActivity : AppCompatActivity() {
         hybrid.addJavascriptInterface(hybridHelper, "hybrid")
 
 
-        Observable.create<String> { emitter ->
+         disposable=Observable.create<String> { emitter ->
             kotlin.run {
                 Optional.ofNullable(assets.open(BASE_URL))
                         .ifPresentOrElse({
@@ -166,8 +170,15 @@ class KotlinRootActivity : AppCompatActivity() {
     private fun releaseFragment() {
         content.visibility = View.GONE
         index.visibility = View.VISIBLE
-        if (transaction != null && !transaction.isEmpty) {
+        if (!transaction.isEmpty) {
             transaction.remove(currentFragment)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (!disposable.isDisposed) {
+            disposable.dispose()
         }
     }
 

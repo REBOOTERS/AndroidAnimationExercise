@@ -92,7 +92,7 @@ dependencies {
     implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:support-dynamic-animation:$support_versioin"
-    implementation 'com.airbnb.android:lottie:2.3.1'
+    implementation 'com.airbnb.android:lottie:2.5.1'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
     if (!imitate_isApp.toBoolean()) {
         implementation project(':imitate')
@@ -108,6 +108,8 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
 
     implementation 'com.facebook.fresco:fresco:1.10.0'
+
+    implementation 'com.bilibili:magicasakura:0.1.8@aar'  // Bilibili 换肤 lib
 }
 
 

@@ -26,7 +26,6 @@
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
-    ///////my self
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
@@ -157,7 +156,6 @@
         <activity
             android:name=".activity.PendingImgActivity"
             android:theme="@style/AppTheme" />
-        //demos
         <activity
             android:name=".activity.demos.AnimationsDemo"
             android:label="@string/app_name" />
@@ -200,7 +198,6 @@
             android:name=".activity.demos.LayoutChangesActivity"
             android:label="@string/title_layout_changes"
             android:parentActivityName=".activity.demos.AnimationsDemo">
-            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.demos.AnimationsDemo" />
@@ -236,7 +233,6 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                //
                 <action android:name="home.smart.fly.animations.widget.action.REFRESH" />
             </intent-filter>
 
@@ -284,7 +280,13 @@
             android:theme="@style/MyTheme.NoActionBar" />
         <activity
             android:name=".activity.LaunchOtherAppActivity"
-            android:label="@string/launch_app" />
+            android:label="@string/launch_app" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.BitmapMeshActivity" />
         <activity android:name=".activity.PolygonViewActivity" />
         <activity
@@ -319,7 +321,7 @@
         <activity android:name=".activity.PhenixDemoActivity" />
         <activity android:name=".activity.WebViewMenuActivity" />
         <activity android:name=".activity.OptionalActivity" />
-        <activity android:name=".activity.ClipBoardActivity"></activity>
+        <activity android:name=".activity.ClipBoardActivity"/>
     </application>
 
 </manifest>
