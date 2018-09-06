@@ -10,7 +10,7 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.activity.CollegeActivity;
+import home.smart.fly.animations.ui.activity.CollegeActivity;
 
 /**
  * Created by Rookie on 2017/8/3.

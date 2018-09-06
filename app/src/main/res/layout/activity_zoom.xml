@@ -45,7 +45,7 @@
                  "ToughHighlightImageButton" ImageButton subclass helps achieve this by drawing
                  the standard system "pressed" and "focused" overlay upon user interaction. -->
 
-            <home.smart.fly.animations.activity.demos.TouchHighlightImageButton
+            <home.smart.fly.animations.ui.activity.demos.TouchHighlightImageButton
                 android:id="@+id/thumb_button_1"
                 android:layout_width="100dp"
                 android:layout_height="75dp"
@@ -54,7 +54,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/thumb1"/>
 
-            <home.smart.fly.animations.activity.demos.TouchHighlightImageButton
+            <home.smart.fly.animations.ui.activity.demos.TouchHighlightImageButton
                 android:id="@+id/thumb_button_2"
                 android:layout_width="100dp"
                 android:layout_height="75dp"

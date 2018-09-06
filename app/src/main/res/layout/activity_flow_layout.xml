@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="home.smart.fly.animations.activity.FlowLayoutActivity">
+    tools:context=".ui.activity.FlowLayoutActivity">
 
     <home.smart.fly.animations.customview.FlowLayout
         android:id="@+id/flowlayout"

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="home.smart.fly.animations.activity.transtions.StackViewActivity">
+    tools:context=".ui.activity.transtions.StackViewActivity">
 
     <StackView
         android:id="@+id/stackView"

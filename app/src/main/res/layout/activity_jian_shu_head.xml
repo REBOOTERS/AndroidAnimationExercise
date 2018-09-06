@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="home.smart.fly.animations.activity.jianshu.JianShuHeadActivity">
+    tools:context=".ui.activity.jianshu.JianShuHeadActivity">
 
 
     <android.support.v4.widget.NestedScrollView

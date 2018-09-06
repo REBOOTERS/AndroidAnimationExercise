@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.activity.PhysicsViewActivity;
+import home.smart.fly.animations.ui.activity.PhysicsViewActivity;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.property.AliPayAnimActivity;
 import home.smart.fly.animations.property.DecorViewActivity;

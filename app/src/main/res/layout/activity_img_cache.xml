@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="home.smart.fly.animations.activity.ImgCacheActivity">
+    tools:context=".ui.activity.ImgCacheActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

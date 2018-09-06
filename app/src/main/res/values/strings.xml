@@ -14,6 +14,7 @@
     <string name="football">足球11人</string>
     <string name="webview">webView</string>
     <string name="webview1">How to use webView</string>
+    <string name="loader"> Loader 动画</string>
     <string name="lottie_anim">Airbnb Lottie 动画</string>
     <string name="flip_3d_View">FlipView 3D 效果</string>
     <string name="take_screen">截屏</string>

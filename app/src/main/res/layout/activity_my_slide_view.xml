@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/toolbar_bg"
-    tools:context="home.smart.fly.animations.activity.MySwipeMenuActivity">
+    tools:context=".ui.activity.MySwipeMenuActivity">
 
     <LinearLayout
         android:id="@+id/menuView"

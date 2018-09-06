@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="home.smart.fly.animations.activity.PhotoBrowse">
+    tools:context=".ui.activity.PhotoBrowse">
 
     <GridView
         android:id="@+id/gv"

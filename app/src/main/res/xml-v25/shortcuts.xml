@@ -11,7 +11,7 @@
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="home.smart.fly.animations"
-            android:targetClass="home.smart.fly.animations.activity.FakeFootballActivity" />
+            android:targetClass="home.smart.fly.animations.ui.activity.FakeFootballActivity" />
         <categories android:name="android.shortcut.conversation"/>
     </shortcut>
     <shortcut

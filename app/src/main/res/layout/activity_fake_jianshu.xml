@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/cpb_white"
     android:orientation="vertical"
-    tools:context=".activity.jianshu.FakeJianShuActivity">
+    tools:context=".ui.activity.jianshu.FakeJianShuActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context="home.smart.fly.animations.activity.PendingImgActivity">
+    tools:context=".ui.activity.PendingImgActivity">
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/img"

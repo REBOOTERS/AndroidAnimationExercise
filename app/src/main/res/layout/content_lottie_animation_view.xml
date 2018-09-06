@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="home.smart.fly.animations.activity.LottieAnimationViewActivity"
+    tools:context=".ui.activity.LottieAnimationViewActivity"
     tools:showIn="@layout/activity_lottie_animation_view">
 
     <com.airbnb.lottie.LottieAnimationView

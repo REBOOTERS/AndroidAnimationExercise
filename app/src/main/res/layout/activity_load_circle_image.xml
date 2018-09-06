@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="home.smart.fly.animations.activity.LoadCircleImageActivity">
+    tools:context=".ui.activity.LoadCircleImageActivity">
 
 
     <android.support.v7.widget.AppCompatButton

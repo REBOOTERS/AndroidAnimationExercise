@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="home.smart.fly.animations.activity.ViewPagerNestedActivity">
+    tools:context=".ui.activity.ViewPagerNestedActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

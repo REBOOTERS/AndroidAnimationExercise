@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="home.smart.fly.animations.activity.PlayActivity">
+    tools:context=".ui.activity.PlayActivity">
 
     <ImageView
         android:id="@+id/image"

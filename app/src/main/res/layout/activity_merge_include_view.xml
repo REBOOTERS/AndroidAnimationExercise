@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="home.smart.fly.animations.activity.MergeIncludeViewActivity">
+    tools:context=".ui.activity.MergeIncludeViewActivity">
 
         <LinearLayout
             android:layout_width="match_parent"

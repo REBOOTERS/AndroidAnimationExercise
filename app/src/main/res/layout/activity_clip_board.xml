@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ClipBoardActivity">
+    tools:context=".ui.activity.ClipBoardActivity">
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/copyEdit"

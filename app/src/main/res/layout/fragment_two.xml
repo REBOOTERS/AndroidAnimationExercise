@@ -4,7 +4,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="@color/cpb_green"
-             tools:context=".activity.multifragments.TwoFragment">
+             tools:context=".ui.activity.multifragments.TwoFragment">
 
     <home.smart.fly.animations.customview.CustomTintImageView
         android:id="@+id/check"

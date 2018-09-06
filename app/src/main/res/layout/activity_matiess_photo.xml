@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@color/black"
-    tools:context="home.smart.fly.animations.activity.MatissePhotoActivity">
+    tools:context=".ui.activity.MatissePhotoActivity">
 
     <ImageView
         android:id="@+id/image"

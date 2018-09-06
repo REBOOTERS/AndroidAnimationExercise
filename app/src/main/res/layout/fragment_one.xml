@@ -6,7 +6,7 @@
               android:background="@color/colorPrimary"
               android:gravity="center"
               android:orientation="vertical"
-              tools:context=".activity.multifragments.OneFragment">
+              tools:context=".ui.activity.multifragments.OneFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

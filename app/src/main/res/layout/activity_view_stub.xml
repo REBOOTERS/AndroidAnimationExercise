@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="home.smart.fly.animations.activity.ViewStubActivity">
+    tools:context=".ui.activity.ViewStubActivity">
 
     <Button
         android:id="@+id/load"
