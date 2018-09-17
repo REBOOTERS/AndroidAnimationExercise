@@ -62,13 +62,10 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/test"
-        android:layout_margin="20dp"
-        android:padding="10dp"
-        android:text="test"
-        android:textColor="@color/white"
-        android:background="@color/cpb_red"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <com.engineer.imitate.widget.custom.RoundImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/comic" />
 </LinearLayout>

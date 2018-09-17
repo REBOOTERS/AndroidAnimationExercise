@@ -97,6 +97,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         return super.onCreateOptionsMenu(menu);
     }
 
+    //<editor-fold desc="OptionMenu Item Click Event">
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -148,6 +149,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         }
         return super.onOptionsItemSelected(item);
     }
+    //</editor-fold>
 
     @Override
     public void onClick(View v) {

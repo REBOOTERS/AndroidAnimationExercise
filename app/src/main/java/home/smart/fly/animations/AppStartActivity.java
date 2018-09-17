@@ -137,6 +137,7 @@ public class AppStartActivity extends AppCompatActivity {
     }
 
 
+    //<editor-fold desc="SpinnerAdapter">
     private static class MyAdapter extends ArrayAdapter<String> implements ThemedSpinnerAdapter {
         private final ThemedSpinnerAdapter.Helper mDropDownHelper;
 
@@ -172,5 +173,6 @@ public class AppStartActivity extends AppCompatActivity {
             mDropDownHelper.setDropDownViewTheme(theme);
         }
     }
+    //</editor-fold>
 
 }

@@ -300,5 +300,6 @@
     <string name="title_activity_lottie_animation_view">LottieAnimationViewActivity</string>
     <string name="title_activity_views">ViewsActivity</string>
     <string name="title_activity_multi_fragments">单Activity多Fragment管理</string>
+    <string name="click_me">click me</string>
 
 </resources>

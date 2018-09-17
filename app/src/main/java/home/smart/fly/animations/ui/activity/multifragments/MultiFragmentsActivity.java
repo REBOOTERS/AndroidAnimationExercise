@@ -1,5 +1,6 @@
 package home.smart.fly.animations.ui.activity.multifragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -7,13 +8,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.ui.activity.CommunicationFragment;
 
-public class MultiFragmentsActivity extends AppCompatActivity {
+public class MultiFragmentsActivity extends AppCompatActivity implements CommunicationFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -50,6 +53,11 @@ public class MultiFragmentsActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        Toast.makeText(getApplicationContext(),"url=="+uri.toString(),Toast.LENGTH_SHORT).show();
+    }
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -68,11 +76,13 @@ public class MultiFragmentsActivity extends AppCompatActivity {
             mFragments.add(new TwoFragment());
             mFragments.add(new ThreeFragment());
             mFragments.add(new FourFragment());
+            mFragments.add(new CommunicationFragment());
 
             mTitles.add("one");
             mTitles.add("two");
             mTitles.add("three");
             mTitles.add("four");
+            mTitles.add("five");
         }
 
         @Override
