@@ -1,5 +1,6 @@
 package home.smart.fly.animations.ui.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
@@ -11,8 +12,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.tbruyelle.rxpermissions2.RxPermissions;
+
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.FileUtil;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class ScreenCaptureActivity extends AppCompatActivity {
     private ImageView ivScreenshot;
@@ -39,12 +44,36 @@ public class ScreenCaptureActivity extends AppCompatActivity {
         Bitmap bitmap = Bitmap.createBitmap(temp, 0, statusBarHeight, screenInfo.width, screenInfo.height - statusBarHeight);
         viewRoot.setDrawingCacheEnabled(false);
 
-        if (!TextUtils.isEmpty(FileUtil.savaBitmap2SDcard(this, bitmap, "myfile"))) {
-            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, FullscreenActivity.class));
-        } else {
-            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
-        }
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(new Observer<Boolean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        if (aBoolean) {
+                            if (!TextUtils.isEmpty(FileUtil.savaBitmap2SDcard(ScreenCaptureActivity.this, bitmap, "myfile"))) {
+                                Toast.makeText(ScreenCaptureActivity.this, "success", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(ScreenCaptureActivity.this, FullscreenActivity.class));
+                            } else {
+                                Toast.makeText(ScreenCaptureActivity.this, "fail", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     private int getStatusBarHeight() {
