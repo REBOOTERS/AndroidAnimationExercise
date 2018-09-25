@@ -1,14 +1,14 @@
 ext {
-    compileSdkVersion = 27
-    buildToolsVersion = '27.0.3'
+    compileSdkVersion = 28
+    buildToolsVersion = '28.0.3'
     minSdkVersion = 21
-    targetSdkVersion = 27
+    targetSdkVersion = 28
 
-    support_versioin = '27.1.1'
+    support_versioin = '28.0.0'
     constraint_layout = '1.1.3'
 
-    kotlin_version = '1.2.70'
-    gradle_version = '3.1.3'
+    kotlin_version = '1.2.71'
+    gradle_version = '3.2.0'
 
     leakcanary = '1.6.1'
     glide = '4.7.1'
