@@ -5,8 +5,8 @@ sudo: false
 android:
   components:
     - tools
-    - build-tools-27.0.3
-    - android-27
+    - build-tools-28.0.3
+    - android-28
     - extra-android-m2repository
     - extra-android-support
   licenses:
@@ -20,4 +20,4 @@ before_install:
   - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 
 script:
-  - ./gradlew assembleRelease
+  - ./gradlew assembleDebug
