@@ -325,7 +325,7 @@
         <activity android:name=".ui.activity.WebViewMenuActivity" />
         <activity android:name=".ui.activity.OptionalActivity" />
         <activity android:name=".ui.activity.ClipBoardActivity" />
-        <activity android:name=".ui.activity.Loaderctivity"></activity>
+        <activity android:name=".ui.activity.LoaderActivity"/>
     </application>
 
 </manifest>

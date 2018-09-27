@@ -9,7 +9,7 @@ import home.smart.fly.animations.ui.activity.ClockViewActivity;
 import home.smart.fly.animations.ui.activity.FakeFootballActivity;
 import home.smart.fly.animations.ui.activity.FlipViewActivity;
 import home.smart.fly.animations.ui.activity.IModeActivity;
-import home.smart.fly.animations.ui.activity.Loaderctivity;
+import home.smart.fly.animations.ui.activity.LoaderActivity;
 import home.smart.fly.animations.ui.activity.LottieAnimationViewActivity;
 import home.smart.fly.animations.ui.activity.MatisseDemoActivity;
 import home.smart.fly.animations.ui.activity.MySwipeMenuActivity;
@@ -35,7 +35,7 @@ public class ImitateFragment extends BaseFragment {
     public void InitView() {
         demos.add(new ItemInfo(R.string.fake_football, FakeFootballActivity.class));
         demos.add(new ItemInfo(R.string.app_name, ViewsActivity.class));
-        demos.add(new ItemInfo(R.string.loader, Loaderctivity.class));
+        demos.add(new ItemInfo(R.string.loader, LoaderActivity.class));
         demos.add(new ItemInfo(R.string.lottie_anim, LottieAnimationViewActivity.class));
         demos.add(new ItemInfo(R.string.jianshu, FakeJianShuActivity.class));
         demos.add(new ItemInfo(R.string.clockView, ClockViewActivity.class));

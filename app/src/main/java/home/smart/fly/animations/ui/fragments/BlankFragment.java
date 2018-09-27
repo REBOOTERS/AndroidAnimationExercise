@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -33,9 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.adapter.MyAdapter;
 import java8.util.Optional;
-import java8.util.function.Consumer;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import home.smart.fly.animations.R;
 
-public class Loaderctivity extends AppCompatActivity {
+public class LoaderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
