@@ -6,15 +6,16 @@ apply plugin: 'kotlin-android-extensions'
 androidExtensions {
     experimental = true
 }
+def ext = rootProject.ext
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion ext.compileSdkVersion
 
 
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 27
+        minSdkVersion ext.minSdkVersion
+        targetSdkVersion ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -36,12 +37,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation "com.android.support:appcompat-v7:$ext.support_versioin"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    compileOnly "com.android.support:recyclerview-v7:27.1.1"
-    compileOnly 'androidx.core:core-ktx:0.3'
+    compileOnly "com.android.support:recyclerview-v7:$ext.support_versioin"
+    compileOnly 'androidx.core:core-ktx:1.0.0'
 
 }

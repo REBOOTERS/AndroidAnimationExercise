@@ -19,7 +19,7 @@
         android:enabled="true"
         android:icon="@drawable/ic_explore_black_24dp"
         android:shortcutShortLabel="@string/webview"
-        android:shortcutLongLabel="@string/webview1 "
+        android:shortcutLongLabel="@string/webview"
         android:shortcutDisabledMessage="@string/webview1">
 
         <intent

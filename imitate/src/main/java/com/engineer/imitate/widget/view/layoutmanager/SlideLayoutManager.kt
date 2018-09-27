@@ -27,7 +27,7 @@ class SlideLayoutManager : RecyclerView.LayoutManager {
     }
 
     inner class MyTouchListener:View.OnTouchListener {
-        override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        override fun onTouch(v: View, event: MotionEvent?): Boolean {
 
             val childViewHolder = mRecyclerView.getChildViewHolder(v)
 
@@ -46,7 +46,7 @@ class SlideLayoutManager : RecyclerView.LayoutManager {
         return RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
-    override fun onLayoutChildren(recycler: RecyclerView.Recycler?, state: RecyclerView.State?) {
+    override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State?) {
         detachAndScrapAttachedViews(recycler)
         val itemCount = itemCount
         if (itemCount > ItemConfig.DEFAULT_SHOW_ITEM) {

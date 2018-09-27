@@ -28,7 +28,7 @@ class SlideListAdapter(private var datas: List<String>) : RecyclerView.Adapter<S
     }
 
 
-    class MyHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         lateinit var imageView: ImageView
 
         init {

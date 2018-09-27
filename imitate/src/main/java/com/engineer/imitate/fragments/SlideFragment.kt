@@ -87,7 +87,7 @@ class SlideFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initData()
         list.adapter = SlideListAdapter(datas)
-        mItemTouchHelperCallback = ItemTouchHelperCallback(list.adapter, datas)
+        mItemTouchHelperCallback = ItemTouchHelperCallback(list.adapter as SlideListAdapter, datas)
         mItemTouchHelper = ItemTouchHelper(mItemTouchHelperCallback)
         mSlideLayoutManager = SlideLayoutManager(list, mItemTouchHelper)
         mItemTouchHelper.attachToRecyclerView(list)
