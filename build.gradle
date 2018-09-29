@@ -6,11 +6,15 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven {
+            url uri('repo')
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.alibaba:arouter-register:$arouter_register"
+        classpath "com.engineer.plugin:phoenix:1.0.5"
     }
 
 
@@ -26,4 +30,5 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+    delete rootDir.toString() + File.separator + apkDir
 }

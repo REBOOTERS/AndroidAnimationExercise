@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 
 import java.io.File;
 
+import home.smart.fly.animations.BuildConfig;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.ui.activity.CameraActivity;
 import home.smart.fly.animations.ui.activity.ClipBoardActivity;
@@ -68,13 +69,24 @@ public class OtherFragment extends BaseFragment {
         demos.add(new ItemInfo(R.string.optional, OptionalActivity.class));
         demos.add(new ItemInfo(R.string.clipboard, ClipBoardActivity.class));
 
-        PrintSystemDirInfo();
+        printSystemDirInfo();
+
+        printBuildConfigInfo();
+
+    }
+
+    private void printBuildConfigInfo() {
+        Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.APPLICATION_ID);
+        Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.BUILD_TYPE);
+        Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.FLAVOR);
+        Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.VERSION_NAME);
+        Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.VERSION_CODE);
     }
 
     /**
      * 打印系统目录信息
      */
-    private void PrintSystemDirInfo() {
+    private void printSystemDirInfo() {
 
 
         final int version = Build.VERSION.SDK_INT;

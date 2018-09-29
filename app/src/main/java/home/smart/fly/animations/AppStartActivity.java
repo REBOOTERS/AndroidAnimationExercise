@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
@@ -47,7 +49,7 @@ public class AppStartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_start);
         mContext = this;
-        mPreferences = getSharedPreferences("fragment_pos",MODE_PRIVATE);
+        mPreferences = getSharedPreferences("fragment_pos", MODE_PRIVATE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
@@ -65,7 +67,7 @@ public class AppStartActivity extends AppCompatActivity {
                 // container view.
                 FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
                 Fragment fragment = (Fragment) ARouter.getInstance().build(RoutePaths.paths[position]).navigation();
-                transition.replace(R.id.container,fragment).commit();
+                transition.replace(R.id.container, fragment).commit();
                 saveLastSelect(position);
             }
 
@@ -78,33 +80,39 @@ public class AppStartActivity extends AppCompatActivity {
         main_contetn = findViewById(R.id.main_content);
         findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance()
                 .build("/index/kotlin").navigation(mContext, new NavCallback() {
-            @Override
-            public void onArrival(Postcard postcard) {
-            }
+                    @Override
+                    public void onArrival(Postcard postcard) {
+                    }
 
-            @Override
-            public void onLost(Postcard postcard) {
-                super.onLost(postcard);
-
-                snackbar = Snackbar.make(main_contetn, R.string.module_info, Snackbar.LENGTH_LONG)
-                        .setAction("知道了", v1 -> snackbar.dismiss());
-                snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                snackbar.setActionTextColor(getResources().getColor(R.color.white));
-                snackbar.show();
-            }
-        }));
+                    @Override
+                    public void onLost(Postcard postcard) {
+                        super.onLost(postcard);
+                        snackbar = Snackbar.make(main_contetn, R.string.module_info, Snackbar.LENGTH_LONG)
+                                .setAction("知道了", v1 -> snackbar.dismiss());
+                        snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                        snackbar.setActionTextColor(getResources().getColor(R.color.white));
+                        snackbar.show();
+                    }
+                }));
 
     }
 
-    private void saveLastSelect(int lastPosition){
-        mPreferences.edit().putInt("pos",lastPosition).apply();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String info = BuildConfig.BUILD_TYPE + "-" + BuildConfig.VERSION_NAME;
+        if (BuildConfig.DEBUG) {
+            Toast.makeText(mContext, info, Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private int getLastPosition(){
-        return  mPreferences.getInt("pos",2);
+    private void saveLastSelect(int lastPosition) {
+        mPreferences.edit().putInt("pos", lastPosition).apply();
     }
 
-
+    private int getLastPosition() {
+        return mPreferences.getInt("pos", 2);
+    }
 
 
     @Override

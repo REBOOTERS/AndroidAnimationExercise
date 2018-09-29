@@ -22,6 +22,7 @@ import home.smart.fly.animations.utils.V;
  * @date: 2018-08-20 10:57
  */
 public abstract class BaseFragment extends Fragment {
+    protected  final String TAG = "BaseFragment";
 
     protected Context mContext;
 

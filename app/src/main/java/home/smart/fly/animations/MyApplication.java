@@ -1,12 +1,9 @@
 package home.smart.fly.animations;
 
 import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
 import android.support.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bilibili.magicasakura.utils.ThemeUtils;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.AndroidExcludedRefs;
@@ -22,7 +19,7 @@ import home.smart.fly.animations.interfaces.ActivityLifecycleSimpleCallbacks;
  * Created by rookie on 2017-03-08.
  */
 
-public class MyApplication extends MultiDexApplication implements ThemeUtils.switchColor {
+public class MyApplication extends MultiDexApplication  {
     @Override
     public void onCreate() {
         super.onCreate();
@@ -39,8 +36,6 @@ public class MyApplication extends MultiDexApplication implements ThemeUtils.swi
 
         ARouter.init(this);
         Fresco.initialize(this);
-
-        ThemeUtils.setSwitchColor(this);
     }
 
     private RefWatcher installLeakCanary() {
@@ -73,16 +68,5 @@ public class MyApplication extends MultiDexApplication implements ThemeUtils.swi
         });
 
         return  refWatcher;
-    }
-
-
-    @Override
-    public int replaceColorById(Context context, int colorId) {
-        return 0;
-    }
-
-    @Override
-    public int replaceColor(Context context, int color) {
-        return 0;
     }
 }

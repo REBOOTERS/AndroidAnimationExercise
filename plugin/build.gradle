@@ -1,0 +1,19 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    implementation gradleApi()  // gradle sdk
+    implementation localGroovy()  // groovy sdk
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+// 进行上传任务的命令：./gradlew -p plugin/ clean build uploadArchives
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: uri('../repo')) //仓库的路径，此处是项目根目录下的 repo 的文件夹
+        pom.groupId = 'com.engineer.plugin'  //groupId ，自行定义，一般是包名
+        pom.artifactId = 'phoenix' //artifactId ，自行定义
+        pom.version = '1.0.5' //version 版本号
+    }
+}
