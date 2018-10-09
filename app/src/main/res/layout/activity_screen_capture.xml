@@ -18,6 +18,12 @@
         android:layout_height="wrap_content"
         android:text="takeScreen"/>
 
+    <Button
+        android:id="@+id/getScreenPixel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="takeScreenWithPixel"/>
+
     <ImageView
         android:id="@+id/ivScreenshot"
         android:layout_width="match_parent"

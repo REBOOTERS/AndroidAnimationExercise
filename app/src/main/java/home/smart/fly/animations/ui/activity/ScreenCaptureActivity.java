@@ -1,6 +1,7 @@
 package home.smart.fly.animations.ui.activity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
@@ -12,27 +13,48 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.muddzdev.pixelshot.PixelShot;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.FileUtil;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public class ScreenCaptureActivity extends AppCompatActivity {
     private ImageView ivScreenshot;
+    private Disposable mDisposable;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.activity_screen_capture);
         ivScreenshot = (ImageView) findViewById(R.id.ivScreenshot);
-        findViewById(R.id.getScreen).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.getScreen).setOnClickListener(v -> takeScreenshot());
+
+        findViewById(R.id.getScreenPixel).setOnClickListener(v -> takeScreenShotWithPixel());
+    }
+
+    private void takeScreenShotWithPixel() {
+        View viewRoot = getWindow().getDecorView().getRootView();
+        PixelShot.of(viewRoot)
+                .setFilename("screen")
+                .setResultListener(new PixelShot.PixelShotListener() {
             @Override
-            public void onClick(View v) {
-                takeScreenshot();
+            public void onPixelShotSuccess(String path) {
+                Toast.makeText(mContext, path, Toast.LENGTH_SHORT).show();
+                Glide.with(mContext).load(path).into(ivScreenshot);
             }
-        });
+
+            @Override
+            public void onPixelShotFailed() {
+                Toast.makeText(mContext, "Fail", Toast.LENGTH_SHORT).show();
+            }
+        }).save();
     }
 
     public void takeScreenshot() {
@@ -45,35 +67,26 @@ public class ScreenCaptureActivity extends AppCompatActivity {
         viewRoot.setDrawingCacheEnabled(false);
 
         RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(new Observer<Boolean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Boolean aBoolean) {
-                        if (aBoolean) {
-                            if (!TextUtils.isEmpty(FileUtil.savaBitmap2SDcard(ScreenCaptureActivity.this, bitmap, "myfile"))) {
-                                Toast.makeText(ScreenCaptureActivity.this, "success", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(ScreenCaptureActivity.this, FullscreenActivity.class));
-                            } else {
-                                Toast.makeText(ScreenCaptureActivity.this, "fail", Toast.LENGTH_SHORT).show();
-                            }
+        mDisposable = rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(aBoolean -> {
+                    if (aBoolean) {
+                        if (!TextUtils.isEmpty(FileUtil.savaBitmap2SDcard(ScreenCaptureActivity.this, bitmap, "myfile"))) {
+                            Toast.makeText(ScreenCaptureActivity.this, "success", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(ScreenCaptureActivity.this, FullscreenActivity.class));
+                        } else {
+                            Toast.makeText(ScreenCaptureActivity.this, "fail", Toast.LENGTH_SHORT).show();
                         }
                     }
+                }, Throwable::printStackTrace);
 
-                    @Override
-                    public void onError(Throwable e) {
+    }
 
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mDisposable != null) {
+            mDisposable.dispose();
+        }
     }
 
     private int getStatusBarHeight() {

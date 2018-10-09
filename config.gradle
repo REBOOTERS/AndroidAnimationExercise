@@ -33,5 +33,6 @@ ext.allDependencies = [
         'com.bm.photoview:library:1.4.1',
         'com.gongwen:swipeback:1.0.1',
         'me.leolin:ShortcutBadger:1.1.19@aar',
-        'com.xw.repo:bubbleseekbar:3.18'
+        'com.xw.repo:bubbleseekbar:3.18',
+        'com.muddzdev:pixelshot:1.0.0'
 ]
