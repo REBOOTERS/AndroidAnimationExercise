@@ -1,19 +1,12 @@
 package home.smart.fly.animations;
 
-import android.app.Activity;
 import android.support.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
-import com.squareup.leakcanary.AndroidExcludedRefs;
-import com.squareup.leakcanary.ExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
-
-import java.util.concurrent.TimeUnit;
-
-import home.smart.fly.animations.interfaces.ActivityLifecycleSimpleCallbacks;
 
 /**
  * Created by rookie on 2017-03-08.
@@ -38,35 +31,8 @@ public class MyApplication extends MultiDexApplication  {
         Fresco.initialize(this);
     }
 
-    private RefWatcher installLeakCanary() {
+    protected RefWatcher installLeakCanary() {
         // ignore some thing
-        ExcludedRefs excludedRefs = AndroidExcludedRefs
-                .createAndroidDefaults()
-                .instanceField("home.smart.fly.animations.AppStartActivity","mContext")
-                .build();
-
-
-
-        RefWatcher refWatcher= LeakCanary.refWatcher(this)
-                .watchDelay(10, TimeUnit.SECONDS)
-                .watchActivities(false)
-                .excludedRefs(excludedRefs)
-                .buildAndInstall();
-
-
-        // ignore specifice activity classes
-        registerActivityLifecycleCallbacks(new ActivityLifecycleSimpleCallbacks(){
-            @Override
-            public void onActivityDestroyed(Activity activity) {
-                super.onActivityDestroyed(activity);
-                if (activity instanceof AppStartActivity) {
-                    return;
-                }
-
-                refWatcher.watch(activity);
-            }
-        });
-
-        return  refWatcher;
+        return RefWatcher.DISABLED;
     }
 }
