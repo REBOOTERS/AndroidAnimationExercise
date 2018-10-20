@@ -78,7 +78,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected int getBackgroundResId() {
-        return R.drawable.qzx;
+        return R.drawable.girl;
     }
 
     protected abstract void InitView();

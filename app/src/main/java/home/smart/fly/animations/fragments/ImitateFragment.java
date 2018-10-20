@@ -54,9 +54,4 @@ public class ImitateFragment extends BaseFragment {
         demos.add(new ItemInfo(R.string.PreviewTwo, PhenixDemoActivity.class));
         Toast.makeText(mContext, getResources().getString(R.string.toast), Toast.LENGTH_SHORT).show();
     }
-
-    @Override
-    protected int getBackgroundResId() {
-        return R.drawable.yuanyuan;
-    }
 }
