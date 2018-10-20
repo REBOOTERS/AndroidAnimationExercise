@@ -75,6 +75,11 @@ public class OtherFragment extends BaseFragment {
 
     }
 
+    @Override
+    protected int getBackgroundResId() {
+        return R.drawable.yuanyuan;
+    }
+
     private void printBuildConfigInfo() {
         Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.APPLICATION_ID);
         Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.BUILD_TYPE);
@@ -154,6 +159,5 @@ public class OtherFragment extends BaseFragment {
         int size = mManager.getMemoryClass();
 
         Log.e("device_info", "mManager.getMemoryClass()  应用可用内存 = " + size + " M");
-
     }
 }

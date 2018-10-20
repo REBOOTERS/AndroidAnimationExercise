@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import home.smart.fly.animations.interfaces.ActivityLifecycleSimpleCallbacks;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-10-12
  * @desc
  */

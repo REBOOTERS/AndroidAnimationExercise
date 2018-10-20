@@ -29,7 +29,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-     <!--为了测试 Loader TODO 用完删掉，demo 没必要-->
+    <!-- 为了测试 Loader TODO 用完删掉，demo 没必要 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 
@@ -325,7 +325,13 @@
         <activity android:name=".ui.activity.WebViewMenuActivity" />
         <activity android:name=".ui.activity.OptionalActivity" />
         <activity android:name=".ui.activity.ClipBoardActivity" />
-        <activity android:name=".ui.activity.LoaderActivity"/>
+        <activity android:name=".ui.activity.LoaderActivity" />
+        <activity android:name=".ui.activity.AnimateDrawableActivity" />
+        <activity
+            android:name=".ui.activity.FullscreenADActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen_ad"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemshell"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <home.smart.fly.animations.fragments.base.AdImageView
+        android:id="@+id/ad_view"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="matrix"
+        android:src="@drawable/girl" />
+
+</RelativeLayout>

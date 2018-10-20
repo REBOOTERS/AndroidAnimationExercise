@@ -302,4 +302,6 @@
     <string name="title_activity_multi_fragments">单Activity多Fragment管理</string>
     <string name="click_me">click me</string>
 
+    <string name="title_activity_fullscreen_ad">FullscreenADActivity</string>
+
 </resources>

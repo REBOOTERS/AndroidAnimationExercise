@@ -8,6 +8,7 @@ import home.smart.fly.animations.R;
 import home.smart.fly.animations.ui.activity.ClockViewActivity;
 import home.smart.fly.animations.ui.activity.FakeFootballActivity;
 import home.smart.fly.animations.ui.activity.FlipViewActivity;
+import home.smart.fly.animations.ui.activity.FullscreenADActivity;
 import home.smart.fly.animations.ui.activity.IModeActivity;
 import home.smart.fly.animations.ui.activity.LoaderActivity;
 import home.smart.fly.animations.ui.activity.LottieAnimationViewActivity;
@@ -51,10 +52,11 @@ public class ImitateFragment extends BaseFragment {
         demos.add(new ItemInfo(R.string.Matisse, MatisseDemoActivity.class));
         demos.add(new ItemInfo(R.string.PreviewOne, PhotoBrowse.class));
         demos.add(new ItemInfo(R.string.PreviewTwo, PhenixDemoActivity.class));
-
         Toast.makeText(mContext, getResources().getString(R.string.toast), Toast.LENGTH_SHORT).show();
     }
 
-
-
+    @Override
+    protected int getBackgroundResId() {
+        return R.drawable.yuanyuan;
+    }
 }

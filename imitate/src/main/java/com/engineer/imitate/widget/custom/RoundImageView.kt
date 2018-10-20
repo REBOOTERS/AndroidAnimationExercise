@@ -7,7 +7,7 @@ import android.util.AttributeSet
 
 /**
  *
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-09
  * @desc
  */

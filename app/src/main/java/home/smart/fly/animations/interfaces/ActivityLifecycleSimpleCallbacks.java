@@ -5,7 +5,7 @@ import android.app.Application;
 import android.os.Bundle;
 
 /**
- * @author: zhuyongging
+ * @author: Rookie
  * @date: 2018-09-18
  * @desc
  */

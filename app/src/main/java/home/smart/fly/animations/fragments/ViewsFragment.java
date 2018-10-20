@@ -42,4 +42,8 @@ public class ViewsFragment extends BaseFragment {
         demos.add(new ItemInfo(R.string.stackView, StackViewActivity.class));
     }
 
+    @Override
+    protected int getBackgroundResId() {
+        return R.drawable.lufei;
+    }
 }

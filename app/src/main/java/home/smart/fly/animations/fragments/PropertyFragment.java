@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.ui.activity.AnimateDrawableActivity;
 import home.smart.fly.animations.ui.activity.PhysicsViewActivity;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.property.AliPayAnimActivity;
@@ -54,6 +55,7 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.RevealAnimator).setOnClickListener(this);
         rootView.findViewById(R.id.DecorView).setOnClickListener(this);
         rootView.findViewById(R.id.PhysicsAnim).setOnClickListener(this);
+        rootView.findViewById(R.id.animate_drawable).setOnClickListener(this);
     }
 
     @Override
@@ -83,6 +85,9 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.PhysicsAnim:
                 intent=new Intent(mContext, PhysicsViewActivity.class);
+                break;
+            case R.id.animate_drawable:
+                intent = new Intent(mContext, AnimateDrawableActivity.class);
                 break;
             default:
                 break;

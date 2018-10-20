@@ -5,6 +5,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +59,10 @@ public class OneFragment extends Fragment {
             }
         });
 
+
+        RecyclerView recyclerView = new RecyclerView(getContext());
+        ViewPager viewPager = new ViewPager(getContext());
+        viewPager.addView(recyclerView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
 
         return rootView;
     }
