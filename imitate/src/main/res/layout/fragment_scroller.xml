@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ScrollerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <com.engineer.imitate.widget.custom.CustomScrollView
+        android:id="@+id/customView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
 
 </FrameLayout>

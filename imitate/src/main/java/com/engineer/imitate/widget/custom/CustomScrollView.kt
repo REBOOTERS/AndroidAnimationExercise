@@ -13,7 +13,7 @@ import android.widget.Scroller
  */
 class CustomScrollView: View {
 
-    private lateinit var scroller: Scroller
+    private lateinit var mScroller: Scroller
 
     //<editor-fold desc="init">
     constructor(context:Context) :super(context) {init(context)}
@@ -28,6 +28,22 @@ class CustomScrollView: View {
     //</editor-fold>
 
     fun init(context: Context){
-        scroller=Scroller(context)
+        mScroller=Scroller(context)
+    }
+
+    override fun computeScroll() {
+        super.computeScroll()
+        if (mScroller.computeScrollOffset()) {
+            val view = parent as View
+            view.scrollTo(mScroller.currX,mScroller.currY)
+            invalidate()
+        }
+    }
+
+    public fun smoothScrollTo(destX: Int, destY: Int) {
+        val deltaX = destX - scrollX
+        val deltaY = destY -scrollY
+        mScroller.startScroll(scrollX,scrollY,deltaX,deltaY,2000)
+        invalidate()
     }
 }
