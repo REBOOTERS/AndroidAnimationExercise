@@ -3,11 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cpb_green"
     tools:context=".fragments.ScrollerFragment">
 
     <com.engineer.imitate.widget.custom.CustomScrollView
+        android:layout_gravity="center"
+        android:background="@color/cpb_blue"
         android:id="@+id/customView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

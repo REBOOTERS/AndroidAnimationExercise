@@ -68,4 +68,9 @@
         android:layout_margin="10dp"
         android:scaleType="fitXY"
         android:src="@drawable/comic" />
+    
+    <com.engineer.imitate.widget.custom.CustomScrollView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
 </LinearLayout>

@@ -10,11 +10,17 @@ import android.widget.Toast
  * @version V1.0
  */
 
-fun Context.toastShort(message:String) {
-    Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
+fun Context.toastShort(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
 
-fun Context.toastLong(message: String){
-    Toast.makeText(this,message, Toast.LENGTH_LONG).show()
+fun Context.toastLong(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+}
+
+
+fun Context.dp2px(dp: Float): Float {
+    val scale = resources.displayMetrics.density
+    return dp * scale + 0.5f
 }

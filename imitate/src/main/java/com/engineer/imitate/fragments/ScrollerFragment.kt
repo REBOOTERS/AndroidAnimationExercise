@@ -22,7 +22,7 @@ private const val ARG_PARAM2 = "param2"
  */
 @Route(path = "/anim/scroller")
 class ScrollerFragment : Fragment() {
-
+    private var toggle :Boolean =false
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -32,7 +32,12 @@ class ScrollerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         customView.setOnClickListener {
-            customView.smoothScrollTo(50,50)
+            if (toggle) {
+                customView.smoothScrollTo(5,5)
+            } else {
+                customView.smoothScrollTo(-5,-5)
+            }
+            toggle=!toggle
         }
     }
 

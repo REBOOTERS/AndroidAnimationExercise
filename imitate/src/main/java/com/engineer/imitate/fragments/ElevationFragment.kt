@@ -27,6 +27,9 @@ import android.os.Build
 @Route(path = "/anim/elevation")
 class ElevationFragment : Fragment() {
 
+    private var mDeltaX = 0.0f
+    private var mDeltaY = 0.0f
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -49,6 +52,25 @@ class ElevationFragment : Fragment() {
                 cardView.radius = progressFloat
             }
         }
+
+        deltaXSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
+            override fun onProgressChanged(bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean) {
+                super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
+                mDeltaX = progressFloat
+                slide_view.update(progressFloat, mDeltaY)
+            }
+        }
+
+        deltaYSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
+            override fun onProgressChanged(bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean) {
+                super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
+                val screenHeight = resources.displayMetrics.heightPixels
+                val delatY = progressFloat / deltaYSeekBar.max * screenHeight
+                mDeltaY = delatY
+                slide_view.update(mDeltaX, delatY)
+            }
+        }
+
 
         textView.setOnClickListener {
             context?.toastShort("context extension !")
