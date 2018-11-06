@@ -68,7 +68,6 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
             }
         });
         mFakeWebView.loadData(bean);
-
     }
 
 
@@ -114,8 +113,7 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
 
 
             if (!TextUtils.isEmpty(path)) {
-                ImageBean imageBean = new ImageBean();
-                imageBean.setFilepath(path);
+
                 T.showSToast(mContext, path);
 
 
@@ -136,7 +134,7 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
                 PendingIntent mPendingIntent = PendingIntent.getActivity(mContext
                         , 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                new NotificationHelper(mContext).createNotification("点击查看","图片保存在: + path",mPendingIntent);
+                new NotificationHelper(mContext).createNotification("点击查看", "图片保存在: " + path, mPendingIntent);
 
             } else {
                 T.showSToast(mContext, "fail");

@@ -1,5 +1,6 @@
 package home.smart.fly.animations.ui.activity.jianshu;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -93,8 +94,8 @@ public class FakeJianShuActivity extends AppCompatActivity {
                             .error(R.drawable.default_avtar))
                     .into(userImg);
             String text = s.getContent();
-            text=text.replace("data-original-src", "src");
-            text=text.replace("//upload-images", "http://upload-images");
+            text = text.replace("data-original-src", "src");
+            text = text.replace("//upload-images", "http://upload-images");
             mWebView.loadDataWithBaseURL("", text, "text/html", "UTF-8", "");
             username.setText(s.getUsername());
             publichsTime.setText(s.getPublishTime());
@@ -104,6 +105,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void initView() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         setTitle("");
@@ -144,6 +146,8 @@ public class FakeJianShuActivity extends AppCompatActivity {
                         if (SystemClock.uptimeMillis() - lastTime < 300) {
                             genImg.setVisibility(View.GONE);
                         }
+                        break;
+                    default:
                         break;
                 }
                 return false;
