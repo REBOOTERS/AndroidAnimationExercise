@@ -1,11 +1,20 @@
 package home.smart.fly.animations.ui.activity;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Path;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import home.smart.fly.animations.R;
 import java8.util.Optional;
@@ -16,6 +25,19 @@ public class OptionalActivity extends AppCompatActivity implements View.OnClickL
 
     private Context mContext;
 
+    private static final String TAG = "OptionalActivity";
+    private List<Student> mStudents = Arrays.asList(
+            new Student("mike", 11),
+            new Student("mike1", 111),
+            new Student("mike2", 112),
+            new Student("mike3", 131),
+            new Student("mike4", 151),
+            new Student("mike5", 161),
+            new Student("mike6", 181),
+            new Student("mike7", 181),
+            new Student("mike8", 181)
+    );
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +46,7 @@ public class OptionalActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.nullValue).setOnClickListener(this);
         findViewById(R.id.notNullValue).setOnClickListener(this);
         findViewById(R.id.elseUse).setOnClickListener(this);
-
+        findViewById(R.id.stream).setOnClickListener(this);
     }
 
 
@@ -34,7 +56,7 @@ public class OptionalActivity extends AppCompatActivity implements View.OnClickL
             case R.id.nullValue:
                 // Optional.ofNullable 允许接收 null ，
                 // ifPresentOrElse 当ofNullable 返回非空时，执行第一个 action ,否则执行第二个 action
-                Student mStudent =null;
+                Student mStudent = null;
                 Optional.ofNullable(mStudent).ifPresentOrElse(student -> Toast.makeText(mContext,
                         student.name + " " + student.age, Toast.LENGTH_SHORT).show(),
                         () -> Toast.makeText(mContext, "it is null", Toast.LENGTH_SHORT).show());
@@ -50,9 +72,34 @@ public class OptionalActivity extends AppCompatActivity implements View.OnClickL
             case R.id.elseUse:
                 elseUse();
                 break;
+
+            case R.id.stream:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    streamPlay();
+                }
+                break;
             default:
                 break;
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void streamPlay() {
+        List<String> names = mStudents
+                .stream()
+                .map(student -> student.name)
+                .collect(Collectors.toList());
+
+        List<Integer> ages = mStudents
+                .stream()
+                .map(student -> student.age)
+                .collect(Collectors.toList());
+
+        Optional.ofNullable(names)
+                .ifPresent(strings -> strings.forEach(s -> Log.e(TAG, "accept: s==" + s)));
+
+        Optional.ofNullable(ages)
+                .ifPresent(integers -> integers.forEach(integer -> Log.e(TAG, "streamPlay: integer==" + integer)));
     }
 
     private void elseUse() {

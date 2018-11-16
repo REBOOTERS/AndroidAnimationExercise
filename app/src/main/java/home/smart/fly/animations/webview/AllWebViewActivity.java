@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.ui.activity.WebViewMenuActivity;
+import home.smart.fly.animations.ui.activity.jianshu.helper.Constant;
 import home.smart.fly.animations.utils.FileUtil;
 import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.T;
@@ -75,6 +76,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
 
         mWebView.setWebViewClient(new MyWebViewClient(mContext));
         mWebView.setWebChromeClient(new MyWebChromeClient());
+        WebView.setWebContentsDebuggingEnabled(true);
     }
 
     private void loadData() {
@@ -112,6 +114,10 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
             case R.id.local:
                 mWebView.loadUrl(LOCAL_URL);
                 tools.setVisibility(View.VISIBLE);
+                break;
+            case R.id.jianshu:
+                mWebView.loadUrl(Constant.URL);
+                tools.setVisibility(View.GONE);
                 break;
             case R.id.twxq:
                 mWebView.loadUrl(TWXQ);

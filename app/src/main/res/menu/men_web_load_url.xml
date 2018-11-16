@@ -8,6 +8,11 @@
         android:title="assets/index.html"
         app:showAsAction="never" />
     <item
+        android:id="@+id/jianshu"
+        android:orderInCategory="100"
+        android:title="jianshu"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/twxq"
         android:orderInCategory="100"
         android:title="图文详情"

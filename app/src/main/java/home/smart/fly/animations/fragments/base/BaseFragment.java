@@ -58,7 +58,6 @@ public abstract class BaseFragment extends Fragment {
                     AdImageView adImageView = view.findViewById(R.id.ad_view);
                     if (adImageView != null && adImageView.getVisibility() == View.VISIBLE) {
                         int value = mLinearLayoutManager.getHeight() - view.getTop();
-                        Log.e(TAG, "onScrolled: value==" + value);
                         adImageView.setDx(value);
                     }
                 }
