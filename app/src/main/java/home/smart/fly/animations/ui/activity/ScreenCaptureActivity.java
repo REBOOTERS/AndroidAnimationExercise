@@ -4,12 +4,17 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,6 +33,8 @@ public class ScreenCaptureActivity extends AppCompatActivity {
     private Disposable mDisposable;
     private Context mContext;
 
+    private CheckBox mCheckBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +44,45 @@ public class ScreenCaptureActivity extends AppCompatActivity {
         findViewById(R.id.getScreen).setOnClickListener(v -> takeScreenshot());
 
         findViewById(R.id.getScreenPixel).setOnClickListener(v -> takeScreenShotWithPixel());
+
+        findViewById(R.id.getScreenShot).setOnClickListener(v -> takScreenShotForInvisibleView(R.layout.activity_screen_capture));
+
+        mCheckBox=findViewById(R.id.checkbox);
+        mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    ivScreenshot.setVisibility(View.VISIBLE);
+                } else {
+                    ivScreenshot.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
+    private void takScreenShotForInvisibleView(int layoutResId) {
+        final DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+        final Bitmap bmp = Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(bmp);
+        final LayoutInflater inflater =
+                (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(layoutResId,null);
+        layout.setDrawingCacheEnabled(true);
+        layout.measure(
+                View.MeasureSpec.makeMeasureSpec(canvas.getWidth(),View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(canvas.getHeight(),View.MeasureSpec.EXACTLY));
+        layout.layout(0,0,layout.getMeasuredWidth(),layout.getMeasuredHeight());
+        canvas.drawBitmap(layout.getDrawingCache(),0,0,new Paint());
+        ivScreenshot.setImageBitmap(bmp);
+//        return bmp;
     }
 
     private void takeScreenShotWithPixel() {
         View viewRoot = getWindow().getDecorView().getRootView();
         PixelShot.of(viewRoot)
-                .setFilename("screen")
+                .setFilename("screen"+System.currentTimeMillis())
                 .setResultListener(new PixelShot.PixelShotListener() {
             @Override
             public void onPixelShotSuccess(String path) {

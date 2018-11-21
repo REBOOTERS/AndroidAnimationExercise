@@ -23,6 +23,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="takeScreenWithPixel"/>
+     <Button
+        android:id="@+id/getScreenShot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="takeScreenforGoneView"/>
+
+
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:text="ImageView 是否可见"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/ivScreenshot"

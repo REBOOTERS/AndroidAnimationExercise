@@ -140,6 +140,18 @@ public class AppStartActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             startActivity(new Intent(AppStartActivity.this, SettingsActivity.class));
             return true;
+        } else if (id == R.id.change_theme) {
+            try {
+                Object object = new Object();
+                object = null;
+                String result = String.valueOf(object.hashCode());
+                Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(mContext, "catch a null object", Toast.LENGTH_SHORT).show();
+            }
+
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
