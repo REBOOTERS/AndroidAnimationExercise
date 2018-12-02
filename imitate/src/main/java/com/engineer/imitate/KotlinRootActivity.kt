@@ -59,6 +59,7 @@ class KotlinRootActivity : AppCompatActivity() {
         val list = listOf(
                 FragmentItem("/anim/circleLoading", "circle-loading"),
                 FragmentItem("/anim/slide", "slide"),
+                FragmentItem("/anim/bottomsheet", "bottomsheet"),
                 FragmentItem("/anim/textDrawable", "textDrawable"),
                 FragmentItem("/anim/elevation", "elevation"),
                 FragmentItem("/anim/fresco", "fresco"),
