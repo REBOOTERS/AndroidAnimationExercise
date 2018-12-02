@@ -291,7 +291,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.BitmapMeshActivity" />
-        <activity android:name=".ui.activity.PolygonViewActivity" />
+        <activity android:name=".ui.activity.PolygonViewActivity" >
+            <intent-filter>
+                <action android:name="my_action"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="my_scheme" android:host="my_host.com"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".master.ui.MasterPaintActivity"
             android:hardwareAccelerated="false" />

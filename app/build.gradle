@@ -119,6 +119,8 @@ dependencies {
         implementation project(':imitate')
     }
     implementation 'net.sourceforge.streamsupport:streamsupport:1.6.3'
+
+
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
 }

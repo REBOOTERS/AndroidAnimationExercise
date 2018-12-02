@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WebView
-    android:id="@+id/webView"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.LaunchOtherAppActivity"/>
+    android:orientation="vertical"
+    tools:context=".ui.activity.LaunchOtherAppActivity">
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.activity.LaunchOtherAppActivity" />
+
+
+    <TextView
+        android:id="@+id/url1"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="https://www.baidu.com" />
+    <TextView
+        android:id="@+id/url2"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="https:127.0.0.1:8080" />
+    <TextView
+        android:id="@+id/url3"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="https://www.baidu.com/user/name" />
+    <TextView
+        android:id="@+id/url4"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="https://www.baidu.com/user/name?age=1111" />
+    <TextView
+        android:id="@+id/url5"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://www.baidu.com?address=beijing" />
+    <TextView
+        android:id="@+id/custom_scheme_and_host"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="my_scheme://my_host.com" />
+</LinearLayout>
+
+
