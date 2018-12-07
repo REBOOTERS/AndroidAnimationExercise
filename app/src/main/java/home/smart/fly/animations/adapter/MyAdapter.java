@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -61,7 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
 
     class MyHolder extends RecyclerView.ViewHolder {
         TextView title, desc;
-        LinearLayout itemshell;
+        RelativeLayout itemshell;
 
         public MyHolder(View itemView) {
             super(itemView);
