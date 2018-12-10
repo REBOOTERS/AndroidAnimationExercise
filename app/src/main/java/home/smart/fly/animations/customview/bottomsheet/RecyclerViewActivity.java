@@ -178,7 +178,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return 3;
+            return 10;
         }
     }
 

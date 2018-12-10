@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:visibility="gone"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="200dp"

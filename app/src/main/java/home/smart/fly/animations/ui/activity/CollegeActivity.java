@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -56,6 +57,7 @@ public class CollegeActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private ViewPager mViewPager1;
     private List<SchoolBeanShell> mBeanShells;
     private List<String> locations = new ArrayList<>();
 
@@ -68,6 +70,10 @@ public class CollegeActivity extends AppCompatActivity {
     private int black, colorPrimary;
 
     boolean test = true;
+
+    private TabLayout tabLayout, tabLayout1;
+
+    private LinearLayout bottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,10 +111,55 @@ public class CollegeActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        mViewPager1 = (ViewPager) findViewById(R.id.container1);
+        mViewPager1.setAdapter(mSectionsPagerAdapter);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setSelectedTabIndicatorHeight(0);
         tabLayout.setupWithViewPager(mViewPager);
 
+
+        tabLayout1 = (TabLayout) findViewById(R.id.tabs1);
+        tabLayout1.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout1.setSelectedTabIndicatorHeight(0);
+        tabLayout1.setupWithViewPager(mViewPager1);
+
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager1.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        tabLayout1.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -136,9 +187,6 @@ public class CollegeActivity extends AppCompatActivity {
                         .load(pics[position % pics.length])
                         .apply(new RequestOptions().placeholder(R.drawable.a6))
                         .into(headImage);
-
-                Log.e(TAG, "the longitude is " + mBeanShells.get(position).getLatLng().longitude);
-                Log.e(TAG, "the latitude  is " + mBeanShells.get(position).getLatLng().latitude);
             }
 
             @Override
@@ -147,26 +195,24 @@ public class CollegeActivity extends AppCompatActivity {
             }
         });
         mViewPager.setCurrentItem(0);
-        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+            Log.e(TAG, "onOffsetChanged: verticalOffset==" + verticalOffset);
+            Log.e(TAG, "onOffsetChanged: mAppBarLayout ==" + mAppBarLayout.getMinimumHeightForVisibleOverlappingContent());
+            if (Math.abs(verticalOffset) >= mAppBarLayout.getTotalScrollRange()) {
+                StatusBarUtil.setColor(CollegeActivity.this, colorPrimary, 0);
+            } else {
+                StatusBarUtil.setColor(CollegeActivity.this, black);
+            }
 
 
-                if (Math.abs(verticalOffset) >= mAppBarLayout.getTotalScrollRange()) {
-                    StatusBarUtil.setColor(CollegeActivity.this, colorPrimary, 0);
-                } else {
-                    StatusBarUtil.setColor(CollegeActivity.this, black);
-                }
+            if (Math.abs(verticalOffset) >= mAppBarLayout.getMinimumHeightForVisibleOverlappingContent() - tabLayout1.getMeasuredHeight()) {
+                bottom.setVisibility(View.GONE);
+            } else {
+                bottom.setVisibility(View.VISIBLE);
             }
         });
 
-        mAppBarLayout.addOnOffsetChangedListener(new AppBarStatusChangeListener() {
-            @Override
-            public void onStatusChanged(AppBarLayout appBarLayout, int status) {
-
-            }
-        });
-
+        bottom = findViewById(R.id.bottom);
     }
 
 

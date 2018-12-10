@@ -291,11 +291,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.BitmapMeshActivity" />
-        <activity android:name=".ui.activity.PolygonViewActivity" >
+        <activity android:name=".ui.activity.PolygonViewActivity">
             <intent-filter>
-                <action android:name="my_action"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="my_scheme" android:host="my_host.com"/>
+                <action android:name="my_action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="my_host.com"
+                    android:scheme="my_scheme" />
             </intent-filter>
         </activity>
         <activity
@@ -337,7 +341,10 @@
             android:name=".ui.activity.FullscreenADActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen_ad"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".ui.activity.FakeDoubanMovie" android:theme="@style/MyTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

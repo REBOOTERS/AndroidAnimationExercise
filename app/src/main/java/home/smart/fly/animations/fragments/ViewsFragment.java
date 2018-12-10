@@ -8,6 +8,7 @@ import home.smart.fly.animations.ui.activity.CollegeActivity;
 import home.smart.fly.animations.ui.activity.FlowLayoutActivity;
 import home.smart.fly.animations.ui.activity.MyDrawingBoardActivity;
 import home.smart.fly.animations.ui.activity.PlayActivity;
+import home.smart.fly.animations.ui.activity.FakeDoubanMovie;
 import home.smart.fly.animations.ui.activity.ViewTransformActivity;
 import home.smart.fly.animations.ui.activity.WavaAnimActivity;
 import home.smart.fly.animations.ui.activity.demos.AnimationsDemo;
@@ -28,6 +29,7 @@ public class ViewsFragment extends BaseFragment {
 
     @Override
     protected void InitView() {
+        demos.add(new ItemInfo(R.string.profile, FakeDoubanMovie.class));
         demos.add(new ItemInfo(R.string.master, MasterPaintActivity.class));
         demos.add(new ItemInfo(R.string.filter, MasterFilterActivity.class));
         demos.add(new ItemInfo(R.string.view_transform, ViewTransformActivity.class));
