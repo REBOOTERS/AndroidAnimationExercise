@@ -59,12 +59,12 @@ android {
         }
     }
 
-    android.applicationVariants.all { variant ->
-        println("variant===${variant.name} ${variant.versionName}\n")
-        variant.outputs.all {
-            outputFileName = "animation-${defaultConfig.versionName}-${releaseTime()}-${variant.name}.apk"
-        }
-    }
+//    android.applicationVariants.all { variant ->
+//        println("variant===${variant.name} ${variant.versionName}\n")
+//        variant.outputs.all {
+//            outputFileName = "animation-${defaultConfig.versionName}-${releaseTime()}-${variant.name}.apk"
+//        }
+//    }
 
     sourceSets {
         main {
