@@ -3,6 +3,7 @@ package home.smart.fly.animations.fragments;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.ScrollingActivity;
 import home.smart.fly.animations.ui.activity.BitmapMeshActivity;
 import home.smart.fly.animations.ui.activity.CollegeActivity;
 import home.smart.fly.animations.ui.activity.FlowLayoutActivity;
@@ -30,6 +31,7 @@ public class ViewsFragment extends BaseFragment {
     @Override
     protected void InitView() {
         demos.add(new ItemInfo(R.string.profile, FakeDoubanMovie.class));
+        demos.add(new ItemInfo(R.string.profile, ScrollingActivity.class));
         demos.add(new ItemInfo(R.string.master, MasterPaintActivity.class));
         demos.add(new ItemInfo(R.string.filter, MasterFilterActivity.class));
         demos.add(new ItemInfo(R.string.view_transform, ViewTransformActivity.class));

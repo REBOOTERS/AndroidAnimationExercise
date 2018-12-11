@@ -342,9 +342,13 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen_ad"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".ui.activity.FakeDoubanMovie" android:theme="@style/MyTheme.NoActionBar">
-
-        </activity>
+        <activity
+            android:name=".ui.activity.FakeDoubanMovie"
+            android:theme="@style/MyTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/MyTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

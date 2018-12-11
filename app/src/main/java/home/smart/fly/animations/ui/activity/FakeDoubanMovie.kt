@@ -8,6 +8,7 @@ import android.support.v4.widget.NestedScrollView
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.MotionEvent
 import android.view.animation.LinearInterpolator
 import home.smart.fly.animations.R
 import kotlinx.android.synthetic.main.activity_fake_douban_movie.*
@@ -40,6 +41,14 @@ class FakeDoubanMovie : AppCompatActivity() {
 
     private fun initView() {
 
+        nested_scrollview.setOnScrollChangeListener(object :NestedScrollView.OnScrollChangeListener{
+            override fun onScrollChange(p0: NestedScrollView?, p1: Int, p2: Int, p3: Int, p4: Int) {
+                Log.e(TAG, "p1==$p1")
+                Log.e(TAG, "p2==$p2")
+                Log.e(TAG, "p3==$p3")
+                Log.e(TAG, "p4==$p4")
+            }
+        })
 
 
         bottom.setOnClickListener {
