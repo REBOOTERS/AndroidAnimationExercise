@@ -12,7 +12,6 @@ import home.smart.fly.animations.R;
 import home.smart.fly.animations.helper.SwipeBackLayout;
 
 
-
 public class SwipeFinishActivity extends AppCompatActivity {
 
 
@@ -31,16 +30,24 @@ public class SwipeFinishActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mSwipeBackLayout = new SwipeBackLayout(this);
         mSwipeBackLayout.attachToActivity(this);
-        mSelectDirect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                if (checkedId == R.id.left) {
+        mSelectDirect.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.left:
                     mSwipeBackLayout.setDirectionMode(SwipeBackLayout.FROM_LEFT);
-                } else if (checkedId == R.id.right) {
+                    break;
+                case R.id.right:
                     mSwipeBackLayout.setDirectionMode(SwipeBackLayout.FROM_RIGHT);
-                } else {
+                    break;
+                case R.id.up:
+                    mSwipeBackLayout.setDirectionMode(SwipeBackLayout.FROM_TOP);
+                    break;
+                case R.id.down:
+                    mSwipeBackLayout.setDirectionMode(SwipeBackLayout.FROM_BOTTOM);
+                    break;
+                default:
                     mSwipeBackLayout.setDirectionMode(SwipeBackLayout.FROM_ANY);
-                }
+                    break;
+
             }
         });
     }

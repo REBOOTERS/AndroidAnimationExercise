@@ -13,11 +13,10 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            app:titleTextColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary" />
-
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/white" />
 
 
     </android.support.design.widget.AppBarLayout>
@@ -61,6 +60,14 @@
                 android:layout_height="300dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/lufei" />
+
+            <View
+                android:id="@+id/fake"
+                android:layout_width="match_parent"
+                android:layout_height="3000dp"
+                android:background="@color/cpb_red">
+
+            </View>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
@@ -118,9 +125,9 @@
         </LinearLayout>
 
         <ScrollView
-            android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"

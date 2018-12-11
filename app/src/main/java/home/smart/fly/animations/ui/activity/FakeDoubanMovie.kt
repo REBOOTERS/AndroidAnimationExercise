@@ -41,12 +41,15 @@ class FakeDoubanMovie : AppCompatActivity() {
 
     private fun initView() {
 
-        nested_scrollview.setOnScrollChangeListener(object :NestedScrollView.OnScrollChangeListener{
+        nested_scrollview.setOnScrollChangeListener(object : NestedScrollView.OnScrollChangeListener {
             override fun onScrollChange(p0: NestedScrollView?, p1: Int, p2: Int, p3: Int, p4: Int) {
                 Log.e(TAG, "p1==$p1")
                 Log.e(TAG, "p2==$p2")
                 Log.e(TAG, "p3==$p3")
                 Log.e(TAG, "p4==$p4")
+
+                Log.e(TAG, "fake top==" + fake.y)
+                Log.e(TAG, "fake top==" + fake.x)
             }
         })
 
