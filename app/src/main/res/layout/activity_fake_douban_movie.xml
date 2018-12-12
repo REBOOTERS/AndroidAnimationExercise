@@ -55,17 +55,11 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/lufei" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/lufei" />
-
             <View
                 android:id="@+id/fake"
                 android:layout_width="match_parent"
-                android:layout_height="3000dp"
-                android:background="@color/cpb_red">
+                android:layout_height="100000dp"
+                android:background="@color/white">
 
             </View>
         </LinearLayout>

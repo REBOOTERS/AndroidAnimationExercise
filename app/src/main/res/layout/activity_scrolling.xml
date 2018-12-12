@@ -90,7 +90,8 @@
 
     </android.support.design.widget.TabLayout>
 
-    <include layout="@layout/content_scrolling" />
+    <include android:id="@+id/bottom"
+        layout="@layout/content_scrolling" />
 
 
 </android.support.design.widget.CoordinatorLayout>

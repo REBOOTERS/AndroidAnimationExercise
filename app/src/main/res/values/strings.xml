@@ -40,6 +40,7 @@
     <string name="wheelView">省市联动3D效果</string>
     <string name="polygonView">PolygonView</string>
     <string name="profile">imitate douban</string>
+    <string name="view_drag">view drag helper </string>
     <string name="master">Paint 设置Shader效果</string>
     <string name="filter">Paint 设置Filter效果</string>
     <string name="jianshu">仿简书长按生成图片效果</string>
