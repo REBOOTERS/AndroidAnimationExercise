@@ -118,7 +118,8 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
-        <ScrollView
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nested_scrollview1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible">
@@ -159,7 +160,7 @@
                     android:background="@color/cpb_red" />
 
             </LinearLayout>
-        </ScrollView>
+        </android.support.v4.widget.NestedScrollView>
 
 
     </LinearLayout>

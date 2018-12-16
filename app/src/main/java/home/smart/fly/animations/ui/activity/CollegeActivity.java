@@ -75,6 +75,8 @@ public class CollegeActivity extends AppCompatActivity {
 
     private LinearLayout bottom;
 
+    private boolean isOpened = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,6 +150,12 @@ public class CollegeActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
+
+                if (!isOpened) {
+                    bottom.animate().translationYBy(-750).start();
+                    isOpened = true;
+                }
+
             }
 
             @Override
