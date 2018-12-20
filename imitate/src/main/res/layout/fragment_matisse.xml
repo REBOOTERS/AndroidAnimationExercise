@@ -4,17 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.MatisseFragment">
+    tools:context=".fragments.EntranceFragment">
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="20dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:backgroundTint="@color/cpb_blue"
         android:gravity="center"
         android:padding="20dp"
-        android:text="choose" />
+        android:text="matisse choose" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/custom_scrolling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:backgroundTint="@color/cpb_blue"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="custom_scrolling" />
 
 
     <android.support.v7.widget.RecyclerView

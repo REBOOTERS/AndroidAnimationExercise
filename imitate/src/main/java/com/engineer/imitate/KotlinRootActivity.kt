@@ -65,7 +65,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 FragmentItem("/anim/textDrawable", "textDrawable"),
                 FragmentItem("/anim/elevation", "elevation"),
                 FragmentItem("/anim/fresco", "fresco"),
-                FragmentItem("/anim/matisse", "matisse"),
+                FragmentItem("/anim/entrance", "entrance"),
                 FragmentItem("/anim/constraint","constraint animation"),
                 FragmentItem("/anim/scroller","scroller")
         )

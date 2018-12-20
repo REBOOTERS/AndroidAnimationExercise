@@ -3,7 +3,7 @@ package home.smart.fly.animations.fragments;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.ScrollingActivity;
+import home.smart.fly.animations.ui.activity.ScrollingActivity;
 import home.smart.fly.animations.ui.activity.BitmapMeshActivity;
 import home.smart.fly.animations.ui.activity.CollegeActivity;
 import home.smart.fly.animations.ui.activity.FlowLayoutActivity;
@@ -32,6 +32,7 @@ public class ViewsFragment extends BaseFragment {
     @Override
     protected void InitView() {
         demos.add(new ItemInfo(R.string.profile, FakeDoubanMovie.class));
+        demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));
         demos.add(new ItemInfo(R.string.view_drag, ViewDragHelperActivity.class));
         demos.add(new ItemInfo(R.string.profile, ScrollingActivity.class));
         demos.add(new ItemInfo(R.string.master, MasterPaintActivity.class));
@@ -41,7 +42,6 @@ public class ViewsFragment extends BaseFragment {
         demos.add(new ItemInfo(R.string.view_property, PlayActivity.class));
         demos.add(new ItemInfo(R.string.besier, MyDrawingBoardActivity.class));
         demos.add(new ItemInfo(R.string.waveAnim, WavaAnimActivity.class));
-        demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));
         demos.add(new ItemInfo(R.string.app_name, AnimationsDemo.class));
         demos.add(new ItemInfo(R.string.flowlayout, FlowLayoutActivity.class));
         demos.add(new ItemInfo(R.string.switcher, SwitcherActivity.class));

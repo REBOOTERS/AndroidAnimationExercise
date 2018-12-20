@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fitsSystemWindows="true"
-    tools:context=".ScrollingActivity">
+    tools:context=".ui.activity.ScrollingActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -50,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/transparent"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="?attr/homeAsUpIndicator"
                 app:popupTheme="@style/MyTheme.PopupOverlay"
@@ -75,15 +74,15 @@
     <LinearLayout
         android:id="@+id/bottom_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:orientation="vertical"
         app:layout_anchor="@id/toolbar_layout"
         app:layout_anchorGravity="bottom|end">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:background="@color/cpb_red"
+            android:layout_height="12dp"
+            android:background="@color/cpb_green"
             android:gravity="center">
 
             <View
@@ -122,14 +121,6 @@
 
 
     </LinearLayout>
-
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:background="@color/cpb_blue"
-        android:visibility="gone"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <include
         android:id="@+id/bottom"

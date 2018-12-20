@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.activity.ScrollingActivity"
-    tools:showIn="@layout/activity_scrolling">
+    tools:context=".activity.CustomScrollingActivity"
+    tools:showIn="@layout/activity_custom_scrolling">
 
     <TextView
         android:layout_width="wrap_content"

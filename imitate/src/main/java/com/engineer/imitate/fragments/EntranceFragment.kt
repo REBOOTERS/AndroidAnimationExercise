@@ -17,6 +17,7 @@ import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
+import com.engineer.imitate.activity.CustomScrollingActivity
 import com.engineer.imitate.util.Glide4Engine
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.zhihu.matisse.Matisse
@@ -29,8 +30,8 @@ import kotlinx.android.synthetic.main.fragment_matisse.*
  * A simple [Fragment] subclass.
  *
  */
-@Route(path = "/anim/matisse")
-class MatisseFragment : Fragment() {
+@Route(path = "/anim/entrance")
+class EntranceFragment : Fragment() {
 
 
     private var datas: MutableList<String> = ArrayList()
@@ -61,6 +62,10 @@ class MatisseFragment : Fragment() {
                                 .imageEngine(Glide4Engine())
                                 .forResult(100)
                     }
+        }
+
+        custom_scrolling.setOnClickListener {
+            startActivity(Intent(context, CustomScrollingActivity::class.java))
         }
 
         adapter = MyListAdapter()
