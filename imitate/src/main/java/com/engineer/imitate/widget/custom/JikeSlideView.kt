@@ -12,7 +12,7 @@ import com.engineer.imitate.util.dp2px
 
 /**
  *
- * @author: zhuyongging
+ * @author: rookie
  * @since: 2018-11-03
  * @desc
  */

@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 /**
- * @author: zhuyongging
+ * @author: rookie
  * @since: 2018-12-12
  */
 public class DragHelperView extends LinearLayout {
