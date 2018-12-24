@@ -1253,7 +1253,8 @@ public class SlidingUpPanelLayout extends ViewGroup {
                 return;
             }
 
-            ViewCompat.postInvalidateOnAnimation(this);
+//            ViewCompat.postInvalidateOnAnimation(this);
+            invalidate();
         }
     }
 
