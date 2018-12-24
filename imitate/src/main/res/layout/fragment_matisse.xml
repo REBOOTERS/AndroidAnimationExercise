@@ -1,35 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.flipboard.bottomsheet.BottomSheetLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomsheet"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".fragments.EntranceFragment">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/button"
+
+    <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:backgroundTint="@color/cpb_blue"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="matisse choose" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/custom_scrolling"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:backgroundTint="@color/cpb_blue"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="custom_scrolling" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".fragments.EntranceFragment">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:backgroundTint="@color/cpb_blue"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="matisse choose" />
 
-</LinearLayout>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/custom_scrolling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:backgroundTint="@color/cpb_blue"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="custom_scrolling" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:backgroundTint="@color/cpb_blue"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="bottom_sheet" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+</com.flipboard.bottomsheet.BottomSheetLayout>

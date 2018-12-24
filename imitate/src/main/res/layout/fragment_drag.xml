@@ -1,61 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.engineer.imitate.widget.slidepane.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DragFragment">
+    android:gravity="bottom"
+    sothree:umanoDragView="@+id/dragView"
+    sothree:umanoOverlay="true"
+    sothree:umanoPanelHeight="68dp"
+    sothree:umanoShadowHeight="4dp">
 
-    <!-- TODO: Update blank fragment layout -->
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".fragments.DragFragment">
 
-        <LinearLayout
+        <!-- TODO: Update blank fragment layout -->
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/cpb_green"
-                android:text="@string/hello_blank_fragment" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/comic" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/cpb_green"
+                    android:text="@string/hello_blank_fragment" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/cpb_green"
-                android:text="@string/hello_blank_fragment" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/comic" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/comic" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/cpb_green"
+                    android:text="@string/hello_blank_fragment" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/cpb_green"
-                android:text="@string/hello_blank_fragment" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/comic" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/comic" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/cpb_green"
+                    android:text="@string/hello_blank_fragment" />
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/comic" />
+
+            </LinearLayout>
 
 
-    </ScrollView>
+        </ScrollView>
 
 
-</FrameLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/dragView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/good" />
+
+    </FrameLayout>
+
+
+</com.engineer.imitate.widget.slidepane.SlidingUpPanelLayout>
+

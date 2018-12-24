@@ -13,10 +13,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
+import com.engineer.imitate.R.id.bottom_sheet
 import com.engineer.imitate.activity.CustomScrollingActivity
 import com.engineer.imitate.util.Glide4Engine
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -68,8 +70,15 @@ class EntranceFragment : Fragment() {
             startActivity(Intent(context, CustomScrollingActivity::class.java))
         }
 
+        bottom_sheet.setOnClickListener {
+            val imageView = ImageView(context)
+            imageView.setImageResource(R.drawable.comic)
+            val view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_content, null)
+            bottomsheet.showWithSheetView(view)
+        }
+
         adapter = MyListAdapter()
-        recyclerView.layoutManager = GridLayoutManager(context,2)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = adapter
     }
 
@@ -86,12 +95,12 @@ class EntranceFragment : Fragment() {
     }
 
 
-    private inner class MyListAdapter: RecyclerView.Adapter<MyListAdapter.Holder>() {
+    private inner class MyListAdapter : RecyclerView.Adapter<MyListAdapter.Holder>() {
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             context = parent.context
-            var view = LayoutInflater.from(parent.context).inflate(R.layout.image_item,parent,false)
+            var view = LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent, false)
             return Holder(view)
         }
 
@@ -105,8 +114,8 @@ class EntranceFragment : Fragment() {
 
         private lateinit var context: Context
 
-        private inner class Holder(view:View): RecyclerView.ViewHolder(view) {
-            var image:ImageView =view.findViewById(R.id.image);
+        private inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
+            var image: ImageView = view.findViewById(R.id.image);
         }
     }
 

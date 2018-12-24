@@ -24,7 +24,8 @@
         <activity
             android:name=".activity.CustomScrollingActivity"
             android:label="@string/title_activity_custom_scrolling"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>
