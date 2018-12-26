@@ -12,6 +12,8 @@ import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 
 import com.engineer.imitate.R
+import com.engineer.imitate.util.dp2px
+import com.engineer.imitate.widget.slidepane.SlidingUpPanelLayout
 import kotlinx.android.synthetic.main.fragment_drag.*
 
 /**
@@ -36,19 +38,25 @@ class DragFragment : Fragment() {
             Log.e("TAG", "p2==$p2")
             Log.e("TAG", "p3==$p3")
             Log.e("TAG", "p4==$p4")
+
+            dragView.translationY  = -p2.toFloat()
         })
 
 
-        val anim = ValueAnimator.ofInt(0, 1000)
-        anim.duration = 4000
-        anim.addUpdateListener {
-            Log.e("TAG", it.animatedValue.toString())
-            Log.e("TAG", it.animatedFraction.toString())
 
-            sliding_layout.smoothSlideTo(it.animatedFraction,0)
+//        sliding_layout.panelHeight  = context!!.dp2px(100f).toInt()
 
-        }
-        anim.start()
+
+//        val anim = ValueAnimator.ofInt(0, 1000)
+//        anim.duration = 5000
+//        anim.addUpdateListener {
+//            Log.e("TAG", it.animatedValue.toString())
+//            Log.e("TAG", it.animatedFraction.toString())
+//
+//            sliding_layout.panelHeight = it.animatedValue as Int
+//
+//        }
+//        anim.start()
     }
 
 

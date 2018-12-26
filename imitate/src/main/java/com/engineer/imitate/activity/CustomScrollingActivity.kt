@@ -1,5 +1,6 @@
 package com.engineer.imitate.activity
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.support.design.widget.AppBarLayout
 import android.support.design.widget.Snackbar
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import com.engineer.imitate.R
@@ -21,9 +23,14 @@ class CustomScrollingActivity : AppCompatActivity() {
 
     private lateinit var context: Context
 
-    private var lock = false  // 互斥锁
 
     private var toolbarHeight = 0.0f
+
+    private var screenH = 0
+
+    private var app_bar_h = 0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this
@@ -45,62 +52,95 @@ class CustomScrollingActivity : AppCompatActivity() {
             }
         }
 
-        sliding_layout.addOnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
-            Log.e(TAG, "left==$left")
-            Log.e(TAG, "top==$top")
-            Log.e(TAG, "right==$right")
-            Log.e(TAG, "bottom==$bottom")
-        }
 
         sliding_layout.addPanelSlideListener(object : SlidingUpPanelLayout.PanelSlideListener {
             override fun onPanelSlide(panel: View?, slideOffset: Float) {
                 Log.e(TAG, "slideOffset==$slideOffset")
 
-                lock = true
+                val location = IntArray(2)
+                fake_tab.getLocationInWindow(location)
+                Log.e(TAG, "location[1] ====" + location[1])
 
-                if (lock) {
-                    toolbar_up.translationY = toolbarHeight * slideOffset - toolbarHeight
-                }
+//                app_bar.scrollTo(0,-1000)
+
+//                app_bar.translationY = app_bar_h*slideOffset
+
+                toolbar_up.translationY = toolbarHeight * slideOffset - toolbarHeight
             }
 
             override fun onPanelStateChanged(panel: View?, previousState: SlidingUpPanelLayout.PanelState?, newState: SlidingUpPanelLayout.PanelState?) {
-                Log.e(TAG, "previousState==$previousState")
-                Log.e(TAG, "newState     ==$newState")
+//                Log.e(TAG, "previousState==$previousState")
+//                Log.e(TAG, "newState     ==$newState")
             }
 
         })
 
 
 
+//        val anim = ValueAnimator.ofFloat(0f,1000f)
+//        anim.duration = 8000
+//        anim.addUpdateListener {
+//            app_bar.translationY = - (it.animatedValue as Float)
+//        }
+//        anim.start()
+
         app_bar.addOnOffsetChangedListener(AppBarLayout
                 .OnOffsetChangedListener { p0, p1 ->
-                    Log.e(TAG, "p1              ==$p1")
-                    Log.e(TAG, "totalScrollRange==" + p0.totalScrollRange)
+
+                    app_bar_h = p1
+
                     var percent = (100.0f * Math.abs(p1 * 2) / p0.totalScrollRange) / 100.0f
 
-                    Log.e(TAG, "percent==$percent")
+//                    Log.e(TAG, "percent==$percent")
 
                     if (percent > 1) {
                         percent = 1.0f
                     }
 
-                    if (Math.abs(p1) >= 775) {
-                        val p = (100.0f * (Math.abs(p1) - 775)) / (p0.totalScrollRange - 775) / 100
-                        Log.e(TAG, "y ===" + p)
+                    toolbar_up.translationY = toolbarHeight * percent - toolbarHeight
+
+                    val location = IntArray(2)
+                    fake_tab.getLocationInWindow(location)
 
 
-                        sliding_layout.smoothSlideTo(p, 0)
-                    } else {
-                        sliding_layout.smoothSlideTo(0f, 0)
-//                        sliding_layout.panelHeight = context.dp2px(54.0f).toInt()
+                    val h = screenH - fake_tab.measuredHeight - toolbarHeight - getStatusBarHeight()
+
+                    Log.e(TAG, "location[1] ==" + location[1])
+
+
+                    if (location[1] > 0) {
+                        val my = screenH - fake_tab.measuredHeight
+                        if (location[1] < my) {
+                            var y = my - location[1]
+
+                            Log.e(TAG, "y    ===$y")
+
+                            if (y > h) {
+                                y = h.toInt()
+                            }
+//                            dragView.translationY = -y.toFloat()
+
+
+                            var p = 100f * (h - y) / h / 100f
+                            Log.e(TAG, "p====$p")
+
+                            if (p == 0f) {
+                                sliding_layout.anchorPoint = 1.0f
+                                sliding_layout.panelState = SlidingUpPanelLayout.PanelState.EXPANDED
+                            } else {
+                                sliding_layout.anchorPoint = 1 - p
+                                sliding_layout.panelState = SlidingUpPanelLayout.PanelState.ANCHORED
+                            }
+
+
+                        } else {
+                            dragView.translationY = 0f
+                            sliding_layout.anchorPoint = 0.0f
+                            sliding_layout.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+                        }
                     }
 
-                    sliding_layout.requestLayout()
 
-                    lock = false
-                    if (!lock) {
-                        toolbar_up.translationY = toolbarHeight * percent - toolbarHeight
-                    }
                 })
 
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -131,5 +171,17 @@ class CustomScrollingActivity : AppCompatActivity() {
         toolbar_up.visibility = View.VISIBLE
         Log.e(TAG, "yyyy====" + toolbar_up.translationY)
 
+        val dm = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(dm)
+        screenH = dm.heightPixels
+
+        Log.e(TAG, "screenH  =" + screenH)
+        Log.e(TAG, "statusbar=" + getStatusBarHeight())
+
+    }
+
+    private fun getStatusBarHeight(): Int {
+        val resourcesId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        return resources.getDimensionPixelSize(resourcesId)
     }
 }

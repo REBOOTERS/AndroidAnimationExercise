@@ -73,11 +73,7 @@ class KotlinRootActivity : AppCompatActivity() {
             desc.text = item.name
             path.text = item.path
             shell.setOnClickListener {
-                val fragment: Fragment = ARouter
-                        .getInstance()
-                        .build(item.path)
-                        .navigation(context) as Fragment
-
+                val fragment: Fragment = ARouter.getInstance().build(item.path).navigation(context) as Fragment
                 currentFragment = fragment
                 content.visibility = View.VISIBLE
                 index.visibility = View.GONE

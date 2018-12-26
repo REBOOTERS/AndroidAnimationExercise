@@ -26,6 +26,10 @@
             android:label="@string/title_activity_custom_scrolling"
             android:theme="@style/AppTheme">
         </activity>
+        <activity
+            android:name=".activity.PureActivity"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

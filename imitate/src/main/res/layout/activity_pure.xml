@@ -16,89 +16,27 @@
     sothree:umanoShadowHeight="4dp">
 
 
-    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nested_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:fitsSystemWindows="true"
-        tools:context=".activity.CustomScrollingActivity">
-
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/toolbar_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:toolbarId="@+id/toolbar">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="420dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/good" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="400dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/good" />
-
-                </LinearLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="16dp"
-                        android:src="@drawable/ic_arrow_back_black_24dp" />
-
-                </RelativeLayout>
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_up"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/colorPrimary"
-                    android:visibility="invisible"
-                    app:layout_collapseMode="pin"
-                    app:navigationIcon="?attr/homeAsUpIndicator"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
-                    app:titleTextColor="@color/cpb_red" />
-
-            </android.support.design.widget.CollapsingToolbarLayout>
-        </android.support.design.widget.AppBarLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:visibility="visible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom|end">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-
-            <LinearLayout
+            <ImageView
+                android:src="@drawable/totoro"
+                android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
+                android:layout_height="300dp" />
+
+            <ImageView
+                android:src="@drawable/totoro"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/fake_tab"
@@ -124,22 +62,20 @@
 
             </android.support.design.widget.TabLayout>
 
+            <ImageView
+                android:src="@drawable/comic"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+            <ImageView
+                android:src="@drawable/comic"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
 
         </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-
-        <include layout="@layout/content_custom_scrolling" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@drawable/ic_add_white_24dp" />
-
-    </android.support.design.widget.CoordinatorLayout>
 
     <LinearLayout
         android:layout_marginTop="80dp"

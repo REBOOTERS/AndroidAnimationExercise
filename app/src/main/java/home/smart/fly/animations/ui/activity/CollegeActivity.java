@@ -38,6 +38,14 @@ import home.smart.fly.animations.adapter.SchoolBeanShell;
 import home.smart.fly.animations.interfaces.AppBarStatusChangeListener;
 import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.Tools;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class CollegeActivity extends AppCompatActivity {
     private static final String TAG = "CollegeActivity";
@@ -97,18 +105,54 @@ public class CollegeActivity extends AppCompatActivity {
         mToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         //
-        String json = Tools.readStrFromAssets("newSchool.json", mContext);
-        Gson mGson = new Gson();
-        mBeanShells = mGson.fromJson(json, new TypeToken<ArrayList<SchoolBeanShell>>() {
-        }.getType());
 
-        for (int i = 0; i < mBeanShells.size(); i++) {
-            locations.add(mBeanShells.get(i).getName());
-        }
+        Observable.create((ObservableOnSubscribe<String>) emitter -> {
+            String json = Tools.readStrFromAssets("newSchool.json", mContext);
+            if (json != null) {
+                emitter.onNext(json);
+                emitter.onComplete();
+            } else {
+                emitter.onError(new Throwable());
+            }
+        }).map((Function<String, List<SchoolBeanShell>>) s -> {
+            Gson gson = new Gson();
+            return gson.fromJson(s, new TypeToken<ArrayList<SchoolBeanShell>>() {
+            }.getType());
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<SchoolBeanShell>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
+                    }
+
+                    @Override
+                    public void onNext(List<SchoolBeanShell> schoolBeanShells) {
+                        mBeanShells = schoolBeanShells;
+                        for (int i = 0; i < mBeanShells.size(); i++) {
+                            locations.add(mBeanShells.get(i).getName());
+                        }
+                        loadUI(mBeanShells);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+
+    }
+
+    private void loadUI(List<SchoolBeanShell> schoolBeanShells) {
         final int[] pics = new int[]{R.drawable.a5, R.drawable.a6, R.drawable.cat};
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), schoolBeanShells);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -298,9 +342,11 @@ public class CollegeActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        private List<SchoolBeanShell> mBeanShells;
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapter(FragmentManager fm, List<SchoolBeanShell> list) {
             super(fm);
+            mBeanShells = list;
         }
 
         @Override

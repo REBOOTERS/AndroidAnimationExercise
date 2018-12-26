@@ -22,5 +22,5 @@ fun Context.toastLong(message: String) {
 
 fun Context.dp2px(dp: Float): Float {
     val scale = resources.displayMetrics.density
-    return dp * scale + 0.5f
+    return dp * scale
 }

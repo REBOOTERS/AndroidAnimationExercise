@@ -2,6 +2,9 @@ package com.engineer.imitate.fragments
 
 
 import android.Manifest
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -20,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.engineer.imitate.R
 import com.engineer.imitate.R.id.bottom_sheet
 import com.engineer.imitate.activity.CustomScrollingActivity
+import com.engineer.imitate.activity.PureActivity
 import com.engineer.imitate.util.Glide4Engine
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.zhihu.matisse.Matisse
@@ -75,6 +79,10 @@ class EntranceFragment : Fragment() {
             imageView.setImageResource(R.drawable.comic)
             val view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_content, null)
             bottomsheet.showWithSheetView(view)
+        }
+
+        pure.setOnClickListener {
+            startActivity(Intent(context, PureActivity::class.java))
         }
 
         adapter = MyListAdapter()
