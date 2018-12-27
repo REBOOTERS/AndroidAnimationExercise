@@ -1,0 +1,38 @@
+package home.smart.fly.animations.sugar.viewholder;
+
+import android.support.annotation.NonNull;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.zhihu.android.sugaradapter.Layout;
+import com.zhihu.android.sugaradapter.SugarHolder;
+
+import home.smart.fly.animations.R;
+import home.smart.fly.animations.sugar.bean.Item;
+
+/**
+ * @author: zhuyongging
+ * @since: 2018-12-27
+ */
+@Layout(R.layout.large_info_item)
+public final class LargeItemHolder extends SugarHolder<Item> {
+
+
+    private RelativeLayout mItemshell;
+    private TextView mTitle;
+    private TextView mDesc;
+
+    public LargeItemHolder(@NonNull View view) {
+        super(view);
+        mItemshell = view.findViewById(R.id.itemshell);
+        mTitle = view.findViewById(R.id.title);
+        mDesc = view.findViewById(R.id.desc);
+    }
+
+    @Override
+    protected void onBindData(@NonNull Item data) {
+        mTitle.setText(data.getTitle());
+        mDesc.setText(data.getSubTitle());
+    }
+}

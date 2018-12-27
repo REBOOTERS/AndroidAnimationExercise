@@ -306,5 +306,7 @@
 
     <string name="title_activity_fullscreen_ad">FullscreenADActivity</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="file_util">文件操作</string>
+    <string name="catch_null">catch null</string>
 
 </resources>

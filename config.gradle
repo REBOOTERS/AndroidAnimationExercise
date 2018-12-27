@@ -34,5 +34,6 @@ ext.allDependencies = [
         'com.gongwen:swipeback:1.0.1',
         'me.leolin:ShortcutBadger:1.1.19@aar',
         'com.xw.repo:bubbleseekbar:3.18',
-        'com.muddzdev:pixelshot:1.0.0'
+        'com.muddzdev:pixelshot:1.0.0',
+        'com.zhihu.android:sugaradapter:1.7.9'
 ]

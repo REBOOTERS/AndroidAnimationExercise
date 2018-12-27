@@ -152,6 +152,9 @@ public class AppStartActivity extends AppCompatActivity {
             }
 
             return true;
+        } else if (id == R.id.action_file_util) {
+            startActivity(new Intent(mContext,FileUtilsActivity.class));
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
