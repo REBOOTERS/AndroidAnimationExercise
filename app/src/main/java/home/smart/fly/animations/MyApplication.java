@@ -1,6 +1,7 @@
 package home.smart.fly.animations;
 
 import android.support.multidex.MultiDexApplication;
+import android.webkit.WebView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -29,6 +30,8 @@ public class MyApplication extends MultiDexApplication  {
 
         ARouter.init(this);
         Fresco.initialize(this);
+
+        WebView.setWebContentsDebuggingEnabled(true);
     }
 
     protected RefWatcher installLeakCanary() {

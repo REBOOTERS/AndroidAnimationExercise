@@ -1,6 +1,7 @@
 package home.smart.fly.animations.sugar.viewholder;
 
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,5 +35,10 @@ public final class LargeItemHolder extends SugarHolder<Item> {
     protected void onBindData(@NonNull Item data) {
         mTitle.setText(data.getTitle());
         mDesc.setText(data.getSubTitle());
+        if (data.getSubTitle().startsWith("/")) {
+            mDesc.setTextColor(ContextCompat.getColor(getContext(), R.color.cpb_red));
+        } else {
+            mDesc.setTextColor(ContextCompat.getColor(getContext(), android.R.color.tab_indicator_text));
+        }
     }
 }

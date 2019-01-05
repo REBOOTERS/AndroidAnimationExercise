@@ -94,8 +94,8 @@ public class FakeJianShuActivity extends AppCompatActivity {
                             .error(R.drawable.default_avtar))
                     .into(userImg);
             String text = s.getContent();
-            text = text.replace("data-original-src", "src");
-            text = text.replace("//upload-images", "http://upload-images");
+//            text = text.replace("data-original-src", "src");
+//            text = text.replace("//upload-images", "http://upload-images");
             mWebView.loadDataWithBaseURL("", text, "text/html", "UTF-8", "");
             username.setText(s.getUsername());
             publichsTime.setText(s.getPublishTime());

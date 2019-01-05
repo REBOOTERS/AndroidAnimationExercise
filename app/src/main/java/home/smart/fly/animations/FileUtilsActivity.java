@@ -89,11 +89,18 @@ public class FileUtilsActivity extends AppCompatActivity {
         ActivityManager mManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         int size = mManager.getMemoryClass();
 
+        items.add(new Item("BuildConfig.APPLICATION_ID", String.valueOf(BuildConfig.APPLICATION_ID)));
+        items.add(new Item("BuildConfig.BUILD_TYPE", String.valueOf(BuildConfig.BUILD_TYPE)));
+        items.add(new Item("BuildConfig.FLAVOR", String.valueOf(BuildConfig.FLAVOR)));
+        items.add(new Item("BuildConfig.VERSION_NAME", String.valueOf(BuildConfig.VERSION_NAME)));
+        items.add(new Item("BuildConfig.VERSION_CODE", String.valueOf(BuildConfig.VERSION_CODE)));
+
+
         items.add(new Item("android.os.Build.VERSION.SDK_INT", String.valueOf(version)));
         items.add(new Item("android.os.Build.VERSION.RELEASE", String.valueOf(mRelease)));
         items.add(new Item("android.os.Build.SERIAL", String.valueOf(mSerial)));
         items.add(new Item("Secure.ANDROID_ID", String.valueOf(android_id)));
-        items.add(new Item("mManager.getMemoryClass()  应用可用内存", String.valueOf(size)+"M"));
+        items.add(new Item("mManager.getMemoryClass()  应用可用内存", String.valueOf(size) + "M"));
 
         items.add(new Item("Environment.getExternalStorageDirectory()", String.valueOf(filepath)));
         items.add(new Item("Environment.getDataDirectory()", String.valueOf(getDataDirectory)));
@@ -110,11 +117,10 @@ public class FileUtilsActivity extends AppCompatActivity {
         items.add(new Item("mContext.getCacheDir()", String.valueOf(cacheDir)));
         items.add(new Item("mContext.getFilesDir()", String.valueOf(filesDir)));
 
-        items.add(new Item("mContext.mContext.getExternalCacheDir()()", String.valueOf(getExternalCacheDir)));
+        items.add(new Item("mContext.getExternalCacheDir()()", String.valueOf(getExternalCacheDir)));
         items.add(new Item("mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES)", String.valueOf(getExternalFilesDir_DIRECTORY_PICTURES)));
         items.add(new Item("mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)", String.valueOf(getExternalFilesDir_DIRECTORY_DOCUMENTS)));
-        items.add(new Item("mContext.getFilesDir()", String.valueOf(filesDir)));
-        items.add(new Item("mContext.getFilesDir()", String.valueOf(filesDir)));
+
 
         mSugarAdapter.notifyDataSetChanged();
     }

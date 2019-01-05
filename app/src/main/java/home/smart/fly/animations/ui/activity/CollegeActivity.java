@@ -260,7 +260,7 @@ public class CollegeActivity extends AppCompatActivity {
             if (Math.abs(verticalOffset) >= mAppBarLayout.getMinimumHeightForVisibleOverlappingContent() - tabLayout1.getMeasuredHeight()) {
                 bottom.setVisibility(View.GONE);
             } else {
-                bottom.setVisibility(View.VISIBLE);
+//                bottom.setVisibility(View.VISIBLE);
             }
         });
 

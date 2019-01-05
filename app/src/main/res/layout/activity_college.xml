@@ -54,24 +54,6 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/a6" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/a5" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="280dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/lufei" />
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/a6" />
-
                 </LinearLayout>
 
 
@@ -114,7 +96,7 @@
 
 
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
