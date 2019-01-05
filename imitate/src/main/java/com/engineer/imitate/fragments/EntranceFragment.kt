@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.engineer.imitate.R
 import com.engineer.imitate.R.id.bottom_sheet
 import com.engineer.imitate.activity.CustomScrollingActivity
+import com.engineer.imitate.activity.FinalActivity
 import com.engineer.imitate.activity.PureActivity
 import com.engineer.imitate.util.Glide4Engine
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -83,6 +84,10 @@ class EntranceFragment : Fragment() {
 
         pure.setOnClickListener {
             startActivity(Intent(context, PureActivity::class.java))
+        }
+
+        final_one.setOnClickListener {
+            startActivity(Intent(context, FinalActivity::class.java))
         }
 
         adapter = MyListAdapter()

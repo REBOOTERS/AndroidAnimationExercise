@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.engineer.imitate.activity.FinalActivity">
+    <item
+        android:id="@+id/action_100"
+        android:orderInCategory="100"
+        android:title="@string/action_100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_1000"
+        android:orderInCategory="100"
+        android:title="@string/action_1000"
+        app:showAsAction="never" />
+</menu>

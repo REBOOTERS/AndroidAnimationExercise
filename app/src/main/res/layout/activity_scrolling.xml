@@ -76,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="vertical"
-        app:layout_anchor="@id/toolbar_layout"
+        app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end">
 
         <LinearLayout

@@ -1,93 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<com.engineer.imitate.widget.slidepane.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
-    sothree:umanoDragView="@+id/dragView"
-    sothree:umanoOverlay="true"
-    sothree:umanoPanelHeight="68dp"
-    sothree:umanoShadowHeight="4dp">
+    tools:context=".fragments.DragFragment">
 
+    <!-- TODO: Update blank fragment layout -->
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.DragFragment">
+        android:layout_height="match_parent">
 
-        <!-- TODO: Update blank fragment layout -->
-
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nested_scrollview"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="100dp"
+                android:background="@color/cpb_green"
+                android:text="@string/hello_blank_fragment" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@color/cpb_green"
-                    android:text="@string/hello_blank_fragment" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/comic" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/comic" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/cpb_green"
+                android:text="@string/hello_blank_fragment" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@color/cpb_green"
-                    android:text="@string/hello_blank_fragment" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/comic" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/comic" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/cpb_green"
+                android:text="@string/hello_blank_fragment" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@color/cpb_green"
-                    android:text="@string/hello_blank_fragment" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/comic" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/comic" />
-
-            </LinearLayout>
+        </LinearLayout>
 
 
-        </android.support.v4.widget.NestedScrollView>
+    </ScrollView>
 
 
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/dragView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/good" />
-
-    </FrameLayout>
-
-
-</com.engineer.imitate.widget.slidepane.SlidingUpPanelLayout>
-
+</FrameLayout>

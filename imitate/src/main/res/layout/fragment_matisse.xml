@@ -18,41 +18,51 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_margin="8dp"
             android:backgroundTint="@color/cpb_blue"
             android:gravity="center"
-            android:padding="20dp"
+            android:padding="10dp"
             android:text="matisse choose" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/custom_scrolling"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_margin="8dp"
             android:backgroundTint="@color/cpb_blue"
             android:gravity="center"
-            android:padding="20dp"
+            android:padding="10dp"
             android:text="custom_scrolling" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/bottom_sheet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_margin="8dp"
             android:backgroundTint="@color/cpb_blue"
             android:gravity="center"
-            android:padding="20dp"
+            android:padding="10dp"
             android:text="bottom_sheet" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/pure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_margin="8dp"
             android:backgroundTint="@color/cpb_blue"
             android:gravity="center"
-            android:padding="20dp"
+            android:padding="10dp"
             android:text="pure" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/final_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/cpb_blue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="final_one" />
 
 
         <android.support.v7.widget.RecyclerView
