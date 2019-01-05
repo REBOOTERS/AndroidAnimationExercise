@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.DpConvert;
+import home.smart.fly.animations.widget.CustomCoordinatorLayout;
 
 public class ScrollingActivity extends AppCompatActivity {
     private static final String TAG = "ScrollingActivity";
@@ -30,6 +31,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
     private boolean open = false;
     private Toolbar toolbar;
+
+    private boolean isReverse;
+    private CustomCoordinatorLayout mViewGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,19 @@ public class ScrollingActivity extends AppCompatActivity {
         mAppBarLayout = findViewById(R.id.app_bar);
 
         mAppBarLayout.addOnOffsetChangedListener((appBarLayout, i) -> Log.e(TAG, "onOffsetChanged: i==" + i));
+
+
+        mViewGroup = findViewById(R.id.shell);
+//        findViewById(R.id.image).setOnClickListener(v -> {
+//            if (isReverse) {
+//                mLinearLayout.animate().translationYBy(300).start();
+//                content.animate().translationYBy(300).start();
+//            } else {
+//                mLinearLayout.animate().translationYBy(-300).start();
+//                content.animate().translationYBy(-300).start();
+//            }
+//            isReverse = !isReverse;
+//        });
 
     }
 

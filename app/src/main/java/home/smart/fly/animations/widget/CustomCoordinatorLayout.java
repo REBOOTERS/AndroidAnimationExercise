@@ -3,61 +3,47 @@ package home.smart.fly.animations.widget;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
+
+import home.smart.fly.animations.R;
 
 /**
- * @author: rookie
- * @since: 2018-12-12
+ * @author: zhuyongging
+ * @since: 2019-01-05
  */
-public class DragHelperView extends LinearLayout {
-    private static final String TAG = "DragHelperView";
-    private ViewDragHelper mViewDragHelper;
+public class CustomCoordinatorLayout extends CoordinatorLayout {
 
-    //<editor-fold desc="construct" >
-    public DragHelperView(Context context) {
+    private ViewDragHelper mViewDragHelper;
+    private static final String TAG = "CustomCoordinatorLayout";
+
+    public CustomCoordinatorLayout(@NonNull Context context) {
         super(context);
         initView();
     }
 
-    public DragHelperView(Context context, @Nullable AttributeSet attrs) {
+    public CustomCoordinatorLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView();
     }
 
-    public DragHelperView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CustomCoordinatorLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView();
     }
-    //</editor-fold>
-
-    private int mOriginLeft;
-    private int mOriginTop;
 
     private void initView() {
         mViewDragHelper = ViewDragHelper.create(this, new ViewDragHelper.Callback() {
             @Override
             public boolean tryCaptureView(@NonNull View view, int i) {
-                Log.e(TAG, "tryCaptureView: view==" + view);
-                Log.e(TAG, "tryCaptureView: i   ==" + i);
-                return true;
-            }
+                Log.e(TAG, "tryCaptureView: id ==" + view.getId());
+                Log.e(TAG, "tryCaptureView: real id ==" + R.id.bottom_container);
 
-            @Override
-            public void onViewCaptured(@NonNull View capturedChild, int activePointerId) {
-                super.onViewCaptured(capturedChild, activePointerId);
-                mOriginLeft = capturedChild.getLeft();
-                mOriginTop = capturedChild.getTop();
-            }
-
-
-            @Override
-            public int clampViewPositionHorizontal(@NonNull View child, int left, int dx) {
-                return left;
+                return view.getId() == R.id.bottom_container;
             }
 
             @Override
@@ -66,23 +52,18 @@ public class DragHelperView extends LinearLayout {
             }
 
             @Override
-            public void onViewReleased(@NonNull View releasedChild, float xvel, float yvel) {
-                super.onViewReleased(releasedChild, xvel, yvel);
-                mViewDragHelper.settleCapturedViewAt(mOriginLeft, mOriginTop);
-                invalidate();
+            public int getViewVerticalDragRange(@NonNull View child) {
+                return 1;
             }
 
             @Override
-            public void onEdgeDragStarted(int edgeFlags, int pointerId) {
-                super.onEdgeDragStarted(edgeFlags, pointerId);
-                Log.e(TAG, "onEdgeDragStarted: edgeFlags==" + edgeFlags);
-                Log.e(TAG, "onEdgeDragStarted: pointerId==" + pointerId);
-                mViewDragHelper.captureChildView(getChildAt(0), pointerId);
+            public int getViewHorizontalDragRange(@NonNull View child) {
+                return 1;
             }
         });
 
-        mViewDragHelper.setEdgeTrackingEnabled(ViewDragHelper.EDGE_ALL);
     }
+
 
     public void testSmoothSlide(boolean isReverse) {
         if (mViewDragHelper != null) {
@@ -95,6 +76,19 @@ public class DragHelperView extends LinearLayout {
                     mViewDragHelper.smoothSlideViewTo(child,
                             getRight() - child.getWidth(),
                             getBottom() - child.getHeight());
+                }
+                invalidate();
+            }
+
+            View child1 = getChildAt(2);
+            if (child1 != null) {
+                if (isReverse) {
+                    mViewDragHelper.smoothSlideViewTo(child1,
+                            getLeft(), getTop());
+                } else {
+                    mViewDragHelper.smoothSlideViewTo(child1,
+                            getRight() - child1.getWidth(),
+                            getBottom() - child1.getHeight());
                 }
                 invalidate();
             }
@@ -115,8 +109,8 @@ public class DragHelperView extends LinearLayout {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        mViewDragHelper.processTouchEvent(event);
-        return true;
+    public boolean onTouchEvent(MotionEvent ev) {
+        mViewDragHelper.processTouchEvent(ev);
+        return super.onTouchEvent(ev);
     }
 }

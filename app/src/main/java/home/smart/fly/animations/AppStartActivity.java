@@ -33,6 +33,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import java.util.Objects;
 
 import home.smart.fly.animations.fragments.base.RoutePaths;
+import home.smart.fly.animations.helper.SwipeBackLayout;
 
 
 public class AppStartActivity extends AppCompatActivity {
@@ -153,7 +154,7 @@ public class AppStartActivity extends AppCompatActivity {
 
             return true;
         } else if (id == R.id.action_file_util) {
-            startActivity(new Intent(mContext,FileUtilsActivity.class));
+            startActivity(new Intent(mContext, FileUtilsActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

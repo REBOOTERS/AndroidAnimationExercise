@@ -74,6 +74,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
+        android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/white"
@@ -83,6 +84,7 @@
         app:layout_anchorGravity="bottom|end">
 
         <View
+            android:id="@+id/drag_bar"
             android:layout_width="40dp"
             android:layout_height="4dp"
             android:layout_centerHorizontal="true"

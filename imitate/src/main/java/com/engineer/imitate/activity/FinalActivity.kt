@@ -91,14 +91,18 @@ class FinalActivity : AppCompatActivity() {
 
         tabs.addOnTabSelectedListener(object : SimpleOnTabSelectedListener {
             override fun onTabSelected(p0: TabLayout.Tab?) {
-                Log.e("TAG", "onTabSelected=="+p0!!.position)
+                Log.e("TAG", "onTabSelected==" + p0!!.position)
                 appbar.setExpanded(false)
             }
         })
 
+        drag_bar.setOnClickListener {
+            appbar.setExpanded(false)
+        }
+
         appbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             override fun onOffsetChanged(p0: AppBarLayout, p1: Int) {
-                Log.e("TAG","p1==$p1")
+                Log.e("TAG", "p1==$p1")
                 toolbar.setBackgroundColor(ContextCompat.getColor(p0.context, R.color.transparent))
 
 
