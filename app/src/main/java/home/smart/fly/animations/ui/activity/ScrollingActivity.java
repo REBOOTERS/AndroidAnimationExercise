@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import home.smart.fly.animations.R;
@@ -53,6 +54,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
         mViewGroup = findViewById(R.id.shell);
+
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        mTabLayout.setTabTextColors(R.color.green,R.color.black);
 //        findViewById(R.id.image).setOnClickListener(v -> {
 //            if (isReverse) {
 //                mLinearLayout.animate().translationYBy(300).start();
