@@ -65,7 +65,6 @@ public class CollegeActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-    private ViewPager mViewPager1;
     private List<SchoolBeanShell> mBeanShells;
     private List<String> locations = new ArrayList<>();
 
@@ -79,7 +78,7 @@ public class CollegeActivity extends AppCompatActivity {
 
     boolean test = true;
 
-    private TabLayout tabLayout, tabLayout1;
+    private TabLayout tabLayout;
 
     private LinearLayout bottom;
 
@@ -118,7 +117,7 @@ public class CollegeActivity extends AppCompatActivity {
             Gson gson = new Gson();
             return gson.fromJson(s, new TypeToken<ArrayList<SchoolBeanShell>>() {
             }.getType());
-        }).subscribeOn(Schedulers.io())
+        }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<SchoolBeanShell>>() {
                     @Override
@@ -146,72 +145,13 @@ public class CollegeActivity extends AppCompatActivity {
                     }
                 });
 
-
-    }
-
-    private void loadUI(List<SchoolBeanShell> schoolBeanShells) {
-        final int[] pics = new int[]{R.drawable.a5, R.drawable.a6, R.drawable.cat};
-
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), schoolBeanShells);
-
-        // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        mViewPager1 = (ViewPager) findViewById(R.id.container1);
-        mViewPager1.setAdapter(mSectionsPagerAdapter);
-
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setSelectedTabIndicatorHeight(0);
         tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.setVisibility(View.GONE);
 
-
-        tabLayout1 = (TabLayout) findViewById(R.id.tabs1);
-        tabLayout1.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabLayout1.setSelectedTabIndicatorHeight(0);
-        tabLayout1.setupWithViewPager(mViewPager1);
-
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mViewPager1.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        tabLayout1.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mViewPager.setCurrentItem(tab.getPosition());
-
-                if (!isOpened) {
-                    bottom.animate().translationYBy(-750).start();
-                    isOpened = true;
-                }
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -225,6 +165,7 @@ public class CollegeActivity extends AppCompatActivity {
                 test = !test;
             }
         });
+        final int[] pics = new int[]{R.drawable.a5, R.drawable.a6, R.drawable.cat};
 
         headImage = (ImageView) findViewById(R.id.headImg);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -255,16 +196,18 @@ public class CollegeActivity extends AppCompatActivity {
             } else {
                 StatusBarUtil.setColor(CollegeActivity.this, black);
             }
-
-
-            if (Math.abs(verticalOffset) >= mAppBarLayout.getMinimumHeightForVisibleOverlappingContent() - tabLayout1.getMeasuredHeight()) {
-                bottom.setVisibility(View.GONE);
-            } else {
-//                bottom.setVisibility(View.VISIBLE);
-            }
         });
 
         bottom = findViewById(R.id.bottom);
+    }
+
+    private void loadUI(List<SchoolBeanShell> schoolBeanShells) {
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), schoolBeanShells);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+        tabLayout.setVisibility(View.VISIBLE);
+        // Set up the ViewPager with the sections adapter.
+
     }
 
 

@@ -40,6 +40,7 @@
     <string name="wheelView">省市联动3D效果</string>
     <string name="polygonView">PolygonView</string>
     <string name="profile">imitate douban</string>
+    <string name="pull_to_scale">下拉放大效果</string>
     <string name="view_drag">view drag helper </string>
     <string name="master">Paint 设置Shader效果</string>
     <string name="filter">Paint 设置Filter效果</string>
@@ -308,5 +309,6 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="file_util">文件操作</string>
     <string name="catch_null">catch null</string>
+    <string name="title_activity_pull_to_scale">PullToScaleActivity</string>
 
 </resources>

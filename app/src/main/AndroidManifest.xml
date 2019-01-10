@@ -350,7 +350,13 @@
             android:label="@string/title_activity_scrolling"
             android:theme="@style/MyTheme.NoActionBar" />
         <activity android:name=".ui.activity.ViewDragHelperActivity" />
-        <activity android:name=".FileUtilsActivity" android:theme="@style/MyTheme.NoActionBar"></activity>
+        <activity
+            android:name=".FileUtilsActivity"
+            android:theme="@style/MyTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.PullToScaleActivity"
+            android:label="@string/title_activity_pull_to_scale"
+            android:theme="@style/MyTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

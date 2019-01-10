@@ -3,6 +3,7 @@ package home.smart.fly.animations.fragments;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.ui.activity.PullToScaleActivity;
 import home.smart.fly.animations.ui.activity.ScrollingActivity;
 import home.smart.fly.animations.ui.activity.BitmapMeshActivity;
 import home.smart.fly.animations.ui.activity.CollegeActivity;
@@ -35,6 +36,7 @@ public class ViewsFragment extends BaseFragment {
         demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));
         demos.add(new ItemInfo(R.string.view_drag, ViewDragHelperActivity.class));
         demos.add(new ItemInfo(R.string.profile, ScrollingActivity.class));
+        demos.add(new ItemInfo(R.string.pull_to_scale, PullToScaleActivity.class));
         demos.add(new ItemInfo(R.string.master, MasterPaintActivity.class));
         demos.add(new ItemInfo(R.string.filter, MasterFilterActivity.class));
         demos.add(new ItemInfo(R.string.view_transform, ViewTransformActivity.class));

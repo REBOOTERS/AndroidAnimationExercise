@@ -24,7 +24,7 @@
             app:toolbarId="@+id/toolbar">
 
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -32,22 +32,40 @@
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="180dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/cat" />
+                    android:src="@drawable/a5" />
 
-                <home.smart.fly.animations.widget.CustomTabLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
 
-                <ImageView
-                    android:id="@+id/image2"
+                <android.support.v4.widget.NestedScrollView
+                    android:id="@+id/nested_scrollview"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/cat"
-                    android:visibility="visible" />
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:paddingTop="180dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <home.smart.fly.animations.widget.CustomTabLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp" />
+
+
+                        <ImageView
+                            android:id="@+id/image2"
+                            android:layout_width="match_parent"
+                            android:layout_height="750dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/miui_nine"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+
+                </android.support.v4.widget.NestedScrollView>
+
+            </FrameLayout>
 
 
             <android.support.v7.widget.Toolbar
@@ -89,62 +107,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="12dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/white"
             android:gravity="center">
 
             <View
                 android:layout_width="30dp"
                 android:layout_height="2dp"
-                android:background="@color/white" />
+                android:background="@color/black" />
         </LinearLayout>
 
-        <android.support.design.widget.TabLayout
+        <home.smart.fly.animations.widget.CustomTabLayout
             android:id="@+id/bottom_tab"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/colorPrimary">
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="动态" />
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="问题" />
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="回答" />
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="文章" />
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="专栏" />
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="想法" />
-
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Live" />
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="更多" />
-        </android.support.design.widget.TabLayout>
+            android:layout_height="48dp" />
 
 
     </LinearLayout>

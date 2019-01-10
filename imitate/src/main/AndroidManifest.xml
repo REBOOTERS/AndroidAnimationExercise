@@ -3,10 +3,24 @@
     package="com.engineer.imitate">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application>
         <activity
             android:name=".KotlinRootActivity"
             android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".activity.CustomScrollingActivity"
+            android:label="@string/title_activity_custom_scrolling"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.PureActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.FinalActivity"
+            android:label="@string/title_activity_final"
             android:theme="@style/AppTheme" />
     </application>
 
