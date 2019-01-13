@@ -18,6 +18,7 @@ import java.util.List;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.ui.activity.FullscreenADActivity;
 import home.smart.fly.animations.ui.activity.ViewsActivity;
+import home.smart.fly.animations.utils.PaletteUtils;
 import home.smart.fly.animations.utils.V;
 
 /**
@@ -63,6 +64,8 @@ public abstract class BaseFragment extends Fragment {
                 }
             }
         });
+
+//        recyclerView.setBackgroundColor(PaletteUtils.getMagicColor(getResources(),getBackgroundResId()));
         return rootView;
     }
 
@@ -76,7 +79,7 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    protected int getBackgroundResId() {
+    public int getBackgroundResId() {
         return R.drawable.girl;
     }
 

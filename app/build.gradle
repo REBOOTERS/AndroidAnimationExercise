@@ -129,6 +129,8 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.1'
 
     kapt 'com.zhihu.android:sugaradapter-processor:1.7.9'
+
+    implementation "com.android.support:palette-v7:$support_versioin"
 }
 
 ext.allDependencies.each {

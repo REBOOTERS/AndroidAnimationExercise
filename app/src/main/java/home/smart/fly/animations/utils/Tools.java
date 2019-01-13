@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * Created by rookie on 2017/2/10.
@@ -203,6 +204,13 @@ public class Tools {
         }
 
 
+    }
+
+
+    public static int getRandom(int min, int max) {
+        Random random = new Random();
+        int s = random.nextInt(max) % (max - min + 1) + min;
+        return s;
     }
 
 

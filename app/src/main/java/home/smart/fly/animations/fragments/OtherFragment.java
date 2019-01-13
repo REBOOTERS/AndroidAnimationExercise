@@ -24,6 +24,7 @@ import home.smart.fly.animations.ui.activity.MailActivity;
 import home.smart.fly.animations.ui.activity.MergeIncludeViewActivity;
 import home.smart.fly.animations.ui.activity.OptionalActivity;
 import home.smart.fly.animations.ui.activity.OrientationActivity;
+import home.smart.fly.animations.ui.activity.PaletteActivity;
 import home.smart.fly.animations.ui.activity.PdfActivity;
 import home.smart.fly.animations.ui.activity.ScreenCaptureActivity;
 import home.smart.fly.animations.ui.activity.ViewPagerNestedActivity;
@@ -48,6 +49,7 @@ public class OtherFragment extends BaseFragment {
     @Override
     public void InitView() {
         demos.add(new ItemInfo(R.string.title_activity_multi_fragments, MultiFragmentsActivity.class));
+        demos.add(new ItemInfo(R.string.palette, PaletteActivity.class));
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
         demos.add(new ItemInfo(R.string.ViewStub, ViewStubActivity.class));
         demos.add(new ItemInfo(R.string.ViewMerge, MergeIncludeViewActivity.class));
@@ -76,7 +78,7 @@ public class OtherFragment extends BaseFragment {
     }
 
     @Override
-    protected int getBackgroundResId() {
+    public int getBackgroundResId() {
         return R.drawable.yuanyuan;
     }
 

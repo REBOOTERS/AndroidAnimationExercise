@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources.Theme;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -32,8 +33,12 @@ import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.Objects;
 
+import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.helper.SwipeBackLayout;
+import home.smart.fly.animations.utils.PaletteUtils;
+import home.smart.fly.animations.utils.StatusBarUtil;
+import java8.util.Optional;
 
 
 public class AppStartActivity extends AppCompatActivity {
@@ -41,6 +46,7 @@ public class AppStartActivity extends AppCompatActivity {
     private CoordinatorLayout main_contetn;
     private Context mContext;
 
+    private AppBarLayout mAppBarLayout;
 
     private SharedPreferences mPreferences; // 简单粗暴保存一下位置，后期封装一下 TODO
 
@@ -55,6 +61,7 @@ public class AppStartActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
+        mAppBarLayout = findViewById(R.id.appbar);
         // Setup spinner
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(new MyAdapter(
@@ -67,9 +74,14 @@ public class AppStartActivity extends AppCompatActivity {
                 // When the given dropdown item is selected, show its contents in the
                 // container view.
                 FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
-                Fragment fragment = (Fragment) ARouter.getInstance().build(RoutePaths.paths[position]).navigation();
+                BaseFragment fragment = (BaseFragment) ARouter.getInstance().build(RoutePaths.paths[position]).navigation();
                 transition.replace(R.id.container, fragment).commit();
                 saveLastSelect(position);
+
+                int resId = fragment.getBackgroundResId();
+                int color = PaletteUtils.getMagicColor(getResources(), resId);
+                toolbar.setBackgroundColor(color);
+                StatusBarUtil.setColor(AppStartActivity.this, color, 0);
             }
 
             @Override

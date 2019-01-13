@@ -303,6 +303,7 @@
     <string name="title_activity_lottie_animation_view">LottieAnimationViewActivity</string>
     <string name="title_activity_views">ViewsActivity</string>
     <string name="title_activity_multi_fragments">单Activity多Fragment管理</string>
+    <string name="palette">Palette</string>
     <string name="click_me">click me</string>
 
     <string name="title_activity_fullscreen_ad">FullscreenADActivity</string>
@@ -310,5 +311,6 @@
     <string name="file_util">文件操作</string>
     <string name="catch_null">catch null</string>
     <string name="title_activity_pull_to_scale">PullToScaleActivity</string>
+    <string name="title_activity_palette">PaletteActivity</string>
 
 </resources>

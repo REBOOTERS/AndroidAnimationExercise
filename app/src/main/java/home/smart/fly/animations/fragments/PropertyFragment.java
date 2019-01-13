@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.ui.activity.AnimateDrawableActivity;
 import home.smart.fly.animations.ui.activity.PhysicsViewActivity;
 import home.smart.fly.animations.fragments.base.RoutePaths;
@@ -27,7 +28,7 @@ import home.smart.fly.animations.property.ValueAnimationActivity;
  * Created by rookie on 2016/8/12.
  */
 @Route(path = RoutePaths.PROPERTY)
-public class PropertyFragment extends Fragment implements View.OnClickListener {
+public class PropertyFragment extends BaseFragment implements View.OnClickListener {
     private Context mContext;
     private View rootView;
 
@@ -46,7 +47,7 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
         mContext = context;
     }
 
-    private void InitView() {
+    protected void InitView() {
         rootView.findViewById(R.id.property).setOnClickListener(this);
         rootView.findViewById(R.id.value).setOnClickListener(this);
         rootView.findViewById(R.id.demo).setOnClickListener(this);
@@ -84,7 +85,7 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
                 intent = new Intent(mContext, DecorViewActivity.class);
                 break;
             case R.id.PhysicsAnim:
-                intent=new Intent(mContext, PhysicsViewActivity.class);
+                intent = new Intent(mContext, PhysicsViewActivity.class);
                 break;
             case R.id.animate_drawable:
                 intent = new Intent(mContext, AnimateDrawableActivity.class);
@@ -93,5 +94,10 @@ public class PropertyFragment extends Fragment implements View.OnClickListener {
                 break;
         }
         startActivity(intent);
+    }
+
+    @Override
+    public int getBackgroundResId() {
+        return R.drawable.name;
     }
 }

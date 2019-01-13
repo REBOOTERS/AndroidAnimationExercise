@@ -51,7 +51,7 @@ public class ViewsFragment extends BaseFragment {
     }
 
     @Override
-    protected int getBackgroundResId() {
+    public int getBackgroundResId() {
         return R.drawable.lufei;
     }
 }

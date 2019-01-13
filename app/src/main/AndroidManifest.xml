@@ -356,6 +356,10 @@
         <activity
             android:name=".ui.activity.PullToScaleActivity"
             android:label="@string/title_activity_pull_to_scale"
+            android:theme="@style/MyTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.PaletteActivity"
+            android:label="@string/title_activity_palette"
             android:theme="@style/MyTheme.NoActionBar"></activity>
     </application>
 
