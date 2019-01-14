@@ -92,33 +92,14 @@ public class PaletteActivity extends AppCompatActivity {
                         fab.setRippleColor(swatch.getRgb());
 
 
-                        StatusBarUtil.setColor(PaletteActivity.this, swatch.getRgb(),0);
+                        StatusBarUtil.setColor(PaletteActivity.this, swatch.getRgb(), 0);
                     }
                 });
     }
 
 
-    private int getMagicColor(int id) {
-        Palette.Builder builder = new Palette.Builder(BitmapFactory.decodeResource(getResources(), id));
-        Palette palette = builder.generate();
-        return Optional.ofNullable(palette)
-                .map(this::getSwatch)
-                .map(Palette.Swatch::getRgb)
-                .orElseGet(() -> 0);
-    }
-
-    private int getMagicColor(Bitmap bitmap) {
-        Palette.Builder builder = new Palette.Builder(bitmap);
-        Palette palette = builder.generate();
-        return Optional.ofNullable(palette)
-                .map(this::getSwatch)
-                .map(Palette.Swatch::getRgb)
-                .orElseGet(() -> 0);
-    }
-
     private Palette.Swatch getSwatch(Palette palette) {
-        return PaletteUtils.getSwatch(palette, PaletteUtils.SwatchStyle.LightMuted, PaletteUtils.SwatchStyle.Muted, PaletteUtils.SwatchStyle.DarkMuted,
-                PaletteUtils.SwatchStyle.LightVibrant, PaletteUtils.SwatchStyle.Vibrant, PaletteUtils.SwatchStyle.DarkVibrant);
+        return PaletteUtils.getSwatch(palette);
     }
 
 }

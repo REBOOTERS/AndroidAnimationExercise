@@ -21,8 +21,8 @@ android {
         applicationId "home.smart.fly.animations"
         minSdkVersion ext.minSdkVersion
         targetSdkVersion ext.targetSdkVersion
-        versionCode 3
-        versionName "3.0"
+        versionCode 4
+        versionName "4.0"
         flavorDimensions "versionCode"
         //blur
         renderscriptTargetApi 19

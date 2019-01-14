@@ -20,8 +20,9 @@ public class PaletteUtils {
 
     private final static Palette.Swatch DEFAULT_SWATCH = new Palette.Swatch(0xFFC8C8C8, 1);
 
+    //region internal
     @Nullable
-    public static Palette.Swatch getSwatch(final Palette pPalette, @SwatchStyle final int... pSwatchStyle) {
+    private static Palette.Swatch getSwatchInternal(final Palette pPalette, @SwatchStyle final int... pSwatchStyle) {
         for (final int style : pSwatchStyle) {
             switch (style) {
                 case SwatchStyle.Vibrant:
@@ -85,6 +86,7 @@ public class PaletteUtils {
 
         int DarkMuted = 0x06;
     }
+    //endregion
 
 
     public static int getMagicColor(Resources resources, int id) {
@@ -105,8 +107,8 @@ public class PaletteUtils {
                 .orElseGet(() -> 0);
     }
 
-    private static Palette.Swatch getSwatch(Palette palette) {
-        return getSwatch(palette, SwatchStyle.LightMuted, SwatchStyle.Muted, SwatchStyle.DarkMuted,
+    public static Palette.Swatch getSwatch(Palette palette) {
+        return getSwatchInternal(palette, SwatchStyle.LightMuted, SwatchStyle.Muted, SwatchStyle.DarkMuted,
                 SwatchStyle.LightVibrant, SwatchStyle.Vibrant, SwatchStyle.DarkVibrant);
     }
 }
