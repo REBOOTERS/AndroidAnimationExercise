@@ -97,6 +97,8 @@ class FinalActivity : AppCompatActivity() {
             }
         })
 
+
+
         drag_bar.setOnClickListener {
             appbar.setExpanded(false)
         }
@@ -131,6 +133,8 @@ class FinalActivity : AppCompatActivity() {
             }
 
         })
+
+        mSectionsPagerAdapter!!.notifyDataSetChanged()
 
     }
 
