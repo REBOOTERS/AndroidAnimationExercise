@@ -1,34 +1,24 @@
 package com.engineer.imitate.activity
 
 import android.content.Context
+import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.design.widget.TabLayout
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
-import android.os.Bundle
-import android.support.design.widget.AppBarLayout
 import android.support.v4.content.ContextCompat
-import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.DisplayMetrics
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-
+import android.view.*
 import com.engineer.imitate.R
 import com.engineer.imitate.adapter.DataAdapter
 import com.engineer.imitate.interfaces.SimpleOnTabSelectedListener
 import com.engineer.imitate.util.dp2px
 import com.engineer.imitate.widget.custom.DragView
-import com.engineer.imitate.widget.slidepane.SlidingUpPanelLayout
 import kotlinx.android.synthetic.main.activity_final.*
 import kotlinx.android.synthetic.main.fragment_final.view.*
 
@@ -133,9 +123,6 @@ class FinalActivity : AppCompatActivity() {
             }
 
         })
-
-        mSectionsPagerAdapter!!.notifyDataSetChanged()
-
     }
 
 
