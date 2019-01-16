@@ -16,6 +16,7 @@ import com.engineer.imitate.R
  */
 class DataAdapter(private var type: Int) : RecyclerView.Adapter<DataAdapter.MyViewHolder>() {
 
+    private  var size = 100;
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MyViewHolder {
         val view = LayoutInflater.from(p0.context).inflate(R.layout.view_item, p0, false)
@@ -23,7 +24,11 @@ class DataAdapter(private var type: Int) : RecyclerView.Adapter<DataAdapter.MyVi
     }
 
     override fun getItemCount(): Int {
-        return 100
+        return size
+    }
+
+    public fun setSize(size:Int) {
+        this.size = size
     }
 
     @SuppressLint("SetTextI18n")

@@ -27,6 +27,7 @@ import com.engineer.imitate.R
 import com.engineer.imitate.adapter.DataAdapter
 import com.engineer.imitate.interfaces.SimpleOnTabSelectedListener
 import com.engineer.imitate.util.dp2px
+import com.engineer.imitate.widget.custom.DragView
 import com.engineer.imitate.widget.slidepane.SlidingUpPanelLayout
 import kotlinx.android.synthetic.main.activity_final.*
 import kotlinx.android.synthetic.main.fragment_final.view.*
@@ -108,10 +109,7 @@ class FinalActivity : AppCompatActivity() {
 
                 app_bar_h = p1
 
-                var percent = (100.0f * Math.abs(p1) / p0.totalScrollRange) / 100.0f
-
-//                    Log.e(TAG, "percent==$percent")
-
+                var percent = (100.0f * Math.abs(p1 * 2) / p0.totalScrollRange) / 100.0f
                 if (percent > 1) {
                     percent = 1.0f
                 }
@@ -121,6 +119,17 @@ class FinalActivity : AppCompatActivity() {
                 toolbar_layout.title = ""
                 toolbar_up.translationY = toolbarHeight * percent - toolbarHeight
             }
+        })
+
+        drag_bar.setOnGuesterActionListener(object : DragView.onGuesterActionListener {
+            override fun up() {
+                appbar.setExpanded(false)
+            }
+
+            override fun down() {
+                appbar.setExpanded(true)
+            }
+
         })
 
     }
@@ -151,7 +160,7 @@ class FinalActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_final, menu)
+//        menuInflater.inflate(R.menu.menu_final, menu)
         return true
     }
 
@@ -207,7 +216,9 @@ class FinalActivity : AppCompatActivity() {
             val rootView = inflater.inflate(R.layout.fragment_final, container, false)
             val type = arguments!!.getInt(ARG_SECTION_NUMBER)
             val list = rootView.list
-            list.adapter = DataAdapter(type)
+            val adapter = DataAdapter(type)
+            adapter.setSize(20)
+            list.adapter = adapter
             list.layoutManager = LinearLayoutManager(context)
             return rootView
         }

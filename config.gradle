@@ -8,7 +8,7 @@ ext {
     constraint_layout = '1.1.3'
 
     kotlin_version = '1.3.11'
-    gradle_version = '3.2.1'
+    gradle_version = '3.3.0'
 
     leakcanary = '1.6.1'
     glide = '4.7.1'

@@ -129,4 +129,6 @@
     </string>
     <string name="title_activity_custom_scrolling">CustomScrollingActivity</string>
     <string name="title_activity_final">FinalActivity</string>
+
+    <string name="pull_scale_behavior">com.engineer.imitate.behavior.AppBarLayoutOverScrollViewBehavior</string>
 </resources>

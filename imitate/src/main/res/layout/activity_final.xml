@@ -5,6 +5,8 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:fitsSystemWindows="true"
     tools:context=".activity.FinalActivity">
 
@@ -12,8 +14,9 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:paddingBottom="32dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
 
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -33,18 +36,29 @@
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="match_parent"
-                    android:layout_height="600dp"
+                    android:layout_height="174dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/self" />
+                    android:src="@drawable/comic"
+                    android:tag="overScroll" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="474dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="只是占点儿位置"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
 
                 <ImageView
                     android:id="@+id/image1"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="174dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/self"
                     android:visibility="gone" />
             </LinearLayout>
+
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -76,19 +90,20 @@
     <RelativeLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="64dp"
         android:background="@color/white"
         android:elevation="10dp"
         android:orientation="vertical"
+        android:visibility="visible"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|end">
 
-        <View
+        <com.engineer.imitate.widget.custom.DragView
             android:id="@+id/drag_bar"
-            android:layout_width="40dp"
+            android:layout_width="32dp"
             android:layout_height="4dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp"
             android:background="@color/cpb_grey" />
 
