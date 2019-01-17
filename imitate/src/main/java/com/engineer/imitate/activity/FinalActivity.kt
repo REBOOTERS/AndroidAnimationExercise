@@ -123,6 +123,10 @@ class FinalActivity : AppCompatActivity() {
             }
 
         })
+
+        fv.setEnable(true)
+        fv.setHeader(image)
+        fv.setReadyListener { app_bar_h == 0 }
     }
 
 
