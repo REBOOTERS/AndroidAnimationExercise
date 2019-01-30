@@ -9,10 +9,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.RelativeLayout;
 
-/**
- * Created by gavin
- * date 2018/6/12
- */
+
 public class PullAnimatorUtil {
 
     /**

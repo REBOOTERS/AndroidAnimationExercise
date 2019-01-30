@@ -21,11 +21,6 @@ import com.engineer.flex.util.PullAnimatorUtil;
 import com.engineer.phenix.R;
 
 
-/**
- * Created by gavin
- * date 2018/6/12
- * 带有下拉放大效果的FrameLayout
- */
 public class FlexibleLayout extends FrameLayout implements IFlexible {
 
     /**

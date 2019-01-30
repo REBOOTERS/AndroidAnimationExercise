@@ -1,10 +1,6 @@
 package com.engineer.flex.callback;
 
-/**
- * Created by gavin
- * date 2018/6/12
- * 下拉监听
- */
+
 public interface OnPullListener {
 
     /**

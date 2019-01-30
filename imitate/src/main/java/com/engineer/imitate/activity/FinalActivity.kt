@@ -1,6 +1,7 @@
 package com.engineer.imitate.activity
 
 import android.content.Context
+import android.graphics.Outline
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.TabLayout
@@ -49,6 +50,8 @@ class FinalActivity : AppCompatActivity() {
 
     private var app_bar_h = 0
 
+    private lateinit var provider: CustomViewOutLineProvider
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this
@@ -89,10 +92,6 @@ class FinalActivity : AppCompatActivity() {
 
 
 
-        drag_bar.setOnClickListener {
-            appbar.setExpanded(false)
-        }
-
         appbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             override fun onOffsetChanged(p0: AppBarLayout, p1: Int) {
                 Log.e("TAG", "p1==$p1")
@@ -108,25 +107,35 @@ class FinalActivity : AppCompatActivity() {
 
                 toolbar.alpha = 1 - percent
 
+                provider.radius = 100f * (1-percent*2)
+                round.invalidateOutline()
+
                 toolbar_layout.title = ""
                 toolbar_up.translationY = toolbarHeight * percent - toolbarHeight
             }
         })
 
-        drag_bar.setOnGuesterActionListener(object : DragView.onGuesterActionListener {
-            override fun up() {
-                appbar.setExpanded(false)
-            }
 
-            override fun down() {
-                appbar.setExpanded(true)
-            }
+//        fv.setEnable(true)
+//        fv.setHeader(image)
+//        fv.setReadyListener { app_bar_h == 0 }
 
-        })
 
-        fv.setEnable(true)
-        fv.setHeader(image)
-        fv.setReadyListener { app_bar_h == 0 }
+
+        provider = CustomViewOutLineProvider()
+        round.outlineProvider = provider
+        round.clipToOutline = true
+
+    }
+
+    inner class CustomViewOutLineProvider : ViewOutlineProvider() {
+
+         var radius =0f
+
+        override fun getOutline(view: View?, outline: Outline?) {
+            outline!!.setRoundRect(0, 0, view!!.width, view.height, radius)
+        }
+
     }
 
 

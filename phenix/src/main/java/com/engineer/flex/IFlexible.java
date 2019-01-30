@@ -1,9 +1,5 @@
 package com.engineer.flex;
 
-/**
- * Created by gavin
- * date 2018/6/12
- */
 public interface IFlexible {
 
     /**

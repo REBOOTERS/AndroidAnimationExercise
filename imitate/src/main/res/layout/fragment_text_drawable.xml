@@ -1,64 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".fragments.TextDrawableFragment">
 
     <TextView
         android:id="@+id/textView"
-        android:drawablePadding="4dp"
-        android:gravity="center_vertical"
-        android:layout_margin="20dp"
-        android:drawableStart="@drawable/ic_add_black_24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:drawableStart="@drawable/ic_add_black_24dp"
+        android:drawablePadding="4dp"
+        android:gravity="center_vertical"
         android:text="@string/hello_blank_fragment" />
 
     <TextView
-        android:drawablePadding="4dp"
-        android:gravity="center_vertical"
-        android:layout_margin="20dp"
-        android:drawableStart="@drawable/ic_add_black_24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:drawableStart="@drawable/ic_add_black_24dp"
+        android:drawablePadding="4dp"
+        android:gravity="center_vertical"
         android:text="@string/hello_blank_fragment" />
 
 
-    <android.support.v4.widget.ContentLoadingProgressBar
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/text"
+        android:layout_width="132dp"
+        android:layout_height="24dp"
+        android:layout_margin="20dp"
+        android:lines="1"
+        android:text="111"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:autoSizeMaxTextSize="22sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform" />
+
+    <EditText
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:layout_margin="20dp" />
 
 
     <RelativeLayout
-        android:layout_margin="20dp"
         android:layout_width="wrap_content"
-        android:background="@color/cpb_green"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/cpb_green">
 
         <TextView
-            android:textSize="22sp"
-            android:textColor="@color/colorPrimary"
             android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="300dp"
             android:singleLine="true"
             android:text="1111111111111123111ddd111w3"
-            android:layout_width="wrap_content"
-            android:maxWidth="300dp"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp" />
 
         <TextView
-            android:textSize="22sp"
-            android:textColor="@color/cpb_red"
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/name"
-            android:id="@+id/time"
-            android:text="15:00"
             android:singleLine="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="15:00"
+            android:textColor="@color/cpb_red"
+            android:textSize="22sp" />
 
     </RelativeLayout>
 
@@ -68,9 +84,9 @@
         android:layout_margin="10dp"
         android:scaleType="fitXY"
         android:src="@drawable/comic" />
-    
+
     <com.engineer.imitate.widget.custom.CustomScrollView
-        android:layout_gravity="center_horizontal"
         android:layout_width="150dp"
-        android:layout_height="150dp" />
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>
