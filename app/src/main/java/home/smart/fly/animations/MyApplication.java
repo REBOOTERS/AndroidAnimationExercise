@@ -20,7 +20,7 @@ public class MyApplication extends MultiDexApplication  {
         Stetho.initializeWithDefaults(this);
 
         if (!LeakCanary.isInAnalyzerProcess(this)) {
-            installLeakCanary();
+//            installLeakCanary();
         }
 
         if (BuildConfig.DEBUG) {
