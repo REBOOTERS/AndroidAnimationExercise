@@ -1,6 +1,7 @@
 package com.engineer.imitate
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
@@ -30,7 +31,7 @@ import kotlinx.android.synthetic.main.view_item.view.*
 
 @Route(path = Routes.INDEX)
 class KotlinRootActivity : AppCompatActivity() {
-
+    private val TAG = KotlinRootActivity::class.java.simpleName
     private val BASE_URL = "index.html"
     private val ORIGINAL_URL = "file:///android_asset/index.html"
     private lateinit var hybridHelper: HybridHelper
@@ -91,6 +92,17 @@ class KotlinRootActivity : AppCompatActivity() {
                 transaction.replace(R.id.content, fragment).commit()
             }
         }.layoutManager(mLayoutManager)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    Log.e(TAG, "dy==$dy")
+                    Log.e(TAG, "是否可以 scroll up==${recyclerView.canScrollVertically(-1)}")
+                    Log.e(TAG, "是否可以 scroll down==${recyclerView.canScrollVertically(1)}")
+                }
+            })
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
