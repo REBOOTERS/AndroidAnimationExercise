@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ThemedSpinnerAdapter;
@@ -30,22 +29,14 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-import home.smart.fly.animations.adapter.SchoolBeanShell;
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
-import home.smart.fly.animations.helper.SwipeBackLayout;
-import home.smart.fly.animations.recyclerview.TempBean;
+import home.smart.fly.animations.ui.SuperTools;
 import home.smart.fly.animations.utils.PaletteUtils;
 import home.smart.fly.animations.utils.StatusBarUtil;
-import home.smart.fly.animations.utils.Tools;
-import java8.util.Optional;
 
 
 public class AppStartActivity extends AppCompatActivity {
@@ -114,27 +105,30 @@ public class AppStartActivity extends AppCompatActivity {
                         snackbar.show();
                     }
                 }));
-
-
-        makeData();
-
+        print();
     }
 
-    private void makeData() {
-        String json = Tools.readStrFromAssets("fuli.json", this);
-        Gson mGson = new Gson();
-        TempBean bean = mGson.fromJson(json, TempBean.class);
-        if (bean != null && bean.getResults() != null) {
-            List<String> datas = new ArrayList<>();
-            for (TempBean.ResultsBean bean1 : bean.getResults()) {
-                datas.add(bean1.getUrl());
-            }
-            String jsonStr = mGson.toJson(datas);
-            Log.e("json", "makeData: "+jsonStr );
-            Tools.saveToSDCard("data.json",jsonStr);
-        }
+    // <editor-fold defaultstate="collapsed" desc="一些屏幕信息">
+    private void print() {
 
+        print("是否存在导航栏 ：" + SuperTools.checkDeviceHasNavigationBar(this));
+        print("不包含虚拟导航栏的高度 ： " + SuperTools.getNoHasVirtualKey(this));
+        print("包含虚拟导航栏的高度 : " + SuperTools.getHasVirtualKey(this));
+        print("getRealHight =" + (SuperTools.getRealHight(this)));
+        print("getScreenHeight =" + (SuperTools.getScreenHeight(this)));
+        print("导航栏高度：" + SuperTools.getNavigationBarHeight(this));
+        print("DecorView高度：" + getWindow().getDecorView().getHeight());
+        print("华为手机 ：" + SuperTools.isHUAWEI());
+        SuperTools.isNavigationBarExist(this);
     }
+
+    // </editor-fold>
+
+
+    private void print(String msg) {
+        Log.e("Nj", msg);
+    }
+
 
     @Override
     protected void onResume() {
@@ -168,6 +162,8 @@ public class AppStartActivity extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
+    // <editor-fold defaultstate="collapsed" desc="onOptionsItemSelected">
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -197,15 +193,16 @@ public class AppStartActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+// </editor-fold>
 
 
-    //<editor-fold desc="SpinnerAdapter">
+    // <editor-fold defaultstate="collapsed" desc="SpinnerAdapter">
     private static class MyAdapter extends ArrayAdapter<String> implements ThemedSpinnerAdapter {
-        private final ThemedSpinnerAdapter.Helper mDropDownHelper;
+        private final Helper mDropDownHelper;
 
         private MyAdapter(Context context, String[] objects) {
             super(context, android.R.layout.simple_list_item_1, objects);
-            mDropDownHelper = new ThemedSpinnerAdapter.Helper(context);
+            mDropDownHelper = new Helper(context);
         }
 
         @Override
@@ -235,6 +232,6 @@ public class AppStartActivity extends AppCompatActivity {
             mDropDownHelper.setDropDownViewTheme(theme);
         }
     }
-    //</editor-fold>
+    // </editor-fold>
 
 }

@@ -5,6 +5,11 @@
     <item
         android:id="@+id/action_refresh"
         android:orderInCategory="100"
-        android:title="switchView"
+        android:title="@string/switchview"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_change"
+        android:title="@string/change"
         app:showAsAction="never" />
 </menu>

@@ -111,25 +111,18 @@ dependencies {
     implementation "com.android.support:support-dynamic-animation:$support_versioin"
     implementation 'com.airbnb.android:lottie:2.5.1'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
-
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$ext.leakcanary"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$ext.leakcanary"
     debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:$ext.leakcanary"
-
     implementation project(':phenix')
     if (!imitate_isApp.toBoolean()) {
         implementation project(':imitate')
     }
     implementation 'net.sourceforge.streamsupport:streamsupport:1.6.3'
-
-
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
-
     testImplementation 'org.robolectric:robolectric:4.1'
-
     kapt 'com.zhihu.android:sugaradapter-processor:1.7.9'
-
     implementation "com.android.support:palette-v7:$support_versioin"
 }
 

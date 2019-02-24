@@ -1,5 +1,7 @@
 package home.smart.fly.animations;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
@@ -8,9 +10,15 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.zhihu.android.sugaradapter.SugarAdapter;
 import com.zhihu.android.sugaradapter.SugarHolder;
@@ -18,16 +26,22 @@ import com.zhihu.android.sugaradapter.SugarHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+import home.smart.fly.animations.helper.Util;
 import home.smart.fly.animations.sugar.bean.Item;
 import home.smart.fly.animations.sugar.viewholder.LargeItemHolder;
 import home.smart.fly.animations.sugar.viewholder.SmallItemHolder;
+import home.smart.fly.animations.utils.AppUtils;
+import home.smart.fly.animations.utils.StatusBarUtil;
+import home.smart.fly.animations.utils.V;
 
 public class FileUtilsActivity extends AppCompatActivity {
+    private static final String TAG = "FileUtilsActivity";
 
     private List<Item> items;
     private SugarAdapter mSugarAdapter;
     private RecyclerView mRecyclerView;
     private Context mContext;
+    private FloatingActionButton mRetry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +49,7 @@ public class FileUtilsActivity extends AppCompatActivity {
         mContext = this;
         setContentView(R.layout.activity_file_utils);
         mRecyclerView = findViewById(R.id.recyclerView);
+        mRetry = findViewById(R.id.retry);
 
         items = new ArrayList<>();
         mSugarAdapter = SugarAdapter.Builder.with(items)
@@ -57,9 +72,73 @@ public class FileUtilsActivity extends AppCompatActivity {
         });
 
         refreshList();
+
+        mRetry.setOnClickListener(v -> {
+            recyclerview();
+        });
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        recyclerview();
+    }
 
+    private void recyclerview() {
+        printCommonInfo();
+
+
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 300, 0);
+        valueAnimator.addUpdateListener(animation -> {
+            float value = (float) animation.getAnimatedValue();
+            mRecyclerView.setX(value);
+            mRecyclerView.setY(value);
+
+            mRetry.setScaleX(animation.getAnimatedFraction());
+            mRetry.setScaleY(animation.getAnimatedFraction());
+        });
+        valueAnimator.setDuration(3000);
+        valueAnimator.start();
+    }
+
+    //region printCommonInfo
+    private void printCommonInfo() {
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        Log.e(TAG, "recyclerview: top==   " + mRecyclerView.getTop());
+        Log.e(TAG, "recyclerview: left==  " + mRecyclerView.getLeft());
+        Log.e(TAG, "recyclerview: bottom==" + mRecyclerView.getBottom());
+        Log.e(TAG, "recyclerview: right== " + mRecyclerView.getRight());
+
+
+        Log.e(TAG, "recyclerview: x==     " + mRecyclerView.getX());
+        Log.e(TAG, "recyclerview: y==     " + mRecyclerView.getY());
+
+
+        Log.e(TAG, "recyclerview: width== " + mRecyclerView.getWidth());
+        Log.e(TAG, "recyclerview: height==" + mRecyclerView.getHeight());
+
+
+        Log.e(TAG, " \n\n");
+
+        Log.e(TAG, "viewinfos: statusH=" + StatusBarUtil.getStatusBarHeight(this));
+        Log.e(TAG, "viewinfos: screenW=" + displayMetrics.widthPixels);
+        Log.e(TAG, "viewinfos: screenH=" + displayMetrics.heightPixels);
+
+        Log.e(TAG, " \n\n");
+
+
+        Log.e(TAG, "retry_fab: top==   " + mRetry.getTop());
+        Log.e(TAG, "retry_fab: left==  " + mRetry.getLeft());
+        Log.e(TAG, "retry_fab: bottom==" + mRetry.getBottom());
+        Log.e(TAG, "retry_fab: right== " + mRetry.getRight());
+    }
+    //endregion
+
+
+    //<editor-fold desc="Description">
     private void refreshList() {
 
 
@@ -88,6 +167,8 @@ public class FileUtilsActivity extends AppCompatActivity {
 
         ActivityManager mManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         int size = mManager.getMemoryClass();
+
+        items.add(new Item("应用包名", AppUtils.getPackageName(this)));
 
         items.add(new Item("BuildConfig.APPLICATION_ID", String.valueOf(BuildConfig.APPLICATION_ID)));
         items.add(new Item("BuildConfig.BUILD_TYPE", String.valueOf(BuildConfig.BUILD_TYPE)));
@@ -124,4 +205,6 @@ public class FileUtilsActivity extends AppCompatActivity {
 
         mSugarAdapter.notifyDataSetChanged();
     }
+    //</editor-fold>
+
 }

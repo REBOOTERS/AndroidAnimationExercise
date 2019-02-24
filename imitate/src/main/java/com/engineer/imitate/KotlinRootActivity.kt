@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
 import android.view.Menu
@@ -35,6 +37,10 @@ class KotlinRootActivity : AppCompatActivity() {
 
     private lateinit var transaction: FragmentTransaction
     private lateinit var currentFragment: Fragment
+    private lateinit var mLinearManager: LinearLayoutManager
+    private lateinit var mGridLayoutManager: GridLayoutManager
+    private lateinit var mLayoutManager: RecyclerView.LayoutManager
+
 
     private lateinit var disposable: Disposable
 
@@ -46,6 +52,9 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     private fun loadView() {
+        mLinearManager = LinearLayoutManager(this)
+        mGridLayoutManager = GridLayoutManager(this, 2)
+        mLayoutManager = mLinearManager
         if (isNetworkConnected()) {
             loadWebView()
         } else {
@@ -58,6 +67,7 @@ class KotlinRootActivity : AppCompatActivity() {
         recyclerView.visibility = View.VISIBLE
         val list = listOf(
                 FragmentItem("/anim/circleLoading", "circle-loading"),
+                FragmentItem("/anim/linktextview", "link-textview"),
                 FragmentItem("/anim/slide", "slide"),
                 FragmentItem("/anim/bottomsheet", "bottomsheet"),
                 FragmentItem("/anim/drag", "drag"),
@@ -66,8 +76,8 @@ class KotlinRootActivity : AppCompatActivity() {
                 FragmentItem("/anim/elevation", "elevation"),
                 FragmentItem("/anim/fresco", "fresco"),
                 FragmentItem("/anim/entrance", "entrance"),
-                FragmentItem("/anim/constraint","constraint animation"),
-                FragmentItem("/anim/scroller","scroller")
+                FragmentItem("/anim/constraint", "constraint animation"),
+                FragmentItem("/anim/scroller", "scroller")
         )
         recyclerView.bind(list, R.layout.view_item) { item: FragmentItem ->
             desc.text = item.name
@@ -80,7 +90,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
             }
-        }.layoutManager(LinearLayoutManager(this))
+        }.layoutManager(mLayoutManager)
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -94,7 +104,7 @@ class KotlinRootActivity : AppCompatActivity() {
         hybrid.addJavascriptInterface(hybridHelper, "hybrid")
 
 
-         disposable=Observable.create<String> { emitter ->
+        disposable = Observable.create<String> { emitter ->
             kotlin.run {
                 Optional.ofNullable(assets.open(BASE_URL))
                         .ifPresentOrElse({
@@ -154,6 +164,15 @@ class KotlinRootActivity : AppCompatActivity() {
                 loadRecyclerView()
             }
             return true
+        } else if (item.itemId == R.id.action_change) {
+            if (recyclerView.visibility == View.VISIBLE) {
+                if (recyclerView.layoutManager == mLinearManager) {
+                    mLayoutManager = mGridLayoutManager
+                } else {
+                    mLayoutManager = mLinearManager
+                }
+                loadRecyclerView()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

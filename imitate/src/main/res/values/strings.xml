@@ -131,4 +131,6 @@
     <string name="title_activity_final">FinalActivity</string>
 
     <string name="pull_scale_behavior">com.engineer.imitate.behavior.AppBarLayoutOverScrollViewBehavior</string>
+    <string name="change">change</string>
+    <string name="switchview">switchView</string>
 </resources>
