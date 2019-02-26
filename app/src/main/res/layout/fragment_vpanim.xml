@@ -1,15 +1,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:context="home.smart.fly.animations.tradition.VPAnimActivity$PlaceholderFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="home.smart.fly.animations.tradition.VPAnimActivity$PlaceholderFragment">
 
-    <ImageView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/section_label"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="480dp"
         android:scaleType="fitXY"
-        android:src="@drawable/cat"/>
+        android:src="@drawable/cat" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="我是文字"
+        android:textColor="@color/cpb_red" />
 
 </RelativeLayout>

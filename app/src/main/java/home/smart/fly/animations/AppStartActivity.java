@@ -119,7 +119,6 @@ public class AppStartActivity extends AppCompatActivity {
         print("导航栏高度：" + SuperTools.getNavigationBarHeight(this));
         print("DecorView高度：" + getWindow().getDecorView().getHeight());
         print("华为手机 ：" + SuperTools.isHUAWEI());
-        SuperTools.isNavigationBarExist(this);
     }
 
     // </editor-fold>
