@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.engineer.imitate.R
 import com.engineer.imitate.R.id.bottom_sheet
 import com.engineer.imitate.activity.CustomScrollingActivity
+import com.engineer.imitate.activity.ExampleActivity
 import com.engineer.imitate.activity.FinalActivity
 import com.engineer.imitate.activity.PureActivity
 import com.engineer.imitate.util.Glide4Engine
@@ -88,6 +89,10 @@ class EntranceFragment : Fragment() {
 
         final_one.setOnClickListener {
             startActivity(Intent(context, FinalActivity::class.java))
+        }
+
+        textview_spannable.setOnClickListener {
+            startActivity(Intent(context,ExampleActivity::class.java))
         }
 
         adapter = MyListAdapter()

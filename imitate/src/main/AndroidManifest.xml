@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.engineer.imitate">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application>
@@ -21,6 +21,10 @@
         <activity
             android:name=".activity.FinalActivity"
             android:label="@string/title_activity_final"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".activity.ExampleActivity"
             android:theme="@style/AppTheme" />
     </application>
 

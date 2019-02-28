@@ -64,6 +64,16 @@
             android:padding="10dp"
             android:text="final_one" />
 
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/textview_spannable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/cpb_blue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="textview_spannable" />
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"

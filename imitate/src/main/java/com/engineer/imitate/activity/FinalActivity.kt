@@ -52,6 +52,10 @@ class FinalActivity : AppCompatActivity() {
 
     private lateinit var provider: CustomViewOutLineProvider
 
+    private val listener: ViewTreeObserver.OnGlobalLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
+        Log.e("onLayout", "onLayout")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this
@@ -107,11 +111,13 @@ class FinalActivity : AppCompatActivity() {
 
                 toolbar.alpha = 1 - percent
 
-                provider.radius = 100f * (1-percent*2)
+                provider.radius = 100f * (1 - percent * 2)
                 round.invalidateOutline()
 
                 toolbar_layout.title = ""
                 toolbar_up.translationY = toolbarHeight * percent - toolbarHeight
+
+                round.viewTreeObserver.addOnGlobalLayoutListener(listener)
             }
         })
 
@@ -121,16 +127,20 @@ class FinalActivity : AppCompatActivity() {
 //        fv.setReadyListener { app_bar_h == 0 }
 
 
-
         provider = CustomViewOutLineProvider()
         round.outlineProvider = provider
         round.clipToOutline = true
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        round.viewTreeObserver.removeOnGlobalLayoutListener(listener)
+    }
+
     inner class CustomViewOutLineProvider : ViewOutlineProvider() {
 
-         var radius =0f
+        var radius = 0f
 
         override fun getOutline(view: View?, outline: Outline?) {
             outline!!.setRoundRect(0, 0, view!!.width, view.height, radius)
