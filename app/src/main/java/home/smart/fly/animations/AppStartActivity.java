@@ -195,7 +195,7 @@ public class AppStartActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-// </editor-fold>
+    // </editor-fold>
 
 
     // <editor-fold defaultstate="collapsed" desc="SpinnerAdapter">

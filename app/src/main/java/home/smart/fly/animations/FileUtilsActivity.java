@@ -1,6 +1,5 @@
 package home.smart.fly.animations;
 
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.ActivityManager;
 import android.content.Context;
@@ -16,9 +15,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.zhihu.android.sugaradapter.SugarAdapter;
 import com.zhihu.android.sugaradapter.SugarHolder;
@@ -26,13 +22,11 @@ import com.zhihu.android.sugaradapter.SugarHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-import home.smart.fly.animations.helper.Util;
 import home.smart.fly.animations.sugar.bean.Item;
 import home.smart.fly.animations.sugar.viewholder.LargeItemHolder;
 import home.smart.fly.animations.sugar.viewholder.SmallItemHolder;
 import home.smart.fly.animations.utils.AppUtils;
 import home.smart.fly.animations.utils.StatusBarUtil;
-import home.smart.fly.animations.utils.V;
 
 public class FileUtilsActivity extends AppCompatActivity {
     private static final String TAG = "FileUtilsActivity";
@@ -81,7 +75,7 @@ public class FileUtilsActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        recyclerview();
+        printCommonInfo();
     }
 
     private void recyclerview() {
