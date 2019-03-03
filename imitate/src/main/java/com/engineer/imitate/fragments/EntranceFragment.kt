@@ -2,9 +2,6 @@ package com.engineer.imitate.fragments
 
 
 import android.Manifest
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -16,14 +13,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
-import com.engineer.imitate.R.id.bottom_sheet
 import com.engineer.imitate.activity.CustomScrollingActivity
-import com.engineer.imitate.activity.ExampleActivity
 import com.engineer.imitate.activity.FinalActivity
 import com.engineer.imitate.activity.PureActivity
 import com.engineer.imitate.util.Glide4Engine
@@ -91,9 +85,7 @@ class EntranceFragment : Fragment() {
             startActivity(Intent(context, FinalActivity::class.java))
         }
 
-        textview_spannable.setOnClickListener {
-            startActivity(Intent(context,ExampleActivity::class.java))
-        }
+
 
         adapter = MyListAdapter()
         recyclerView.layoutManager = GridLayoutManager(context, 2)

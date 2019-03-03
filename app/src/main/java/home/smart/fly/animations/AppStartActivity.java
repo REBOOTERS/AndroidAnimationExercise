@@ -37,6 +37,7 @@ import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.ui.SuperTools;
 import home.smart.fly.animations.utils.PaletteUtils;
 import home.smart.fly.animations.utils.StatusBarUtil;
+import okhttp3.OkHttpClient;
 
 
 public class AppStartActivity extends AppCompatActivity {
@@ -106,6 +107,8 @@ public class AppStartActivity extends AppCompatActivity {
                     }
                 }));
         print();
+
+        OkHttpClient client = new OkHttpClient();
     }
 
     // <editor-fold defaultstate="collapsed" desc="一些屏幕信息">
