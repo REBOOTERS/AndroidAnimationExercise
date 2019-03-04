@@ -15,9 +15,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 
 import com.zhihu.android.sugaradapter.SugarAdapter;
 import com.zhihu.android.sugaradapter.SugarHolder;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +58,7 @@ public class FileUtilsActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mSugarAdapter);
 
         mSugarAdapter.addDispatcher(new SugarAdapter.Dispatcher<Item>() {
-            @Nullable
+            @NotNull
             @Override
             public Class<? extends SugarHolder> dispatch(@NonNull Item data) {
                 if (data.getTitle().length() < 40) {

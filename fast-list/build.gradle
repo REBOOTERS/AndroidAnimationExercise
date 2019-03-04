@@ -43,6 +43,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     compileOnly "com.android.support:recyclerview-v7:$ext.support_versioin"
-    compileOnly 'androidx.core:core-ktx:1.0.0'
+    compileOnly 'androidx.core:core-ktx:1.0.1'
 
 }
