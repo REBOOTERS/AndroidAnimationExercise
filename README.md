@@ -130,6 +130,9 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 <img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/anim1.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/anim2.gif"/><img src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/click2.gif"/>
 
+## 一些系统信息
+
+<img width=400 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/sys_info.jpg"/>
 
 
 
