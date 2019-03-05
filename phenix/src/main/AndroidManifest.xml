@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.engineer.phenix">
-
-    <application>
-        <activity android:name="com.engineer.phenix.ui.PreViewActivity" android:theme="@style/Theme.Preview" />
-    </application>
-
-</manifest>

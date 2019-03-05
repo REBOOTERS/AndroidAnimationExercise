@@ -114,7 +114,6 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$ext.leakcanary"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$ext.leakcanary"
     debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:$ext.leakcanary"
-    implementation project(':phenix')
     if (!imitate_isApp.toBoolean()) {
         implementation project(':imitate')
     }

@@ -18,7 +18,6 @@ import home.smart.fly.animations.ui.activity.LoaderActivity;
 import home.smart.fly.animations.ui.activity.LottieAnimationViewActivity;
 import home.smart.fly.animations.ui.activity.MatisseDemoActivity;
 import home.smart.fly.animations.ui.activity.MySwipeMenuActivity;
-import home.smart.fly.animations.ui.activity.PhenixDemoActivity;
 import home.smart.fly.animations.ui.activity.PhotoBrowse;
 import home.smart.fly.animations.ui.activity.PolygonViewActivity;
 import home.smart.fly.animations.ui.activity.PullRecyclerViewActivity;
@@ -49,7 +48,6 @@ public class ImitateFragment extends BaseFragment {
         demos.add(new ItemInfo(R.string.swipeFinish, SwipeFinishActivity.class));
         demos.add(new ItemInfo(R.string.Matisse, MatisseDemoActivity.class));
         demos.add(new ItemInfo(R.string.PreviewOne, PhotoBrowse.class));
-        demos.add(new ItemInfo(R.string.PreviewTwo, PhenixDemoActivity.class));
         Toast.makeText(mContext, getResources().getString(R.string.toast), Toast.LENGTH_SHORT).show();
     }
 }
