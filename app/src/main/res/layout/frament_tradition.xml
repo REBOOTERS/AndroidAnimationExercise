@@ -65,9 +65,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/cpb_blue"
-            android:text="swipeAnim"
+            android:text="prepare"
             android:textColor="@color/white"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
     </LinearLayout>
 
 

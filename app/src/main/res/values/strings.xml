@@ -312,5 +312,6 @@
     <string name="catch_null">catch null</string>
     <string name="title_activity_pull_to_scale">PullToScaleActivity</string>
     <string name="title_activity_palette">PaletteActivity</string>
+    <string name="prefix">prefix</string>
 
 </resources>

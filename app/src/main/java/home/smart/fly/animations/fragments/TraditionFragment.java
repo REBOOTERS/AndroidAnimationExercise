@@ -21,6 +21,7 @@ import home.smart.fly.animations.tradition.FrameAnimationActivity;
 import home.smart.fly.animations.tradition.SwitchAnimActivity;
 import home.smart.fly.animations.tradition.TweenedAnimationActivity;
 import home.smart.fly.animations.tradition.VPAnimActivity;
+import home.smart.fly.animations.ui.activity.PrepareActivity;
 
 /**
  * Created by rookie on 2016/8/12.
@@ -95,7 +96,7 @@ public class TraditionFragment extends BaseFragment implements View.OnClickListe
                 getActivity().overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
                 break;
             case R.id.swipeAnim:
-                intent = new Intent(mContext, FakeWeiBoActivity.class);
+                intent = new Intent(mContext, PrepareActivity.class);
                 startActivity(intent);
             default:
                 break;

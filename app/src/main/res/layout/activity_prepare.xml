@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/chartreuse"
+    tools:context=".ui.activity.PrepareActivity">
+
+    <RelativeLayout
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/prefix"
+            android:text="prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_alignParentEnd="true"
+            android:id="@+id/suffix"
+            android:text="suffix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="a"
+            android:layout_toStartOf="@id/suffix"
+            android:layout_toEndOf="@+id/prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/prefix1"
+            android:text="@string/prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/content1"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="a"
+            android:layout_toEndOf="@+id/prefix1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:maxLines="1"
+            android:id="@+id/suffix1"
+            android:layout_toEndOf="@id/content1"
+            android:text="suffix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="16dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/prefix2"
+            android:text="prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/content2"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="aaaaaaaaaaaa"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:maxLines="1"
+            android:id="@+id/suffix2"
+            android:text="suffix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_margin="16dp"
+        android:hint="input some thing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>
