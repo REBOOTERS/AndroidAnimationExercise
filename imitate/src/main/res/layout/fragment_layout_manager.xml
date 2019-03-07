@@ -1,142 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragments.LayoutManagerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-
-    <!--左侧基线-->
-    <android.support.constraint.Guideline
-        android:id="@+id/left_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
-
-    <!--右侧基线-->
-    <android.support.constraint.Guideline
-        android:id="@+id/right_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
-
-    <!--右侧基线-->
-    <android.support.constraint.Guideline
-        android:id="@+id/right_guideline_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="56dp" />
-
-    <!--上部基线-->
-    <android.support.constraint.Guideline
-        android:id="@+id/top_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="16dp" />
-
-    <!--底部基线-->
-    <android.support.constraint.Guideline
-        android:id="@+id/bottom_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="56dp" />
-
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="@string/hello_blank_fragment"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
-        app:layout_constraintStart_toStartOf="@id/left_guideline"
-        app:layout_constraintTop_toTopOf="@id/top_guideline"
-        tools:text="111111111111111111" />
-
-    <ImageView
-        android:visibility="gone"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_photo_camera_white_24dp"
-        android:tint="@color/cpb_red"
-        app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
-        app:layout_constraintLeft_toRightOf="@+id/name"
-        app:layout_constraintTop_toTopOf="@id/top_guideline" />
-
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/cpb_red"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@id/right_guideline"
-        app:layout_constraintLeft_toLeftOf="@+id/left_guideline"
-        app:layout_constraintTop_toBottomOf="@id/bottom_guideline">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_photo_camera_white_24dp"
-            android:tint="@color/cpb_green" />
-
-        <TextView
-            android:id="@+id/name1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/image"
-            android:text="@string/hello_blank_fragment"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            tools:text="22222211111" />
-
-
-    </RelativeLayout>
-
-
     <LinearLayout
-        app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/top_guideline"
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <com.engineer.imitate.widget.custom.StackViewLayout
+        android:layoutDirection="ltr"
+        android:id="@+id/stack_view_layout_1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:textSize="33sp"
-            android:layout_width="wrap_content"
-            android:text="1111111111111111111"
-            android:layout_height="wrap_content" />
-        <ImageView
 
-            android:id="@+id/image"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_photo_camera_white_24dp"
-            android:tint="@color/cpb_green" />
-        
-        <View
-            android:background="@color/cpb_red"
-            android:layout_width="100dp"
-            android:layout_height="50dp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/girl"
+            app:civ_border_color="#FF0"
+            app:civ_border_width="2dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/girl"
+            app:civ_border_color="#FF0"
+            app:civ_border_width="2dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/girl"
+            app:civ_border_color="#000"
+            app:civ_border_width="2dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/girl"
+            app:civ_border_color="#FFF"
+            app:civ_border_width="2dp" />
 
 
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+    </com.engineer.imitate.widget.custom.StackViewLayout>
+
+    <com.engineer.imitate.widget.custom.StackViewLayout
+        android:layout_marginTop="20dp"
+        android:layoutDirection="rtl"
+        android:id="@+id/stack_view_layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/girl"
+            app:civ_border_color="#FF0"
+            app:civ_border_width="2dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/girl"
+            app:civ_border_color="#000"
+            app:civ_border_width="2dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/girl"
+            app:civ_border_color="#FF0"
+            app:civ_border_width="2dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/girl"
+            app:civ_border_color="#FFF"
+            app:civ_border_width="2dp" />
+    </com.engineer.imitate.widget.custom.StackViewLayout>
+
+</LinearLayout>
