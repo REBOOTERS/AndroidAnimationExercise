@@ -13,20 +13,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+       <TextView
             android:textSize="18sp"
             android:id="@+id/prefix"
             android:text="prefix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
+       <TextView
+            android:textSize="18sp"
             android:layout_alignParentEnd="true"
             android:id="@+id/suffix"
             android:text="suffix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <TextView
+       <TextView
+            android:textSize="18sp"
             android:id="@+id/content"
             android:maxLines="1"
             android:ellipsize="end"
@@ -45,14 +47,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+       <TextView
+            android:textSize="18sp"
             android:id="@+id/prefix1"
             android:text="@string/prefix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
 
-        <TextView
+       <TextView
+            android:textSize="18sp"
             android:drawableRight="@drawable/ic_photo_camera_white_24dp"
             android:id="@+id/content1"
             android:maxLines="1"
@@ -62,7 +66,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:ignore="HardcodedText" />
-        <TextView
+       <TextView
+            android:textSize="18sp"
             android:maxLines="1"
             android:id="@+id/suffix1"
             android:layout_toEndOf="@id/content1"
@@ -78,13 +83,15 @@
         android:layout_margin="16dp"
         android:layout_height="wrap_content">
 
-        <TextView
+       <TextView
+            android:textSize="18sp"
             android:id="@+id/prefix2"
             android:text="prefix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <TextView
+       <TextView
+            android:textSize="18sp"
             android:id="@+id/content2"
             android:maxLines="1"
             android:ellipsize="end"
@@ -92,7 +99,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
-        <TextView
+       <TextView
+            android:textSize="18sp"
             android:maxLines="1"
             android:id="@+id/suffix2"
             android:text="suffix"
