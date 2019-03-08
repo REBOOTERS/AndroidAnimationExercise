@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.LinearLayout
 
 import home.smart.fly.animations.R
 import kotlinx.android.synthetic.main.activity_prepare.*
@@ -33,5 +34,8 @@ class PrepareActivity : AppCompatActivity() {
             }
 
         })
+
+        over_layout_1.layoutDirection = LinearLayout.LAYOUT_DIRECTION_RTL
+        over_layout_2.layoutDirection = LinearLayout.LAYOUT_DIRECTION_LTR
     }
 }
