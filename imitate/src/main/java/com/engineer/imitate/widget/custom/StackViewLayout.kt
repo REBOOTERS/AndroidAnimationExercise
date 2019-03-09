@@ -26,32 +26,33 @@ class StackViewLayout : LinearLayout {
     }
 
 
-    override fun setLayoutDirection(layoutDirection: Int) {
-        super.setLayoutDirection(layoutDirection)
-        Log.e(TAG," layoutDirection==$layoutDirection")
-    }
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         super.onLayout(changed, l, t, r, b)
         var step = 0
         for (i in 0 until childCount) {
             val child = getChildAt(i)
-            val childWidth = child.measuredWidth
-            val childHeight = child.measuredHeight
-            val childTop = child.top
-            var start = 0
 
-            Log.e(TAG,"i==$i, layoutDirection==$layoutDirection")
-
-
-            if (layoutDirection == View.LAYOUT_DIRECTION_RTL) {
-                start = child.left + (childWidth / 4) * step
-            } else if (layoutDirection == View.LAYOUT_DIRECTION_LTR) {
-                start = child.left - (childWidth / 4) * step
-            }
             if (child.visibility == View.VISIBLE) {
+                val childWidth = child.measuredWidth
+                val childHeight = child.measuredHeight
+                val childTop = child.top
+                var start = 0
+
+                Log.e(TAG, "i==$i, layoutDirection==$layoutDirection")
+
+
+
+                if (this.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
+                    start = child.left + (childWidth / 4) * step
+                } else if (this.layoutDirection == View.LAYOUT_DIRECTION_LTR) {
+                    start = child.left - (childWidth / 4) * step
+                }
+
                 child.layout(start, childTop, start + childWidth, childTop + childHeight)
                 step++
+
             }
+
         }
 
     }

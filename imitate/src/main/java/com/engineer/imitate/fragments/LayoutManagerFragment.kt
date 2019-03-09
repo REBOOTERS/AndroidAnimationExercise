@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 
@@ -51,6 +52,10 @@ class LayoutManagerFragment : Fragment() {
             image.setImageResource(R.drawable.ic_add_black_24dp)
             container.addView(view)
         }
+
+        stack_view_layout_1.layoutDirection = LinearLayout.LAYOUT_DIRECTION_LTR
+        stack_view_layout_2.layoutDirection = LinearLayout.LAYOUT_DIRECTION_RTL
+
 
     }
 

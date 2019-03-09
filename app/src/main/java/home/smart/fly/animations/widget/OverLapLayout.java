@@ -25,15 +25,24 @@ public class OverLapLayout extends LinearLayout {
 
     public OverLapLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setLayoutDirection(HORIZONTAL);
+        setOrientation(HORIZONTAL);
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
+        Log.e(TAG, "onLayout: l=" + l);
+        Log.e(TAG, "onLayout: t=" + t);
+        Log.e(TAG, "onLayout: r=" + r);
+        Log.e(TAG, "onLayout: b=" + b);
         int count = 0;
         int childCount = getChildCount();
+        int left = 0;
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child != null && child.getVisibility() == VISIBLE) {
@@ -42,17 +51,23 @@ public class OverLapLayout extends LinearLayout {
 
                 Log.e(TAG, "onLayout: i==" + i + " childLeft==" + child.getLeft() + " childWidth==" + childWidth);
 
-                int left = child.getLeft() + (childWidth / 4) * count;
-                int start = child.getLeft() - (childWidth / 4) * count;
+
                 if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
-                    child.layout(left, child.getTop(), left + childWidth, child.getTop() + childHeight);
+                    left = child.getLeft() + (childWidth / 4) * count;
                 } else if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
-//                    child.layout(left, child.getTop(), left + childWidth, child.getTop() + childHeight);
-//                    child.layout(start, child.getTop(), start + childWidth, child.getTop() + childHeight);
-                    child.layout(start, child.getTop(), start + childWidth, child.getTop() + childHeight);
+                    left = child.getLeft() - (childWidth / 4) * count;
                 }
+                child.layout(left, child.getTop(), left + childWidth, child.getTop() + childHeight);
+
                 count++;
             }
         }
+        Log.e(TAG, "onLayout: left==" + left);
+
+        Log.e(TAG, "onLayout: width ==" + getMeasuredWidth());
+        Log.e(TAG, "onLayout: height ==" + getMeasuredHeight());
+
+        setMeasuredDimension(getMeasuredWidth()-left,getMeasuredHeight());
+
     }
 }
