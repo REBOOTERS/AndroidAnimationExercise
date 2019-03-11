@@ -189,4 +189,38 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" />
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <LinearLayout
+            android:id="@+id/shell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_photo_camera_white_24dp" />
+
+            <TextView
+                android:id="@+id/text_view_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/leak_canary_could_not_save_text" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_alignBottom="@+id/shell"
+            android:background="@drawable/custom_gradient" />
+
+    </RelativeLayout>
+
 </LinearLayout>

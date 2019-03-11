@@ -37,6 +37,7 @@ class PrepareActivity : AppCompatActivity() {
                 content1.text = result
                 content2.text = result
                 content2.invalidate()
+                text_view_1.text = result
             }
 
         })
@@ -63,9 +64,9 @@ class PrepareActivity : AppCompatActivity() {
 
         val width = dp2px(36f) * (3 - 3 / 4)
         Log.e(TAG_1, "${dp2px(36f)}")
-        val value = 108 *2.5
+        val value = 108 * 2.5
         Log.e(TAG_1, "value=$value")
-        Log.e(TAG_1, "width=${width-value}")
+        Log.e(TAG_1, "width=${width - value}")
 
 
         parmas.width = value.toInt()
