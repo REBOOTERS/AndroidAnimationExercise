@@ -23,6 +23,7 @@ import home.smart.fly.animations.ui.activity.PolygonViewActivity;
 import home.smart.fly.animations.ui.activity.PullRecyclerViewActivity;
 import home.smart.fly.animations.ui.activity.SwipeFinishActivity;
 import home.smart.fly.animations.ui.activity.ViewsActivity;
+import home.smart.fly.animations.ui.activity.jianshu.FakeJianShuActivity;
 import home.smart.fly.animations.ui.activity.jianshu.JianShuHeadActivity;
 
 @Route(path = RoutePaths.IMITATE)
