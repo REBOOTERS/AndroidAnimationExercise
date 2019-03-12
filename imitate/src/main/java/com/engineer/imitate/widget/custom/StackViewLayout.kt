@@ -25,6 +25,11 @@ class StackViewLayout : LinearLayout {
         orientation = HORIZONTAL
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        Log.e(TAG,"width==${MeasureSpec.getSize(widthMeasureSpec)}")
+    }
+
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         super.onLayout(changed, l, t, r, b)

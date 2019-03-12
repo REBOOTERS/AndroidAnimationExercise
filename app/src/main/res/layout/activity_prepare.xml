@@ -122,46 +122,59 @@
 
     <home.smart.fly.animations.widget.OverLapLayout
         android:id="@+id/over_layout_1"
+        android:background="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layoutDirection="rtl">
 
-        <com.lzy.widget.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/cat" />
+            android:src="@drawable/cat"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp" />
 
-        <com.lzy.widget.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/cat" />
+            android:src="@drawable/cat"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp" />
 
-        <com.lzy.widget.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/cat" />
+            android:src="@drawable/cat"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp" />
 
     </home.smart.fly.animations.widget.OverLapLayout>
 
     <home.smart.fly.animations.widget.OverLapLayout
         android:id="@+id/over_layout_2"
+        android:background="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layoutDirection="ltr">
 
-        <com.lzy.widget.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@drawable/cat"
+            app:civ_border_color="@color/white"
             app:civ_border_width="1dp" />
 
-        <com.lzy.widget.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@drawable/cat" />
 
-        <com.lzy.widget.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@drawable/cat" />
@@ -170,6 +183,8 @@
 
     <home.smart.fly.animations.widget.OverLapLayout
         android:id="@+id/over_layout_3"
+        android:background="@color/white"
+        android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal" />

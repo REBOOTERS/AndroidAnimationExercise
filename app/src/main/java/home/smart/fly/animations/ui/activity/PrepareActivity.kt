@@ -44,36 +44,15 @@ class PrepareActivity : AppCompatActivity() {
         over_layout_1.layoutDirection = LinearLayout.LAYOUT_DIRECTION_RTL
         over_layout_2.layoutDirection = LinearLayout.LAYOUT_DIRECTION_LTR
 
-
-        retry()
-
-
-        var imageWidth =0
-        val layoutParams = over_layout_3.layoutParams
-
         for (i in 0..10) {
             val view = LayoutInflater.from(this).inflate(R.layout.item_image, null)
             val imageView = view.findViewById<CircleImageView>(R.id.image)
             imageView.setImageResource(R.drawable.cat)
             over_layout_3.addView(view)
-
-
-            val params = imageView.layoutParams
-            imageWidth = params.width
-
-            layoutParams.width = imageWidth * 10 - imageWidth / 4 * 9
         }
 
-//        over_layout_3.layoutParams = layoutParams
 
 
-
-
-    }
-
-
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
 
     }
 

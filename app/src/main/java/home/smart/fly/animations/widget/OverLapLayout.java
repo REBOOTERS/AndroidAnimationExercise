@@ -31,6 +31,8 @@ public class OverLapLayout extends LinearLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        Log.e(TAG, "width==" + MeasureSpec.getSize(widthMeasureSpec));
+        Log.e(TAG, "height=" + MeasureSpec.getSize(heightMeasureSpec));
     }
 
     @Override
@@ -67,7 +69,7 @@ public class OverLapLayout extends LinearLayout {
         Log.e(TAG, "onLayout: width ==" + getMeasuredWidth());
         Log.e(TAG, "onLayout: height ==" + getMeasuredHeight());
 
-        setMeasuredDimension(getMeasuredWidth()-left,getMeasuredHeight());
+        setMeasuredDimension(getMeasuredWidth() - left, getMeasuredHeight());
 
     }
 }
