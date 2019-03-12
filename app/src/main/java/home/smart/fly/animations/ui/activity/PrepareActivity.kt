@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import home.smart.fly.animations.R
 import home.smart.fly.animations.widget.dp2px
@@ -53,7 +54,7 @@ class PrepareActivity : AppCompatActivity() {
         }
 
 
-
+        Glide.with(this).load("http://img.dongqiudi.com//data//personpic//119.png").into(img)
 
     }
 

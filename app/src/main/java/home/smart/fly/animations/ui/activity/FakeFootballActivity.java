@@ -3,15 +3,18 @@ package home.smart.fly.animations.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.CustomViewTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -46,7 +57,7 @@ import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.Tools;
 
 public class FakeFootballActivity extends AppCompatActivity {
-
+    private static final String TAG = "FakeFootballActivity";
     @BindView(R.id.gameView)
     public BallGameView mGameView;
     @BindView(R.id.playerLists)
@@ -238,7 +249,24 @@ public class FakeFootballActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull MyHolder holder, int position) {
             PlayerBean model = mPlayerBeanList.get(position);
             holder.mPlayerName.setText(model.getName());
-            Glide.with(mContext).load(model.getPerson_img()).into(holder.mPlayerImg);
+            Glide.with(mContext).load(model.getPerson_img())
+//                    .apply(new RequestOptions().error(R.drawable.messi))
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                           if(e!=null){
+                               Log.e(TAG, "onLoadFailed: "+e.getMessage() );
+                               Log.e(TAG, "onLoadFailed: "+e.fillInStackTrace());
+                           }
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            return false;
+                        }
+                    })
+                    .into(holder.mPlayerImg);
             if (model.isSelected()) {
                 holder.mPlayerSel.setImageResource(R.drawable.battle_player_state_checked);
             } else {

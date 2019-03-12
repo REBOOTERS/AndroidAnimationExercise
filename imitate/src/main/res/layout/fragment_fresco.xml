@@ -15,4 +15,12 @@
         android:layout_width="200dp"
         android:layout_height="200dp" />
 
+    <ImageView
+        android:id="@+id/image"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="@id/simpleDraweeView"
+        app:layout_constraintTop_toBottomOf="@id/simpleDraweeView"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+
 </android.support.constraint.ConstraintLayout>

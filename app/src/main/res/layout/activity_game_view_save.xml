@@ -33,17 +33,26 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@drawable/battle_bg_bottom"
-            android:gravity="center"
             android:orientation="horizontal"
             >
 
             <ImageView
+                android:layout_marginStart="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/qrcode"/>
+
+            <ImageView
+                android:layout_marginStart="50dp"
+                android:layout_gravity="center_vertical"
                 android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/battle_save_picture"/>
 
             <ImageView
+                android:layout_gravity="center_vertical"
                 android:id="@+id/share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

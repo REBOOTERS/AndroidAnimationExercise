@@ -27,6 +27,7 @@
         android:required="true" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/app_start"

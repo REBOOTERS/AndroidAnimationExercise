@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.bumptech.glide.Glide
 import com.engineer.imitate.R
 import kotlinx.android.synthetic.main.fragment_fresco.*
 
@@ -26,7 +27,13 @@ class FrescoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        simpleDraweeView.setImageURI("http://7xi8d6.com1.z0.glb.clouddn.com/2017-04-16-17934400_1738549946443321_2924146161843437568_n.jpg")
+
+        val url= "https://ws1.sinaimg.cn/large/0065oQSqgy1fy58bi1wlgj30sg10hguu.jpg"
+
+        val player = "http:\\/\\/img.dongqiudi.com\\/data\\/personpic\\/15482.png"
+
+        simpleDraweeView.setImageURI(url)
+        Glide.with(this).load(url).into(image)
     }
 
 
