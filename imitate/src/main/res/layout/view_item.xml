@@ -5,7 +5,8 @@
     android:id="@+id/shell"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/ripple_background">
+    android:layout_margin="8dp"
+    android:background="@drawable/round_card">
 
     <TextView
         android:id="@+id/desc"
@@ -37,6 +38,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
         android:background="?android:attr/listDivider"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/path" />
 

@@ -55,7 +55,7 @@ class KotlinRootActivity : AppCompatActivity() {
     private fun loadView() {
         mLinearManager = LinearLayoutManager(this)
         mGridLayoutManager = GridLayoutManager(this, 2)
-        mLayoutManager = mLinearManager
+        mLayoutManager = mGridLayoutManager
         if (isNetworkConnected()) {
             loadWebView()
         } else {
