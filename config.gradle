@@ -17,7 +17,7 @@ ext {
     arouter_register = '1.0.2'
 
     rxjava = '2.2.2'
-    rxandroid ='2.1.0'
+    rxandroid = '2.1.0'
 }
 
 ext.allDependencies = [
@@ -35,5 +35,6 @@ ext.allDependencies = [
         'me.leolin:ShortcutBadger:1.1.19@aar',
         'com.xw.repo:bubbleseekbar:3.18',
         'com.muddzdev:pixelshot:1.0.0',
-        'com.zhihu.android:sugaradapter:1.7.9'
+        'com.zhihu.android:sugaradapter:1.7.9',
+        'com.github.yhaolpz:FloatWindow:1.0.9'
 ]

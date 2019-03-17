@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" /> <!-- 为了测试 Loader TODO 用完删掉，demo 没必要 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <uses-feature
         android:name="android.hardware.Camera"

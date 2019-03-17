@@ -13,12 +13,10 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
@@ -32,12 +30,10 @@ import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
 import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_matisse.*
+import kotlinx.android.synthetic.main.fragment_entrance.*
 import java.io.File
 
 
@@ -52,20 +48,13 @@ class EntranceFragment : Fragment() {
     private var datas: MutableList<String> = ArrayList()
     private lateinit var adapter: MyListAdapter
 
-    private lateinit var mContext: Context
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_matisse, container, false)
+        return inflater.inflate(R.layout.fragment_entrance, container, false)
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        mContext = context!!
-
-        mContext.toastShort("aaaaaaaaaaaaaa")
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -162,17 +151,10 @@ class EntranceFragment : Fragment() {
                     })
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({ t ->
+                            .subscribe({
                                 context?.toastShort("set wall paper success")
-                                Toast.makeText(context,"succes",Toast.LENGTH_SHORT).show()
-                                Log.e("wall", "success")
-                                Log.e("wall", "context ==="+context.hashCode())
-                                Log.e("wall", "mContext ==="+mContext.hashCode())
-
-
-                            }, { t ->
+                            }, {
                                 context?.toastShort("set wall paper fail")
-                                Log.e("wall", "fail")
                             })
 
 

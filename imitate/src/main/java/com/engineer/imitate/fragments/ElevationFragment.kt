@@ -3,6 +3,7 @@ package com.engineer.imitate.fragments
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.support.v4.app.Fragment
@@ -16,8 +17,6 @@ import com.engineer.imitate.interfaces.SimpleProgressChangeListener
 import com.engineer.imitate.util.toastShort
 import com.xw.repo.BubbleSeekBar
 import kotlinx.android.synthetic.main.fragment_evelation.*
-import android.support.v4.content.ContextCompat.startActivity
-import android.os.Build
 
 
 /**
@@ -81,47 +80,66 @@ class ElevationFragment : Fragment() {
             if (context != null) {
                 val intent = Intent()
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.action = Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    intent.action = Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS
+                }
                 intent.data = Uri.fromParts("package", context!!.getPackageName(), null)
 
                 try {
                     startActivity(intent)
                 } catch (e: Exception) {
+                    tryThis()
                     e.printStackTrace()
                 }
-
-//                val intent = Intent()
-//                when {
-//                    android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1 -> {
-//                        intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
-//                        intent.putExtra("android.provider.extra.APP_PACKAGE", context!!.getPackageName())
-//                    }
-//                    android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {
-//                        intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
-//                        intent.putExtra("app_package", context!!.getPackageName())
-//                        intent.putExtra("app_uid", context!!.getApplicationInfo().uid)
-//                    }
-//                    else -> {
-//                        intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-//                        intent.addCategory(Intent.CATEGORY_DEFAULT)
-//                        intent.data = Uri.parse("package:" + context!!.getPackageName())
-//                    }
-//                }
-//                val intent = Intent()
-//                intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
-//
-////for Android 5-7
-////                intent.putExtra("app_package", context!!.getPackageName())
-////                intent.putExtra("app_uid", context!!.getApplicationInfo().uid)
-//
-//// for Android O
-//                intent.putExtra("android.provider.extra.APP_PACKAGE", context!!.getPackageName())
-//
-//
-//                startActivity(intent)
             }
         }
 
+    }
+
+    private fun tryThisOne() {
+        val intent = Intent()
+        intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
+
+        //for Android 5-7
+        intent.putExtra("app_package", context!!.getPackageName())
+        intent.putExtra("app_uid", context!!.getApplicationInfo().uid)
+
+        // for Android O
+        intent.putExtra("android.provider.extra.APP_PACKAGE", context!!.getPackageName())
+
+
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun tryThis() {
+        val intent = Intent()
+        when {
+            Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1 -> {
+                intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
+                intent.putExtra("android.provider.extra.APP_PACKAGE", context!!.getPackageName())
+            }
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {
+                intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
+                intent.putExtra("app_package", context!!.getPackageName())
+                intent.putExtra("app_uid", context!!.getApplicationInfo().uid)
+            }
+            else -> {
+                intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                intent.addCategory(Intent.CATEGORY_DEFAULT)
+                intent.data = Uri.parse("package:" + context!!.getPackageName())
+            }
+        }
+
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            tryThisOne()
+            e.printStackTrace()
+        }
     }
 
     override fun onResume() {
