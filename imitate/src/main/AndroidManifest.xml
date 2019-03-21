@@ -9,23 +9,23 @@
         <activity
             android:name=".KotlinRootActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/MyAppTheme" />
+        <activity
+            android:name=".activity.FakeJikeActivity"
+            android:theme="@style/MyAppTheme" />
 
         <activity
             android:name=".activity.CustomScrollingActivity"
             android:label="@string/title_activity_custom_scrolling"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/MyAppTheme" />
         <activity
             android:name=".activity.PureActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/MyAppTheme" />
         <activity
             android:name=".activity.FinalActivity"
             android:label="@string/title_activity_final"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/MyAppTheme" />
 
-        <activity
-            android:name=".activity.ExampleActivity"
-            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

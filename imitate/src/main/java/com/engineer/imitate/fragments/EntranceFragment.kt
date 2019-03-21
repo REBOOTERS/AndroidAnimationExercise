@@ -21,6 +21,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
 import com.engineer.imitate.activity.CustomScrollingActivity
+import com.engineer.imitate.activity.FakeJikeActivity
 import com.engineer.imitate.activity.FinalActivity
 import com.engineer.imitate.activity.PureActivity
 import com.engineer.imitate.util.Glide4Engine
@@ -111,6 +112,9 @@ class EntranceFragment : Fragment() {
 
         final_one.setOnClickListener {
             startActivity(Intent(context, FinalActivity::class.java))
+        }
+        fake_jike.setOnClickListener {
+            startActivity(Intent(context, FakeJikeActivity::class.java))
         }
 
 

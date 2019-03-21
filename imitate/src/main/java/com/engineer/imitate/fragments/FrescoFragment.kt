@@ -3,8 +3,6 @@ package com.engineer.imitate.fragments
 
 import android.animation.ValueAnimator
 import android.app.WallpaperManager
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ClipDrawable
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -19,9 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.engineer.imitate.R
-import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_fresco.*
-import java.util.concurrent.TimeUnit
 
 
 /**

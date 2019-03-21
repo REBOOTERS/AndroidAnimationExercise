@@ -68,7 +68,6 @@ class KotlinRootActivity : AppCompatActivity() {
         recyclerView.visibility = View.VISIBLE
         val list = listOf(
                 FragmentItem("/anim/circleLoading", "circle-loading"),
-                FragmentItem("/anim/linktextview", "link-textview"),
                 FragmentItem("/anim/slide", "slide"),
                 FragmentItem("/anim/bottomsheet", "bottomsheet"),
                 FragmentItem("/anim/drag", "drag"),

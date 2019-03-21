@@ -22,7 +22,8 @@
             android:backgroundTint="@color/cpb_blue"
             android:gravity="center"
             android:padding="10dp"
-            android:text="设置桌面" />
+            android:text="设置桌面"
+            android:textColor="@color/white" />
 
 
         <android.support.v7.widget.AppCompatButton
@@ -33,7 +34,8 @@
             android:backgroundTint="@color/cpb_blue"
             android:gravity="center"
             android:padding="10dp"
-            android:text="matisse choose" />
+            android:text="matisse choose"
+            android:textColor="@color/white" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/custom_scrolling"
@@ -43,7 +45,8 @@
             android:backgroundTint="@color/cpb_blue"
             android:gravity="center"
             android:padding="10dp"
-            android:text="custom_scrolling" />
+            android:text="custom_scrolling"
+            android:textColor="@color/white" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/bottom_sheet"
@@ -53,7 +56,8 @@
             android:backgroundTint="@color/cpb_blue"
             android:gravity="center"
             android:padding="10dp"
-            android:text="bottom_sheet" />
+            android:text="bottom_sheet"
+            android:textColor="@color/white" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/pure"
@@ -63,7 +67,8 @@
             android:backgroundTint="@color/cpb_blue"
             android:gravity="center"
             android:padding="10dp"
-            android:text="pure" />
+            android:text="pure"
+            android:textColor="@color/white" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/final_one"
@@ -73,7 +78,19 @@
             android:backgroundTint="@color/cpb_blue"
             android:gravity="center"
             android:padding="10dp"
-            android:text="final_one" />
+            android:text="final_one"
+            android:textColor="@color/white" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/fake_jike"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/cpb_blue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="fake_jike"
+            android:textColor="@color/white" />
 
 
         <android.support.v7.widget.RecyclerView
