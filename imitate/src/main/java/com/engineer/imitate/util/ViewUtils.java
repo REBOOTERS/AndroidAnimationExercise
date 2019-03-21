@@ -28,9 +28,9 @@ public class ViewUtils {
     public static void getBitmapFormView(View view, Activity activity, Callback callback) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
 
-        int[] loations = new int[2];
-        view.getLocationInWindow(loations);
-        Rect rect = new Rect(loations[0], loations[1], loations[0] + view.getWidth(), loations[1] + view.getHeight());
+        int[] locations = new int[2];
+        view.getLocationInWindow(locations);
+        Rect rect = new Rect(locations[0], locations[1], locations[0] + view.getWidth(), locations[1] + view.getHeight());
 
         PixelCopy.request(activity.getWindow(), rect, bitmap, copyResult -> {
             if (copyResult == PixelCopy.SUCCESS) {
@@ -40,10 +40,12 @@ public class ViewUtils {
     }
 
 
-    public static void getBitmapFromView(View view, Callback callback) {
+    public static Bitmap getBitmapFromView(View view) {
+        Bitmap bitmap ;
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
-        callback.onResult(view.getDrawingCache());
+        bitmap = view.getDrawingCache();
         view.setDrawingCacheEnabled(false);
+        return bitmap;
     }
 }

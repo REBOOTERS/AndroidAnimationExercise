@@ -6,7 +6,10 @@ import android.view.MotionEvent;
 import android.view.PixelCopy;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+
+import com.engineer.imitate.util.ViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,41 @@ public class ShadowStack implements View.OnTouchListener {
 
     public void setContainer(ViewGroup container) {
         mContainer = container;
+        initTargetView();
+        if (mTargetViewWidth == 0 || mTargetViewHeight == 0 || mFakeView == null) {
+            mTargetView.getViewTreeObserver().addOnWindowFocusChangeListener(
+                    new ViewTreeObserver.OnWindowFocusChangeListener() {
+                @Override
+                public void onWindowFocusChanged(boolean hasFocus) {
+                    if (hasFocus) {
+                        mTargetView.getViewTreeObserver().addOnWindowFocusChangeListener(this);
+                        initTargetView();
+                        attachToRootLayoutInternal();
+                    }
+                }
+            });
+        } else {
+            attachToRootLayoutInternal();
+        }
+
+        mTargetView.getViewTreeObserver().addOnScrollChangedListener(() -> {
+            if (mTargetViewWidth > 0 && mTargetViewHeight > 0 && mFakeView != null) {
+                updateChildViewsPosition();
+            }
+        });
+    }
+
+    private void updateChildViewsPosition() {
+    }
+
+    private void attachToRootLayoutInternal() {
+
+        if (!mChildViews.isEmpty()) {
+            for (View child : mChildViews) {
+                mContainer.removeView(child);
+            }
+            mChildViews.clear();
+        }
     }
 
     public void setTargetView(View targetView) {
@@ -44,8 +82,7 @@ public class ShadowStack implements View.OnTouchListener {
     private void initTargetView() {
         mTargetViewWidth = mTargetView.getWidth();
         mTargetViewHeight = mTargetView.getHeight();
-        mTargetView.setDrawingCacheEnabled(true);
-        mTargetView.buildDrawingCache();
+        mFakeView = ViewUtils.getBitmapFromView(mTargetView);
     }
 
     @Override

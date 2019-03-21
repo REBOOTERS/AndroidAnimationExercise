@@ -1,6 +1,5 @@
 package com.engineer.imitate.activity
 
-import android.graphics.Bitmap
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
