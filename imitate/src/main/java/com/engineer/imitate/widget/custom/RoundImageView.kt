@@ -2,7 +2,7 @@ package com.engineer.imitate.widget.custom
 
 import android.content.Context
 import android.graphics.*
-import android.support.v7.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatImageView
 import android.util.AttributeSet
 
 /**

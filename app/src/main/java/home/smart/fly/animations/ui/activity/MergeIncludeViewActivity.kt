@@ -1,8 +1,8 @@
 package home.smart.fly.animations.ui.activity
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import home.smart.fly.animations.R
 import home.smart.fly.animations.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.include_view.*

@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/open"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:text="open-Camera"
                 android:textColor="@color/white"/>
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/select"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -56,28 +56,28 @@
             android:orientation="vertical">
 
 
-            <android.support.v7.widget.AppCompatCheckBox
+            <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="needEdit"/>
 
-            <android.support.v7.widget.AppCompatCheckBox
+            <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/compress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="needCompress"/>
 
-            <android.support.v7.widget.AppCompatCheckBox
+            <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/sample"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="sample"/>
 
-            <android.support.v7.widget.AppCompatCheckBox
+            <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/insert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
             android:orientation="horizontal"
             android:visibility="gone">
 
-            <android.support.v7.widget.AppCompatSeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/compressRate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                 android:layout_weight="3"
                 android:text="width"/>
 
-            <android.support.v7.widget.AppCompatSeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/cropWidthValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -173,7 +173,7 @@
                 android:layout_weight="3"
                 android:text="height"/>
 
-            <android.support.v7.widget.AppCompatSeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/cropHeightValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

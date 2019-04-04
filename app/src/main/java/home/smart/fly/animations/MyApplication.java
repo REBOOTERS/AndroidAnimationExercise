@@ -1,7 +1,7 @@
 package home.smart.fly.animations;
 
 import android.graphics.Color;
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 import android.util.Log;
 import android.webkit.WebView;
 
@@ -11,7 +11,6 @@ import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
-import jp.wasabeef.takt.Audience;
 import jp.wasabeef.takt.Seat;
 import jp.wasabeef.takt.Takt;
 

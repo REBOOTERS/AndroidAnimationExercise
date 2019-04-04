@@ -116,7 +116,7 @@
             android:theme="@style/JianshuTheme" />
         <activity android:name=".ui.activity.LoadCircleImageActivity" /> <!-- Android 7.0 FileUriExposedException -->
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">

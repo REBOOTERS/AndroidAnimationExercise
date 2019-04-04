@@ -1,20 +1,20 @@
 package com.engineer.imitate.widget.view.layoutmanager
 
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ItemTouchHelper
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 
-class SlideLayoutManager : RecyclerView.LayoutManager {
+class SlideLayoutManager : androidx.recyclerview.widget.RecyclerView.LayoutManager {
 
-    private val mRecyclerView: RecyclerView
+    private val mRecyclerView: androidx.recyclerview.widget.RecyclerView
     private val mItemTouchHelper: ItemTouchHelper
 
     private val mOnTouchListener: MyTouchListener = MyTouchListener()
 
 
-    constructor(mRecyclerView: RecyclerView, mItemTouchHelper: ItemTouchHelper) {
+    constructor(mRecyclerView: androidx.recyclerview.widget.RecyclerView, mItemTouchHelper: ItemTouchHelper) {
         this.mItemTouchHelper = checkIsNull(mItemTouchHelper)
         this.mRecyclerView = checkIsNull(mRecyclerView)
     }
@@ -42,11 +42,11 @@ class SlideLayoutManager : RecyclerView.LayoutManager {
 
 
 
-    override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
-        return RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+    override fun generateDefaultLayoutParams(): androidx.recyclerview.widget.RecyclerView.LayoutParams {
+        return androidx.recyclerview.widget.RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
-    override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State?) {
+    override fun onLayoutChildren(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, state: androidx.recyclerview.widget.RecyclerView.State?) {
         detachAndScrapAttachedViews(recycler)
         val itemCount = itemCount
         if (itemCount > ItemConfig.DEFAULT_SHOW_ITEM) {

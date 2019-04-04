@@ -7,7 +7,7 @@
     tools:context=".fragments.SlideFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_marginBottom="60dp"
         android:layout_width="match_parent"

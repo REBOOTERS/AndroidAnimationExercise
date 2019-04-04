@@ -1,11 +1,9 @@
 package home.smart.fly.animations.ui.activity;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Path;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +11,10 @@ import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import home.smart.fly.animations.R;
 import java8.util.Optional;
-import java8.util.function.Consumer;
 
 public class OptionalActivity extends AppCompatActivity implements View.OnClickListener {
 

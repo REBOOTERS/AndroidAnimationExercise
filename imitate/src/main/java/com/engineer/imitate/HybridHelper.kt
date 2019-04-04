@@ -1,8 +1,8 @@
 package com.engineer.imitate
 
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v7.widget.DialogTitle
+import androidx.fragment.app.Fragment
+import androidx.appcompat.widget.DialogTitle
 import android.util.Log
 import android.webkit.JavascriptInterface
 import com.alibaba.android.arouter.facade.Postcard
@@ -32,7 +32,7 @@ class HybridHelper {
 
     @JavascriptInterface
     public fun go(path:String,title: String) {
-        val fragment: Fragment = ARouter.getInstance().build(path).navigation(context, ARouterCallback()) as Fragment
+        val fragment: androidx.fragment.app.Fragment = ARouter.getInstance().build(path).navigation(context, ARouterCallback()) as androidx.fragment.app.Fragment
         if (this.listener != null) {
             listener.onClick(fragment,title)
         }
@@ -40,7 +40,7 @@ class HybridHelper {
 
 
     public interface OnItemClickListener {
-        fun onClick(fragment: Fragment,title: String)
+        fun onClick(fragment: androidx.fragment.app.Fragment, title: String)
     }
 
 

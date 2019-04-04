@@ -6,8 +6,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.support.v4.app.Fragment
-import android.support.v4.app.NotificationManagerCompat
+import androidx.fragment.app.Fragment
+import androidx.core.app.NotificationManagerCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_evelation.*
  *
  */
 @Route(path = "/anim/elevation")
-class ElevationFragment : Fragment() {
+class ElevationFragment : androidx.fragment.app.Fragment() {
 
     private var mDeltaX = 0.0f
     private var mDeltaY = 0.0f

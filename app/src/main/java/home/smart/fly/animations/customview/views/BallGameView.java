@@ -15,7 +15,7 @@ import android.graphics.PathMeasure;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;

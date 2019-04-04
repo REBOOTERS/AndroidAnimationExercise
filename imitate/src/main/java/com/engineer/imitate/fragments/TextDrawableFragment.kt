@@ -3,7 +3,7 @@ package com.engineer.imitate.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_text_drawable.*
  *
  */
 @Route(path = "/anim/textDrawable")
-class TextDrawableFragment : Fragment() {
+class TextDrawableFragment : androidx.fragment.app.Fragment() {
 
     private lateinit var mContext: Context
 

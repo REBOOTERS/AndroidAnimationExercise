@@ -15,7 +15,7 @@
         android:layout_weight="4"
         android:layout_height="0dp"/>
 
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:layout_margin="5dp"
         android:hint="input some thing"
         android:layout_width="match_parent"

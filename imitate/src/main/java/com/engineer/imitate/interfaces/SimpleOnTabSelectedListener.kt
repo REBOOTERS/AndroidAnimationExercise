@@ -1,13 +1,13 @@
 package com.engineer.imitate.interfaces
 
-import android.support.design.widget.TabLayout
+import com.google.android.material.tabs.TabLayout
 
 /**
  *
  * @author: zhuyongging
  * @since: 2019-01-05
  */
-interface SimpleOnTabSelectedListener:TabLayout.OnTabSelectedListener {
+interface SimpleOnTabSelectedListener: TabLayout.OnTabSelectedListener {
     override fun onTabReselected(p0: TabLayout.Tab?) {
     }
 

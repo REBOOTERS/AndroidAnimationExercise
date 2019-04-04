@@ -3,9 +3,9 @@ package home.smart.fly.animations.utils;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.IntDef;
-import android.support.annotation.Nullable;
-import android.support.v7.graphics.Palette;
+import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
+import androidx.palette.graphics.Palette;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

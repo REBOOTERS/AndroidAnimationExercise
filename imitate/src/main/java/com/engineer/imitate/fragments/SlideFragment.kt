@@ -2,9 +2,9 @@ package com.engineer.imitate.fragments
 
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +25,7 @@ import java.util.*
  *
  */
 @Route(path = "/anim/slide")
-class SlideFragment : Fragment() {
+class SlideFragment : androidx.fragment.app.Fragment() {
 
     private var datas: MutableList<String> = ArrayList()
     private lateinit var mItemTouchHelperCallback: ItemTouchHelperCallback<String>
@@ -99,10 +99,10 @@ class SlideFragment : Fragment() {
     var index: Int = 0
 
     private inner class SimpleOnSlideListener : OnSlideListener<String> {
-        override fun onSliding(viewHolder: RecyclerView.ViewHolder, ratio: Float, direction: Int) {
+        override fun onSliding(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, ratio: Float, direction: Int) {
         }
 
-        override fun onSlided(viewHolder: RecyclerView.ViewHolder, t: String, direction: Int) {
+        override fun onSlided(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, t: String, direction: Int) {
             datas.add(datas.size - 1, array2[index])
             index += 1
 

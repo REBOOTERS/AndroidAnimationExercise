@@ -6,12 +6,12 @@
     android:background="@color/cpb_white"
     tools:context="home.smart.fly.animations.recyclerview.SimpleRecyclerViewFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>
 
 

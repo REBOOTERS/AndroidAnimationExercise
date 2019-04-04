@@ -17,7 +17,7 @@
         android:layout_height="0.5dp"
         android:background="#202020"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bs_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

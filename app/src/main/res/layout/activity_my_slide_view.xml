@@ -95,7 +95,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/qq"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -103,28 +103,28 @@
                         android:checked="true"
                         android:text="QQ"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/scale"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="scale"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/threeD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="3D"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/contentScale"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="contentScale"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/drawerLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

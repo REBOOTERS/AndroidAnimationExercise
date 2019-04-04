@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.AppCompatImageView;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 import home.smart.fly.animations.R;

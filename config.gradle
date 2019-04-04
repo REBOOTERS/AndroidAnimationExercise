@@ -4,7 +4,7 @@ ext {
     minSdkVersion = 21
     targetSdkVersion = 28
 
-    support_versioin = '28.0.0'
+    support_versioin = '1.0.0'
     constraint_layout = '1.1.3'
 
     kotlin_version = '1.3.21'
@@ -35,6 +35,6 @@ ext.allDependencies = [
         'me.leolin:ShortcutBadger:1.1.19@aar',
         'com.xw.repo:bubbleseekbar:3.18',
         'com.muddzdev:pixelshot:1.0.0',
-        'com.zhihu.android:sugaradapter:1.7.9',
+        'com.zhihu.android:sugaradapter:1.8.6',
         'com.github.yhaolpz:FloatWindow:1.0.9'
 ]

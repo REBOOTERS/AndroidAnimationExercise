@@ -2,12 +2,11 @@ package com.engineer.imitate.util;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.view.PixelCopy;
 import android.view.View;
 

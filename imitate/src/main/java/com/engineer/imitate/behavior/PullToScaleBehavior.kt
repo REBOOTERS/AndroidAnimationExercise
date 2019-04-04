@@ -3,9 +3,9 @@ package com.engineer.imitate.behavior
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Context
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.CoordinatorLayout
-import android.support.v4.view.ViewCompat
+import com.google.android.material.appbar.AppBarLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.ViewCompat
 import android.util.AttributeSet
 import android.view.View
 import com.engineer.imitate.behavior.internel.DisInterceptNestedScrollView
@@ -38,7 +38,7 @@ class PullToScaleBehavior : AppBarLayout.Behavior {
     private var mLastScale = 0f
     private var mLastBottom = 0
 
-    override fun onLayoutChild(parent: CoordinatorLayout, abl: AppBarLayout, layoutDirection: Int): Boolean {
+    override fun onLayoutChild(parent: androidx.coordinatorlayout.widget.CoordinatorLayout, abl: AppBarLayout, layoutDirection: Int): Boolean {
 
         mTargetView = parent.findViewWithTag(TARGET_TAG)
         initAppBarLayout(abl)
@@ -51,7 +51,7 @@ class PullToScaleBehavior : AppBarLayout.Behavior {
         mTargetViewHeight = mTargetView.height
     }
 
-    override fun onStartNestedScroll(parent: CoordinatorLayout, child: AppBarLayout, directTargetChild: View, target: View, nestedScrollAxes: Int, type: Int): Boolean {
+    override fun onStartNestedScroll(parent: androidx.coordinatorlayout.widget.CoordinatorLayout, child: AppBarLayout, directTargetChild: View, target: View, nestedScrollAxes: Int, type: Int): Boolean {
         isAnimation = true
         if (target is DisInterceptNestedScrollView) {
             return true
@@ -59,7 +59,7 @@ class PullToScaleBehavior : AppBarLayout.Behavior {
         return super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes, type)
     }
 
-    override fun onNestedPreScroll(coordinatorLayout: CoordinatorLayout, child: AppBarLayout, target: View, dx: Int, dy: Int, consumed: IntArray, type: Int) {
+    override fun onNestedPreScroll(coordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout, child: AppBarLayout, target: View, dx: Int, dy: Int, consumed: IntArray, type: Int) {
         if (!isRecovering) {
             val canDown = dy > 0 && child.bottom > mParentHeight
             val canUp = dy < 0 && child.bottom >= mParentHeight
@@ -83,7 +83,7 @@ class PullToScaleBehavior : AppBarLayout.Behavior {
         target.scrollY = 0
     }
 
-    override fun onNestedPreFling(coordinatorLayout: CoordinatorLayout, child: AppBarLayout, target: View, velocityX: Float, velocityY: Float): Boolean {
+    override fun onNestedPreFling(coordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout, child: AppBarLayout, target: View, velocityX: Float, velocityY: Float): Boolean {
         if (velocityY > 100) {
             isAnimation = false
         }
@@ -91,7 +91,7 @@ class PullToScaleBehavior : AppBarLayout.Behavior {
     }
 
 
-    override fun onStopNestedScroll(coordinatorLayout: CoordinatorLayout, abl: AppBarLayout, target: View, type: Int) {
+    override fun onStopNestedScroll(coordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout, abl: AppBarLayout, target: View, type: Int) {
         recovery(abl)
         super.onStopNestedScroll(coordinatorLayout, abl, target, type)
     }

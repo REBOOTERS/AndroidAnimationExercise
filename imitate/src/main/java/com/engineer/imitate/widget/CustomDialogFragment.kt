@@ -1,7 +1,7 @@
 package com.engineer.imitate.widget
 
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import com.engineer.imitate.R
  * @version V1.0
  */
 
-class CustomDialogFragment: DialogFragment() {
+class CustomDialogFragment: androidx.fragment.app.DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_dialog,container,false)

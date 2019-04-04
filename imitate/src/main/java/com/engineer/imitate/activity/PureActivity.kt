@@ -1,10 +1,10 @@
 package com.engineer.imitate.activity
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.widget.NestedScrollView
+import com.google.android.material.tabs.TabLayout
+import androidx.core.widget.NestedScrollView
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View

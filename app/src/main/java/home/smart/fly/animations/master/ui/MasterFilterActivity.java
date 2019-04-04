@@ -3,7 +3,7 @@ package home.smart.fly.animations.master.ui;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
 import android.widget.ScrollView;

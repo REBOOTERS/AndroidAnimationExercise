@@ -10,9 +10,9 @@ import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +43,7 @@ import java.io.File
  *
  */
 @Route(path = "/anim/entrance")
-class EntranceFragment : Fragment() {
+class EntranceFragment : androidx.fragment.app.Fragment() {
 
 
     private var datas: MutableList<String> = ArrayList()
@@ -120,7 +120,7 @@ class EntranceFragment : Fragment() {
 
 
         adapter = MyListAdapter()
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 2)
         recyclerView.adapter = adapter
     }
 
@@ -159,7 +159,7 @@ class EntranceFragment : Fragment() {
     }
 
 
-    private inner class MyListAdapter : RecyclerView.Adapter<MyListAdapter.Holder>() {
+    private inner class MyListAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<MyListAdapter.Holder>() {
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -178,7 +178,7 @@ class EntranceFragment : Fragment() {
 
         private lateinit var context: Context
 
-        private inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
+        private inner class Holder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
             var image: ImageView = view.findViewById(R.id.image);
         }
     }

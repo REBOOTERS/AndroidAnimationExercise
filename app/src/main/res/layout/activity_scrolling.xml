@@ -8,14 +8,14 @@
     android:background="@color/white"
     tools:context=".ui.activity.ScrollingActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:theme="@style/MyTheme.AppBarOverlay">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,7 +37,7 @@
                     android:src="@drawable/a5" />
 
 
-                <android.support.v4.widget.NestedScrollView
+                <androidx.core.widget.NestedScrollView
                     android:id="@+id/nested_scrollview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -63,12 +63,12 @@
                     </LinearLayout>
 
 
-                </android.support.v4.widget.NestedScrollView>
+                </androidx.core.widget.NestedScrollView>
 
             </FrameLayout>
 
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -79,7 +79,7 @@
                 app:popupTheme="@style/MyTheme.PopupOverlay"
                 app:title="up" />
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar1"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -89,10 +89,10 @@
                 app:title="down" />
 
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <LinearLayout

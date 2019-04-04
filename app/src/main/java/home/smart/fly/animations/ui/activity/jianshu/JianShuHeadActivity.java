@@ -2,9 +2,9 @@ package home.smart.fly.animations.ui.activity.jianshu;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.widget.NestedScrollView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.ViewGroup;

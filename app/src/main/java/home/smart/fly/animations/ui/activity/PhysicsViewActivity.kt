@@ -1,11 +1,11 @@
 package home.smart.fly.animations.ui.activity
 
 import android.os.Bundle
-import android.support.animation.DynamicAnimation
-import android.support.animation.FlingAnimation
-import android.support.animation.SpringAnimation
-import android.support.animation.SpringForce
-import android.support.v7.app.AppCompatActivity
+import androidx.dynamicanimation.animation.DynamicAnimation
+import androidx.dynamicanimation.animation.FlingAnimation
+import androidx.dynamicanimation.animation.SpringAnimation
+import androidx.dynamicanimation.animation.SpringForce
+import androidx.appcompat.app.AppCompatActivity
 import home.smart.fly.animations.R
 import kotlinx.android.synthetic.main.activity_physics_view.*
 

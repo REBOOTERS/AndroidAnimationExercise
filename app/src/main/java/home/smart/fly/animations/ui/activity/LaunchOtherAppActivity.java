@@ -5,20 +5,18 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Arrays;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import home.smart.fly.animations.R;
 import java8.util.Optional;
-import java8.util.function.Consumer;
 
 public class LaunchOtherAppActivity extends AppCompatActivity implements View.OnClickListener {
 

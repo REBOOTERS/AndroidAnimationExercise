@@ -28,7 +28,7 @@
         android:text="@string/hello_blank_fragment" />
 
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text"
         android:layout_width="132dp"
         android:layout_height="24dp"

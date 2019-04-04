@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_notifications_black_24dp"/>
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             app:fabSize="mini"
             app:srcCompat="@drawable/ic_add_black_24dp"/>
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

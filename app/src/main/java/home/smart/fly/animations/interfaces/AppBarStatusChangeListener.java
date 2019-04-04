@@ -1,6 +1,6 @@
 package home.smart.fly.animations.interfaces;
 
-import android.support.design.widget.AppBarLayout;
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * Created by rookie on 2017/6/5.

@@ -8,28 +8,28 @@
     tools:context=".ui.activity.OptionalActivity">
 
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:id="@+id/nullValue"
         android:text="nullValue"
         android:layout_margin="16dp"
         android:layout_height="wrap_content" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/notNullValue"
         android:text="notNullValue"
         android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/elseUse"
         android:text="elseUse"
         android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/stream"
         android:text="stream"
         android:layout_margin="16dp"

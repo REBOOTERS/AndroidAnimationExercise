@@ -10,7 +10,7 @@ import android.graphics.drawable.ClipDrawable
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_fresco.*
  *
  */
 @Route(path = "/anim/fresco")
-class FrescoFragment : Fragment() {
+class FrescoFragment : androidx.fragment.app.Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

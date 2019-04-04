@@ -3,15 +3,15 @@ package com.engineer.imitate.activity
 import android.content.Context
 import android.graphics.Outline
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.core.content.ContextCompat
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
@@ -70,7 +70,7 @@ class FinalActivity : AppCompatActivity() {
         container.adapter = mSectionsPagerAdapter
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
 
-        container.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        container.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {
             }
 
@@ -201,9 +201,9 @@ class FinalActivity : AppCompatActivity() {
      * A [FragmentPagerAdapter] that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    inner class SectionsPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
 
-        override fun getItem(position: Int): Fragment {
+        override fun getItem(position: Int): androidx.fragment.app.Fragment {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             return PlaceholderFragment.newInstance(position + 1)
@@ -223,7 +223,7 @@ class FinalActivity : AppCompatActivity() {
     /**
      * A placeholder fragment containing a simple view.
      */
-    class PlaceholderFragment : Fragment() {
+    class PlaceholderFragment : androidx.fragment.app.Fragment() {
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                   savedInstanceState: Bundle?): View? {
@@ -233,7 +233,7 @@ class FinalActivity : AppCompatActivity() {
             val adapter = DataAdapter(type)
             adapter.setSize(20)
             list.adapter = adapter
-            list.layoutManager = LinearLayoutManager(context)
+            list.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
             return rootView
         }
 

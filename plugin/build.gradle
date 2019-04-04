@@ -2,9 +2,11 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 
 dependencies {
-    implementation gradleApi()  // gradle sdk
-    implementation localGroovy()  // groovy sdk
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // gradle sdk
+    // groovy sdk
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'org.codehaus.groovy:groovy-all:2.4.15'
+
 }
 
 // 进行上传任务的命令：./gradlew -p plugin/ clean build uploadArchives

@@ -4,7 +4,7 @@ package com.engineer.imitate.fragments
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.service.autofill.TextValueSanitizer
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +26,7 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 @Route(path = "/anim/layout_manager")
-class LayoutManagerFragment : Fragment() {
+class LayoutManagerFragment : androidx.fragment.app.Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

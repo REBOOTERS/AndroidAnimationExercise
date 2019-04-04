@@ -2,7 +2,7 @@ package home.smart.fly.animations.tradition;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.ImageView;
 
 import home.smart.fly.animations.R;

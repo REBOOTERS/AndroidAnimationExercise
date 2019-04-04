@@ -7,7 +7,7 @@
     android:background="@color/cpb_blue"
     android:clipChildren="false">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="480dp"

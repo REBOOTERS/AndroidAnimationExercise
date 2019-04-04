@@ -1,8 +1,8 @@
 package home.smart.fly.animations.ui.activity;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.IdRes;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;

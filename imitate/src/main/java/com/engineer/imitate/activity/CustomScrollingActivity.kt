@@ -4,10 +4,10 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.Snackbar
-import android.support.design.widget.TabLayout
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
+import androidx.appcompat.app.AppCompatActivity
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View

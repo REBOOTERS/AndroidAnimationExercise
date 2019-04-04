@@ -3,15 +3,12 @@ package home.smart.fly.animations.ui.activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatEditText;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-
-import com.airbnb.lottie.L;
 
 import home.smart.fly.animations.R;
 

@@ -1,9 +1,9 @@
 package com.engineer.fastlist
 
-import android.support.annotation.LayoutRes
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +14,8 @@ import kotlinx.android.extensions.LayoutContainer
  * Dynamic list bind function. It should be followed by one or multiple .map calls.
  * @param items - Generic list of the items to be displayed in the list
  */
-fun <T> RecyclerView.bind(items: List<T>): FastListAdapter<T> {
-    layoutManager = LinearLayoutManager(context)
+fun <T> androidx.recyclerview.widget.RecyclerView.bind(items: List<T>): FastListAdapter<T> {
+    layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
     return FastListAdapter(items.toMutableList(), this)
 }
 
@@ -26,8 +26,8 @@ fun <T> RecyclerView.bind(items: List<T>): FastListAdapter<T> {
  * @param singleBind - The "binding" function between the item and the layout. This is the standard "bind" function in traditional ViewHolder classes. It uses Kotlin Extensions
  * so you can just use the XML names of the views inside your layout to address them.
  */
-fun <T> RecyclerView.bind(items: List<T>, @LayoutRes singleLayout: Int = 0, singleBind: (View.(item: T) -> Unit)): FastListAdapter<T> {
-    layoutManager = LinearLayoutManager(context)
+fun <T> androidx.recyclerview.widget.RecyclerView.bind(items: List<T>, @LayoutRes singleLayout: Int = 0, singleBind: (View.(item: T) -> Unit)): FastListAdapter<T> {
+    layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
     return FastListAdapter(items.toMutableList(), this
     ).map(singleLayout, { true }, singleBind)
 }
@@ -40,13 +40,13 @@ fun <T> RecyclerView.bind(items: List<T>, @LayoutRes singleLayout: Int = 0, sing
  * NOTICE: The comparator currently checks if items are literally the same. You can change that if you want,
  * by changing the lambda in the function
  */
-fun <T> RecyclerView.update(newItems: List<T>) {
+fun <T> androidx.recyclerview.widget.RecyclerView.update(newItems: List<T>) {
     (adapter as? FastListAdapter<T>)?.update(newItems) { o, n -> o == n }
 }
 
 
-open class FastListAdapter<T>(private var items: MutableList<T>, private var list: RecyclerView
-) : RecyclerView.Adapter<FastListViewHolder<T>>() {
+open class FastListAdapter<T>(private var items: MutableList<T>, private var list: androidx.recyclerview.widget.RecyclerView
+) : androidx.recyclerview.widget.RecyclerView.Adapter<FastListViewHolder<T>>() {
 
     private inner class BindMap(val layout: Int, var type: Int = 0, val bind: View.(item: T) -> Unit, val predicate: (item: T) -> Boolean)
 
@@ -89,7 +89,7 @@ open class FastListAdapter<T>(private var items: MutableList<T>, private var lis
     /**
      * Sets up a layout manager for the recycler view.
      */
-    fun layoutManager(manager: RecyclerView.LayoutManager): FastListAdapter<T> {
+    fun layoutManager(manager: androidx.recyclerview.widget.RecyclerView.LayoutManager): FastListAdapter<T> {
         list.layoutManager = manager
         return this
     }
@@ -115,7 +115,7 @@ open class FastListAdapter<T>(private var items: MutableList<T>, private var lis
 
 }
 
-class FastListViewHolder<T>(override val containerView: View, val holderType: Int) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+class FastListViewHolder<T>(override val containerView: View, val holderType: Int) : androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bind(entry: T, func: View.(item: T) -> Unit) {
         containerView.apply {
             func(entry)

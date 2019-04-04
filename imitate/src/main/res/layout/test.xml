@@ -28,7 +28,7 @@
             android:src="@drawable/ic_photo_camera_white_24dp"
             android:tint="@color/cpb_green" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text"
             android:gravity="center"
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

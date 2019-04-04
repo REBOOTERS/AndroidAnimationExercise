@@ -2,9 +2,9 @@ package com.engineer.imitate.fragments
 
 
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
-import android.support.constraint.ConstraintSet
-import android.support.v4.app.Fragment
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.fragment.app.Fragment
 import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
@@ -20,10 +20,10 @@ import kotlinx.android.synthetic.main.fragment_constraint_set_anim_normal.*
  *
  */
 @Route(path = "/anim/constraint")
-class ConstraintSetAnimFragment : Fragment() {
+class ConstraintSetAnimFragment : androidx.fragment.app.Fragment() {
 
     private var isNormal=false
-    private lateinit var mBaseLayout:ConstraintLayout
+    private lateinit var mBaseLayout: ConstraintLayout
 
     private var mNorSet = ConstraintSet()
     private var mBigSet = ConstraintSet()

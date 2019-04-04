@@ -1,18 +1,13 @@
 package home.smart.fly.animations.ui.activity;
 
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ActionMode;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
-
-import java.util.Optional;
 
 import home.smart.fly.animations.R;
 

@@ -3,8 +3,8 @@ package home.smart.fly.animations.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +13,6 @@ import android.widget.Button;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.customview.swipeanim.FakeWeiBoActivity;
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.property.blur.BlurActivity;

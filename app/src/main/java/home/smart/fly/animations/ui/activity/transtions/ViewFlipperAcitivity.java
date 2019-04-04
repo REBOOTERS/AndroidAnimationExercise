@@ -1,6 +1,6 @@
 package home.smart.fly.animations.ui.activity.transtions;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import home.smart.fly.animations.R;

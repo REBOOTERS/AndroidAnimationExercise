@@ -1,8 +1,8 @@
 package home.smart.fly.animations.ui.activity
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import home.smart.fly.animations.R
 import kotlinx.android.synthetic.main.activity_lottie_animation_view.*
 import kotlinx.android.synthetic.main.content_lottie_animation_view.*

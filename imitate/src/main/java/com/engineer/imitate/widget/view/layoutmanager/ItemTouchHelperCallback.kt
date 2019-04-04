@@ -1,8 +1,8 @@
 package com.engineer.imitate.widget.view.layoutmanager
 
 import android.graphics.Canvas
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ItemTouchHelper
 import android.view.View
 
 /**
@@ -14,17 +14,17 @@ import android.view.View
 
 class ItemTouchHelperCallback<T> : ItemTouchHelper.Callback {
 
-    private val adapter: RecyclerView.Adapter<*>
+    private val adapter: androidx.recyclerview.widget.RecyclerView.Adapter<*>
     private var dataList: MutableList<T>? = null
     private var mListener: OnSlideListener<T>? = null
 
-    constructor(adapter: RecyclerView.Adapter<*>, dataList: MutableList<T>) {
+    constructor(adapter: androidx.recyclerview.widget.RecyclerView.Adapter<*>, dataList: MutableList<T>) {
         this.adapter = adapter
         this.dataList = dataList
 
     }
 
-    constructor(adapter: RecyclerView.Adapter<*>, dataList: MutableList<T>, listener: OnSlideListener<T>) {
+    constructor(adapter: androidx.recyclerview.widget.RecyclerView.Adapter<*>, dataList: MutableList<T>, listener: OnSlideListener<T>) {
         this.adapter = adapter
         this.dataList = dataList
         this.mListener = listener
@@ -41,7 +41,7 @@ class ItemTouchHelperCallback<T> : ItemTouchHelper.Callback {
         this.mListener = mListener
     }
 
-    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+    override fun getMovementFlags(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder): Int {
         val dragFlags = 0
         var slideFlags = 0
         val layoutManager = recyclerView.layoutManager
@@ -51,11 +51,11 @@ class ItemTouchHelperCallback<T> : ItemTouchHelper.Callback {
         return ItemTouchHelper.Callback.makeMovementFlags(dragFlags, slideFlags)
     }
 
-    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+    override fun onMove(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, target: androidx.recyclerview.widget.RecyclerView.ViewHolder): Boolean {
         return false
     }
 
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+    override fun onSwiped(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, direction: Int) {
         viewHolder.itemView.setOnTouchListener(null)
         val layoutPosition = viewHolder.layoutPosition
         val remove = dataList!!.removeAt(layoutPosition)
@@ -74,7 +74,7 @@ class ItemTouchHelperCallback<T> : ItemTouchHelper.Callback {
         return false
     }
 
-    override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
+    override fun onChildDraw(c: Canvas, recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder,
                              dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
         val itemView = viewHolder.itemView
@@ -114,12 +114,12 @@ class ItemTouchHelperCallback<T> : ItemTouchHelper.Callback {
         }
     }
 
-    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+    override fun clearView(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder) {
         super.clearView(recyclerView, viewHolder)
         viewHolder.itemView.rotation = 0f
     }
 
-    private fun getThreshold(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Float {
+    private fun getThreshold(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder): Float {
         return recyclerView.width * getSwipeThreshold(viewHolder)
     }
 

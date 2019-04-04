@@ -7,7 +7,7 @@
     tools:context=".ui.activity.jianshu.JianShuHeadActivity">
 
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:visibility="visible"
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_height="1000dp"/>
 
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout
         android:id="@+id/head"

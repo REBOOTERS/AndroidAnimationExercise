@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="home.smart.fly.animations.customview.puzzle.PuzzleActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:visibility="gone"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
