@@ -1,0 +1,18 @@
+import groovy.json.JsonSlurper
+
+
+afterEvaluate {
+    def json = new File(projectDir, "demo.json")
+    def srcDir = new File(project.buildDir, 'plugin')
+    println("json===$json")
+    println("srcDir===$srcDir")
+
+    Object object = new JsonSlurper().parse(json)
+    println("object==$object")
+
+    Object sites = object['sites']
+    println("sites==$sites")
+    for(site in sites.site){
+        println("site==$site")
+    }
+}

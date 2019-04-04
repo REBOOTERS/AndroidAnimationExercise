@@ -18,7 +18,7 @@ class ApkDistPlugin implements Plugin<Project> {
             }
 
             if (target.apkconfig.nameMap == null || target.apkconfig.destDir == null) {
-                target.logger.info('Apkdist conf should be set!')
+                target.logger.info('Apk dist conf should be set!')
                 return
             }
 
