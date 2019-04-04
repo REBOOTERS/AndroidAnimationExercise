@@ -7,6 +7,6 @@
         android:left="5dp"
         android:right="5dp"
         android:top="5dp" />
-    <solid android:color="@color/background" />
+    <solid android:color="@color/cpb_grey" />
 
 </shape>

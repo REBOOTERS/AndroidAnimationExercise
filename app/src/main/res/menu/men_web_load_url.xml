@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/local"
         android:orderInCategory="100"
         android:title="assets/index.html"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/jianshu_local"
+        android:orderInCategory="100"
+        android:title="jianshu_local"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/jianshu"
         android:orderInCategory="100"

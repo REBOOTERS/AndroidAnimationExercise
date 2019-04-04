@@ -45,7 +45,7 @@ public class ViewUtils {
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
         bitmap = view.getDrawingCache();
-        view.setDrawingCacheEnabled(false);
+//        view.setDrawingCacheEnabled(false);
         return bitmap;
     }
 }

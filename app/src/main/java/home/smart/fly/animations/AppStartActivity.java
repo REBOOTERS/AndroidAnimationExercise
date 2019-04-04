@@ -37,6 +37,7 @@ import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.ui.SuperTools;
 import home.smart.fly.animations.utils.PaletteUtils;
 import home.smart.fly.animations.utils.StatusBarUtil;
+import jp.wasabeef.takt.Takt;
 import okhttp3.OkHttpClient;
 
 
@@ -235,6 +236,12 @@ public class AppStartActivity extends AppCompatActivity {
         }
     }
     // </editor-fold>
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
 
     // TODO https://blog.csdn.net/HarryWeasley/article/details/82591320
 

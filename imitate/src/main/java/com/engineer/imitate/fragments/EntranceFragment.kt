@@ -140,28 +140,17 @@ class EntranceFragment : Fragment() {
                 }
                 101 -> {
                     val result = Matisse.obtainPathResult(data)
+                    val bitmap = BitmapFactory.decodeFile(File(result[0]).absolutePath)
+                    val wallpaperManager = WallpaperManager.getInstance(context)
 
-                    Observable.create(ObservableOnSubscribe<Bitmap> { emitter ->
-                        val bitmap = BitmapFactory.decodeFile(File(result[0]).absolutePath)
-                        val wallpaperManager = WallpaperManager.getInstance(context)
+                    try {
+                        wallpaperManager.setBitmap(bitmap)
+                        context?.toastShort("set wall paper success")
 
-                        try {
-                            wallpaperManager.setBitmap(bitmap)
-                            emitter.onNext(bitmap)
-                            emitter.onComplete()
-                        } catch (e: Exception) {
-                            emitter.onError(e)
-                        }
-                    })
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                context?.toastShort("set wall paper success")
-                            }, {
-                                context?.toastShort("set wall paper fail")
-                            })
+                    } catch (e: Exception) {
+                        context?.toastShort("set wall paper fail")
 
-
+                    }
                 }
 
             }

@@ -1,6 +1,8 @@
 package home.smart.fly.animations;
 
+import android.graphics.Color;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
 import android.webkit.WebView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -9,11 +11,15 @@ import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
+import jp.wasabeef.takt.Audience;
+import jp.wasabeef.takt.Seat;
+import jp.wasabeef.takt.Takt;
+
 /**
  * Created by rookie on 2017-03-08.
  */
 
-public class MyApplication extends MultiDexApplication  {
+public class MyApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
@@ -32,6 +38,14 @@ public class MyApplication extends MultiDexApplication  {
         Fresco.initialize(this);
 
         WebView.setWebContentsDebuggingEnabled(true);
+
+        Takt.stock(this)
+                .seat(Seat.TOP_RIGHT)
+                .interval(250)
+                .color(Color.RED)
+                .size(14f)
+                .alpha(.5f)
+                .listener(fps -> Log.d("Excellent!", fps + " fps"));
     }
 
     protected RefWatcher installLeakCanary() {

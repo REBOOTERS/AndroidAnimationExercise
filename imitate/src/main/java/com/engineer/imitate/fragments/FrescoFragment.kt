@@ -3,6 +3,9 @@ package com.engineer.imitate.fragments
 
 import android.animation.ValueAnimator
 import android.app.WallpaperManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.drawable.ClipDrawable
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -39,6 +42,8 @@ class FrescoFragment : Fragment() {
         val url = "http://h.hiphotos.baidu.com/image/pic/item/960a304e251f95ca060674a0c7177f3e67095231.jpg"
 
         simpleDraweeView.setImageURI(url)
+
+        bitmapMagic()
 
 
         val drawable = imageView.background as ClipDrawable
@@ -86,6 +91,29 @@ class FrescoFragment : Fragment() {
             Log.e("wall paper", "isWallpaperSupported ==$isWallpaperSupported")
         }
 
+    }
+
+    private fun bitmapMagic() {
+
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.star)
+        val width = bitmap.width
+        val height = bitmap.height
+        val colorArray = Array(width) { IntArray(height) }
+        for (i in 0 until width) {
+            for (j in 0 until height) {
+                colorArray[i][j] = bitmap.getPixel(i, j)
+            }
+        }
+
+        Log.e("bitmapMagic", "colorArray==$colorArray")
+
+        val drawBitmap = Bitmap.createBitmap(2, 2, Bitmap.Config.ARGB_8888)
+        drawBitmap.setPixel(0, 0, Color.BLACK)
+        drawBitmap.setPixel(1, 0, Color.RED)
+        drawBitmap.setPixel(0, 1, Color.WHITE)
+        drawBitmap.setPixel(1, 1, Color.BLUE)
+
+        draw_bitmap.setImageBitmap(drawBitmap)
     }
 
 

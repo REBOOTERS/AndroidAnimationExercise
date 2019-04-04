@@ -9,15 +9,23 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/simpleDraweeView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_margin="8dp"
         app:placeholderImage="@drawable/totoro" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/clip"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/draw_bitmap"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_margin="8dp"
         android:background="@drawable/clip"
         android:scaleType="fitXY" />
