@@ -1,1 +1,1 @@
-include ':app', ':imitate', ':fast-list'
+include ':app', ':imitate', ':fast-list', ':plugin'
