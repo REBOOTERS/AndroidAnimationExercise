@@ -124,9 +124,8 @@ dependencies {
     kapt 'com.zhihu.android:sugaradapter-processor:1.8.6'
     implementation "androidx.palette:palette:$support_versioin"
     implementation 'jp.wasabeef:takt:2.0.0'
-
-//    implementation 'com.engineer.plugin:phoenix:1.0.5'
-
+    //    implementation 'com.engineer.plugin:phoenix:1.0.5'
+    implementation project(':skeleton')
 }
 
 ext.allDependencies.each {

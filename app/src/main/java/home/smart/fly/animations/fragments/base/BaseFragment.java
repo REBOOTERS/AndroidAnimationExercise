@@ -2,6 +2,7 @@ package home.smart.fly.animations.fragments.base;
 
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ethanhua.skeleton.Skeleton;
+import com.ethanhua.skeleton.SkeletonScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +67,28 @@ public abstract class BaseFragment extends Fragment {
             }
         });
 
+        setupSkeleton(recyclerView, mAdapter);
+
 //        recyclerView.setBackgroundColor(PaletteUtils.getMagicColor(getResources(),getBackgroundResId()));
         return rootView;
+    }
+
+    private void setupSkeleton(RecyclerView recyclerView, MyAdapter mAdapter) {
+        final SkeletonScreen skeletonScreen = Skeleton.bind(recyclerView)
+                .adapter(mAdapter)
+                .shimmer(true)
+                .angle(20)
+                .frozen(false)
+                .duration(1200)
+                .count(10)
+                .load(R.layout.demo_info_skeleton_item)
+                .show(); //default count is 10
+        recyclerView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                skeletonScreen.hide();
+            }
+        }, 2500);
     }
 
     protected void AddADItem() {

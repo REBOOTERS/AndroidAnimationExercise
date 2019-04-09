@@ -2,6 +2,7 @@ package com.engineer.imitate.fragments
 
 
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.app.WallpaperManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -20,6 +21,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.engineer.imitate.R
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_fresco.*
 
 
@@ -93,19 +100,36 @@ class FrescoFragment : androidx.fragment.app.Fragment() {
 
     }
 
+    @SuppressLint("CheckResult")
     private fun bitmapMagic() {
+        shimmer_layout.startShimmerAnimation()
 
-        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.star)
-        val width = bitmap.width
-        val height = bitmap.height
-        val colorArray = Array(width) { IntArray(height) }
-        for (i in 0 until width) {
-            for (j in 0 until height) {
-                colorArray[i][j] = bitmap.getPixel(i, j)
+        Observable.create(object : ObservableOnSubscribe<Bitmap> {
+            override fun subscribe(emitter: ObservableEmitter<Bitmap>) {
+                val bitmap = BitmapFactory.decodeResource(resources, R.drawable.star)
+                val width = bitmap.width
+                val height = bitmap.height
+                val colorArray = Array(width) { IntArray(height) }
+                for (i in 0 until width) {
+                    for (j in 0 until height) {
+                        colorArray[i][j] = bitmap.getPixel(i, j)
+                    }
+                }
+
+                Log.e("bitmapMagic", "colorArray==$colorArray")
+                emitter.onNext(bitmap)
             }
-        }
 
-        Log.e("bitmapMagic", "colorArray==$colorArray")
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ bitmap ->
+                    setupBitmap(bitmap)
+                }, { t -> t.printStackTrace() })
+
+    }
+
+    private fun setupBitmap(bitmap: Bitmap) {
+
 
         val drawBitmap = Bitmap.createBitmap(2, 2, Bitmap.Config.ARGB_8888)
         drawBitmap.setPixel(0, 0, Color.BLACK)
@@ -114,6 +138,8 @@ class FrescoFragment : androidx.fragment.app.Fragment() {
         drawBitmap.setPixel(1, 1, Color.BLUE)
 
         draw_bitmap.setImageBitmap(drawBitmap)
+        shimmer_layout.stopShimmerAnimation()
+        mask.visibility = View.GONE
     }
 
 

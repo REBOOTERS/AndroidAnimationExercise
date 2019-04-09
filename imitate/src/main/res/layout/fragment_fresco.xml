@@ -22,13 +22,24 @@
         android:background="@drawable/clip"
         android:scaleType="fitXY" />
 
-    <ImageView
-        android:id="@+id/draw_bitmap"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="8dp"
-        android:background="@drawable/clip"
-        android:scaleType="fitXY" />
+    <com.engineer.imitate.widget.ShimmerLayout
+        android:id="@+id/shimmer_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/draw_bitmap"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/clip"
+            android:scaleType="fitXY" />
 
+        <View
+            android:id="@+id/mask"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="8dp"
+            android:background="@color/shimmer_background_color" />
+    </com.engineer.imitate.widget.ShimmerLayout>
 </LinearLayout>

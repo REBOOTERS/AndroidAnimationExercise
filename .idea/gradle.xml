@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/fast-list" />
             <option value="$PROJECT_DIR$/imitate" />
             <option value="$PROJECT_DIR$/plugin" />
+            <option value="$PROJECT_DIR$/skeleton" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
