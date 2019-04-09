@@ -20,10 +20,7 @@ import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
-import com.engineer.imitate.activity.CustomScrollingActivity
-import com.engineer.imitate.activity.FakeJikeActivity
-import com.engineer.imitate.activity.FinalActivity
-import com.engineer.imitate.activity.PureActivity
+import com.engineer.imitate.activity.*
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -115,6 +112,10 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
         }
         fake_jike.setOnClickListener {
             startActivity(Intent(context, FakeJikeActivity::class.java))
+        }
+
+        test_frame_layout.setOnClickListener {
+            startActivity(Intent(context, TestFrameLayout::class.java))
         }
 
 

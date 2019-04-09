@@ -40,6 +40,8 @@ class ApkDistPlugin implements Plugin<Project> {
 //                    outputFileName = "animation-${defaultConfig.versionName}-${releaseTime}-${variant.name}.apk"
 //                }
 //            }
+            println "===================================plugin===============end=================="
+
         }
 
 

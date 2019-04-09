@@ -39,4 +39,6 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
     delete rootDir.toString() + File.separator + apkDir
+    delete rootDir.toString() + File.separator +"repo"
 }
+
