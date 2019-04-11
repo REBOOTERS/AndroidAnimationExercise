@@ -21,12 +21,11 @@ public class DebugMyApplication extends MyApplication {
     protected RefWatcher installLeakCanary() {
         ExcludedRefs excludedRefs = AndroidExcludedRefs
                 .createAndroidDefaults()
-                .instanceField("home.smart.fly.animations.AppStartActivity","mContext")
+                .instanceField("home.smart.fly.animations.AppStartActivity", "mContext")
                 .build();
 
 
-
-        RefWatcher refWatcher= LeakCanary.refWatcher(this)
+        RefWatcher refWatcher = LeakCanary.refWatcher(this)
                 .watchDelay(10, TimeUnit.SECONDS)
                 .watchActivities(false)
                 .excludedRefs(excludedRefs)
@@ -34,7 +33,7 @@ public class DebugMyApplication extends MyApplication {
 
 
         // ignore specifice activity classes
-        registerActivityLifecycleCallbacks(new ActivityLifecycleSimpleCallbacks(){
+        registerActivityLifecycleCallbacks(new ActivityLifecycleSimpleCallbacks() {
             @Override
             public void onActivityDestroyed(Activity activity) {
                 super.onActivityDestroyed(activity);
@@ -46,6 +45,12 @@ public class DebugMyApplication extends MyApplication {
             }
         });
 
-        return  refWatcher;
+        return refWatcher;
     }
+
+    @Override
+    protected void installGodEye() {
+        super.installGodEye();
+    }
+
 }

@@ -47,6 +47,7 @@ public class PropertyFragment extends BaseFragment implements View.OnClickListen
         mContext = context;
     }
 
+    @Override
     protected void InitView() {
         rootView.findViewById(R.id.property).setOnClickListener(this);
         rootView.findViewById(R.id.value).setOnClickListener(this);

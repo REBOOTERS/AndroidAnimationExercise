@@ -5,14 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources.Theme;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.appbar.AppBarLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ThemedSpinnerAdapter;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,9 +21,17 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ThemedSpinnerAdapter;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.FragmentTransaction;
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.ui.SuperTools;
@@ -109,6 +109,8 @@ public class AppStartActivity extends AppCompatActivity {
         print();
 
         OkHttpClient client = new OkHttpClient();
+        Log.wtf("haha", "haha");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="一些屏幕信息">
@@ -241,6 +243,10 @@ public class AppStartActivity extends AppCompatActivity {
         super.onStart();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
     // TODO https://blog.csdn.net/HarryWeasley/article/details/82591320
 

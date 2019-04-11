@@ -112,7 +112,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:2.5.1'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$ext.leakcanary"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$ext.leakcanary"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$ext.leakcanary_nopo"
     debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:$ext.leakcanary"
     if (!imitate_isApp.toBoolean()) {
         implementation project(':imitate')
@@ -128,6 +128,13 @@ dependencies {
     implementation project(':skeleton')
 }
 
+configurations.all {
+//    exclude group: 'com.squareup.haha', module: 'haha'
+//    exclude group: 'com.squareup.leakcanary-analyzer', module: 'leakcanary-analyzer'
+//    exclude group: 'com.squareup.leakcanary', module: 'leakcanary-analyzer'
+//    exclude group: 'com.squareup.leakcanary', module: 'leakcanary-watcher'
+}
+
 ext.allDependencies.each {
     dependencies.add('implementation', it)
 }
@@ -139,4 +146,4 @@ repositories {
 
 //apply plugin: ApkDistPlugin
 //apply from:file("../gradle/custom_plugin.gradle")
-
+//apply from: file("../gradle/android_godeye.gradle")

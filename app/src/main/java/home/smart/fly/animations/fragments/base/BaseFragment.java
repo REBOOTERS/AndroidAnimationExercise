@@ -3,6 +3,7 @@ package home.smart.fly.animations.fragments.base;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -101,7 +102,7 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    public int getBackgroundResId() {
+    public @DrawableRes int getBackgroundResId() {
         return R.drawable.girl;
     }
 

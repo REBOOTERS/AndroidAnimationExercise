@@ -45,6 +45,12 @@ public class MyApplication extends MultiDexApplication {
                 .size(14f)
                 .alpha(.5f)
                 .listener(fps -> Log.d("Excellent!", fps + " fps"));
+
+        installGodEye();
+    }
+
+    protected void installGodEye() {
+        // do nothing at here,real in DebugApplication
     }
 
     protected RefWatcher installLeakCanary() {

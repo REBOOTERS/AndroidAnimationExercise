@@ -2,6 +2,8 @@ package home.smart.fly.animations.fragments.base;
 
 import android.content.Context;
 import android.content.Intent;
+
+import androidx.annotation.DrawableRes;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,7 +89,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
         }
     }
 
-    public void setAmazingBackground(int resId) {
+    public void setAmazingBackground(@DrawableRes int resId) {
         backgroundRes = resId;
     }
 

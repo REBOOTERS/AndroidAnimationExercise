@@ -47,6 +47,7 @@ public class TraditionFragment extends BaseFragment implements View.OnClickListe
         mContext = context;
     }
 
+    @Override
     protected void InitView() {
         frame = (Button) rootView.findViewById(R.id.frame);
         frame.setOnClickListener(this);
