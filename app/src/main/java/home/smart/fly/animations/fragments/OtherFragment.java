@@ -2,6 +2,9 @@ package home.smart.fly.animations.fragments;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.Settings;
@@ -37,6 +40,8 @@ import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.ItemInfo;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.recyclerview.BaseRecyclerViewActivity;
+import home.smart.fly.animations.utils.AppUtils;
+import home.smart.fly.animations.utils.Tools;
 import home.smart.fly.animations.webview.AllWebViewActivity;
 
 
@@ -75,6 +80,25 @@ public class OtherFragment extends BaseFragment {
 
         printBuildConfigInfo();
 
+        printAllActivity();
+
+    }
+
+    private void printAllActivity() {
+        if (getContext() != null) {
+            PackageManager packageManager = getContext().getPackageManager();
+            try {
+                PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(getContext()),
+                        PackageManager.GET_ACTIVITIES);
+                ActivityInfo[] activityInfos = packageInfo.activities;
+                for (ActivityInfo activityInfo : activityInfos) {
+                    Log.e(TAG, "printAllActivity: " + activityInfo.name);
+                }
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     @Override
@@ -83,11 +107,11 @@ public class OtherFragment extends BaseFragment {
     }
 
     private void printBuildConfigInfo() {
-        Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.APPLICATION_ID);
-        Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.BUILD_TYPE);
-        Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.FLAVOR);
-        Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.VERSION_NAME);
-        Log.e(TAG, "printBuildConfigInfo: "+BuildConfig.VERSION_CODE);
+        Log.e(TAG, "printBuildConfigInfo: " + BuildConfig.APPLICATION_ID);
+        Log.e(TAG, "printBuildConfigInfo: " + BuildConfig.BUILD_TYPE);
+        Log.e(TAG, "printBuildConfigInfo: " + BuildConfig.FLAVOR);
+        Log.e(TAG, "printBuildConfigInfo: " + BuildConfig.VERSION_NAME);
+        Log.e(TAG, "printBuildConfigInfo: " + BuildConfig.VERSION_CODE);
     }
 
     /**

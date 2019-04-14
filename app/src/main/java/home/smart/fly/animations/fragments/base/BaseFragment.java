@@ -80,16 +80,11 @@ public abstract class BaseFragment extends Fragment {
                 .shimmer(true)
                 .angle(20)
                 .frozen(false)
-                .duration(1200)
+                .duration(500)
                 .count(10)
                 .load(R.layout.demo_info_skeleton_item)
                 .show(); //default count is 10
-        recyclerView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                skeletonScreen.hide();
-            }
-        }, 2500);
+        recyclerView.postDelayed(skeletonScreen::hide, 1000);
     }
 
     protected void AddADItem() {
@@ -102,7 +97,8 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    public @DrawableRes int getBackgroundResId() {
+    public @DrawableRes
+    int getBackgroundResId() {
         return R.drawable.girl;
     }
 

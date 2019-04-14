@@ -1,14 +1,20 @@
 package home.smart.fly.animations.ui.activity;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,13 +29,16 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.net.NetworkInterface;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.utils.AppUtils;
 import home.smart.fly.animations.utils.T;
 import me.leolin.shortcutbadger.ShortcutBadger;
 
@@ -44,7 +53,8 @@ public class InputActivity extends AppCompatActivity {
     TextView mMacAddress;
     @BindView(R.id.link)
     TextView mLink;
-
+    @BindView(R.id.auto_complete_text)
+    AppCompatAutoCompleteTextView mAutoCompleteTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +64,7 @@ public class InputActivity extends AppCompatActivity {
 
         mLink.getPaint().setFlags(TextPaint.UNDERLINE_TEXT_FLAG);
         mLink.getPaint().setAntiAlias(true);
-
+        setupAutoCompleteTextView();
     }
 
     @OnClick({R.id.set_badge_num, R.id.get, R.id.format, R.id.getMac1, R.id.getMac2, R.id.link})
@@ -206,5 +216,29 @@ public class InputActivity extends AppCompatActivity {
         }
     }
 
+    private void setupAutoCompleteTextView() {
+        List<String> activites = new ArrayList<>();
+        PackageManager packageManager = getPackageManager();
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(this),
+                    PackageManager.GET_ACTIVITIES);
+            ActivityInfo[] activityInfos = packageInfo.activities;
+            for (ActivityInfo activityInfo : activityInfos) {
+                String activity = activityInfo.name;
+                int dotIndex = activity.lastIndexOf(".");
+                String act = activity.substring(dotIndex + 1);
+                Log.e("zyq", "setupAutoCompleteTextView: " + act.concat(".class"));
+                activites.add(act.concat(".class"));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ArrayAdapter<?> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, activites);
+        mAutoCompleteTextView.setAdapter(adapter);
+        mAutoCompleteTextView.setOnItemClickListener((parent, view, position, id) ->
+                Toast.makeText(this, "result==" + activites.get(position), Toast.LENGTH_SHORT).show());
+    }
 
 }

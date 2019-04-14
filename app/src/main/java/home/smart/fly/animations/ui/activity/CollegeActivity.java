@@ -3,10 +3,12 @@ package home.smart.fly.animations.ui.activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -17,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -105,6 +108,16 @@ public class CollegeActivity extends AppCompatActivity {
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         //
 
+
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.setVisibility(View.GONE);
+        tabLayout.setTabIndicatorFullWidth(false);
+        mViewPager.setOffscreenPageLimit(3);
+
+
         Observable.create((ObservableOnSubscribe<String>) emitter -> {
             String json = Tools.readStrFromAssets("newSchool.json", mContext);
             if (json != null) {
@@ -113,11 +126,16 @@ public class CollegeActivity extends AppCompatActivity {
             } else {
                 emitter.onError(new Throwable());
             }
-        }).map((Function<String, List<SchoolBeanShell>>) s -> {
+        }).map(s -> {
             Gson gson = new Gson();
-            return gson.fromJson(s, new TypeToken<ArrayList<SchoolBeanShell>>() {
-            }.getType());
-        }).subscribeOn(Schedulers.newThread())
+            List<SchoolBeanShell> schoolBeanShells =
+                    gson.fromJson(s, new TypeToken<ArrayList<SchoolBeanShell>>() {
+                    }.getType());
+            for (int i = 0; i < schoolBeanShells.size(); i++) {
+                locations.add(schoolBeanShells.get(i).getName());
+            }
+            return schoolBeanShells;
+        }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<SchoolBeanShell>>() {
                     @Override
@@ -127,11 +145,7 @@ public class CollegeActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(List<SchoolBeanShell> schoolBeanShells) {
-                        mBeanShells = schoolBeanShells;
-                        for (int i = 0; i < mBeanShells.size(); i++) {
-                            locations.add(mBeanShells.get(i).getName());
-                        }
-                        loadUI(mBeanShells);
+                        loadUI(schoolBeanShells);
                     }
 
                     @Override
@@ -144,13 +158,6 @@ public class CollegeActivity extends AppCompatActivity {
 
                     }
                 });
-
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabLayout.setSelectedTabIndicatorHeight(0);
-        tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.setVisibility(View.GONE);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -202,8 +209,8 @@ public class CollegeActivity extends AppCompatActivity {
     }
 
     private void loadUI(List<SchoolBeanShell> schoolBeanShells) {
-
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), schoolBeanShells);
+        mBeanShells = schoolBeanShells;
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setVisibility(View.VISIBLE);
         // Set up the ViewPager with the sections adapter.
@@ -263,14 +270,12 @@ public class CollegeActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_college, container, false);
             RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);
-//            NestedScrollView mNestedScrollView = (NestedScrollView) rootView.findViewById(R.id.nestedScrollView);
 
             List<String> datas = getArguments().getStringArrayList(ARG_SECTION_DATAS);
             LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getContext());
             mLinearLayoutManager.setSmoothScrollbarEnabled(true);
-            mLinearLayoutManager.setAutoMeasureEnabled(true);
             mRecyclerView.setLayoutManager(mLinearLayoutManager);
-            mRecyclerView.setHasFixedSize(false);
+            mRecyclerView.setHasFixedSize(true);
             mRecyclerView.setNestedScrollingEnabled(false);
             MyAdapter mMyAdapter = new MyAdapter(datas);
             mRecyclerView.setAdapter(mMyAdapter);
@@ -285,11 +290,9 @@ public class CollegeActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-        private List<SchoolBeanShell> mBeanShells;
 
-        public SectionsPagerAdapter(FragmentManager fm, List<SchoolBeanShell> list) {
+        public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
-            mBeanShells = list;
         }
 
         @Override

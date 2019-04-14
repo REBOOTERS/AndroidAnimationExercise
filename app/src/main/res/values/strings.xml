@@ -313,5 +313,8 @@
     <string name="title_activity_pull_to_scale">PullToScaleActivity</string>
     <string name="title_activity_palette">PaletteActivity</string>
     <string name="prefix">prefix</string>
+    <string name="title_activity_all">AllActivity</string>
+
+    <string name="activity_count">%1$d 个 Activity</string>
 
 </resources>

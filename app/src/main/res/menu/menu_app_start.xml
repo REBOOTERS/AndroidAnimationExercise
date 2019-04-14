@@ -7,7 +7,7 @@
         android:id="@+id/change_theme"
         android:icon="@drawable/ic_card_24dp"
         android:title="@string/catch_null"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
@@ -15,8 +15,13 @@
         app:showAsAction="never" />
 
     <item
-        android:icon="@drawable/ic_insert_drive_file_black_24dp"
         android:id="@+id/action_file_util"
+        android:icon="@drawable/ic_insert_drive_file_black_24dp"
         android:title="@string/file_util"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_all"
+        android:icon="@drawable/ic_all_inclusive_white_24dp"
+        app:showAsAction="always" />
 </menu>

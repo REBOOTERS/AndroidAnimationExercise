@@ -44,9 +44,9 @@
                 <ImageView
                     android:id="@+id/headImg"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="280dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/a6" />
+                    android:src="@drawable/cat" />
 
             </LinearLayout>
 

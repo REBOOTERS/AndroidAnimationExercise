@@ -3,6 +3,9 @@ package home.smart.fly.animations;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources.Theme;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,10 +27,13 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.ThemedSpinnerAdapter;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -35,15 +41,18 @@ import androidx.fragment.app.FragmentTransaction;
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.ui.SuperTools;
+import home.smart.fly.animations.ui.activity.AllActivity;
+import home.smart.fly.animations.utils.AppUtils;
 import home.smart.fly.animations.utils.PaletteUtils;
 import home.smart.fly.animations.utils.StatusBarUtil;
-import okhttp3.OkHttpClient;
 
 
 public class AppStartActivity extends AppCompatActivity {
+    private static final String TAG = "AppStartActivity";
     private Snackbar snackbar = null;
     private CoordinatorLayout main_contetn;
     private Context mContext;
+    private AppCompatAutoCompleteTextView mAutoCompleteTextView;
 
     private AppBarLayout mAppBarLayout;
 
@@ -61,6 +70,7 @@ public class AppStartActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         mAppBarLayout = findViewById(R.id.appbar);
+        mAutoCompleteTextView = findViewById(R.id.auto_complete_text);
         // Setup spinner
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(new MyAdapter(
@@ -81,6 +91,7 @@ public class AppStartActivity extends AppCompatActivity {
                 int color = PaletteUtils.getMagicColor(getResources(), resId);
                 toolbar.setBackgroundColor(color);
                 StatusBarUtil.setColor(AppStartActivity.this, color, 0);
+                mAutoCompleteTextView.setBackgroundColor(color);
             }
 
             @Override
@@ -108,9 +119,7 @@ public class AppStartActivity extends AppCompatActivity {
                 }));
         print();
 
-        OkHttpClient client = new OkHttpClient();
-        Log.wtf("haha", "haha");
-
+        setupAutoCompleteTextView();
     }
 
     // <editor-fold defaultstate="collapsed" desc="一些屏幕信息">
@@ -194,6 +203,9 @@ public class AppStartActivity extends AppCompatActivity {
         } else if (id == R.id.action_file_util) {
             startActivity(new Intent(mContext, FileUtilsActivity.class));
             return true;
+        } else if (id == R.id.action_all) {
+            startActivity(new Intent(mContext, AllActivity.class));
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -250,4 +262,52 @@ public class AppStartActivity extends AppCompatActivity {
 
     // TODO https://blog.csdn.net/HarryWeasley/article/details/82591320
 
+
+    private void setupAutoCompleteTextView() {
+        List<String> activites = new ArrayList<>();
+        List<String> activitesAll = new ArrayList<>();
+        PackageManager packageManager = getPackageManager();
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(AppUtils.getPackageName(this),
+                    PackageManager.GET_ACTIVITIES);
+            ActivityInfo[] activityInfos = packageInfo.activities;
+            for (ActivityInfo activityInfo : activityInfos) {
+                String activity = activityInfo.name;
+                int dotIndex = activity.lastIndexOf(".");
+                String act = activity.substring(dotIndex + 1);
+                Log.e(TAG, "setupAutoCompleteTextView: " + act);
+                Log.e(TAG, "setupAutoCompleteTextView: " + activity);
+                if (act.equals("AppStartActivity")) {
+                    continue;
+                }
+                activites.add(act);
+                activitesAll.add(activity);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        ArrayAdapter<?> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item, activites);
+        mAutoCompleteTextView.setAdapter(adapter);
+        mAutoCompleteTextView.setDropDownBackgroundResource(R.color.white);
+        mAutoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
+                    try {
+                        String content = mAutoCompleteTextView.getText().toString().trim();
+                        if (activites.contains(content)) {
+                            int index = activites.indexOf(content);
+                            String target = activitesAll.get(index);
+                            Class<?> targetClass = Class.forName(target);
+                            Intent intent = new Intent(this, targetClass);
+                            startActivity(intent);
+                            mAutoCompleteTextView.setText("");
+                        }
+
+                    } catch (ClassNotFoundException e) {
+                        Log.e(TAG, "setupAutoCompleteTextView: " + e.getMessage());
+                        e.printStackTrace();
+                    }
+                }
+        );
+    }
 }
