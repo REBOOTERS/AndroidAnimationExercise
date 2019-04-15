@@ -48,9 +48,5 @@ public class DebugMyApplication extends MyApplication {
         return refWatcher;
     }
 
-    @Override
-    protected void installGodEye() {
-        super.installGodEye();
-    }
 
 }

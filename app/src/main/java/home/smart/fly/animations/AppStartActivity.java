@@ -26,6 +26,7 @@ import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
+import com.tencent.mmkv.MMKV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,6 +151,13 @@ public class AppStartActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Toast.makeText(mContext, info, Toast.LENGTH_SHORT).show();
         }
+        MMKV.defaultMMKV().putBoolean("running", true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MMKV.defaultMMKV().putBoolean("running", true);
     }
 
     private void saveLastSelect(int lastPosition) {
@@ -173,6 +181,7 @@ public class AppStartActivity extends AppCompatActivity {
 //        super.onBackPressed();
         //仿home键效果
         moveTaskToBack(true);
+//        MMKV.defaultMMKV().putBoolean("running", true);
     }
 
     // <editor-fold defaultstate="collapsed" desc="onOptionsItemSelected">

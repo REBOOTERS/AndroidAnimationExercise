@@ -10,12 +10,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ethanhua.skeleton.Skeleton;
 import com.ethanhua.skeleton.SkeletonScreen;
+import com.tencent.mmkv.MMKV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +39,6 @@ public abstract class BaseFragment extends Fragment {
     protected Context mContext;
 
     protected List<ItemInfo> demos = new ArrayList<>();
-
 
     @Nullable
     @Override
@@ -67,10 +68,14 @@ public abstract class BaseFragment extends Fragment {
                 }
             }
         });
+        if (MMKV.defaultMMKV().getBoolean("running",false)) {
+            setupSkeleton(recyclerView, mAdapter);
+            MMKV.defaultMMKV().putBoolean("running", false);
+        }
 
-        setupSkeleton(recyclerView, mAdapter);
 
 //        recyclerView.setBackgroundColor(PaletteUtils.getMagicColor(getResources(),getBackgroundResId()));
+        Log.e(TAG, "onCreateView: ");
         return rootView;
     }
 
@@ -108,5 +113,11 @@ public abstract class BaseFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.e(TAG, "onCreate: ");
     }
 }

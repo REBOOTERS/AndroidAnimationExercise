@@ -10,6 +10,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.tencent.mmkv.MMKV;
 
 import jp.wasabeef.takt.Seat;
 import jp.wasabeef.takt.Takt;
@@ -46,12 +47,10 @@ public class MyApplication extends MultiDexApplication {
                 .alpha(.5f)
                 .listener(fps -> Log.d("Excellent!", fps + " fps"));
 
-        installGodEye();
+        String dir = MMKV.initialize(this);
+        Log.e("application", "onCreate: mmkv.dir=="+dir );
     }
 
-    protected void installGodEye() {
-        // do nothing at here,real in DebugApplication
-    }
 
     protected RefWatcher installLeakCanary() {
         // ignore some thing

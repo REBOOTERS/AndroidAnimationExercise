@@ -128,6 +128,7 @@ dependencies {
     implementation 'jp.wasabeef:takt:2.0.0'
     //    implementation 'com.engineer.plugin:phoenix:1.0.5'
     implementation project(':skeleton')
+    implementation 'com.tencent:mmkv:1.0.18'
 }
 
 configurations.all {
