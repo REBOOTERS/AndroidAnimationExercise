@@ -20,7 +20,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'io.supercharge:shimmerlayout:2.1.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha04'
+    implementation "androidx.appcompat:appcompat:$ext.support_versioin_appcompat"
 }
 

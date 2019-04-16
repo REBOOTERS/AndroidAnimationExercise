@@ -16,6 +16,13 @@ import java.io.File;
 
 import home.smart.fly.animations.BuildConfig;
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.bga.BgaAllActivity;
+import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
+import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
+import home.smart.fly.animations.fragments.base.BaseFragment;
+import home.smart.fly.animations.fragments.base.ItemInfo;
+import home.smart.fly.animations.fragments.base.RoutePaths;
+import home.smart.fly.animations.recyclerview.BaseRecyclerViewActivity;
 import home.smart.fly.animations.ui.activity.CameraActivity;
 import home.smart.fly.animations.ui.activity.ClipBoardActivity;
 import home.smart.fly.animations.ui.activity.FullscreenActivity;
@@ -33,15 +40,7 @@ import home.smart.fly.animations.ui.activity.ScreenCaptureActivity;
 import home.smart.fly.animations.ui.activity.ViewPagerNestedActivity;
 import home.smart.fly.animations.ui.activity.ViewStubActivity;
 import home.smart.fly.animations.ui.activity.multifragments.MultiFragmentsActivity;
-import home.smart.fly.animations.bga.BgaAllActivity;
-import home.smart.fly.animations.customview.bottomsheet.BottomSheetActivity;
-import home.smart.fly.animations.customview.puzzle.PuzzleActivity;
-import home.smart.fly.animations.fragments.base.BaseFragment;
-import home.smart.fly.animations.fragments.base.ItemInfo;
-import home.smart.fly.animations.fragments.base.RoutePaths;
-import home.smart.fly.animations.recyclerview.BaseRecyclerViewActivity;
 import home.smart.fly.animations.utils.AppUtils;
-import home.smart.fly.animations.utils.Tools;
 import home.smart.fly.animations.webview.AllWebViewActivity;
 
 
@@ -97,6 +96,8 @@ public class OtherFragment extends BaseFragment {
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
+
+//            String deviceId = MotionEvent.obtain().getDeviceId();
         }
 
     }

@@ -3,6 +3,7 @@ package home.smart.fly.animations.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import home.smart.fly.animations.tradition.SwitchAnimActivity;
 import home.smart.fly.animations.tradition.TweenedAnimationActivity;
 import home.smart.fly.animations.tradition.VPAnimActivity;
 import home.smart.fly.animations.ui.activity.PrepareActivity;
+import home.smart.fly.animations.ui.activity.ShareIdActivity;
 
 /**
  * Created by rookie on 2016/8/12.
@@ -64,6 +66,7 @@ public class TraditionFragment extends BaseFragment implements View.OnClickListe
         vpAnim.setOnClickListener(this);
         swipeAnim = (Button) rootView.findViewById(R.id.swipeAnim);
         swipeAnim.setOnClickListener(this);
+        rootView.findViewById(R.id.share_id).setOnClickListener(this);
     }
 
     @Override
@@ -98,6 +101,11 @@ public class TraditionFragment extends BaseFragment implements View.OnClickListe
             case R.id.swipeAnim:
                 intent = new Intent(mContext, PrepareActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.share_id:
+                intent = new Intent(mContext, ShareIdActivity.class);
+                startActivity(intent);
+                break;
             default:
                 break;
         }

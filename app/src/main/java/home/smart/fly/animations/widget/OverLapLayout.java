@@ -2,6 +2,8 @@ package home.smart.fly.animations.widget;
 
 import android.content.Context;
 import androidx.annotation.Nullable;
+
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +35,16 @@ public class OverLapLayout extends LinearLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         Log.e(TAG, "width==" + MeasureSpec.getSize(widthMeasureSpec));
         Log.e(TAG, "height=" + MeasureSpec.getSize(heightMeasureSpec));
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
     }
 
     @Override

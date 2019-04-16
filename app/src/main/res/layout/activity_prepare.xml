@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,227 +10,240 @@
     android:orientation="vertical"
     tools:context=".ui.activity.PrepareActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp">
-
-        <TextView
-            android:id="@+id/prefix"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="prefix"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/suffix"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="suffix"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/suffix"
-            android:layout_toEndOf="@+id/prefix"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="a"
-            android:textSize="18sp"
-            tools:ignore="HardcodedText" />
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp">
-
-        <TextView
-            android:id="@+id/prefix1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/prefix"
-            android:textSize="18sp" />
-
-
-        <TextView
-            android:id="@+id/content1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/prefix1"
-            android:drawableRight="@drawable/ic_photo_camera_white_24dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="a"
-            android:textSize="18sp"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/suffix1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/content1"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="suffix"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/prefix2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="prefix"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/content2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="aaaaaaaaaaaa"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/suffix2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:text="suffix"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-
-    <EditText
-        android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:hint="input some thing"
-        tools:ignore="HardcodedText" />
-
-    <home.smart.fly.animations.widget.OverLapLayout
-        android:id="@+id/over_layout_1"
-        android:background="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layoutDirection="rtl">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/cat"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="1dp" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/cat"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="1dp" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/cat"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="1dp" />
-
-    </home.smart.fly.animations.widget.OverLapLayout>
-
-    <home.smart.fly.animations.widget.OverLapLayout
-        android:id="@+id/over_layout_2"
-        android:background="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layoutDirection="ltr">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/cat"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="1dp" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            app:civ_border_color="@color/white"
-            app:civ_border_width="1dp"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/cat" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            app:civ_border_color="@color/white"
-            app:civ_border_width="1dp"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/cat" />
-
-    </home.smart.fly.animations.widget.OverLapLayout>
-
-    <home.smart.fly.animations.widget.OverLapLayout
-        android:id="@+id/over_layout_3"
-        android:background="@color/white"
-        android:layout_marginTop="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" />
+        android:orientation="vertical">
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp">
-
-        <LinearLayout
-            android:id="@+id/shell"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/ic_photo_camera_white_24dp" />
+            android:layout_margin="16dp">
 
             <TextView
-                android:id="@+id/text_view_1"
+                android:id="@+id/prefix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="" />
+                android:text="prefix"
+                android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/suffix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="suffix"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/suffix"
+                android:layout_toEndOf="@+id/prefix"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="a"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:id="@+id/prefix1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prefix"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:id="@+id/content1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/prefix1"
+                android:drawableRight="@drawable/ic_photo_camera_white_24dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="a"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/suffix1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/content1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="suffix"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/prefix2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="prefix"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/content2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="aaaaaaaaaaaa"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/suffix2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="suffix"
+                android:textSize="18sp" />
         </LinearLayout>
 
-        <View
+
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="input some thing"
+            tools:ignore="HardcodedText" />
+
+        <home.smart.fly.animations.widget.OverLapLayout
+            android:id="@+id/over_layout_1"
             android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_alignBottom="@+id/shell"
-            android:background="@drawable/custom_gradient" />
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layoutDirection="rtl">
 
-    </RelativeLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/cat"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img"
-        android:layout_margin="10dp"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/messi" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/cat"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
 
-</LinearLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/cat"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
+
+        </home.smart.fly.animations.widget.OverLapLayout>
+
+        <home.smart.fly.animations.widget.OverLapLayout
+            android:id="@+id/over_layout_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:layoutDirection="ltr">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/cat"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/cat"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/cat"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
+
+        </home.smart.fly.animations.widget.OverLapLayout>
+
+        <home.smart.fly.animations.widget.OverLapLayout
+            android:id="@+id/over_layout_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:orientation="horizontal" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <LinearLayout
+                android:id="@+id/shell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_photo_camera_white_24dp" />
+
+                <TextView
+                    android:id="@+id/text_view_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_alignBottom="@+id/shell"
+                android:background="@drawable/custom_gradient" />
+
+        </RelativeLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/messi" />
+
+        <home.smart.fly.animations.customview.SquareImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            android:src="@drawable/cat" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

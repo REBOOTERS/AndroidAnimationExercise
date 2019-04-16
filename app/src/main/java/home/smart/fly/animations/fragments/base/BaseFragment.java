@@ -71,6 +71,7 @@ public abstract class BaseFragment extends Fragment {
         if (MMKV.defaultMMKV().getBoolean("running",false)) {
             setupSkeleton(recyclerView, mAdapter);
             MMKV.defaultMMKV().putBoolean("running", false);
+
         }
 
 

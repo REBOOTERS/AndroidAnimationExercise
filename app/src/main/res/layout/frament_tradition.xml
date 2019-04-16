@@ -68,6 +68,16 @@
             android:text="prepare"
             android:textColor="@color/white"
             android:visibility="visible"/>
+
+        <Button
+            android:id="@+id/share_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/cpb_blue"
+            android:text="share_id"
+            android:textColor="@color/white"
+            android:visibility="visible"/>
     </LinearLayout>
 
 

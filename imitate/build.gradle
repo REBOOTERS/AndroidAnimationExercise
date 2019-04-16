@@ -62,17 +62,17 @@ kapt {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "androidx.appcompat:appcompat:$ext.support_versioin"
+    implementation "androidx.appcompat:appcompat:$ext.support_versioin_appcompat"
     implementation "androidx.legacy:legacy-support-v4:$ext.support_versioin"
     implementation "androidx.cardview:cardview:$ext.support_versioin"
-    implementation "com.google.android.material:material:$ext.support_versioin"
+    implementation "com.google.android.material:material:$ext.support_versioin_material"
     implementation "androidx.constraintlayout:constraintlayout:$ext.constraint_layout"
     implementation "com.github.bumptech.glide:glide:$ext.glide"
     implementation "androidx.legacy:legacy-support-v4:$ext.support_versioin"
     implementation 'com.xw.repo:bubbleseekbar:3.18'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation "androidx.appcompat:appcompat:$ext.support_versioin_appcompat"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
@@ -80,11 +80,11 @@ dependencies {
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
     implementation 'com.facebook.fresco:fresco:1.11.0'
-    implementation 'com.zhihu.android:matisse:0.5.2-beta2'
+    implementation 'com.zhihu.android:matisse:0.5.2-beta4'
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$ext.leakcanary"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$ext.leakcanary"
     implementation 'net.sourceforge.streamsupport:streamsupport:1.6.3'

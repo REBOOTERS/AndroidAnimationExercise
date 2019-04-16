@@ -35,10 +35,11 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.activity.ShareIdActivity"></activity>
         <activity
             android:name=".ui.activity.AllActivity"
             android:label="@string/title_activity_all"
-            android:theme="@style/MyTheme.NoActionBar"></activity>
+            android:theme="@style/MyTheme.NoActionBar" />
         <activity android:name=".ui.activity.PrepareActivity" />
         <activity
             android:name=".AppStartActivity"
