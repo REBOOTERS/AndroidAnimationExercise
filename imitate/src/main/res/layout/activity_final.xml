@@ -38,7 +38,7 @@
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="match_parent"
-                    android:layout_height="174dp"
+                    android:layout_height="224dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/comic"
                     android:tag="overScroll" />
@@ -53,14 +53,17 @@
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
-
-                <ImageView
-                    android:id="@+id/image1"
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="374dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/timg"
-                    android:visibility="visible" />
+                    android:background="@color/cpb_red"
+                    android:layout_height="30dp"/>
+                
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp" />
+
+
+
             </LinearLayout>
 
 
@@ -105,4 +108,4 @@
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <!--</com.engineer.flex.FlexibleLayout>-->
+  

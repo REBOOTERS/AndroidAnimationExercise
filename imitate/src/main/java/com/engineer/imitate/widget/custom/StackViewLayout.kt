@@ -43,7 +43,7 @@ class StackViewLayout : LinearLayout {
                 val childTop = child.top
                 var start = 0
 
-                Log.e(TAG, "i==$i, layoutDirection==$layoutDirection")
+                Log.e(TAG, "i==$i, layoutDirection==${parent.layoutDirection}")
 
 
 

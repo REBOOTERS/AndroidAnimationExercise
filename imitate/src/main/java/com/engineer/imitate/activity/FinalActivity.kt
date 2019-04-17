@@ -8,7 +8,11 @@ import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.ViewPager
 import com.engineer.imitate.R
 import com.engineer.imitate.adapter.DataAdapter
 import com.engineer.imitate.interfaces.SimpleOnTabSelectedListener
@@ -18,6 +22,7 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_final.*
 import kotlinx.android.synthetic.main.fragment_final.view.*
 
+const val TAG = "Final_Activity"
 class FinalActivity : AppCompatActivity() {
 
     /**
@@ -65,7 +70,7 @@ class FinalActivity : AppCompatActivity() {
         container.adapter = mSectionsPagerAdapter
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
 
-        container.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
+        container.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {
             }
 
@@ -167,38 +172,13 @@ class FinalActivity : AppCompatActivity() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-//        menuInflater.inflate(R.menu.menu_final, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-
-        if (id == R.id.action_100) {
-            image.visibility = View.GONE
-            image1.visibility = View.VISIBLE
-            return true
-        } else if (id == R.id.action_1000) {
-            image1.visibility = View.GONE
-            image.visibility = View.VISIBLE
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
-
-
     /**
      * A [FragmentPagerAdapter] that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    inner class SectionsPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
+    inner class SectionsPagerAdapter(fm: FragmentManager) :  FragmentPagerAdapter(fm) {
 
-        override fun getItem(position: Int): androidx.fragment.app.Fragment {
+        override fun getItem(position: Int): Fragment {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             return PlaceholderFragment.newInstance(position + 1)
@@ -218,7 +198,7 @@ class FinalActivity : AppCompatActivity() {
     /**
      * A placeholder fragment containing a simple view.
      */
-    class PlaceholderFragment : androidx.fragment.app.Fragment() {
+    class PlaceholderFragment :  Fragment() {
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                   savedInstanceState: Bundle?): View? {
@@ -228,7 +208,7 @@ class FinalActivity : AppCompatActivity() {
             val adapter = DataAdapter(type)
             adapter.setSize(20)
             list.adapter = adapter
-            list.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+            list.layoutManager = LinearLayoutManager(context)
             return rootView
         }
 

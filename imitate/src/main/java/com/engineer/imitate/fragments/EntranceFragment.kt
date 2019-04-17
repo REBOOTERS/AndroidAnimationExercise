@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,6 +19,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
 import com.engineer.imitate.activity.*
@@ -92,9 +94,6 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
                     }
         }
 
-        custom_scrolling.setOnClickListener {
-            startActivity(Intent(context, CustomScrollingActivity::class.java))
-        }
 
         bottom_sheet.setOnClickListener {
             val imageView = ImageView(context)
@@ -103,9 +102,12 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
             bottomsheet.showWithSheetView(view)
         }
 
-        pure.setOnClickListener {
-            startActivity(Intent(context, PureActivity::class.java))
+        bottom_sheet_google.setOnClickListener {
+            val sheet = MyBottomSheetFragment()
+            sheet.show(childFragmentManager, EntranceFragment::class.toString())
         }
+
+
 
         final_one.setOnClickListener {
             startActivity(Intent(context, FinalActivity::class.java))
@@ -123,6 +125,15 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
         adapter = MyListAdapter()
         recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 2)
         recyclerView.adapter = adapter
+    }
+
+    class MyBottomSheetFragment : SuperBottomSheetFragment() {
+        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+            super.onCreateView(inflater, container, savedInstanceState)
+            return inflater.inflate(R.layout.my_bottom_sheet_layout, container, false)
+        }
+
+        override fun getStatusBarColor() = Color.RED
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
