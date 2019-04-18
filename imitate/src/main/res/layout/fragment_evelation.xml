@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".fragments.ElevationFragment">
+    tools:context=".ui.fragments.ElevationFragment">
 
 
     <androidx.cardview.widget.CardView
@@ -34,7 +34,7 @@
         app:layout_constraintLeft_toRightOf="@+id/cardView"
         app:layout_constraintStart_toEndOf="@+id/cardView" />
 
-    <com.engineer.imitate.widget.custom.JikeSlideView
+    <com.engineer.imitate.ui.widget.custom.JikeSlideView
         android:id="@+id/slide_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

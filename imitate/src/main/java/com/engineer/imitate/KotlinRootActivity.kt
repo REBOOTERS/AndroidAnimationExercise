@@ -3,12 +3,7 @@ package com.engineer.imitate
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
 import android.view.Menu
@@ -17,7 +12,7 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.fastlist.bind
-import com.engineer.imitate.module.FragmentItem
+import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.util.StreamUtils
 import com.engineer.imitate.util.isNetworkConnected
 import io.reactivex.Observable
@@ -68,6 +63,7 @@ class KotlinRootActivity : AppCompatActivity() {
         recyclerView.visibility = View.VISIBLE
         val list = listOf(
                 FragmentItem("/anim/circleLoading", "circle-loading"),
+                FragmentItem("/anim/recycler_view", "RecyclerView"),
                 FragmentItem("/anim/slide", "slide"),
                 FragmentItem("/anim/layout_manager", "layout_manager"),
                 FragmentItem("/anim/textDrawable", "textDrawable"),

@@ -24,16 +24,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.FinalActivity"
+            android:name=".ui.activity.FinalActivity"
             android:label="@string/title_activity_final"
             android:theme="@style/MyAppTheme" />
 
         <activity
-            android:name=".activity.TestFrameLayout"
+            android:name=".ui.activity.TestFrameLayout"
             android:theme="@style/MyAppTheme">
         </activity>
         <activity
-            android:name=".activity.FakeJikeActivity"
+            android:name=".ui.activity.FakeJikeActivity"
             android:theme="@style/MyAppTheme" />
     </application>
 

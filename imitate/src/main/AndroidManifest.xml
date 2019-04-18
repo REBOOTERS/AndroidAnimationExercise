@@ -11,18 +11,18 @@
             android:label="@string/app_name"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.FakeJikeActivity"
+            android:name="com.engineer.imitate.ui.activity.FakeJikeActivity"
             android:theme="@style/MyAppTheme" />
 
         <activity
-            android:name=".activity.CustomScrollingActivity"
+            android:name="com.engineer.imitate.ui.activity.CustomScrollingActivity"
             android:label="@string/title_activity_custom_scrolling"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.PureActivity"
+            android:name="com.engineer.imitate.ui.activity.PureActivity"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.FinalActivity"
+            android:name="com.engineer.imitate.ui.activity.FinalActivity"
             android:label="@string/title_activity_final"
             android:theme="@style/MyAppTheme" />
 

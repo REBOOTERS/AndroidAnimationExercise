@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cpb_green"
-    tools:context=".fragments.ScrollerFragment">
+    tools:context=".ui.fragments.ScrollerFragment">
 
-    <com.engineer.imitate.widget.custom.CustomScrollView
+    <com.engineer.imitate.ui.widget.custom.CustomScrollView
         android:layout_gravity="center"
         android:background="@color/cpb_blue"
         android:id="@+id/customView"

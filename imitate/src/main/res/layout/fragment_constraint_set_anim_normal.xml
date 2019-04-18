@@ -5,7 +5,7 @@
     android:id="@+id/constraintset"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ConstraintSetAnimFragment">
+    tools:context=".ui.fragments.ConstraintSetAnimFragment">
 
 
 

@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".fragments.LayoutManagerFragment">
+    tools:context=".ui.fragments.LayoutManagerFragment">
 
     <LinearLayout
         android:id="@+id/container_vertical"
@@ -21,7 +21,7 @@
         android:layout_margin="10dp"
         android:orientation="horizontal" />
 
-    <com.engineer.imitate.widget.custom.StackViewLayout
+    <com.engineer.imitate.ui.widget.custom.StackViewLayout
         android:id="@+id/stack_view_layout_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,9 +58,9 @@
             app:civ_border_width="2dp" />
 
 
-    </com.engineer.imitate.widget.custom.StackViewLayout>
+    </com.engineer.imitate.ui.widget.custom.StackViewLayout>
 
-    <com.engineer.imitate.widget.custom.StackViewLayout
+    <com.engineer.imitate.ui.widget.custom.StackViewLayout
         android:id="@+id/stack_view_layout_2"
         android:background="@color/cpb_green"
         android:layout_width="wrap_content"
@@ -95,6 +95,6 @@
             android:src="@drawable/girl"
             app:civ_border_color="#FFF"
             app:civ_border_width="2dp" />
-    </com.engineer.imitate.widget.custom.StackViewLayout>
+    </com.engineer.imitate.ui.widget.custom.StackViewLayout>
 
 </LinearLayout>

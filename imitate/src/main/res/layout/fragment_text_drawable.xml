@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".fragments.TextDrawableFragment">
+    tools:context=".ui.fragments.TextDrawableFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -78,14 +78,14 @@
 
     </RelativeLayout>
 
-    <com.engineer.imitate.widget.custom.RoundImageView
+    <com.engineer.imitate.ui.widget.custom.RoundImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="10dp"
         android:scaleType="fitXY"
         android:src="@drawable/comic" />
 
-    <com.engineer.imitate.widget.custom.CustomScrollView
+    <com.engineer.imitate.ui.widget.custom.CustomScrollView
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal" />
