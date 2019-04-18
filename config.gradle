@@ -9,8 +9,8 @@ ext {
     support_versioin_material = '1.0.0'
     constraint_layout = '1.1.3'
 
-    kotlin_version = '1.3.21'
-    gradle_version = '3.3.2'
+    kotlin_version = '1.3.30'
+    gradle_version = '3.4.0'
 
     leakcanary = '1.6.2'
     leakcanary_nopo = '1.6.1'

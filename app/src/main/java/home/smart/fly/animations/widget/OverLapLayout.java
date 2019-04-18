@@ -1,6 +1,7 @@
 package home.smart.fly.animations.widget;
 
 import android.content.Context;
+
 import androidx.annotation.Nullable;
 
 import android.graphics.Canvas;
@@ -34,26 +35,22 @@ public class OverLapLayout extends LinearLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         Log.e(TAG, "width==" + MeasureSpec.getSize(widthMeasureSpec));
-        Log.e(TAG, "height=" + MeasureSpec.getSize(heightMeasureSpec));
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
+        Log.e(TAG, "mode ==" + MeasureSpec.getMode(widthMeasureSpec));
+        if (getChildCount() == 0) {
+            return;
+        }
+        View view = getChildAt(0);
+        int childW = view.getMeasuredWidth();
+        int childH = view.getMeasuredHeight();
+        int width = childW * getChildCount() - childW / 4 * (getChildCount() - 1);
+        int s = MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST);
+        int t = MeasureSpec.makeMeasureSpec(childH, MeasureSpec.EXACTLY);
+        setMeasuredDimension(s, t);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        Log.e(TAG, "onLayout: l=" + l);
-        Log.e(TAG, "onLayout: t=" + t);
-        Log.e(TAG, "onLayout: r=" + r);
-        Log.e(TAG, "onLayout: b=" + b);
         int count = 0;
         int childCount = getChildCount();
         int left = 0;
@@ -76,12 +73,5 @@ public class OverLapLayout extends LinearLayout {
                 count++;
             }
         }
-        Log.e(TAG, "onLayout: left==" + left);
-
-        Log.e(TAG, "onLayout: width ==" + getMeasuredWidth());
-        Log.e(TAG, "onLayout: height ==" + getMeasuredHeight());
-
-        setMeasuredDimension(getMeasuredWidth() - left, getMeasuredHeight());
-
     }
 }

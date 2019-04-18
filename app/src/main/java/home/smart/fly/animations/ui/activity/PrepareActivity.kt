@@ -38,7 +38,6 @@ class PrepareActivity : AppCompatActivity() {
                 content1.text = result
                 content2.text = result
                 content2.invalidate()
-                text_view_1.text = result
             }
 
         })
@@ -53,29 +52,5 @@ class PrepareActivity : AppCompatActivity() {
             over_layout_3.addView(view)
         }
 
-
-        Glide.with(this).load("http://img.dongqiudi.com//data//personpic//119.png").into(img)
-
-    }
-
-    private fun retry() {
-        val parmas: LinearLayout.LayoutParams = over_layout_1.layoutParams as LinearLayout.LayoutParams
-        Log.e(TAG_1, "params.width==${parmas.width}")
-        Log.e(TAG_1, "params.height==${parmas.height}")
-
-        val width = dp2px(36f) * (3 - 3 / 4)
-        Log.e(TAG_1, "${dp2px(36f)}")
-        val value = 108 * 2.5
-        Log.e(TAG_1, "value=$value")
-        Log.e(TAG_1, "width=${width - value}")
-
-
-        parmas.width = value.toInt()
-
-        over_layout_1.layoutParams = parmas
-        over_layout_2.layoutParams = parmas
-
-        Log.e(TAG_1, "params.width==${parmas.width}")
-        Log.e(TAG_1, "params.height==${parmas.height}")
     }
 }
