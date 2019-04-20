@@ -7,12 +7,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.ArrayMap;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -23,6 +28,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import home.smart.fly.animations.sugar.bean.Item;
 import home.smart.fly.animations.sugar.viewholder.LargeItemHolder;
@@ -72,6 +78,18 @@ public class FileUtilsActivity extends AppCompatActivity {
         mRetry.setOnClickListener(v -> {
             recyclerview();
         });
+
+        ArrayMap<String, String> arrayMap = new ArrayMap<>();
+        arrayMap.put("name", "mike");
+        arrayMap.put("address", "beijing");
+
+        for (String sets : arrayMap.keySet()) {
+            Log.e(TAG, "onCreate: sets=" + sets);
+        }
+
+        for (String values : arrayMap.values()) {
+            Log.e(TAG, "onCreate: values=" + values);
+        }
     }
 
     @Override

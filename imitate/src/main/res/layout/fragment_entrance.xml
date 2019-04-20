@@ -79,18 +79,8 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="fake_jike"
-            android:textColor="@color/white" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/test_frame_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/cpb_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="test_frame_layout"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

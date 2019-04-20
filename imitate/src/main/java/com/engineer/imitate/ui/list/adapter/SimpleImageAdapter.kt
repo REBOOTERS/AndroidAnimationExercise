@@ -10,15 +10,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.engineer.imitate.R
 
-class SlideListAdapter(private var datas: List<String>) : RecyclerView.Adapter<SlideListAdapter.MyHolder>() {
+class SimpleImageAdapter(private var datas: List<String>) : RecyclerView.Adapter<SimpleImageAdapter.MyHolder>() {
 
     private lateinit var mContext: Context
-    private val option = RequestOptions().placeholder(R.drawable.totoro)
+    private var option: RequestOptions = RequestOptions.circleCropTransform()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         mContext = parent.context
         return MyHolder(LayoutInflater.from(mContext)
-                .inflate(R.layout.slide_card_layout, parent, false))
+                .inflate(R.layout.simple_image_item, parent, false))
     }
 
     override fun getItemCount(): Int {

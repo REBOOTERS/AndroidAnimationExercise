@@ -9,6 +9,11 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.fastlist.bind
@@ -31,11 +36,11 @@ class KotlinRootActivity : AppCompatActivity() {
     private val ORIGINAL_URL = "file:///android_asset/index.html"
     private lateinit var hybridHelper: HybridHelper
 
-    private lateinit var transaction: androidx.fragment.app.FragmentTransaction
-    private lateinit var currentFragment: androidx.fragment.app.Fragment
-    private lateinit var mLinearManager: androidx.recyclerview.widget.LinearLayoutManager
-    private lateinit var mGridLayoutManager: androidx.recyclerview.widget.GridLayoutManager
-    private lateinit var mLayoutManager: androidx.recyclerview.widget.RecyclerView.LayoutManager
+    private lateinit var transaction: FragmentTransaction
+    private lateinit var currentFragment: Fragment
+    private lateinit var mLinearManager: LinearLayoutManager
+    private lateinit var mGridLayoutManager: GridLayoutManager
+    private lateinit var mLayoutManager: RecyclerView.LayoutManager
 
 
     private lateinit var disposable: Disposable
@@ -48,8 +53,8 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     private fun loadView() {
-        mLinearManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        mGridLayoutManager = androidx.recyclerview.widget.GridLayoutManager(this, 2)
+        mLinearManager = LinearLayoutManager(this)
+        mGridLayoutManager = GridLayoutManager(this, 2)
         mLayoutManager = mGridLayoutManager
         if (isNetworkConnected()) {
             loadWebView()
@@ -77,7 +82,7 @@ class KotlinRootActivity : AppCompatActivity() {
             desc.text = item.name
             path.text = item.path
             shell.setOnClickListener {
-                val fragment: androidx.fragment.app.Fragment = ARouter.getInstance().build(item.path).navigation(context) as androidx.fragment.app.Fragment
+                val fragment: Fragment = ARouter.getInstance().build(item.path).navigation(context) as Fragment
                 currentFragment = fragment
                 content.visibility = View.VISIBLE
                 index.visibility = View.GONE
@@ -87,8 +92,8 @@ class KotlinRootActivity : AppCompatActivity() {
         }.layoutManager(mLayoutManager)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            recyclerView.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
+            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     Log.e(TAG, "dy==$dy")
                     Log.e(TAG, "是否可以 scroll up==${recyclerView.canScrollVertically(-1)}")
@@ -134,7 +139,7 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     private inner class SimpleClickListener : HybridHelper.OnItemClickListener {
-        override fun onClick(fragment: androidx.fragment.app.Fragment, title: String) {
+        override fun onClick(fragment: Fragment, title: String) {
             runOnUiThread {
                 if (!TextUtils.isEmpty(title)) {
                     setTitle(title)

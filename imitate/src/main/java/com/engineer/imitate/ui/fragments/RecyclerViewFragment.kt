@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 
 import com.engineer.imitate.R
+import com.engineer.imitate.ui.list.adapter.SimpleImageAdapter
 import com.engineer.imitate.ui.list.decoration.OverLapDecoration
-import com.engineer.imitate.ui.list.viewholder.SimpleImageHolder
-import com.zhihu.android.sugaradapter.SugarAdapter
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
 
 @Route(path = "/anim/recycler_view")
@@ -26,8 +25,7 @@ class RecyclerViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val adapter = SugarAdapter.Builder.with(getList())
-                .add(SimpleImageHolder::class.java).build()
+        val adapter = SimpleImageAdapter(getList())
         recyclerView.addItemDecoration(OverLapDecoration(context))
         recyclerView.adapter = adapter
     }

@@ -1,12 +1,9 @@
-
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: "com.dorongold.task-tree"
-
 
 
 def ext = rootProject.ext
@@ -110,8 +107,8 @@ dependencies {
     implementation 'cn.bingoogolapple:bga-refreshlayout:1.1.8@aar'
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
     implementation 'cn.bingoogolapple:bga-adapter:1.1.8@aar'
-    implementation 'com.jakewharton:butterknife:10.0.0'
-    kapt "com.jakewharton:butterknife-compiler:10.0.0"
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    kapt "com.jakewharton:butterknife-compiler:10.1.0"
     testImplementation 'junit:junit:4.12'
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

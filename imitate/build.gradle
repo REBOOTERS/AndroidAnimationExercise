@@ -22,7 +22,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-
         kapt {
             arguments {
                 arg("moduleName", project.getName())
@@ -93,8 +92,4 @@ dependencies {
     implementation 'com.github.andrefrsousa:SuperBottomSheet:1.3.0'
     implementation 'com.flipboard:bottomsheet-core:1.5.3'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
-
-    //
-    implementation 'com.zhihu.android:sugaradapter:1.8.6'
-    kapt 'com.zhihu.android:sugaradapter-processor:1.8.6'
 }

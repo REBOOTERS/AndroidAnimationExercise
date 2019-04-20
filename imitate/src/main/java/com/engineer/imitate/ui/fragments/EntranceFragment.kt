@@ -109,10 +109,6 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
             startActivity(Intent(context, FakeJikeActivity::class.java))
         }
 
-        test_frame_layout.setOnClickListener {
-            startActivity(Intent(context, TestFrameLayout::class.java))
-        }
-
 
 
         adapter = MyListAdapter()
