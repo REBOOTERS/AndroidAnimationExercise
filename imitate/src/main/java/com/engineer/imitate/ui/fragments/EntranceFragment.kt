@@ -105,9 +105,6 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
         final_one.setOnClickListener {
             startActivity(Intent(context, FinalActivity::class.java))
         }
-        fake_jike.setOnClickListener {
-            startActivity(Intent(context, FakeJikeActivity::class.java))
-        }
 
 
 

@@ -79,8 +79,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="fake_jike"
-            android:textColor="@color/white"
-            android:visibility="gone" />
+            android:textColor="@color/white" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

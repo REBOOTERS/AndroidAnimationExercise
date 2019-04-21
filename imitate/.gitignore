@@ -1,2 +1,5 @@
 /build
 /release
+/free
+.apk
+output.json
