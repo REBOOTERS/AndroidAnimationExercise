@@ -78,7 +78,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
-    implementation 'com.facebook.fresco:fresco:1.11.0'
+    implementation 'com.facebook.fresco:fresco:1.13.0'
     implementation 'com.zhihu.android:matisse:0.5.2-beta4'
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.6'

@@ -8,31 +8,12 @@
     android:orientation="vertical"
     tools:context=".ui.fragments.TextDrawableFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:drawableStart="@drawable/ic_add_black_24dp"
-        android:drawablePadding="4dp"
-        android:gravity="center_vertical"
-        android:text="@string/hello_blank_fragment" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:drawableStart="@drawable/ic_add_black_24dp"
-        android:drawablePadding="4dp"
-        android:gravity="center_vertical"
-        android:text="@string/hello_blank_fragment" />
-
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text"
         android:layout_width="132dp"
         android:layout_height="24dp"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:lines="1"
         android:text="111"
         android:textColor="@color/black"
@@ -46,37 +27,8 @@
         android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp" />
+        android:layout_margin="10dp" />
 
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@color/cpb_green">
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxWidth="300dp"
-            android:singleLine="true"
-            android:text="1111111111111123111ddd111w3"
-            android:textColor="@color/colorPrimary"
-            android:textSize="22sp" />
-
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/name"
-            android:singleLine="true"
-            android:text="15:00"
-            android:textColor="@color/cpb_red"
-            android:textSize="22sp" />
-
-    </RelativeLayout>
 
     <com.engineer.imitate.ui.widget.custom.RoundImageView
         android:layout_width="100dp"
@@ -86,7 +38,8 @@
         android:src="@drawable/comic" />
 
     <com.engineer.imitate.ui.widget.custom.CustomScrollView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/cpb_blue" />
 </LinearLayout>

@@ -92,7 +92,7 @@ class CustomScrollView : View {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawCircle(mCenterX, mCenterY, mRadius, mPaint)
+        canvas.drawCircle(mCenterX, mCenterY, mRadius / 2, mPaint)
         canvas.drawText("Drag Me", mCenterX, mCenterY, mTextPaint)
     }
 
@@ -107,20 +107,20 @@ class CustomScrollView : View {
             MotionEvent.ACTION_MOVE -> {
                 val deltaX = x - mLastX
                 val deltaY = y - mLastY
-                mView.scrollBy(0, -deltaY)
+                mView.scrollBy(-deltaX, -deltaY)
             }
             MotionEvent.ACTION_UP -> {
-                mView.scrollTo(0, 0)
+//                mView.scrollTo(0, 0)
             }
         }
-        return true
+        return super.onTouchEvent(event)
     }
 
 
     override fun computeScroll() {
         super.computeScroll()
         if (mScroller.computeScrollOffset()) {
-            mView.scrollBy(mScroller.currX, mScroller.currY)
+            mView.scrollTo(mScroller.currX, mScroller.currY)
             invalidate()
         }
     }

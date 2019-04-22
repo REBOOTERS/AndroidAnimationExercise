@@ -76,7 +76,9 @@ class KotlinRootActivity : AppCompatActivity() {
                 FragmentItem("/anim/fresco", "fresco"),
                 FragmentItem("/anim/entrance", "entrance"),
                 FragmentItem("/anim/constraint", "constraint animation"),
-                FragmentItem("/anim/scroller", "scroller")
+                FragmentItem("/anim/scroller", "scroller"),
+                FragmentItem("/anim/vh_fragment", "vh_fragment"),
+                FragmentItem("/anim/test", "test")
         )
         recyclerView.bind(list, R.layout.view_item) { item: FragmentItem ->
             desc.text = item.name

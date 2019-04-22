@@ -24,7 +24,7 @@ ext {
 }
 
 ext.allDependencies = [
-        'com.facebook.fresco:fresco:1.10.0',
+        'com.facebook.fresco:fresco:1.13.0',
         'com.lzy.widget:view-core:0.2.2',
         'com.github.chrisbanes:PhotoView:2.1.3',
         'com.zhihu.android:matisse:0.5.2-beta2',

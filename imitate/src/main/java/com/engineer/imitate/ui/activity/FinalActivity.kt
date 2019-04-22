@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_final.*
 import kotlinx.android.synthetic.main.fragment_final.view.*
 
 const val TAG = "Final_Activity"
+
 class FinalActivity : AppCompatActivity() {
 
     /**
@@ -176,7 +177,7 @@ class FinalActivity : AppCompatActivity() {
      * A [FragmentPagerAdapter] that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    inner class SectionsPagerAdapter(fm: FragmentManager) :  FragmentPagerAdapter(fm) {
+    inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment {
             // getItem is called to instantiate the fragment for the given page.
@@ -198,7 +199,7 @@ class FinalActivity : AppCompatActivity() {
     /**
      * A placeholder fragment containing a simple view.
      */
-    class PlaceholderFragment :  Fragment() {
+    class PlaceholderFragment : Fragment() {
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                   savedInstanceState: Bundle?): View? {
