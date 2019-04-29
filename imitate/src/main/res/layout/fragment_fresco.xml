@@ -22,6 +22,14 @@
         android:background="@drawable/clip"
         android:scaleType="fitXY" />
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/clip"
+        android:scaleType="fitXY" />
+
     <com.engineer.imitate.ui.widget.ShimmerLayout
         android:id="@+id/shimmer_layout"
         android:layout_width="wrap_content"

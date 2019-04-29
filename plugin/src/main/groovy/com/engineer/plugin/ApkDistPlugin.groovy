@@ -8,6 +8,7 @@ class ApkDistPlugin implements Plugin<Project> {
 
         target.extensions.create('apkconfig', ApkDistExtension)
 
+
         target.afterEvaluate {
 
 

@@ -3,12 +3,12 @@ package com.engineer.imitate
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
@@ -90,6 +90,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 index.visibility = View.GONE
                 transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
+                Log.e(TAG, "transaction===" + transaction.isEmpty)
             }
         }.layoutManager(mLayoutManager)
 
@@ -204,6 +205,10 @@ class KotlinRootActivity : AppCompatActivity() {
         if (!transaction.isEmpty) {
             transaction.remove(currentFragment)
         }
+        Log.e(TAG, "transaction===" + transaction.isEmpty)
+        Log.e(TAG, "transaction===" + supportFragmentManager.fragments.size)
+
+
     }
 
     override fun onDestroy() {

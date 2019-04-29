@@ -17,11 +17,15 @@ import kotlinx.android.synthetic.main.activity_prepare.*
 const val TAG_1 = "PrepareActivity"
 
 class PrepareActivity : AppCompatActivity() {
+    private val url = "http://pic.vjshi.com/2018-04-11/78243894ece50c9b1ad6fa6c211a1bdb/00003.jpg?x-oss-process=style/watermark"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prepare)
+        Glide.with(this).load(url).into(webImage)
 
+        name.maxWidth = 0
+        name1.maxWidth = 20
 
         input.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

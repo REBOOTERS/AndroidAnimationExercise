@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +38,7 @@ import home.smart.fly.animations.utils.AppUtils;
 import home.smart.fly.animations.utils.StatusBarUtil;
 
 public class FileUtilsActivity extends AppCompatActivity {
+
     private static final String TAG = "FileUtilsActivity";
 
     private List<Item> items;

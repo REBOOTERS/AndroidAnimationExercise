@@ -49,3 +49,15 @@ task clean(type: Delete) {
     delete rootDir.toString() + File.separator + "repo"
 }
 
+subprojects { sub ->
+    sub.beforeEvaluate {
+        project
+        println "#### Evaluate before of " + project.path
+    }
+
+    sub.afterEvaluate {
+        project
+        println "#### Evaluate after of " + project.path
+    }
+}
+

@@ -39,6 +39,7 @@ import androidx.appcompat.widget.ThemedSpinnerAdapter;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.FragmentTransaction;
+
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.ui.SuperTools;
@@ -160,6 +161,13 @@ public class AppStartActivity extends AppCompatActivity {
         MMKV.defaultMMKV().putBoolean("running", true);
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        Log.e(TAG, "onWindowFocusChanged: " + mAutoCompleteTextView.getMeasuredHeight());
+        Log.e(TAG, "onWindowFocusChanged: " + mAutoCompleteTextView.getMeasuredWidth());
+    }
+
     private void saveLastSelect(int lastPosition) {
         mPreferences.edit().putInt("pos", lastPosition).apply();
     }
@@ -220,7 +228,6 @@ public class AppStartActivity extends AppCompatActivity {
     }
     // </editor-fold>
 
-
     // <editor-fold defaultstate="collapsed" desc="SpinnerAdapter">
     private static class MyAdapter extends ArrayAdapter<String> implements ThemedSpinnerAdapter {
         private final Helper mDropDownHelper;
@@ -271,7 +278,7 @@ public class AppStartActivity extends AppCompatActivity {
 
     // TODO https://blog.csdn.net/HarryWeasley/article/details/82591320
 
-
+    // <editor-fold defaultstate="collapsed" desc="setupAutoCompleteTextView">
     private void setupAutoCompleteTextView() {
         List<String> activites = new ArrayList<>();
         List<String> activitesAll = new ArrayList<>();
@@ -319,4 +326,5 @@ public class AppStartActivity extends AppCompatActivity {
                 }
         );
     }
+    // </editor-fold>
 }
