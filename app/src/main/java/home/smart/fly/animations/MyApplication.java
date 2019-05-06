@@ -12,6 +12,7 @@ import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.mmkv.MMKV;
 
+import hugo.weaving.DebugLog;
 import jp.wasabeef.takt.Seat;
 import jp.wasabeef.takt.Takt;
 
@@ -21,6 +22,7 @@ import jp.wasabeef.takt.Takt;
 
 public class MyApplication extends MultiDexApplication {
     @Override
+    @DebugLog
     public void onCreate() {
         super.onCreate();
         Stetho.initializeWithDefaults(this);

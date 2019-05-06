@@ -67,12 +67,6 @@ public class Device {
         return manufacturer;
     }
 
-    public String getSerialNumber() {
-        String serial = android.os.Build.SERIAL;
-        TelephonyManager tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-        String SimSerialNumber = tm.getSimSerialNumber();
-        return SimSerialNumber;
-    }
 
     /**
      * Get the OS version.

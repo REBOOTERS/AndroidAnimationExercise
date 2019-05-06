@@ -59,6 +59,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         mButton.setOnClickListener(this);
         findViewById(R.id.save).setOnClickListener(this);
 
+
         setUpWebView();
         loadData();
     }
