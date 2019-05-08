@@ -122,6 +122,8 @@ public class AppStartActivity extends AppCompatActivity {
         print();
 
         setupAutoCompleteTextView();
+
+        reportFullyDrawn();
     }
 
     // <editor-fold defaultstate="collapsed" desc="一些屏幕信息">
