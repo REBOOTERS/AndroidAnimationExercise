@@ -15,9 +15,6 @@ import com.squareup.leakcanary.LeakCanary
 class ImitateApplication:Application() {
     override fun onCreate() {
         super.onCreate()
-
-        ARouter.init(this)
-
         Stetho.initializeWithDefaults(this)
 
         if (LeakCanary.isInAnalyzerProcess(this)) {

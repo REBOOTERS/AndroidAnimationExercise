@@ -1,6 +1,7 @@
 package com.engineer.imitate
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
@@ -50,6 +51,15 @@ class KotlinRootActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin_root)
         setSupportActionBar(toolbar)
         loadView()
+
+        val uri = "https://www.zhihu.com/search?q=%E5%88%A9%E7%89%A9%E6%B5%A6&type=content"
+        val parseUri = Uri.parse(uri)
+
+        Log.e(TAG, "type  :      "+parseUri::class.java.canonicalName)
+        Log.e(TAG, "query:      ${parseUri.query}")
+        Log.e(TAG, "isOpaque:   ${parseUri.isOpaque}")
+
+
     }
 
     private fun loadView() {

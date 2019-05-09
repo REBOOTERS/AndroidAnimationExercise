@@ -46,8 +46,7 @@ public class MyApplication extends MultiDexApplication {
                 .interval(250)
                 .color(Color.RED)
                 .size(14f)
-                .alpha(.5f)
-                .listener(fps -> Log.d("Excellent!", fps + " fps"));
+                .alpha(.5f);
 
         String dir = MMKV.initialize(this);
         Log.e("application", "onCreate: mmkv.dir=="+dir );

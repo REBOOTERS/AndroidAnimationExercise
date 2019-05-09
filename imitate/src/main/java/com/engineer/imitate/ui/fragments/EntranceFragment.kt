@@ -10,16 +10,16 @@ import android.content.pm.ActivityInfo
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
-import com.engineer.imitate.ui.activity.*
+import com.engineer.imitate.ui.activity.FinalActivity
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -104,6 +104,11 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
 
         final_one.setOnClickListener {
             startActivity(Intent(context, FinalActivity::class.java))
+        }
+
+
+        fake_jike.setOnClickListener {
+
         }
 
 

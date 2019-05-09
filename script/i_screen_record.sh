@@ -1,0 +1,1 @@
+adb shell screenrecord /sdcard/$(date +%T).mp4

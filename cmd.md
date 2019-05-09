@@ -1,0 +1,6 @@
+
+- 应用启动时间
+
+```
+adb shell am start -W home.smart.fly.animations/home.smart.fly.animations.AppStartActivity
+```
