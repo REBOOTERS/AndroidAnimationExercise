@@ -40,6 +40,7 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -89,7 +90,6 @@ dependencies {
 //    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
 //    implementation 'com.google.android.material:material:1.0.0-beta01'
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    testImplementation 'junit:junit:4.12'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation "androidx.appcompat:appcompat:$ext.support_versioin_appcompat"
     implementation "com.google.android.material:material:$ext.support_versioin_material"
@@ -124,12 +124,17 @@ dependencies {
     implementation 'net.sourceforge.streamsupport:streamsupport:1.6.3'
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
-    testImplementation 'org.robolectric:robolectric:4.1'
     kapt 'com.zhihu.android:sugaradapter-processor:1.8.6'
     implementation "androidx.palette:palette:$support_versioin"
     implementation 'jp.wasabeef:takt:2.0.0'
     implementation project(':skeleton')
     implementation 'com.tencent:mmkv:1.0.18'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'org.robolectric:robolectric:4.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
 }
 
 ext.allDependencies.each {
