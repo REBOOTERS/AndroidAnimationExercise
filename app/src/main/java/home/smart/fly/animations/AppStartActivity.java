@@ -278,8 +278,6 @@ public class AppStartActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    // TODO https://blog.csdn.net/HarryWeasley/article/details/82591320
-
     // <editor-fold defaultstate="collapsed" desc="setupAutoCompleteTextView">
     private void setupAutoCompleteTextView() {
         List<String> activites = new ArrayList<>();

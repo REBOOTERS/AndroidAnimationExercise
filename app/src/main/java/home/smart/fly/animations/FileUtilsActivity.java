@@ -142,6 +142,11 @@ public class FileUtilsActivity extends AppCompatActivity {
         Log.e(TAG, "viewinfos: statusH=" + StatusBarUtil.getStatusBarHeight(this));
         Log.e(TAG, "viewinfos: screenW=" + displayMetrics.widthPixels);
         Log.e(TAG, "viewinfos: screenH=" + displayMetrics.heightPixels);
+        Log.e(TAG, "viewinfos: density=" + displayMetrics.density);
+        Log.e(TAG, "viewinfos: scaledDensity=" + displayMetrics.scaledDensity);
+        Log.e(TAG, "viewinfos: xdpi=" + displayMetrics.xdpi);
+        Log.e(TAG, "viewinfos: ydpi=" + displayMetrics.ydpi);
+        Log.e(TAG, "viewinfos: densityDpi=" + displayMetrics.densityDpi);
 
         Log.e(TAG, " \n\n");
 
