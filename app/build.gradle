@@ -8,6 +8,10 @@ apply plugin: 'com.jakewharton.hugo'
 
 def ext = rootProject.ext
 
+/**
+ * @link https://mp.weixin.qq.com/s/WDap7bmM6gP7koIjEIwTtQ Gradle更小、更快构建APP的奇淫技巧
+ */
+
 android {
     signingConfigs {
         debug {
@@ -47,6 +51,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            splits.abi.enable = false
+            splits.density.enable = false
+        }
     }
 
     // just for study ,without real meaning
@@ -54,6 +63,10 @@ android {
     productFlavors {
         free {
             versionNameSuffix "-free"
+            resConfigs('en', 'xhdpi')
+            minSdkVersion 21
+            aaptOptions.cruncherEnabled = false
+            ext.alwaysUpdateBuildId = false
         }
 
         charge {

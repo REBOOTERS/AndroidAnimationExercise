@@ -19,6 +19,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
+import com.engineer.imitate.ui.activity.FakeJikeActivity
 import com.engineer.imitate.ui.activity.FinalActivity
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
@@ -108,7 +109,8 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
 
 
         fake_jike.setOnClickListener {
-
+            // just test weather work-thread start activity is ok
+            Thread(Runnable { startActivity(Intent(context, FakeJikeActivity::class.java)) }).start()
         }
 
 
