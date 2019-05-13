@@ -28,7 +28,7 @@
         android:required="true" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".MyApplicDation"
         android:allowBackup="true"
         android:icon="@mipmap/app_start"
         android:label="@string/app_name"

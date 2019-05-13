@@ -1,20 +1,17 @@
 package home.smart.fly.animations;
 
-import android.graphics.Color;
-import androidx.multidex.MultiDexApplication;
 import android.util.Log;
 import android.webkit.WebView;
 
+import androidx.multidex.MultiDexApplication;
+
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.didichuxing.doraemonkit.DoraemonKit;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.mmkv.MMKV;
-
-import hugo.weaving.DebugLog;
-import jp.wasabeef.takt.Seat;
-import jp.wasabeef.takt.Takt;
 
 /**
  * Created by rookie on 2017-03-08.
@@ -22,7 +19,7 @@ import jp.wasabeef.takt.Takt;
 
 public class MyApplication extends MultiDexApplication {
     @Override
-    @DebugLog
+//    @DebugLog
     public void onCreate() {
         super.onCreate();
         Stetho.initializeWithDefaults(this);
@@ -41,12 +38,9 @@ public class MyApplication extends MultiDexApplication {
 
         WebView.setWebContentsDebuggingEnabled(true);
 
-        Takt.stock(this)
-                .seat(Seat.TOP_RIGHT)
-                .interval(250)
-                .color(Color.RED)
-                .size(14f)
-                .alpha(.5f);
+
+
+        DoraemonKit.install(this);
 
         String dir = MMKV.initialize(this);
         Log.e("application", "onCreate: mmkv.dir=="+dir );

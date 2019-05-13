@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: "com.dorongold.task-tree"
-apply plugin: 'com.jakewharton.hugo'
+//apply plugin: 'com.jakewharton.hugo'
 
 def ext = rootProject.ext
 
@@ -139,7 +139,6 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
     kapt 'com.zhihu.android:sugaradapter-processor:1.8.6'
     implementation "androidx.palette:palette:$support_versioin"
-    implementation 'jp.wasabeef:takt:2.0.0'
     implementation project(':skeleton')
     implementation 'com.tencent:mmkv:1.0.18'
 
@@ -147,6 +146,11 @@ dependencies {
     androidTestImplementation 'org.robolectric:robolectric:4.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // https://github.com/didi/DoraemonKit
+
+    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.1.7'
+    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.1.7'
 
 }
 
