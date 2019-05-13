@@ -3,6 +3,7 @@ package com.engineer.imitate.ui.fragments
 
 import android.Manifest
 import android.app.Activity
+import android.app.ExpandableListActivity
 import android.app.WallpaperManager
 import android.content.Context
 import android.content.Intent
@@ -15,6 +16,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
@@ -36,7 +39,7 @@ import java.io.File
  *
  */
 @Route(path = "/anim/entrance")
-class EntranceFragment : androidx.fragment.app.Fragment() {
+class EntranceFragment : Fragment() {
 
 
     private var datas: MutableList<String> = ArrayList()
@@ -113,10 +116,13 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
             Thread(Runnable { startActivity(Intent(context, FakeJikeActivity::class.java)) }).start()
         }
 
+        expandable_listview.setOnClickListener {
+            startActivity(Intent(context, ExpandableListActivity::class.java))
+        }
 
 
         adapter = MyListAdapter()
-        recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 2)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = adapter
     }
 
@@ -164,7 +170,7 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
     }
 
 
-    private inner class MyListAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<MyListAdapter.Holder>() {
+    private inner class MyListAdapter : RecyclerView.Adapter<MyListAdapter.Holder>() {
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -183,7 +189,7 @@ class EntranceFragment : androidx.fragment.app.Fragment() {
 
         private lateinit var context: Context
 
-        private inner class Holder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
+        private inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
             var image: ImageView = view.findViewById(R.id.image);
         }
     }
