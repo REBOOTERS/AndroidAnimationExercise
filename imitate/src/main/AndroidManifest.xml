@@ -16,6 +16,12 @@
             android:label="@string/title_activity_final"
             android:theme="@style/MyAppTheme" />
 
+        <activity
+            android:name=".ui.activity.FakeJikeActivity"
+            android:theme="@style/AppTheme" />
+
+        <activity android:name=".ui.activity.MyExpandableListViewActivity" android:theme="@style/MyAppTheme"/>
+
     </application>
 
 </manifest>

@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.activity.MyExpandableListViewActivity">
+    android:orientation="vertical">
 
-    <ExpandableListView
-        android:id="@+id/expandable_lv"
+    <TextView
+        android:id="@+id/child_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textColor="@color/cpb_red"
+        tools:text="fdfdasfd" />
 
 </LinearLayout>

@@ -11,7 +11,9 @@
         android:icon="@mipmap/kotlin"
         android:label="@string/app_name"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.ExpandableListView"></activity>
+        <activity
+            android:name=".ui.activity.MyExpandableListViewActivity"
+            android:theme="@style/MyAppTheme"/>
         <activity
             android:name=".ui.activity.FakeJikeActivity"
             android:theme="@style/AppTheme" />

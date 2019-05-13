@@ -3,7 +3,6 @@ package com.engineer.imitate.ui.fragments
 
 import android.Manifest
 import android.app.Activity
-import android.app.ExpandableListActivity
 import android.app.WallpaperManager
 import android.content.Context
 import android.content.Intent
@@ -22,6 +21,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
+import com.engineer.imitate.ui.activity.MyExpandableListViewActivity
 import com.engineer.imitate.ui.activity.FakeJikeActivity
 import com.engineer.imitate.ui.activity.FinalActivity
 import com.engineer.imitate.util.Glide4Engine
@@ -117,7 +117,7 @@ class EntranceFragment : Fragment() {
         }
 
         expandable_listview.setOnClickListener {
-            startActivity(Intent(context, ExpandableListActivity::class.java))
+            startActivity(Intent(context, MyExpandableListViewActivity::class.java))
         }
 
 
