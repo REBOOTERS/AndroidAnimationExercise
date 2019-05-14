@@ -95,4 +95,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.viewpager:viewpager:1.0.0'
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
 }
