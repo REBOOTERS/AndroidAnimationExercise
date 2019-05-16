@@ -41,7 +41,7 @@ class ApkDistPlugin implements Plugin<Project> {
 
                     outputFileName = "animation-${variant.versionName}-${releaseTime}-${variant.name}.apk"
                     nameMap(outputFileName)
-                    variant.getPackageApplication().outputDirectory = new File(destDir, variant.name)
+//                    variant.getPackageApplication().outputDirectory = new File(destDir, variant.name)
                 }
             }
             println "===================================plugin===============end=================="
