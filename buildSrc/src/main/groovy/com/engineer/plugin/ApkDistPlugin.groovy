@@ -26,21 +26,24 @@ class ApkDistPlugin implements Plugin<Project> {
             Closure nameMap = target['apkconfig'].nameMap
             String destDir = target['apkconfig'].destDir
 
+//            target.android.applicationVariants.all { variant ->
+//                variant.outputs.all {
+//                    nameMap(outputFileName)
+//                    variant.getPackageApplication().outputDirectory = new File(destDir, variant.name)
+//                }
+//            }
+
+            def releaseTime = new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("GMT+08:00"))
+
             target.android.applicationVariants.all { variant ->
+                println("variant=== ${variant.name} ${variant.versionName}")
                 variant.outputs.all {
+
+                    outputFileName = "animation-${variant.versionName}-${releaseTime}-${variant.name}.apk"
                     nameMap(outputFileName)
                     variant.getPackageApplication().outputDirectory = new File(destDir, variant.name)
                 }
             }
-
-//            def releaseTime = new Date().format("yyyy-MM-dd HH:mm",TimeZone.getTimeZone("GMT+08:00"))
-//
-//            target.android.applicationVariants.all { variant ->
-//                println("variant===\n${variant.name} ${variant.versionName}")
-//                variant.outputs.all {
-//                    outputFileName = "animation-${defaultConfig.versionName}-${releaseTime}-${variant.name}.apk"
-//                }
-//            }
             println "===================================plugin===============end=================="
 
         }

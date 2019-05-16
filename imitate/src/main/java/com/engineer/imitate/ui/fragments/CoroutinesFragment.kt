@@ -10,9 +10,8 @@ import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 
 import com.engineer.imitate.R
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlin.coroutines.EmptyCoroutineContext
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,13 +33,29 @@ class CoroutinesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        GlobalScope.launch( EmptyCoroutineContext, CoroutineStart.DEFAULT) {
+            delay(1000)
+        }
+
+
+
         GlobalScope.launch {
+
             delay(1000)
             Log.e("coroutine", " World!")
         }
         Log.e("coroutine", " Hello!")
 
         Thread.sleep(2000)
+    }
+
+
+    fun coroutines() = runBlocking(EmptyCoroutineContext) {
+        GlobalScope.launch(EmptyCoroutineContext,CoroutineStart.DEFAULT) {
+            delay(1000)
+            Log.e("coroutine","finish")
+        }
     }
 
 

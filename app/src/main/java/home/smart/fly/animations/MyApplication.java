@@ -13,13 +13,15 @@ import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.mmkv.MMKV;
 
+import hugo.weaving.DebugLog;
+
 /**
  * Created by rookie on 2017-03-08.
  */
 
 public class MyApplication extends MultiDexApplication {
     @Override
-//    @DebugLog
+    @DebugLog
     public void onCreate() {
         super.onCreate();
         Stetho.initializeWithDefaults(this);

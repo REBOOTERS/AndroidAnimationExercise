@@ -5,6 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: "com.dorongold.task-tree"
 //apply plugin: 'com.jakewharton.hugo'
+apply plugin: 'android-aspectjx'
 
 def ext = rootProject.ext
 
@@ -71,6 +72,10 @@ android {
 
         charge {
             versionNameSuffix "-charge"
+            resConfigs('en', 'xhdpi')
+            minSdkVersion 21
+            aaptOptions.cruncherEnabled = false
+            ext.alwaysUpdateBuildId = false
         }
     }
 
@@ -147,6 +152,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    implementation 'com.jakewharton.hugo:hugo-runtime:1.2.1'
+
     // https://github.com/didi/DoraemonKit
 
     debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.1.7'
@@ -163,7 +170,7 @@ repositories {
     mavenCentral()
 }
 
-//apply plugin: ApkDistPlugin
-//apply from:file("../gradle/custom_plugin.gradle")
+apply plugin: ApkDistPlugin
+apply from:file("../gradle/custom_plugin.gradle")
 //apply from: file("../gradle/android_godeye.gradle")
 
