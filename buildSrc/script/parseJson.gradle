@@ -3,6 +3,8 @@ import groovy.json.JsonSlurper
 
 afterEvaluate {
     println("try to parse json with gradle ==========>")
+    println("\n")
+
     def json = new File(projectDir, "demo.json")
     def srcDir = new File(project.buildDir, 'plugin')
     println("json===$json")
@@ -16,4 +18,7 @@ afterEvaluate {
     for(site in sites.site){
         println("site==$site")
     }
+
+    println("\n")
+    println("parse json with gradle end <==========")
 }
