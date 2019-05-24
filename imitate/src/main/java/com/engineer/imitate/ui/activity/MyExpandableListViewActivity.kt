@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.ExpandableListView.OnGroupCollapseListener
-import android.widget.ExpandableListView.OnGroupExpandListener
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
@@ -32,12 +31,12 @@ class MyExpandableListViewActivity : AppCompatActivity() {
         //给ExpandableListAdapter设置适配器---自定义适配器需要继承BaseExpandableListAdapter()实现其中的方法
         val myExpandableListAdapter = MyExpandableListAdapter()
 
-        expandable_lv.setIndicatorBounds(10, 10)
-        expandable_lv.setChildDivider(getDrawable(R.drawable.line))
+//        expandable_lv.setIndicatorBounds(10, 10)
+//        expandable_lv.setChildDivider(getDrawable(R.drawable.line))
         //设置适配器
         expandable_lv.setAdapter(myExpandableListAdapter)
         //去掉group默认的箭头
-        expandable_lv.setGroupIndicator(null)
+//        expandable_lv.setGroupIndicator(null)
         //设置组可拉伸的监听器,拉伸时会调用其中的onGroupExpand()方法
         expandable_lv.setOnGroupExpandListener {
             /**
@@ -46,10 +45,10 @@ class MyExpandableListViewActivity : AppCompatActivity() {
             /**
              * 实现打开只能打开一个组的功能,打开一个组,已将打开的组会自动收缩
              */
-            if (it !== lastGroupPosition) {
-                expandable_lv.collapseGroup(lastGroupPosition)
-            }
-            lastGroupPosition = it
+//            if (it !== lastGroupPosition) {
+//                expandable_lv.collapseGroup(lastGroupPosition)
+//            }
+//            lastGroupPosition = it
         }
         //设置组收缩的监听器,收缩时会调用其中的onGroupCollapse()方法
         expandable_lv.setOnGroupCollapseListener(OnGroupCollapseListener { })
@@ -111,8 +110,9 @@ class MyExpandableListViewActivity : AppCompatActivity() {
          */
         override fun getGroupView(groupPosition: Int, isExpanded: Boolean,
                                   convertView: View?, parent: ViewGroup): View? {
+
             val inflater = LayoutInflater.from(mContext)
-            val view = inflater.inflate(R.layout.expandable_group_item, null)
+            val view = inflater.inflate(R.layout.expandable_group_item, parent, false)
             val group_text = view.findViewById(R.id.group_text) as TextView
             group_text.text = groupData[groupPosition]
             return view
@@ -124,7 +124,7 @@ class MyExpandableListViewActivity : AppCompatActivity() {
         override fun getChildView(groupPosition: Int, childPosition: Int,
                                   isLastChild: Boolean, convertView: View?, parent: ViewGroup): View? {
             val inflater = LayoutInflater.from(mContext)
-            val view = inflater.inflate(R.layout.expandable_childe_item, null)
+            val view = inflater.inflate(R.layout.expandable_childe_item, parent, false)
             val child_text = view.findViewById(R.id.child_text) as TextView
             child_text.text = childData[groupPosition][childPosition]
             return view
@@ -132,6 +132,14 @@ class MyExpandableListViewActivity : AppCompatActivity() {
 
         override fun isChildSelectable(groupPosition: Int, childPosition: Int): Boolean {
             return false
+        }
+
+        inner class GroupViewHolder {
+            private lateinit var group_text: TextView
+        }
+
+        inner class ChildViewHolder {
+            private lateinit var child_text: TextView
         }
 
     }
