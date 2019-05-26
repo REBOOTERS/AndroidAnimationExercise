@@ -10,7 +10,12 @@ import android.widget.ExpandableListView.OnGroupCollapseListener
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
+import com.zhy.view.flowlayout.FlowLayout
+import com.zhy.view.flowlayout.TagAdapter
+import com.zhy.view.flowlayout.TagFlowLayout
 import kotlinx.android.synthetic.main.activity_expandable_list_view.*
+import kotlinx.android.synthetic.main.expandable_childe_item.*
+import java.io.File
 
 
 class MyExpandableListViewActivity : AppCompatActivity() {
@@ -52,6 +57,10 @@ class MyExpandableListViewActivity : AppCompatActivity() {
         }
         //设置组收缩的监听器,收缩时会调用其中的onGroupCollapse()方法
         expandable_lv.setOnGroupCollapseListener(OnGroupCollapseListener { })
+
+//        expandable_lv.setSelectedChild(1, 0, true)
+        expandable_lv.expandGroup(1)
+
     }
 
 
@@ -67,7 +76,7 @@ class MyExpandableListViewActivity : AppCompatActivity() {
          * 得到每个组的元素的数量
          */
         override fun getChildrenCount(groupPosition: Int): Int {
-            return childData[groupPosition].size
+            return 1
         }
 
         /**
@@ -123,10 +132,26 @@ class MyExpandableListViewActivity : AppCompatActivity() {
          */
         override fun getChildView(groupPosition: Int, childPosition: Int,
                                   isLastChild: Boolean, convertView: View?, parent: ViewGroup): View? {
-            val inflater = LayoutInflater.from(mContext)
-            val view = inflater.inflate(R.layout.expandable_childe_item, parent, false)
-            val child_text = view.findViewById(R.id.child_text) as TextView
-            child_text.text = childData[groupPosition][childPosition]
+            var view = convertView
+            var holder: ChildViewHolder?
+            if (view == null) {
+                holder = ChildViewHolder()
+                val inflater = LayoutInflater.from(mContext)
+                view = inflater.inflate(R.layout.expandable_childe_item, parent, false)
+                holder.flow = view.findViewById(R.id.id_flowlayout) as TagFlowLayout
+                view.tag = holder
+            } else {
+                holder = view.tag as ChildViewHolder
+            }
+            val datas = childData[groupPosition].toList()
+            holder.flow.adapter = object : TagAdapter<String>(datas) {
+                override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
+                    val textView = TextView(parent?.context)
+                    textView.text = t
+                    return textView
+                }
+
+            }
             return view
         }
 
@@ -139,7 +164,7 @@ class MyExpandableListViewActivity : AppCompatActivity() {
         }
 
         inner class ChildViewHolder {
-            private lateinit var child_text: TextView
+            lateinit var flow: TagFlowLayout
         }
 
     }

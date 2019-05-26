@@ -24,3 +24,4 @@ fun Context.dp2px(dp: Float): Float {
     val scale = resources.displayMetrics.density
     return dp * scale
 }
+

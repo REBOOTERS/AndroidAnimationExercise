@@ -5,12 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/child_text"
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/id_flowlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textColor="@color/cpb_red"
-        tools:text="fdfdasfd" />
+        android:padding="20dp"
+        tools:max_select="1" />
 
 </LinearLayout>

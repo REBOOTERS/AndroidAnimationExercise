@@ -21,6 +21,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+import androidx.appcompat.widget.ThemedSpinnerAdapter;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -32,14 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
-import androidx.appcompat.widget.ThemedSpinnerAdapter;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.FragmentTransaction;
-
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.ui.SuperTools;
@@ -47,6 +47,8 @@ import home.smart.fly.animations.ui.activity.AllActivity;
 import home.smart.fly.animations.utils.AppUtils;
 import home.smart.fly.animations.utils.PaletteUtils;
 import home.smart.fly.animations.utils.StatusBarUtil;
+import io.reactivex.Observable;
+import io.reactivex.functions.Function;
 
 
 public class AppStartActivity extends AppCompatActivity {
