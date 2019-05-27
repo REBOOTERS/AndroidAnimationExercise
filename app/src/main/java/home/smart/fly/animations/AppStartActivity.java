@@ -47,8 +47,6 @@ import home.smart.fly.animations.ui.activity.AllActivity;
 import home.smart.fly.animations.utils.AppUtils;
 import home.smart.fly.animations.utils.PaletteUtils;
 import home.smart.fly.animations.utils.StatusBarUtil;
-import io.reactivex.Observable;
-import io.reactivex.functions.Function;
 
 
 public class AppStartActivity extends AppCompatActivity {
