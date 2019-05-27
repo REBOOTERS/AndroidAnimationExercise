@@ -2,6 +2,8 @@ package com.engineer.imitate.ui.activity
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Layout
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,20 +16,23 @@ import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
 import kotlinx.android.synthetic.main.activity_expandable_list_view.*
-import kotlinx.android.synthetic.main.expandable_childe_item.*
-import java.io.File
-
 
 class MyExpandableListViewActivity : AppCompatActivity() {
 
     private lateinit var mContext: Context
 
     private var lastGroupPosition = -1
-    private val groupData = arrayOf("同事", "老师", "朋友")
+    private val groupData = arrayOf("同事", "老师", "朋友", "同事", "老师", "朋友", "同事", "老师", "朋友")
     private val childData = arrayOf(
-            arrayOf("小小", "小明", "饭饭", "流浪"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师"),
-            arrayOf("雯雯", "哔哔", "嘻嘻"))
+            arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
+            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
+            arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
+            arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
+            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
+            arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
+            arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
+            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
+            arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,12 +151,17 @@ class MyExpandableListViewActivity : AppCompatActivity() {
             val datas = childData[groupPosition].toList()
             holder.flow.adapter = object : TagAdapter<String>(datas) {
                 override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
-                    val textView = TextView(parent?.context)
+                    val view = LayoutInflater.from(parent?.context).inflate(R.layout.simple_tv, parent, false)
+                    val textView = view.findViewById<TextView>(R.id.text)
                     textView.text = t
                     return textView
                 }
-
             }
+            holder.flow.setMaxSelectCount(1)
+            holder.flow.setOnSelectListener {
+                Log.e("flow", "it==$it")
+            }
+
             return view
         }
 

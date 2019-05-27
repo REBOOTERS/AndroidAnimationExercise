@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.engineer.imitate.R
 import com.engineer.imitate.util.dp2px
 
 
@@ -25,9 +26,7 @@ class LargeImageAdapter(private var datas: List<String>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         mContext = parent.context
         val view = LayoutInflater.from(mContext)
-                .inflate(com.engineer.imitate.R.layout.large_image_item, parent, false)
-
-        dp2dx(parent.context, 22)
+                .inflate(R.layout.large_image_item, parent, false)
 
         return MyHolder(view)
     }
@@ -37,9 +36,11 @@ class LargeImageAdapter(private var datas: List<String>) :
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        Glide.with(mContext).load(datas[position])
-                .apply(option)
-                .into(holder.imageView)
+//        Glide.with(mContext).load(datas[position])
+//                .apply(option)
+//                .into(holder.imageView)
+
+        Glide.with(mContext).load(R.drawable.star).into(holder.imageView)
         holder.tv.text = "$position"
     }
 
