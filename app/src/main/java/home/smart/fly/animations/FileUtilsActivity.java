@@ -226,8 +226,6 @@ public class FileUtilsActivity extends AppCompatActivity {
 
         mSugarAdapter.notifyDataSetChanged();
 
-
-        String link = "https://www.baidu.com?{baidu=232}&{fdkfjk}"
     }
     //</editor-fold>
 
