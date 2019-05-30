@@ -97,6 +97,8 @@ class FinalActivity : AppCompatActivity() {
 
 
 
+
+
         appbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             override fun onOffsetChanged(p0: AppBarLayout, p1: Int) {
                 Log.e("TAG", "p1==$p1")
