@@ -21,6 +21,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
+import com.engineer.imitate.ui.activity.DateAndTimePickerActivity
 import com.engineer.imitate.ui.activity.MyExpandableListViewActivity
 import com.engineer.imitate.ui.activity.FakeJikeActivity
 import com.engineer.imitate.ui.activity.FinalActivity
@@ -118,6 +119,10 @@ class EntranceFragment : Fragment() {
 
         expandable_listview.setOnClickListener {
             startActivity(Intent(context, MyExpandableListViewActivity::class.java))
+        }
+
+        date_and_time_picker.setOnClickListener {
+            startActivity(Intent(context,DateAndTimePickerActivity::class.java))
         }
 
 

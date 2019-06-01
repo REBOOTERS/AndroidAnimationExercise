@@ -282,11 +282,14 @@ public class WheelViewActivity extends AppCompatActivity {
     }
 
     public void Init() {
+
+
+
+
         new Thread(new Runnable() {
 
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 System.out.println(System.currentTimeMillis());
                 if (item1 != null && item2 != null && item3 != null) {
                     handler.sendEmptyMessage(0x123);

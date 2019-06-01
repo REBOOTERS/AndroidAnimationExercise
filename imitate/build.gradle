@@ -96,6 +96,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.viewpager:viewpager:1.0.0'
     implementation 'com.hyman:flowlayout-lib:1.1.2'
+    implementation 'com.contrarywind:Android-PickerView:4.1.8'
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
 }

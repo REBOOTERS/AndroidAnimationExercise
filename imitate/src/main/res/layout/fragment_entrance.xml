@@ -92,6 +92,17 @@
             android:text="expandable_listview"
             android:textColor="@color/white" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/date_and_time_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/cpb_blue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="date_and_time_picker"
+            android:textColor="@color/white" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

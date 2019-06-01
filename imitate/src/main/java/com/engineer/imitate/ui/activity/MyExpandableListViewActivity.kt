@@ -2,7 +2,6 @@ package com.engineer.imitate.ui.activity
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,22 +11,30 @@ import android.widget.ExpandableListView.OnGroupCollapseListener
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
+import com.engineer.imitate.util.toastShort
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
 import kotlinx.android.synthetic.main.activity_expandable_list_view.*
+import kotlin.random.Random
 
 class MyExpandableListViewActivity : AppCompatActivity() {
 
     private lateinit var mContext: Context
 
     private var lastGroupPosition = -1
-    private val groupData = arrayOf("同事", "老师", "朋友", "同事", "老师", "朋友", "同事", "老师", "朋友")
+    private val groupData = arrayOf("同事", "老师", "朋友", "同事", "老师",
+            "朋友", "同事", "老师", "朋友", "老师", "朋友", "同事", "老师", "朋友")
     private val childData = arrayOf(
             arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
             arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
             arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
             arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
+            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
+            arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
+            arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
+            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
+            arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
             arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
             arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
             arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
@@ -64,8 +71,12 @@ class MyExpandableListViewActivity : AppCompatActivity() {
         expandable_lv.setOnGroupCollapseListener(OnGroupCollapseListener { })
 
 //        expandable_lv.setSelectedChild(1, 0, true)
-        expandable_lv.expandGroup(1)
 
+//        expandable_lv.smoothScrollToPosition(12)
+        val pos: Int = (Random.nextFloat() * groupData.size).toInt()
+        expandable_lv.setSelection(pos)
+        expandable_lv.expandGroup(pos)
+        toastShort("expand group $pos")
     }
 
 
