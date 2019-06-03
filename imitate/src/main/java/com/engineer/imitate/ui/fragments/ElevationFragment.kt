@@ -11,6 +11,7 @@ import androidx.core.app.NotificationManagerCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.interfaces.SimpleProgressChangeListener
@@ -24,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_evelation.*
  *
  */
 @Route(path = "/anim/elevation")
-class ElevationFragment : androidx.fragment.app.Fragment() {
+class ElevationFragment : Fragment() {
 
     private var mDeltaX = 0.0f
     private var mDeltaY = 0.0f
@@ -92,6 +93,24 @@ class ElevationFragment : androidx.fragment.app.Fragment() {
                     e.printStackTrace()
                 }
             }
+        }
+
+        open_system_share.setOnClickListener {
+            val shareIntent = ShareCompat.IntentBuilder.from(activity)
+                    .setText("share content")
+                    .setType("text/plain")
+                    .createChooserIntent()
+                    .apply {
+                        // https://android-developers.googleblog.com/2012/02/share-with-intents.html
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            // If we're on Lollipop, we can open the intent as a document
+                            addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                        } else {
+                            // Else, we will use the old CLEAR_WHEN_TASK_RESET flag
+                            addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET)
+                        }
+                    }
+            startActivity(shareIntent)
         }
 
     }

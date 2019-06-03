@@ -29,6 +29,8 @@ import java8.util.Optional
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
 import kotlinx.android.synthetic.main.content_kotlin_root.*
 import kotlinx.android.synthetic.main.view_item.view.*
+import org.json.JSONArray
+import org.json.JSONObject
 
 @Route(path = Routes.INDEX)
 class KotlinRootActivity : AppCompatActivity() {
@@ -55,11 +57,21 @@ class KotlinRootActivity : AppCompatActivity() {
         val uri = "https://www.zhihu.com/search?q=%E5%88%A9%E7%89%A9%E6%B5%A6&type=content"
         val parseUri = Uri.parse(uri)
 
-        Log.e(TAG, "type  :      "+parseUri::class.java.canonicalName)
+        Log.e(TAG, "type  :      " + parseUri::class.java.canonicalName)
         Log.e(TAG, "query:      ${parseUri.query}")
         Log.e(TAG, "isOpaque:   ${parseUri.isOpaque}")
 
+        jsonTest()
+    }
 
+    private fun jsonTest() {
+        val jsonArray = JSONArray()
+        for (i in 0..3) {
+            val jsonObj = JSONObject()
+            jsonObj.put("name","name_$i")
+            jsonArray.put(jsonObj)
+        }
+        Log.e(TAG, "result ==$jsonArray")
     }
 
     private fun loadView() {
@@ -73,10 +85,8 @@ class KotlinRootActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadRecyclerView() {
-        hybrid.visibility = View.GONE
-        recyclerView.visibility = View.VISIBLE
-        val list = listOf(
+    fun initList(): List<FragmentItem> {
+        return listOf(
                 FragmentItem("/anim/circleLoading", "circle-loading"),
                 FragmentItem("/anim/coroutines", "coroutines"),
                 FragmentItem("/anim/recycler_view", "RecyclerView"),
@@ -91,6 +101,12 @@ class KotlinRootActivity : AppCompatActivity() {
                 FragmentItem("/anim/vh_fragment", "vh_fragment"),
                 FragmentItem("/anim/test", "test")
         )
+    }
+
+    private fun loadRecyclerView() {
+        hybrid.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
+        val list = initList()
         recyclerView.bind(list, R.layout.view_item) { item: FragmentItem ->
             desc.text = item.name
             path.text = item.path

@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_layout_manager.*
  *
  */
 @Route(path = "/anim/layout_manager")
-class LayoutManagerFragment : androidx.fragment.app.Fragment() {
+class LayoutManagerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

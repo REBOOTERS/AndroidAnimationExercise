@@ -38,8 +38,8 @@
         android:id="@+id/slide_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.xw.repo.BubbleSeekBar
@@ -104,7 +104,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@drawable/ripple_background"
         android:gravity="center"
         android:padding="10dp"
         android:text="button"
@@ -117,7 +116,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@drawable/ripple_background"
+        android:foreground="@drawable/ripple_background"
         android:gravity="center"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
@@ -153,5 +152,13 @@
         android:text="打开推送设置"
         app:layout_constraintLeft_toLeftOf="@+id/label"
         app:layout_constraintTop_toBottomOf="@+id/label" />
+
+    <Button
+        android:id="@+id/open_system_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="打开系统分享"
+        app:layout_constraintLeft_toLeftOf="@+id/label"
+        app:layout_constraintTop_toBottomOf="@+id/open_push_setting" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

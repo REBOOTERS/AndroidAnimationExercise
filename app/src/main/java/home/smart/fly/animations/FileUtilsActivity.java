@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -46,6 +47,7 @@ public class FileUtilsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Context mContext;
     private FloatingActionButton mRetry;
+    private String mNull;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,9 @@ public class FileUtilsActivity extends AppCompatActivity {
 
         for (String values : arrayMap.values()) {
             Log.e(TAG, "onCreate: values=" + values);
+        }
+        if (!TextUtils.isEmpty("3")) {
+
         }
     }
 
