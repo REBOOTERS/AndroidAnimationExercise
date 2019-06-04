@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+
+def ext = rootProject.ext
+android {
+    compileSdkVersion ext.compileSdkVersion
+
+
+    defaultConfig {
+        minSdkVersion ext.minSdkVersion
+        targetSdkVersion ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation "androidx.room:room-runtime:$ext.roomVersion"
+    implementation "androidx.room:room-rxjava2:$ext.roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$ext.roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$ext.roomVersion"
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$ext.archLifecycleVersion"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$ext.archLifecycleVersion"
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+}
