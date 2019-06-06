@@ -103,6 +103,20 @@
 
         </LinearLayout>
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="max length 10"
+            android:maxLength="10" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="max length 14"
+            android:maxLength="14" />
+
 
     </LinearLayout>
 </ScrollView>

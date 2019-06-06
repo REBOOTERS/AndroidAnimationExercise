@@ -45,8 +45,9 @@ public class ActivityRepository {
         Observable.create(new ObservableOnSubscribe<Object>() {
             @Override
             public void subscribe(ObservableEmitter<Object> emitter) {
-                Log.e("room", "subscribe: insert actModel " + actModel.toString());
+                Log.e("room", "subscribe: insert actModel begin" + actModel.toString());
                 mActivityDao.insert(actModel);
+                emitter.onComplete();
             }
         })
                 .subscribeOn(Schedulers.io())

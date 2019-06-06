@@ -28,7 +28,7 @@
         android:required="true" />
 
     <application
-        android:name=".MyApplicDation"
+        android:name="home.smart.fly.animations.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/app_start"
         android:label="@string/app_name"
