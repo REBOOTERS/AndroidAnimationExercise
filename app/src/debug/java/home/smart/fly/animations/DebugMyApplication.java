@@ -20,6 +20,9 @@ import java.util.concurrent.TimeUnit;
 
 import home.smart.fly.animations.interfaces.ActivityLifecycleSimpleCallbacks;
 import home.smart.fly.animations.ui.activity.InputActivity;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -86,6 +89,16 @@ public class DebugMyApplication extends MyApplication {
         actModel.setOnActivityCreateCount(1);
         repository.insert(actModel);
 
+        Observable<ActModel> result = repository.getActivityByName(name);
+
+        result.subscribeOn(Schedulers.io()).subscribe(actModel1 -> {
+            if (actModel1 != null) {
+                Log.e("room", "accept: result==" + actModel1.toString());
+            } else {
+                Log.e("room", "aaaa");
+            }
+        });
+
 
         String TAG = "ActLifecycleCallbacks";
 
@@ -136,28 +149,38 @@ public class DebugMyApplication extends MyApplication {
     }
 
     ActModel tem;
+
     private void saveLifeCycleData(Activity activity, ActivityRepository repository, Lifecycle.Event event) {
+        Log.e("room", "a ");
+
         String name = activity.getClass().getCanonicalName();
+
 
         Disposable d = repository.getActivityByName(name)
                 .subscribeOn(Schedulers.io())
                 .map(model -> {
                     tem = model;
                     if (model == null) {
+                        Log.e("room", "b ");
+
                         ActModel temp = new ActModel();
                         temp.setName(name);
                         return temp;
                     } else {
+                        Log.e("room", "c ");
+
                         return model;
                     }
                 })
                 .map(actModel -> {
+                    Log.e("room", "A ");
                     int count;
                     tem = actModel;
                     switch (event) {
                         case ON_CREATE:
                             count = actModel.getOnActivityCreateCount();
                             actModel.setOnActivityCreateCount(++count);
+                            Log.e("room", "B ");
                             break;
                         case ON_START:
                             count = actModel.getOnActivityStartedCount();
@@ -184,10 +207,13 @@ public class DebugMyApplication extends MyApplication {
                             actModel.setOnActivitySaveInstanceStateCount(++count);
 
                     }
+                    Log.e("room", "return model : " + actModel.toString());
                     return actModel;
                 })
-                .subscribe(actModel ->
-                                repository.insert(actModel),
+                .subscribe(actModel -> {
+                            Log.e("room", "start insert : " + actModel.toString());
+                            repository.insert(actModel);
+                        },
                         throwable -> {
                             Log.e("room", "wrong with " + throwable.getMessage());
                             throwable.printStackTrace();

@@ -32,11 +32,11 @@ public class ActivityRepository {
         mActivityDao = database.mActivityDao();
     }
 
-    public Flowable<ActModel> getActivityByName(String name) {
+    public Observable<ActModel> getActivityByName(String name) {
         return mActivityDao.getActivityByName(name);
     }
 
-    public Flowable<List<ActModel>> getAll() {
+    public Observable<List<ActModel>> getAll() {
         return mActivityDao.getAllActivities();
     }
 
