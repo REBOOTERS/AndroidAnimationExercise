@@ -9,6 +9,7 @@ import com.engineer.dateview.model.ActModel;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
 /**
@@ -25,5 +26,5 @@ public interface ActivityDao {
     void insert(ActModel actModel);
 
     @Query("select * from activity_table where class_name ==:name")
-    Observable<ActModel> getActivityByName(String name);
+    ActModel getActivityByName(String name);
 }

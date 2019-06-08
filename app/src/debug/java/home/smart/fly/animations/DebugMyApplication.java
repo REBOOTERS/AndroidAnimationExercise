@@ -28,6 +28,8 @@ import home.smart.fly.animations.ui.activity.InputActivity;
 import home.smart.fly.animations.utils.AppUtils;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -90,22 +92,6 @@ public class DebugMyApplication extends MyApplication {
 
         repository = new ActivityRepository(this);
 
-        if (!MMKV.defaultMMKV().getBoolean("hasInsertd", false)) {
-            try {
-                PackageInfo info = getPackageManager().getPackageInfo(AppUtils.getPackageName(this),
-                        PackageManager.GET_ACTIVITIES);
-                for (ActivityInfo activity : info.activities) {
-                    String name = activity.name;
-                    ActModel actModel = new ActModel();
-                    actModel.setName(name);
-                    repository.insert(actModel);
-                }
-                MMKV.defaultMMKV().putBoolean("hasInsertd", true);
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-
         mMyActivityLifecycleCallbacks = new MyActivityLifecycleCallbacks();
         unregisterActivityLifecycleCallbacks(mMyActivityLifecycleCallbacks);
         registerActivityLifecycleCallbacks(mMyActivityLifecycleCallbacks);
@@ -113,34 +99,30 @@ public class DebugMyApplication extends MyApplication {
 
 
     private void saveLifeCycleData(Activity activity, ActivityRepository repository, Lifecycle.Event event) {
-        Log.e("room", "a ");
 
         String name = activity.getClass().getCanonicalName();
+        Log.e("room", "name ==" + name);
+        Log.e("room", "event ==" + event.name());
 
+        Disposable d = Observable.create((ObservableOnSubscribe<ActModel>) emitter -> {
+            ActModel actModel = repository.getActivityByName(name);
+            if (actModel == null) {
+                actModel = new ActModel();
+                actModel.setName(name);
+            }
 
-        Disposable d = repository.getActivityByName(name)
+            emitter.onNext(actModel);
+            emitter.onComplete();
+
+        })
+
                 .subscribeOn(Schedulers.io())
-                .map(model -> {
-                    if (model == null) {
-                        Log.e("room", "b ");
-
-                        ActModel temp = new ActModel();
-                        temp.setName(name);
-                        return temp;
-                    } else {
-                        Log.e("room", "c ");
-
-                        return model;
-                    }
-                })
                 .map(actModel -> {
-                    Log.e("room", "A ");
                     int count;
                     switch (event) {
                         case ON_CREATE:
                             count = actModel.getOnActivityCreateCount();
                             actModel.setOnActivityCreateCount(++count);
-                            Log.e("room", "B ");
                             return actModel;
                         case ON_START:
                             count = actModel.getOnActivityStartedCount();

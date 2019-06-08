@@ -10,6 +10,7 @@ import com.engineer.dateview.model.ActModel;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
 /**
@@ -26,7 +27,7 @@ public class ActivityRepository {
         mActivityDao = database.mActivityDao();
     }
 
-    public Observable<ActModel> getActivityByName(String name) {
+    public ActModel getActivityByName(String name) {
         return mActivityDao.getActivityByName(name);
     }
 
