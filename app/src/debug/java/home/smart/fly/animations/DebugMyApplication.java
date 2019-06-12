@@ -89,7 +89,6 @@ public class DebugMyApplication extends MyApplication {
     @Override
     public void logLifeCycleCallBacks() {
 
-
         repository = new ActivityRepository(this);
 
         mMyActivityLifecycleCallbacks = new MyActivityLifecycleCallbacks();

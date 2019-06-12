@@ -49,7 +49,7 @@ class MyExpandableListViewActivity : AppCompatActivity() {
         val myExpandableListAdapter = MyExpandableListAdapter()
 
 //        expandable_lv.setIndicatorBounds(10, 10)
-//        expandable_lv.setChildDivider(getDrawable(R.drawable.line))
+        expandable_lv.setChildDivider(getDrawable(R.drawable.line))
         //设置适配器
         expandable_lv.setAdapter(myExpandableListAdapter)
         //去掉group默认的箭头
