@@ -1,6 +1,7 @@
 package com.engineer.imitate
 
 import android.app.Application
+import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.stetho.Stetho
@@ -12,7 +13,8 @@ import com.squareup.leakcanary.LeakCanary
  * @date: 2018-08-21 19:14
  * @version V1.0
  */
-class ImitateApplication:Application() {
+class ImitateApplication : Application() {
+    private var view: View? = null
     override fun onCreate() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
@@ -29,5 +31,16 @@ class ImitateApplication:Application() {
 
         ARouter.init(this)
         Fresco.initialize(this)
+
+        kotlinTest()
+    }
+
+    private fun kotlinTest() {
+
+        if (view != null) {
+            println("result ==" + view.hashCode())
+        } else {
+            println("result is null")
+        }
     }
 }

@@ -48,8 +48,8 @@ class MyExpandableListViewActivity : AppCompatActivity() {
         //给ExpandableListAdapter设置适配器---自定义适配器需要继承BaseExpandableListAdapter()实现其中的方法
         val myExpandableListAdapter = MyExpandableListAdapter()
 
-//        expandable_lv.setIndicatorBounds(10, 10)
-        expandable_lv.setChildDivider(getDrawable(R.drawable.line))
+//        expandable_lv.divider = getDrawable(R.drawable.line)
+//        expandable_lv.setChildDivider(getDrawable(R.drawable.line))
         //设置适配器
         expandable_lv.setAdapter(myExpandableListAdapter)
         //去掉group默认的箭头

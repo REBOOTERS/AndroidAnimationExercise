@@ -9,6 +9,10 @@
     <ExpandableListView
         android:id="@+id/expandable_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:childDivider="@drawable/line"
+        android:divider="@drawable/line"
+        android:indicatorStart="100dp"
+        android:indicatorLeft="100dp" />
 
 </LinearLayout>
