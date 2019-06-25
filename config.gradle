@@ -22,7 +22,7 @@ ext {
     rxjava = '2.2.2'
     rxandroid = '2.1.0'
 
-    roomVersion = '2.1.0-beta01'
+    roomVersion = '2.1.0'
     archLifecycleVersion = '2.0.0'
 }
 

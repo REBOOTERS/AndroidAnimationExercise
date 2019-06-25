@@ -63,7 +63,7 @@ android {
     flavorDimensions "default"
     productFlavors {
         free {
-            versionNameSuffix "-free"
+            versionNameSuffix "_free"
             resConfigs('en', 'xhdpi')
             minSdkVersion 21
             aaptOptions.cruncherEnabled = false
@@ -71,7 +71,7 @@ android {
         }
 
         charge {
-            versionNameSuffix "-charge"
+            versionNameSuffix "_charge"
             resConfigs('en', 'xhdpi')
             minSdkVersion 21
             aaptOptions.cruncherEnabled = false
