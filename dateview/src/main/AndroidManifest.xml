@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.engineer.dateview">
 
-    <application></application>
+    <application>
+        <activity android:name=".ui.DataViewActivity"></activity>
+    </application>
 
 </manifest>

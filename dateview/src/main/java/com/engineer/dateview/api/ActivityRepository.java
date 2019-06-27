@@ -1,33 +1,33 @@
-package com.engineer.dateview;
+package com.engineer.dateview.api;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.engineer.dateview.api.ActivityRoomDatabase;
 import com.engineer.dateview.dao.ActivityDao;
 import com.engineer.dateview.model.ActModel;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
 /**
- * @author: zhuyongging
- * @since: 2019-06-04
+ * Created on 2019/6/27.
+ *
+ * @author rookie
  */
 public class ActivityRepository {
-
     private ActivityDao mActivityDao;
     private LiveData<ActModel> mActModelLiveData;
 
-    public ActivityRepository(Application application) {
+    ActivityRepository(Application application) {
         ActivityRoomDatabase database = ActivityRoomDatabase.getInstance(application);
         mActivityDao = database.mActivityDao();
     }
 
-    public ActModel getActivityByName(String name) {
+    ActModel getActivityByName(String name) {
         return mActivityDao.getActivityByName(name);
     }
 

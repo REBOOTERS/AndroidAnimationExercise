@@ -32,6 +32,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.engineer.dateview.api.DataView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.tencent.mmkv.MMKV;
@@ -225,6 +226,8 @@ public class AppStartActivity extends AppCompatActivity {
         } else if (id == R.id.action_all) {
             startActivity(new Intent(mContext, AllActivity.class));
             return true;
+        } else if (id == R.id.data_view_chart) {
+            DataView.show(this);
         }
         return super.onOptionsItemSelected(item);
     }

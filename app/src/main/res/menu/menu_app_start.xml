@@ -8,6 +8,12 @@
         android:icon="@drawable/ic_card_24dp"
         android:title="@string/catch_null"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/data_view_chart"
+        android:icon="@drawable/ic_show_chart_black_24dp"
+        android:title="@string/data_view_chart"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

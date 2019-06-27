@@ -1,6 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-buildscript {
+buildscript { 
+    ext.kotlin_version = '1.3.31'
+
     apply from: file('config.gradle')
     repositories {
         maven {
@@ -14,7 +16,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "com.android.tools.build:gradle:${gradle_version}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.alibaba:arouter-register:$arouter_register"
 //        classpath "com.engineer.plugin:phoenix:1.0.7"
@@ -22,6 +24,7 @@ buildscript {
 //        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
         classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'
     }
+
 
 
 }
@@ -77,4 +80,3 @@ subprojects { sub ->
         println "#### Evaluate after of " + project.path
     }
 }
-
