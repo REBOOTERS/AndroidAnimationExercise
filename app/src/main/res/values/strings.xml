@@ -310,6 +310,7 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="file_util">文件操作</string>
     <string name="catch_null">catch null</string>
+    <string name="all_activity">所有 Activity</string>
     <string name="data_view_chart">Activity 启动记录</string>
     <string name="title_activity_pull_to_scale">PullToScaleActivity</string>
     <string name="title_activity_palette">PaletteActivity</string>
