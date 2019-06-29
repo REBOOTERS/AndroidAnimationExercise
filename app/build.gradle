@@ -123,7 +123,6 @@ dependencies {
     implementation 'cn.bingoogolapple:bga-adapter:1.1.8@aar'
     implementation 'com.jakewharton:butterknife:10.1.0'
     kapt "com.jakewharton:butterknife-compiler:10.1.0"
-    testImplementation 'junit:junit:4.12'
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.dynamicanimation:dynamicanimation:$support_versioin"
@@ -132,19 +131,15 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$ext.leakcanary"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$ext.leakcanary_nopo"
     debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:$ext.leakcanary"
-    if (!imitate_isApp.toBoolean()) {
-        implementation project(':imitate')
-    }
     implementation 'net.sourceforge.streamsupport:streamsupport:1.6.3'
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
     kapt 'com.zhihu.android:sugaradapter-processor:1.8.6'
     implementation "androidx.palette:palette:$support_versioin"
-    implementation project(':skeleton')
     implementation 'com.tencent:mmkv:1.0.18'
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'org.robolectric:robolectric:4.2.1'
+    androidTestImplementation 'org.robolectric:robolectric:4.3'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
@@ -154,7 +149,13 @@ dependencies {
 
     debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.1.7'
     releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.1.7'
+
+
+    if (!imitate_isApp.toBoolean()) {
+        implementation project(':imitate')
+    }
     implementation project(path: ':dateview')
+    implementation project(path: ':skeleton')
 
 }
 
@@ -167,7 +168,7 @@ repositories {
     mavenCentral()
 }
 
-apply plugin: ApkDistPlugin
-apply from:file("../gradle/custom_plugin.gradle")
-//apply from: file("../gradle/android_godeye.gradle")
+
+// 自定义插件的一些测试，如果无法运行，可以暂时注释掉
+apply from: file("../gradle/custom_plugin.gradle")
 

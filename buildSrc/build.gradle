@@ -6,7 +6,6 @@ dependencies {
     // groovy sdk
     implementation gradleApi()
     implementation localGroovy()
-
 }
 
 

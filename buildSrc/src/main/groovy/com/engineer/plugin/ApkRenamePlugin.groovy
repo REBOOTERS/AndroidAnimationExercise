@@ -1,18 +1,22 @@
+package com.engineer.plugin
+
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class ApkDistPlugin implements Plugin<Project> {
+class ApkRenamePlugin implements Plugin<Project> {
+
 
     @Override
     void apply(Project target) {
 
-        target.extensions.create('apkconfig', ApkDistExtension)
+        target.extensions.create(config_alias, ApkDistExtension)
 
 
         target.afterEvaluate {
 
-
-            println "===================================plugin===============begin=================="
+            println()
+            println "===================================ApkRenamePlugin===============begin=================="
+            println()
 
             if (!target.android) {
                 throw new IllegalStateException('Must apply \'com.android.application\' or \'com.android.library\' first!')
@@ -23,20 +27,13 @@ class ApkDistPlugin implements Plugin<Project> {
                 return
             }
 
-            Closure nameMap = target['apkconfig'].nameMap
-            String destDir = target['apkconfig'].destDir
-
-//            target.android.applicationVariants.all { variant ->
-//                variant.outputs.all {
-//                    nameMap(outputFileName)
-//                    variant.getPackageApplication().outputDirectory = new File(destDir, variant.name)
-//                }
-//            }
+            Closure nameMap = target[config_alias].nameMap
+            String destDir = target[config_alias].destDir
 
             def releaseTime = new Date().format("yyyy_MM_dd_HH_mm", TimeZone.getTimeZone("GMT+08:00"))
 
             target.android.applicationVariants.all { variant ->
-                println("variant=== ${variant.name} ${variant.versionName}")
+                println("variant: ${variant.name} ${variant.versionName}")
                 variant.outputs.all {
 
                     outputFileName = "animation_${variant.versionName}_${releaseTime}_${variant.name}.apk"
@@ -44,10 +41,15 @@ class ApkDistPlugin implements Plugin<Project> {
 //                    variant.getPackageApplication().outputDirectory = new File(destDir, variant.name)
                 }
             }
-            println "===================================plugin===============end=================="
+            println()
+            println "===================================ApkRenamePlugin===============end=================="
+            println()
 
         }
 
 
     }
+
+
+    def config_alias = 'apkconfig'
 }

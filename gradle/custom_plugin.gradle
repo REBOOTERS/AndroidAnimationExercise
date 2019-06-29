@@ -1,4 +1,7 @@
-def releaseTime() {
+apply plugin: com.engineer.plugin.ApkRenamePlugin
+
+
+static def releaseTime() {
     return new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("GMT+08:00"))
 }
 
@@ -27,13 +30,13 @@ def getGitBranch() {
 //apply plugin: ApkDistPlugin
 
 apkconfig {
-    println "apk dist   into: " + rootDir.toString() + File.separator + apkDir
-    println "git commit info: " + getGitCommit()
-    println "git branch info: " + getGitBranch()
+    println "apk dist    into: " + rootDir.toString() + File.separator + apkDir
+    println "git commit  info: " + getGitCommit()
+    println "git branch  info: " + getGitBranch()
     println "releaseTime info: " + releaseTime()
 
     nameMap { name ->
-        println '应用名称:' + name
+        println '应用名称: ' + name
         return name
     }
     destDir apkDir  // 定义在  gradle.properties 中
