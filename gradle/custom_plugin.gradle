@@ -1,7 +1,7 @@
 apply plugin: com.engineer.plugin.ApkRenamePlugin
 
 
-static def releaseTime() {
+def releaseTime() {
     return new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("GMT+08:00"))
 }
 

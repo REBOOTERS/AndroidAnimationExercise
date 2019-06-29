@@ -33,7 +33,7 @@ class ApkRenamePlugin implements Plugin<Project> {
             def releaseTime = new Date().format("yyyy_MM_dd_HH_mm", TimeZone.getTimeZone("GMT+08:00"))
 
             target.android.applicationVariants.all { variant ->
-                println("variant: ${variant.name} ${variant.versionName}")
+                println("variant: ${variant.name} ${variant.versionName} ${releaseTime}")
                 variant.outputs.all {
 
                     outputFileName = "animation_${variant.versionName}_${releaseTime}_${variant.name}.apk"

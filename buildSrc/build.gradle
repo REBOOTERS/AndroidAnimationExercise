@@ -26,3 +26,4 @@ uploadArchives {
 }
 
 apply from: file("script/parseJson.gradle")
+//apply from: file("script/calculate_apk_size.kts")

@@ -78,13 +78,6 @@ android {
         }
     }
 
-//    android.applicationVariants.all { variant ->
-//        println("variant===${variant.name} ${variant.versionName}\n")
-//        variant.outputs.all {
-//            outputFileName = "animation-${defaultConfig.versionName}-${releaseTime()}-${variant.name}.apk"
-//        }
-//    }
-
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
@@ -171,4 +164,5 @@ repositories {
 
 // 自定义插件的一些测试，如果无法运行，可以暂时注释掉
 apply from: file("../gradle/custom_plugin.gradle")
+apply from: file("../gradle/calculate_apk_size.gradle")
 
