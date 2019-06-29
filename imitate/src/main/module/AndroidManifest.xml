@@ -12,8 +12,11 @@
         android:label="@string/app_name"
         android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".ui.activity.DateAndTimePickerActivity"></activity>
+        <activity
+            android:name=".ui.activity.ScreenRecorderActivity"
+            android:label="@string/title_activity_screen_recoder"
+            android:theme="@style/MyAppTheme.NoActionBar"></activity>
+        <activity android:name=".ui.activity.DateAndTimePickerActivity" />
         <activity
             android:name=".ui.activity.MyExpandableListViewActivity"
             android:theme="@style/MyAppTheme" />

@@ -21,10 +21,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
-import com.engineer.imitate.ui.activity.DateAndTimePickerActivity
-import com.engineer.imitate.ui.activity.MyExpandableListViewActivity
-import com.engineer.imitate.ui.activity.FakeJikeActivity
-import com.engineer.imitate.ui.activity.FinalActivity
+import com.engineer.imitate.ui.activity.*
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -122,7 +119,11 @@ class EntranceFragment : Fragment() {
         }
 
         date_and_time_picker.setOnClickListener {
-            startActivity(Intent(context,DateAndTimePickerActivity::class.java))
+            startActivity(Intent(context, DateAndTimePickerActivity::class.java))
+        }
+
+        screen_recorder.setOnClickListener {
+            startActivity(Intent(context, ScreenRecorderActivity::class.java))
         }
 
 

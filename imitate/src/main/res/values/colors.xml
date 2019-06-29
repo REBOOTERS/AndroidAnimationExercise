@@ -52,4 +52,6 @@
     <color name="bgColor_overlay">#60000000</color>
     <color name="shimmer_color">#a2878787</color>
     <color name="shimmer_background_color">#b1b1b1</color>
+
+    <color name="md_blue">#2196F3</color>
 </resources>
