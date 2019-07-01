@@ -8,12 +8,25 @@
     android:layout_height="match_parent"
     android:background="@color/chartreuse"
     android:orientation="vertical"
+    android:id="@+id/nested_scrollview"
     tools:context=".ui.activity.PrepareActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/scroll_to"
+            android:layout_width="match_parent"
+            android:text="scroll_to"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/scroll_by"
+            android:layout_width="match_parent"
+            android:text="scroll_by"
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/webImage"
@@ -279,6 +292,12 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:src="@drawable/name"
+            android:layout_height="800dp" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

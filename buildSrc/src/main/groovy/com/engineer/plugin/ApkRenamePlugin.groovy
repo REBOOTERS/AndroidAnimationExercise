@@ -9,6 +9,7 @@ class ApkRenamePlugin implements Plugin<Project> {
     @Override
     void apply(Project target) {
 
+
         target.extensions.create(config_alias, ApkDistExtension)
 
 

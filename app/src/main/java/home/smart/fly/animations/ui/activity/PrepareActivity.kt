@@ -56,5 +56,13 @@ class PrepareActivity : AppCompatActivity() {
             over_layout_3.addView(view)
         }
 
+        scroll_to.setOnClickListener {
+            nested_scrollview.scrollTo(0,600)
+        }
+
+        scroll_by.setOnClickListener {
+            nested_scrollview.scrollBy(0,300)
+        }
+
     }
 }
