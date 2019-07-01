@@ -38,11 +38,14 @@ import com.google.android.material.snackbar.Snackbar;
 import com.tencent.mmkv.MMKV;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
+import home.smart.fly.animations.internal.NormalStatus;
+import home.smart.fly.animations.internal.Single;
 import home.smart.fly.animations.ui.SuperTools;
 import home.smart.fly.animations.ui.activity.AllActivity;
 import home.smart.fly.animations.utils.AppUtils;
@@ -125,6 +128,26 @@ public class AppStartActivity extends AppCompatActivity {
         setupAutoCompleteTextView();
 
         reportFullyDrawn();
+
+        howEnumWork();
+
+        System.out.println("enum " + Single.INSTANCE.getValue());
+        System.out.println("enum " + Single.INSTANCE.hashCode());
+    }
+
+    /**
+     * 枚举是如何工作的
+     */
+    private void howEnumWork() {
+        System.out.println("enum " + NormalStatus.SUCCESS.name());
+        System.out.println("enum " + Arrays.toString(NormalStatus.values()));
+        System.out.println("enum " + NormalStatus.getStats(1));
+        System.out.println("enum " + NormalStatus.getStats(0));
+        System.out.println("enum " + NormalStatus.getStats(-1));
+
+        System.out.println("enum " + NormalStatus.getValue(NormalStatus.SUCCESS));
+        System.out.println("enum " + NormalStatus.getValue(NormalStatus.LOADING));
+        System.out.println("enum " + NormalStatus.getValue(NormalStatus.FAIL));
     }
 
     // <editor-fold defaultstate="collapsed" desc="一些屏幕信息">

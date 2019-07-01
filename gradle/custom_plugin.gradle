@@ -36,7 +36,7 @@ apkconfig {
     println "releaseTime info: " + releaseTime()
 
     nameMap { name ->
-        println '应用名称: ' + name
+        println '应用名称 rename to : ' + name
         return name
     }
     destDir apkDir  // 定义在  gradle.properties 中
