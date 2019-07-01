@@ -1,4 +1,4 @@
-apply plugin: com.engineer.plugin.ApkRenamePlugin
+apply plugin: com.engineer.plugin.PhoenixPlugin
 
 
 def releaseTime() {
@@ -29,15 +29,22 @@ def getGitBranch() {
 
 //apply plugin: ApkDistPlugin
 
-apkconfig {
-    println "apk dist    into: " + rootDir.toString() + File.separator + apkDir
-    println "git commit  info: " + getGitCommit()
-    println "git branch  info: " + getGitBranch()
-    println "releaseTime info: " + releaseTime()
+phoenix {
+    rename {
+        println "apk dist    into: " + rootDir.toString() + File.separator + apkDir
+        println "git commit  info: " + getGitCommit()
+        println "git branch  info: " + getGitBranch()
+        println "releaseTime info: " + releaseTime()
 
-    nameMap { name ->
-        println '应用名称 rename to : ' + name
-        return name
+//        prefix = "test"
+        withTime true
+        withVariantName true
+        withVariantVersion true
+        onlyDebug false
+
+        result { name ->
+            println '应用名称 rename to : ' + name
+            return name
+        }
     }
-    destDir apkDir  // 定义在  gradle.properties 中
 }
