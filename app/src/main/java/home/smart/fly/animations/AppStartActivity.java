@@ -73,7 +73,7 @@ public class AppStartActivity extends AppCompatActivity {
         mPreferences = getSharedPreferences("fragment_pos", MODE_PRIVATE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         mAppBarLayout = findViewById(R.id.appbar);
         mAutoCompleteTextView = findViewById(R.id.auto_complete_text);
