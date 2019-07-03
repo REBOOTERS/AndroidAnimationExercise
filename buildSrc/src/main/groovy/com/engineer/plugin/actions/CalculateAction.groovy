@@ -10,7 +10,6 @@ class CalculateAction {
     static Logger logger
 
     static test(Project project) {
-        println("test action")
         def tasks = project.tasks
         logger = project.getLogger()
 

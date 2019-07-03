@@ -27,7 +27,11 @@ android {
                 arg("moduleName", project.getName())
             }
         }
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
