@@ -5,10 +5,6 @@ afterEvaluate {
     if (project.path == ":buildSrc") {
         parseJson()
     }
-//    tasks.forEach { task ->
-//        println("task :" + task.name)
-//    }
-
 }
 
 def parseJson() {

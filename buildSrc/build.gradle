@@ -47,4 +47,3 @@ compileTestKotlin {
         jvmTarget = "1.8"
     }
 }
-//apply from: file("script/calculate_apk_size.kts")
