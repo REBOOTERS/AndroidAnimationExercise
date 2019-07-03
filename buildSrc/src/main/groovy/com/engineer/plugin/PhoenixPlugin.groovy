@@ -1,5 +1,6 @@
 package com.engineer.plugin
 
+import com.engineer.plugin.actions.CalculateAction
 import com.engineer.plugin.actions.RenameAction
 import com.engineer.plugin.extensions.PhoenixExtension
 import org.gradle.api.Plugin
@@ -9,27 +10,31 @@ class PhoenixPlugin implements Plugin<Project> {
 
 
     @Override
-    void apply(Project target) {
+    void apply(Project project) {
 
-        target.extensions.create('phoenix', PhoenixExtension.class,target.objects)
+        project.extensions.create('phoenix', PhoenixExtension.class,project.objects)
 
 
-        target.afterEvaluate {
+        project.afterEvaluate {
 
             println()
             println "===================================PhoenixPlugin===============begin=================="
             println()
 
-            if (!target.android) {
+            if (!project.android) {
                 throw new IllegalStateException('Must apply \'com.android.application\' or \'com.android.library\' first!')
             }
 
-            RenameAction.doRenameAction(target)
+            RenameAction.doRenameAction(project)
 
             println()
             println "===================================PhoenixPlugin===============end=================="
             println()
 
+        }
+
+        project.gradle.buildFinished {
+            CalculateAction.test(project)
         }
 
     }
