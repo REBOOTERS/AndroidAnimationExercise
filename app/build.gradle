@@ -39,9 +39,9 @@ android {
         //65536
         multiDexEnabled true
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
