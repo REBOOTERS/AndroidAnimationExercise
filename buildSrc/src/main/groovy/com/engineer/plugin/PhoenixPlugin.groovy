@@ -3,6 +3,7 @@ package com.engineer.plugin
 import com.engineer.plugin.actions.CalculateAction
 import com.engineer.plugin.actions.RenameAction
 import com.engineer.plugin.extensions.PhoenixExtension
+import com.engineer.plugin.actions.TaskTimeAction
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -36,6 +37,8 @@ class PhoenixPlugin implements Plugin<Project> {
         project.gradle.buildFinished {
             CalculateAction.test(project)
         }
+
+        TaskTimeAction.apply(project)
 
     }
 
