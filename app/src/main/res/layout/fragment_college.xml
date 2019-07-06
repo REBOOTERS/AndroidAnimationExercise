@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<androidx.core.widget.NestedScrollView
-    android:id="@+id/nestedScrollView"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    
+    android:id="@+id/nestedScrollView"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -15,18 +14,19 @@
         android:orientation="vertical">
 
         <ImageView
-            android:visibility="gone"
-            android:scaleType="fitXY"
+            android:id="@+id/jump"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/a6"/>
+            android:scaleType="fitXY"
+            android:src="@drawable/a6"
+            android:visibility="gone" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
 

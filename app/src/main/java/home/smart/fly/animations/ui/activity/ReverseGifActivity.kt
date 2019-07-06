@@ -41,7 +41,7 @@ class ReverseGifActivity : AppCompatActivity() {
         val permissions = RxPermissions(this)
         permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .subscribe {
-                    Matisse.from(this@ReverseGifActivity)
+                    Matisse.from(this)
                             .choose(MimeType.of(MimeType.GIF))
                             .countable(false)
                             .capture(false)

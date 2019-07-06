@@ -33,6 +33,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
 
 import java.util.ArrayList;
 import java.util.List;

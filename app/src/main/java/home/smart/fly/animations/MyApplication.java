@@ -1,8 +1,10 @@
 package home.smart.fly.animations;
 
+import android.app.Application;
 import android.util.Log;
 import android.webkit.WebView;
 
+import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -19,11 +21,12 @@ import hugo.weaving.DebugLog;
  * Created by rookie on 2017-03-08.
  */
 
-public class MyApplication extends MultiDexApplication {
+public class MyApplication extends Application {
     @Override
     @DebugLog
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(this);
         Stetho.initializeWithDefaults(this);
 
         if (!LeakCanary.isInAnalyzerProcess(this)) {
@@ -50,7 +53,8 @@ public class MyApplication extends MultiDexApplication {
         logLifeCycleCallBacks();
     }
 
-    protected  void logLifeCycleCallBacks() {}
+    protected void logLifeCycleCallBacks() {
+    }
 
 
     protected RefWatcher installLeakCanary() {
