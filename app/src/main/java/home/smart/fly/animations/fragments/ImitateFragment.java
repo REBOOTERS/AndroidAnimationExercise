@@ -21,6 +21,7 @@ import home.smart.fly.animations.ui.activity.MySwipeMenuActivity;
 import home.smart.fly.animations.ui.activity.PhotoBrowse;
 import home.smart.fly.animations.ui.activity.PolygonViewActivity;
 import home.smart.fly.animations.ui.activity.PullRecyclerViewActivity;
+import home.smart.fly.animations.ui.activity.ReverseGifActivity;
 import home.smart.fly.animations.ui.activity.SwipeFinishActivity;
 import home.smart.fly.animations.ui.activity.ViewsActivity;
 import home.smart.fly.animations.ui.activity.jianshu.FakeJianShuActivity;
@@ -33,6 +34,7 @@ public class ImitateFragment extends BaseFragment {
     @Override
     public void InitView() {
         demos.add(new ItemInfo(R.string.fake_football, FakeFootballActivity.class));
+        demos.add(new ItemInfo(R.string.reverse_gif, ReverseGifActivity.class));
         demos.add(new ItemInfo(R.string.app_name, ViewsActivity.class));
         demos.add(new ItemInfo(R.string.loader, LoaderActivity.class));
         demos.add(new ItemInfo(R.string.lottie_anim, LottieAnimationViewActivity.class));

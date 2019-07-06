@@ -1,7 +1,7 @@
 package home.smart.fly.animations.internal;
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie.
  * @since 07-01-2019
  */
 public enum Single {

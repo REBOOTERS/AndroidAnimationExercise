@@ -12,8 +12,6 @@ import org.gradle.api.tasks.TaskState
 class TaskTimeAction {
     //用来记录 task 的执行时长等信息
     static Map<String, TaskDetail> taskTimeMap = new HashMap<>()
-    //用来按顺序记录执行的 task 名称
-    static List<String> taskList = new ArrayList<>()
 
 
     static apply(Project project) {
@@ -25,7 +23,6 @@ class TaskTimeAction {
                 detail.name = task.path
                 println("task name " + task.path)
                 taskTimeMap.put(task.path, detail)
-//                taskList.add(task.getPath())
             }
 
             @Override
@@ -43,7 +40,7 @@ class TaskTimeAction {
                 taskTimeMap.keySet().forEach { name ->
                     def cost_time = taskTimeMap.get(name).total
 
-                    def info = String.format("task %-80s spend %d ms", name, cost_time)
+                    def info = String.format("task %-70s spend %d ms", name, cost_time)
                     project.logger.log(LogLevel.ERROR, info)
                 }
             }

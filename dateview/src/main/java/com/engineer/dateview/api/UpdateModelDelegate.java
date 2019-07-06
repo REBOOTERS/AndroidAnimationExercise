@@ -18,22 +18,22 @@ import io.reactivex.schedulers.Schedulers;
  * @author rookie
  */
 public class UpdateModelDelegate {
-    
+
     private static ActivityRepository mActivityRepository;
 
     static void injectRepository(ActivityRepository activityRepository) {
         mActivityRepository = activityRepository;
     }
 
-    public static void saveLifeCycleData(Activity activity,  Lifecycle.Event event) {
+    public static void saveLifeCycleData(Activity activity, Lifecycle.Event event) {
 
         if (mActivityRepository == null) {
             throw new RuntimeException("please call init first");
         }
 
         String name = activity.getClass().getCanonicalName();
-        Log.e("room", "name ==" + name);
-        Log.e("room", "event ==" + event.name());
+//        Log.e("room", "name ==" + name);
+//        Log.e("room", "event ==" + event.name());
 
         Disposable d = Observable.create((ObservableOnSubscribe<ActModel>) emitter -> {
             ActModel actModel = mActivityRepository.getActivityByName(name);
@@ -83,11 +83,11 @@ public class UpdateModelDelegate {
                     }
                 })
                 .subscribe(actModel -> {
-                            Log.e("room", "start insert : " + actModel.toString());
+//                            Log.e("room", "start insert : " + actModel.toString());
                             mActivityRepository.insert(actModel);
                         },
                         throwable -> {
-                            Log.e("room", "wrong with " + throwable.getMessage());
+//                            Log.e("room", "wrong with " + throwable.getMessage());
                             throwable.printStackTrace();
                         });
 

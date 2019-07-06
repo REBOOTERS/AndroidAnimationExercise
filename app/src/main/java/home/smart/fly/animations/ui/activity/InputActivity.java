@@ -34,6 +34,7 @@ import java.util.Collections;
 import java.util.List;
 
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -227,7 +228,6 @@ public class InputActivity extends AppCompatActivity {
                 String activity = activityInfo.name;
                 int dotIndex = activity.lastIndexOf(".");
                 String act = activity.substring(dotIndex + 1);
-                Log.e("zyq", "setupAutoCompleteTextView: " + act.concat(".class"));
                 activites.add(act.concat(".class"));
             }
         } catch (PackageManager.NameNotFoundException e) {

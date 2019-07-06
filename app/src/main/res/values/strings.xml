@@ -11,6 +11,7 @@
     <string name="fake_weibo">仿新浪微博雷达扫描效果及相关功能实现</string>
     <string name="ball">小球虽手指移动效果</string>
     <string name="fake_football">仿懂球帝APP我是教练游戏效果</string>
+    <string name="reverse_gif">gif 倒放效果图</string>
     <string name="football">足球11人</string>
     <string name="webview">webView</string>
     <string name="webview1">How to use webView</string>
@@ -318,5 +319,6 @@
     <string name="title_activity_all">AllActivity</string>
 
     <string name="activity_count">%1$d 个 Activity</string>
+    <string name="start">start</string>
 
 </resources>

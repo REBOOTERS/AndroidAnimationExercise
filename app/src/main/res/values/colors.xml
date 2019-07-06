@@ -50,5 +50,5 @@
     <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
     <!--覆盖颜色-->
     <color name="bgColor_overlay">#60000000</color>
-
+    <color name="md_blue">#2196F3</color>
 </resources>
