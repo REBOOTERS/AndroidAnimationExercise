@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.fragments.base.BaseFragment;

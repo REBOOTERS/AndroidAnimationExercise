@@ -317,8 +317,8 @@ public class AppStartActivity extends AppCompatActivity {
                 String activity = activityInfo.name;
                 int dotIndex = activity.lastIndexOf(".");
                 String act = activity.substring(dotIndex + 1);
-                Log.e(TAG, "setupAutoCompleteTextView: " + act);
-                Log.e(TAG, "setupAutoCompleteTextView: " + activity);
+//                Log.e(TAG, "setupAutoCompleteTextView: " + act);
+//                Log.e(TAG, "setupAutoCompleteTextView: " + activity);
                 if (act.equals("AppStartActivity")) {
                     continue;
                 }
