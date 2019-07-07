@@ -59,7 +59,7 @@ internal object _GifFactory {
         encoder.setRepeat(0)
         for (value in frames) {
             val bitmap = BitmapFactory.decodeFile(value.path)
-            encoder.setDelay(value.fps)
+            encoder.setDelay(value.delay)
             encoder.addFrame(bitmap)
         }
         encoder.finish()

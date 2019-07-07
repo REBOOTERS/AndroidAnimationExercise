@@ -183,7 +183,7 @@ public class AnimatedGifEncoder {
 
     /**
      * Sets frame rate in frames per second. Equivalent to
-     * <code>setDelay(1000/fps)</code>.
+     * <code>setDelay(1000/delay)</code>.
      *
      * @param fps float frame rate (frames per second)
      */
