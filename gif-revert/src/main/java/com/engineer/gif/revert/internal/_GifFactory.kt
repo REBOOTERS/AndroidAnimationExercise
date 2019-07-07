@@ -46,11 +46,11 @@ internal object _GifFactory {
 
         reverse(frames)
 
-        return genGifByFrames(frames)
+        return genGifByFrames(context, frames)
     }
 
 
-    private fun genGifByFrames(frames: List<ResFrame>): String {
+    private fun genGifByFrames(context: Context, frames: List<ResFrame>): String {
         val t1 = TaskTime()
 
         val os = ByteArrayOutputStream()
@@ -66,6 +66,7 @@ internal object _GifFactory {
 
         val path = IOTool.saveStreamToSDCard("test", os)
         t1.release("genGifByFrames")
+        IOTool.notifySystemGallay(context, path)
         log(path)
         return path
     }

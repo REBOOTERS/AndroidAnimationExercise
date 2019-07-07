@@ -7,7 +7,7 @@ import java.lang.reflect.Field
  * @author rookie
  * @since 07-06-2019
  */
-object ReflectTool {
+internal object ReflectTool {
     fun getAnyByReflect(`object`: Any?, fieldName: String): Any? {
         if (`object` == null) {
             return null

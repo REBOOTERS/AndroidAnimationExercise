@@ -87,10 +87,12 @@ class ReverseGifActivity : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
     private fun doRevert(source: String?) {
+
         loading.visibility = View.VISIBLE
         result.text = "转换中 ......."
         timer.base = SystemClock.elapsedRealtime()
         timer.start()
+
         GifFactory.getReverseRes(mContext, source)
                 .subscribe({
                     loading.visibility = View.GONE
@@ -123,7 +125,6 @@ class ReverseGifActivity : AppCompatActivity() {
     }
     // </editor-fold>
 
-
     // <editor-fold defaultstate="collapsed" desc="revert drawable">
     @SuppressLint("CheckResult")
     private fun doRevert(source: Int?) {
@@ -140,6 +141,7 @@ class ReverseGifActivity : AppCompatActivity() {
     }
     // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="companion object">
     companion object {
         val GIF_REQUEST_CODE = 100
         val indicators = arrayListOf(
@@ -148,4 +150,5 @@ class ReverseGifActivity : AppCompatActivity() {
                 TriangleSkewSpinIndicator(), PacmanIndicator(),
                 SemiCircleSpinIndicator())
     }
+    // </editor-fold>
 }

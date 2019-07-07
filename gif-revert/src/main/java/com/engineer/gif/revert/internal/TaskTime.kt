@@ -6,7 +6,7 @@ import android.util.Log
  * @author zhuyongging @ Zhihu Inc.
  * @since 07-06-2019
  */
-class TaskTime {
+internal class TaskTime {
 
     private var start = 0L
 

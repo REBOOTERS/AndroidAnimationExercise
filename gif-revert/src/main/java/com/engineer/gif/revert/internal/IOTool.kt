@@ -1,7 +1,9 @@
 package com.engineer.gif.revert.internal
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Environment
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -14,7 +16,7 @@ import java.io.FileOutputStream
  * 文件 IO 流操作相关
  */
 
-object IOTool {
+internal object IOTool {
 
     const val gif = "gif"
     // "/gif/"
@@ -64,5 +66,16 @@ object IOTool {
         fileOutPutStream.close()
 
         return file.absolutePath
+    }
+
+    /**
+     * 通知一下系统相册，避免生成的图片找到了
+     */
+    fun notifySystemGallay(context: Context, path: String) {
+        val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+        val file = File(path)
+        val uri = Uri.fromFile(file)
+        intent.data = uri
+        context.sendBroadcast(intent)
     }
 }
