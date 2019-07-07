@@ -1,1 +1,1 @@
-include ':app', ':imitate', ':fast-list', ':buildSrc', ':skeleton', ':dateview'
+include ':app', ':imitate', ':fast-list', ':buildSrc', ':skeleton', ':dateview', ':gif-revert'

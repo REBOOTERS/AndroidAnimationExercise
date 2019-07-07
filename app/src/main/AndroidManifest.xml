@@ -35,7 +35,6 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.ReverseGifActivity"></activity>
         <activity android:name=".ui.activity.ShareIdActivity" />
         <activity
             android:name=".ui.activity.AllActivity"

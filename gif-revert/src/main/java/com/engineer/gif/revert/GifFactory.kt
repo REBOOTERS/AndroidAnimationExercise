@@ -1,13 +1,12 @@
-package home.smart.fly.animations.utils.gif
+package com.engineer.gif.revert
 
 import android.content.Context
 import android.net.Uri
 import android.text.TextUtils
-import androidx.annotation.CheckResult
 import androidx.annotation.DrawableRes
 import androidx.annotation.RawRes
-import home.smart.fly.animations.utils.gif.internal.GlideInternal
-import home.smart.fly.animations.utils.gif.internal._GifFactory
+import com.engineer.gif.revert.internal.GlideInternal
+import com.engineer.gif.revert.internal._GifFactory
 import io.reactivex.Observable
 import org.jetbrains.annotations.Nullable
 import java.io.File

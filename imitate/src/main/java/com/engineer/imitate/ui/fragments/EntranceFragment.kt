@@ -126,6 +126,10 @@ class EntranceFragment : Fragment() {
             startActivity(Intent(context, ScreenRecorderActivity::class.java))
         }
 
+        gif_revert.setOnClickListener {
+            startActivity(Intent(context, ReverseGifActivity::class.java))
+        }
+
 
         adapter = MyListAdapter()
         recyclerView.layoutManager = GridLayoutManager(context, 2)

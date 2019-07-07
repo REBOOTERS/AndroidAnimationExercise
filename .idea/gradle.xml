@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/dateview" />
             <option value="$PROJECT_DIR$/fast-list" />
+            <option value="$PROJECT_DIR$/gif-revert" />
             <option value="$PROJECT_DIR$/imitate" />
             <option value="$PROJECT_DIR$/skeleton" />
           </set>

@@ -1,4 +1,4 @@
-package home.smart.fly.animations.utils.gif.internal
+package com.engineer.gif.revert.internal
 
 import android.content.Context
 import android.net.Uri

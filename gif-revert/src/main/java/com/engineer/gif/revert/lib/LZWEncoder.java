@@ -1,4 +1,4 @@
-package home.smart.fly.animations.utils.gif.lib;
+package com.engineer.gif.revert.lib;
 
 //	 ==============================================================================
 //	 Adapted from Jef Poskanzer's Java port by way of J. M. G. Elliott.

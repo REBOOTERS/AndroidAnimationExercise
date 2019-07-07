@@ -1,4 +1,4 @@
-package home.smart.fly.animations.utils.gif.internal
+package com.engineer.gif.revert.internal
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -6,7 +6,7 @@ import android.util.Log
 import com.bumptech.glide.gifdecoder.GifDecoder
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.FutureTarget
-import home.smart.fly.animations.utils.gif.lib.AnimatedGifEncoder
+import com.engineer.gif.revert.lib.AnimatedGifEncoder
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -65,9 +65,8 @@ internal object _GifFactory {
         encoder.finish()
 
         val path = IOTool.saveStreamToSDCard("test", os)
-        log(path)
-
         t1.release("genGifByFrames")
+        log(path)
         return path
     }
 

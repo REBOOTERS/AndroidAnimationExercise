@@ -1,4 +1,4 @@
-package home.smart.fly.animations.utils.gif.lib;
+package com.engineer.gif.revert.lib;
 
 /*
      * NeuQuant Neural-Net Quantization Algorithm

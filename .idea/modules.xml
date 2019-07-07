@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/dateview/dateview.iml" filepath="$PROJECT_DIR$/dateview/dateview.iml" />
       <module fileurl="file://$PROJECT_DIR$/fast-list/fast-list.iml" filepath="$PROJECT_DIR$/fast-list/fast-list.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gif-revert/gif-revert.iml" filepath="$PROJECT_DIR$/gif-revert/gif-revert.iml" />
       <module fileurl="file://$PROJECT_DIR$/imitate/imitate.iml" filepath="$PROJECT_DIR$/imitate/imitate.iml" />
       <module fileurl="file://$PROJECT_DIR$/skeleton/skeleton.iml" filepath="$PROJECT_DIR$/skeleton/skeleton.iml" />
     </modules>

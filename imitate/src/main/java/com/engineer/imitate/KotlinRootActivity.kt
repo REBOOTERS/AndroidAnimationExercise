@@ -1,6 +1,7 @@
 package com.engineer.imitate
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -19,6 +20,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.fastlist.bind
 import com.engineer.imitate.model.FragmentItem
+import com.engineer.imitate.ui.activity.ReverseGifActivity
 import com.engineer.imitate.util.StreamUtils
 import com.engineer.imitate.util.isNetworkConnected
 import io.reactivex.Observable
@@ -68,7 +70,7 @@ class KotlinRootActivity : AppCompatActivity() {
         val jsonArray = JSONArray()
         for (i in 0..3) {
             val jsonObj = JSONObject()
-            jsonObj.put("name","name_$i")
+            jsonObj.put("name", "name_$i")
             jsonArray.put(jsonObj)
         }
         Log.e(TAG, "result ==$jsonArray")
@@ -82,6 +84,10 @@ class KotlinRootActivity : AppCompatActivity() {
             loadWebView()
         } else {
             loadRecyclerView()
+        }
+
+        gif.setOnClickListener {
+            startActivity(Intent(this, ReverseGifActivity::class.java))
         }
     }
 
