@@ -3,7 +3,7 @@ package com.engineer.gif.revert.internal
 import android.util.Log
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 07-06-2019
  */
 internal class TaskTime {
