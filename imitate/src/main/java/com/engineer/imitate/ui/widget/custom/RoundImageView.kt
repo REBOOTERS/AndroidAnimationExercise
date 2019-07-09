@@ -31,7 +31,7 @@ class RoundImageView : AppCompatImageView {
 
     private var mRadius: Float = 0.toFloat() // dp
     private  var mRoundedRectPath: Path? = null
-    private  var mRectF: RectF? = null
+    private  lateinit var mRectF: RectF
     private lateinit var mPaint: Paint
 
     private fun init(context: Context) {
