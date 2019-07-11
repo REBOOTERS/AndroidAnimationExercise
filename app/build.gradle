@@ -50,6 +50,11 @@ android {
             }
         }
 
+        aaptOptions {
+            // build 过程不会对 png 进行优化，节省时间
+            cruncherEnabled = false
+        }
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -98,6 +103,11 @@ android {
         unitTests {
             includeAndroidResources = true
         }
+    }
+
+    dexOptions {
+        preDexLibraries true
+        maxProcessCount 8
     }
 }
 
@@ -169,6 +179,6 @@ repositories {
 
 
 // 自定义插件的一些测试，如果无法运行，可以暂时注释掉
-apply from: file("../gradle/custom_plugin.gradle")
-//apply from: file("../gradle/calculate_apk_size.gradle")
+//apply from: file("../gradle/custom_plugin.gradle")
+apply from: file("../gradle/Test.gradle.kts")
 

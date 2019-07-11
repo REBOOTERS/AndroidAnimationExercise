@@ -1,5 +1,6 @@
 package home.smart.fly.animations;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -48,9 +49,9 @@ import home.smart.fly.animations.internal.NormalStatus;
 import home.smart.fly.animations.internal.Single;
 import home.smart.fly.animations.ui.SuperTools;
 import home.smart.fly.animations.ui.activity.AllActivity;
-import home.smart.fly.animations.utils.AppUtils;
-import home.smart.fly.animations.utils.PaletteUtils;
-import home.smart.fly.animations.utils.StatusBarUtil;
+import home.smart.fly.animations.utils.*;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 
 
 public class AppStartActivity extends AppCompatActivity {
@@ -65,6 +66,7 @@ public class AppStartActivity extends AppCompatActivity {
     private SharedPreferences mPreferences; // 简单粗暴保存一下位置，后期封装一下 TODO
 
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,6 +135,10 @@ public class AppStartActivity extends AppCompatActivity {
 
         System.out.println("enum " + Single.INSTANCE.getValue());
         System.out.println("enum " + Single.INSTANCE.hashCode());
+
+        RxBus.getInstance().toObservable(SimpleEvent.class)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(simpleEvent -> Toast.makeText(mContext,simpleEvent.getMsg(),Toast.LENGTH_SHORT).show());
     }
 
     /**

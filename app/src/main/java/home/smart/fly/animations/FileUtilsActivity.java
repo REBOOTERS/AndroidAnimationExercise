@@ -26,6 +26,8 @@ import android.util.Log;
 import com.zhihu.android.sugaradapter.SugarAdapter;
 import com.zhihu.android.sugaradapter.SugarHolder;
 
+import home.smart.fly.animations.utils.RxBus;
+import home.smart.fly.animations.utils.SimpleEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class FileUtilsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Context mContext;
     private FloatingActionButton mRetry;
+    private FloatingActionButton mRxBus;
     private String mNull;
 
     @Override
@@ -56,6 +59,7 @@ public class FileUtilsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_file_utils);
         mRecyclerView = findViewById(R.id.recyclerView);
         mRetry = findViewById(R.id.retry);
+        mRxBus = findViewById(R.id.rxbus);
 
         items = new ArrayList<>();
         mSugarAdapter = SugarAdapter.Builder.with(items)
@@ -79,9 +83,10 @@ public class FileUtilsActivity extends AppCompatActivity {
 
         refreshList();
 
-        mRetry.setOnClickListener(v -> {
-            recyclerview();
-        });
+        mRetry.setOnClickListener(v -> recyclerview());
+
+        mRxBus.setOnClickListener(v -> RxBus.getInstance().post(new SimpleEvent(FileUtilsActivity.class.getSimpleName())));
+
 
         ArrayMap<String, String> arrayMap = new ArrayMap<>();
         arrayMap.put("name", "mike");
