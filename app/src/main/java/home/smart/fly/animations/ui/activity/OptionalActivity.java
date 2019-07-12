@@ -96,6 +96,11 @@ public class OptionalActivity extends AppCompatActivity implements View.OnClickL
 
         Optional.ofNullable(ages)
                 .ifPresent(integers -> integers.forEach(integer -> Log.e(TAG, "streamPlay: integer==" + integer)));
+
+
+        ages.stream().count();
+        ages.stream().findAny();
+        ages.parallelStream().findAny();
     }
 
     private void elseUse() {

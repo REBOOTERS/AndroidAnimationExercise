@@ -4,7 +4,8 @@ fun calc_module() {
     println("project ${proj.configurations}")
     proj.configurations.forEach { configuration ->
         println("configure==" + configuration.name)
-        println("configure==" + configuration)
+        println("configure==" + configuration.hierarchy)
+        println("")
         var config = configuration
     }
 

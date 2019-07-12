@@ -179,6 +179,6 @@ repositories {
 
 
 // 自定义插件的一些测试，如果无法运行，可以暂时注释掉
-//apply from: file("../gradle/custom_plugin.gradle")
+apply from: file("../gradle/custom_plugin.gradle")
 apply from: file("../gradle/Test.gradle.kts")
 

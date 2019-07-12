@@ -4,7 +4,7 @@ import org.gradle.api.Project
 
 class RenameAction {
 
-     static void doRenameAction(Project project) {
+    static void doRenameAction(Project project) {
         def rename = project.phoenix.rename
         if (rename.result == null) {
             project.logger.info('result not set,will be ignored')
@@ -13,10 +13,10 @@ class RenameAction {
         Closure result = rename.result
 
         String prefix = rename.prefix
-        Boolean withTime = rename.withTime
-        Boolean withVariantName = rename.withVariantName
-        Boolean withVariantVersion = rename.withVariantVersion
-        Boolean onlyDebug = rename.onlyDebug
+        boolean withTime = rename.withTime
+        boolean withVariantName = rename.withVariantName
+        boolean withVariantVersion = rename.withVariantVersion
+        boolean onlyDebug = rename.onlyDebug
 
         def releaseTime = new Date().format("yyyy_MM_dd_HH_mm", TimeZone.getTimeZone("GMT+08:00"))
 
