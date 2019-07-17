@@ -5,6 +5,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: "com.dorongold.task-tree"
 apply plugin: 'android-aspectjx'
+apply plugin: 'jacoco-android'
+
 
 def ext = rootProject.ext
 
@@ -147,10 +149,14 @@ dependencies {
     implementation "androidx.palette:palette:$support_versioin"
     implementation 'com.tencent:mmkv:1.0.18'
 
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'org.robolectric:robolectric:4.3'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'org.robolectric:robolectric:4.3'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation 'com.jakewharton.hugo:hugo-runtime:1.2.1'
 
