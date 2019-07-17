@@ -258,6 +258,7 @@ public class AppStartActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.data_view_chart) {
             DataView.show(this);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
