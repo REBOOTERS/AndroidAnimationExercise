@@ -60,7 +60,7 @@ public class AppStartActivity extends AppCompatActivity {
     private CoordinatorLayout main_contetn;
     private Context mContext;
     private AppCompatAutoCompleteTextView mAutoCompleteTextView;
-
+    private Toolbar mToolbar;
     private AppBarLayout mAppBarLayout;
 
     private SharedPreferences mPreferences; // 简单粗暴保存一下位置，后期封装一下 TODO
@@ -73,8 +73,8 @@ public class AppStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_app_start);
         mContext = this;
         mPreferences = getSharedPreferences("fragment_pos", MODE_PRIVATE);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         mAppBarLayout = findViewById(R.id.appbar);
@@ -82,7 +82,7 @@ public class AppStartActivity extends AppCompatActivity {
         // Setup spinner
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(new MyAdapter(
-                toolbar.getContext(),
+                mToolbar.getContext(),
                 getResources().getStringArray(R.array.fragments)));
 
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -97,7 +97,7 @@ public class AppStartActivity extends AppCompatActivity {
 
                 int resId = fragment.getBackgroundResId();
                 int color = PaletteUtils.getMagicColor(getResources(), resId);
-                toolbar.setBackgroundColor(color);
+                mToolbar.setBackgroundColor(color);
                 StatusBarUtil.setColor(AppStartActivity.this, color, 0);
                 mAutoCompleteTextView.setBackgroundColor(color);
             }
@@ -213,6 +213,7 @@ public class AppStartActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_app_start, menu);
+        mToolbar.hideOverflowMenu();
         return true;
     }
 

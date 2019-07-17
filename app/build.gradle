@@ -76,7 +76,7 @@ android {
     productFlavors {
         free {
             versionNameSuffix "_free"
-            resConfigs('en', 'xhdpi')
+            resConfigs('ch', 'xhdpi')
             minSdkVersion 21
             aaptOptions.cruncherEnabled = false
             ext.alwaysUpdateBuildId = false
@@ -111,6 +111,12 @@ android {
         preDexLibraries true
         maxProcessCount 8
     }
+
+}
+
+
+configurations.all {
+    resolutionStrategy.force 'androidx.core:core:1.0.2'
 }
 
 dependencies {

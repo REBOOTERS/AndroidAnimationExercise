@@ -5,6 +5,10 @@ fun calc_module() {
     proj.configurations.forEach { configuration ->
         println("configure==" + configuration.name)
     }
+
+    val configuration = proj.configurations.findByName("chargeDebugCompileClasspath")
+    println("find it $configuration")
+
 //    println("resolver ==" + configuration.resolvedConfiguration)
 //    configuration.resolvedConfiguration.resolvedArtifacts.forEach { resolvedArtifact ->
 //        println("resolve==" + resolvedArtifact.name)

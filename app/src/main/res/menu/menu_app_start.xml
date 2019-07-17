@@ -13,12 +13,12 @@
         android:id="@+id/data_view_chart"
         android:icon="@drawable/ic_show_chart_black_24dp"
         android:title="@string/data_view_chart"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_file_util"
