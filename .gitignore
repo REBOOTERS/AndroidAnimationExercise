@@ -11,4 +11,6 @@
 /repo
 .trace
 
-
+*.project
+*.settings/
+*.classpath

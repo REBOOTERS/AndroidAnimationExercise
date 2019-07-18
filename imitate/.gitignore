@@ -3,3 +3,6 @@
 /free
 .apk
 output.json
+*.project
+*.settings/
+*.classpath

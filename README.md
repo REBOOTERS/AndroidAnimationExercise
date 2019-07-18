@@ -15,7 +15,15 @@
 
 扫一扫体验
 
+<details>
+<summary>打开</summary>
+
 ![扫一扫体验](https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/download.png)
+
+</details>
+
+
+
 
 
 ## ImitateFragment （模仿三方应用特效）
@@ -94,6 +102,10 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/move.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/-move.gif"/>
 
+<details>
+<summary>更多</summary>
+
+
 ## 仿QQ侧滑菜单效果
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/qq.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/menu_3d.gif"/>
@@ -136,3 +148,4 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 
 
+</details>
