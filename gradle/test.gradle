@@ -1,0 +1,19 @@
+task calc_module doLast {
+    Project proj = project
+    Configuration configuration = proj.configurations.findByName("chargeReleaseCompileClasspath")
+//    println("find it $configuration")
+
+    configuration.resolvedConfiguration.lenientConfiguration.allModuleDependencies.forEach { module ->
+        println("module == ${module.name}")
+        String moduleString = "$module.moduleGroup $module.moduleName:$module.moduleVersion "
+        println("module == " + moduleString)
+        if (module.name.contains("dateview")) {
+            println("ccccccc")
+        }
+
+    }
+//    configuration.resolvedConfiguration.resolvedArtifacts.forEach { resolvedArtifact ->
+//        println("resolve==" + resolvedArtifact.name)
+//    }
+
+}
