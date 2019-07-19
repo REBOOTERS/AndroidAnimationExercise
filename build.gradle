@@ -55,12 +55,12 @@ allprojects {
 //            if (task.name.contains("Test") || task.name.contains("test")) {
 //                task.enabled = false
 //            }
-            if (task.name.contains("lint") || task.name.contains("Lint")) {
-                task.enabled = false
-            }
-            if (task.name.contains("Release") || task.name.contains("release")) {
-                task.enabled = false
-            }
+//            if (task.name.contains("lint") || task.name.contains("Lint")) {
+//                task.enabled = false
+//            }
+//            if (task.name.contains("Release") || task.name.contains("release")) {
+//                task.enabled = false
+//            }
         }
     }
 }

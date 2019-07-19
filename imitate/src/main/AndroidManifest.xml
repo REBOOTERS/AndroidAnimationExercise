@@ -27,7 +27,7 @@
             android:label="@string/title_activity_screen_recoder"
             android:theme="@style/MyAppTheme.NoActionBar"/>
         <activity android:name=".ui.activity.DateAndTimePickerActivity" />
-
+        <activity android:name=".ui.activity.ReverseGifActivity"/>
 
     </application>
 
