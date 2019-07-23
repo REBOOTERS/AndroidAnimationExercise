@@ -16,4 +16,12 @@ object DataFactory {
         val gson = Gson()
         return gson.fromJson(josn, object : TypeToken<ArrayList<String>>() {}.type)
     }
+
+    fun initStringData(): ArrayList<String> {
+        val datas = ArrayList<String>()
+        for (i in 0..100) {
+            datas.add("This is $i")
+        }
+        return datas
+    }
 }

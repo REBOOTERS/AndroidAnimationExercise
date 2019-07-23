@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
+            app:labelVisibilityMode="labeled"
             app:itemIconTint="@drawable/selector_color"
             app:itemTextColor="@drawable/selector_color"
             android:background="?android:attr/windowBackground"

@@ -1,6 +1,7 @@
 package home.smart.fly.animations.recyclerview;
 
 import android.os.Bundle;
+import android.util.Log;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.FragmentManager;
@@ -10,13 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.recyclerview.fragments.SimpleRecyclerViewFragment;
 import home.smart.fly.animations.recyclerview.fragments.StaggeredGridFragment;
+import home.smart.fly.animations.recyclerview.fragments.TextListFragment;
 import home.smart.fly.animations.recyclerview.fragments.VegaRecyclerViewFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BaseRecyclerViewActivity extends AppCompatActivity {
-
+    private static final String TAG = "BaseRecyclerViewActivit";
     private FragmentManager mFragmentManager;
 
     private List<Fragment> mFragments;
@@ -39,6 +41,7 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
         mFragments.add(new SimpleRecyclerViewFragment());
         mFragments.add(new StaggeredGridFragment());
         mFragments.add(new VegaRecyclerViewFragment());
+        mFragments.add(new TextListFragment());
 
         mLastFragment = 0;
         mFragmentManager.beginTransaction()
@@ -51,7 +54,6 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
-
         switch (item.getItemId()) {
             case R.id.navigation_home:
                 if (mLastFragment != 0) {
@@ -66,6 +68,11 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
             case R.id.navigation_notifications:
                 if (mLastFragment != 2) {
                     updateFragment(mLastFragment, 2);
+                }
+                return true;
+            case R.id.navigation_simple:
+                if (mLastFragment != 3) {
+                    updateFragment(mLastFragment, 3);
                 }
                 return true;
             default:

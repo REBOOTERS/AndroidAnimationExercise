@@ -19,7 +19,7 @@ abstract class BaseListFragment : Fragment() {
     var mContext: Context? = null
     protected lateinit var datas: ArrayList<String>
     protected lateinit var adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
-    lateinit var mRecyclerView: RecyclerView
+    private lateinit var mRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ abstract class BaseListFragment : Fragment() {
         datas = loadDatas()
     }
 
-    fun loadDatas(): ArrayList<String> {
+    open fun loadDatas(): ArrayList<String> {
         return DataFactory.initDefaultData(mContext)
     }
 
