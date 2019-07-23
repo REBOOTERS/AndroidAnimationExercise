@@ -1,69 +1,86 @@
 package home.smart.fly.animations.recyclerview;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.MenuItem;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.recyclerview.fragments.SimpleRecyclerViewFragment;
+import home.smart.fly.animations.recyclerview.fragments.StaggeredGridFragment;
+import home.smart.fly.animations.recyclerview.fragments.VegaRecyclerViewFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BaseRecyclerViewActivity extends AppCompatActivity {
 
     private FragmentManager mFragmentManager;
-    private StaggeredGridFragment mGridViewFragment;
-    private SimpleRecyclerViewFragment mSimpleRecyclerViewFragment;
-    private VegaRecyclerViewFragment mVegaRecyclerViewFragment;
 
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
-
-
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    if (mSimpleRecyclerViewFragment == null) {
-                        mSimpleRecyclerViewFragment = new SimpleRecyclerViewFragment();
-                    }
-                    mFragmentTransaction.replace(R.id.content, mSimpleRecyclerViewFragment);
-                    mFragmentTransaction.commit();
-                    return true;
-                case R.id.navigation_dashboard:
-                    if (mGridViewFragment == null) {
-                        mGridViewFragment = new StaggeredGridFragment();
-                    }
-                    mFragmentTransaction.replace(R.id.content, mGridViewFragment);
-                    mFragmentTransaction.commit();
-                    return true;
-                case R.id.navigation_notifications:
-                    if (mVegaRecyclerViewFragment == null) {
-                        mVegaRecyclerViewFragment = new VegaRecyclerViewFragment();
-                    }
-                    mFragmentTransaction.replace(R.id.container, mVegaRecyclerViewFragment);
-                    mFragmentTransaction.commit();
-                    return true;
-
-
-            }
-            return false;
-        }
-
-    };
+    private List<Fragment> mFragments;
+    private int mLastFragment = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_recycler_view);
         mFragmentManager = getSupportFragmentManager();
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        navigation.setSelectedItemId(R.id.navigation_home);
+
+        initFragments();
+
+    }
+
+    private void initFragments() {
+        mFragments = new ArrayList<>();
+        mFragments.add(new SimpleRecyclerViewFragment());
+        mFragments.add(new StaggeredGridFragment());
+        mFragments.add(new VegaRecyclerViewFragment());
+
+        mLastFragment = 0;
+        mFragmentManager.beginTransaction()
+                .add(R.id.container, mFragments.get(0))
+                .show(mFragments.get(0))
+                .commit();
+
+
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                if (mLastFragment != 0) {
+                    updateFragment(mLastFragment, 0);
+                }
+                return true;
+            case R.id.navigation_dashboard:
+                if (mLastFragment != 1) {
+                    updateFragment(mLastFragment, 1);
+                }
+                return true;
+            case R.id.navigation_notifications:
+                if (mLastFragment != 2) {
+                    updateFragment(mLastFragment, 2);
+                }
+                return true;
+            default:
+
+
+        }
+        return false;
+    };
+
+    private void updateFragment(int last, int i) {
+        mLastFragment = i;
+        FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+        mFragmentTransaction.hide(mFragments.get(last));
+        mFragmentTransaction.replace(R.id.container, mFragments.get(i));
+        mFragmentTransaction.commit();
     }
 
 

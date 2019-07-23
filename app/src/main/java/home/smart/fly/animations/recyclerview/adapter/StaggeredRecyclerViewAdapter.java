@@ -32,15 +32,13 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
 
     public StaggeredRecyclerViewAdapter(List<String> demos) {
         this.demos = demos;
-
-
     }
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         initRandomHeights(mContext);
-        View view = LayoutInflater.from(mContext).inflate(R.layout.image_item, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.image_item, parent,false);
         MyHolder holder = new MyHolder(view);
         return holder;
     }
@@ -85,7 +83,7 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
 
 
     class MyHolder extends RecyclerView.ViewHolder {
-        LinearLayout itemshell;
+        View itemshell;
         ImageView mImageView;
 
         public MyHolder(View itemView) {

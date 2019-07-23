@@ -52,6 +52,7 @@ public class OtherFragment extends BaseFragment {
 
     @Override
     public void InitView() {
+        demos.add(new ItemInfo(R.string.base_recyclerview, BaseRecyclerViewActivity.class));
         demos.add(new ItemInfo(R.string.title_activity_multi_fragments, MultiFragmentsActivity.class));
         demos.add(new ItemInfo(R.string.palette, PaletteActivity.class));
         demos.add(new ItemInfo(R.string.take_screen, ScreenCaptureActivity.class));
@@ -69,7 +70,6 @@ public class OtherFragment extends BaseFragment {
         demos.add(new ItemInfo(R.string.image_cache, ImgCacheActivity.class));
         demos.add(new ItemInfo(R.string.bga_view, BgaAllActivity.class));
         demos.add(new ItemInfo(R.string.circle_view, LoadCircleImageActivity.class));
-        demos.add(new ItemInfo(R.string.base_recyclerview, BaseRecyclerViewActivity.class));
         demos.add(new ItemInfo(R.string.input_view, InputActivity.class));
         demos.add(new ItemInfo(R.string.orientation, OrientationActivity.class));
         demos.add(new ItemInfo(R.string.optional, OptionalActivity.class));

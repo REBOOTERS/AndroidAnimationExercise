@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.recyclerview.adapter.RecyclerViewAdapter;
+import home.smart.fly.animations.recyclerview.adapter.SimpleRecyclerViewAdapter;
 import home.smart.fly.animations.recyclerview.customlayoutmanager.VegaLayoutManager;
 import home.smart.fly.animations.utils.Tools;
 
@@ -29,7 +29,7 @@ public class VegaRecyclerViewActivity extends AppCompatActivity {
         mContext = this;
         initData();
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(pics);
+        SimpleRecyclerViewAdapter mAdapter = new SimpleRecyclerViewAdapter(pics);
         mRecyclerView.setLayoutManager(new VegaLayoutManager());
         mRecyclerView.setAdapter(mAdapter);
     }

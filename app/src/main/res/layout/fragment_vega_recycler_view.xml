@@ -8,7 +8,7 @@
         tools:context="home.smart.fly.animations.recyclerview.fragments.SimpleRecyclerViewFragment">
 
     <TextView android:layout_width="match_parent"
-              android:text="simple"
+              android:text="vega"
               android:gravity="center"
               android:textStyle="bold"
               android:textSize="22sp"
