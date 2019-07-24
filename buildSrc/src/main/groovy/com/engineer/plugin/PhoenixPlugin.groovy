@@ -16,8 +16,6 @@ class PhoenixPlugin implements Plugin<Project> {
     void apply(Project project) {
 
         project.extensions.create('phoenix', PhoenixExtension.class, project.objects)
-
-
         project.afterEvaluate {
 
             println()
@@ -45,7 +43,7 @@ class PhoenixPlugin implements Plugin<Project> {
         def appExtension = project.extensions.getByName("android")
         if (appExtension != null) {
             if (appExtension instanceof AppExtension) {
-                appExtension.registerTransform(new InsertLogTransform(project))
+//                appExtension.registerTransform(new InsertLogTransform(project))
             }
         }
     }
