@@ -34,8 +34,10 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
 
         initFragments();
 
+        navigation.setSelectedItemId(R.id.navigation_simple);
     }
 
+    // <editor-fold defaultstate="collapsed" desc="initFragments">
     private void initFragments() {
         mFragments = new ArrayList<>();
         mFragments.add(new SimpleRecyclerViewFragment());
@@ -45,12 +47,11 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
 
         mLastFragment = 0;
         mFragmentManager.beginTransaction()
-                .add(R.id.container, mFragments.get(0))
-                .show(mFragments.get(0))
+                .add(R.id.container, mFragments.get(mLastFragment))
                 .commit();
 
-
     }
+    // </editor-fold>
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {

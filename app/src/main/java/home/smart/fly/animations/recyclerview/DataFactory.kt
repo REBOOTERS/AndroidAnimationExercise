@@ -3,6 +3,7 @@ package home.smart.fly.animations.recyclerview
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import home.smart.fly.animations.recyclerview.bean.StickBean
 import home.smart.fly.animations.utils.Tools
 
 /**
@@ -24,4 +25,17 @@ object DataFactory {
         }
         return datas
     }
+
+    fun initStickData():ArrayList<StickBean> {
+        val datas = ArrayList<StickBean>()
+        for (i in 0..100) {
+            val stickBean = StickBean("item $i",false)
+            if (i % 6 == 0) {
+                stickBean.isStick = true
+            }
+            datas.add(stickBean)
+        }
+        return datas
+    }
+
 }

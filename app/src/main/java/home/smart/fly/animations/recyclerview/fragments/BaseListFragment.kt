@@ -49,4 +49,8 @@ abstract class BaseListFragment : Fragment() {
         mRecyclerView.layoutManager = getCustomLayoutManager()
         mRecyclerView.adapter = getCustomAdapter()
     }
+
+    fun getRecyclerView():RecyclerView{
+        return mRecyclerView
+    }
 }

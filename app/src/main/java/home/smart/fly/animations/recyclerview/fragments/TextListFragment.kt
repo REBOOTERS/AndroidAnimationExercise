@@ -1,8 +1,10 @@
 package home.smart.fly.animations.recyclerview.fragments
 
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import home.smart.fly.animations.R
 import home.smart.fly.animations.recyclerview.DataFactory
@@ -23,6 +25,11 @@ class TextListFragment : BaseListFragment() {
 
     override fun getLayoutResId(): Int {
         return R.layout.fragment_text_list_recycler_view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getRecyclerView().addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
     }
 
 
