@@ -22,7 +22,7 @@ import home.smart.fly.animations.ui.activity.WebViewMenuActivity;
 import home.smart.fly.animations.ui.activity.jianshu.helper.Constant;
 import home.smart.fly.animations.utils.FileUtil;
 import home.smart.fly.animations.utils.StatusBarUtil;
-import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.utils.TT;
 import home.smart.fly.animations.utils.Tools;
 import home.smart.fly.animations.utils.V;
 
@@ -187,7 +187,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
                 Canvas canvas = new Canvas(bmp);
                 snapShot.draw(canvas);
                 if (!TextUtils.isEmpty(FileUtil.savaBitmap2SDcard(mContext, bmp, "1111"))) {
-                    T.showSToast(mContext, "success");
+                    TT.showSToast(mContext, "success");
                 }
                 break;
             default:

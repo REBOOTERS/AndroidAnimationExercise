@@ -4,14 +4,17 @@ package home.smart.fly.animations.recyclerview.fragments;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.recyclerview.DataFactory;
 import home.smart.fly.animations.recyclerview.adapter.SimpleRecyclerViewAdapter;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VegaRecyclerViewFragment extends BaseListFragment {
+public class VegaRecyclerViewFragment extends BaseListFragment<String> {
 
 
     @Override
@@ -23,5 +26,11 @@ public class VegaRecyclerViewFragment extends BaseListFragment {
     @Override
     public RecyclerView.Adapter<?> getCustomAdapter() {
         return new SimpleRecyclerViewAdapter(datas);
+    }
+
+    @NotNull
+    @Override
+    public ArrayList<String> loadDatas() {
+        return DataFactory.INSTANCE.initDefaultData(getContext());
     }
 }

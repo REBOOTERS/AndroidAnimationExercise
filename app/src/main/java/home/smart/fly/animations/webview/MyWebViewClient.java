@@ -11,7 +11,7 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.utils.TT;
 
 /**
  * Created by Rookie on 2017/10/19.
@@ -42,7 +42,7 @@ public class MyWebViewClient extends WebViewClient {
                 intent.setData(Uri.parse(url));
                 mContext.startActivity(intent);
             } catch (android.content.ActivityNotFoundException e) {
-                T.showSToast(mContext, "未安装微信");
+                TT.showSToast(mContext, "未安装微信");
                 Log.e(TAG, "shouldOverrideUrlLoading: e=" + e.toString());
             }
 
@@ -53,7 +53,7 @@ public class MyWebViewClient extends WebViewClient {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 mContext.startActivity(intent);
             } catch (Exception e) {
-                T.showSToast(mContext, "未安装支付宝");
+                TT.showSToast(mContext, "未安装支付宝");
                 e.printStackTrace();
             }
             return true;

@@ -25,7 +25,7 @@ import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.adapter.SchoolBeanShell;
-import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.utils.TT;
 import home.smart.fly.animations.utils.Tools;
 
 
@@ -99,7 +99,7 @@ public class BgaAllActivity extends AppCompatActivity implements
 
     @Override
     public void onBannerItemClick(BGABanner banner, ImageView itemView, String model, int position) {
-        T.showSToast(mContext, "you click " + (position + 1));
+        TT.showSToast(mContext, "you click " + (position + 1));
     }
 
 

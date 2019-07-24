@@ -29,7 +29,8 @@ object DataFactory {
     fun initStickData():ArrayList<StickBean> {
         val datas = ArrayList<StickBean>()
         for (i in 0..100) {
-            val stickBean = StickBean("item $i",false)
+            val value = "item $i"
+            val stickBean = StickBean(value,false)
             if (i % 6 == 0) {
                 stickBean.isStick = true
             }

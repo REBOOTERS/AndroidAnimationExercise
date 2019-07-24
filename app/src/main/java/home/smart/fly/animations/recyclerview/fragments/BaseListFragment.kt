@@ -9,15 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import home.smart.fly.animations.R
-import home.smart.fly.animations.recyclerview.DataFactory
 
 /**
  * @author zhuyongging @ Zhihu Inc.
  * @since 07-23-2019
  */
-abstract class BaseListFragment : Fragment() {
+abstract class BaseListFragment<T> : Fragment() {
     var mContext: Context? = null
-    protected lateinit var datas: ArrayList<String>
+    protected lateinit var datas: ArrayList<T>
     protected lateinit var adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
     private lateinit var mRecyclerView: RecyclerView
 
@@ -27,9 +26,7 @@ abstract class BaseListFragment : Fragment() {
         datas = loadDatas()
     }
 
-    open fun loadDatas(): ArrayList<String> {
-        return DataFactory.initDefaultData(mContext)
-    }
+    abstract fun loadDatas(): ArrayList<T>
 
     abstract fun getLayoutResId(): Int
 

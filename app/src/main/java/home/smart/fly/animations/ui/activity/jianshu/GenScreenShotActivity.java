@@ -11,8 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,7 +27,7 @@ import home.smart.fly.animations.ui.activity.jianshu.helper.FakeWebView;
 import home.smart.fly.animations.ui.activity.jianshu.helper.HtmlBean;
 import home.smart.fly.animations.utils.FileUtil;
 import home.smart.fly.animations.utils.NotificationHelper;
-import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.utils.TT;
 
 public class GenScreenShotActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -111,7 +109,7 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
 
             if (!TextUtils.isEmpty(path)) {
 
-                T.showSToast(mContext, path);
+                TT.showSToast(mContext, path);
 
 
                 Intent mIntent = new Intent();
@@ -134,7 +132,7 @@ public class GenScreenShotActivity extends AppCompatActivity implements View.OnC
                 new NotificationHelper(mContext).createNotification("点击查看", "图片保存在: " + path, mPendingIntent);
 
             } else {
-                T.showSToast(mContext, "fail");
+                TT.showSToast(mContext, "fail");
             }
 
         }

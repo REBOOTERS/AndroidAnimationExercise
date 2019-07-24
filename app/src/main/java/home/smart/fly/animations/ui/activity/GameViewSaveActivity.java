@@ -25,7 +25,7 @@ import butterknife.OnClick;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.NotificationHelper;
 import home.smart.fly.animations.utils.StatusBarUtil;
-import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.utils.TT;
 
 public class GameViewSaveActivity extends AppCompatActivity {
 
@@ -81,7 +81,7 @@ public class GameViewSaveActivity extends AppCompatActivity {
 
     private void SaveAndNotify() {
         if (!TextUtils.isEmpty(picUrl)) {
-            T.showSToast(mContext, "图片保存在：" + picUrl);
+            TT.showSToast(mContext, "图片保存在：" + picUrl);
 
 
             Intent mIntent = new Intent();
@@ -104,7 +104,7 @@ public class GameViewSaveActivity extends AppCompatActivity {
             new NotificationHelper(mContext).createNotification("点击查看","图片保存在: + "+picUrl,mPendingIntent);
 
         } else {
-            T.showSToast(mContext, "图片保存失败");
+            TT.showSToast(mContext, "图片保存失败");
         }
     }
 }

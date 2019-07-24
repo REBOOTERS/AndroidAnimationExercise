@@ -7,7 +7,7 @@ import android.widget.Toast;
  * Created by rookie on 2017/2/22.
  */
 
-public class T {
+public class TT {
     public static void showLToast(Context mContext, String content) {
         Toast.makeText(mContext, content, Toast.LENGTH_LONG).show();
     }

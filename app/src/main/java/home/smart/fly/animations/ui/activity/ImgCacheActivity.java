@@ -38,7 +38,7 @@ import java.util.Locale;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.adapter.ImageBean;
 import home.smart.fly.animations.utils.BitmapCacheUtil;
-import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.utils.TT;
 import home.smart.fly.animations.utils.V;
 
 public class ImgCacheActivity extends AppCompatActivity {
@@ -140,7 +140,7 @@ public class ImgCacheActivity extends AppCompatActivity {
 
             if (imageBean != null) {
                 String filepath = imageBean.getFilepath();
-                T.showSToast(mContext, filepath);
+                TT.showSToast(mContext, filepath);
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext);
                 mBuilder.setWhen(System.currentTimeMillis())
                         .setTicker("下载图片成功")
@@ -163,7 +163,7 @@ public class ImgCacheActivity extends AppCompatActivity {
                 NotificationManager mManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                 mManager.notify(0, mNotification);
             } else {
-                T.showSToast(mContext, "fail");
+                TT.showSToast(mContext, "fail");
             }
         }
 

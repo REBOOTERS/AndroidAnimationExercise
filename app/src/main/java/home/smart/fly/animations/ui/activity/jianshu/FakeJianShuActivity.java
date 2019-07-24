@@ -35,7 +35,7 @@ import home.smart.fly.animations.ui.activity.jianshu.helper.Constant;
 import home.smart.fly.animations.ui.activity.jianshu.helper.HackTool;
 import home.smart.fly.animations.ui.activity.jianshu.helper.HtmlBean;
 import home.smart.fly.animations.utils.FileUtil;
-import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.utils.TT;
 
 
 public class FakeJianShuActivity extends AppCompatActivity {
@@ -114,7 +114,7 @@ public class FakeJianShuActivity extends AppCompatActivity {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
                 genImg.setVisibility(View.VISIBLE);
-                T.showSToast(mContext, "再次点击文章可隐藏图片分享");
+                TT.showSToast(mContext, "再次点击文章可隐藏图片分享");
             }
         });
         userImg = (CircleImageView) findViewById(R.id.userImg);
@@ -251,11 +251,11 @@ public class FakeJianShuActivity extends AppCompatActivity {
                     new MyAsyncTask().execute(url);
                 }
             } else {
-                T.showSToast(mContext, "输入内容非简书文章链接！");
+                TT.showSToast(mContext, "输入内容非简书文章链接！");
             }
 
         } else {
-            T.showSToast(mContext, "你没有输入任何内容 ！");
+            TT.showSToast(mContext, "你没有输入任何内容 ！");
         }
     }
 

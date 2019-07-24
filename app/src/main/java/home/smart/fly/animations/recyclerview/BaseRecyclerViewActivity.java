@@ -1,7 +1,6 @@
 package home.smart.fly.animations.recyclerview;
 
 import android.os.Bundle;
-import android.util.Log;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.FragmentManager;
@@ -11,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.recyclerview.fragments.SimpleRecyclerViewFragment;
 import home.smart.fly.animations.recyclerview.fragments.StaggeredGridFragment;
-import home.smart.fly.animations.recyclerview.fragments.TextListFragment;
+import home.smart.fly.animations.recyclerview.fragments.StickListFragment;
 import home.smart.fly.animations.recyclerview.fragments.VegaRecyclerViewFragment;
 
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
         mFragments.add(new SimpleRecyclerViewFragment());
         mFragments.add(new StaggeredGridFragment());
         mFragments.add(new VegaRecyclerViewFragment());
-        mFragments.add(new TextListFragment());
+        mFragments.add(new StickListFragment());
 
         mLastFragment = 0;
         mFragmentManager.beginTransaction()

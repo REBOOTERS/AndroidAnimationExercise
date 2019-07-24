@@ -11,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.customview.FlowLayout;
-import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.utils.TT;
 
 public class FlowLayoutActivity extends AppCompatActivity {
 
@@ -35,7 +35,7 @@ public class FlowLayoutActivity extends AppCompatActivity {
             mTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    T.showSToast(mContext, mTextView.getText().toString());
+                    TT.showSToast(mContext, mTextView.getText().toString());
                 }
             });
             mFlowlayout.addView(mTextView);

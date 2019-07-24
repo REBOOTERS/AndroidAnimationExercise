@@ -37,7 +37,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.utils.TT;
 import home.smart.fly.animations.utils.V;
 
 
@@ -243,7 +243,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             info.setText(result);
             Log.e(TAG, result);
         } else {
-            T.showLToast(mContext, "fail");
+            TT.showLToast(mContext, "fail");
         }
     }
 
@@ -356,7 +356,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                     Bitmap.CompressFormat.JPEG : Bitmap.CompressFormat.PNG;
             boolean success = bitmap.compress(format, compressRate, os);
             if (success) {
-                T.showLToast(mContext, "success");
+                TT.showLToast(mContext, "success");
             }
 
             final String pathName = FileHelper.stripFileProtocol(uri.toString());
@@ -380,7 +380,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 for (int i = 0; i < permissions.length; i++) {
                     if (grantResults[i] == PermissionChecker.PERMISSION_DENIED) {
                         String reason = permissions[i] + " is denied !";
-                        T.showLToast(mContext, reason);
+                        TT.showLToast(mContext, reason);
                         return;
                     }
                 }

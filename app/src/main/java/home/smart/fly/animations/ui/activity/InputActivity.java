@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.AppUtils;
-import home.smart.fly.animations.utils.T;
+import home.smart.fly.animations.utils.TT;
 import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class InputActivity extends AppCompatActivity {
@@ -78,9 +78,9 @@ public class InputActivity extends AppCompatActivity {
                 }
 
                 if (ShortcutBadger.applyCount(this, count)) {
-                    T.showSToast(this, "success");
+                    TT.showSToast(this, "success");
                 } else {
-                    T.showSToast(this, "fail");
+                    TT.showSToast(this, "fail");
                 }
 
 
