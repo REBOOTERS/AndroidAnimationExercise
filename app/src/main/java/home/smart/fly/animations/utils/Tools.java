@@ -7,16 +7,15 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.media.ExifInterface;
 import android.os.Environment;
+import android.os.FileUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import com.didichuxing.doraemonkit.kit.network.utils.StreamUtil;
+import com.didichuxing.doraemonkit.util.FileUtil;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -85,7 +84,6 @@ public class Tools {
      *
      * @param filename
      * @param filecontent
-     * @throws Exception
      */
     public static void saveToSDCard(String filename, String filecontent) {
         File file = new File(Environment.getExternalStorageDirectory(),
@@ -102,7 +100,6 @@ public class Tools {
             // TODO 自动生成的 catch 块
             e.printStackTrace();
         }
-
     }
 
     public static String readStrFromAssets(String filename, Context mContext) {
@@ -123,6 +120,26 @@ public class Tools {
         }
         return result;
     }
+
+
+    public static boolean copyFileFromAssetsToBox(String filename, Context mContext) {
+        boolean result = false;
+        String out = mContext.getFilesDir() + File.separator + filename;
+        InputStream inputStream;
+        OutputStream outputStream;
+        try {
+            inputStream = mContext.getAssets().open(filename);
+            outputStream = new FileOutputStream(new File(out));
+            StreamUtil.copy(inputStream, outputStream, new byte[1024]);
+            inputStream.close();
+            outputStream.close();
+            result = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 
     public static int getScreenWidth(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);

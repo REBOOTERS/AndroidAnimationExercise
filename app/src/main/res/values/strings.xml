@@ -6,7 +6,7 @@
     <string name="besier">贝塞尔曲线</string>
     <string name="launch_app">启动第三方应用</string>
     <string name="title_activity_app_start">AppStartActivity</string>
-    <string name="toast">一直在模仿，从未能超越 ! </string>
+    <string name="toast">一直在模仿，从未能超越 !</string>
     <string name="self_view">自定义view时measure方法的考量</string>
     <string name="fake_weibo">仿新浪微博雷达扫描效果及相关功能实现</string>
     <string name="ball">小球虽手指移动效果</string>
@@ -15,7 +15,7 @@
     <string name="football">足球11人</string>
     <string name="webview">webView</string>
     <string name="webview1">How to use webView</string>
-    <string name="loader"> Loader 动画</string>
+    <string name="loader">Loader 动画</string>
     <string name="lottie_anim">Airbnb Lottie 动画</string>
     <string name="flip_3d_View">FlipView 3D 效果</string>
     <string name="take_screen">截屏</string>
@@ -42,17 +42,18 @@
     <string name="polygonView">PolygonView</string>
     <string name="profile">imitate douban</string>
     <string name="pull_to_scale">下拉放大效果</string>
-    <string name="view_drag">view drag helper </string>
+    <string name="view_drag">view drag helper</string>
     <string name="master">Paint 设置Shader效果</string>
     <string name="filter">Paint 设置Filter效果</string>
     <string name="jianshu">仿简书长按生成图片效果</string>
     <string name="clockView">简易时钟</string>
     <string name="base_recyclerview">RecyclerView 使用</string>
+    <string name="read_jar">read jar</string>
     <string name="jianshuhead">仿简书头部搜索栏效果</string>
     <string name="swipemenu">侧滑菜单效果</string>
     <string name="pullzoom">下拉放大效果</string>
     <string name="flipView">FlipView 效果</string>
-    <string name="swipeFinish">Swipe Finish  Activity</string>
+    <string name="swipeFinish">Swipe Finish Activity</string>
     <string name="Matisse">Matisse 相册效果</string>
     <string name="PreviewOne">预览大图效果 1</string>
     <string name="PreviewTwo">预览大图效果 2</string>
@@ -117,7 +118,8 @@
     </string-array>
 
     <string name="permission_request_denied">Permission request denied</string>
-    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM
+    </string>
 
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
@@ -152,7 +154,7 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="multi_select_list_preference_default_value" />
+    <string-array name="multi_select_list_preference_default_value"/>
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
@@ -268,7 +270,8 @@
     <string name="title_zoom">Zoom</string>
     <string name="title_layout_changes">Layout Changes</string>
     <string name="title_template_step">Step <xliff:g id="step_number">%1$d</xliff:g>: Lorem
-        Ipsum</string>
+        Ipsum
+    </string>
 
     <!-- Actions -->
     <string name="action_toggle">Toggle indicator</string>
@@ -292,7 +295,8 @@
     <!-- Other strings -->
     <string name="card_back_title">Angry Red Android</string>
     <string name="card_back_description"><![CDATA[Lorem ipsum dolor sit]]></string>
-    <string name="lorem_ipsum"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et magna ut erat elementum cursus in quis ipsum. Nam faucibus ultrices eros, vel tempor leo semper sit amet. Duis magna quam, congue vitae interdum nec, condimentum ut lectus. Sed commodo venenatis eros a dignissim. Nunc adipiscing turpis nec magna venenatis at ultricies ipsum bibendum. Sed volutpat urna quis nisi vulputate egestas. Etiam eu dui a enim lacinia dapibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n\nPhasellus orci mi, eleifend nec congue id, volutpat at neque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer semper velit vel leo rutrum sed fermentum elit porta.]]></string>
+    <string name="lorem_ipsum">
+        <![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et magna ut erat elementum cursus in quis ipsum. Nam faucibus ultrices eros, vel tempor leo semper sit amet. Duis magna quam, congue vitae interdum nec, condimentum ut lectus. Sed commodo venenatis eros a dignissim. Nunc adipiscing turpis nec magna venenatis at ultricies ipsum bibendum. Sed volutpat urna quis nisi vulputate egestas. Etiam eu dui a enim lacinia dapibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n\nPhasellus orci mi, eleifend nec congue id, volutpat at neque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer semper velit vel leo rutrum sed fermentum elit porta.]]></string>
     <string name="title_activity_xiao_mi_gallery">XiaoMiGalleryActivity</string>
     <string name="click_close">点我关闭</string>
     <string name="title_activity_view_page_nested">ViewPageNestedActivity</string>

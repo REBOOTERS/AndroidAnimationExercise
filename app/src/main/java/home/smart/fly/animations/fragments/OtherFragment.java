@@ -23,22 +23,7 @@ import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.ItemInfo;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.recyclerview.BaseRecyclerViewActivity;
-import home.smart.fly.animations.ui.activity.CameraActivity;
-import home.smart.fly.animations.ui.activity.ClipBoardActivity;
-import home.smart.fly.animations.ui.activity.FullscreenActivity;
-import home.smart.fly.animations.ui.activity.ImgCacheActivity;
-import home.smart.fly.animations.ui.activity.InputActivity;
-import home.smart.fly.animations.ui.activity.LaunchOtherAppActivity;
-import home.smart.fly.animations.ui.activity.LoadCircleImageActivity;
-import home.smart.fly.animations.ui.activity.MailActivity;
-import home.smart.fly.animations.ui.activity.MergeIncludeViewActivity;
-import home.smart.fly.animations.ui.activity.OptionalActivity;
-import home.smart.fly.animations.ui.activity.OrientationActivity;
-import home.smart.fly.animations.ui.activity.PaletteActivity;
-import home.smart.fly.animations.ui.activity.PdfActivity;
-import home.smart.fly.animations.ui.activity.ScreenCaptureActivity;
-import home.smart.fly.animations.ui.activity.ViewPagerNestedActivity;
-import home.smart.fly.animations.ui.activity.ViewStubActivity;
+import home.smart.fly.animations.ui.activity.*;
 import home.smart.fly.animations.ui.activity.multifragments.MultiFragmentsActivity;
 import home.smart.fly.animations.utils.AppUtils;
 import home.smart.fly.animations.webview.AllWebViewActivity;
@@ -52,6 +37,7 @@ public class OtherFragment extends BaseFragment {
 
     @Override
     public void InitView() {
+        demos.add(new ItemInfo(R.string.read_jar, ReadJarActivity.class));
         demos.add(new ItemInfo(R.string.base_recyclerview, BaseRecyclerViewActivity.class));
         demos.add(new ItemInfo(R.string.title_activity_multi_fragments, MultiFragmentsActivity.class));
         demos.add(new ItemInfo(R.string.palette, PaletteActivity.class));

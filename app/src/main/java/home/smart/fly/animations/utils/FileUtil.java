@@ -34,7 +34,7 @@ public class FileUtil {
      * @param name
      * @return
      */
-    public static String savaBitmap2SDcard(Context context, Bitmap bitmap, String name,String dir) {
+    public static String savaBitmap2SDcard(Context context, Bitmap bitmap, String name, String dir) {
 
         String result = "";
         File fileDir = new File(Environment.getExternalStorageDirectory() +
@@ -147,10 +147,10 @@ public class FileUtil {
      * @param fileName
      * @return
      */
-    public static boolean saveStrToSDCard(String str, String fileName) {
+    public static boolean saveStrToBox(Context context, String str, String fileName) {
         boolean success = false;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            String path = Environment.getExternalStorageDirectory() + File.separator + fileName;
+            String path = context.getFilesDir().getAbsolutePath() + File.separator + fileName;
 
             File file = new File(path);
             try {
