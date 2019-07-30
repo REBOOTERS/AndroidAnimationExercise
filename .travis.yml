@@ -20,4 +20,4 @@ before_install:
   - echo -e "\84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 
 script:
-  - ./gradlew assembleDebug --daemon
+  - ./gradlew assembleChargeDebug --daemon
