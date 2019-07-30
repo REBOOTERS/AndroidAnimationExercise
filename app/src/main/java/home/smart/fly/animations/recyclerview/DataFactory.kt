@@ -7,7 +7,7 @@ import home.smart.fly.animations.recyclerview.bean.StickBean
 import home.smart.fly.animations.utils.Tools
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 07-23-2019
  */
 object DataFactory {

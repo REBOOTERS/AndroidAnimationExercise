@@ -4,7 +4,7 @@ import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 07-11-2019
  */
 public class RxBus {

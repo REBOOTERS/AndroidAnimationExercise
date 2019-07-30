@@ -4,7 +4,7 @@ import android.util.Log;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 07-29-2019
  */
 public class RequestManager {

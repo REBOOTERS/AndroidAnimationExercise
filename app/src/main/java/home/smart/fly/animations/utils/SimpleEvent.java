@@ -1,7 +1,7 @@
 package home.smart.fly.animations.utils;
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 07-11-2019
  */
 public class SimpleEvent {

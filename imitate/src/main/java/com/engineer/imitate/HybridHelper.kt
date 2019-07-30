@@ -16,35 +16,29 @@ import com.alibaba.android.arouter.launcher.ARouter
  * @version V1.0
  */
 
-class HybridHelper {
+class HybridHelper(private var context: Context) {
 
-    private var context: Context
-    private lateinit var listener: OnItemClickListener
+    private var listener: OnItemClickListener? = null
 
-    constructor(context: Context) {
-        this.context = context
+    @JavascriptInterface
+    fun go(path: String) {
+        go(path, "")
     }
 
     @JavascriptInterface
-    public fun go(path: String) {
-        go(path,"")
-    }
-
-    @JavascriptInterface
-    public fun go(path:String,title: String) {
-        val fragment: androidx.fragment.app.Fragment = ARouter.getInstance().build(path).navigation(context, ARouterCallback()) as androidx.fragment.app.Fragment
-        if (this.listener != null) {
-            listener.onClick(fragment,title)
-        }
+    fun go(path: String, title: String) {
+        val fragment: Fragment =
+            ARouter.getInstance().build(path).navigation(context, ARouterCallback()) as Fragment
+        listener?.onClick(fragment, title)
     }
 
 
-    public interface OnItemClickListener {
-        fun onClick(fragment: androidx.fragment.app.Fragment, title: String)
+    interface OnItemClickListener {
+        fun onClick(fragment: Fragment, title: String)
     }
 
 
-    public fun setOnItemClickListener(listener: OnItemClickListener) {
+    fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
 

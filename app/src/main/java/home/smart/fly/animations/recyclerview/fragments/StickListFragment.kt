@@ -13,7 +13,7 @@ import home.smart.fly.animations.recyclerview.bean.StickBean
 import home.smart.fly.animations.recyclerview.customitemdecoration.sticky.StickyItemDecoration
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 07-23-2019
  */
 class StickListFragment : BaseListFragment<StickBean>() {

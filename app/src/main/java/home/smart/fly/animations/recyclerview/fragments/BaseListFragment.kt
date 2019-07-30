@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import home.smart.fly.animations.R
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 07-23-2019
  */
 abstract class BaseListFragment<T> : Fragment() {
