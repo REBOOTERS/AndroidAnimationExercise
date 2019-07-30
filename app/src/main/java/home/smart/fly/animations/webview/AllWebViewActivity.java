@@ -172,7 +172,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         switch (v.getId()) {
             case R.id.button:
                 String time = Tools.getCurrentTime();
-                String version = Tools.getVersion(mContext);
+                String version = Tools.getAppVersion(mContext);
                 String name = Tools.getName(mContext);
                 String currentUrl = mWebView.getUrl();
                 String info = "Application Info: \n\n version: " + version

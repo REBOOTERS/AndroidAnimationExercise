@@ -40,12 +40,19 @@ public class Tools {
     }
 
 
+    public static String getCurrentTime(long tempStap) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年", Locale.CHINA);
+        Date curDate = new Date(tempStap);
+        return simpleDateFormat.format(curDate);
+    }
+
+
     /**
      * 获取版本号
      *
      * @return 当前应用的版本号
      */
-    public static String getVersion(Context mContext) {
+    public static String getAppVersion(Context mContext) {
         int version = -1;
         String versionStr = "";
         try {

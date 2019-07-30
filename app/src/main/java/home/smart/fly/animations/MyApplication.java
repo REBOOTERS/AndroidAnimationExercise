@@ -1,6 +1,7 @@
 package home.smart.fly.animations;
 
 import android.app.Application;
+import android.os.Build;
 import android.util.Log;
 import android.webkit.WebView;
 
@@ -40,14 +41,14 @@ public class MyApplication extends Application {
 
         ARouter.init(this);
         Fresco.initialize(this);
-
+        String dir = MMKV.initialize(this);
+        Log.e("application", "onCreate: mmkv.dir==" + dir);
         WebView.setWebContentsDebuggingEnabled(true);
 
 
         DoraemonKit.install(this);
 
-        String dir = MMKV.initialize(this);
-        Log.e("application", "onCreate: mmkv.dir==" + dir);
+
 
 
         logLifeCycleCallBacks();
@@ -55,7 +56,6 @@ public class MyApplication extends Application {
 
     protected void logLifeCycleCallBacks() {
     }
-
 
     protected RefWatcher installLeakCanary() {
         // ignore some thing
