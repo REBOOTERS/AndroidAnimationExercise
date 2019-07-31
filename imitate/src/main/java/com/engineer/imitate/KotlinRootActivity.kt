@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.engineer.fastlist.FastListAdapter
 import com.engineer.fastlist.bind
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.ui.activity.ReverseGifActivity
@@ -50,11 +51,19 @@ class KotlinRootActivity : AppCompatActivity() {
 
     private lateinit var disposable: Disposable
 
+    private var adapter: FastListAdapter<FragmentItem>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin_root)
         setSupportActionBar(toolbar)
         loadView()
+
+        jsonTest()
+    }
+
+
+    private fun jsonTest() {
 
         val uri = "https://www.zhihu.com/search?q=%E5%88%A9%E7%89%A9%E6%B5%A6&type=content"
         val parseUri = Uri.parse(uri)
@@ -63,10 +72,6 @@ class KotlinRootActivity : AppCompatActivity() {
         Log.e(TAG, "query:      ${parseUri.query}")
         Log.e(TAG, "isOpaque:   ${parseUri.isOpaque}")
 
-        jsonTest()
-    }
-
-    private fun jsonTest() {
         val jsonArray = JSONArray()
         for (i in 0..3) {
             val jsonObj = JSONObject()
@@ -79,7 +84,7 @@ class KotlinRootActivity : AppCompatActivity() {
     private fun loadView() {
         mLinearManager = LinearLayoutManager(this)
         mGridLayoutManager = GridLayoutManager(this, 2)
-        mLayoutManager = mGridLayoutManager
+        mLayoutManager = mLinearManager
         if (isNetworkConnected()) {
             loadWebView()
         } else {
@@ -93,19 +98,19 @@ class KotlinRootActivity : AppCompatActivity() {
 
     fun initList(): List<FragmentItem> {
         return listOf(
-                FragmentItem("/anim/circleLoading", "circle-loading"),
-                FragmentItem("/anim/coroutines", "coroutines"),
-                FragmentItem("/anim/recycler_view", "RecyclerView"),
-                FragmentItem("/anim/slide", "slide"),
-                FragmentItem("/anim/layout_manager", "layout_manager"),
-                FragmentItem("/anim/textDrawable", "textDrawable"),
-                FragmentItem("/anim/elevation", "elevation"),
-                FragmentItem("/anim/fresco", "fresco"),
-                FragmentItem("/anim/entrance", "entrance"),
-                FragmentItem("/anim/constraint", "constraint animation"),
-                FragmentItem("/anim/scroller", "scroller"),
-                FragmentItem("/anim/vh_fragment", "vh_fragment"),
-                FragmentItem("/anim/test", "test")
+            FragmentItem("/anim/circleLoading", "circle-loading"),
+            FragmentItem("/anim/coroutines", "coroutines"),
+            FragmentItem("/anim/recycler_view", "RecyclerView"),
+            FragmentItem("/anim/slide", "slide"),
+            FragmentItem("/anim/layout_manager", "layout_manager"),
+            FragmentItem("/anim/textDrawable", "textDrawable"),
+            FragmentItem("/anim/elevation", "elevation"),
+            FragmentItem("/anim/fresco", "fresco"),
+            FragmentItem("/anim/entrance", "entrance"),
+            FragmentItem("/anim/constraint", "constraint animation"),
+            FragmentItem("/anim/scroller", "scroller"),
+            FragmentItem("/anim/vh_fragment", "vh_fragment"),
+            FragmentItem("/anim/test", "test")
         )
     }
 
@@ -113,7 +118,7 @@ class KotlinRootActivity : AppCompatActivity() {
         hybrid.visibility = View.GONE
         recyclerView.visibility = View.VISIBLE
         val list = initList()
-        recyclerView.bind(list, R.layout.view_item) { item: FragmentItem ->
+        adapter = recyclerView.bind(list, R.layout.view_item) { item: FragmentItem ->
             desc.text = item.name
             path.text = item.path
             shell.setOnClickListener {
@@ -217,7 +222,8 @@ class KotlinRootActivity : AppCompatActivity() {
                 } else {
                     mLayoutManager = mLinearManager
                 }
-                loadRecyclerView()
+                adapter?.layoutManager(mLayoutManager)?.notifyDataSetChanged()
+                return true
             }
         }
         return super.onOptionsItemSelected(item)

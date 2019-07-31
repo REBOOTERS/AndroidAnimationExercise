@@ -27,8 +27,8 @@ internal class DataViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_view)
 
-        disposable = DataView.getRepository().all
-
+        disposable = DataView.getRepository()
+            .all
             .compose(AutoSchedulerTransformer())
             .subscribe({
                 Log.e("ui", "size==${it.size}")
