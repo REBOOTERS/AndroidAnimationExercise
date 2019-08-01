@@ -9,6 +9,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources.Theme;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.MessageQueue;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,10 +25,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.ThemedSpinnerAdapter;
 import androidx.appcompat.widget.Toolbar;
+import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -64,7 +68,6 @@ public class AppStartActivity extends AppCompatActivity {
     private AppBarLayout mAppBarLayout;
 
     private SharedPreferences mPreferences; // 简单粗暴保存一下位置，后期封装一下 TODO
-
 
     @SuppressLint("CheckResult")
     @Override
@@ -138,7 +141,19 @@ public class AppStartActivity extends AppCompatActivity {
 
         RxBus.getInstance().toObservable(SimpleEvent.class)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(simpleEvent -> Toast.makeText(mContext,simpleEvent.getMsg(),Toast.LENGTH_SHORT).show());
+                .subscribe(simpleEvent -> Toast.makeText(mContext, simpleEvent.getMsg(), Toast.LENGTH_SHORT).show());
+
+        Looper.myQueue().addIdleHandler(() -> {
+            Log.e(TAG, "queueIdle: just idle");
+            Log.e(TAG, "onCreate: " + Thread.currentThread().getName());
+            AsyncLayoutInflater asyncLayoutInflater = new AsyncLayoutInflater(mContext);
+            asyncLayoutInflater.inflate(R.layout.activity_file_utils, null, (view, resid, parent) -> {
+                Log.e(TAG, "inflate: " + view);
+                Log.e(TAG, "inflate: " + resid);
+                Log.e(TAG, "inflate: " + parent);
+            });
+            return false;
+        });
     }
 
     /**
