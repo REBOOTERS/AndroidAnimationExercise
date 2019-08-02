@@ -18,7 +18,7 @@ import org.robolectric.annotation.Config
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [27],application = ImitateApplication::class)
-class RobolectricUnitTest {
+class AndroidContextTest {
 
     @Test
     fun assertContext() {
