@@ -82,3 +82,12 @@ subprojects { sub ->
         println "#### Evaluate after of " + project.path
     }
 }
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xmaxerrs" << "4000"
+            options.compilerArgs << "-Xmaxwarns" << "4000"
+        }
+    }
+}
