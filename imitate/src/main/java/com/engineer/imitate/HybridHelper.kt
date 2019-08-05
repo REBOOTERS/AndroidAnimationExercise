@@ -21,6 +21,7 @@ class HybridHelper(private var context: Context) {
     private var listener: OnItemClickListener? = null
 
     @JavascriptInterface
+    @SuppressWarnings("unused")
     fun go(path: String) {
         go(path, "")
     }

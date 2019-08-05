@@ -42,7 +42,6 @@ class KotlinRootActivity : AppCompatActivity() {
     private val ORIGINAL_URL = "file:///android_asset/index.html"
     private lateinit var hybridHelper: HybridHelper
 
-    private lateinit var transaction: FragmentTransaction
     private lateinit var currentFragment: Fragment
     private lateinit var mLinearManager: LinearLayoutManager
     private lateinit var mGridLayoutManager: GridLayoutManager
@@ -126,7 +125,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 currentFragment = fragment
                 content.visibility = View.VISIBLE
                 index.visibility = View.GONE
-                transaction = supportFragmentManager.beginTransaction()
+                val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
                 Log.e(TAG, "transaction===" + transaction.isEmpty)
             }
@@ -156,25 +155,22 @@ class KotlinRootActivity : AppCompatActivity() {
 
 
         disposable = Observable.create<String> { emitter ->
-            kotlin.run {
-                Optional.ofNullable(assets.open(BASE_URL))
-                        .ifPresentOrElse({
-                            val result = StreamUtils.readFully(it)
-                            emitter.onNext(result)
-                            emitter.onComplete()
-                        }, { emitter.onError(Throwable("input is null")) })
-            }
+            Optional.ofNullable(assets.open(BASE_URL))
+                .ifPresentOrElse({
+                    val result = StreamUtils.readFully(it)
+                    emitter.onNext(result)
+                    emitter.onComplete()
+                }, { emitter.onError(Throwable("input is null")) })
+
         }.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    // 内容包含远程 JS 无法正常加载 TODO 修改 jquery mobile 为本地
-//                    hybrid.loadDataWithBaseURL("", it, "text/html", "utf-8", null)
-                    hybrid.loadUrl(ORIGINAL_URL)
-                },
-                        {
-                            Log.e("tag", it.toString())
-                            loadRecyclerView()
-                        })
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                hybrid.loadUrl(ORIGINAL_URL)
+            },
+                {
+                    Log.e("tag", it.toString())
+                    loadRecyclerView()
+                })
 
 
     }
@@ -188,7 +184,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 content.visibility = View.VISIBLE
                 index.visibility = View.GONE
                 currentFragment = fragment
-                transaction = supportFragmentManager.beginTransaction()
+                val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
             }
         }
@@ -234,13 +230,13 @@ class KotlinRootActivity : AppCompatActivity() {
             releaseFragment()
         } else {
             super.onBackPressed()
-
         }
     }
 
     private fun releaseFragment() {
         content.visibility = View.GONE
         index.visibility = View.VISIBLE
+        val transaction = supportFragmentManager.beginTransaction()
         if (!transaction.isEmpty) {
             transaction.remove(currentFragment)
         }

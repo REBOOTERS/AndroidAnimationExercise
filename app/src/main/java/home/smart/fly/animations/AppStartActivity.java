@@ -8,45 +8,28 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources.Theme;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
-import android.os.MessageQueue;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.view.*;
+import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.ThemedSpinnerAdapter;
 import androidx.appcompat.widget.Toolbar;
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.engineer.dateview.api.DataView;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.tencent.mmkv.MMKV;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.internal.NormalStatus;
@@ -55,17 +38,20 @@ import home.smart.fly.animations.ui.SuperTools;
 import home.smart.fly.animations.ui.activity.AllActivity;
 import home.smart.fly.animations.utils.*;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 
 public class AppStartActivity extends AppCompatActivity {
     private static final String TAG = "AppStartActivity";
     private Snackbar snackbar = null;
-    private CoordinatorLayout main_contetn;
+    private CoordinatorLayout mainContent;
     private Context mContext;
     private AppCompatAutoCompleteTextView mAutoCompleteTextView;
     private Toolbar mToolbar;
-    private AppBarLayout mAppBarLayout;
 
     private SharedPreferences mPreferences; // 简单粗暴保存一下位置，后期封装一下 TODO
 
@@ -80,13 +66,10 @@ public class AppStartActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-        mAppBarLayout = findViewById(R.id.appbar);
         mAutoCompleteTextView = findViewById(R.id.auto_complete_text);
         // Setup spinner
         Spinner spinner = findViewById(R.id.spinner);
-        spinner.setAdapter(new MyAdapter(
-                mToolbar.getContext(),
-                getResources().getStringArray(R.array.fragments)));
+        spinner.setAdapter(new MyAdapter(mToolbar.getContext(), getResources().getStringArray(R.array.fragments)));
 
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
@@ -111,7 +94,7 @@ public class AppStartActivity extends AppCompatActivity {
         });
 
         spinner.setSelection(getLastPosition());
-        main_contetn = findViewById(R.id.main_content);
+        mainContent = findViewById(R.id.main_content);
         findViewById(R.id.fab).setOnClickListener(v -> ARouter.getInstance()
                 .build("/index/kotlin").navigation(mContext, new NavCallback() {
                     @Override
@@ -121,24 +104,26 @@ public class AppStartActivity extends AppCompatActivity {
                     @Override
                     public void onLost(Postcard postcard) {
                         super.onLost(postcard);
-                        snackbar = Snackbar.make(main_contetn, R.string.module_info, Snackbar.LENGTH_LONG)
+                        snackbar = Snackbar.make(mainContent, R.string.module_info, Snackbar.LENGTH_LONG)
                                 .setAction("知道了", v1 -> snackbar.dismiss());
-                        snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                        snackbar.setActionTextColor(getResources().getColor(R.color.white));
+                        snackbar.getView().setBackgroundColor(ContextCompat.getColor(getApplicationContext(),
+                                R.color.colorAccent));
+                        snackbar.setActionTextColor(Color.WHITE);
                         snackbar.show();
                     }
                 }));
-        print();
 
         setupAutoCompleteTextView();
 
         reportFullyDrawn();
 
-        howEnumWork();
 
-        System.out.println("enum " + Single.INSTANCE.getValue());
-        System.out.println("enum " + Single.INSTANCE.hashCode());
+        testCode();
+    }
 
+    // <editor-fold defaultstate="collapsed" desc="some test code">
+
+    private void testCode() {
         RxBus.getInstance().toObservable(SimpleEvent.class)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(simpleEvent -> Toast.makeText(mContext, simpleEvent.getMsg(), Toast.LENGTH_SHORT).show());
@@ -154,6 +139,9 @@ public class AppStartActivity extends AppCompatActivity {
             });
             return false;
         });
+
+        howEnumWork();
+        print();
     }
 
     /**
@@ -169,6 +157,9 @@ public class AppStartActivity extends AppCompatActivity {
         System.out.println("enum " + NormalStatus.getValue(NormalStatus.SUCCESS));
         System.out.println("enum " + NormalStatus.getValue(NormalStatus.LOADING));
         System.out.println("enum " + NormalStatus.getValue(NormalStatus.FAIL));
+
+        System.out.println("enum " + Single.INSTANCE.getValue());
+        System.out.println("enum " + Single.INSTANCE.hashCode());
     }
 
     // <editor-fold defaultstate="collapsed" desc="一些屏幕信息">
@@ -190,7 +181,7 @@ public class AppStartActivity extends AppCompatActivity {
     private void print(String msg) {
         Log.e("Nj", msg);
     }
-
+    // </editor-fold>
 
     @Override
     protected void onResume() {
