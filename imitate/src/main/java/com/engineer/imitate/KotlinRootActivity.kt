@@ -109,7 +109,7 @@ class KotlinRootActivity : AppCompatActivity() {
             FragmentItem("/anim/constraint", "constraint animation"),
             FragmentItem("/anim/scroller", "scroller"),
             FragmentItem("/anim/vh_fragment", "vh_fragment"),
-            FragmentItem("/anim/test", "test")
+            FragmentItem("/anim/parallax", "test")
         )
     }
 
