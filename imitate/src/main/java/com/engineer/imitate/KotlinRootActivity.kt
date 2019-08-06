@@ -125,6 +125,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 currentFragment = fragment
                 content.visibility = View.VISIBLE
                 index.visibility = View.GONE
+                gif.visibility = View.GONE
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
                 Log.e(TAG, "transaction===" + transaction.isEmpty)
@@ -176,6 +177,7 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     private inner class SimpleClickListener : HybridHelper.OnItemClickListener {
+        @SuppressLint("RestrictedApi")
         override fun onClick(fragment: Fragment, title: String) {
             runOnUiThread {
                 if (!TextUtils.isEmpty(title)) {
@@ -183,6 +185,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 }
                 content.visibility = View.VISIBLE
                 index.visibility = View.GONE
+                gif.visibility = View.GONE
                 currentFragment = fragment
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
@@ -236,6 +239,7 @@ class KotlinRootActivity : AppCompatActivity() {
     private fun releaseFragment() {
         content.visibility = View.GONE
         index.visibility = View.VISIBLE
+        gif.visibility = View.VISIBLE
         val transaction = supportFragmentManager.beginTransaction()
         if (!transaction.isEmpty) {
             transaction.remove(currentFragment)
