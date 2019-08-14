@@ -2,6 +2,8 @@ package com.engineer.imitate.util
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkRequest
 
 /**
  * author : engineer

@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
@@ -38,7 +39,6 @@ import org.json.JSONObject
 @Route(path = Routes.INDEX)
 class KotlinRootActivity : AppCompatActivity() {
     private val TAG = KotlinRootActivity::class.java.simpleName
-    private val BASE_URL = "index.html"
     private val ORIGINAL_URL = "file:///android_asset/index.html"
     private lateinit var hybridHelper: HybridHelper
 
@@ -57,27 +57,7 @@ class KotlinRootActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin_root)
         setSupportActionBar(toolbar)
         loadView()
-
         jsonTest()
-    }
-
-
-    private fun jsonTest() {
-
-        val uri = "https://www.zhihu.com/search?q=%E5%88%A9%E7%89%A9%E6%B5%A6&type=content"
-        val parseUri = Uri.parse(uri)
-
-        Log.e(TAG, "type  :      " + parseUri::class.java.canonicalName)
-        Log.e(TAG, "query:      ${parseUri.query}")
-        Log.e(TAG, "isOpaque:   ${parseUri.isOpaque}")
-
-        val jsonArray = JSONArray()
-        for (i in 0..3) {
-            val jsonObj = JSONObject()
-            jsonObj.put("name", "name_$i")
-            jsonArray.put(jsonObj)
-        }
-        Log.e(TAG, "result ==$jsonArray")
     }
 
     private fun loadView() {
@@ -95,8 +75,9 @@ class KotlinRootActivity : AppCompatActivity() {
         }
     }
 
-    fun initList(): List<FragmentItem> {
-        return listOf(
+    // <editor-fold defaultstate="collapsed" desc="init fragments">
+    private fun initList(): MutableList<FragmentItem> {
+        return mutableListOf(
             FragmentItem("/anim/circleLoading", "circle-loading"),
             FragmentItem("/anim/coroutines", "coroutines"),
             FragmentItem("/anim/recycler_view", "RecyclerView"),
@@ -108,9 +89,10 @@ class KotlinRootActivity : AppCompatActivity() {
             FragmentItem("/anim/constraint", "constraint animation"),
             FragmentItem("/anim/scroller", "scroller"),
             FragmentItem("/anim/vh_fragment", "vh_fragment"),
-            FragmentItem("/anim/parallax", "test")
+            FragmentItem("/anim/parallax", "parallax")
         )
     }
+    // </editor-fold>
 
     private fun loadRecyclerView() {
         hybrid.visibility = View.GONE
@@ -120,13 +102,15 @@ class KotlinRootActivity : AppCompatActivity() {
             desc.text = item.name
             path.text = item.path
             shell.setOnClickListener {
+                gif.hide()
+
                 val fragment: Fragment = ARouter.getInstance().build(item.path).navigation(context) as Fragment
                 currentFragment = fragment
                 content.visibility = View.VISIBLE
                 index.visibility = View.GONE
-                gif.visibility = View.GONE
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
+
                 Log.e(TAG, "transaction===" + transaction.isEmpty)
             }
         }.layoutManager(mLayoutManager)
@@ -153,26 +137,7 @@ class KotlinRootActivity : AppCompatActivity() {
         hybridHelper.setOnItemClickListener(SimpleClickListener())
         hybrid.addJavascriptInterface(hybridHelper, "hybrid")
 
-
-        disposable = Observable.create<String> { emitter ->
-            Optional.ofNullable(assets.open(BASE_URL))
-                .ifPresentOrElse({
-                    val result = StreamUtils.readFully(it)
-                    emitter.onNext(result)
-                    emitter.onComplete()
-                }, { emitter.onError(Throwable("input is null")) })
-
-        }.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                hybrid.loadUrl(ORIGINAL_URL)
-            },
-                {
-                    Log.e("tag", it.toString())
-                    loadRecyclerView()
-                })
-
-
+        hybrid.loadUrl(ORIGINAL_URL)
     }
 
     private inner class SimpleClickListener : HybridHelper.OnItemClickListener {
@@ -184,7 +149,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 }
                 content.visibility = View.VISIBLE
                 index.visibility = View.GONE
-                gif.visibility = View.GONE
+                gif.hide()
                 currentFragment = fragment
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
@@ -238,7 +203,7 @@ class KotlinRootActivity : AppCompatActivity() {
     private fun releaseFragment() {
         content.visibility = View.GONE
         index.visibility = View.VISIBLE
-        gif.visibility = View.VISIBLE
+        gif.show()
         val transaction = supportFragmentManager.beginTransaction()
         if (!transaction.isEmpty) {
             transaction.remove(currentFragment)
@@ -254,6 +219,24 @@ class KotlinRootActivity : AppCompatActivity() {
         if (!disposable.isDisposed) {
             disposable.dispose()
         }
+    }
+
+    private fun jsonTest() {
+
+        val uri = "https://www.zhihu.com/search?q=%E5%88%A9%E7%89%A9%E6%B5%A6&type=content"
+        val parseUri = Uri.parse(uri)
+
+        Log.e(TAG, "type  :      " + parseUri::class.java.canonicalName)
+        Log.e(TAG, "query:      ${parseUri.query}")
+        Log.e(TAG, "isOpaque:   ${parseUri.isOpaque}")
+
+        val jsonArray = JSONArray()
+        for (i in 0..3) {
+            val jsonObj = JSONObject()
+            jsonObj.put("name", "name_$i")
+            jsonArray.put(jsonObj)
+        }
+        Log.e(TAG, "result ==$jsonArray")
     }
 
 }
