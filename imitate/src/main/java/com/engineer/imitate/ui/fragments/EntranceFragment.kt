@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -158,6 +159,18 @@ class EntranceFragment : Fragment() {
                         datas.addAll(result)
                         adapter.notifyDataSetChanged()
                     }
+
+                    val shareIntent = ShareCompat.IntentBuilder.from(activity)
+                        .addStream(Matisse.obtainResult(data)[0])
+//                        .addStream(revertedlUrl)
+                        .setText("https:www.zhihu.com")
+                        .setType("text/plain")
+                        .createChooserIntent()
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+                                or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+                                or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(shareIntent)
+
                 }
                 101 -> {
                     val result = Matisse.obtainPathResult(data)

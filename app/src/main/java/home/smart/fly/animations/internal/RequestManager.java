@@ -1,7 +1,6 @@
 package home.smart.fly.animations.internal;
 
 import android.util.Log;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * @author rookie

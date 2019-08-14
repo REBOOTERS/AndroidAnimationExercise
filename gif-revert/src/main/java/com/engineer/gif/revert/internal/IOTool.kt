@@ -71,7 +71,7 @@ internal object IOTool {
     /**
      * 通知一下系统相册，避免生成的图片找到了
      */
-    fun notifySystemGallay(context: Context, path: String) {
+    fun notifySystemGallery(context: Context, path: String) {
         val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
         val file = File(path)
         val uri = Uri.fromFile(file)

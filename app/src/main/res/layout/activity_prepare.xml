@@ -2,302 +2,324 @@
 
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/chartreuse"
-    android:orientation="vertical"
-    android:id="@+id/nested_scrollview"
-    tools:context=".ui.activity.PrepareActivity">
+                                       xmlns:app="http://schemas.android.com/apk/res-auto"
+                                       xmlns:tools="http://schemas.android.com/tools"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       android:background="@color/chartreuse"
+                                       android:orientation="vertical"
+                                       android:id="@+id/nested_scrollview"
+                                       tools:context=".ui.activity.PrepareActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/scroll_to"
             android:layout_width="match_parent"
-            android:text="scroll_to"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/scroll_by"
-            android:layout_width="match_parent"
-            android:text="scroll_by"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/webImage"
-            android:layout_margin="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
-
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:maxLines="1"
-            android:text="11111111111111111111" />
-
-        <TextView
-            android:id="@+id/name1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:maxLines="2"
-            android:text="11111111111111111111" />
+            android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
+                android:layout_margin="18dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/prefix"
+            <View android:layout_width="match_parent"
+                  android:background="@color/md_blue"
+                  android:layout_toStartOf="@id/text"
+                  android:layout_height="80dp"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:padding="10dp"
+                      android:layout_marginStart="10dp"
+                      android:id="@+id/text"
+                      android:background="@color/cpb_grey"
+                      android:text="六个字\n六个字"
+                      android:maxLines="2"
+                      android:layout_centerVertical="true"
+                      android:layout_alignParentEnd="true"
+                      android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <Button
+                android:id="@+id/scroll_to"
+                android:layout_width="match_parent"
+                android:text="scroll_to"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                android:id="@+id/scroll_by"
+                android:layout_width="match_parent"
+                android:text="scroll_by"
+                android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:id="@+id/webImage"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
+
+
+        <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="prefix"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/suffix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="suffix"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/suffix"
-                android:layout_toEndOf="@+id/prefix"
-                android:ellipsize="end"
+                android:layout_margin="10dp"
                 android:maxLines="1"
-                android:text="a"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText" />
+                android:text="11111111111111111111"/>
+
+        <TextView
+                android:id="@+id/name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:maxLines="2"
+                android:text="11111111111111111111"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp">
+
+            <TextView
+                    android:id="@+id/prefix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="prefix"
+                    android:textSize="18sp"/>
+
+            <TextView
+                    android:id="@+id/suffix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="suffix"
+                    android:textSize="18sp"/>
+
+            <TextView
+                    android:id="@+id/content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/suffix"
+                    android:layout_toEndOf="@+id/prefix"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="a"
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText"/>
 
         </RelativeLayout>
 
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp">
 
             <TextView
-                android:id="@+id/prefix1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/prefix"
-                android:textSize="18sp" />
+                    android:id="@+id/prefix1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/prefix"
+                    android:textSize="18sp"/>
 
 
             <TextView
-                android:id="@+id/content1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/prefix1"
-                android:drawableRight="@drawable/ic_photo_camera_white_24dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="a"
-                android:textSize="18sp"
-                tools:ignore="HardcodedText" />
+                    android:id="@+id/content1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/prefix1"
+                    android:drawableRight="@drawable/ic_photo_camera_white_24dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="a"
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText"/>
 
             <TextView
-                android:id="@+id/suffix1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/content1"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="suffix"
-                android:textSize="18sp" />
+                    android:id="@+id/suffix1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/content1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="suffix"
+                    android:textSize="18sp"/>
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/prefix2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="prefix"
-                android:textSize="18sp" />
+                android:layout_margin="16dp"
+                android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/content2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="aaaaaaaaaaaa"
-                android:textSize="18sp" />
+                    android:id="@+id/prefix2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="prefix"
+                    android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/suffix2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="suffix"
-                android:textSize="18sp" />
+                    android:id="@+id/content2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="aaaaaaaaaaaa"
+                    android:textSize="18sp"/>
+
+            <TextView
+                    android:id="@+id/suffix2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="suffix"
+                    android:textSize="18sp"/>
         </LinearLayout>
 
 
         <EditText
-            android:id="@+id/input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:hint="input some thing"
-            tools:ignore="HardcodedText" />
+                android:id="@+id/input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:hint="input some thing"
+                tools:ignore="HardcodedText"/>
 
         <home.smart.fly.animations.widget.OverLapLayout
-            android:id="@+id/over_layout_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layoutDirection="rtl">
+                android:id="@+id/over_layout_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layoutDirection="rtl">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/cat"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/cat"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1dp"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/cat"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/cat"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1dp"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/cat"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/cat"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1dp"/>
 
         </home.smart.fly.animations.widget.OverLapLayout>
 
         <home.smart.fly.animations.widget.OverLapLayout
-            android:id="@+id/over_layout_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/white"
-            android:layoutDirection="ltr">
+                android:id="@+id/over_layout_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/white"
+                android:layoutDirection="ltr">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/cat"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/cat"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1dp"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/cat"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/cat"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1dp"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/cat"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1dp" />
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/cat"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1dp"/>
 
         </home.smart.fly.animations.widget.OverLapLayout>
 
         <home.smart.fly.animations.widget.OverLapLayout
-            android:id="@+id/over_layout_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:visibility="visible" />
+                android:id="@+id/over_layout_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:visibility="visible"/>
 
 
         <home.smart.fly.animations.customview.SquareImageView
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:background="@color/red"
-            android:src="@drawable/cat" />
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@color/red"
+                android:src="@drawable/cat"/>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
             <TextView
-                android:id="@+id/test2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="1111111111111" />
+                    android:id="@+id/test2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="1111111111111"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/test2"
-                android:ellipsize="end"
-                android:lines="1"
-                android:singleLine="true"
-                android:text="曾雁曾雁曾雁曾雁曾雁曾雁曾雁曾雁曾雁曾雁曾雁曾雁" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/test2"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:text="曾雁曾雁曾雁曾雁曾雁曾雁曾雁曾雁曾雁曾雁曾雁曾雁"/>
 
 
         </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/cpb_green">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cpb_green">
 
             <TextView
-                android:id="@+id/tst"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="middle"
-                android:singleLine="true"
-                android:text="22222222222222222222222222221111111111"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tst1" />
+                    android:id="@+id/tst"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    android:text="22222222222222222222222222221111111111"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tst1"/>
 
 
             <TextView
-                android:id="@+id/tst1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="middle"
-                android:singleLine="true"
-                android:text="333333333333333333333333333333333333333333333333333333"
-                app:layout_constraintEnd_toStartOf="@id/tst"
-                app:layout_constraintStart_toStartOf="parent" />
+                    android:id="@+id/tst1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    android:text="333333333333333333333333333333333333333333333333333333"
+                    app:layout_constraintEnd_toStartOf="@id/tst"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:src="@drawable/name"
-            android:layout_height="800dp" />
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:src="@drawable/name"
+                android:layout_height="800dp"/>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

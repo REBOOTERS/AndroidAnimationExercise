@@ -30,23 +30,23 @@ class RoundImageView : AppCompatImageView {
 
 
     private var mRadius: Float = 0.toFloat() // dp
-    private  var mRoundedRectPath: Path? = null
-    private  lateinit var mRectF: RectF
+    private lateinit var mRoundedRectPath: Path
+    private lateinit var mRectF: RectF
     private lateinit var mPaint: Paint
 
     private fun init(context: Context) {
         val density = context.resources.displayMetrics.density
         mRadius = 2.0f * density
         mRoundedRectPath = Path()
-        mRectF =RectF()
+        mRectF = RectF()
         mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     }
 
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        this.mRectF!!.set(0.0f, 0.0f, width.toFloat(), height.toFloat())
-        mRoundedRectPath!!.addRoundRect(mRectF, mRadius, mRadius, Path.Direction.CW)
+        this.mRectF.set(0.0f, 0.0f, width.toFloat(), height.toFloat())
+        mRoundedRectPath.addRoundRect(mRectF, mRadius, mRadius, Path.Direction.CW)
     }
 
     override fun onDraw(canvas: Canvas) {

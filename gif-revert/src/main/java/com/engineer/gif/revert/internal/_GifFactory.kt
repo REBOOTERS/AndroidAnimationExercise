@@ -66,7 +66,7 @@ internal object _GifFactory {
 
         val path = IOTool.saveStreamToSDCard("test", os)
         t1.release("genGifByFrames")
-        IOTool.notifySystemGallay(context, path)
+        IOTool.notifySystemGallery(context, path)
         log(path)
         return path
     }

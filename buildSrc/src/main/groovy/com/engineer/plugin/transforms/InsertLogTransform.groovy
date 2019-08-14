@@ -163,6 +163,7 @@ class InsertLogTransform extends Transform {
             println("name==$name")
             println("desc==$desc")
             println("type==$type")
+
             if (type != null && type.elementType != null ) {
                 println("intr=${type.elementType.hasProperty("internalName")}")
 
@@ -193,7 +194,8 @@ class InsertLogTransform extends Transform {
 //            println("TestMethodVisitor, owner = " + owner + ", name = " + name);
             //方法执行之前打印
             mv.visitLdcInsn(" zyq")
-            mv.visitLdcInsn(" [ASM 测试] method in " + owner + " ,name=" + name)
+            mv.visitVarInsn(Opcodes.ALOAD,1)
+//            mv.visitLdcInsn(" [ASM 测试] method in " + owner + " ,name=" + name)
             mv.visitMethodInsn(Opcodes.INVOKESTATIC,
                     "android/util/Log", "e", "(Ljava/lang/String;Ljava/lang/String;)I", false)
             mv.visitInsn(Opcodes.POP)

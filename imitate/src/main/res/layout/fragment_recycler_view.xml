@@ -1,42 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".ui.fragments.RecyclerViewFragment">
-
-    <TextView
+<androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".ui.fragments.RecyclerViewFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/blue_round_card"
-        android:text="RecyclerView 自定义 ItemDecoration 实现 Overlap 效果"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/round_card" />
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/red_round_card"
-        android:text="RecyclerView 自定义 LayoutManager 实现画廊效果"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/blue_round_card"
+                android:text="RecyclerView 自定义 ItemDecoration 实现 Overlap 效果"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/round_card" />
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_card"/>
 
-</LinearLayout>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/red_round_card"
+                android:text="RecyclerView 自定义 LayoutManager 实现 Overlap 效果"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+        <include layout="@layout/fragment_layout_manager"/>
+
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/red_round_card"
+                android:text="RecyclerView 自定义 LayoutManager 实现画廊效果"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_card"/>
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

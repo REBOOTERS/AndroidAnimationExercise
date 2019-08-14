@@ -7,13 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.media.ExifInterface;
 import android.os.Environment;
-import android.os.FileUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import com.didichuxing.doraemonkit.kit.network.utils.StreamUtil;
-import com.didichuxing.doraemonkit.util.FileUtil;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
