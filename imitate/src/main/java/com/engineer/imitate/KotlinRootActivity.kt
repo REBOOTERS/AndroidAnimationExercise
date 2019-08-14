@@ -47,9 +47,6 @@ class KotlinRootActivity : AppCompatActivity() {
     private lateinit var mGridLayoutManager: GridLayoutManager
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
 
-
-    private lateinit var disposable: Disposable
-
     private var adapter: FastListAdapter<FragmentItem>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -212,13 +209,6 @@ class KotlinRootActivity : AppCompatActivity() {
         Log.e(TAG, "transaction===" + supportFragmentManager.fragments.size)
 
 
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (!disposable.isDisposed) {
-            disposable.dispose()
-        }
     }
 
     private fun jsonTest() {
