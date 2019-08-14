@@ -1,6 +1,5 @@
 package home.smart.fly.animations.ui.activity;
 
-import android.os.FileUtils;
 import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 import com.facebook.common.internal.ByteStreams;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.Tools;
-import kotlin.jvm.internal.ClassReference;
 
 import java.io.File;
 import java.io.FileOutputStream;
