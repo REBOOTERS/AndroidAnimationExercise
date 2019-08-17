@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.DialogTitle
 import android.util.Log
 import android.webkit.JavascriptInterface
+import android.widget.Toast
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.facade.callback.NavCallback
 import com.alibaba.android.arouter.launcher.ARouter
@@ -33,9 +34,17 @@ class HybridHelper(private var context: Context) {
         listener?.onClick(fragment, title)
     }
 
+    @JavascriptInterface
+    fun loadRecyclerView() {
+        Toast.makeText(context, "aaaa", Toast.LENGTH_SHORT).show()
+        listener?.reload()
+    }
+
 
     interface OnItemClickListener {
         fun onClick(fragment: Fragment, title: String)
+
+        fun reload()
     }
 
 

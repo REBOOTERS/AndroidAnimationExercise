@@ -1,5 +1,7 @@
 package com.engineer.imitate
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
@@ -10,6 +12,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
@@ -92,8 +95,14 @@ class KotlinRootActivity : AppCompatActivity() {
     // </editor-fold>
 
     private fun loadRecyclerView() {
-        hybrid.visibility = View.GONE
-        recyclerView.visibility = View.VISIBLE
+        hybrid.animate().alpha(0f).setListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                super.onAnimationEnd(animation)
+                hybrid.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }).start()
+
         val list = initList()
         adapter = recyclerView.bind(list, R.layout.view_item) { item: FragmentItem ->
             desc.text = item.name
@@ -138,6 +147,12 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     private inner class SimpleClickListener : HybridHelper.OnItemClickListener {
+        override fun reload() {
+            runOnUiThread {
+                loadRecyclerView()
+            }
+        }
+
         @SuppressLint("RestrictedApi")
         override fun onClick(fragment: Fragment, title: String) {
             runOnUiThread {

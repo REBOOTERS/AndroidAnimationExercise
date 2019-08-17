@@ -21,8 +21,23 @@
 </head>
 
 <body>
+<script>
+  $(document).ready(function(){
+  $("h5").click(function(){
+    console.log("dd")
+    console.log(hybrid)
+    hybrid.loadRecyclerView()
+  });
+});
+
+
+</script>
 
 <div data-role="page" data-theme="a">
+
+    <div data-role="header">
+        <h5> click me </h5>
+    </div>
     <ul data-role="listview" data-inset="true">
         <li><a href="javascript:hybrid.go('/anim/circleLoading','circle-loading')">circle-loading</a></li>
         <li><a href="javascript:hybrid.go('/anim/slide','仿探探')">仿探探</a></li>
