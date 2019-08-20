@@ -3,7 +3,7 @@
 
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/itemshell"
         android:layout_width="match_parent"
         android:layout_height="190dp"
@@ -19,7 +19,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/a6"/>
+            tools:src="@drawable/a6"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:text="1111"
+              android:id="@+id/index"
+              android:visibility="gone"
+              android:layout_gravity="center"
+              android:textColor="@color/black"
+              android:textStyle="bold"
+              android:textSize="33sp"
+              android:layout_height="wrap_content"/>
 
 
 </androidx.cardview.widget.CardView>

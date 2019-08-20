@@ -251,7 +251,7 @@
                 <data android:mimeType="text/*"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MatisseDemoActivity"/>
+        <activity android:name=".ui.activity.MatisseDemoActivity" android:exported="true"/>
         <activity android:name=".ui.activity.PhotoProcessActivity"/>
         <activity
                 android:name="com.yalantis.ucrop.UCropActivity"
@@ -323,7 +323,6 @@
                 android:name=".ui.activity.multifragments.MultiFragmentsActivity"
                 android:label="@string/title_activity_multi_fragments"
                 android:theme="@style/MyTheme.NoActionBar"/>
-        <activity android:name=".ui.activity.PhenixDemoActivity"/>
         <activity android:name=".ui.activity.WebViewMenuActivity"/>
         <activity android:name=".ui.activity.OptionalActivity"/>
         <activity android:name=".ui.activity.ClipBoardActivity"/>

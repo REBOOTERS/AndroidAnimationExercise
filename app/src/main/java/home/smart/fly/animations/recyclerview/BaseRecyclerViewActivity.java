@@ -1,6 +1,7 @@
 package home.smart.fly.animations.recyclerview;
 
 import android.os.Bundle;
+import android.view.View;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.FragmentManager;
@@ -33,7 +34,8 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
 
         initFragments();
 
-        navigation.setSelectedItemId(R.id.navigation_simple);
+        navigation.setSelectedItemId(R.id.navigation_home);
+        navigation.setVisibility(View.GONE);
     }
 
     // <editor-fold defaultstate="collapsed" desc="initFragments">
