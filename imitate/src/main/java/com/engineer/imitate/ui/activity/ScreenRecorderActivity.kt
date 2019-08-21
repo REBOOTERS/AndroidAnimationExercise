@@ -6,9 +6,12 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
+import com.engineer.imitate.ui.widget.headsup.Choco
+import com.engineer.imitate.ui.widget.headsup.Pudding
 import com.engineer.imitate.util.PathUtils
 import com.engineer.imitate.util.ScreenRecordHelper
 import com.engineer.imitate.util.SpUtil
@@ -61,29 +64,39 @@ class ScreenRecorderActivity : AppCompatActivity() {
             recreate()
         }
 
+        headsup.setOnClickListener {
+            val view = LayoutInflater.from(this).inflate(R.layout.item_heads_up,null)
+            Log.e("zyq","on==view==h==${view.measuredHeight}")
+            Pudding.create(this, view) {}
+                .show()
+        }
 
     }
 
     private fun record() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (screenRecordHelper == null) {
-                screenRecordHelper = ScreenRecordHelper(this, object : ScreenRecordHelper.OnVideoRecordListener {
-                    override fun onBeforeRecord() {
-                    }
+                screenRecordHelper = ScreenRecordHelper(
+                    this,
+                    object : ScreenRecordHelper.OnVideoRecordListener {
+                        override fun onBeforeRecord() {
+                        }
 
-                    override fun onStartRecord() {
-                        play()
-                    }
+                        override fun onStartRecord() {
+                            play()
+                        }
 
-                    override fun onCancelRecord() {
-                        releasePlayer()
-                    }
+                        override fun onCancelRecord() {
+                            releasePlayer()
+                        }
 
-                    override fun onEndRecord() {
-                        releasePlayer()
-                    }
+                        override fun onEndRecord() {
+                            releasePlayer()
+                        }
 
-                }, PathUtils.getExternalStoragePath() + File.separator + getString(R.string.app_name))
+                    },
+                    PathUtils.getExternalStoragePath() + File.separator + getString(R.string.app_name)
+                )
             }
             screenRecordHelper?.apply {
                 if (!isRecording) {
