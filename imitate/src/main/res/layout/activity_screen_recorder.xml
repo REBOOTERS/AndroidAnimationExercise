@@ -1,27 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.ScreenRecorderActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/MyAppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        tools:ignore="HardcodedText"
+        android:background="@drawable/timg"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.activity.ScreenRecorderActivity"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+    <TextView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/MyAppTheme.PopupOverlay" />
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:text="fitSystemWindow Feature"
+            android:layout_height="wrap_content"/>
 
-    </com.google.android.material.appbar.AppBarLayout>
+    <Button
+            android:id="@+id/start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="start"/>
 
-    <include layout="@layout/content_screen_recoder" />
+    <Button
+            android:id="@+id/stop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="stop"/>
+
+    <Button
+            android:id="@+id/revert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="true"/>
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      android:layout_height="wrap_content">
 
 
+            <TextView android:layout_width="0dp"
+                      android:background="@color/cpb_green"
+                      android:textColor="@color/white"
+                      android:layout_weight="1"
+                      android:layout_margin="10dp"
+                      android:text="@string/content"
+                      android:maxLines="8"
+                      android:ellipsize="end"
+                      android:layout_height="wrap_content"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <TextView android:layout_width="0dp"
+                      android:background="@color/cpb_green"
+                      android:textColor="@color/white"
+                      android:layout_weight="1"
+                      android:maxLines="8"
+                      android:ellipsize="end"
+                      android:layout_margin="10dp"
+                      android:text="string/content"
+                      android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+

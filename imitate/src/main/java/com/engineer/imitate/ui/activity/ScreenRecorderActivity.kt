@@ -11,19 +11,24 @@ import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.util.PathUtils
 import com.engineer.imitate.util.ScreenRecordHelper
+import com.engineer.imitate.util.SpUtil
 import kotlinx.android.synthetic.main.activity_screen_recorder.*
-import kotlinx.android.synthetic.main.content_screen_recoder.*
 import java.io.File
 
 class ScreenRecorderActivity : AppCompatActivity() {
 
     private var screenRecordHelper: ScreenRecordHelper? = null
     private val music: AssetFileDescriptor by lazy { assets.openFd("test.aac") }
+    private val fit_key = "fit"
+
+    private var fit = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        fit = SpUtil(this).getBool(fit_key)
+        println("value ==$fit")
+        window.decorView.fitsSystemWindows = fit
         setContentView(R.layout.activity_screen_recorder)
-        setSupportActionBar(toolbar)
 
         start.setOnClickListener {
             record()
@@ -42,6 +47,18 @@ class ScreenRecorderActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+        revert.setOnClickListener {
+            fit = !fit
+//            window.decorView.fitsSystemWindows = !fit
+            SpUtil(this).saveBool(fit_key, fit)
+            if (fit) {
+                revert.text = "true"
+            } else {
+                revert.text = "false"
+            }
+            recreate()
         }
 
 
@@ -76,7 +93,11 @@ class ScreenRecorderActivity : AppCompatActivity() {
                 }
             }
         } else {
-            Toast.makeText(this@ScreenRecorderActivity, "sorry,your phone does not support recording screen", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this@ScreenRecorderActivity,
+                "sorry,your phone does not support recording screen",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 

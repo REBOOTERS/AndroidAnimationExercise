@@ -14,13 +14,9 @@
             android:theme="@style/MyAppTheme"
             android:usesCleartextTraffic="true">
         <activity
-                android:name=".ui.activity.FitSystemWindowActivity"
-                android:label="@string/title_activity_fit_system_window"
-                android:theme="@style/MyAppTheme.NoActionBar">
-        </activity>
-        <activity
                 android:name=".ui.activity.ScreenRecorderActivity"
                 android:label="@string/title_activity_screen_recoder"
+                android:exported="true"
                 android:theme="@style/MyAppTheme.NoActionBar"/>
         <activity android:name=".ui.activity.DateAndTimePickerActivity"/>
         <activity
