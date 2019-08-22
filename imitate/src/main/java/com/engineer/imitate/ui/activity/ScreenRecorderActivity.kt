@@ -43,7 +43,7 @@ class ScreenRecorderActivity : AppCompatActivity() {
                     if (isRecording) {
                         if (mediaPlayer != null) {
                             // 如果选择带参数的 stop 方法，则录制音频无效
-                            stopRecord(mediaPlayer!!.duration.toLong(), 15 * 1000, music)
+                            stopRecord(mediaPlayer?.duration?.toLong() ?: 0, 15 * 1000, music)
                         } else {
                             stopRecord()
                         }
@@ -65,8 +65,8 @@ class ScreenRecorderActivity : AppCompatActivity() {
         }
 
         headsup.setOnClickListener {
-            val view = LayoutInflater.from(this).inflate(R.layout.item_heads_up,null)
-            Log.e("zyq","on==view==h==${view.measuredHeight}")
+            val view = LayoutInflater.from(this).inflate(R.layout.item_heads_up, null)
+            Log.e("zyq", "on==view==h==${view.measuredHeight}")
             Pudding.create(this, view) {}
                 .show()
         }
