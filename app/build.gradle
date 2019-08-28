@@ -185,7 +185,7 @@ dependencies {
     if (!imitate_isApp.toBoolean()) {
         implementation project(':imitate')
     }
-    implementation project(path: ':dateview')
+    implementation project(path: ':dataview')
     implementation project(path: ':skeleton')
 
 }
