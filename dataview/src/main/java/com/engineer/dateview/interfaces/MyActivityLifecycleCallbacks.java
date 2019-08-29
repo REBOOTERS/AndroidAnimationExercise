@@ -2,11 +2,13 @@ package com.engineer.dateview.interfaces;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.lifecycle.Lifecycle;
 
+import com.engineer.dateview.R;
 import com.engineer.dateview.api.UpdateModelDelegate;
 
 /**
@@ -17,6 +19,7 @@ import com.engineer.dateview.api.UpdateModelDelegate;
 public class MyActivityLifecycleCallbacks implements Application.ActivityLifecycleCallbacks {
     private static final String TAG = "MyActivityLifecycleCall";
 
+    public Context mGodContext;
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MyActivityLifecycleCallbacks implements Application.ActivityLifecyc
     public void onActivityResumed(Activity activity) {
         Log.e(TAG, "onActivityResumed: " + activity.getClass().getCanonicalName());
         UpdateModelDelegate.saveLifeCycleData(activity, Lifecycle.Event.ON_RESUME);
+        mGodContext = activity;
     }
 
     @Override
