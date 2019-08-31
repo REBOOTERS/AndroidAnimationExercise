@@ -5,12 +5,14 @@ import com.android.build.gradle.internal.pipeline.TransformManager
 import com.google.common.io.ByteStreams
 import org.apache.commons.io.FileUtils
 import org.gradle.api.Project
+import org.gradle.internal.impldep.org.apache.ivy.util.FileUtil
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.Type
+import org.objectweb.asm.commons.AdviceAdapter
 
 import java.util.jar.JarEntry
 import java.util.jar.JarFile
@@ -83,6 +85,7 @@ class InsertLogTransform extends Transform {
                 def path = src.absolutePath
                 println("find glide " + path)
                 hack(src, dest)
+//                FileUtils.copyFile(src, dest)
             } else {
                 FileUtils.copyFile(src, dest)
             }
@@ -156,31 +159,57 @@ class InsertLogTransform extends Transform {
 
         @Override
         MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-            Type type = Type.getType(desc)
+            Type[] types = Type.getArgumentTypes(desc)
 
 
+            println()
+            println("<========================")
             println("acce==$access")
             println("name==$name")
             println("desc==$desc")
-            println("type==$type")
-
-            if (type != null && type.elementType != null ) {
-                println("intr=${type.elementType.hasProperty("internalName")}")
-
-            }else {
-                println("null ")
-            }
             println("sign==$signature")
+            if (types != null) {
+                for (int i = 0; i < types.length; i++) {
+                    Type type = types[i]
+                    println("type.desc  " + type.descriptor)
+                    println("type.inter " + type.internalName)
+//                    println("type "+type.argumentsAndReturnSizes)
+                    println("type.class " + type.className)
+                    if (type.className.equals("java.lang.String")) {
+                        println("bingo")
+                    }
+                }
+            }
+
+            println("========================>")
+            println()
 
 
             MethodVisitor mv = super.visitMethod(access, name, desc, signature, exceptions)
 
             // && type.elementType.internalName == "java/lang/String"
-            if (name == "load") {
-                mv = new HackMethodVisitor(Opcodes.ASM6, mv)
+            if (name == "load" && descMatch(desc)) {
+                println("find load")
+
+//                mv = new HackMethodVisitor(Opcodes.ASM6, mv)
+                mv = new HackMethodAdapter(Opcodes.ASM6, mv, access, name, desc)
             }
             return mv
         }
+    }
+
+    static boolean descMatch(String desc) {
+        Type[] types = Type.getArgumentTypes(desc)
+        if (types != null) {
+            for (int i = 0; i < types.length; i++) {
+                Type type = types[i]
+                String className = type.className
+                if (className.equals("java.lang.String")) {
+                    return true;
+                }
+            }
+        }
+        return false
     }
 
     static class HackMethodVisitor extends MethodVisitor {
@@ -190,17 +219,50 @@ class InsertLogTransform extends Transform {
         }
 
         @Override
-        void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
-//            println("TestMethodVisitor, owner = " + owner + ", name = " + name);
-            //方法执行之前打印
+        void visitInsn(int opcode) {
+            println("opcode==" + opcode)
+            if (opcode == Opcodes.ARETURN) {
+                println("insert before return")
+                mv.visitLdcInsn(" zyq")
+                mv.visitVarInsn(Opcodes.ALOAD, 1)
+//            mv.visitLdcInsn(" [ASM 测试] method in " + owner + " ,name=" + name)
+                mv.visitMethodInsn(Opcodes.INVOKESTATIC,
+                        "android/util/Log", "e", "(Ljava/lang/String;Ljava/lang/String;)I", false)
+            }
+            super.visitInsn(opcode)
+        }
+    }
+
+    static class HackMethodAdapter extends AdviceAdapter {
+
+        /**
+         * Creates a new {@link AdviceAdapter}.
+         *
+         * @param api
+         *            the ASM API version implemented by this visitor. Must be one
+         *            of {@link Opcodes#ASM4}, {@link Opcodes#ASM5} or {@link Opcodes#ASM6}.
+         * @param mv
+         *            the method visitor to which this adapter delegates calls.
+         * @param access
+         *            the method's access flags (see {@link Opcodes}).
+         * @param name
+         *            the method's name.
+         * @param desc
+         *            the method's descriptor (see {@link Type Type}).
+         */
+        protected HackMethodAdapter(int api, MethodVisitor mv, int access, String name, String desc) {
+            super(api, mv, access, name, desc)
+        }
+
+        @Override
+        protected void onMethodEnter() {
+            super.onMethodEnter()
+            println("insert before return")
             mv.visitLdcInsn(" zyq")
-            mv.visitVarInsn(Opcodes.ALOAD,1)
+            mv.visitVarInsn(Opcodes.ALOAD, 1)
 //            mv.visitLdcInsn(" [ASM 测试] method in " + owner + " ,name=" + name)
             mv.visitMethodInsn(Opcodes.INVOKESTATIC,
                     "android/util/Log", "e", "(Ljava/lang/String;Ljava/lang/String;)I", false)
-            mv.visitInsn(Opcodes.POP)
-
-            super.visitMethodInsn(opcode, owner, name, desc, itf)
         }
     }
 

@@ -154,7 +154,7 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="multi_select_list_preference_default_value"/>
+    <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
@@ -324,5 +324,7 @@
 
     <string name="activity_count">%1$d 个 Activity</string>
     <string name="start">start</string>
+
+    <string name="title_activity_fullscreen_page">FullscreenPage</string>
 
 </resources>

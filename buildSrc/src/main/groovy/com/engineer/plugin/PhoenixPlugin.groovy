@@ -43,7 +43,7 @@ class PhoenixPlugin implements Plugin<Project> {
         def appExtension = project.extensions.getByName("android")
         if (appExtension != null) {
             if (appExtension instanceof AppExtension) {
-//                appExtension.registerTransform(new InsertLogTransform(project))
+                appExtension.registerTransform(new InsertLogTransform(project))
             }
         }
     }

@@ -36,6 +36,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
     private static final String JIANSHU = "file:///android_asset/a.html";
     private static final String LOCAL_URL = "file:///android_asset/index.html";
     private static final String ALI_PAY_URL = "file:///android_asset/launch_alipay_app.html";
+    private static final String THREE_D_URL = "file:///android_asset/keyframe.html";
     private static final String WEIXIN_PAY_URL = "http://wechat.66card.com/vcweixin/common/toTestH5Weixin?company=c4p ";
 
     private Context mContext;
@@ -159,6 +160,9 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.menu:
                 startActivity(new Intent(mContext, WebViewMenuActivity.class));
+                break;
+            case R.id.galaxy:
+                startActivity(new Intent(mContext, FullscreenPage.class));
                 break;
             default:
                 break;
