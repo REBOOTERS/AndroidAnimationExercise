@@ -154,7 +154,7 @@ dependencies {
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.dynamicanimation:dynamicanimation:$support_versioin"
-    implementation 'com.airbnb.android:lottie:2.7.0'
+    implementation 'com.airbnb.android:lottie:3.0.0'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$ext.leakcanary"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$ext.leakcanary_nopo"

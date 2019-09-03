@@ -5,7 +5,6 @@ import com.android.build.gradle.internal.pipeline.TransformManager
 import com.google.common.io.ByteStreams
 import org.apache.commons.io.FileUtils
 import org.gradle.api.Project
-import org.gradle.internal.impldep.org.apache.ivy.util.FileUtil
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter
@@ -19,17 +18,17 @@ import java.util.jar.JarFile
 import java.util.jar.JarOutputStream
 import java.util.zip.ZipEntry
 
-class InsertLogTransform extends Transform {
+class GlideLoadLogTransform extends Transform {
 
     private Project project
 
-    InsertLogTransform(Project project) {
+    GlideLoadLogTransform(Project project) {
         this.project = project
     }
 
     @Override
     String getName() {
-        return InsertLogTransform.class.simpleName
+        return GlideLoadLogTransform.class.simpleName
     }
 
     @Override
@@ -62,34 +61,35 @@ class InsertLogTransform extends Transform {
         super.transform(transformInvocation)
 //        printlnInvocationInfo(transformInvocation)
 
-        def jars = transformInvocation.inputs["jarInputs"].get(0)
-        println("jars size ==" + jars.size())
-        jars.forEach { jar ->
+        transformInvocation.inputs.forEach{ input ->
+            input.jarInputs.forEach { jar ->
 //            println()
 //            println("jar  :" + jar)
 //            println("jar  :" + jar.file)
 //            println("jar  :" + jar.file.absolutePath)
 //            println()
 
-            File src = jar.file
-            def dest = transformInvocation.outputProvider.getContentLocation(
-                    jar.name,
-                    jar.contentTypes,
-                    jar.scopes,
-                    Format.JAR
-            )
+                File src = jar.file
+                def dest = transformInvocation.outputProvider.getContentLocation(
+                        jar.name,
+                        jar.contentTypes,
+                        jar.scopes,
+                        Format.JAR
+                )
 
-            String jarName = jar.name
+                String jarName = jar.name
 
-            if (jarName.contains(TARGET_MODULE_NAME)) {
-                def path = src.absolutePath
-                println("find glide " + path)
-                hack(src, dest)
+                if (jarName.contains(TARGET_MODULE_NAME)) {
+                    def path = src.absolutePath
+                    println("find glide " + path)
+                    hack(src, dest)
 //                FileUtils.copyFile(src, dest)
-            } else {
-                FileUtils.copyFile(src, dest)
+                } else {
+                    FileUtils.copyFile(src, dest)
+                }
             }
         }
+
     }
 
 
@@ -212,27 +212,6 @@ class InsertLogTransform extends Transform {
         return false
     }
 
-    static class HackMethodVisitor extends MethodVisitor {
-
-        HackMethodVisitor(int api, MethodVisitor mv) {
-            super(api, mv)
-        }
-
-        @Override
-        void visitInsn(int opcode) {
-            println("opcode==" + opcode)
-            if (opcode == Opcodes.ARETURN) {
-                println("insert before return")
-                mv.visitLdcInsn(" zyq")
-                mv.visitVarInsn(Opcodes.ALOAD, 1)
-//            mv.visitLdcInsn(" [ASM 测试] method in " + owner + " ,name=" + name)
-                mv.visitMethodInsn(Opcodes.INVOKESTATIC,
-                        "android/util/Log", "e", "(Ljava/lang/String;Ljava/lang/String;)I", false)
-            }
-            super.visitInsn(opcode)
-        }
-    }
-
     static class HackMethodAdapter extends AdviceAdapter {
 
         /**
@@ -258,7 +237,7 @@ class InsertLogTransform extends Transform {
         protected void onMethodEnter() {
             super.onMethodEnter()
             println("insert before return")
-            mv.visitLdcInsn(" zyq")
+            mv.visitLdcInsn("hack")
             mv.visitVarInsn(Opcodes.ALOAD, 1)
 //            mv.visitLdcInsn(" [ASM 测试] method in " + owner + " ,name=" + name)
             mv.visitMethodInsn(Opcodes.INVOKESTATIC,

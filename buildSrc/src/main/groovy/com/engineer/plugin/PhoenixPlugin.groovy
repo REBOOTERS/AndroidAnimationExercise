@@ -5,7 +5,7 @@ import com.engineer.plugin.actions.CalculateAction
 import com.engineer.plugin.actions.RenameAction
 import com.engineer.plugin.actions.TaskTimeAction
 import com.engineer.plugin.extensions.PhoenixExtension
-import com.engineer.plugin.transforms.InsertLogTransform
+import com.engineer.plugin.transforms.GlideLoadLogTransform
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -43,7 +43,7 @@ class PhoenixPlugin implements Plugin<Project> {
         def appExtension = project.extensions.getByName("android")
         if (appExtension != null) {
             if (appExtension instanceof AppExtension) {
-                appExtension.registerTransform(new InsertLogTransform(project))
+                appExtension.registerTransform(new GlideLoadLogTransform(project))
             }
         }
     }

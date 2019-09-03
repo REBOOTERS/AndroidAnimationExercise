@@ -2,6 +2,7 @@ package home.smart.fly.animations.recyclerview.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,13 +31,17 @@ abstract class BaseListFragment<T> : Fragment() {
 
     abstract fun getLayoutResId(): Int
 
-    abstract fun  getCustomAdapter(): RecyclerView.Adapter<*>
+    abstract fun getCustomAdapter(): RecyclerView.Adapter<*>
 
     open fun getCustomLayoutManager(): RecyclerView.LayoutManager {
         return LinearLayoutManager(mContext)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(getLayoutResId(), container, false)
     }
 
@@ -45,9 +50,18 @@ abstract class BaseListFragment<T> : Fragment() {
         mRecyclerView = view.findViewById(R.id.recyclerview)
         mRecyclerView.layoutManager = getCustomLayoutManager()
         mRecyclerView.adapter = getCustomAdapter()
+        mRecyclerView.setRecyclerListener(object : RecyclerView.RecyclerListener {
+            override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+                Log.e("recyclerview", "itemViewType    " + holder.itemViewType.toString())
+                Log.e("recyclerview", "itemId          " + holder.itemId.toString())
+                Log.e("recyclerview", "adapterPosition " + holder.adapterPosition.toString())
+                Log.e("recyclerview", "oldPosition     " + holder.oldPosition.toString())
+            }
+        })
+
     }
 
-    fun getRecyclerView():RecyclerView{
+    fun getRecyclerView(): RecyclerView {
         return mRecyclerView
     }
 }
