@@ -11,7 +11,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import com.didichuxing.doraemonkit.kit.network.utils.StreamUtil;
 
 import java.io.*;
 import java.text.SimpleDateFormat;

@@ -32,6 +32,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.tencent.mmkv.MMKV;
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
+import home.smart.fly.animations.internal.Cat;
 import home.smart.fly.animations.internal.NormalStatus;
 import home.smart.fly.animations.internal.Single;
 import home.smart.fly.animations.ui.SuperTools;
@@ -319,6 +320,7 @@ public class AppStartActivity extends AppCompatActivity {
     }
 
     // <editor-fold defaultstate="collapsed" desc="setupAutoCompleteTextView">
+    @Cat
     private void setupAutoCompleteTextView() {
         List<String> activites = new ArrayList<>();
         List<String> activitesAll = new ArrayList<>();

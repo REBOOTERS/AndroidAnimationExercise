@@ -29,6 +29,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.internal.Cat;
 import home.smart.fly.animations.utils.GifSizeFilter;
 import home.smart.fly.animations.utils.Glide4Engine;
 import home.smart.fly.animations.utils.Tools;
@@ -47,6 +48,7 @@ public class MatisseDemoActivity extends AppCompatActivity implements View.OnCli
     private List<String> mStrings;
 
     @Override
+    @Cat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matisse_demo);

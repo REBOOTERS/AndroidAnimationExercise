@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+
+// Android Gradle Plugin source @ https://android.googlesource.com/platform/tools/base/+/gradle_3.1.2
+
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'

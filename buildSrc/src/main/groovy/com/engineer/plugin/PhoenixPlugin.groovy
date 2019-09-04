@@ -6,6 +6,7 @@ import com.engineer.plugin.actions.RenameAction
 import com.engineer.plugin.actions.TaskTimeAction
 import com.engineer.plugin.extensions.PhoenixExtension
 import com.engineer.plugin.transforms.GlideLoadLogTransform
+import com.engineer.plugin.transforms.times.CatTransform
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -44,6 +45,7 @@ class PhoenixPlugin implements Plugin<Project> {
         if (appExtension != null) {
             if (appExtension instanceof AppExtension) {
                 appExtension.registerTransform(new GlideLoadLogTransform(project))
+                appExtension.registerTransform(new CatTransform())
             }
         }
     }
