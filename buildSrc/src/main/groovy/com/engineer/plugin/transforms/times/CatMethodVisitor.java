@@ -44,7 +44,7 @@ class CatMethodVisitor extends AdviceAdapter {
 
     @Override
     public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
-        System.out.println("desc "+desc);
+//        System.out.println("desc "+desc);
         if (COST_ANNOTATION_DESC.equals(desc)) {
             isInjected = true;
         }

@@ -44,8 +44,8 @@ class PhoenixPlugin implements Plugin<Project> {
         def appExtension = project.extensions.getByName("android")
         if (appExtension != null) {
             if (appExtension instanceof AppExtension) {
-                appExtension.registerTransform(new GlideLoadLogTransform(project))
                 appExtension.registerTransform(new CatTransform())
+                appExtension.registerTransform(new GlideLoadLogTransform(project))
             }
         }
     }

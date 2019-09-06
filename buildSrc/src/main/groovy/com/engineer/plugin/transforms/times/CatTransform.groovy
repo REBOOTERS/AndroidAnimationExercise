@@ -8,6 +8,11 @@ import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter
 
+import java.util.jar.JarEntry
+import java.util.jar.JarFile
+import java.util.jar.JarOutputStream
+import java.util.zip.ZipEntry
+
 /**
  * @author zhuyongging @ Zhihu Inc.
  * @since 09-03-2019
@@ -68,16 +73,71 @@ class CatTransform extends Transform {
 
             // todo 从 jar 文件里找到 class
             input.jarInputs.each { JarInput jarInput ->
-                def jarName = jarInput.name
-                def md5Name = DigestUtils.md5Hex(jarInput.file.getAbsolutePath())
-                if (jarName.endsWith(".jar")) {
-                    jarName = jarName.substring(0, jarName.length() - 4)
-                }
-
-                def dest = transformInvocation.outputProvider.getContentLocation(jarName + md5Name,
+                def src = jarInput.file
+                def dest = transformInvocation.outputProvider.getContentLocation(jarInput.name,
                         jarInput.contentTypes, jarInput.scopes, Format.JAR)
 
-                FileUtils.copyFile(jarInput.file, dest)
+//                println("jar Name "+jarInput.name)
+//                println("dest     "+dest.absolutePath)
+//                println("jar path "+src.absolutePath)
+//                println("jar name "+src.name)
+
+                if (jarInput.name == "include") {
+
+                    println("jar Name " + jarInput.name)
+                    println("dest     " + dest.absolutePath)
+                    println("jar path " + src.absolutePath)
+                    println("jar name " + src.name)
+
+                    String temp = src.absolutePath.substring(0,src.absolutePath.length() - 4) + "_cat.jar"
+
+                    File tempFile = new File(temp)
+                    if (tempFile.exists()) {
+                        tempFile.delete()
+                    }
+
+                    JarOutputStream outputStream = new JarOutputStream(new FileOutputStream(tempFile))
+
+
+                    JarFile jarFile = new JarFile(src)
+                    Enumeration<JarEntry> entries = jarFile.entries()
+                    while (entries.hasMoreElements()) {
+                        JarEntry jarEntry = entries.nextElement()
+                        String jarName = jarEntry.name
+                        println("jarName==$jarName")
+
+
+                        InputStream inputStream = jarFile.getInputStream(jarEntry)
+                        ZipEntry zipEntry = new ZipEntry(jarName)
+                        outputStream.putNextEntry(zipEntry)
+
+                        if (jarName.endsWith(".class") && jarName.startsWith("home")) {
+                            ClassReader reader = new ClassReader(inputStream)
+                            ClassWriter writer = new ClassWriter(reader, ClassWriter.COMPUTE_MAXS)
+                            ClassVisitor visitor = new CatClassVisitor(writer)
+                            reader.accept(visitor, ClassReader.EXPAND_FRAMES)
+                            byte[] code = writer.toByteArray()
+                            outputStream.write(code)
+                        } else {
+                            println("unsupported jarName==$jarName")
+                            int len = inputStream.read()
+                            while (len != -1) {
+                                outputStream.write(len)
+                                len = inputStream.read()
+                            }
+                        }
+                        inputStream.close()
+                    }
+                    outputStream.flush()
+                    outputStream.close()
+                    FileUtils.copyFile(tempFile, dest)
+                    tempFile.delete()
+//                    tempFile.renameTo(src)
+                } else {
+
+                    FileUtils.copyFile(src, dest)
+                }
+
             }
         }
     }
