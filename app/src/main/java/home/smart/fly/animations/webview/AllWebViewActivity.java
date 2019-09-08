@@ -51,7 +51,7 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_all_web_view);
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.cpb_green), 0);
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.endColor), 0);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         setTitle("WebView");
@@ -65,7 +65,8 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
         loadData();
     }
 
-    private void setUpWebView() {
+    private void setUpWebView()
+    {
         tools = (LinearLayout) findViewById(R.id.tools);
         tools.setVisibility(View.VISIBLE);
 
@@ -162,7 +163,10 @@ public class AllWebViewActivity extends AppCompatActivity implements View.OnClic
                 startActivity(new Intent(mContext, WebViewMenuActivity.class));
                 break;
             case R.id.galaxy:
-                startActivity(new Intent(mContext, FullscreenPage.class));
+//                startActivity(new Intent(mContext, FullscreenPage.class));
+                mWebView.loadUrl(THREE_D_URL);
+                tools.setVisibility(View.GONE);
+                setTitle("galaxy");
                 break;
             default:
                 break;

@@ -14,6 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
             android:keepScreenOn="true" />
 
     <!-- This FrameLayout insets its children based on system windows using

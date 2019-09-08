@@ -6,10 +6,11 @@
 
 
     <ImageView
+            android:id="@+id/headsup_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="matrix"
-            android:src="@drawable/timg" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/girl" />
 
 
 </LinearLayout>

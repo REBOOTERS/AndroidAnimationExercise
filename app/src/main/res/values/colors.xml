@@ -51,4 +51,7 @@
     <!--覆盖颜色-->
     <color name="bgColor_overlay">#60000000</color>
     <color name="md_blue">#2196F3</color>
+
+    <color name="endColor">#53BEA0</color>
+    <color name="startColor">#3AA3C6</color>
 </resources>

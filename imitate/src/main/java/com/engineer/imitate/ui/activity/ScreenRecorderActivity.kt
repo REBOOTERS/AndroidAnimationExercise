@@ -7,8 +7,10 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.widget.headsup.Choco
 import com.engineer.imitate.ui.widget.headsup.Pudding
@@ -16,6 +18,7 @@ import com.engineer.imitate.util.PathUtils
 import com.engineer.imitate.util.ScreenRecordHelper
 import com.engineer.imitate.util.SpUtil
 import kotlinx.android.synthetic.main.activity_screen_recorder.*
+import kotlinx.android.synthetic.main.item_heads_up.*
 import java.io.File
 
 class ScreenRecorderActivity : AppCompatActivity() {
@@ -30,7 +33,7 @@ class ScreenRecorderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         fit = SpUtil(this).getBool(fit_key)
         println("value ==$fit")
-        window.decorView.fitsSystemWindows = fit
+//        window.decorView.fitsSystemWindows = fit
         setContentView(R.layout.activity_screen_recorder)
 
         start.setOnClickListener {
@@ -67,6 +70,16 @@ class ScreenRecorderActivity : AppCompatActivity() {
         headsup.setOnClickListener {
             val view = LayoutInflater.from(this).inflate(R.layout.item_heads_up, null)
             Log.e("zyq", "on==view==h==${view.measuredHeight}")
+            Pudding.create(this, view) {}
+                .show()
+        }
+
+        headsup_img.setOnClickListener {
+            val view = LayoutInflater.from(this).inflate(R.layout.item_heads_up, null)
+            val target = view.findViewById<ImageView>(R.id.headsup_image)
+            Glide.with(this).load("http://e.hiphotos.baidu.com/image/pic/item/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg").into(target)
+            Log.e("zyq", "on==view==h==${view.measuredHeight}")
+            target.setOnClickListener { Toast.makeText(this,"1",Toast.LENGTH_SHORT).show() }
             Pudding.create(this, view) {}
                 .show()
         }
@@ -125,7 +138,7 @@ class ScreenRecorderActivity : AppCompatActivity() {
                 this.start()
             }
         } catch (e: Exception) {
-            Log.d("nanchen2251", "播放音乐失败")
+            Log.d("screen", "播放音乐失败")
         } finally {
 
         }

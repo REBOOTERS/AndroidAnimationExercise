@@ -3,7 +3,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/timg"
+        android:background="@drawable/gradient_bg"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
         tools:context=".ui.activity.ScreenRecorderActivity"
@@ -40,6 +40,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="headsup" />
+
+    <Button
+            android:id="@+id/headsup_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="headsup_img" />
 
     <ScrollView
             android:layout_width="match_parent"
