@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.didichuxing.doraemonkit.DoraemonKit;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
@@ -43,8 +44,8 @@ public class MyApplication extends Application {
         WebView.setWebContentsDebuggingEnabled(true);
 
 
-//        DoraemonKit.install(this);
-
+        DoraemonKit.install(this);
+        DoraemonKit.hide();
 
 
 

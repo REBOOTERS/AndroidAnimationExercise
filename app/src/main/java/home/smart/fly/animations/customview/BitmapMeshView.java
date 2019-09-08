@@ -48,7 +48,7 @@ public class BitmapMeshView extends View {
     }
 
     private void init() {
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cat);
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.yuanyuan);
         //获取图片宽度和高度
         float bitmapWidth = mBitmap.getWidth();
         float bitmapHeight = mBitmap.getHeight();

@@ -84,14 +84,25 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/football.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/football2.gif"/>
 
+## galaxy 效果（CSS3) && parallax 效果
+
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/galaxy.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/parallax.gif"/>
+
+
+## skeleton  && bitmap mesh 效果
+
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/skeleton.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/mesh.gif"/>
+
+## git 反转
+
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/revert_gif.gif"/>
+
 
 ## 仿懂球帝球员数据网状图 && 仿简书生成长图文章效果
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/polyganoView.png"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/jianshu.gif"/>
 
-## 仿探探效果 & 约束布局（ConstraintLayout AnimationSet） 动画
 
-<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/slide.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/constraint_set_anim.gif"/>
 
 ## 仿知乎广告效果动画
 
@@ -103,7 +114,7 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/move.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/-move.gif"/>
 
 <details>
-<summary>更多</summary>
+<summary>更多动画，点击打开</summary>
 
 
 ## 仿QQ侧滑菜单效果
@@ -132,11 +143,14 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/frame.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/rotate1.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/translate.gif"/>
 
 
+## 仿探探效果 & 约束布局（ConstraintLayout AnimationSet） 动画
 
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/slide.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/constraint_set_anim.gif"/>
 
 ## 支付效果  & loading
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/loading.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/alipay.gif"/>
+
 ## 属性动画实例 ##
 
 
