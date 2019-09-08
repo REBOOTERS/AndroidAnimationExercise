@@ -84,18 +84,18 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/football.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/football2.gif"/>
 
-## galaxy 效果（CSS3) && parallax 效果
+## galaxy 效果 && git 反转
 
-<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/galaxy.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/parallax.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/galaxy.gif"/><img width=287 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/revert_gif.gif"/>
 
 
 ## skeleton  && bitmap mesh 效果
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/skeleton.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/mesh.gif"/>
 
-## git 反转
+## parallax 效果
 
-<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/revert_gif.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/parallax.gif"/>
 
 
 ## 仿懂球帝球员数据网状图 && 仿简书生成长图文章效果
