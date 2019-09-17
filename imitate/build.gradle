@@ -111,6 +111,8 @@ dependencies {
     implementation 'com.wang.avi:library:2.1.3'
     implementation project(path: ':gif-revert')
 
+    implementation "androidx.viewpager2:viewpager2:1.0.0-beta04"
+
     // robolectric
     testImplementation 'androidx.test:core:1.2.0'
     testImplementation 'androidx.test:rules:1.2.0'

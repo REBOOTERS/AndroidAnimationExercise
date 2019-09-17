@@ -38,6 +38,7 @@ import kotlinx.android.synthetic.main.content_kotlin_root.*
 import kotlinx.android.synthetic.main.view_item.view.*
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.File
 
 @Route(path = Routes.INDEX)
 class KotlinRootActivity : AppCompatActivity() {
@@ -72,6 +73,13 @@ class KotlinRootActivity : AppCompatActivity() {
 
         gif.setOnClickListener {
             startActivity(Intent(this, ReverseGifActivity::class.java))
+        }
+
+        val path = filesDir.absolutePath + "/gif/"
+        val fileDir = File(path)
+        val files = fileDir.listFiles()
+        for (file in files) {
+            Log.e(TAG, ": " + file.absolutePath)
         }
     }
 
