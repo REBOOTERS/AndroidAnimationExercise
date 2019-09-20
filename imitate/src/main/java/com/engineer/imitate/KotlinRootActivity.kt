@@ -7,6 +7,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.text.TextUtils
 import android.util.Log
 import android.view.Menu
@@ -36,6 +37,7 @@ import java8.util.Optional
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
 import kotlinx.android.synthetic.main.content_kotlin_root.*
 import kotlinx.android.synthetic.main.view_item.view.*
+import org.apache.commons.io.FileUtils
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -81,6 +83,11 @@ class KotlinRootActivity : AppCompatActivity() {
         for (file in files) {
             Log.e(TAG, ": " + file.absolutePath)
         }
+        if (fileDir != null && fileDir.exists()) {
+            val destDir = Environment.getExternalStorageDirectory()
+            FileUtils.copyDirectoryToDirectory(fileDir, destDir)
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="init fragments">

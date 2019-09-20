@@ -120,4 +120,6 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.3'
     testImplementation 'com.facebook.soloader:soloader:0.6.0'
     // robolectric
+
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
 }
