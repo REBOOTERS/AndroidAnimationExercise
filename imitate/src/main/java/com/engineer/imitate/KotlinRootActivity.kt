@@ -80,13 +80,17 @@ class KotlinRootActivity : AppCompatActivity() {
         val path = filesDir.absolutePath + "/gif/"
         val fileDir = File(path)
         val files = fileDir.listFiles()
-        for (file in files) {
-            Log.e(TAG, ": " + file.absolutePath)
+        files?.apply {
+            for (file in this) {
+                Log.e(TAG, ": " + file.absolutePath)
+            }
+            if (fileDir.exists()) {
+                val destDir = Environment.getExternalStorageDirectory()
+                FileUtils.copyDirectoryToDirectory(fileDir, destDir)
+            }
         }
-        if (fileDir != null && fileDir.exists()) {
-            val destDir = Environment.getExternalStorageDirectory()
-            FileUtils.copyDirectoryToDirectory(fileDir, destDir)
-        }
+
+
 
     }
 

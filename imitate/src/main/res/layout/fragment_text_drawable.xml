@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/white"
-              android:orientation="vertical"
-              tools:ignore="HardcodedText"
-              tools:context=".ui.fragments.DrawableExampleFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".ui.fragments.DrawableExampleFragment"
+        tools:ignore="HardcodedText">
 
 
-    <TextView android:layout_width="match_parent"
-              android:layout_margin="10dp"
-              android:text="autoSizeTextType 的使用"
-              android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="autoSizeTextType 的使用" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text"
@@ -27,64 +28,92 @@
             app:autoSizeMaxTextSize="22sp"
             app:autoSizeMinTextSize="12sp"
             app:autoSizeStepGranularity="2sp"
-            app:autoSizeTextType="uniform"/>
+            app:autoSizeTextType="uniform" />
 
     <EditText
             android:id="@+id/edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp" />
 
-    <View android:layout_width="match_parent"
-          android:background="@color/cpb_grey"
-          android:layout_height="1.5dp"/>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/cpb_grey" />
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/bluegrass">
 
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:paddingBottom="5dp"
-                    android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_gravity="center"
+                android:layout_height="100dp"
+                android:src="@drawable/girl"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp" />
+
+        <View
+                android:layout_width="107dp"
+                android:layout_gravity="center"
+                android:layout_height="107dp"
+                android:background="@drawable/ring_background" />
+
+    </FrameLayout>
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp">
 
 
         <com.engineer.imitate.ui.widget.custom.RoundImageView
+                android:id="@+id/round"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
                 android:scaleType="center"
-                android:id="@+id/round"
-                android:src="@drawable/comic"/>
+                android:src="@drawable/comic" />
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_alignStart="@id/round"
-                  android:layout_below="@+id/round"
-                  android:text="round image"
-                  android:layout_height="wrap_content"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/round"
+                android:layout_alignStart="@id/round"
+                android:text="round image" />
 
-        <ImageView android:layout_width="64dp"
-                   android:id="@+id/svg"
-                   android:layout_toEndOf="@+id/round"
-                   android:src="@drawable/ic_setup"
-                   android:layout_margin="10dp"
-                   android:layout_height="64dp"/>
+        <ImageView
+                android:id="@+id/svg"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_margin="10dp"
+                android:layout_toEndOf="@+id/round"
+                android:src="@drawable/ic_setup" />
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_alignStart="@id/svg"
-                  android:layout_below="@+id/svg"
-                  android:text="svg image"
-                  android:layout_height="wrap_content"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/svg"
+                android:layout_alignStart="@id/svg"
+                android:text="svg image" />
 
     </RelativeLayout>
 
 
-    <View android:layout_width="match_parent"
-          android:background="@color/cpb_grey"
-          android:layout_height="1.5dp"/>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/cpb_grey" />
 
     <com.engineer.imitate.ui.widget.custom.CustomScrollView
-            android:visibility="invisible"
-            android:layout_margin="10dp"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
-            android:background="@color/cpb_blue"/>
+            android:layout_margin="10dp"
+            android:background="@color/cpb_blue"
+            android:visibility="invisible" />
 </LinearLayout>
