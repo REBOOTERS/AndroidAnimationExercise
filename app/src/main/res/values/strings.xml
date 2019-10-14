@@ -11,6 +11,7 @@
     <string name="fake_weibo">仿新浪微博雷达扫描效果及相关功能实现</string>
     <string name="ball">小球虽手指移动效果</string>
     <string name="fake_football">仿懂球帝APP我是教练游戏效果</string>
+    <string name="game_2048">game 2048</string>
     <string name="reverse_gif">gif 倒放效果图</string>
     <string name="football">足球11人</string>
     <string name="webview">webView</string>
@@ -91,7 +92,8 @@
     <string name="pickerview_submit">确定</string>
     <string name="title_activity_utril_view">UtrilViewActivity</string>
     <string name="title_activity_settings">Settings</string>
-
+    <string name="press_back_again_to_exit">Press back again to exit</string>
+    <string name="toggle_fullscreen">Long click to toggle fullscreen</string>
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->

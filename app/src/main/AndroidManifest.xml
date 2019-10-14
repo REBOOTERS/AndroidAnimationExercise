@@ -35,14 +35,15 @@
             android:supportsRtl="true"
             android:theme="@style/MyTheme"
             android:usesCleartextTraffic="true">
+        <activity android:name=".ui.activity.Game2048Activity" android:theme="@style/FullscreenTheme"></activity>
         <activity
                 android:name=".webview.FullscreenPage"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:label="@string/title_activity_fullscreen_page"
-                android:theme="@style/FullscreenTheme"></activity>
+                android:theme="@style/FullscreenTheme" />
         <activity
                 android:name=".ui.activity.ReadJarActivity"
-                android:exported="true"></activity>
+                android:exported="true" />
         <activity android:name=".ui.activity.ShareIdActivity" />
         <activity
                 android:name=".ui.activity.AllActivity"
