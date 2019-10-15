@@ -122,4 +122,5 @@ dependencies {
     // robolectric
 
     implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    implementation project(path: ':game')
 }

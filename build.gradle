@@ -1,6 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-buildscript {
+buildscript { 
+    ext.kotlin_version = '1.3.50'
+
 
     apply from: file('config.gradle')
     repositories {
@@ -26,6 +28,7 @@ buildscript {
         // jacoco  https://github.com/arturdm/jacoco-android-gradle-plugin
         classpath 'com.dicedmelon.gradle:jacoco-android:0.1.4'
     }
+
 
 
 

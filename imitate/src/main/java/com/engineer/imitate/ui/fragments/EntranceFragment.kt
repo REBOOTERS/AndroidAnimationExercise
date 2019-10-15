@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
+import com.engineer.android.game.ui.SensorViewActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.activity.*
 import com.engineer.imitate.util.Glide4Engine
@@ -131,6 +132,9 @@ class EntranceFragment : Fragment() {
             startActivity(Intent(context, ReverseGifActivity::class.java))
         }
 
+        game.setOnClickListener {
+            startActivity(Intent(context,SensorViewActivity::class.java))
+        }
 
         adapter = MyListAdapter()
         recyclerView.layoutManager = GridLayoutManager(context, 2)
