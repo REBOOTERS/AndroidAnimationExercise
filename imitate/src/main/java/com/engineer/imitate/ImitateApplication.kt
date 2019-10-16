@@ -22,10 +22,10 @@ class ImitateApplication : Application() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
         WebView.setWebContentsDebuggingEnabled(true)
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return
-        }
-        LeakCanary.install(this)
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            return
+//        }
+//        LeakCanary.install(this)
 
         if (BuildConfig.DEBUG) {
             ARouter.openLog()
