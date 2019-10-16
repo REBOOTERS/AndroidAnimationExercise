@@ -9,7 +9,7 @@ dependencies {
     implementation localGroovy()
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // 添加了这个，就可以看 Android Gradle 插件的源码了
-    implementation "com.android.tools.build:gradle:3.5.0"
+    implementation "com.android.tools.build:gradle:3.5.1"
 //    compile "org.jetbrains.kotlin:kotlin-script-runtime:1.3.40"
 }
 
