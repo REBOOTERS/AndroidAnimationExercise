@@ -4,13 +4,13 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 //定时重新绘制画面的线程
-public class MyViewDrawThread extends Thread {
+public class SensorViewDrawThread extends Thread {
     boolean flag = true;
     public boolean pauseFlag = false;
-    MyView mv;
+    SensorView mv;
     SurfaceHolder surfaceHolder;
 
-    public MyViewDrawThread(MyView mv) {
+    public SensorViewDrawThread(SensorView mv) {
         this.mv = mv;
         this.surfaceHolder = mv.getHolder();
     }

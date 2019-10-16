@@ -1,5 +1,6 @@
 package com.engineer.android.game.widget;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -11,10 +12,8 @@ import android.view.SurfaceView;
 import com.engineer.android.game.R;
 import com.engineer.android.game.ui.SensorViewActivity;
 
-public class MyView extends SurfaceView implements SurfaceHolder.Callback  //实现生命周期回调接口
-{
-    SensorViewActivity activity;
-    public MyViewDrawThread mvdt;
+public class SensorView extends SurfaceView implements SurfaceHolder.Callback {
+    public SensorViewDrawThread mvdt;
     Paint paint;//画笔
     public float dx;
     public float dy;
@@ -32,15 +31,14 @@ public class MyView extends SurfaceView implements SurfaceHolder.Callback  //实
     Bitmap qiushang;
     Bitmap qiuzhong;
 
-    public MyView(SensorViewActivity activity) {
-        super(activity);
-        this.activity = activity;
+    public SensorView(Context context) {
+        super(context);
         this.getHolder().addCallback(this);
         paint = new Paint();
         paint.setColor(Color.WHITE);
         paint.setTextSize(30);
         paint.setAntiAlias(true);
-        mvdt = new MyViewDrawThread(this);
+        mvdt = new SensorViewDrawThread(this);
 
         yuan = BitmapFactory.decodeResource(getResources(), R.drawable.yuan);
         zuo = BitmapFactory.decodeResource(getResources(), R.drawable.zuo);

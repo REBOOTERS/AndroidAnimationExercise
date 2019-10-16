@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
  */
 object DefaultOrientationUtil {
 
-    fun getOrientatoin(activity: AppCompatActivity):DefaultOrientation {
+
+    @JvmStatic
+    fun getOrientation(activity: AppCompatActivity):DefaultOrientation {
 
         val display = activity.windowManager.defaultDisplay
         val rotation = display.rotation
