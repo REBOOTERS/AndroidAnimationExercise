@@ -93,9 +93,9 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/skeleton.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/mesh.gif"/>
 
-## parallax 效果
+## parallax 效果 && 2048 游戏(pure web)
 
-<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/parallax.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/parallax.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/2048_game.gif"/>
 
 
 ## 仿懂球帝球员数据网状图 && 仿简书生成长图文章效果
