@@ -1,92 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <home.smart.fly.animations.widget.CustomCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/shell"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".ui.activity.ScrollingActivity">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/shell"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.activity.ScrollingActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:theme="@style/MyTheme.AppBarOverlay">
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:theme="@style/MyTheme.AppBarOverlay">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
 
 
             <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/a5" />
+                        android:id="@+id/image"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/a5" />
 
-
-                <androidx.core.widget.NestedScrollView
-                    android:id="@+id/nested_scrollview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="180dp">
-
-                    <LinearLayout
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingTop="180dp">
 
-                        <home.smart.fly.animations.widget.CustomTabLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp" />
-
-
-                        <ImageView
+                    <ImageView
                             android:id="@+id/image2"
                             android:layout_width="match_parent"
-                            android:layout_height="750dp"
+                            android:layout_height="350dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/miui_nine"
                             android:visibility="visible" />
-                    </LinearLayout>
+                </LinearLayout>
 
-
-                </androidx.core.widget.NestedScrollView>
 
             </FrameLayout>
-
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/transparent"
-                android:visibility="gone"
-                app:layout_collapseMode="pin"
-                app:navigationIcon="?attr/homeAsUpIndicator"
-                app:popupTheme="@style/MyTheme.PopupOverlay"
-                app:title="up" />
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar1"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/cpb_red"
-                android:visibility="gone"
-                app:layout_collapseMode="pin"
-                app:title="down" />
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -96,39 +62,28 @@
 
 
     <LinearLayout
-        android:id="@+id/bottom_container"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:elevation="10dp"
-        android:orientation="vertical"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end">
-
-        <LinearLayout
+            android:id="@+id/bottom_container"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:background="@color/white"
-            android:gravity="center">
+            android:layout_height="48dp"
+            android:elevation="10dp"
+            android:orientation="vertical"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|end">
 
-            <View
-                android:layout_width="30dp"
-                android:layout_height="2dp"
-                android:background="@color/black" />
-        </LinearLayout>
 
         <home.smart.fly.animations.widget.CustomTabLayout
-            android:id="@+id/bottom_tab"
-            android:layout_width="match_parent"
-            android:layout_height="48dp" />
+                android:id="@+id/bottom_tab"
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
 
 
     </LinearLayout>
 
     <include
-        android:id="@+id/bottom"
-        layout="@layout/content_scrolling"
-        android:background="@color/cpb_blue"
-        android:visibility="visible" />
+            android:id="@+id/bottom"
+            layout="@layout/content_scrolling"
+            android:background="@color/cpb_blue"
+            android:visibility="visible" />
 
 
 </home.smart.fly.animations.widget.CustomCoordinatorLayout>

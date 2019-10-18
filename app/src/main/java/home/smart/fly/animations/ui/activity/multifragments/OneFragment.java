@@ -1,16 +1,16 @@
 package home.smart.fly.animations.ui.activity.multifragments;
 
 
-import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.customview.CustomImageView;
@@ -48,27 +48,20 @@ public class OneFragment extends Fragment {
         }
 
 
-        check = rootView.findViewById(R.id.check);
-        check.setOnClickListener(new View.OnClickListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onClick(View v) {
-                selected = !selected;
-                check.setChecked(selected);
-            }
-        });
-
-
-        RecyclerView recyclerView = new RecyclerView(getContext());
-        ViewPager viewPager = new ViewPager(getContext());
-        viewPager.addView(recyclerView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
 
         return rootView;
     }
 
     private void loadData() {
         Log.e(TAG, "loadData: ");
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        WebView webView = view.findViewById(R.id.web);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.loadUrl("https://www.baidu.com");
     }
 
     @Override

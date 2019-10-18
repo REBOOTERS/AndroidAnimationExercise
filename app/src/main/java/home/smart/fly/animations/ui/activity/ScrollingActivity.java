@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,45 +39,25 @@ public class ScrollingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
-//        toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-        mTabLayout = findViewById(R.id.bottom_tab);
-        mLinearLayout = findViewById(R.id.bottom_container);
-        content = findViewById(R.id.bottom);
-        mTextView = findViewById(R.id.text);
-
-        mAppBarLayout = findViewById(R.id.app_bar);
-
-        mAppBarLayout.addOnOffsetChangedListener((appBarLayout, i) ->
-                Log.e(TAG, "onOffsetChanged: i==" + i)
-
-        );
 
 
-        mViewGroup = findViewById(R.id.shell);
-//        findViewById(R.id.image).setOnClickListener(v -> {
-//            if (isReverse) {
-//                mLinearLayout.animate().translationYBy(300).start();
-//                content.animate().translationYBy(300).start();
-//            } else {
-//                mLinearLayout.animate().translationYBy(-300).start();
-//                content.animate().translationYBy(-300).start();
-//            }
-//            isReverse = !isReverse;
-//        });
-
-        mNestedScrollView = findViewById(R.id.nested_scrollview);
-        mNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView nestedScrollView, int i, int i1, int i2, int i3) {
-                Log.e(TAG, "onScrollChange: i==" + i);
-                Log.e(TAG, "onScrollChange: i1==" + i1);
-                Log.e(TAG, "onScrollChange: i2==" + i2);
-                Log.e(TAG, "onScrollChange: i3==" + i3);
-            }
-        });
-
+//        mTabLayout = findViewById(R.id.bottom_tab);
+//        mLinearLayout = findViewById(R.id.bottom_container);
+//        content = findViewById(R.id.bottom);
+//        mTextView = findViewById(R.id.text);
+//
+//        mAppBarLayout = findViewById(R.id.app_bar);
+//
+//        mAppBarLayout.addOnOffsetChangedListener((appBarLayout, i) ->
+//                Log.e(TAG, "onOffsetChanged: i==" + i)
+//
+//        );
+//
+//
+//        mViewGroup = findViewById(R.id.shell);
+        WebView webView = findViewById(R.id.web);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.loadUrl("https://www.qq.com");
     }
 
     @Override
@@ -95,15 +76,5 @@ public class ScrollingActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private int getStatusBarHeight() {
-        int resourcesId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        return getResources().getDimensionPixelSize(resourcesId);
-    }
-
-    private int getRealH() {
-        int h = screenHeight - getStatusBarHeight() - DpConvert.dip2px(this, 48) - mLinearLayout.getMeasuredHeight();
-        return h;
     }
 }

@@ -344,9 +344,6 @@
                 android:label="@string/title_activity_fullscreen_ad"
                 android:theme="@style/FullscreenTheme" />
         <activity
-                android:name=".ui.activity.FakeDoubanMovie"
-                android:theme="@style/MyTheme.NoActionBar" />
-        <activity
                 android:name=".ui.activity.ScrollingActivity"
                 android:label="@string/title_activity_scrolling"
                 android:theme="@style/MyTheme.NoActionBar" />
