@@ -10,8 +10,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.didichuxing.doraemonkit.DoraemonKit;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 import com.tencent.mmkv.MMKV;
 
 import hugo.weaving.DebugLog;
@@ -27,10 +25,6 @@ public class MyApplication extends Application {
         super.onCreate();
         MultiDex.install(this);
         Stetho.initializeWithDefaults(this);
-
-        if (!LeakCanary.isInAnalyzerProcess(this)) {
-//            installLeakCanary();
-        }
 
         if (BuildConfig.DEBUG) {
             ARouter.openLog();
@@ -53,10 +47,5 @@ public class MyApplication extends Application {
     }
 
     protected void logLifeCycleCallBacks() {
-    }
-
-    protected RefWatcher installLeakCanary() {
-        // ignore some thing
-        return RefWatcher.DISABLED;
     }
 }

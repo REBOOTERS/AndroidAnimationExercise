@@ -1,14 +1,11 @@
 package com.engineer.imitate
 
 import android.app.Application
-import android.os.Build
 import android.view.View
 import android.webkit.WebView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.stetho.Stetho
-import com.squareup.leakcanary.LeakCanary
-import java.lang.Exception
 
 /**
  *
@@ -22,10 +19,6 @@ class ImitateApplication : Application() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
         WebView.setWebContentsDebuggingEnabled(true)
-//        if (LeakCanary.isInAnalyzerProcess(this)) {
-//            return
-//        }
-//        LeakCanary.install(this)
 
         if (BuildConfig.DEBUG) {
             ARouter.openLog()

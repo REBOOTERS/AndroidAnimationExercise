@@ -86,7 +86,7 @@ class KotlinRootActivity : AppCompatActivity() {
             }
             if (fileDir.exists()) {
                 val destDir = Environment.getExternalStorageDirectory()
-                FileUtils.copyDirectoryToDirectory(fileDir, destDir)
+                FileUtils.copyFileToDirectory(fileDir, destDir)
             }
         }
 

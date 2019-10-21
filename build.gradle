@@ -6,12 +6,12 @@ buildscript {
 
     apply from: file('config.gradle')
     repositories {
-        maven {
-            url('repo')
-        }
         google()
         jcenter()
         mavenCentral()
+        maven {
+            url('repo')
+        }
         maven {
             url "https://plugins.gradle.org/m2/"
         }
@@ -44,11 +44,11 @@ buildScan {
 
 allprojects {
     repositories {
+        google()
+        jcenter()
         maven {
             url('repo')
         }
-        google()
-        jcenter()
         maven { url 'https://jitpack.io' }
     }
 
