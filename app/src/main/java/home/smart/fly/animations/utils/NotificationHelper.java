@@ -40,16 +40,15 @@ public class NotificationHelper {
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.RED);
             notificationChannel.enableVibration(true);
-            notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 200, 400});
             mNotificationManager.createNotificationChannel(notificationChannel);
-
         }
 
         mBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
         mBuilder.setSmallIcon(R.mipmap.app_start);
         mBuilder.setContentTitle(title)
                 .setContentText(message)
-                .setAutoCancel(false)
+                .setAutoCancel(true)
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                 .setContentIntent(resultPendingIntent)
                 .setWhen(System.currentTimeMillis())
@@ -58,9 +57,6 @@ public class NotificationHelper {
 
         assert mNotificationManager != null;
         mBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
-
-
-        assert mNotificationManager != null;
-        mNotificationManager.notify(0 /* Request Code */, mBuilder.build());
+        mNotificationManager.notify(message.hashCode(), mBuilder.build());
     }
 }

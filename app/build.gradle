@@ -165,7 +165,7 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
     kapt 'com.zhihu.android:sugaradapter-processor:1.8.6'
     implementation "androidx.palette:palette:$support_versioin"
-    implementation 'com.tencent:mmkv:1.0.18'
+    implementation 'com.tencent:mmkv:1.0.23'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
@@ -175,8 +175,8 @@ dependencies {
 
     // https://github.com/didi/DoraemonKit
 
-    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.1.7'
-    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.1.7'
+    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.2.1'
+    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.2.0'
 
 
     if (!imitate_isApp.toBoolean()) {
