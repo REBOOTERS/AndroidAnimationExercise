@@ -18,7 +18,7 @@ import com.engineer.imitate.R
  */
 
 @Route(path = "/anim/circleLoading")
-class CircleLoadingFragment : androidx.fragment.app.Fragment() {
+class CircleLoadingFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

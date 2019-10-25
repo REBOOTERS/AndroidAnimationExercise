@@ -39,10 +39,7 @@ public class MyApplication extends Application {
 
 
         DoraemonKit.install(this);
-        DoraemonKit.hide();
-
-
-
+//        DoraemonKit.hide();
         logLifeCycleCallBacks();
     }
 

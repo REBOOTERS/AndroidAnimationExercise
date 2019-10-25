@@ -140,5 +140,6 @@
     <string name="save_to_album_success">保存到相册成功！</string>
     <string name="title_activity_screen_recoder">ScreenRecoderActivity</string>
     <string name="title_activity_fit_system_window">FitSystemWindowActivity</string>
-
+    <string name="text_stop_rotating">Stop rotating</string>
+    <string name="text_rotate">Rotate</string>
 </resources>

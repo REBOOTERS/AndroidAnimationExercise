@@ -57,19 +57,19 @@ class HybridHelper(private var context: Context) {
         private val TAG: String = "ARouter"
 
         override fun onFound(postcard: Postcard?) {
-            Log.e(TAG, "onFound: " + postcard!!.toString())
+            Log.e(TAG, "onFound: " + postcard?.toString())
         }
 
         override fun onLost(postcard: Postcard?) {
-            Log.e(TAG, "onLost: " + postcard!!.toString())
+            Log.e(TAG, "onLost: " + postcard?.toString())
         }
 
         override fun onArrival(postcard: Postcard) {
-            Log.e(TAG, "onArrival: " + postcard.toString())
+            Log.e(TAG, "onArrival: $postcard")
         }
 
         override fun onInterrupt(postcard: Postcard?) {
-            Log.e(TAG, "onInterrupt: " + postcard!!.toString())
+            Log.e(TAG, "onInterrupt: " + postcard?.toString())
         }
 
     }

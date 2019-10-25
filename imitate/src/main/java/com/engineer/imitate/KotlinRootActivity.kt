@@ -97,6 +97,8 @@ class KotlinRootActivity : AppCompatActivity() {
     // <editor-fold defaultstate="collapsed" desc="init fragments">
     private fun initList(): MutableList<FragmentItem> {
         return mutableListOf(
+            FragmentItem("/anim/entrance", "entrance"),
+            FragmentItem("/anim/pure_3d_shapre", "3D shape"),
             FragmentItem("/anim/circleLoading", "circle-loading"),
             FragmentItem("/anim/coroutines", "coroutines"),
             FragmentItem("/anim/recycler_view", "RecyclerView"),
@@ -104,7 +106,6 @@ class KotlinRootActivity : AppCompatActivity() {
             FragmentItem("/anim/drawable_example", "drawable_example"),
             FragmentItem("/anim/elevation", "elevation"),
             FragmentItem("/anim/fresco", "fresco"),
-            FragmentItem("/anim/entrance", "entrance"),
             FragmentItem("/anim/constraint", "constraint animation"),
             FragmentItem("/anim/scroller", "scroller"),
             FragmentItem("/anim/vh_fragment", "vh_fragment"),

@@ -10,7 +10,7 @@
     <color name="background">#E5E5E5</color>
     <color name="transparent">#00000000</color>
     <color name="transblue">#c0141932</color>
-
+    <color name="colorMask">#805d5d5d</color>
 
     <color name="tabsel">#11cd6e</color>
     <color name="green">#49be39</color>
