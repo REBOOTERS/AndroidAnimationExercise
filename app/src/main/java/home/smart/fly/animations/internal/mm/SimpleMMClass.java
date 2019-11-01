@@ -1,7 +1,7 @@
 package home.smart.fly.animations.internal.mm;
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 08-06-2019
  */
 public class SimpleMMClass {

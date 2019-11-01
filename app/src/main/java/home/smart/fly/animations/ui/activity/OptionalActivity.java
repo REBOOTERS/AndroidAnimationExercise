@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import home.smart.fly.animations.R;
 import java8.util.Optional;
+import java8.util.function.Function;
 
 public class OptionalActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,6 +44,7 @@ public class OptionalActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.notNullValue).setOnClickListener(this);
         findViewById(R.id.elseUse).setOnClickListener(this);
         findViewById(R.id.stream).setOnClickListener(this);
+        findViewById(R.id.map_function).setOnClickListener(this);
     }
 
 
@@ -74,9 +76,38 @@ public class OptionalActivity extends AppCompatActivity implements View.OnClickL
                     streamPlay();
                 }
                 break;
+            case R.id.map_function:
+                mapFunction();
+                break;
             default:
                 break;
         }
+    }
+
+    private void mapFunction() {
+        Student student = new Student("mike", 22);
+        String detail = Optional.ofNullable(student)
+                .map(s -> s.address)
+                .map(address -> address.detail)
+                .orElse("null");
+        System.out.println("detail == " + detail);
+
+        Student.Address address = student.new Address("beijing", 123456);
+        student.address = address;
+
+        detail = Optional.ofNullable(student)
+                .map(s -> s.address)
+                .map(add -> add.detail)
+                .orElse("null");
+
+        System.out.println("detial 1 == " + detail);
+
+        Optional<Student.Address> address1 = Optional.ofNullable(student)
+                .flatMap((Function<Student, Optional<Student.Address>>)
+                        student1 -> Optional.ofNullable(student1.address));
+
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -124,10 +155,21 @@ public class OptionalActivity extends AppCompatActivity implements View.OnClickL
     private class Student {
         public String name;
         public int age;
+        public Address address;
 
         public Student(String name, int age) {
             this.name = name;
             this.age = age;
+        }
+
+        private class Address {
+            public String detail;
+            public int doorNum;
+
+            public Address(String detail, int doorNum) {
+                this.detail = detail;
+                this.doorNum = doorNum;
+            }
         }
     }
 }

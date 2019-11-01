@@ -3,7 +3,7 @@ package home.smart.fly.animations.internal;
 import home.smart.fly.animations.internal.mm.SimpleMMClass;
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 08-06-2019
  */
 public class OutClass {

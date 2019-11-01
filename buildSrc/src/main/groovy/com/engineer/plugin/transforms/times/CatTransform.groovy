@@ -14,7 +14,7 @@ import java.util.jar.JarOutputStream
 import java.util.zip.ZipEntry
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 09-03-2019
  */
 class CatTransform extends Transform {

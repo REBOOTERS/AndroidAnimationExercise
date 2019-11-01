@@ -14,7 +14,7 @@ import androidx.core.view.ScrollingView
 import com.engineer.imitate.R
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 08-06-2019
  */
 class ParallaxView : FrameLayout {

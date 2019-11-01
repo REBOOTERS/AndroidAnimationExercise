@@ -130,6 +130,8 @@ class GlideLoadLogTransform extends Transform {
                     ByteStreams.copy(inputStream, outputStream)
                 }
 
+//                ByteStreams.copy(inputStream,outputStream)
+
             } else {
                 ByteStreams.copy(inputStream, outputStream)
             }
@@ -205,7 +207,7 @@ class GlideLoadLogTransform extends Transform {
                 Type type = types[i]
                 String className = type.className
                 if (className.equals("java.lang.String")) {
-                    return true;
+                    return true
                 }
             }
         }

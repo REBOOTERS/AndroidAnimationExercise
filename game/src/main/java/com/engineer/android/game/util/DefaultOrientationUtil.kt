@@ -5,7 +5,7 @@ import android.view.Surface
 import androidx.appcompat.app.AppCompatActivity
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 10-15-2019
  */
 object DefaultOrientationUtil {

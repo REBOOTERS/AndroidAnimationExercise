@@ -1,7 +1,7 @@
 package com.engineer.android.game.util
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 10-15-2019
  */
 enum class DefaultOrientation {

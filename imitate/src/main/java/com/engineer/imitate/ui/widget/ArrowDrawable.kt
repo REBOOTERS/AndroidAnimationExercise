@@ -6,7 +6,7 @@ import android.graphics.Paint
 import android.graphics.drawable.shapes.RectShape
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 08-27-2019
  */
 class ArrowDrawable:RectShape() {

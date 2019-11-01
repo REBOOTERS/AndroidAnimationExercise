@@ -3,7 +3,7 @@ package home.smart.fly.animations.internal.mm;
 import android.util.Log;
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 08-31-2019
  */
 public class LogcatTest {

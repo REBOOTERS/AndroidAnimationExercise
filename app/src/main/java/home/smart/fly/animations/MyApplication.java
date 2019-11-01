@@ -1,6 +1,7 @@
 package home.smart.fly.animations;
 
 import android.app.Application;
+import android.os.Debug;
 import android.util.Log;
 import android.webkit.WebView;
 
@@ -23,6 +24,9 @@ public class MyApplication extends Application {
     @DebugLog
     public void onCreate() {
         super.onCreate();
+
+        Debug.startMethodTracing("sample");
+
         MultiDex.install(this);
         Stetho.initializeWithDefaults(this);
 
@@ -38,9 +42,12 @@ public class MyApplication extends Application {
         WebView.setWebContentsDebuggingEnabled(true);
 
 
+        DoraemonKit.disableUpload();
         DoraemonKit.install(this);
 //        DoraemonKit.hide();
         logLifeCycleCallBacks();
+
+        Debug.stopMethodTracing();
     }
 
     protected void logLifeCycleCallBacks() {

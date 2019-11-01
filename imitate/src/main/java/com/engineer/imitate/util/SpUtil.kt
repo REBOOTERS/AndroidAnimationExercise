@@ -4,7 +4,7 @@ import android.content.Context
 import android.preference.PreferenceManager
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 08-21-2019
  */
 class SpUtil(context: Context) {
