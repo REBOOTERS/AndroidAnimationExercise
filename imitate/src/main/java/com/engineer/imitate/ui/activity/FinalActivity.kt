@@ -1,5 +1,9 @@
 package com.engineer.imitate.ui.activity
 
+import android.animation.Animator
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Outline
 import android.os.Bundle
@@ -7,6 +11,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -20,6 +25,7 @@ import com.engineer.imitate.util.dp2px
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_final.*
+import kotlinx.android.synthetic.main.fragment_evelation.*
 import kotlinx.android.synthetic.main.fragment_final.view.*
 
 const val TAG = "Final_Activity"
@@ -37,9 +43,11 @@ class FinalActivity : AppCompatActivity() {
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
 
     //<editor-fold desc="data">
-    private val titles = arrayOf(R.string.tab_text_1,
-            R.string.tab_text_2, R.string.tab_text_3, R.string.tab_text_4,
-            R.string.tab_text_5, R.string.tab_text_6, R.string.tab_text_7, R.string.tab_text_8)
+    private val titles = arrayOf(
+        R.string.tab_text_1,
+        R.string.tab_text_2, R.string.tab_text_3, R.string.tab_text_4,
+        R.string.tab_text_5, R.string.tab_text_6, R.string.tab_text_7, R.string.tab_text_8
+    )
     //</editor-fold>
 
     private lateinit var context: Context
@@ -53,9 +61,12 @@ class FinalActivity : AppCompatActivity() {
 
     private lateinit var provider: CustomViewOutLineProvider
 
-    private val listener: ViewTreeObserver.OnGlobalLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
-        Log.e("onLayout", "onLayout")
-    }
+    private var isExpand = false
+
+    private val listener: ViewTreeObserver.OnGlobalLayoutListener =
+        ViewTreeObserver.OnGlobalLayoutListener {
+            Log.e("onLayout", "onLayout")
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,7 +106,56 @@ class FinalActivity : AppCompatActivity() {
             }
         })
 
+        var marginTopAnim: ValueAnimator? = null
+        image.setOnClickListener {
+            if (marginTopAnim != null && marginTopAnim?.isRunning != false) {
+                return@setOnClickListener
+            }
 
+
+
+            val params: ConstraintLayout.LayoutParams =
+                layout.layoutParams as ConstraintLayout.LayoutParams
+
+
+            val params1: ConstraintLayout.LayoutParams =
+                card.layoutParams as ConstraintLayout.LayoutParams
+
+            marginTopAnim = if (isExpand) {
+                ValueAnimator.ofInt(dp2px(250f).toInt(), 0)
+            } else {
+                ValueAnimator.ofInt(dp2px(250f).toInt())
+            }
+
+
+            marginTopAnim?.duration = 500
+            marginTopAnim?.addUpdateListener {
+                var alpha = it.animatedFraction
+                if (isExpand) {
+                    alpha = 1.0f - alpha
+                }
+                card.alpha = alpha
+                val value: Int = it.animatedValue as Int
+
+                Log.e("value", "value=======$value")
+
+                params.setMargins(0, value, 0, 0)
+                layout.layoutParams = params
+
+                params1.height = it.animatedValue as Int
+                card.layoutParams = params1
+
+            }
+            marginTopAnim?.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    isExpand = !isExpand
+                }
+            })
+            marginTopAnim?.start()
+
+
+        }
 
 
 
@@ -203,8 +263,10 @@ class FinalActivity : AppCompatActivity() {
      */
     class PlaceholderFragment : Fragment() {
 
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                                  savedInstanceState: Bundle?): View? {
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
             val rootView = inflater.inflate(R.layout.fragment_final, container, false)
             val type = arguments!!.getInt(ARG_SECTION_NUMBER)
             val list = rootView.list
@@ -236,4 +298,19 @@ class FinalActivity : AppCompatActivity() {
         }
     }
     //</editor-fold>
+
+    open inner class AnimatorListenerAdapter : Animator.AnimatorListener {
+        override fun onAnimationRepeat(animation: Animator?) {
+
+        }
+
+        override fun onAnimationEnd(animation: Animator?) {
+        }
+
+        override fun onAnimationCancel(animation: Animator?) {
+        }
+
+        override fun onAnimationStart(animation: Animator?) {
+        }
+    }
 }

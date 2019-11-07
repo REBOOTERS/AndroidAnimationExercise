@@ -40,6 +40,7 @@
         <activity
                 android:name=".ui.activity.FinalActivity"
                 android:label="@string/title_activity_final"
+                android:exported="true"
                 android:theme="@style/MyAppTheme" />
         <activity android:name=".ui.activity.ReverseGifActivity" />
     </application>

@@ -25,11 +25,10 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
-            <LinearLayout
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="visible">
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/image"
@@ -37,25 +36,58 @@
                     android:layout_height="224dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/comic"
-                    android:tag="overScroll" />
+                    android:tag="overScroll"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/round"
+                <FrameLayout
+                    android:id="@+id/card"
+                    android:alpha="0"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@color/cpb_red"
-                    android:gravity="center"
-                    android:text="动态变化的圆角"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:layout_height="0dp"
+                    android:background="@color/cpb_green"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/layout"
+                    app:layout_constraintTop_toBottomOf="@+id/image" >
 
-                <View
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_margin="16dp"
+                        android:src="@drawable/maomao"
+                        android:layout_height="match_parent"/>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="@color/cpb_red" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image">
 
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/round"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@color/cpb_red"
+                        android:gravity="center"
+                        android:text="动态变化的圆角"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/cpb_red" />
+
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <androidx.appcompat.widget.Toolbar
