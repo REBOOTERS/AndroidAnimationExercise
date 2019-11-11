@@ -7,6 +7,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Outline
 import android.os.Bundle
+import android.os.Debug
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
@@ -22,6 +23,7 @@ import com.engineer.imitate.R
 import com.engineer.imitate.ui.list.adapter.DataAdapter
 import com.engineer.imitate.interfaces.SimpleOnTabSelectedListener
 import com.engineer.imitate.util.dp2px
+import com.engineer.imitate.util.px2dp
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_final.*
@@ -113,7 +115,6 @@ class FinalActivity : AppCompatActivity() {
             }
 
 
-
             val params: ConstraintLayout.LayoutParams =
                 layout.layoutParams as ConstraintLayout.LayoutParams
 
@@ -141,9 +142,14 @@ class FinalActivity : AppCompatActivity() {
 
                 params.setMargins(0, value, 0, 0)
                 layout.layoutParams = params
+                val dp = px2dp(value.toFloat())
+                Log.e("value", "dp=======$dp")
 
-                params1.height = it.animatedValue as Int
-                card.layoutParams = params1
+//                if (dp > 80) {
+//                    params1.height = value
+//                    card.layoutParams = params1
+//                }
+
 
             }
             marginTopAnim?.addListener(object : AnimatorListenerAdapter() {
@@ -153,8 +159,6 @@ class FinalActivity : AppCompatActivity() {
                 }
             })
             marginTopAnim?.start()
-
-
         }
 
 
@@ -226,6 +230,10 @@ class FinalActivity : AppCompatActivity() {
 
         Log.e(TAG, "screenH  =" + screenH)
         Log.e(TAG, "statusbar=" + getStatusBarHeight())
+
+        Log.e(TAG, "Pss             : " + Debug.getPss())
+        Log.e(TAG, "native Heap size: " + Debug.getNativeHeapSize())
+
 
     }
 

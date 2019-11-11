@@ -25,3 +25,8 @@ fun Context.dp2px(dp: Float): Float {
     return dp * scale
 }
 
+fun Context.px2dp(px: Float): Float {
+    val scale = resources.displayMetrics.density
+    return px / scale
+}
+
