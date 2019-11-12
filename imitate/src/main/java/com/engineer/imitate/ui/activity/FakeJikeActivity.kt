@@ -17,6 +17,16 @@ class FakeJikeActivity : AppCompatActivity() {
             val color = ContextCompat.getColor(this, R.color.green)
             Log.e("color", "color == $color")
             button.setTextColor(-11944391)
+            try {
+                ddd()
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
         }
+    }
+
+    fun ddd() {
+//        throw NullPointerException()
+        throw IncompatibleClassChangeError()
     }
 }
