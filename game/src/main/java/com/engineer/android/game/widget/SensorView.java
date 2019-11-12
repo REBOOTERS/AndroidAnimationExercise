@@ -10,11 +10,10 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.engineer.android.game.R;
-import com.engineer.android.game.ui.SensorViewActivity;
 
 public class SensorView extends SurfaceView implements SurfaceHolder.Callback {
     public SensorViewDrawThread mvdt;
-    Paint paint;//画笔
+    Paint paint;
     public float dx;
     public float dy;
     public float dz;
@@ -45,7 +44,7 @@ public class SensorView extends SurfaceView implements SurfaceHolder.Callback {
         shang = BitmapFactory.decodeResource(getResources(), R.drawable.shang);
         qiuzuo = BitmapFactory.decodeResource(getResources(), R.drawable.qiuzuo);
         qiushang = BitmapFactory.decodeResource(getResources(), R.drawable.qiushang);
-        qiuzhong = BitmapFactory.decodeResource(getResources(), R.drawable.qiuzhong1);
+        qiuzhong = BitmapFactory.decodeResource(getResources(), R.drawable.qiuzhong);
     }
 
     @Override
