@@ -13,27 +13,18 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.engineer.fastlist.FastListAdapter
-import com.engineer.fastlist.bind
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.ui.activity.ReverseGifActivity
-import com.engineer.imitate.util.StreamUtils
 import com.engineer.imitate.util.isNetworkConnected
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import java8.util.Optional
+import com.list.rados.fast_list.FastListAdapter
+import com.list.rados.fast_list.bind
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
 import kotlinx.android.synthetic.main.content_kotlin_root.*
 import kotlinx.android.synthetic.main.view_item.view.*
@@ -264,4 +255,9 @@ class KotlinRootActivity : AppCompatActivity() {
         Log.e(TAG, "result ==$jsonArray")
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        hybrid.removeJavascriptInterface("hybrid")
+    }
 }

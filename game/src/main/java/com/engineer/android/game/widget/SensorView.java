@@ -95,6 +95,6 @@ public class SensorView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder arg0) {
-
+        mvdt.flag = false;
     }
 }

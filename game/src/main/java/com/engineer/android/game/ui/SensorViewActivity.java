@@ -79,4 +79,9 @@ public class SensorViewActivity extends AppCompatActivity {
         mv.mvdt.pauseFlag = true;
         super.onPause();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }
