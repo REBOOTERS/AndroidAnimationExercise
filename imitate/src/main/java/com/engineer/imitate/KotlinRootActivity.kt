@@ -25,6 +25,8 @@ import com.engineer.imitate.ui.activity.ReverseGifActivity
 import com.engineer.imitate.util.isNetworkConnected
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
 import kotlinx.android.synthetic.main.content_kotlin_root.*
 import kotlinx.android.synthetic.main.view_item.view.*
@@ -72,17 +74,19 @@ class KotlinRootActivity : AppCompatActivity() {
         val fileDir = File(path)
         val files = fileDir.listFiles()
         files?.apply {
-            for (file in this) {
-                Log.e(TAG, ": " + file.absolutePath)
-            }
+
             if (fileDir.exists()) {
                 val destDir = Environment.getExternalStorageDirectory()
-                FileUtils.copyFileToDirectory(fileDir, destDir)
+                for (file in this) {
+                    Log.e(TAG, ": " + file.absolutePath)
+                    Observable.just("")
+                        .subscribeOn(Schedulers.io())
+                        .subscribe {
+                            FileUtils.copyFileToDirectory(file, destDir)
+                        }
+                }
             }
         }
-
-
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="init fragments">
@@ -121,7 +125,8 @@ class KotlinRootActivity : AppCompatActivity() {
             shell.setOnClickListener {
                 gif.hide()
 
-                val fragment: Fragment = ARouter.getInstance().build(item.path).navigation(context) as Fragment
+                val fragment: Fragment =
+                    ARouter.getInstance().build(item.path).navigation(context) as Fragment
                 currentFragment = fragment
                 content.visibility = View.VISIBLE
                 index.visibility = View.GONE

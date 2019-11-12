@@ -47,8 +47,22 @@ internal object IOTool {
         return result
     }
 
+    fun provideRandomPath(name: String): String {
+        val picturesDir =
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val path = picturesDir.absolutePath + gifDir
+        val fileDir = File(path)
+        if (fileDir.exists().not()) {
+            fileDir.mkdir()
+        }
+        val fileName = name + System.currentTimeMillis() + ".gif"
+        val file = File(fileDir, fileName)
+        return file.absolutePath
+    }
+
     fun saveStreamToSDCard(name: String, os: ByteArrayOutputStream): String {
-        val picturesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val picturesDir =
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
         val path = picturesDir.absolutePath + gifDir
         val fileDir = File(path)
         if (fileDir.exists().not()) {
