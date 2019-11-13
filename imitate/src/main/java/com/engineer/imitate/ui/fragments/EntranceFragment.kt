@@ -136,6 +136,8 @@ class EntranceFragment : Fragment() {
             startActivity(Intent(context,SensorViewActivity::class.java))
         }
 
+        shell.setOnClickListener { startActivity(Intent(context, RunShellActivity::class.java)) }
+
         adapter = MyListAdapter()
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = adapter

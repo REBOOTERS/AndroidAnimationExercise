@@ -26,6 +26,10 @@ class FakeJikeActivity : AppCompatActivity() {
     }
 
     fun ddd() {
+
+        val runtime = Runtime.getRuntime()
+        println("runtime processor = ${runtime.availableProcessors()}")
+
 //        throw NullPointerException()
         throw IncompatibleClassChangeError()
     }

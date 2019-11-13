@@ -142,4 +142,6 @@
     <string name="title_activity_fit_system_window">FitSystemWindowActivity</string>
     <string name="text_stop_rotating">Stop rotating</string>
     <string name="text_rotate">Rotate</string>
+    <string name="run_as_root">Run as root</string>
+    <string name="run">RUN</string>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-          package="com.engineer.imitate">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.engineer.imitate">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,15 +21,17 @@
             android:name=".ui.activity.FakeJikeActivity"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".ui.activity.MyExpandableListViewActivity" android:theme="@style/MyAppTheme"/>
+        <activity
+            android:name=".ui.activity.MyExpandableListViewActivity"
+            android:theme="@style/MyAppTheme" />
 
         <activity
             android:name=".ui.activity.ScreenRecorderActivity"
             android:label="@string/title_activity_screen_recoder"
-            android:theme="@style/MyAppTheme.NoActionBar"/>
+            android:theme="@style/MyAppTheme.NoActionBar" />
         <activity android:name=".ui.activity.DateAndTimePickerActivity" />
-        <activity android:name=".ui.activity.ReverseGifActivity"/>
-
+        <activity android:name=".ui.activity.ReverseGifActivity" />
+        <activity android:name=".ui.activity.RunShellActivity" />
     </application>
 
 </manifest>
