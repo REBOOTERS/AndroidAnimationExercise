@@ -1,3 +1,5 @@
+import java.util.function.Consumer
+
 apply plugin: 'com.android.application'
 
 // Android Gradle Plugin source @ https://android.googlesource.com/platform/tools/base/+/gradle_3.1.2
@@ -201,3 +203,34 @@ repositories {
 // 自定义插件的一些测试，如果无法运行，可以暂时注释掉
 apply from: file("../gradle/custom_plugin.gradle")
 apply from: file("../gradle/test.gradle")
+
+task calc_module doLast {
+
+    def config = project.configurations.findByName("chargeDebugCompileClasspath")
+    config.resolvedConfiguration.lenientConfiguration.allModuleDependencies.forEach(new Consumer<ResolvedDependency>() {
+        @Override
+        void accept(ResolvedDependency resolvedDependency) {
+            def name = resolvedDependency.name
+            println("====> "+name)
+            if (name.contains("dataview") || name.contains("skeleton")) {
+
+            } else {
+                println("====> "+resolvedDependency.module)
+                println("====> "+resolvedDependency.moduleVersion)
+                println("====> "+resolvedDependency.moduleName)
+                println("====> "+resolvedDependency.configuration)
+                println("====> "+resolvedDependency.moduleArtifacts)
+                resolvedDependency.moduleArtifacts.forEach(new Consumer<ResolvedArtifact>() {
+                    @Override
+                    void accept(ResolvedArtifact resolvedArtifact) {
+                        println(resolvedArtifact.file.size())
+                    }
+                })
+                println("====> "+resolvedDependency.allModuleArtifacts)
+            }
+
+
+            println()
+        }
+    })
+}

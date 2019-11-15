@@ -7,14 +7,19 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.execution.TaskExecutionListener
 import org.gradle.api.logging.LogLevel
+import org.gradle.api.logging.Logger
 import org.gradle.api.tasks.TaskState
+
+import java.util.stream.Collector
 
 class TaskTimeAction {
     //用来记录 task 的执行时长等信息
     static Map<String, TaskDetail> taskTimeMap = new HashMap<>()
-
+    static Logger logger
 
     static apply(Project project) {
+        logger = project.getLogger()
+
         project.gradle.addListener(new TaskExecutionListener() {
             @Override
             void beforeExecute(Task task) {
@@ -37,13 +42,25 @@ class TaskTimeAction {
             @Override
             void buildFinished(BuildResult buildResult) {
                 super.buildFinished(buildResult)
+                if (taskTimeMap.isEmpty()) {
+                    return
+                }
+                printTag()
+                taskTimeMap = taskTimeMap.sort()
                 taskTimeMap.keySet().forEach { name ->
                     def cost_time = taskTimeMap.get(name).total
 
                     def info = String.format("task %-70s spend %d ms", name, cost_time)
                     project.logger.log(LogLevel.ERROR, info)
                 }
+                printTag()
             }
         })
+    }
+
+    static printTag() {
+        println()
+        logger.error("=================================== Task 耗时 ===============================================")
+        println()
     }
 }

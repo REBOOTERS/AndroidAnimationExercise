@@ -35,10 +35,8 @@ class PhoenixPlugin implements Plugin<Project> {
 
         }
 
-        project.gradle.buildFinished {
-            CalculateAction.test(project)
-        }
 
+        CalculateAction.apply(project)
         TaskTimeAction.apply(project)
 
         def appExtension = project.extensions.getByName("android")
