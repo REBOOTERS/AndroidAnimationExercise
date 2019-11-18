@@ -10,7 +10,6 @@ import org.gradle.api.logging.LogLevel
 import org.gradle.api.logging.Logger
 import org.gradle.api.tasks.TaskState
 
-import java.util.stream.Collector
 
 class TaskTimeAction {
     //用来记录 task 的执行时长等信息
@@ -46,13 +45,16 @@ class TaskTimeAction {
                     return
                 }
                 printTag()
-                taskTimeMap = taskTimeMap.sort()
-                taskTimeMap.keySet().forEach { name ->
+
+                taskTimeMap.sort { a, b ->
+                    b.value.total - a.value.total
+                }.keySet().forEach { name ->
                     def cost_time = taskTimeMap.get(name).total
 
                     def info = String.format("task %-70s spend %d ms", name, cost_time)
                     project.logger.log(LogLevel.ERROR, info)
                 }
+
                 printTag()
             }
         })

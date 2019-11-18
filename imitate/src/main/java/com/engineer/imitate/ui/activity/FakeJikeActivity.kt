@@ -15,6 +15,7 @@ class FakeJikeActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             val color = ContextCompat.getColor(this, R.color.green)
+            Log.e("color", "di    == ${R.color.green}")
             Log.e("color", "color == $color")
             button.setTextColor(-11944391)
             try {
