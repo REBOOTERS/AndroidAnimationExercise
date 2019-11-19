@@ -1,12 +1,10 @@
 package com.engineer.plugin.actions
 
-import com.engineer.plugin.actions.adapter.BuildSimpleListener
+import com.engineer.plugin.utils.BeautyLog
 import groovy.json.JsonSlurper
-import org.gradle.BuildResult
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.logging.Logger
-
 
 class CalculateAction {
 
@@ -35,13 +33,15 @@ class CalculateAction {
     }
 
     static calculate(Project project) {
-        printTag()
+        printTag(true)
+        def hasFile = false
         project.android.applicationVariants.all { variant ->
             def dir = variant.getPackageApplication().outputDirectory
             def filePath = getApkFullPath(dir, variant.name)
             if (filePath != null) {
                 def file = new File(filePath)
                 if (file.exists()) {
+                    hasFile = true
                     def info = String.format("生成文件 %-53s 大小为 %.2f MB", file.name, formatValue(file.size()))
                     logger.error(info)
                 } else {
@@ -49,7 +49,13 @@ class CalculateAction {
                 }
             }
         }
-        printTag()
+        if (hasFile) {
+            logger.error("time   " + releaseTime())
+            logger.error("branch " + getGitBranch(project))
+            logger.error("commit " + getGitCommit(project))
+        }
+
+        printTag(false)
     }
 
     static formatValue(value) {
@@ -71,9 +77,31 @@ class CalculateAction {
         }
     }
 
-    static printTag() {
-        println()
-        logger.error("===================================生成 APK =================================")
-        println()
+    static printTag(boolean start) {
+        BeautyLog.log("生成 APK", start, logger)
+    }
+
+    static releaseTime() {
+        return new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("GMT+08:00"))
+    }
+
+    static getGitCommit(Project project) {
+        def stdout = new ByteArrayOutputStream()
+        project.exec {
+            commandLine "git"
+            args "rev-parse", "--short", "HEAD"
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
+    }
+
+    static getGitBranch(Project project) {
+        def stdout = new ByteArrayOutputStream()
+        project.exec {
+            commandLine "git"
+            args "rev-parse", "--abbrev-ref", "HEAD"
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
     }
 }

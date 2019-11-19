@@ -2,13 +2,17 @@ package com.engineer.plugin.actions
 
 import com.engineer.plugin.actions.adapter.BuildSimpleListener
 import com.engineer.plugin.extensions.model.TaskDetail
+import com.engineer.plugin.utils.BeautyLog
 import org.gradle.BuildResult
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.execution.TaskExecutionListener
+import org.gradle.api.invocation.Gradle
 import org.gradle.api.logging.LogLevel
 import org.gradle.api.logging.Logger
 import org.gradle.api.tasks.TaskState
+
+import java.text.SimpleDateFormat
 
 
 class TaskTimeAction {
@@ -44,25 +48,28 @@ class TaskTimeAction {
                 if (taskTimeMap.isEmpty()) {
                     return
                 }
-                printTag()
-
+                printTag(true)
                 taskTimeMap.sort { a, b ->
                     b.value.total - a.value.total
                 }.keySet().forEach { name ->
                     def cost_time = taskTimeMap.get(name).total
-
                     def info = String.format("task %-70s spend %d ms", name, cost_time)
                     project.logger.log(LogLevel.ERROR, info)
                 }
 
-                printTag()
+                printTag(false)
             }
         })
     }
 
-    static printTag() {
-        println()
-        logger.error("=================================== Task 耗时 ===============================================")
-        println()
+    static printTag(boolean start) {
+        BeautyLog.log("Task 耗时", start, logger)
+    }
+
+    static String formatTime(float time) {
+        println("time is " + time)
+        SimpleDateFormat dateformat = new SimpleDateFormat("mm:ss")
+        String result = dateformat.format(time)
+        return result
     }
 }
