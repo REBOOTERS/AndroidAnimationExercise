@@ -2,8 +2,11 @@ package home.smart.fly.animations.recyclerview;
 
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.fragment.app.Fragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,7 +38,7 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
         initFragments();
 
         navigation.setSelectedItemId(R.id.navigation_home);
-        navigation.setVisibility(View.GONE);
+//        navigation.setVisibility(View.GONE);
     }
 
     // <editor-fold defaultstate="collapsed" desc="initFragments">
@@ -93,4 +96,10 @@ public class BaseRecyclerViewActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mFragments.clear();
+        mFragmentManager = null;
+    }
 }

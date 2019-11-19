@@ -1,7 +1,5 @@
 package home.smart.fly.animations;
 
-import android.content.Context;
-
 import com.engineer.dateview.api.DataView;
 import com.engineer.dateview.interfaces.MyActivityLifecycleCallbacks;
 
@@ -26,10 +24,5 @@ public class DebugMyApplication extends MyApplication {
         mMyActivityLifecycleCallbacks = new MyActivityLifecycleCallbacks();
         unregisterActivityLifecycleCallbacks(mMyActivityLifecycleCallbacks);
         registerActivityLifecycleCallbacks(mMyActivityLifecycleCallbacks);
-    }
-
-
-    public Context provideContext() {
-        return mMyActivityLifecycleCallbacks.mGodContext;
     }
 }

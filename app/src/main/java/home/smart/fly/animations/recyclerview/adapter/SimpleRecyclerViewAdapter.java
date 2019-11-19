@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.V;
 
@@ -67,6 +70,13 @@ public class SimpleRecyclerViewAdapter extends BaseRecyclerViewAdapter<String> {
             mTextView = itemView.findViewById(R.id.index);
 
             mTextView.setVisibility(View.VISIBLE);
+
+            itemView.setOnClickListener(v -> {
+                int[] xy = new int[2];
+                v.getLocationOnScreen(xy);
+                int pos = getAdapterPosition();
+                Toast.makeText(v.getContext(), " adapter pos " + pos + ", layout x= " + xy[0] + " ,layout y= " + xy[1], Toast.LENGTH_SHORT).show();
+            });
         }
     }
 
