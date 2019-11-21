@@ -126,3 +126,5 @@ dependencies {
     implementation 'bg.devlabs.fastlist:fast-list:1.3'
     implementation 'com.jaredrummler:simple-mvp:1.0.2'
 }
+
+apply from: file('hyperion-config.gradle')
