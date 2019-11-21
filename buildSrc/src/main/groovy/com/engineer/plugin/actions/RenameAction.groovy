@@ -4,7 +4,11 @@ import org.gradle.api.Project
 
 class RenameAction {
 
-    static void doRenameAction(Project project) {
+    static void apply(Project project) {
+        doRenameAction(project)
+    }
+
+    private static void doRenameAction(Project project) {
         def rename = project.phoenix.rename
         if (rename.result == null) {
             project.logger.info('result not set,will be ignored')

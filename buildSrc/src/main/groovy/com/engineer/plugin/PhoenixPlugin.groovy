@@ -27,7 +27,7 @@ class PhoenixPlugin implements Plugin<Project> {
                 throw new IllegalStateException('Must apply \'com.android.application\' or \'com.android.library\' first!')
             }
 
-            RenameAction.doRenameAction(project)
+            RenameAction.apply(project)
 
             println()
             println "===================================PhoenixPlugin===============end=================="
@@ -36,8 +36,8 @@ class PhoenixPlugin implements Plugin<Project> {
         }
 
 
-        CalculateAction.apply(project)
         TaskTimeAction.apply(project)
+        CalculateAction.apply(project)
 
         def appExtension = project.extensions.getByName("android")
         if (appExtension != null) {
