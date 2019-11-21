@@ -1,0 +1,29 @@
+import java.util.function.Consumer
+
+task calc_module doLast {
+
+    def config = project.configurations.findByName("chargeDebugCompileClasspath")
+    config.resolvedConfiguration.lenientConfiguration.allModuleDependencies.forEach(new Consumer<ResolvedDependency>() {
+        @Override
+        void accept(ResolvedDependency resolvedDependency) {
+            def name = resolvedDependency.name
+            if (name.contains("dataview") || name.contains("skeleton")) {
+
+            } else {
+                println("====> " + resolvedDependency.module)
+                println("====> " + resolvedDependency.moduleGroup)
+                println("====> " + resolvedDependency.moduleName)
+                println("====> " + resolvedDependency.moduleVersion)
+                println("====> " + resolvedDependency.configuration)
+                println("====> " + resolvedDependency.moduleArtifacts)
+                resolvedDependency.moduleArtifacts.forEach(new Consumer<ResolvedArtifact>() {
+                    @Override
+                    void accept(ResolvedArtifact resolvedArtifact) {
+                        println("====> " + resolvedArtifact.file.size())
+                    }
+                })
+            }
+            println()
+        }
+    })
+}
