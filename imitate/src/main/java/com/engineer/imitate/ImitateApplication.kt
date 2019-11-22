@@ -1,6 +1,7 @@
 package com.engineer.imitate
 
 import android.app.Application
+import android.content.Context
 import android.view.View
 import android.webkit.WebView
 import com.alibaba.android.arouter.launcher.ARouter
@@ -14,6 +15,11 @@ import com.facebook.stetho.Stetho
  * @version V1.0
  */
 class ImitateApplication : Application() {
+
+    companion object {
+        lateinit var application: Context
+    }
+
     private var view: View? = null
     override fun onCreate() {
         super.onCreate()
@@ -28,10 +34,12 @@ class ImitateApplication : Application() {
         ARouter.init(this)
         try {
             Fresco.initialize(this)
-        } catch (ignore: Exception) { }
+        } catch (ignore: Exception) {
+        }
         kotlinTest()
-    }
 
+        application = this
+    }
 
 
     private fun kotlinTest() {

@@ -14,6 +14,17 @@
         tools:context=".ui.fragments.EntranceFragment">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/horizontal_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/md_blue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="horizontal_list"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/gif_revert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

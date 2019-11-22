@@ -15,4 +15,36 @@
         android:text="1111"
         android:textSize="33sp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/toast1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="toast1" />
+
+        <Button
+            android:id="@+id/toast2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="toast2" />
+
+        <Button
+            android:id="@+id/toast3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="toast3" />
+
+        <Button
+            android:id="@+id/toast4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="toast4" />
+    </LinearLayout>
+
+
 </FrameLayout>

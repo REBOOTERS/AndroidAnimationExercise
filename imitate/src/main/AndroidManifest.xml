@@ -32,6 +32,7 @@
         <activity android:name=".ui.activity.DateAndTimePickerActivity" />
         <activity android:name=".ui.activity.ReverseGifActivity" />
         <activity android:name=".ui.activity.RunShellActivity" />
+        <activity android:name=".ui.activity.HorizontalListActivity" />
     </application>
 
 </manifest>

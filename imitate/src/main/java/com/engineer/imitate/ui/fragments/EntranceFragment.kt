@@ -46,8 +46,10 @@ class EntranceFragment : Fragment() {
     private lateinit var adapter: MyListAdapter
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_entrance, container, false)
     }
@@ -57,38 +59,46 @@ class EntranceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         button.setOnClickListener {
             val permissions = RxPermissions(this)
-            permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
-                    .subscribe {
-                        Matisse.from(this)
-                                .choose(MimeType.ofAll(), false)
-                                .countable(true)
-                                .capture(true)
-                                .captureStrategy(
-                                        CaptureStrategy(true, context!!.packageName + ".fileprovider"))
-                                .maxSelectable(9)
-                                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                                .thumbnailScale(0.85f)
-                                .imageEngine(Glide4Engine())
-                                .forResult(100)
-                    }
+            permissions.request(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA
+            )
+                .subscribe {
+                    Matisse.from(this)
+                        .choose(MimeType.ofAll(), false)
+                        .countable(true)
+                        .capture(true)
+                        .captureStrategy(
+                            CaptureStrategy(true, context!!.packageName + ".fileprovider")
+                        )
+                        .maxSelectable(9)
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                        .thumbnailScale(0.85f)
+                        .imageEngine(Glide4Engine())
+                        .forResult(100)
+                }
         }
 
         set_bg.setOnClickListener {
             val permissions = RxPermissions(this)
-            permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
-                    .subscribe {
-                        Matisse.from(this)
-                                .choose(MimeType.ofAll(), false)
-                                .countable(true)
-                                .capture(true)
-                                .captureStrategy(
-                                        CaptureStrategy(true, context!!.packageName + ".fileprovider"))
-                                .maxSelectable(9)
-                                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                                .thumbnailScale(0.85f)
-                                .imageEngine(Glide4Engine())
-                                .forResult(101)
-                    }
+            permissions.request(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA
+            )
+                .subscribe {
+                    Matisse.from(this)
+                        .choose(MimeType.ofAll(), false)
+                        .countable(true)
+                        .capture(true)
+                        .captureStrategy(
+                            CaptureStrategy(true, context!!.packageName + ".fileprovider")
+                        )
+                        .maxSelectable(9)
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                        .thumbnailScale(0.85f)
+                        .imageEngine(Glide4Engine())
+                        .forResult(101)
+                }
         }
 
 
@@ -113,7 +123,18 @@ class EntranceFragment : Fragment() {
 
         fake_jike.setOnClickListener {
             // just test weather work-thread start activity is ok
-            Thread(Runnable { startActivity(Intent(context, FakeJikeActivity::class.java)) }).start()
+            Thread(Runnable {
+                startActivity(
+                    Intent(
+                        context,
+                        FakeJikeActivity::class.java
+                    )
+                )
+            }).start()
+        }
+
+        horizontal_list.setOnClickListener {
+            startActivity(Intent(context, HorizontalListActivity::class.java))
         }
 
         expandable_listview.setOnClickListener {
@@ -133,7 +154,7 @@ class EntranceFragment : Fragment() {
         }
 
         game.setOnClickListener {
-            startActivity(Intent(context,SensorViewActivity::class.java))
+            startActivity(Intent(context, SensorViewActivity::class.java))
         }
 
         shell.setOnClickListener { startActivity(Intent(context, RunShellActivity::class.java)) }
@@ -144,7 +165,11 @@ class EntranceFragment : Fragment() {
     }
 
     class MyBottomSheetFragment : SuperBottomSheetFragment() {
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
             super.onCreateView(inflater, container, savedInstanceState)
             return inflater.inflate(R.layout.my_bottom_sheet_layout, container, false)
         }
@@ -172,9 +197,11 @@ class EntranceFragment : Fragment() {
                         .setText("https:www.zhihu.com")
                         .setType("text/plain")
                         .createChooserIntent()
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT
-                                or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-                                or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .addFlags(
+                            Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+                                    or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+                                    or Intent.FLAG_ACTIVITY_NEW_TASK
+                        )
                     startActivity(shareIntent)
 
                 }
@@ -204,7 +231,8 @@ class EntranceFragment : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             context = parent.context
-            var view = LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent, false)
+            var view =
+                LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent, false)
             return Holder(view)
         }
 
