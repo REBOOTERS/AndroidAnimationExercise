@@ -1,9 +1,7 @@
 package com.engineer.plugin.extensions
 
-import groovy.lang.Closure
-
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 11-29-2019
  */
 open class RenameExtension {

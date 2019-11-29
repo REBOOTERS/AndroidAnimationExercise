@@ -12,9 +12,13 @@ import org.gradle.api.logging.Logger
 
 import org.gradle.api.tasks.TaskState
 import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.Comparator
+import kotlin.collections.HashMap
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 11-29-2019
  */
 class TaskTimeAction {
@@ -33,7 +37,7 @@ class TaskTimeAction {
                     detail.start = System.currentTimeMillis()
                     detail.name = task.path
                     println("task name " + task.path)
-                    taskTimeMap.put(task.path, detail)
+                    taskTimeMap[task.path] = detail
                 }
 
                 override fun afterExecute(task: Task, taskState: TaskState) {
@@ -52,16 +56,14 @@ class TaskTimeAction {
                     }
                     printTag(true)
 
-
-
-                    taskTimeMap
-                        .toSortedMap()
-                        .forEach {
-                            val cost_time = it.value.total
-                            val info =
-                                String.format("task %-70s spend %d ms", it.value.name, cost_time)
-                            logger.log(LogLevel.ERROR, info)
-                        }
+                    val list = ArrayList<Map.Entry<String, TaskDetail>>(taskTimeMap.entries)
+                    list.sortWith(Comparator { p0, p1 -> p1!!.value.compareTo(p0!!.value) })
+                    list.forEach {
+                        val cost_time = it.value.total
+                        val info =
+                            String.format("task %-70s spend %d ms", it.value.name, cost_time)
+                        logger.log(LogLevel.ERROR, info)
+                    }
                     printTag(false)
                 }
 
@@ -72,11 +74,8 @@ class TaskTimeAction {
             BeautyLog.log("Task 耗时", start, logger)
         }
 
-        fun formatTime(time: Float): String {
-            println("time is " + time)
-            val dateformat = SimpleDateFormat("mm:ss")
-            val result = dateformat.format(time)
-            return result
+        fun formatTime(time: Long): Long {
+            return TimeUnit.NANOSECONDS.toMillis(time)
         }
     }
 }

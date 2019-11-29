@@ -1,13 +1,14 @@
 package com.engineer.plugin.actions
 
+import com.android.build.gradle.api.ApkVariantOutput
 import com.android.build.gradle.api.ApplicationVariant
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.engineer.plugin.extensions.PhoenixExtension
+import com.engineer.plugin.utils.Common
 import org.gradle.api.Project
-import java.util.*
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 11-29-2019
  */
 class RenameAction {
@@ -18,13 +19,8 @@ class RenameAction {
 
         private fun doRenameAction(project: Project) {
             val phoenix = project.extensions.getByName("phoenix")
-            println("phoenix $phoenix")
             if (phoenix is PhoenixExtension) {
                 val rename = phoenix.rename
-
-                if (rename.result == null) {
-                    project.logger.info("result not set,will be ignored")
-                }
 
 
                 val result = rename.result
@@ -35,24 +31,23 @@ class RenameAction {
                 val withVariantVersion = rename.withVariantVersion
                 val onlyDebug = rename.onlyDebug
 
-                val releaseTime =
-                    Date().toString().format("yyyy_MM_dd_HH_mm", TimeZone.getTimeZone("GMT+08:00"))
+                val releaseTime = Common.releaseTime()
 
                 val android = project.extensions.getByName("android")
 
-                println("xxxxxxxxxxxxxxxxxx======> $android")
 
                 if (android is BaseAppModuleExtension) {
-
                     android.applicationVariants.all { variant ->
                         variant.outputs.all {
-                            it.outputFile.name
                             if (onlyDebug) {
                                 if (variant.name.contains("Debug")) {
                                     val outputFileName = assembleName(
                                         prefix, releaseTime,
                                         withTime, withVariantName, withVariantVersion, variant
                                     )
+                                    if (it is ApkVariantOutput) {
+                                        it.outputFileName = outputFileName
+                                    }
                                     result.invoke(outputFileName)
                                 }
                             } else {
@@ -60,9 +55,13 @@ class RenameAction {
                                     prefix, releaseTime,
                                     withTime, withVariantName, withVariantVersion, variant
                                 )
+
+                                if (it is ApkVariantOutput) {
+                                    it.outputFileName = outputFileName
+                                }
+
                                 result.invoke(outputFileName)
                             }
-//                    variant.getPackageApplication().outputDirectory = new File(destDir, variant.name)
                         }
                     }
                 }

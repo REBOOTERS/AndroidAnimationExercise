@@ -10,7 +10,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 11-29-2019
  */
 class PhoenixPlugin : Plugin<Project> {
@@ -25,20 +25,19 @@ class PhoenixPlugin : Plugin<Project> {
 
 
             RenameAction.apply(project)
+            TaskTimeAction.apply(project)
+            CalculateAction.apply(project)
 
             println()
             println("===================================PhoenixPlugin===============end==================")
             println()
-
         }
 
 
-        TaskTimeAction.apply(project)
-        CalculateAction.apply(project)
 //
         val appExtension = project.extensions.getByName("android")
         if (appExtension is AppExtension) {
-//            appExtension.registerTransform(CatTransform())
+            appExtension.registerTransform(CatTransform())
 //                appExtension.registerTransform(new GlideLoadLogTransform(project))
         }
     }

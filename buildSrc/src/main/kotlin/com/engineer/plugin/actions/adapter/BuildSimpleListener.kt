@@ -6,7 +6,7 @@ import org.gradle.api.initialization.Settings
 import org.gradle.api.invocation.Gradle
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 11-29-2019
  */
 

@@ -3,10 +3,9 @@ package com.engineer.plugin.actions
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.engineer.plugin.extensions.model.ApkOutputInfo
 import com.engineer.plugin.utils.BeautyLog
+import com.engineer.plugin.utils.Common
 import com.google.gson.Gson
-import com.google.gson.JsonArray
 import com.google.gson.reflect.TypeToken
-import groovy.json.JsonSlurper
 import org.gradle.api.Project
 import org.gradle.api.logging.Logger
 import java.io.ByteArrayOutputStream
@@ -16,7 +15,7 @@ import java.nio.file.Paths
 import java.util.*
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 11-29-2019
  */
 class CalculateAction {
@@ -77,9 +76,9 @@ class CalculateAction {
 
 
             if (hasFile) {
-                logger.error("time   " + releaseTime())
-                logger.error("branch " + getGitBranch(project))
-                logger.error("commit " + getGitCommit(project))
+                logger.error("time   " + Common.releaseTime())
+                logger.error("branch " + Common.getGitBranch(project))
+                logger.error("commit " + Common.getGitCommit(project))
             }
 
             printTag(false)
@@ -92,7 +91,7 @@ class CalculateAction {
             return result
         }
 
-        fun getApkFullPath(dir: String, name: String): String {
+        private fun getApkFullPath(dir: String, name: String): String {
             val output_json = File(dir, "output.json")
             if (output_json.exists()) {
                 val stream = Files.newInputStream(Paths.get(output_json.absolutePath))
@@ -112,33 +111,10 @@ class CalculateAction {
             }
         }
 
-        fun printTag(start: Boolean) {
+        private fun printTag(start: Boolean) {
             BeautyLog.log("生成 APK", start, logger)
         }
 
-        fun releaseTime(): String {
-            return Date().toString().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("GMT+08:00"))
-        }
-
-        fun getGitCommit(project: Project): String {
-            val stdout = ByteArrayOutputStream()
-            project.exec {
-                it.commandLine("git")
-                it.args("rev-parse", "--short", "HEAD")
-                it.standardOutput = stdout
-            }
-            return stdout.toString().trim()
-        }
-
-        fun getGitBranch(project: Project): String {
-            val stdout = ByteArrayOutputStream()
-            project.exec {
-                it.commandLine("git")
-                it.args("rev-parse", "--abbrev-ref", "HEAD")
-                it.standardOutput = stdout
-            }
-            return stdout.toString().trim()
-        }
 
     }
 }

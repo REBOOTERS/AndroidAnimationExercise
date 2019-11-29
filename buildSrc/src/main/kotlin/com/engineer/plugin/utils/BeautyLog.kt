@@ -3,7 +3,7 @@ package com.engineer.plugin.utils
 import org.gradle.api.logging.Logger
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 11-19-2019
  */
 object BeautyLog {

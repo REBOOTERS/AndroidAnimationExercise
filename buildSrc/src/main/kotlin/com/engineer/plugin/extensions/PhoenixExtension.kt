@@ -4,7 +4,7 @@ import org.gradle.api.Action
 import org.gradle.api.model.ObjectFactory
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 11-29-2019
  */
 
