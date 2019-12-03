@@ -10,9 +10,9 @@ internal class CatMethodVisitor(
     api: Int,
     mv: MethodVisitor?,
     access: Int,
-    private val className: String,
-    private val methodName: String,
-    private val desc: String
+    private val className: String?,
+    private val methodName: String?,
+    private val desc: String?
 ) : AdviceAdapter(api, mv, access, methodName, desc) {
     private var isInjected = false
     private var startTimeId = 0

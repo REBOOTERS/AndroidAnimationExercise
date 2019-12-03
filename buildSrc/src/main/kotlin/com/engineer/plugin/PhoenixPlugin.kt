@@ -37,6 +37,7 @@ class PhoenixPlugin : Plugin<Project> {
 //
         val appExtension = project.extensions.getByName("android")
         if (appExtension is AppExtension) {
+            println("yes it is =$appExtension")
             appExtension.registerTransform(CatTransform())
 //                appExtension.registerTransform(new GlideLoadLogTransform(project))
         }

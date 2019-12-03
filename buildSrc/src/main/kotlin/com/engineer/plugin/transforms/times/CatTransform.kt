@@ -1,8 +1,11 @@
 package com.engineer.plugin.transforms.times
 
-import com.android.build.api.transform.*
+import com.android.build.api.transform.Format
+import com.android.build.api.transform.QualifiedContent
+import com.android.build.api.transform.Transform
+import com.android.build.api.transform.TransformInvocation
 import com.android.build.gradle.internal.pipeline.TransformManager
-import org.apache.commons.io.FileUtils
+import com.android.utils.FileUtils
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import java.io.File
@@ -34,14 +37,22 @@ class CatTransform : Transform() {
 
     override fun transform(transformInvocation: TransformInvocation?) {
         super.transform(transformInvocation)
+        val outputProvider = transformInvocation?.outputProvider
+
+        if (!isIncremental) {
+            outputProvider?.deleteAll()
+        }
+
         transformInvocation?.inputs?.forEach { input ->
             input.directoryInputs.forEach { directoryInput ->
                 if (directoryInput.file.isDirectory) {
-                    directoryInput.changedFiles.forEach {
-                        val file = it.key
+                    FileUtils.getAllFiles(directoryInput.file).forEach {
+                        val file = it
                         val name = file.name
-                        if (name.endsWith(".class") && !(name == ("R.class"))
-                            && !name.startsWith("R\$") && !(name == ("BuildConfig.class"))
+                        println("directory")
+                        println("name ==$name")
+                        if (name.endsWith(".class") && name != ("R.class")
+                            && !name.startsWith("R\$") && name != ("BuildConfig.class")
                         ) {
 
                             val reader = ClassReader(file.readBytes())
@@ -58,28 +69,31 @@ class CatTransform : Transform() {
                     }
                 }
 
-                val dest = transformInvocation?.outputProvider?.getContentLocation(
+                val dest = transformInvocation.outputProvider?.getContentLocation(
                     directoryInput.name,
-                    directoryInput.contentTypes, directoryInput.scopes,
+                    directoryInput.contentTypes,
+                    directoryInput.scopes,
                     Format.DIRECTORY
                 )
 
 
-                FileUtils.copyDirectory(directoryInput.file, dest)
+                FileUtils.copyDirectoryToDirectory(directoryInput.file, dest)
             }
 
             // todo 从 jar 文件里找到 class
             input.jarInputs.forEach { jarInput ->
                 val src = jarInput.file
-                val dest = transformInvocation?.outputProvider?.getContentLocation(
+                val dest = transformInvocation.outputProvider?.getContentLocation(
                     jarInput.name,
                     jarInput.contentTypes, jarInput.scopes, Format.JAR
                 )
 
+//                println()
 //                println("jar Name "+jarInput.name)
-//                println("dest     "+dest.absolutePath)
+//                println("dest     "+dest?.absolutePath)
 //                println("jar path "+src.absolutePath)
 //                println("jar name "+src.name)
+//                println()
 
                 if (jarInput.name == "include") {
 
