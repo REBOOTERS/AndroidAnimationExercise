@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 11-29-2019
  */
 object Common {

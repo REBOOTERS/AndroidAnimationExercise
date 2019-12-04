@@ -15,7 +15,7 @@ abstract class BuildSimpleListener : BuildListener {
 
     }
 
-    override fun buildFinished(p0: BuildResult) {
+    override fun buildFinished(buildResult: BuildResult) {
     }
 
     override fun projectsLoaded(p0: Gradle) {

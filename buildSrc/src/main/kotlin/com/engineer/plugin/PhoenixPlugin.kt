@@ -5,6 +5,7 @@ import com.engineer.plugin.actions.CalculateAction
 import com.engineer.plugin.actions.RenameAction
 import com.engineer.plugin.actions.TaskTimeAction
 import com.engineer.plugin.extensions.PhoenixExtension
+import com.engineer.plugin.transforms.FooTransform
 import com.engineer.plugin.transforms.times.CatTransform
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -25,8 +26,8 @@ class PhoenixPlugin : Plugin<Project> {
 
 
             RenameAction.apply(project)
-            TaskTimeAction.apply(project)
-            CalculateAction.apply(project)
+            TaskTimeAction(project).apply()
+            CalculateAction(project).apply()
 
             println()
             println("===================================PhoenixPlugin===============end==================")
@@ -37,8 +38,13 @@ class PhoenixPlugin : Plugin<Project> {
 //
         val appExtension = project.extensions.getByName("android")
         if (appExtension is AppExtension) {
-            println("yes it is =$appExtension")
             appExtension.registerTransform(CatTransform())
+
+            val fooTransform = FooTransform()
+            if (fooTransform.isEnabled()) {
+                appExtension.registerTransform(fooTransform)
+            }
+
 //                appExtension.registerTransform(new GlideLoadLogTransform(project))
         }
     }
