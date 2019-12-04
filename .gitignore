@@ -11,3 +11,4 @@
 *.project
 *.settings/
 *.classpath
+.info.json

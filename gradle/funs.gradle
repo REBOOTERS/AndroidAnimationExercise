@@ -1,4 +1,42 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
 import java.util.function.Consumer
+
+task writeFile doLast {
+    def obj = [:]
+    obj['name'] = "zzz"
+    def json = JsonOutput.toJson(obj)
+    def pretty = JsonOutput.prettyPrint(json)
+    println(pretty)
+    rootProject.file("./gradle/jsonObj.json").text = pretty
+
+    def list =[]
+    list.add(obj)
+    rootProject.file("./gradle/jsonList.json").text = JsonOutput.prettyPrint(JsonOutput.toJson(list))
+
+}
+
+task parseJson doLast {
+    println("try to parse json with gradle ==========###==========")
+
+    def json = rootProject.file("./gradle/demo.json")
+    def srcDir = new File(project.buildDir, 'plugin')
+
+    println("json===$json")
+    println("srcDir===$srcDir")
+
+    Object object = new JsonSlurper().parse(json)
+    println("object==$object")
+
+    Object sites = object['sites']
+    println("sites==$sites")
+    for (site in sites.site) {
+        println("site==$site")
+    }
+
+    println("parse json with gradle end ==========###==========")
+}
 
 task calc_module doLast {
 
