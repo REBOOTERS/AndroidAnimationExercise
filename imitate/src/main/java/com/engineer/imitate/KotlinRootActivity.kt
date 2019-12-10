@@ -70,6 +70,13 @@ class KotlinRootActivity : AppCompatActivity() {
             startActivity(Intent(this, ReverseGifActivity::class.java))
         }
 
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="拷贝一些文件到特定目录，不是每个手机都需要">
+    /**
+     * 拷贝一些文件到特定目录，不是每个手机都需要
+     */
+    private fun personalCopy() {
         val path = filesDir.absolutePath + "/gif/"
         val fileDir = File(path)
         val files = fileDir.listFiles()
@@ -86,8 +93,10 @@ class KotlinRootActivity : AppCompatActivity() {
                         }
                 }
             }
+
         }
     }
+    // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="init fragments">
     private fun initList(): MutableList<FragmentItem> {

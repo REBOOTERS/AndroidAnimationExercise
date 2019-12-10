@@ -5,37 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <LinearLayout
-        android:id="@+id/container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.fragments.EntranceFragment">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/horizontal_list"
+
+        <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="horizontal_list"
-            android:textColor="@color/white" />
+            android:orientation="vertical"
+            tools:context=".ui.fragments.EntranceFragment">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/gif_revert"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="gif_revert"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/horizontal_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="horizontal_list"
+                android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/gif_revert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="gif_revert"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/game"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,124 +50,126 @@
                 android:text="game"
                 android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/shell"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="shell"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/shell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="shell"
+                android:textColor="@color/white" />
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/set_bg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="设置桌面"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/set_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="设置桌面"
+                android:textColor="@color/white" />
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="matisse choose"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="matisse choose"
+                android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bottom_sheet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="bottom_sheet"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bottom_sheet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="bottom_sheet"
+                android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bottom_sheet_google"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="bottom_sheet_google"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bottom_sheet_google"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="bottom_sheet_google"
+                android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/final_one"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="final_one"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/final_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="final_one"
+                android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/fake_jike"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="fake_jike"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fake_jike"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="fake_jike"
+                android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/expandable_listview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="expandable_listview"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/expandable_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="expandable_listview"
+                android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/date_and_time_picker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="date_and_time_picker"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/date_and_time_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="date_and_time_picker"
+                android:textColor="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/screen_recorder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:backgroundTint="@color/md_blue"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="screen_recorder"
-            android:textColor="@color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/screen_recorder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="screen_recorder"
+                android:textColor="@color/white" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
 
 </com.flipboard.bottomsheet.BottomSheetLayout>

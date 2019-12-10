@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shell"
-    android:layout_width="303dp"
+    android:layout_width="120dp"
     android:layout_height="120dp"
-    android:layout_marginTop="14dp"
-    android:layout_marginBottom="14dp"
+    android:layout_margin="8dp"
     android:background="@drawable/round_card"
     android:foreground="@drawable/ripple_background">
 

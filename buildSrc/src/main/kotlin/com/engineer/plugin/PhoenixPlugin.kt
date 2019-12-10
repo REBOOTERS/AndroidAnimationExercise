@@ -44,8 +44,6 @@ class PhoenixPlugin : Plugin<Project> {
             if (fooTransform.isEnabled()) {
                 appExtension.registerTransform(fooTransform)
             }
-
-//                appExtension.registerTransform(new GlideLoadLogTransform(project))
         }
     }
 

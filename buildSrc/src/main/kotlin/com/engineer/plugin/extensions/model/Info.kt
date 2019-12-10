@@ -1,7 +1,7 @@
 package com.engineer.plugin.extensions.model
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 12-04-2019
  */
 

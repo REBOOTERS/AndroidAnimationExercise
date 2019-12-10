@@ -80,7 +80,6 @@ class CatTransform : Transform() {
                 FileUtils.copyDirectoryToDirectory(directoryInput.file, dest)
             }
 
-            // todo 从 jar 文件里找到 class
             input.jarInputs.forEach { jarInput ->
                 val src = jarInput.file
                 val dest = transformInvocation.outputProvider?.getContentLocation(

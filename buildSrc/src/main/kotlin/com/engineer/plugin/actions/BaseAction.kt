@@ -5,7 +5,7 @@ import org.gradle.api.Project
 import org.gradle.api.logging.Logger
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 12-04-2019
  */
 abstract class BaseAction(p: Project) {
