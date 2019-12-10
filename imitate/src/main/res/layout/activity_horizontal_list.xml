@@ -31,7 +31,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list3"
         android:layout_width="match_parent"
-        android:layout_height="148dp"
+        android:layout_height="120dp"
         android:background="@color/cpb_white" />
 
 </LinearLayout>
