@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/girl"
+        android:src="@drawable/sand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="dddd"
-        android:textColor="@color/cpb_blue_dark"
+        android:textColor="@color/cpb_red_dark"
         app:layout_constraintBottom_toBottomOf="@id/img"
         app:layout_constraintEnd_toEndOf="@id/img" />
 
