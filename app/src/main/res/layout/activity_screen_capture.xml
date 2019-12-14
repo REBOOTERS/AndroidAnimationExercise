@@ -1,46 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_screen_capture"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".ui.activity.ScreenCaptureActivity">
 
-    <Button
-        android:id="@+id/getScreen"
+    <home.smart.fly.animations.customview.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="takeScreen"/>
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/getScreenPixel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="takeScreenWithPixel"/>
-     <Button
-        android:id="@+id/getScreenShot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="takeScreenforGoneView"/>
+        <Button
+            android:id="@+id/getScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="drawCache 截图" />
 
+        <Button
+            android:id="@+id/getScreenPixel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PixelShot 截图" />
+
+        <Button
+            android:id="@+id/getSurfaceView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PixelCopy 截取 SurfaceView" />
+
+        <Button
+            android:id="@+id/assemble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合成截图" />
+
+
+        <Button
+            android:id="@+id/getScreenShot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="drawcache 截取 xml 布局文件" />
+
+
+    </home.smart.fly.animations.customview.FlowLayout>
 
 
     <CheckBox
         android:id="@+id/checkbox"
-        android:text="ImageView 是否可见"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="ImageView 是否可见" />
 
     <ImageView
         android:id="@+id/ivScreenshot"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/cpb_green"/>
+        android:layout_height="100dp"
+        android:background="@color/cpb_green" />
+
+    <SurfaceView
+        android:id="@+id/surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

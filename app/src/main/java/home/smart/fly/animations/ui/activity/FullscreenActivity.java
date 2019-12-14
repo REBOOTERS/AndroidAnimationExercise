@@ -113,9 +113,17 @@ public class FullscreenActivity extends AppCompatActivity {
 //         while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
+        String path = getIntent().getStringExtra("path");
+
         ImageView mImageView = V.f(this, R.id.image);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.a5);
-        mImageView.setImageBitmap(bitmap);
+        if (path == null) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.a5);
+            mImageView.setImageBitmap(bitmap);
+        } else {
+            Bitmap bitmap = BitmapFactory.decodeFile(path);
+            mImageView.setImageBitmap(bitmap);
+        }
+
     }
 
     @Override

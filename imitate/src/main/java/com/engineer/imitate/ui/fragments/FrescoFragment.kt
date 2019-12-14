@@ -63,7 +63,7 @@ class FrescoFragment : Fragment() {
         val t = System.currentTimeMillis()
         simpleDraweeView.setImageURI(url)
         Log.e("zyq", "use time=" + (System.currentTimeMillis() - t))
-
+        simpleDraweeView
         bitmapMagic()
 
 
