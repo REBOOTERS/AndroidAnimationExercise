@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 12-14-2019
  */
 public class DrawingThread extends Thread {

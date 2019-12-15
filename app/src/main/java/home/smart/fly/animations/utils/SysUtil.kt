@@ -3,7 +3,7 @@ package home.smart.fly.animations.utils
 import android.os.Build
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 12-14-2019
  */
 object SysUtil {

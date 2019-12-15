@@ -44,10 +44,14 @@ import java.util.concurrent.TimeUnit;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.ComposeView;
 import home.smart.fly.animations.utils.FileUtil;
+import home.smart.fly.animations.utils.GenBitmapDelegate;
+import home.smart.fly.animations.utils.SysUtil;
 import home.smart.fly.animations.widget.DrawingThread;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 public class ScreenCaptureActivity extends AppCompatActivity {
     private static final String TAG = "ScreenCaptureActivity";
@@ -59,11 +63,13 @@ public class ScreenCaptureActivity extends AppCompatActivity {
     private CheckBox mCheckBox;
     private Disposable timer;
 
+    private GenBitmapDelegate genBitmapDelegate;
     private SurfaceView surfaceView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        genBitmapDelegate = new GenBitmapDelegate(this);
         mContext = this;
         setContentView(R.layout.activity_screen_capture);
         ivScreenshot = findViewById(R.id.ivScreenshot);
@@ -95,38 +101,29 @@ public class ScreenCaptureActivity extends AppCompatActivity {
      */
     private void assemble() {
         View viewRoot = getWindow().getDecorView().getRootView();
-        Bitmap background = getBitmapByDrawCache(viewRoot);
+        Bitmap background = genBitmapDelegate.getBitmapByDrawCache(viewRoot);
 
-
-        final Bitmap foreground = Bitmap.createBitmap(surfaceView.getWidth(),
-                surfaceView.getHeight(), Bitmap.Config.ARGB_8888);
 
         int[] position = new int[2];
         surfaceView.getLocationInWindow(position);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            PixelCopy.request(surfaceView, foreground, copyResult -> {
-                Log.e("xxx", "copyResult==" + copyResult);
-                Bitmap bitmap = ComposeView.composeBitmap(background, foreground, position[0], position[1]);
+        if (SysUtil.Android8OrLater()) {
+            genBitmapDelegate.getBitmapFromSurfaceView(surfaceView, foreground -> {
+                Bitmap bitmap = genBitmapDelegate.composeBitmap(background, foreground, position[0], position[1]);
                 saveBitmap(bitmap);
-            }, new Handler(Looper.getMainLooper()));
+                return Unit.INSTANCE;
+            });
         } else {
             Toast.makeText(mContext, "不支持截图", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void taskSurfaceView() {
-        final Bitmap bitmap = Bitmap.createBitmap(surfaceView.getWidth(),
-                surfaceView.getHeight(), Bitmap.Config.ARGB_8888);
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            PixelCopy.request(surfaceView, bitmap, copyResult -> {
-                Log.e("xxx", "copyResult==" + copyResult);
+        if (SysUtil.Android8OrLater()) {
+            genBitmapDelegate.getBitmapFromSurfaceView(surfaceView, bitmap -> {
                 saveBitmap(bitmap);
-            }, new Handler(Looper.getMainLooper()));
+                return Unit.INSTANCE;
+            });
         } else {
             Toast.makeText(mContext, "不支持截图", Toast.LENGTH_SHORT).show();
         }
@@ -264,19 +261,9 @@ public class ScreenCaptureActivity extends AppCompatActivity {
 
     public void takeScreenshot() {
         View viewRoot = getWindow().getDecorView().getRootView();
-        Bitmap bitmap = getBitmapByDrawCache(viewRoot);
+        Bitmap bitmap = genBitmapDelegate.getBitmapByDrawCache(viewRoot);
         saveBitmap(bitmap);
 
-    }
-
-    private Bitmap getBitmapByDrawCache(View viewRoot) {
-        viewRoot.setDrawingCacheEnabled(true);
-        Bitmap temp = viewRoot.getDrawingCache();
-        ScreenParam screenInfo = getScreenInfo();
-        int statusBarHeight = getStatusBarHeight();
-        Bitmap bitmap = Bitmap.createBitmap(temp, 0, statusBarHeight, screenInfo.width, screenInfo.height - statusBarHeight);
-        viewRoot.setDrawingCacheEnabled(false);
-        return bitmap;
     }
 
     private void saveBitmap(Bitmap bitmap) {
