@@ -7,28 +7,22 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.core.content.FileProvider;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.PixelCopy;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.muddzdev.pixelshot.PixelShot;
@@ -42,7 +36,6 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.utils.ComposeView;
 import home.smart.fly.animations.utils.FileUtil;
 import home.smart.fly.animations.utils.GenBitmapDelegate;
 import home.smart.fly.animations.utils.SysUtil;
@@ -51,7 +44,6 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 
 public class ScreenCaptureActivity extends AppCompatActivity {
     private static final String TAG = "ScreenCaptureActivity";
@@ -292,26 +284,5 @@ public class ScreenCaptureActivity extends AppCompatActivity {
         }
 
 //        FloatWindow.destroy();
-    }
-
-    private int getStatusBarHeight() {
-        Rect rect = new Rect();
-        getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        return rect.top;
-    }
-
-    private ScreenParam getScreenInfo() {
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        return new ScreenParam(dm.widthPixels, dm.heightPixels);
-    }
-
-    private class ScreenParam {
-        int width, height;
-
-        ScreenParam(int width, int height) {
-            this.width = width;
-            this.height = height;
-        }
     }
 }

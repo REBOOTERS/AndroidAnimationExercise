@@ -32,6 +32,8 @@ class PhoenixPlugin : Plugin<Project> {
             println()
             println("===================================PhoenixPlugin===============end==================")
             println()
+
+//            JsonTool().test()
         }
 
 

@@ -38,23 +38,21 @@ class GenBitmapDelegate(private val activity: Activity) {
 
         if (SysUtil.Android8OrLater()) {
             PixelCopy.request(surfaceView, result, { copyResult: Int ->
-                callback(result)
+                if (copyResult == PixelCopy.SUCCESS) {
+                    callback(result)
+                }
             }, Handler(Looper.getMainLooper()))
         } else {
             callback(result)
-
         }
-
-
     }
 
-    fun getBitmapByDrawCacheExclueSystemBar(viewRoot: View): Bitmap {
+    fun getBitmapOfScreenExclueSystemBar(viewRoot: View): Bitmap {
         viewRoot.isDrawingCacheEnabled = true
         val temp = viewRoot.drawingCache
         val screenInfo: ScreenParam = getScreenInfo(activity)
         val statusBarHeight: Int = getStatusBarHeight(activity)
         val bitmap = Bitmap.createBitmap(temp, 0, statusBarHeight, screenInfo.width, screenInfo.height - statusBarHeight)
-        viewRoot.isDrawingCacheEnabled = false
         return bitmap
     }
 
