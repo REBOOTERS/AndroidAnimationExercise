@@ -62,3 +62,11 @@ compileTestKotlin {
 //compileGroovy.dependsOn compileKotlin
 //compileGroovy.classpath += files(compileKotlin.destinationDir)
 //classes.dependsOn compileGroovy
+
+/**
+ *  kotlin 依赖 Groovy https://stackoverflow.com/questions/36214437/compile-groovy-and-kotlin
+ */
+
+compileGroovy.dependsOn.remove('compileJava')
+compileKotlin.dependsOn compileGroovy
+compileKotlin.classpath += files(compileGroovy.destinationDir)

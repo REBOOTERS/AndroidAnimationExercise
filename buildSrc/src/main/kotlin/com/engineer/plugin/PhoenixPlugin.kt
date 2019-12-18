@@ -7,6 +7,7 @@ import com.engineer.plugin.actions.TaskTimeAction
 import com.engineer.plugin.extensions.PhoenixExtension
 import com.engineer.plugin.transforms.FooTransform
 import com.engineer.plugin.transforms.times.CatTransform
+import com.engineer.plugin.utils.JsonTool
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -33,7 +34,7 @@ class PhoenixPlugin : Plugin<Project> {
             println("===================================PhoenixPlugin===============end==================")
             println()
 
-//            JsonTool().test()
+            JsonTool().test()
         }
 
 
