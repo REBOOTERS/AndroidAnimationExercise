@@ -1,5 +1,6 @@
 package com.engineer.imitate.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -14,9 +15,14 @@ import kotlinx.android.synthetic.main.activity_fake_jike.*
 
 class FakeJikeActivity : AppCompatActivity() {
 
+    @SuppressLint("LogNotTimber")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fake_jike)
+
+        follow.setOnClickListener {
+            animation_border.startAnim()
+        }
 
         button.setOnClickListener {
             val color = ContextCompat.getColor(this, R.color.green)
