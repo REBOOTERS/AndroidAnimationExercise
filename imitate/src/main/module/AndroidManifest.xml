@@ -27,11 +27,11 @@
         <activity
             android:name=".ui.activity.FakeJikeActivity"
             android:exported="true"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/MyAppTheme" />
         <activity
             android:name=".KotlinRootActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+            android:theme="@style/MyAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

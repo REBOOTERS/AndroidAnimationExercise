@@ -14,6 +14,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -225,6 +226,15 @@ class KotlinRootActivity : AppCompatActivity() {
                 adapter?.layoutManager(mLayoutManager)?.notifyDataSetChanged()
                 return true
             }
+        } else if (item.itemId == R.id.theme_switch) {
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                item.setIcon(R.drawable.ic_brightness_low_white_24dp)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                item.setIcon(R.drawable.ic_brightness_high_white_24dp)
+            }
+            recreate()
         }
         return super.onOptionsItemSelected(item)
     }
