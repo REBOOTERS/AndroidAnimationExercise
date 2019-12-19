@@ -1,5 +1,8 @@
 package com.engineer.imitate.ui.widget.view
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
@@ -37,45 +40,44 @@ class AnimationBorder : RelativeLayout {
     private lateinit var mPaint: Paint
     private var mStrokeWidth = 5f
     private var mColor = Color.RED
+    private val maxCount = 3
+    private var count = 0
+    private lateinit var rect: RectF
 
 
     private fun initView(context: Context?) {
         mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mPaint.style = Paint.Style.STROKE
         mPaint.color = mColor
-        mPaint.alpha = 0
+        mPaint.alpha = 1
         mPaint.strokeWidth = mStrokeWidth
         setWillNotDraw(false)
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        Log.e("zyq", "x: " + x);
-        Log.e("zyq", "y: " + y);
-        Log.e("zyq", "left: " + left);
-        Log.e("zyq", "top: " + top);
-        Log.e("zyq", "right: " + right);
-        Log.e("zyq", "bottom: " + bottom);
-        Log.e("zyq", "width: " + width);
-        Log.e("zyq", "height: " + height);
-        val rect = RectF(
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        rect = RectF(
             mStrokeWidth / 2f,
             mStrokeWidth / 2f,
             width - mStrokeWidth / 2f,
             height - mStrokeWidth / 2f
         )
+    }
+
+    override fun onDraw(canvas: Canvas?) {
         val radius = 5f
         canvas?.drawRoundRect(rect, radius, radius, mPaint)
         super.onDraw(canvas)
     }
 
     fun startAnim() {
+        count = 0
         val stroke = ValueAnimator.ofFloat(5f, 6f, 7f)
         stroke.addUpdateListener {
             val value: Float = it.animatedValue as Float
             mPaint.strokeWidth = value
             invalidate()
         }
-        stroke.repeatCount = 3
         stroke.duration = 400
         stroke.start()
 
@@ -84,14 +86,22 @@ class AnimationBorder : RelativeLayout {
             val value: Int = it.animatedValue as Int
             mPaint.alpha = value
         }
-        alpha.repeatCount = 3
         alpha.duration = 400
-        alpha.start()
 
-//        val set = AnimatorSet()
-//
-//        set.playTogether(stroke, alpha)
-//        set.duration = 400
-//        set.start()
+        val set = AnimatorSet()
+
+        set.playTogether(stroke, alpha)
+        set.duration = 800
+        set.start()
+
+        set.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                super.onAnimationEnd(animation)
+                count += 1
+                if (count < maxCount) {
+                    set.start()
+                }
+            }
+        })
     }
 }
