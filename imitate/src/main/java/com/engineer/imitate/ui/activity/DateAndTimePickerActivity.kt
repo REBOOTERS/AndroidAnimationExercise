@@ -1,26 +1,70 @@
 package com.engineer.imitate.ui.activity
 
-import android.annotation.SuppressLint
-import android.graphics.*
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Intent
+import android.content.IntentFilter
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
+import com.engineer.imitate.receivers.AlarmReceiver
+import com.engineer.imitate.util.SysUtil
 import kotlinx.android.synthetic.main.activity_date_and_time_picker.*
 import java.util.*
+import kotlin.math.min
 
 
 class DateAndTimePickerActivity : AppCompatActivity() {
-
+    private val TAG = "picker"
     private var button: Button? = null
+    private lateinit var receiver: AlarmReceiver
 
+    companion object {
+        val alarm_log = "alarm_log"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.engineer.imitate.R.layout.activity_date_and_time_picker)
 
+        go.setOnClickListener {
+            val hour: Int
+            val minute: Int
+            if (SysUtil.isAndroidMOrLater()) {
+                hour = time_picker.hour
+                minute = time_picker.minute
+            } else {
+                hour = time_picker.currentHour
+                minute = time_picker.currentMinute
+            }
+
+            val calendar = Calendar.getInstance()
+            calendar.set(Calendar.HOUR_OF_DAY, hour)
+            calendar.set(Calendar.MINUTE, minute)
+            calendar.set(Calendar.SECOND, 0)
+
+            val intent = Intent(alarm_log)
+            val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+            val alarm: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+            alarm.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                1000 * 120,
+                pendingIntent
+            )
+        }
+
+        go1.setOnClickListener {
+            val intent = Intent(alarm_log)
+            sendBroadcast(intent)
+        }
 
         select.setOnClickListener {
             val pvTime = TimePickerBuilder(this@DateAndTimePickerActivity,
@@ -39,23 +83,33 @@ class DateAndTimePickerActivity : AppCompatActivity() {
         }
 
 
-        val dd = test("22"){}
+        val dd = test("22") {}
             .hashCode()
-
-
 
 
         val te = test1("z") {
             println()
         }
 
-        test1("2",{})
+        test1("2", {})
 
         val result = test2("111") {
             "reeee"
         }
 
+        registerReceiver()
+    }
 
+    private fun registerReceiver() {
+        val filter = IntentFilter()
+        filter.addAction(alarm_log)
+        receiver = AlarmReceiver()
+        registerReceiver(receiver, filter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(receiver)
     }
 
     fun test(value: String, block: (String) -> Unit) {
@@ -66,8 +120,8 @@ class DateAndTimePickerActivity : AppCompatActivity() {
         block.invoke()
     }
 
-    fun test2(value: String, block: () -> String):String {
-         return block.invoke()
+    fun test2(value: String, block: () -> String): String {
+        return block.invoke()
     }
 
     fun testStandLib() {

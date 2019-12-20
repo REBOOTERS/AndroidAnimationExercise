@@ -33,6 +33,12 @@
         <activity android:name=".ui.activity.ReverseGifActivity" />
         <activity android:name=".ui.activity.RunShellActivity" />
         <activity android:name=".ui.activity.HorizontalListActivity" />
+
+        <receiver android:name=".receivers.AlarmReceiver">
+            <intent-filter>
+                <action android:name="alarm_log"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -15,6 +15,20 @@
         android:layout_marginTop="25dp"
         android:timePickerMode="spinner" />
 
+    <Button
+        android:id="@+id/go"
+        android:text="go"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" />
+
+    <Button
+        android:id="@+id/go1"
+        android:text="go1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" />
+
     <DatePicker
         android:id="@+id/date_picker"
         android:layout_width="wrap_content"
