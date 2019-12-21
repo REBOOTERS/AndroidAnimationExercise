@@ -10,6 +10,7 @@ import org.gradle.api.logging.LogLevel
 import org.gradle.api.tasks.TaskState
 import java.util.*
 import java.util.concurrent.TimeUnit
+import java.util.stream.Collectors
 import kotlin.Comparator
 import kotlin.collections.HashMap
 
@@ -27,16 +28,15 @@ class TaskTimeAction(project: Project) : BaseAction(project) {
 
             override fun beforeExecute(task: Task) {
                 val detail = TaskDetail()
-                detail.start = System.currentTimeMillis()
+                detail.start = System.nanoTime()
                 detail.name = task.path
-                println("task name " + task.path)
                 taskTimeMap[task.path] = detail
             }
 
             override fun afterExecute(task: Task, taskState: TaskState) {
                 val detail = taskTimeMap[task.path]!!
-                detail.end = System.currentTimeMillis()
-                detail.total = detail.end - detail.start
+                detail.end = System.nanoTime()
+                detail.total = (detail.end - detail.start) / 1000000f
             }
         })
 
@@ -54,7 +54,7 @@ class TaskTimeAction(project: Project) : BaseAction(project) {
                 list.forEach {
                     val costTime = it.value.total
                     val info =
-                        String.format("task %-70s spend %d ms", it.value.name, costTime)
+                        String.format("task %-70s spend %.2f ms", it.value.name, costTime)
                     logger.log(LogLevel.ERROR, info)
                 }
                 printTag(false, "Task 耗时")

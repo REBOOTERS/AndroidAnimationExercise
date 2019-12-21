@@ -3,6 +3,7 @@ package com.engineer.plugin.actions
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import com.engineer.plugin.extensions.model.ApkOutputInfo
 import com.engineer.plugin.extensions.model.Info
+import com.engineer.plugin.utils.BeautyLog
 import com.engineer.plugin.utils.Common
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -82,6 +83,7 @@ class CalculateAction(project: Project) : BaseAction(project) {
         logger.error(String.format("%-13s : %s ", "commitId", commitId))
         logger.error(String.format("%-13s : %s ", "path", path))
         logger.error(String.format("%-13s : %s ", "size", size))
+        println()
 
 
         val infos: ArrayList<Info> = ArrayList()
@@ -127,7 +129,7 @@ class CalculateAction(project: Project) : BaseAction(project) {
                 return dir + File.separator + result[0].path
             }
         } else {
-            val error = String.format("%-14s not build", name)
+            val error = String.format("flavor %-14s not build", name)
             logger.error(error)
             return ""
         }

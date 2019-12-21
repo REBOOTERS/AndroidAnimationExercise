@@ -17,4 +17,8 @@ abstract class BaseAction(p: Project) {
     fun printTag(start: Boolean, tag: String) {
         BeautyLog.log(tag, start, logger)
     }
+
+    fun dog(info: String) {
+        BeautyLog.dog(info, logger)
+    }
 }
