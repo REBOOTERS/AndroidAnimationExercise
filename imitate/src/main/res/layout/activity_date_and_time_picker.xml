@@ -17,14 +17,14 @@
 
     <Button
         android:id="@+id/go"
-        android:text="go"
+        android:text="register_by_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp" />
 
     <Button
         android:id="@+id/go1"
-        android:text="go1"
+        android:text="send receiver by hand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp" />

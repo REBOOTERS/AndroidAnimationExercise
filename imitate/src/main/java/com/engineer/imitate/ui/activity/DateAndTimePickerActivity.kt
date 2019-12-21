@@ -9,7 +9,6 @@ import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.bigkoo.pickerview.builder.TimePickerBuilder
@@ -18,7 +17,6 @@ import com.engineer.imitate.receivers.AlarmReceiver
 import com.engineer.imitate.util.SysUtil
 import kotlinx.android.synthetic.main.activity_date_and_time_picker.*
 import java.util.*
-import kotlin.math.min
 
 
 class DateAndTimePickerActivity : AppCompatActivity() {
@@ -74,28 +72,6 @@ class DateAndTimePickerActivity : AppCompatActivity() {
 
         testStandLib()
 
-        test("aaa") {
-            println("result is $it")
-        }
-
-        test("zzzz") {
-            print(it)
-        }
-
-
-        val dd = test("22") {}
-            .hashCode()
-
-
-        val te = test1("z") {
-            println()
-        }
-
-        test1("2", {})
-
-        val result = test2("111") {
-            "reeee"
-        }
 
         registerReceiver()
     }
@@ -112,17 +88,6 @@ class DateAndTimePickerActivity : AppCompatActivity() {
         unregisterReceiver(receiver)
     }
 
-    fun test(value: String, block: (String) -> Unit) {
-        block.invoke(value.toUpperCase(Locale.CHINA))
-    }
-
-    fun test1(value: String, block: () -> Unit) {
-        block.invoke()
-    }
-
-    fun test2(value: String, block: () -> String): String {
-        return block.invoke()
-    }
 
     fun testStandLib() {
         button?.let {
@@ -171,7 +136,7 @@ class DateAndTimePickerActivity : AppCompatActivity() {
             println("")
         }
 
-        button?.apply {
+        val d = button?.apply {
             // 整体作用功能和run函数很像，
             // 唯一不同点就是它返回的值是对象本身，
             // 而run函数是一个闭包形式返回，返回的是最后一行的值

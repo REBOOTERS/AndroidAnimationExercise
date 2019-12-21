@@ -61,11 +61,11 @@ class KotlinRootActivity : AppCompatActivity() {
         mLinearManager = LinearLayoutManager(this)
         mGridLayoutManager = GridLayoutManager(this, 2)
         mLayoutManager = mLinearManager
-        if (isNetworkConnected()) {
-            loadWebView()
-        } else {
-            loadRecyclerView()
-        }
+//        if (isNetworkConnected()) {
+//            loadWebView()
+//        } else {
+//        }
+        loadRecyclerView()
 
         gif.setOnClickListener {
             startActivity(Intent(this, ReverseGifActivity::class.java))
@@ -161,8 +161,15 @@ class KotlinRootActivity : AppCompatActivity() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun loadWebView() {
-        hybrid.visibility = View.VISIBLE
-        recyclerView.visibility = View.GONE
+        hybrid.animate().alpha(1f).setListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                super.onAnimationEnd(animation)
+                hybrid.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            }
+        }).start()
+
+
         hybrid.settings.javaScriptEnabled = true
         hybrid.settings.allowFileAccess = true
         hybridHelper = HybridHelper(this)
@@ -201,6 +208,17 @@ class KotlinRootActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        val item = menu?.findItem(R.id.theme_switch)
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            item?.setIcon(R.drawable.ic_brightness_high_white_24dp)
+        } else {
+            item?.setIcon(R.drawable.ic_brightness_low_white_24dp)
+        }
+        val change = menu?.findItem(R.id.action_change)
+        change?.isVisible = (recyclerView.visibility == View.VISIBLE)
+        return super.onPrepareOptionsMenu(menu)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
@@ -229,10 +247,8 @@ class KotlinRootActivity : AppCompatActivity() {
         } else if (item.itemId == R.id.theme_switch) {
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                item.setIcon(R.drawable.ic_brightness_low_white_24dp)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                item.setIcon(R.drawable.ic_brightness_high_white_24dp)
             }
             recreate()
         }

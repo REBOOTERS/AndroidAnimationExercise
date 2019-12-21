@@ -16,6 +16,7 @@
 
 
         <WebView
+            android:visibility="gone"
             android:layout_margin="10dp"
             android:id="@+id/hybrid"
             android:layout_width="match_parent"
