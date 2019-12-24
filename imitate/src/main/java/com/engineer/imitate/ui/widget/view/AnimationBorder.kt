@@ -38,7 +38,8 @@ class AnimationBorder : RelativeLayout {
 
     private lateinit var mPaint: Paint
     private var mStrokeWidth = 5f
-    private var mColor = Color.RED
+    private var mRadius = 5f
+    private var mColor = Color.BLUE
     private val maxCount = 3
     private var count = 0
     private lateinit var rect: RectF
@@ -48,7 +49,7 @@ class AnimationBorder : RelativeLayout {
         mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mPaint.style = Paint.Style.STROKE
         mPaint.color = mColor
-        mPaint.alpha = 1
+        mPaint.alpha = 0
         mPaint.strokeWidth = mStrokeWidth
         setWillNotDraw(false)
     }
@@ -64,21 +65,24 @@ class AnimationBorder : RelativeLayout {
     }
 
     override fun onDraw(canvas: Canvas?) {
-        val radius = 5f
-        canvas?.drawRoundRect(rect, radius, radius, mPaint)
+        canvas?.drawRoundRect(rect, mRadius, mRadius, mPaint)
+        canvas?.scale(1.1f, 1.1f, width / 2f, height / 2f)
         super.onDraw(canvas)
     }
 
     fun startAnim() {
         count = 0
-        val stroke = ValueAnimator.ofFloat(5f, 6f, 7f)
-        stroke.addUpdateListener {
+
+
+        val radiusAnim = ValueAnimator.ofFloat(5f, 6f, 7f)
+        radiusAnim.addUpdateListener {
             val value: Float = it.animatedValue as Float
-            mPaint.strokeWidth = value
+            mRadius = value
             invalidate()
         }
-        stroke.duration = 400
-        stroke.start()
+        radiusAnim.duration = 400
+        radiusAnim.repeatMode = ValueAnimator.RESTART
+        radiusAnim.start()
 
         val alpha = ValueAnimator.ofInt(0, 255, 0)
         alpha.addUpdateListener {
@@ -86,11 +90,12 @@ class AnimationBorder : RelativeLayout {
             mPaint.alpha = value
         }
         alpha.duration = 400
+        alpha.repeatMode = ValueAnimator.RESTART
 
         val set = AnimatorSet()
 
-        set.playTogether(stroke, alpha)
-        set.duration = 800
+        set.playTogether(radiusAnim, alpha)
+        set.duration = 400
         set.start()
 
         set.addListener(object : AnimatorListenerAdapter() {
@@ -98,6 +103,8 @@ class AnimationBorder : RelativeLayout {
                 super.onAnimationEnd(animation)
                 count += 1
                 if (count < maxCount) {
+                    set.startDelay = 400
+
                     set.start()
                 }
             }

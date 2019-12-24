@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import home.smart.fly.animations.R;
+import home.smart.fly.animations.internal.annotations.Cat;
 import home.smart.fly.animations.ui.activity.FullscreenADActivity;
 import home.smart.fly.animations.utils.V;
 
@@ -40,6 +41,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected List<ItemInfo> demos = new ArrayList<>();
 
+    @Cat
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -93,6 +95,7 @@ public abstract class BaseFragment extends Fragment {
         recyclerView.postDelayed(skeletonScreen::hide, 1000);
     }
 
+    @Cat
     protected void AddADItem() {
         for (int i = 1; i < AD_COUNT; i++) {
             if (demos.size() > STEP_OF_EVERY_AD * i) {

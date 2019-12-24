@@ -320,7 +320,6 @@ public class AppStartActivity extends AppCompatActivity {
     }
 
     // <editor-fold defaultstate="collapsed" desc="setupAutoCompleteTextView">
-    @Cat
     private void setupAutoCompleteTextView() {
         List<String> activites = new ArrayList<>();
         List<String> activitesAll = new ArrayList<>();
