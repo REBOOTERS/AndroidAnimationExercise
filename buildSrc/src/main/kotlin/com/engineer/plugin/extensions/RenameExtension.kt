@@ -12,4 +12,10 @@ open class RenameExtension {
     var withVariantName = false
     var withVariantVersion = false
     var onlyDebug = false
+
+    override fun toString(): String {
+        return "RenameExtension(result=$result, prefix='$prefix', withTime=$withTime, withVariantName=$withVariantName, withVariantVersion=$withVariantVersion, onlyDebug=$onlyDebug)"
+    }
+
+
 }

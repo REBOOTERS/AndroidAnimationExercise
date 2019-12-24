@@ -7,9 +7,7 @@ import org.objectweb.asm.Type
 import org.objectweb.asm.commons.AdviceAdapter
 
 internal class CatMethodVisitor(
-    api: Int,
-    mv: MethodVisitor?,
-    access: Int,
+    api: Int, mv: MethodVisitor?, access: Int,
     private val className: String?,
     private val methodName: String?,
     private val desc: String?
@@ -19,10 +17,10 @@ internal class CatMethodVisitor(
     private var methodId = 0
     private val isStaticMethod: Boolean
     private val argumentArrays: Array<Type>
-    override fun visitAnnotation(
-        desc: String,
-        visible: Boolean
-    ): AnnotationVisitor { //        System.out.println("desc "+desc);
+
+
+    override fun visitAnnotation(desc: String, visible: Boolean): AnnotationVisitor {
+        //  System.out.println("desc "+desc);
         if (COST_ANNOTATION_DESC == desc) {
             isInjected = true
         }
@@ -125,7 +123,8 @@ internal class CatMethodVisitor(
 
     companion object {
         // home.smart.fly.animations.internal
-        private const val COST_ANNOTATION_DESC = "Lhome/smart/fly/animations/internal/Cat;"
+        private const val COST_ANNOTATION_DESC =
+            "Lhome/smart/fly/animations/internal/annotations/Cat;"
     }
 
     init {

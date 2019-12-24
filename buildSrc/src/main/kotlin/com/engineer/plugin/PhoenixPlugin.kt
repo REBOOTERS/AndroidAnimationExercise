@@ -7,6 +7,7 @@ import com.engineer.plugin.actions.TaskTimeAction
 import com.engineer.plugin.extensions.PhoenixExtension
 import com.engineer.plugin.transforms.FooTransform
 import com.engineer.plugin.transforms.times.CatTransform
+import com.engineer.plugin.utils.GitTool
 import com.engineer.plugin.utils.JsonTool
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -35,17 +36,37 @@ class PhoenixPlugin : Plugin<Project> {
             println()
 
             JsonTool.test()
+            GitTool.getGitBranch(project)
         }
 
+        registerTransform(project)
+    }
 
-//
+    private fun registerTransform(project: Project) {
         val appExtension = project.extensions.getByName("android")
         if (appExtension is AppExtension) {
-            appExtension.registerTransform(CatTransform())
 
-            val fooTransform = FooTransform()
-            if (fooTransform.isEnabled()) {
-                appExtension.registerTransform(fooTransform)
+            val phoenix = project.extensions.getByName("phoenix")
+
+            if (phoenix is PhoenixExtension) {
+
+                println("now phoenix is :\n  $phoenix\n")
+
+                val setting = phoenix.trasform
+
+                if (setting.catTransformOn) {
+                    appExtension.registerTransform(CatTransform())
+                } else {
+                    println("catTransform disabled")
+                }
+
+
+                val fooTransform = FooTransform()
+                if (setting.fooTransformOn && fooTransform.isEnabled()) {
+                    appExtension.registerTransform(fooTransform)
+                } else {
+                    println("FooTransform disabled")
+                }
             }
         }
     }

@@ -29,7 +29,7 @@ import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 import home.smart.fly.animations.R;
-import home.smart.fly.animations.internal.Cat;
+import home.smart.fly.animations.internal.annotations.Cat;
 import home.smart.fly.animations.utils.GifSizeFilter;
 import home.smart.fly.animations.utils.Glide4Engine;
 import home.smart.fly.animations.utils.Tools;

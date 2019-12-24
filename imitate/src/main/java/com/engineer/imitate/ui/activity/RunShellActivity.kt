@@ -61,7 +61,7 @@ class RunShellActivity : MvpAppCompatActivity<DemoPresenter>(), DemoView {
 
     override fun showProgress() {
         dialog = ProgressDialog.show(this, "Running Command", "Please Wait...")
-        dialog?.setCancelable(false)
+        dialog?.setCancelable(true)
     }
 
     override fun hideProgress() {

@@ -13,6 +13,7 @@ class FooTransform : BaseTransform() {
 
     override fun provideFunction(): BiConsumer<InputStream, OutputStream>? {
         return BiConsumer { t, u ->
+
             IOUtils.copy(t, u)
         }
     }
