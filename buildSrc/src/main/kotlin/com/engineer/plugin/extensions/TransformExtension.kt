@@ -1,7 +1,7 @@
 package com.engineer.plugin.extensions
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 12-23-2019
  *
  *

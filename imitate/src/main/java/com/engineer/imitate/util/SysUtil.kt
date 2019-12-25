@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Build
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 12-20-2019
  */
 object SysUtil {

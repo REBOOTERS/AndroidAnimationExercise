@@ -17,25 +17,32 @@
         android:textSize="33sp" />
 
 
-    <com.engineer.imitate.ui.widget.view.AnimationBorder
-        android:id="@+id/animation_border"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/follow"
+        <com.engineer.imitate.ui.widget.view.AnimationBorder
+            android:id="@+id/animation_border"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="关注" />
+            android:layout_gravity="center_horizontal">
 
+            <Button
+                android:layout_margin="3dp"
+                android:id="@+id/follow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注" />
 
-    </com.engineer.imitate.ui.widget.view.AnimationBorder>
+        </com.engineer.imitate.ui.widget.view.AnimationBorder>
+    </LinearLayout>
 
 
     <com.zhy.view.flowlayout.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
 

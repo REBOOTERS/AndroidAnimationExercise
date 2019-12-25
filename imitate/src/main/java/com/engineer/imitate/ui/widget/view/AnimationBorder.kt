@@ -10,10 +10,12 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.RelativeLayout
+import com.engineer.imitate.util.dp2px
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 12-19-2019
  */
 class AnimationBorder : RelativeLayout {
@@ -43,6 +45,8 @@ class AnimationBorder : RelativeLayout {
     private val maxCount = 3
     private var count = 0
     private lateinit var rect: RectF
+    private var OneDp = 0f
+    private lateinit var mContext: Context
 
 
     private fun initView(context: Context?) {
@@ -52,32 +56,38 @@ class AnimationBorder : RelativeLayout {
         mPaint.alpha = 0
         mPaint.strokeWidth = mStrokeWidth
         setWillNotDraw(false)
+        mContext = context!!
+        OneDp = context?.dp2px(1f) ?: 0f
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
+
+        Log.e("zyq", "w1==: $w")
+        Log.e("zyq", "h1==: $h")
+        Log.e("zyq", "5dp==: $OneDp")
         rect = RectF(
-            mStrokeWidth / 2f,
-            mStrokeWidth / 2f,
-            width - mStrokeWidth / 2f,
-            height - mStrokeWidth / 2f
+            OneDp * 5 + mStrokeWidth / 2f, OneDp * 5 + mStrokeWidth / 2f,
+            width - OneDp * 5 - mStrokeWidth / 2f, height - OneDp * 5 - mStrokeWidth / 2f
         )
     }
 
     override fun onDraw(canvas: Canvas?) {
         canvas?.drawRoundRect(rect, mRadius, mRadius, mPaint)
-        canvas?.scale(1.1f, 1.1f, width / 2f, height / 2f)
         super.onDraw(canvas)
     }
 
     fun startAnim() {
         count = 0
-
-
         val radiusAnim = ValueAnimator.ofFloat(5f, 6f, 7f)
         radiusAnim.addUpdateListener {
             val value: Float = it.animatedValue as Float
             mRadius = value
+            val real = 5 * (1 - it.animatedFraction)
+            rect = RectF(
+                OneDp * real + mStrokeWidth / 2f, OneDp * real + mStrokeWidth / 2f,
+                width - OneDp * real - mStrokeWidth / 2f, height - OneDp * real - mStrokeWidth / 2f
+            )
             invalidate()
         }
         radiusAnim.duration = 400
@@ -95,7 +105,7 @@ class AnimationBorder : RelativeLayout {
         val set = AnimatorSet()
 
         set.playTogether(radiusAnim, alpha)
-        set.duration = 400
+        set.duration = 800
         set.start()
 
         set.addListener(object : AnimatorListenerAdapter() {
@@ -104,7 +114,6 @@ class AnimationBorder : RelativeLayout {
                 count += 1
                 if (count < maxCount) {
                     set.startDelay = 400
-
                     set.start()
                 }
             }

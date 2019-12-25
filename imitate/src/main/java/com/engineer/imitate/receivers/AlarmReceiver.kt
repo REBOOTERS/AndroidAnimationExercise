@@ -8,7 +8,7 @@ import android.util.Log
 import com.engineer.imitate.ui.activity.DateAndTimePickerActivity
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 12-20-2019
  */
 class AlarmReceiver : BroadcastReceiver() {
