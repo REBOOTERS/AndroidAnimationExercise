@@ -124,6 +124,10 @@ android {
         abortOnError false
     }
 
+    adbOptions {
+        timeOutInMs 5 * 1000
+        installOptions '-d'
+    }
 }
 
 jacocoAndroidUnitTestReport {
