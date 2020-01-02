@@ -8,7 +8,7 @@ import android.graphics.RectF
 import android.graphics.drawable.ShapeDrawable
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 12-26-2019
  */
 class TestDrawable:ShapeDrawable() {

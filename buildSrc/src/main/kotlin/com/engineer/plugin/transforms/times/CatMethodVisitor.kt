@@ -1,5 +1,6 @@
 package com.engineer.plugin.transforms.times
 
+import com.engineer.plugin.extensions.model.Constants
 import org.objectweb.asm.AnnotationVisitor
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
@@ -15,13 +16,13 @@ internal class CatMethodVisitor(
     private var isInjected = false
     private var startTimeId = 0
     private var methodId = 0
-    private val isStaticMethod: Boolean
-    private val argumentArrays: Array<Type>
+    private val isStaticMethod: Boolean = access and Opcodes.ACC_STATIC != 0
+    private val argumentArrays: Array<Type> = Type.getArgumentTypes(desc)
 
 
     override fun visitAnnotation(desc: String, visible: Boolean): AnnotationVisitor {
-        //  System.out.println("desc "+desc);
-        if (COST_ANNOTATION_DESC == desc) {
+
+        if (Constants.method_annotation == desc) {
             isInjected = true
         }
         return super.visitAnnotation(desc, visible)
@@ -32,8 +33,8 @@ internal class CatMethodVisitor(
             methodId = newLocal(Type.INT_TYPE)
             mv.visitMethodInsn(
                 Opcodes.INVOKESTATIC,
-                "home/smart/fly/animations/internal/core/MethodCache",
-                "request",
+                Constants.method_manager,
+                "start",
                 "()I",
                 false
             )
@@ -66,17 +67,18 @@ internal class CatMethodVisitor(
                 mv.visitVarInsn(Opcodes.ILOAD, methodId)
                 visitMethodInsn(
                     Opcodes.INVOKESTATIC,
-                    "home/smart/fly/animations/internal/core/MethodCache",
-                    "addMethodArgument",
+                    Constants.method_manager,
+                    "addParams",
                     "(Ljava/lang/Object;I)V",
                     false
                 )
             }
+
             startTimeId = newLocal(Type.LONG_TYPE)
             mv.visitMethodInsn(
                 Opcodes.INVOKESTATIC,
                 "java/lang/System",
-                "currentTimeMillis",
+                "nanoTime",
                 "()J",
                 false
             )
@@ -100,35 +102,15 @@ internal class CatMethodVisitor(
             }
             mv.visitLdcInsn(className)
             mv.visitLdcInsn(methodName)
-            mv.visitLdcInsn(desc)
             mv.visitVarInsn(Opcodes.LLOAD, startTimeId)
             mv.visitVarInsn(Opcodes.ILOAD, methodId)
             mv.visitMethodInsn(
                 Opcodes.INVOKESTATIC,
-                "home/smart/fly/animations/internal/core/MethodCache",
-                "updateMethodInfo",
-                "(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JI)V",
-                false
-            )
-            mv.visitVarInsn(Opcodes.ILOAD, methodId)
-            mv.visitMethodInsn(
-                Opcodes.INVOKESTATIC,
-                "home/smart/fly/animations/internal/core/MethodCache",
-                "printMethodInfo",
-                "(I)V",
+                Constants.method_manager,
+                "end",
+                "(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;JI)V",
                 false
             )
         }
-    }
-
-    companion object {
-        // home.smart.fly.animations.internal
-        private const val COST_ANNOTATION_DESC =
-            "Lhome/smart/fly/animations/internal/annotations/Cat;"
-    }
-
-    init {
-        argumentArrays = Type.getArgumentTypes(desc)
-        isStaticMethod = access and Opcodes.ACC_STATIC != 0
     }
 }

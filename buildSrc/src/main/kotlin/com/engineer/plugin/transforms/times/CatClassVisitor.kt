@@ -34,18 +34,4 @@ class CatClassVisitor(classVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM6, c
             )
         return methodVisitor
     }
-
-    fun formatDesc(desc: String?): String {
-        val sb = StringBuilder()
-        val argumentTypes = Type.getArgumentTypes(desc);
-        sb.append('(')
-
-        for (argu in argumentTypes) {
-            sb.append(argu.className).append(",")
-        }
-        sb.deleteCharAt(sb.length)
-
-        sb.append(')')
-        return desc + sb.toString()
-    }
 }
