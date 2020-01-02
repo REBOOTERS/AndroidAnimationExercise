@@ -1,12 +1,14 @@
 package home.smart.fly.animations.internal.core
 
+import java.util.*
+
 /**
  * @author rookie
  * @since 01-02-2020
  */
 object MethodManager {
 
-    private val methodWareHouse = ArrayList<MethodInfo>(1024)
+    private val methodWareHouse = Vector<MethodInfo>(1024)
 
     @JvmStatic
     fun start(): Int {
@@ -15,14 +17,14 @@ object MethodManager {
     }
 
     @JvmStatic
-    fun addParams(param: Any?, id: Int) {
-        val method = methodWareHouse[id]
+    fun addParams(param: Any?, index: Int) {
+        val method = methodWareHouse[index]
         method.params.add(param)
     }
 
     @JvmStatic
-    fun end(result: Any?, className: String, methodName: String, startTime: Long, id: Int) {
-        val method = methodWareHouse[id]
+    fun end(result: Any?, className: String, methodName: String, startTime: Long, index: Int) {
+        val method = methodWareHouse[index]
         method.className = className
         method.methodName = methodName
         method.result = result
