@@ -31,8 +31,8 @@ public class ToolsUnitTest {
     @Test
     public void ToolsTest() {
         assertNotEquals("1111", Tools.getCurrentTime());
-        // 起码在 2019 年，这条测试是可以通过的
-        assertEquals("2019年", Tools.getCurrentTime(System.currentTimeMillis()));
+        // 起码在 2020 年，这条测试是可以通过的
+        assertEquals("2020年", Tools.getCurrentTime(System.currentTimeMillis()));
     }
 
 }
