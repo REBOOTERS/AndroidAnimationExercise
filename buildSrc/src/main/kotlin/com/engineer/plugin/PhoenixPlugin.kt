@@ -7,6 +7,7 @@ import com.engineer.plugin.actions.TaskTimeAction
 import com.engineer.plugin.extensions.PhoenixExtension
 import com.engineer.plugin.transforms.FooTransform
 import com.engineer.plugin.transforms.cost.CatTransform
+import com.engineer.plugin.transforms.tiger.TigerTransform
 import com.engineer.plugin.utils.GitTool
 import com.engineer.plugin.utils.JsonTool
 import org.gradle.api.Plugin
@@ -67,6 +68,8 @@ class PhoenixPlugin : Plugin<Project> {
                 } else {
                     println("FooTransform disabled")
                 }
+
+                appExtension.registerTransform(TigerTransform())
             }
         }
     }

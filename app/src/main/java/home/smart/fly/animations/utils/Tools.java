@@ -18,10 +18,13 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
+import home.smart.fly.animations.internal.annotations.Tiger;
+
 /**
  * Created by rookie on 2017/2/10.
  */
 
+@Tiger
 public class Tools {
     private static final String TAG = "Tools";
 
