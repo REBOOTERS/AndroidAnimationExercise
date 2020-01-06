@@ -68,7 +68,7 @@ internal class TigerMethodVisitor(
         mv.visitMethodInsn(
             Opcodes.INVOKESTATIC,
             "java/lang/System",
-            "currentTimeMillis",
+            "nanoTime",
             "()J",
             false
         )

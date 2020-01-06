@@ -26,6 +26,7 @@ import android.util.Log;
 import com.zhihu.android.sugaradapter.SugarAdapter;
 import com.zhihu.android.sugaradapter.SugarHolder;
 
+import home.smart.fly.animations.internal.annotations.Cat;
 import home.smart.fly.animations.internal.annotations.Tiger;
 import home.smart.fly.animations.utils.RxBus;
 import home.smart.fly.animations.utils.SimpleEvent;
