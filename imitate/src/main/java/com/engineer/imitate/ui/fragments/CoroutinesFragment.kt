@@ -34,20 +34,20 @@ class CoroutinesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        GlobalScope.launch( EmptyCoroutineContext, CoroutineStart.DEFAULT) {
-            delay(1000)
-        }
-
-
-
-        GlobalScope.launch {
-
-            delay(1000)
-            Log.e("coroutine", " World!")
-        }
-        Log.e("coroutine", " Hello!")
-
-        Thread.sleep(2000)
+//        GlobalScope.launch( EmptyCoroutineContext, CoroutineStart.DEFAULT) {
+//            delay(1000)
+//        }
+//
+//
+//
+//        GlobalScope.launch {
+//
+//            delay(1000)
+//            Log.e("coroutine", " World!")
+//        }
+//        Log.e("coroutine", " Hello!")
+//
+//        Thread.sleep(2000)
     }
 
 

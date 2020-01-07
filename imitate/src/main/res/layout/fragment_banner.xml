@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.subs.BannerFragment">
+
+    <com.engineer.imitate.ui.widget.InfiniteBannerView
+        android:id="@+id/infinite_banner_1"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:bannerAutoScroll="true"
+        />
+
+    <com.rd.PageIndicatorView
+        android:id="@+id/pageIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:piv_animationType="scale"
+        app:piv_selectedColor="#ffffff"
+        app:piv_unselectedColor="#000000"
+        app:piv_padding="12dp"
+        app:piv_radius="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/infinite_banner_1"
+        />
+
+    <com.engineer.imitate.ui.widget.InfiniteBannerView
+        android:id="@+id/infinite_banner_0"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:bannerDividerWidth="16dp"
+        app:bannerForegroundWidthPercent="0.64"
+        app:bannerAutoScroll="true"
+        app:bannerScrollReverse="true"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

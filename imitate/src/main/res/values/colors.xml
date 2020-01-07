@@ -54,4 +54,6 @@
     <color name="shimmer_background_color">#b1b1b1</color>
 
     <color name="md_blue">#2196F3</color>
+    <color name="default_shadow_color">#2a000000</color>
+    <color name="default_shadowback_color">#fff</color>
 </resources>

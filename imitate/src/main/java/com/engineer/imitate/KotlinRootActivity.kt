@@ -103,6 +103,7 @@ class KotlinRootActivity : AppCompatActivity() {
     private fun initList(): MutableList<FragmentItem> {
         return mutableListOf(
             FragmentItem("/anim/entrance", "entrance"),
+            FragmentItem("/anim/github", "github features"),
             FragmentItem("/anim/pure_3d_shapre", "3D shape"),
             FragmentItem("/anim/circleLoading", "circle-loading"),
             FragmentItem("/anim/coroutines", "coroutines"),

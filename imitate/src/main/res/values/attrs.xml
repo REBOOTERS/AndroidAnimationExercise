@@ -41,4 +41,18 @@
         <attr name="shimmer_reverse_animation" format="boolean|reference"/>
     </declare-styleable>
 
+    <declare-styleable name="AnimatedCountTextView">
+        <attr name="startWith" format="string"/>
+        <attr name="endWith" format="string"/>
+        <attr name="duration" format="integer"/>
+        <attr name="prefix" format="string"/>
+        <attr name="suffix" format="string"/>
+
+        <attr name="numberType">
+            <enum name="integer" value="1" />
+            <enum name="decimal" value="2" />
+        </attr>
+
+    </declare-styleable>
+
 </resources>

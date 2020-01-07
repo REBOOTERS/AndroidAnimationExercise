@@ -1,9 +1,5 @@
 apply plugin: 'phoenix-plugin'
 
-//just for study 修改 app 的输出目录到 destDir 指定目录
-
-//apply plugin: ApkDistPlugin
-
 phoenix {
     rename {
         println "apk dist    into: " + rootDir.toString() + File.separator + apkDir
