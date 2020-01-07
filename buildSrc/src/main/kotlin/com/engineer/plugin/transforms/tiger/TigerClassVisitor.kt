@@ -7,7 +7,7 @@ import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 01-03-2020
  */
 class TigerClassVisitor(classVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM6, classVisitor) {

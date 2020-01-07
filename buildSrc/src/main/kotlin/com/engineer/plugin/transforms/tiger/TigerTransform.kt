@@ -8,7 +8,7 @@ import java.io.OutputStream
 import java.util.function.BiConsumer
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author rookie
  * @since 01-03-2020
  */
 class TigerTransform : BaseTransform() {

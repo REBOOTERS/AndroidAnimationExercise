@@ -15,13 +15,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
-import com.engineer.imitate.ui.adapter.BannerAdapter
-import com.engineer.imitate.ui.widget.InfiniteBannerView
-import com.rd.PageIndicatorView
+import com.engineer.imitate.ui.adapter.ViewPagerFragmentStateAdapter
+import kotlinx.android.synthetic.main.fragment_github.*
 
 
 @Route(path = "/anim/github")
@@ -35,9 +34,17 @@ class GithubFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_github, container, false)
     }
 
-
-
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val adapter = ViewPagerFragmentStateAdapter(this)
+        pager.adapter = adapter
+        pager.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                tabs.setScrollPosition(position,0f,false)
+            }
+        })
+    }
 
 
 }
