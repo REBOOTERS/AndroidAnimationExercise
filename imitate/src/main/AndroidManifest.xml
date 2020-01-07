@@ -33,6 +33,7 @@
         <activity android:name=".ui.activity.ReverseGifActivity" />
         <activity android:name=".ui.activity.RunShellActivity" />
         <activity android:name=".ui.activity.HorizontalListActivity" />
+        <activity android:name=".ui.activity.StarShowActivity"/>
 
         <receiver android:name=".receivers.AlarmReceiver">
             <intent-filter>

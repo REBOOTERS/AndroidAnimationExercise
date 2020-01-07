@@ -20,6 +20,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.adapter.ViewPagerFragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_github.*
 
 
@@ -36,15 +37,20 @@ class GithubFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = ViewPagerFragmentStateAdapter(this)
+        val adapter = ViewPagerFragmentStateAdapter(titles.size, this)
         pager.adapter = adapter
-        pager.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
+        pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                tabs.setScrollPosition(position,0f,false)
+                tabs.setScrollPosition(position, 0f, false)
             }
         })
+        TabLayoutMediator(tabs, pager) { tab, position ->
+            tab.text = titles[position]
+        }.attach()
     }
 
-
+    companion object {
+        val titles = arrayOf("banner", "animText", "shadow")
+    }
 }
