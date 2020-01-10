@@ -36,9 +36,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".ui.activity.Game2048Activity"
-            android:theme="@style/FullscreenTheme"/>
+
         <activity
             android:name=".webview.FullscreenPage"
             android:configChanges="orientation|keyboardHidden|screenSize"

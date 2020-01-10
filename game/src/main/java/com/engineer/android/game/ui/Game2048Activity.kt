@@ -1,4 +1,4 @@
-package home.smart.fly.animations.ui.activity
+package com.engineer.android.game.ui
 
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
@@ -14,7 +14,7 @@ import android.view.WindowManager
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.Toast
-import home.smart.fly.animations.R
+import com.engineer.android.game.R
 import java.util.*
 
 class Game2048Activity : AppCompatActivity() {
@@ -40,6 +40,10 @@ class Game2048Activity : AppCompatActivity() {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
             WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED
+        )
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
         // Apply previous setting about showing status bar or not
@@ -87,7 +91,7 @@ class Game2048Activity : AppCompatActivity() {
             mWebView.loadUrl("file:///android_asset/2048/index.html?lang=" + Locale.getDefault().language)
         }
 
-        Toast.makeText(application, R.string.toggle_fullscreen, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(application, R.string.toggle_fullscreen, Toast.LENGTH_SHORT).show()
         // Set fullscreen toggle on webview LongClick
         mWebView.setOnTouchListener { v, event ->
             // Implement a long touch action by comparing

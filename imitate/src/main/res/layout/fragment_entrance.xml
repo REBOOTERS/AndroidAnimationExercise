@@ -17,6 +17,8 @@
             android:orientation="vertical"
             tools:context=".ui.fragments.EntranceFragment">
 
+
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/horizontal_list"
                 android:layout_width="match_parent"
@@ -48,6 +50,17 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="game"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/game_2048"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="game_2048"
                 android:textColor="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton

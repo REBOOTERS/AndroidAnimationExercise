@@ -3,6 +3,9 @@
 
     <application>
         <activity android:name=".ui.SensorViewActivity"/>
+
+        <activity
+            android:name=".ui.Game2048Activity" />
     </application>
 </manifest>
 

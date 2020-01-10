@@ -13,7 +13,6 @@ import home.smart.fly.animations.fragments.base.RoutePaths;
 import home.smart.fly.animations.ui.activity.ClockViewActivity;
 import home.smart.fly.animations.ui.activity.FakeFootballActivity;
 import home.smart.fly.animations.ui.activity.FlipViewActivity;
-import home.smart.fly.animations.ui.activity.Game2048Activity;
 import home.smart.fly.animations.ui.activity.IModeActivity;
 import home.smart.fly.animations.ui.activity.LoaderActivity;
 import home.smart.fly.animations.ui.activity.LottieAnimationViewActivity;
@@ -32,7 +31,6 @@ public class ImitateFragment extends BaseFragment {
     @Override
     public void InitView() {
         demos.add(new ItemInfo(R.string.fake_football, FakeFootballActivity.class));
-        demos.add(new ItemInfo(R.string.game_2048, Game2048Activity.class));
         demos.add(new ItemInfo(R.string.app_name, ViewsActivity.class));
         demos.add(new ItemInfo(R.string.loader, LoaderActivity.class));
         demos.add(new ItemInfo(R.string.lottie_anim, LottieAnimationViewActivity.class));
