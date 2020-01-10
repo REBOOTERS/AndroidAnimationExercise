@@ -1,12 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.engineer.android.game" >
+    package="com.engineer.android.game">
 
     <application>
-        <activity android:name=".ui.SensorViewActivity"/>
-
-        <activity
-            android:name=".ui.Game2048Activity" />
+        <activity android:name=".ui.SchulteGridActivity"></activity>
+        <activity android:name=".ui.SensorViewActivity" />
+        <activity android:name=".ui.Game2048Activity" />
     </application>
+
 </manifest>
-
-

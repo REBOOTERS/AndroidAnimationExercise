@@ -22,6 +22,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
 import com.engineer.android.game.ui.Game2048Activity
+import com.engineer.android.game.ui.SchulteGridActivity
 import com.engineer.android.game.ui.SensorViewActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.activity.*
@@ -159,7 +160,11 @@ class EntranceFragment : Fragment() {
         }
 
         game_2048.setOnClickListener {
-            startActivity(Intent(context,Game2048Activity::class.java))
+            startActivity(Intent(context, Game2048Activity::class.java))
+        }
+
+        game_schulte.setOnClickListener {
+            startActivity(Intent(context, SchulteGridActivity::class.java))
         }
 
         shell.setOnClickListener { startActivity(Intent(context, RunShellActivity::class.java)) }
