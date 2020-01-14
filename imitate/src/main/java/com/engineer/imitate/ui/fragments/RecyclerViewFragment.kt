@@ -17,7 +17,9 @@ import com.engineer.imitate.util.dp2px
 import kotlinx.android.synthetic.main.fragment_layout_manager.*
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
 
-
+/**
+ * https://github.com/Spikeysanju/ZoomRecylerLayout
+ */
 @Route(path = "/anim/recycler_view")
 class RecyclerViewFragment : Fragment() {
 

@@ -2,9 +2,11 @@ package com.engineer.imitate
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import com.alibaba.android.arouter.launcher.ARouter
+import com.engineer.imitate.util.TextUtil
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.stetho.Stetho
 
@@ -51,6 +53,9 @@ class ImitateApplication : Application() {
         }
 
         testHighFun()
+
+        val json = TextUtil.getJson()
+        Log.e("json", "json form json-dsl is : $json" )
     }
 
 
