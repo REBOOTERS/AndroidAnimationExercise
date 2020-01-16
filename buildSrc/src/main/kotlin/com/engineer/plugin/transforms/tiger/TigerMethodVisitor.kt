@@ -12,7 +12,6 @@ internal class TigerMethodVisitor(
 ) : AdviceAdapter(api, mv, access, methodName, desc) {
 
 
-    private var isInjected = true
     private var startTimeId = 0
     private var methodId = 0
     private val isStaticMethod: Boolean = access and Opcodes.ACC_STATIC != 0

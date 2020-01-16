@@ -3,9 +3,17 @@ package com.engineer.plugin.transforms
 import com.android.SdkConstants
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
+import com.android.build.gradle.internal.pipeline.TransformTask
 import com.android.builder.utils.isValidZipEntryName
 import com.android.utils.FileUtils
+import com.engineer.plugin.utils.BeautyLog
 import com.google.common.io.Files
+import org.apache.commons.io.IOUtils
+import org.gradle.api.Project
+import org.gradle.internal.io.IoUtils
+import org.objectweb.asm.ClassReader
+import org.objectweb.asm.ClassVisitor
+import org.objectweb.asm.ClassWriter
 import java.io.*
 import java.util.function.BiConsumer
 import java.util.zip.ZipEntry
@@ -18,11 +26,19 @@ import java.util.zip.ZipOutputStream
  *
  * 支持 incremental 的 transform
  */
-abstract class BaseTransform : Transform() {
+abstract class BaseTransform(private val project: Project) : Transform() {
 
+
+
+    // 将对 class 文件的 asm 处理，处理完之后的再次复制，抽象为一个 BiConsumer
     abstract fun provideFunction(): BiConsumer<InputStream, OutputStream>?
 
+    // 默认的 class 过滤器，处理 .class 结尾的所有内容 (maybe 可以扩展)
+    private fun classFilter(className: String): Boolean {
+        return className.endsWith(SdkConstants.DOT_CLASS)
+    }
 
+    // Transform 使能开关
     open fun isEnabled() = true
 
     // <editor-fold defaultstate="collapsed" desc="basic function">
@@ -40,6 +56,8 @@ abstract class BaseTransform : Transform() {
     // </editor-fold>
 
     override fun transform(transformInvocation: TransformInvocation?) {
+        BeautyLog.log(name, true)
+        val start = System.nanoTime()
         super.transform(transformInvocation)
 
         val function = provideFunction()
@@ -69,16 +87,17 @@ abstract class BaseTransform : Transform() {
                         Status.NOTCHANGED -> {
                         }
                         Status.ADDED, Status.CHANGED -> transformJar(
-                            function,
                             inputJar,
-                            outputJar
+                            outputJar,
+                            function
                         )
                         Status.REMOVED -> FileUtils.delete(outputJar)
                     }
                 } else {
-                    transformJar(function, inputJar, outputJar)
+                    transformJar(inputJar, outputJar, function)
                 }
             }
+
             for (di in ti.directoryInputs) {
                 val inputDir = di.file
                 val outputDir = outputProvider.getContentLocation(
@@ -89,19 +108,18 @@ abstract class BaseTransform : Transform() {
                 )
                 if (transformInvocation.isIncremental) {
                     for ((inputFile, value) in di.changedFiles) {
+                        val out = toOutputFile(
+                            outputDir,
+                            inputDir,
+                            inputFile
+                        )
                         when (value ?: Status.NOTCHANGED) {
                             Status.NOTCHANGED -> {
                             }
                             Status.ADDED, Status.CHANGED -> if (!inputFile.isDirectory
-                                && inputFile.name
-                                    .endsWith(SdkConstants.DOT_CLASS)
+                                && classFilter(inputFile.name)
                             ) {
-                                val out = toOutputFile(
-                                    outputDir,
-                                    inputDir,
-                                    inputFile
-                                )
-                                transformFile(function, inputFile, out)
+                                transformFile(inputFile, out, function)
                             }
                             Status.REMOVED -> {
                                 val outputFile = toOutputFile(
@@ -115,23 +133,26 @@ abstract class BaseTransform : Transform() {
                     }
                 } else {
                     for (`in` in FileUtils.getAllFiles(inputDir)) {
-                        if (`in`.name.endsWith(SdkConstants.DOT_CLASS)) {
-                            val out =
-                                toOutputFile(outputDir, inputDir, `in`)
-                            transformFile(function, `in`, out)
+                        val out =
+                            toOutputFile(outputDir, inputDir, `in`)
+                        if (classFilter(`in`.name)) {
+                            transformFile(`in`, out, function)
                         }
                     }
                 }
             }
         }
+        val msg = "transform $name 耗时: ${ (System.nanoTime() - start) / 1000000f } ms"
+        BeautyLog.dog(msg)
+        BeautyLog.log(name, false)
     }
 
 
     @Throws(IOException::class)
     open fun transformJar(
-        function: BiConsumer<InputStream, OutputStream>?,
         inputJar: File,
-        outputJar: File
+        outputJar: File,
+        function: BiConsumer<InputStream, OutputStream>?
     ) {
         Files.createParentDirs(outputJar)
         FileInputStream(inputJar).use { fis ->
@@ -140,7 +161,7 @@ abstract class BaseTransform : Transform() {
                     ZipOutputStream(fos).use { zos ->
                         var entry = zis.nextEntry
                         while (entry != null && isValidZipEntryName(entry)) {
-                            if (!entry.isDirectory && entry.name.endsWith(SdkConstants.DOT_CLASS)) {
+                            if (!entry.isDirectory && classFilter(entry.name)) {
                                 zos.putNextEntry(ZipEntry(entry.name))
                                 apply(function, zis, zos)
                             } else { // Do not copy resources
@@ -155,9 +176,7 @@ abstract class BaseTransform : Transform() {
 
     @Throws(IOException::class)
     open fun transformFile(
-        function: BiConsumer<InputStream, OutputStream>?,
-        inputFile: File,
-        outputFile: File
+        inputFile: File, outputFile: File, function: BiConsumer<InputStream, OutputStream>?
     ) {
         Files.createParentDirs(outputFile)
         FileInputStream(inputFile).use { fis ->
@@ -165,10 +184,8 @@ abstract class BaseTransform : Transform() {
         }
     }
 
-    open fun toOutputFile(
-        outputDir: File,
-        inputDir: File,
-        inputFile: File
+    private fun toOutputFile(
+        outputDir: File, inputDir: File, inputFile: File
     ): File {
         return File(
             outputDir,
@@ -177,10 +194,9 @@ abstract class BaseTransform : Transform() {
     }
 
     @Throws(IOException::class)
-    open fun apply(
+    private fun apply(
         function: BiConsumer<InputStream, OutputStream>?,
-        `in`: InputStream,
-        out: OutputStream
+        `in`: InputStream, out: OutputStream
     ) {
         try {
             function?.accept(`in`, out)

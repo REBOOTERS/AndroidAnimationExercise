@@ -6,8 +6,9 @@ import com.engineer.plugin.actions.RenameAction
 import com.engineer.plugin.actions.TaskTimeAction
 import com.engineer.plugin.extensions.PhoenixExtension
 import com.engineer.plugin.transforms.FooTransform
-import com.engineer.plugin.transforms.cost.CatTransform
+import com.engineer.plugin.transforms.cat.CatTransform
 import com.engineer.plugin.transforms.tiger.TigerTransform
+import com.engineer.plugin.transforms.track.TrackTransform
 import com.engineer.plugin.utils.GitTool
 import com.engineer.plugin.utils.JsonTool
 import org.gradle.api.Plugin
@@ -47,30 +48,18 @@ class PhoenixPlugin : Plugin<Project> {
         val appExtension = project.extensions.getByName("android")
         if (appExtension is AppExtension) {
 
-            val phoenix = project.extensions.getByName("phoenix")
 
-            if (phoenix is PhoenixExtension) {
+            appExtension.registerTransform(CatTransform())
 
-                println("now phoenix is :\n  $phoenix\n")
-
-                val setting = phoenix.trasform
-
-                if (setting.catTransformOn) {
-                    appExtension.registerTransform(CatTransform())
-                } else {
-                    println("catTransform disabled")
-                }
-
-
-                val fooTransform = FooTransform()
-                if (setting.fooTransformOn && fooTransform.isEnabled()) {
-                    appExtension.registerTransform(fooTransform)
-                } else {
-                    println("FooTransform disabled")
-                }
-
-                appExtension.registerTransform(TigerTransform())
+            val fooTransform = FooTransform(project)
+            if (fooTransform.isEnabled()) {
+                appExtension.registerTransform(fooTransform)
+            } else {
+                println("FooTransform disabled")
             }
+
+            appExtension.registerTransform(TigerTransform(project))
+            appExtension.registerTransform(TrackTransform(project))
         }
     }
 

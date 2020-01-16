@@ -1,4 +1,4 @@
-package com.engineer.plugin.transforms.cost
+package com.engineer.plugin.transforms.cat
 
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor

@@ -1,4 +1,4 @@
-package com.engineer.plugin.transforms.cost
+package com.engineer.plugin.transforms.cat
 
 import com.engineer.plugin.extensions.model.Constants
 import org.objectweb.asm.AnnotationVisitor
@@ -19,6 +19,11 @@ internal class CatMethodVisitor(
     private val isStaticMethod: Boolean = access and Opcodes.ACC_STATIC != 0
     private val argumentArrays: Array<Type> = Type.getArgumentTypes(desc)
 
+
+    init {
+        println("className is $className")
+        println("methodName is $methodName")
+    }
 
     override fun visitAnnotation(desc: String, visible: Boolean): AnnotationVisitor {
 

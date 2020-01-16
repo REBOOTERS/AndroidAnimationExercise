@@ -1,9 +1,8 @@
-package com.engineer.plugin.transforms.tiger
+package com.engineer.plugin.transforms.track
 
 import com.engineer.plugin.transforms.BaseTransform
 import org.gradle.api.Project
 import org.objectweb.asm.ClassReader
-import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter
 import java.io.InputStream
 import java.io.OutputStream
@@ -11,15 +10,14 @@ import java.util.function.BiConsumer
 
 /**
  * @author rookie
- * @since 01-03-2020
+ * @since 01-08-2020
  */
-class TigerTransform(val project: Project) : BaseTransform(project) {
-
+class TrackTransform(project: Project) : BaseTransform(project) {
     override fun provideFunction(): BiConsumer<InputStream, OutputStream>? {
         return BiConsumer { t, u ->
             val reader = ClassReader(t)
             val writer = ClassWriter(reader, ClassWriter.COMPUTE_MAXS)
-            val visitor = TigerClassVisitor(project, writer)
+            val visitor = TrackClassVisitor(writer)
             reader.accept(visitor, ClassReader.EXPAND_FRAMES)
             val code = writer.toByteArray()
             u.write(code)
@@ -27,6 +25,6 @@ class TigerTransform(val project: Project) : BaseTransform(project) {
     }
 
     override fun getName(): String {
-        return "tiger"
+        return "track"
     }
 }

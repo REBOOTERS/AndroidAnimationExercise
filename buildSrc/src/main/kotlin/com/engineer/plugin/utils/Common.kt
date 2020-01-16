@@ -13,7 +13,7 @@ object Common {
 
     @JvmStatic
     fun releaseTime(): String {
-        val format = SimpleDateFormat("yyyy_MM_dd HH:mm", Locale.CHINA)
+        val format = SimpleDateFormat("yyyy_MM_dd HH-mm", Locale.CHINA)
         return format.format(Date())
     }
 

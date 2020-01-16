@@ -1,4 +1,4 @@
-package com.engineer.plugin.transforms.cost
+package com.engineer.plugin.transforms.cat
 
 import com.android.build.api.transform.Format
 import com.android.build.api.transform.QualifiedContent
@@ -49,8 +49,6 @@ class CatTransform : Transform() {
                     FileUtils.getAllFiles(directoryInput.file).forEach {
                         val file = it
                         val name = file.name
-                        println("directory")
-                        println("name ==$name")
                         if (name.endsWith(".class") && name != ("R.class")
                             && !name.startsWith("R\$") && name != ("BuildConfig.class")
                         ) {
