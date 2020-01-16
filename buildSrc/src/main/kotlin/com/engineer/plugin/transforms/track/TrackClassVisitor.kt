@@ -45,7 +45,8 @@ class TrackClassVisitor(classVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM6,
         if (hack) {
 //            println("name is $name, desc is $desc")
             if (name.equals("onClick") && desc.equals("(Landroid/view/View;)V")) {
-                methodVisitor = TrackMethodVisitor(Opcodes.ASM6, methodVisitor, access, name, desc)
+                methodVisitor =
+                    TrackMethodVisitor(className, Opcodes.ASM6, methodVisitor, access, name, desc)
             }
         }
 

@@ -9,7 +9,12 @@ import android.view.View
 object Tracker {
 
     @JvmStatic
-    fun c(v: View){
+    fun c(v: View) {
         BeautyLog.printClickInfo(v)
+    }
+
+    @JvmStatic
+    fun c(v: View, className: String) {
+        BeautyLog.printClickInfo(className, v)
     }
 }

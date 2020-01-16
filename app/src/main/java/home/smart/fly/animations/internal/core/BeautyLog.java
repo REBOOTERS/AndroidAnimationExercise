@@ -50,4 +50,19 @@ public class BeautyLog {
         Log.e(4 + TRACK, BOTTOM_BORDER);
 
     }
+
+
+    public static void printClickInfo(String className, View view) {
+        Context context = view.getContext();
+
+        String humanId = context.getResources().getResourceName(view.getId());
+        String packageName = context.getResources().getResourcePackageName(view.getId());
+
+        Log.e(0 + TRACK, TOP_BORDER);
+        Log.e(1 + TRACK, String.format(CLASS_FORMAT, HORIZONTAL_LINE, className));
+        Log.e(2 + TRACK, String.format(VIEW_NAME_FORMAT, HORIZONTAL_LINE, humanId));
+        Log.e(3 + TRACK, String.format(PACK_NAME_FORMAT, HORIZONTAL_LINE, packageName));
+        Log.e(4 + TRACK, BOTTOM_BORDER);
+
+    }
 }
