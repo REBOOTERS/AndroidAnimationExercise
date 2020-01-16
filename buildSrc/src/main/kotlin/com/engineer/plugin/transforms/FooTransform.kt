@@ -2,9 +2,6 @@ package com.engineer.plugin.transforms
 
 import org.apache.commons.io.IOUtils
 import org.gradle.api.Project
-import org.objectweb.asm.ClassVisitor
-import org.objectweb.asm.ClassWriter
-import org.objectweb.asm.Opcodes
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.function.BiConsumer
@@ -19,6 +16,17 @@ class FooTransform(project: Project) : BaseTransform(project) {
         return BiConsumer { t, u ->
             // just for test , do nothing
             IOUtils.copy(t, u)
+//            simpleCopy(t,u)
+        }
+    }
+
+    private fun simpleCopy(input: InputStream, output: OutputStream) {
+        var count: Long = 0
+        var n: Int
+        val buffer = ByteArray(1024)
+        while (-1 != input.read(buffer).also { n = it }) {
+            output.write(buffer, 0, n)
+            count += n.toLong()
         }
     }
 
