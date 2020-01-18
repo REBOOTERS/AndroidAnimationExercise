@@ -19,12 +19,6 @@ internal class CatMethodVisitor(
     private val isStaticMethod: Boolean = access and Opcodes.ACC_STATIC != 0
     private val argumentArrays: Array<Type> = Type.getArgumentTypes(desc)
 
-
-    init {
-        println("className is $className")
-        println("methodName is $methodName")
-    }
-
     override fun visitAnnotation(desc: String, visible: Boolean): AnnotationVisitor {
 
         if (Constants.method_annotation == desc) {

@@ -17,6 +17,9 @@ phoenix {
     }
 
     transform {
-        tigerClassList = ["com/bumptech/glide/RequestManager":["into"]]
+        catOn = false
+        tigerOn = false
+        traceOn = false
+        tigerClassList = ["com/bumptech/glide/RequestManager": ["load"]]
     }
 }

@@ -6,6 +6,7 @@ import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformInvocation
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.android.utils.FileUtils
+import org.gradle.api.Project
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import java.io.File
@@ -18,7 +19,7 @@ import java.util.zip.ZipEntry
  * @author rookie
  * @since 11-29-2019
  */
-class CatTransform : Transform() {
+class CatTransform(private val project: Project) : Transform() {
     override fun getName(): String {
         return "cat"
     }
@@ -55,7 +56,7 @@ class CatTransform : Transform() {
 
                             val reader = ClassReader(file.readBytes())
                             val writer = ClassWriter(reader, ClassWriter.COMPUTE_MAXS)
-                            val visitor = CatClassVisitor(writer)
+                            val visitor = CatClassVisitor(project, writer)
                             reader.accept(visitor, ClassReader.EXPAND_FRAMES)
 
                             val code = writer.toByteArray()
@@ -125,7 +126,7 @@ class CatTransform : Transform() {
                         if (jarName.endsWith(".class") && jarName.startsWith("home")) {
                             val reader = ClassReader(inputStream)
                             val writer = ClassWriter(reader, ClassWriter.COMPUTE_MAXS)
-                            val visitor = CatClassVisitor(writer)
+                            val visitor = CatClassVisitor(project, writer)
                             reader.accept(visitor, ClassReader.EXPAND_FRAMES)
                             val code = writer.toByteArray()
                             outputStream.write(code)

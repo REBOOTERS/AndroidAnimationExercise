@@ -49,7 +49,7 @@ class PhoenixPlugin : Plugin<Project> {
         if (appExtension is AppExtension) {
 
 
-            appExtension.registerTransform(CatTransform())
+            appExtension.registerTransform(CatTransform(project))
 
             val fooTransform = FooTransform(project)
             if (fooTransform.isEnabled()) {

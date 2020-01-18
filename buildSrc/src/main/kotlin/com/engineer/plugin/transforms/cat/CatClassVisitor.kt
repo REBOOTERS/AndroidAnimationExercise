@@ -1,12 +1,22 @@
 package com.engineer.plugin.transforms.cat
 
+import com.engineer.plugin.extensions.PhoenixExtension
+import org.gradle.api.Project
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 
-class CatClassVisitor(classVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM6, classVisitor) {
+class CatClassVisitor(private val project: Project, classVisitor: ClassVisitor) :
+    ClassVisitor(Opcodes.ASM6, classVisitor) {
 
     private lateinit var mClassName: String
+    private var catOn = true
+
+    init {
+        val phoneix = project.extensions.findByType(PhoenixExtension::class.java)
+        val transform = phoneix?.transform
+        catOn = transform?.catOn ?: true
+    }
 
     override fun visit(
         version: Int, access: Int, name: String,
@@ -22,15 +32,18 @@ class CatClassVisitor(classVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM6, c
     ): MethodVisitor {
         var methodVisitor = super.visitMethod(access, name, desc, signature, exceptions)
 
-        methodVisitor =
-            CatMethodVisitor(
-                Opcodes.ASM6,
-                methodVisitor,
-                access,
-                mClassName,
-                name,
-                desc
-            )
+        if (catOn) {
+            methodVisitor =
+                CatMethodVisitor(
+                    Opcodes.ASM6,
+                    methodVisitor,
+                    access,
+                    mClassName,
+                    name,
+                    desc
+                )
+        }
+
         return methodVisitor
     }
 }

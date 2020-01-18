@@ -12,12 +12,12 @@ import java.util.function.BiConsumer
  * @author rookie
  * @since 01-08-2020
  */
-class TrackTransform(project: Project) : BaseTransform(project) {
+class TrackTransform(val project: Project) : BaseTransform(project) {
     override fun provideFunction(): BiConsumer<InputStream, OutputStream>? {
         return BiConsumer { t, u ->
             val reader = ClassReader(t)
             val writer = ClassWriter(reader, ClassWriter.COMPUTE_MAXS)
-            val visitor = TrackClassVisitor(writer)
+            val visitor = TrackClassVisitor(project, writer)
             reader.accept(visitor, ClassReader.EXPAND_FRAMES)
             val code = writer.toByteArray()
             u.write(code)

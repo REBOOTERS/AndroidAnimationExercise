@@ -20,7 +20,7 @@ internal class TigerMethodVisitor(
 
     init {
         if (needHook) {
-            println("$methodName is in methodList ：$methodList")
+            println("$methodName is in methodList ：$methodList, go hook")
         }
     }
 
