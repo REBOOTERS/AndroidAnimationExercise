@@ -9,7 +9,7 @@ package com.engineer.plugin.extensions
  */
 open class TransformExtension {
 
-    var tigerClassList = ArrayList<String>()
 
+    var tigerClassList = HashMap<String, ArrayList<String?>>()
 
 }

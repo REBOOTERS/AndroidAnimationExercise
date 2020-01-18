@@ -10,7 +10,7 @@ import org.gradle.api.model.ObjectFactory
 
 open class PhoenixExtension(objectFactory: ObjectFactory) {
     var rename: RenameExtension = objectFactory.newInstance(RenameExtension::class.java)
-    var trasform: TransformExtension = objectFactory.newInstance(TransformExtension::class.java)
+    var transform: TransformExtension = objectFactory.newInstance(TransformExtension::class.java)
     //
 
     fun rename(action: Action<RenameExtension>) {
@@ -18,11 +18,11 @@ open class PhoenixExtension(objectFactory: ObjectFactory) {
     }
 
     fun transform(action: Action<TransformExtension>) {
-        action.execute(trasform)
+        action.execute(transform)
     }
 
     override fun toString(): String {
-        return "PhoenixExtension(rename=$rename, settings=$trasform)"
+        return "PhoenixExtension(rename=$rename, settings=$transform)"
     }
 
 

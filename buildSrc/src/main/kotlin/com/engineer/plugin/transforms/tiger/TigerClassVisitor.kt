@@ -17,13 +17,13 @@ class TigerClassVisitor(project: Project, classVisitor: ClassVisitor) :
 
     private var needHook = false
     private lateinit var mClassName: String
-    private var classList: List<String>? = null
+    var classList: HashMap<String, ArrayList<String?>>? = null
+    var methodList: ArrayList<String?> = ArrayList()
 
     init {
         val phoneix = project.extensions.findByType(PhoenixExtension::class.java)
-        val transform = phoneix?.trasform
+        val transform = phoneix?.transform
         classList = transform?.tigerClassList
-
     }
 
     override fun visit(
@@ -33,14 +33,15 @@ class TigerClassVisitor(project: Project, classVisitor: ClassVisitor) :
         super.visit(version, access, name, signature, superName, interfaces)
         mClassName = name
         if (classList?.contains(name) == true) {
-            println("find $name in $classList , start hook ")
+            println("find $name in $classList, start hook ")
+            methodList = classList?.get(name) ?: ArrayList()
             needHook = true
         }
     }
 
     override fun visitAnnotation(desc: String?, visible: Boolean): AnnotationVisitor {
         if (desc.equals(Constants.class_annotation)) {
-            println("find $desc , start hook ")
+            println("find @Tiger , start hook ")
             needHook = true
         }
         return super.visitAnnotation(desc, visible)
@@ -65,7 +66,8 @@ class TigerClassVisitor(project: Project, classVisitor: ClassVisitor) :
                     access,
                     mClassName,
                     name,
-                    desc
+                    desc,
+                    methodList
                 )
         }
 

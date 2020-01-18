@@ -15,4 +15,8 @@ phoenix {
             return name
         }
     }
+
+    transform {
+        tigerClassList = ["com/bumptech/glide/RequestManager":["into"]]
+    }
 }
