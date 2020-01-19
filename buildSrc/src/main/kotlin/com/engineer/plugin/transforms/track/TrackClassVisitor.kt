@@ -31,7 +31,6 @@ class TrackClassVisitor(private val project: Project, classVisitor: ClassVisitor
     ) {
         super.visit(version, access, name, signature, superName, interfaces)
         className = name
-//        println("======= $className")
         if (trackOn.not()) {
             return
         }

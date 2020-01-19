@@ -19,7 +19,7 @@ phoenix {
     transform {
         catOn = false
         tigerOn = false
-        traceOn = false
+        traceOn = true
         tigerClassList = ["com/bumptech/glide/RequestManager": ["load"]]
     }
 }
