@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
@@ -32,6 +33,7 @@ class CustomScrollView : View {
     private var mCenterY = 0.0f
 
     private lateinit var mView: View
+    private lateinit var mPath: Path
 
 
     //<editor-fold desc="init">
@@ -43,7 +45,11 @@ class CustomScrollView : View {
         init(context)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         init(context)
     }
     //</editor-fold>
@@ -67,7 +73,7 @@ class CustomScrollView : View {
         mView = parent as View
         mCenterX = (measuredWidth / 2).toFloat()
         mCenterY = (measuredHeight / 2).toFloat()
-        mRadius = Math.min(measuredHeight / 2, measuredWidth / 2).toFloat()
+        mRadius = (measuredHeight / 2).coerceAtMost(measuredWidth / 2).toFloat()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -91,9 +97,34 @@ class CustomScrollView : View {
     }
 
     override fun onDraw(canvas: Canvas) {
+        Log.e(TAG, "onDraw")
         super.onDraw(canvas)
         canvas.drawCircle(mCenterX, mCenterY, mRadius / 2, mPaint)
         canvas.drawText("Drag Me", mCenterX, mCenterY, mTextPaint)
+        canvas.drawLine(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat(), mPaint)
+        canvas.drawRect(
+            0f, mCenterY + mRadius / 2 + 10, measuredWidth.toFloat(),
+            measuredHeight.toFloat(), mPaint
+        )
+
+        mPaint.color = Color.GREEN
+        canvas.drawOval(
+            0f, 0f, measuredWidth.toFloat(),
+            mCenterY - mRadius / 2 - 10, mPaint
+        )
+
+        mPaint.color = Color.MAGENTA
+        canvas.drawArc(
+            0f, 0f, measuredWidth.toFloat(),
+            mCenterY - mRadius / 2 - 10,
+            -45f, -135f, true, mPaint
+        )
+
+        canvas.drawArc(
+            0f, 0f, measuredWidth.toFloat(),
+            mCenterY - mRadius / 2 - 10,
+            0f, 90f, true, mPaint
+        )
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -103,6 +134,7 @@ class CustomScrollView : View {
             MotionEvent.ACTION_DOWN -> {
                 mLastX = x
                 mLastY = y
+                return true
             }
             MotionEvent.ACTION_MOVE -> {
                 val deltaX = x - mLastX
@@ -110,7 +142,7 @@ class CustomScrollView : View {
                 mView.scrollBy(-deltaX, -deltaY)
             }
             MotionEvent.ACTION_UP -> {
-//                mView.scrollTo(0, 0)
+                mView.scrollTo(0, 0)
             }
         }
         return super.onTouchEvent(event)

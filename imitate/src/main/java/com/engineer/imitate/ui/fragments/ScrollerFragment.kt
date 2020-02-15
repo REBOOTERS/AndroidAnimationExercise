@@ -29,7 +29,7 @@ class ScrollerFragment : Fragment() {
         customView.setOnClickListener {
             context!!.toastShort("click")
             if (toggle) {
-                customView.smoothScrollTo(95, 95)
+                customView.smoothScrollTo(195, 195)
             } else {
                 customView.smoothScrollTo(0, 0)
             }
