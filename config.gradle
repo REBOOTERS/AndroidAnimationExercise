@@ -9,7 +9,7 @@ ext {
     constraint_layout = '1.1.3'
 
     kotlin_version = '1.3.61'
-    gradle_version = '3.5.3'
+    gradle_version = '3.6.1'
 
     leakcanary = '1.6.3'
     leakcanary_nopo = '1.6.3'
