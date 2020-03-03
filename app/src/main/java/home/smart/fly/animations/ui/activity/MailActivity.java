@@ -109,10 +109,10 @@ public class MailActivity extends AppCompatActivity {
         Uri mUri = null;
 
 
-        Uri uri = Uri.parse("mailto:zhuyongqing89@163.com");
+        Uri uri = Uri.parse("mailto:xxx@163.com");
         Intent mIntent = new Intent(Intent.ACTION_VIEW, uri);
 //        mIntent.setType("message/rfc822");
-        String[] tos = {"zhuyongqing89@163.com"};
+        String[] tos = {"xxx@163.com"};
         mIntent.putExtra(Intent.EXTRA_EMAIL, tos);
 
         mIntent.putExtra(Intent.EXTRA_TEXT, "body");
