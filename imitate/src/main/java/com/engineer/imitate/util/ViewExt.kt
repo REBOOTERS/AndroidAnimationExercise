@@ -33,3 +33,11 @@ fun View.clicks(skipDuration:Long = 500, block: (View)-> Unit) {
         block(it)
     }
 }
+
+fun View.visible(value: Boolean) {
+    if (value) {
+        this.visibility = View.VISIBLE
+    } else {
+        this.visibility = View.GONE
+    }
+}

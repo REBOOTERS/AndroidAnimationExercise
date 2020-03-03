@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -22,17 +23,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.05" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/myCardView"
+        android:layout_width="240dp"
+        android:layout_height="312dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.engineer.imitate.ui.widget.transformationlayout.TransformationLayout
+        android:id="@+id/transformationLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="20dp"
-        android:src="@drawable/ic_add_black_24dp"
-        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintLeft_toRightOf="@+id/cardView"
-        app:layout_constraintStart_toEndOf="@+id/cardView" />
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:transformation_duration="550"
+        app:transformation_targetView="@+id/myCardView">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_add_black_24dp"
+            app:fabSize="normal" />
+
+    </com.engineer.imitate.ui.widget.transformationlayout.TransformationLayout>
+
 
     <com.engineer.imitate.ui.widget.custom.JikeSlideView
         android:id="@+id/slide_view"

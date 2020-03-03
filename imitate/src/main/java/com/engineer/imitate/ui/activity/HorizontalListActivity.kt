@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.widget.DecorationGod
 import com.engineer.imitate.ui.widget.DecorationOne
+import com.engineer.imitate.ui.widget.transformationlayout.onTransformationEndContainer
 import com.engineer.imitate.util.dp2px
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
@@ -24,6 +25,7 @@ class HorizontalListActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+        onTransformationEndContainer(intent.getParcelableExtra("TransformationParams"))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_horizontal_list)
         val datas = initData()

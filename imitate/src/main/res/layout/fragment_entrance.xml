@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.flipboard.bottomsheet.BottomSheetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomsheet"
     android:layout_width="match_parent"
@@ -17,18 +18,30 @@
             android:orientation="vertical"
             tools:context=".ui.fragments.EntranceFragment">
 
-
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/horizontal_list"
+            <com.engineer.imitate.ui.widget.transformationlayout.TransformationLayout
+                android:id="@+id/transformationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="horizontal_list"
-                android:textColor="@color/white" />
+                app:transformation_direction="auto"
+                app:transformation_duration="450"
+                app:transformation_fadeMode="cross"
+                app:transformation_fitMode="auto"
+                app:transformation_pathMode="arc">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/horizontal_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:backgroundTint="@color/md_blue"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="horizontal_list"
+                    android:textColor="@color/white" />
+
+
+            </com.engineer.imitate.ui.widget.transformationlayout.TransformationLayout>
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/gif_revert"
@@ -39,7 +52,8 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="gif_revert"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/game"

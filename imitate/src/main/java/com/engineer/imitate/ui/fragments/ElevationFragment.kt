@@ -30,16 +30,35 @@ class ElevationFragment : Fragment() {
     private var mDeltaX = 0.0f
     private var mDeltaY = 0.0f
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_evelation, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        // start transformation when touching the fab.
+        fab.setOnClickListener {
+            transformationLayout.startTransform(parent)
+        }
+
+        // finish transformation when touching the myCardView.
+        myCardView.setOnClickListener {
+            transformationLayout.finishTransform(parent)
+        }
+
         cardElevationSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
-            override fun onProgressChanged(bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean) {
+            override fun onProgressChanged(
+                bubbleSeekBar: BubbleSeekBar?,
+                progress: Int,
+                progressFloat: Float,
+                fromUser: Boolean
+            ) {
                 super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
                 cardView.cardElevation = progressFloat
                 fab.compatElevation = progressFloat
@@ -47,14 +66,24 @@ class ElevationFragment : Fragment() {
         }
 
         cardRadiusSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
-            override fun onProgressChanged(bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean) {
+            override fun onProgressChanged(
+                bubbleSeekBar: BubbleSeekBar?,
+                progress: Int,
+                progressFloat: Float,
+                fromUser: Boolean
+            ) {
                 super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
                 cardView.radius = progressFloat
             }
         }
 
         deltaXSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
-            override fun onProgressChanged(bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean) {
+            override fun onProgressChanged(
+                bubbleSeekBar: BubbleSeekBar?,
+                progress: Int,
+                progressFloat: Float,
+                fromUser: Boolean
+            ) {
                 super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
                 mDeltaX = progressFloat
                 slide_view.update(progressFloat, mDeltaY)
@@ -62,7 +91,12 @@ class ElevationFragment : Fragment() {
         }
 
         deltaYSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
-            override fun onProgressChanged(bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean) {
+            override fun onProgressChanged(
+                bubbleSeekBar: BubbleSeekBar?,
+                progress: Int,
+                progressFloat: Float,
+                fromUser: Boolean
+            ) {
                 super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
                 val screenHeight = resources.displayMetrics.heightPixels
                 val delatY = progressFloat / deltaYSeekBar.max * screenHeight
@@ -96,21 +130,21 @@ class ElevationFragment : Fragment() {
         }
 
         open_system_share.setOnClickListener {
-            val shareIntent = ShareCompat.IntentBuilder.from(activity)
-                    .setText("share content")
-                    .setType("text/plain")
-                    .createChooserIntent()
-                    .apply {
-                        // https://android-developers.googleblog.com/2012/02/share-with-intents.html
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            // If we're on Lollipop, we can open the intent as a document
-                            addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
-                        } else {
-                            // Else, we will use the old CLEAR_WHEN_TASK_RESET flag
-                            addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET)
-                        }
-                    }
-            startActivity(shareIntent)
+            //            val shareIntent = ShareCompat.IntentBuilder.from(activity)
+//                    .setText("share content")
+//                    .setType("text/plain")
+//                    .createChooserIntent()
+//                    .apply {
+//                        // https://android-developers.googleblog.com/2012/02/share-with-intents.html
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                            // If we're on Lollipop, we can open the intent as a document
+//                            addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+//                        } else {
+//                            // Else, we will use the old CLEAR_WHEN_TASK_RESET flag
+//                            addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET)
+//                        }
+//                    }
+//            startActivity(shareIntent)
         }
 
     }
@@ -163,7 +197,8 @@ class ElevationFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        notification.text = NotificationManagerCompat.from(this.context!!).areNotificationsEnabled().toString()
+        notification.text =
+            NotificationManagerCompat.from(this.context!!).areNotificationsEnabled().toString()
 
     }
 

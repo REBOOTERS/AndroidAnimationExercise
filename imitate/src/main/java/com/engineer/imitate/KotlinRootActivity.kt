@@ -23,6 +23,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.ui.activity.ReverseGifActivity
+import com.engineer.imitate.ui.widget.transformationlayout.onTransformationStartContainer
 import com.engineer.imitate.util.isNetworkConnected
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
@@ -50,6 +51,7 @@ class KotlinRootActivity : AppCompatActivity() {
     private var adapter: FastListAdapter<FragmentItem>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        onTransformationStartContainer()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin_root)
         setSupportActionBar(toolbar)
@@ -68,8 +70,15 @@ class KotlinRootActivity : AppCompatActivity() {
         loadRecyclerView()
 
         gif.setOnClickListener {
-            startActivity(Intent(this, ReverseGifActivity::class.java))
+//            startActivity(Intent(this, ReverseGifActivity::class.java))
+
+            val bundle = transformationLayout.withView(transformationLayout, "myTransitionName")
+            val intent = Intent(this, ReverseGifActivity::class.java)
+            intent.putExtra("TransformationParams", transformationLayout.getParcelableParams())
+            startActivity(intent, bundle)
         }
+
+
 
     }
 

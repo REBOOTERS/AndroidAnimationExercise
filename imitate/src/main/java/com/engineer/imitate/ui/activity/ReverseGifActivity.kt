@@ -16,6 +16,7 @@ import androidx.core.app.ShareCompat
 import com.bumptech.glide.Glide
 import com.engineer.gif.revert.GifFactory
 import com.engineer.imitate.R
+import com.engineer.imitate.ui.widget.transformationlayout.onTransformationEndContainer
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -33,6 +34,7 @@ class ReverseGifActivity : AppCompatActivity() {
     private var originalUrl: Uri? = null
     private var revertedlUrl: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+        onTransformationEndContainer(intent.getParcelableExtra("TransformationParams"))
         super.onCreate(savedInstanceState)
         mContext = this
         window.setFlags(
@@ -47,14 +49,16 @@ class ReverseGifActivity : AppCompatActivity() {
         share.setOnClickListener {
             if (originalUrl != null && revertedlUrl != null) {
                 val shareIntent = ShareCompat.IntentBuilder.from(this)
-                        .addStream(originalUrl)
-                        .addStream(revertedlUrl)
-                        .setText("反转 gif")
-                        .setType("text/richtext")
-                        .createChooserIntent()
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+                    .addStream(originalUrl ?: Uri.EMPTY)
+                    .addStream(revertedlUrl ?: Uri.EMPTY)
+                    .setText("反转 gif")
+                    .setType("text/richtext")
+                    .createChooserIntent()
+                    .addFlags(
+                        Intent.FLAG_ACTIVITY_NEW_DOCUMENT
                                 or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-                                or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                or Intent.FLAG_ACTIVITY_NEW_TASK
+                    )
                 startActivity(shareIntent)
             } else {
                 mContext.toastShort("请选择图片先，😜")

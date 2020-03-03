@@ -136,7 +136,13 @@ class EntranceFragment : Fragment() {
         }
 
         horizontal_list.setOnClickListener {
-            startActivity(Intent(context, HorizontalListActivity::class.java))
+
+//            startActivity(Intent(context, HorizontalListActivity::class.java))
+
+            val bundle = transformationLayout.withView(transformationLayout, "myTransitionName")
+            val intent = Intent(context, HorizontalListActivity::class.java)
+            intent.putExtra("TransformationParams", transformationLayout.getParcelableParams())
+            startActivity(intent, bundle)
         }
 
         expandable_listview.setOnClickListener {
@@ -201,18 +207,18 @@ class EntranceFragment : Fragment() {
                         adapter.notifyDataSetChanged()
                     }
 
-                    val shareIntent = ShareCompat.IntentBuilder.from(activity)
-                        .addStream(Matisse.obtainResult(data)[0])
-//                        .addStream(revertedlUrl)
-                        .setText("https:www.zhihu.com")
-                        .setType("text/plain")
-                        .createChooserIntent()
-                        .addFlags(
-                            Intent.FLAG_ACTIVITY_NEW_DOCUMENT
-                                    or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-                                    or Intent.FLAG_ACTIVITY_NEW_TASK
-                        )
-                    startActivity(shareIntent)
+//                    val shareIntent = ShareCompat.IntentBuilder.from(activity)
+//                        .addStream(Matisse.obtainResult(data)[0])
+////                        .addStream(revertedlUrl)
+//                        .setText("https:www.zhihu.com")
+//                        .setType("text/plain")
+//                        .createChooserIntent()
+//                        .addFlags(
+//                            Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+//                                    or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+//                                    or Intent.FLAG_ACTIVITY_NEW_TASK
+//                        )
+//                    startActivity(shareIntent)
 
                 }
                 101 -> {
