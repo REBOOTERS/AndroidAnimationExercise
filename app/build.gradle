@@ -186,6 +186,9 @@ dependencies {
     debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.2.1'
     releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.2.0'
 
+    // https://github.com/skydoves/TransformationLayout
+    implementation "com.github.skydoves:transformationlayout:1.0.1"
+
 
     if (!imitate_isApp.toBoolean()) {
         implementation project(':imitate')

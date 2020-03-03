@@ -1,35 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/itemshell"
-    android:layout_width="match_parent"
+<com.skydoves.transformationlayout.TransformationLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/transformationLayout"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    android:orientation="vertical">
+    app:transformation_direction="auto"
+    app:transformation_duration="450"
+    app:transformation_fadeMode="in"
+    app:transformation_fitMode="auto"
+    app:transformation_pathMode="arc">
 
-    <TextView
-        android:id="@+id/title"
+    <!-- other views -->
+    <RelativeLayout
+        android:id="@+id/itemshell"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="demo busLineName"
-        android:textColor="#000"
-        android:textSize="18sp" />
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_marginBottom="3dp"
-        android:paddingLeft="10dp"
-        android:text="demo desc"
-        android:textSize="12sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:layout_marginBottom="3dp"
-        android:layout_below="@id/desc"
-        android:background="#000000" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="demo busLineName"
+            android:textColor="#000"
+            android:textSize="18sp" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginBottom="3dp"
+            android:paddingLeft="10dp"
+            android:text="demo desc"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_below="@id/desc"
+            android:layout_marginBottom="3dp"
+            android:background="#000000" />
+
+    </RelativeLayout>
+
+</com.skydoves.transformationlayout.TransformationLayout>

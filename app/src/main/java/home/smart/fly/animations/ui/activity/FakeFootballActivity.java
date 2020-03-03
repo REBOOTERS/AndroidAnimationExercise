@@ -30,6 +30,8 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.skydoves.transformationlayout.TransformationLayout;
+import com.skydoves.transformationlayout.TransitionExtensionKt;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -49,10 +51,11 @@ import butterknife.OnClick;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.adapter.PlayerBean;
 import home.smart.fly.animations.customview.views.BallGameView;
+import home.smart.fly.animations.ui.SimpleBaseActivity;
 import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.Tools;
 
-public class FakeFootballActivity extends AppCompatActivity {
+public class FakeFootballActivity extends SimpleBaseActivity {
     private static final String TAG = "FakeFootballActivity";
     @BindView(R.id.gameView)
     public BallGameView mGameView;

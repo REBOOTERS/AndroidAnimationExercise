@@ -9,8 +9,9 @@ import java.util.List;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.customview.polygon.Label;
 import home.smart.fly.animations.customview.polygon.PolygonView;
+import home.smart.fly.animations.ui.SimpleBaseActivity;
 
-public class PolygonViewActivity extends AppCompatActivity {
+public class PolygonViewActivity extends SimpleBaseActivity {
     private List<Label> mLabels = new ArrayList<>();
     private PolygonView mPolygonView;
 

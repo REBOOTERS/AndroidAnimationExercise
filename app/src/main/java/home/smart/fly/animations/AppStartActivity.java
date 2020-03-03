@@ -29,6 +29,7 @@ import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.engineer.dateview.api.DataView;
 import com.google.android.material.snackbar.Snackbar;
+import com.skydoves.transformationlayout.TransitionExtensionKt;
 import com.tencent.mmkv.MMKV;
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.RoutePaths;
@@ -60,6 +61,7 @@ public class AppStartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TransitionExtensionKt.onTransformationStartContainer(this);
         setContentView(R.layout.activity_app_start);
         mContext = this;
         mPreferences = getSharedPreferences("fragment_pos", MODE_PRIVATE);
