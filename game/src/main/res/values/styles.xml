@@ -1,0 +1,10 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+    </style>
+
+</resources>

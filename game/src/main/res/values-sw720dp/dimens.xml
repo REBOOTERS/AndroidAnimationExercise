@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_margin">10dp</dimen>
+    
+    <!-- title -->
+    <dimen name="title_width">800dp</dimen>
+    <dimen name="title_height">240dp</dimen>
+    <dimen name="title_margin_top">150dp</dimen>
+    
+    <!-- menu buttons -->
+    <dimen name="start_game_button">200dp</dimen>
+    <dimen name="start_game_button_margin">50dp</dimen>
+    <dimen name="start_game_button_lights">300dp</dimen>
+    <dimen name="settings_game_button">160dp</dimen>
+    <dimen name="settings_game_button_margin">70dp</dimen>
+    <dimen name="tooltip_width">160dp</dimen>
+    <dimen name="tooltip_height">70dp</dimen>
+    <dimen name="tooltip_margin_left">240dp</dimen>
+    <dimen name="tooltip_margin_bottom">220dp</dimen>
+    
+    <!-- theme -->
+    <dimen name="theme_padding">80dp</dimen>
+    <dimen name="theme_margin">40dp</dimen>
+    
+    <!-- difficulty level -->
+    <dimen name="difficulty_padding">80dp</dimen>
+    <dimen name="difficulty_margin">20dp</dimen>
+    <dimen name="difficulty_margin_top">40dp</dimen>
+    
+    <!-- game -->
+    <dimen name="margine_top">70dp</dimen>
+    <dimen name="board_padding">20dp</dimen>
+    <dimen name="clock_width">140dp</dimen>
+    <dimen name="clock_height">80dp</dimen>
+    <dimen name="clock_margin_right">100dp</dimen>
+    <dimen name="clock_text_margin_right">80dp</dimen>
+    <dimen name="clock_text_size">25dp</dimen>
+    
+    <!-- popup won -->
+    <dimen name="popup_won_width">400dp</dimen>
+    <dimen name="popup_won_height">500dp</dimen>
+    <dimen name="popup_button_back">120dp</dimen>
+    <dimen name="popup_button_back_left">45dp</dimen>
+    <dimen name="popup_button_back_bottom">10dp</dimen>
+    <dimen name="popup_button_star_size">95dp</dimen>
+    <dimen name="popup_button_star_margin_top">81dp</dimen>
+    <dimen name="popup_button_star_margin_1">42dp</dimen>
+    <dimen name="popup_button_star_margin_2">151dp</dimen>
+    <dimen name="popup_button_star_margin_3">259dp</dimen>
+    <dimen name="popup_button_time_width">200dp</dimen>
+    <dimen name="popup_button_time_height">80dp</dimen>
+    <dimen name="popup_button_time_margin_bottom">220dp</dimen>
+    <dimen name="popup_button_time_margin_right">30dp</dimen>
+    <dimen name="popup_button_time_size">30dp</dimen>
+    <dimen name="popup_button_score_margin_bottom">145dp</dimen>
+    
+    <!-- settings popup -->
+    <dimen name="popup_settings_width">400dp</dimen>
+    <dimen name="popup_settings_height">250dp</dimen>
+    <dimen name="popup_settings_sound_image_size">65dp</dimen>
+    <dimen name="popup_settings_sound_text_size">25dp</dimen>
+    <dimen name="popup_settings_padding_top">68dp</dimen>
+    <dimen name="popup_settings_padding_left">30dp</dimen>
+</resources>

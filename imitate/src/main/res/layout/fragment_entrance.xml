@@ -89,6 +89,28 @@
                 android:textColor="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/game_tower"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="game_tower"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/game_memory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="game_memory"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/shell"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

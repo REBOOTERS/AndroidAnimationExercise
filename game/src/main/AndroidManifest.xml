@@ -3,9 +3,11 @@
     package="com.engineer.android.game">
 
     <application>
-        <activity android:name=".ui.SchulteGridActivity"></activity>
+        <activity android:name=".ui.TowerBuilderActivity" />
+        <activity android:name=".ui.SchulteGridActivity" />
         <activity android:name=".ui.SensorViewActivity" />
         <activity android:name=".ui.Game2048Activity" />
+        <activity android:name="com.snatik.matches.MemoryGameActivity" android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/itemshell"
-    android:layout_width="match_parent"
+
+<com.skydoves.transformationlayout.TransformationLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/transformationLayout"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:background="?android:attr/selectableItemBackground"
-    android:orientation="vertical">
+    app:transformation_direction="auto"
+    app:transformation_duration="450"
+    app:transformation_fadeMode="in"
+    app:transformation_fitMode="auto"
+    app:transformation_pathMode="arc">
 
-    <home.smart.fly.animations.fragments.base.AdImageView
-        android:id="@+id/ad_view"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/itemshell"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:scaleType="matrix"
-        android:src="@drawable/girl" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <home.smart.fly.animations.fragments.base.AdImageView
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:scaleType="matrix"
+            android:src="@drawable/girl" />
+
+    </RelativeLayout>
+
+</com.skydoves.transformationlayout.TransformationLayout>

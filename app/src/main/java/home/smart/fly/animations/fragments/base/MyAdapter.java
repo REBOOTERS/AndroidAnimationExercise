@@ -102,7 +102,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
                     public void onClick(View v) {
                         Intent intent = new Intent(mContext, FullscreenADActivity.class);
                         intent.putExtra("url", backgroundRes);
-                        mContext.startActivity(intent);
+                        Bundle bundle = adViewHolder
+                                .transformationLayout
+                                .withView(adViewHolder.itemView, "myTransitionName");
+                        intent.putExtra("TransformationParams",
+                                adViewHolder.transformationLayout.getParcelableParams());
+                        mContext.startActivity(intent, bundle);
+//                        mContext.startActivity(intent);
                     }
                 });
                 break;
@@ -149,10 +155,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
 
     class ADViewHolder extends MyHolder {
         AdImageView mAdImageView;
+        TransformationLayout transformationLayout;
 
         ADViewHolder(View itemView) {
             super(itemView);
             mAdImageView = V.f(itemView, R.id.ad_view);
+            transformationLayout = itemView.findViewById(R.id.transformationLayout);
         }
     }
 

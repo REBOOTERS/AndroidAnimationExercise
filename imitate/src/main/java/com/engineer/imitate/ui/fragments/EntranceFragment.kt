@@ -24,10 +24,12 @@ import com.bumptech.glide.Glide
 import com.engineer.android.game.ui.Game2048Activity
 import com.engineer.android.game.ui.SchulteGridActivity
 import com.engineer.android.game.ui.SensorViewActivity
+import com.engineer.android.game.ui.TowerBuilderActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.activity.*
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
+import com.snatik.matches.MemoryGameActivity
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
@@ -137,7 +139,7 @@ class EntranceFragment : Fragment() {
 
         horizontal_list.setOnClickListener {
 
-//            startActivity(Intent(context, HorizontalListActivity::class.java))
+            //            startActivity(Intent(context, HorizontalListActivity::class.java))
 
             val bundle = transformationLayout.withView(transformationLayout, "myTransitionName")
             val intent = Intent(context, HorizontalListActivity::class.java)
@@ -171,6 +173,14 @@ class EntranceFragment : Fragment() {
 
         game_schulte.setOnClickListener {
             startActivity(Intent(context, SchulteGridActivity::class.java))
+        }
+
+        game_tower.setOnClickListener {
+            startActivity(Intent(context, TowerBuilderActivity::class.java))
+        }
+
+        game_memory.setOnClickListener {
+            startActivity(Intent(context, MemoryGameActivity::class.java))
         }
 
         shell.setOnClickListener { startActivity(Intent(context, RunShellActivity::class.java)) }

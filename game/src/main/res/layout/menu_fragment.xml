@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/start_game_button_lights"
+        android:layout_width="@dimen/start_game_button_lights"
+       	android:layout_height="@dimen/start_game_button_lights"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/button_start_lights"/>
+    
+    <ImageView
+        android:id="@+id/start_game_button"
+        android:layout_width="@dimen/start_game_button"
+        android:layout_height="@dimen/start_game_button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/start_game_button_margin"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/button_start" />
+
+    <ImageView
+        android:id="@+id/settings_game_button"
+        android:layout_width="@dimen/settings_game_button"
+        android:layout_height="@dimen/settings_game_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/settings_game_button_margin"
+        android:layout_toRightOf="@id/start_game_button"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/button_settings" />
+
+    <ImageView
+        android:id="@+id/google_play_button"
+        android:layout_width="@dimen/settings_game_button"
+        android:layout_height="@dimen/settings_game_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/settings_game_button_margin"
+        android:layout_toLeftOf="@id/start_game_button"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/button_google_play" />
+
+	<ImageView
+        android:id="@+id/title"
+        android:layout_width="@dimen/title_width"
+        android:layout_height="@dimen/title_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/title_margin_top"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/title" />
+	
+	<ImageView
+        android:id="@+id/tooltip"
+        android:layout_width="@dimen/tooltip_width"
+        android:layout_height="@dimen/tooltip_height"
+        android:layout_alignLeft="@id/google_play_button"
+        android:adjustViewBounds="true"
+        android:layout_marginLeft="@dimen/tooltip_margin_left"
+        android:scaleType="centerCrop"
+        android:src="@drawable/tooltip_play"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/tooltip_margin_bottom"/>
+</RelativeLayout>

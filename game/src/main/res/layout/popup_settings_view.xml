@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="left|top" 
+    android:paddingTop="@dimen/popup_settings_padding_top"
+    android:paddingLeft="@dimen/popup_settings_padding_left">
+
+    <LinearLayout
+        android:id="@+id/sound_off"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:orientation="horizontal" 
+        android:layout_marginLeft="5dp">
+
+        <ImageView
+            android:id="@+id/sound_image"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/popup_settings_sound_image_size"
+            android:layout_marginLeft="5dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/button_music_on" />
+
+        <TextView
+            android:id="@+id/sound_off_text"
+            android:layout_width="150dp"
+            android:layout_height="@dimen/popup_settings_sound_image_size"
+            android:layout_marginLeft="8dp"
+            android:gravity="left|center_vertical"
+            android:shadowColor="#2eaed9"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="4"
+            android:text="Sound ON"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/popup_settings_sound_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp" 
+        android:layout_marginLeft="5dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/popup_settings_sound_image_size"
+            android:layout_marginLeft="5dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/button_rate" />
+
+        <TextView
+            android:id="@+id/rate_text"
+            android:layout_width="150dp"
+            android:layout_height="@dimen/popup_settings_sound_image_size"
+            android:layout_marginLeft="8dp"
+            android:gravity="left|center_vertical"
+            android:shadowColor="#2eaed9"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="4"
+            android:text="Rate this"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/popup_settings_sound_text_size" />
+    </LinearLayout>
+
+</LinearLayout>

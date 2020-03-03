@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/button_back"
+        android:layout_width="@dimen/popup_button_back"
+        android:layout_height="@dimen/popup_button_back"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="@dimen/popup_button_back_bottom"
+        android:layout_marginLeft="@dimen/popup_button_back_left"
+        android:src="@drawable/button_back" />
+
+    <ImageView
+        android:id="@+id/button_next"
+        android:layout_width="@dimen/popup_button_back"
+        android:layout_height="@dimen/popup_button_back"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/popup_button_back_bottom"
+        android:layout_marginRight="@dimen/popup_button_back_left"
+        android:src="@drawable/button_again" />
+
+    <ImageView
+        android:id="@+id/star_1"
+        android:layout_width="@dimen/popup_button_star_size"
+        android:layout_height="@dimen/popup_button_star_size"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/popup_button_star_margin_1"
+        android:layout_marginTop="@dimen/popup_button_star_margin_top"
+        android:src="@drawable/level_complete_star"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/star_2"
+        android:layout_width="@dimen/popup_button_star_size"
+        android:layout_height="@dimen/popup_button_star_size"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/popup_button_star_margin_2"
+        android:layout_marginTop="@dimen/popup_button_star_margin_top"
+        android:src="@drawable/level_complete_star"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/star_3"
+        android:layout_width="@dimen/popup_button_star_size"
+        android:layout_height="@dimen/popup_button_star_size"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/popup_button_star_margin_3"
+        android:layout_marginTop="@dimen/popup_button_star_margin_top"
+        android:src="@drawable/level_complete_star"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/time_bar_text"
+        android:layout_width="@dimen/popup_button_time_width"
+        android:layout_height="@dimen/popup_button_time_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/popup_button_time_margin_bottom"
+        android:layout_marginRight="@dimen/popup_button_time_margin_right"
+        android:gravity="center"
+        android:shadowColor="#2eaed9"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="4"
+        android:text="00:60"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/popup_button_time_size" />
+
+    <TextView
+        android:id="@+id/score_bar_text"
+        android:layout_width="@dimen/popup_button_time_width"
+        android:layout_height="@dimen/popup_button_time_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/popup_button_score_margin_bottom"
+        android:layout_marginRight="@dimen/popup_button_time_margin_right"
+        android:gravity="center"
+        android:shadowColor="#2eaed9"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="4"
+        android:text="240"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/popup_button_time_size" />
+
+</RelativeLayout>
