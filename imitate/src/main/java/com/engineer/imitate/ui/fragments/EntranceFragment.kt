@@ -14,22 +14,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
-import com.engineer.android.game.ui.Game2048Activity
-import com.engineer.android.game.ui.SchulteGridActivity
-import com.engineer.android.game.ui.SensorViewActivity
-import com.engineer.android.game.ui.TowerBuilderActivity
+import com.engineer.android.game.ui.GameRootActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.activity.*
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
-import com.snatik.matches.MemoryGameActivity
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
@@ -164,23 +159,7 @@ class EntranceFragment : Fragment() {
         }
 
         game.setOnClickListener {
-            startActivity(Intent(context, SensorViewActivity::class.java))
-        }
-
-        game_2048.setOnClickListener {
-            startActivity(Intent(context, Game2048Activity::class.java))
-        }
-
-        game_schulte.setOnClickListener {
-            startActivity(Intent(context, SchulteGridActivity::class.java))
-        }
-
-        game_tower.setOnClickListener {
-            startActivity(Intent(context, TowerBuilderActivity::class.java))
-        }
-
-        game_memory.setOnClickListener {
-            startActivity(Intent(context, MemoryGameActivity::class.java))
+            startActivity(Intent(context, GameRootActivity::class.java))
         }
 
         shell.setOnClickListener { startActivity(Intent(context, RunShellActivity::class.java)) }

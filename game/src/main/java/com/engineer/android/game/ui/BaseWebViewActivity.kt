@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
  * @since 03-03-2020
  */
 abstract class BaseWebViewActivity : AppCompatActivity() {
-
+    lateinit var webView: WebView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -19,7 +19,7 @@ abstract class BaseWebViewActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        val webView = WebView(this)
+        webView = WebView(this)
         addContentView(
             webView,
             ViewGroup.LayoutParams(
