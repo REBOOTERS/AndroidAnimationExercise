@@ -7,7 +7,7 @@ import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 
 /**
- * @author zhuyongging @ Zhihu Inc.
+ * @author Rookie
  * @since 03-03-2020
  */
 abstract class BaseWebViewActivity : AppCompatActivity() {
