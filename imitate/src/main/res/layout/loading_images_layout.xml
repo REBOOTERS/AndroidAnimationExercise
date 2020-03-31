@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|top">
+
+    <ImageView
+        android:id="@+id/first_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:background="#FFFFFF"
+        android:contentDescription="@null"
+        android:scaleType="matrix" />
+
+    <LinearLayout
+        android:id="@+id/separator_layout"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/second_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:contentDescription="@null"
+            android:scaleType="matrix" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@id/separator_layout"
+        android:layout_alignBottom="@id/separator_layout"
+        android:layout_toEndOf="@id/separator_layout"
+        android:layout_toRightOf="@id/separator_layout"
+        android:background="#999999" />
+
+</RelativeLayout>
