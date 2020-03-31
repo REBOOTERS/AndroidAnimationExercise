@@ -3,6 +3,7 @@ package com.engineer.imitate.util
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.Intent
 import android.widget.Toast
 
 /**
@@ -42,4 +43,10 @@ fun Context.getActivity(): Activity? {
     }
     return null
 }
+
+inline fun <reified T:Activity> Context.startActivity() {
+    val intent = Intent(this, T::class.java)
+    startActivity(intent)
+}
+
 

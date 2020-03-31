@@ -13,6 +13,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
 import com.tencent.mmkv.MMKV;
 
+import home.smart.fly.animations.internal.annotations.Path;
 import hugo.weaving.DebugLog;
 
 /**
@@ -50,6 +51,7 @@ public class MyApplication extends Application {
         Debug.stopMethodTracing();
     }
 
+    @Path(value = "", level = 1100)
     protected void logLifeCycleCallBacks() {
     }
 }

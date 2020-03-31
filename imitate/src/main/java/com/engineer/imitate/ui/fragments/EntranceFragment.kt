@@ -24,6 +24,7 @@ import com.engineer.android.game.ui.GameRootActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.activity.*
 import com.engineer.imitate.util.Glide4Engine
+import com.engineer.imitate.util.startActivity
 import com.engineer.imitate.util.toastShort
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.zhihu.matisse.Matisse
@@ -116,7 +117,7 @@ class EntranceFragment : Fragment() {
 
 
         final_one.setOnClickListener {
-            startActivity(Intent(context, FinalActivity::class.java))
+            context?.startActivity<FinalActivity>()
         }
 
 
@@ -143,7 +144,7 @@ class EntranceFragment : Fragment() {
         }
 
         expandable_listview.setOnClickListener {
-            startActivity(Intent(context, MyExpandableListViewActivity::class.java))
+            context?.startActivity<MyExpandableListViewActivity>()
         }
 
         date_and_time_picker.setOnClickListener {
