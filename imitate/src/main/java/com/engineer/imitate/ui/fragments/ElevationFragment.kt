@@ -1,6 +1,7 @@
 package com.engineer.imitate.ui.fragments
 
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -41,7 +42,10 @@ class ElevationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        val anim = ObjectAnimator.ofFloat(fab,"rotation", 180f)
+        anim.repeatMode = ObjectAnimator.REVERSE
+        anim.repeatCount = ObjectAnimator.INFINITE
+        anim.start()
         // start transformation when touching the fab.
         fab.setOnClickListener {
             transformationLayout.startTransform(parent)
