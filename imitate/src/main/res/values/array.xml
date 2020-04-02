@@ -7,4 +7,12 @@
         <item>@drawable/img_car4</item>
         <item>@drawable/img_car5</item>
     </integer-array>
+
+    <integer-array name="beauty">
+        <item>@drawable/beauty_1</item>
+        <item>@drawable/beauty_2</item>
+        <item>@drawable/beauty_3</item>
+        <item>@drawable/beauty_4</item>
+        <item>@drawable/beauty_5</item>
+    </integer-array>
 </resources>

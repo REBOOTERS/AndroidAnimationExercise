@@ -157,7 +157,15 @@ public class LoadingImagesView extends LinearLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (animator != null)
-            animator.cancel();
+            animator.pause();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (animator != null) {
+            animator.resume();
+        }
     }
 
     public void setDividerInterpolator(TimeInterpolator interpolator) {

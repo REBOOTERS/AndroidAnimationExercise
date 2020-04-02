@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".ui.fragments.subs.AnimationTextFragment">
+
+    <com.engineer.imitate.ui.widget.custom.LoadingImagesView
+        android:id="@+id/anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:dividerColor="@color/cpb_green"
+        app:imagesArray="@array/beauty" />
 
     <com.engineer.imitate.ui.widget.AnimatedCountTextView
         android:id="@+id/countTextView"
@@ -18,13 +28,6 @@
         android:textSize="30sp"
         app:duration="4000"
         app:endWith="100"
-        app:layout_constraintBottom_toTopOf="@+id/playButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13"
-        app:layout_constraintVertical_chainStyle="packed"
         app:numberType="integer"
         app:startWith="0"
         app:suffix="%" />
@@ -33,20 +36,7 @@
         android:id="@+id/playButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countTextView" />
+        android:text="Play" />
 
-    <com.engineer.imitate.ui.widget.custom.LoadingImagesView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:imagesArray="@array/imgs"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/playButton" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
