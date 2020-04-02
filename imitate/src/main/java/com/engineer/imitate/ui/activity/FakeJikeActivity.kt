@@ -67,6 +67,6 @@ class FakeJikeActivity : AppCompatActivity() {
         println("runtime processor = ${runtime.availableProcessors()}")
 
 //        throw NullPointerException()
-        throw IncompatibleClassChangeError()
+//        throw IncompatibleClassChangeError()
     }
 }
