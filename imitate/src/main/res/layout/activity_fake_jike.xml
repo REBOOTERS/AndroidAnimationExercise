@@ -8,6 +8,32 @@
     android:orientation="vertical"
     tools:context=".ui.activity.FakeJikeActivity">
 
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:background="@drawable/blue_round_no_padding_card"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textColor="@color/white"
+            android:text="@string/app_name"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:padding="3dp"
+            android:id="@+id/add"
+            android:src="@drawable/ic_add_white_24dp"
+            android:layout_width="13dp"
+            android:layout_height="13dp"/>
+
+    </LinearLayout>
+
     <LinearLayout
         android:gravity="center"
         android:layout_width="50dp"
@@ -44,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <com.engineer.imitate.ui.widget.view.AnimationBorder
             android:id="@+id/animation_border"
@@ -68,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="visible">
 
 
         <Button
