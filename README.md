@@ -77,6 +77,16 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 在组件化的过程中，使用 [ARouter](https://github.com/alibaba/ARouter) 非常方便。完全解决了页面跳转的问题。
 
+### Android 构建流程 Gradle 的学习和 Gradle 插件自定义
+
+在 buildSrc 内包含一些关于 gradle 构建流程的自定义内容，包括
+
+- 实现生成 apk 根据 flavor 改名。
+- 对构建流程中执行的 task 按执行时长打印，发现编译耗时的 task
+- 在构建流程中对特定注解的方法或类进行耗时检测。
+- 对代码中点击事件的插桩埋点
+- 通过配置对三方库中的代码进行特定的插桩，实现特定的功能。
+
 
 以下是部分内容截屏动画
 
@@ -87,6 +97,7 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 ## galaxy 效果 && gif 反转
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/galaxy.gif"/><img width=287 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/revert_gif.gif"/>
+
 
 
 ## skeleton  && bitmap mesh 效果
@@ -107,6 +118,10 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 ## 仿知乎广告效果动画 && pure 3D animation view
 
 <img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/ad.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/3d_shape.gif"/>
+
+## AD Animation
+
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/ad_fullscreen.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/loading-image.gif"/>
 
 
 ## 动图理解scrollTo &  translate 区别
