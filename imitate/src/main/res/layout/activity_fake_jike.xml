@@ -8,60 +8,93 @@
     android:orientation="vertical"
     tools:context=".ui.activity.FakeJikeActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorAccent">
 
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:background="@drawable/blue_round_no_padding_card"
-        android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@id/text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+             />
 
 
         <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingBottom="12dp"
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/click"
             android:textColor="@color/white"
-            android:text="@string/app_name"
-            android:layout_margin="5dp"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+             />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/blue_round_no_padding_card"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/app_name"
+            android:textColor="@color/white" />
 
         <ImageView
-            android:padding="3dp"
             android:id="@+id/add"
-            android:src="@drawable/ic_add_white_24dp"
             android:layout_width="13dp"
-            android:layout_height="13dp"/>
+            android:layout_height="13dp"
+            android:padding="3dp"
+            android:src="@drawable/ic_add_white_24dp" />
 
     </LinearLayout>
 
     <RelativeLayout
-        android:gravity="center"
         android:layout_width="50dp"
         android:layout_height="15dp"
         android:layout_margin="10dp"
         android:background="@drawable/blue_round_no_padding_card"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_toStartOf="@id/host"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="111123311133555333"
-            android:maxLines="1"
-            android:ellipsize="end"
+            android:layout_centerVertical="true"
             android:layout_margin="3dp"
+            android:layout_toStartOf="@id/host"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="111123311133555333"
             android:textColor="@color/white"
             android:textSize="8sp" />
 
         <ImageView
             android:id="@+id/host"
-            android:layout_marginEnd="3dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_add_white_24dp"
             android:layout_width="8dp"
-            android:layout_height="6dp"/>
+            android:layout_height="6dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="3dp"
+            android:src="@drawable/ic_add_white_24dp" />
 
     </RelativeLayout>
 

@@ -30,6 +30,16 @@ class FakeJikeActivity : AppCompatActivity() {
             animation_border.startAnim()
         }
 
+        var fold  = true
+        text.setOnClickListener {
+            if (fold) {
+                text.text = getString(R.string.click_revert)
+            } else {
+                text.text = getString(R.string.click)
+            }
+            fold = !fold
+        }
+
         button.setOnClickListener {
             val color = ContextCompat.getColor(this, R.color.green)
             Log.e("color", "di    == ${R.color.green}")

@@ -144,4 +144,6 @@
     <string name="text_rotate">Rotate</string>
     <string name="run_as_root">Run as root</string>
     <string name="run">RUN</string>
+    <string name="click">click me</string>
+    <string name="click_revert">please click  me again and again, please click  me again and again,please click  me again and again </string>
 </resources>
