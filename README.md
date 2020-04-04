@@ -117,7 +117,7 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 ## 仿知乎广告效果动画 && pure 3D animation view
 
-<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/ad.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/ad_fulllscreen.gif"/>
+<img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/ad.gif"/><img width=300 src="https://raw.githubusercontent.com/REBOOTERS/Images/master/AndroidAnimationExercise/screen/ad_fullscreen.gif"/>
 
 ## AD Animation
 
