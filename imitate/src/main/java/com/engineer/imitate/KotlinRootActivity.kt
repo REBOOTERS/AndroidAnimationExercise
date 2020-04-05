@@ -68,6 +68,7 @@ class KotlinRootActivity : AppCompatActivity() {
 //        } else {
 //        }
         loadRecyclerView()
+//        loadWebView()
 
         gif.setOnClickListener {
 //            startActivity(Intent(this, ReverseGifActivity::class.java))
