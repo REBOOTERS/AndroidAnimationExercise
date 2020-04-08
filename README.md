@@ -10,7 +10,7 @@
 随着时间的推移，里面积累的很多代码，大致用5个Fragment 做了分类：
 
 
-[Apk 下载体验](https://fir.im/tm15)
+[Apk 下载体验](http://d.7short.com/tm15)
 
 
 扫一扫体验
