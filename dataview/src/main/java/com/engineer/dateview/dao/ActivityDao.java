@@ -13,7 +13,7 @@ import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-06-04
  */
 @Dao

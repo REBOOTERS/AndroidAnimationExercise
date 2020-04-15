@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-05-26
  * <p>
  * {[FocusLayoutManager]https://github.com/CCY0122/FocusLayoutManager}

@@ -13,7 +13,7 @@ import android.view.View;
 import home.smart.fly.animations.R;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-01-05
  */
 public class CustomCoordinatorLayout extends CoordinatorLayout {

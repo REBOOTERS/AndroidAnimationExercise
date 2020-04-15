@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".ui.fragments.LayoutManagerFragment">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/container_vertical"
@@ -62,10 +61,10 @@
 
     <com.engineer.imitate.ui.widget.custom.StackViewLayout
         android:id="@+id/stack_view_layout_2"
-        android:background="@color/cpb_green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:background="@color/cpb_green"
         android:layoutDirection="rtl">
 
         <de.hdodenhof.circleimageview.CircleImageView

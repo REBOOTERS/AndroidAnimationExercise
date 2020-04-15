@@ -7,7 +7,7 @@ import android.view.View;
 import com.google.android.material.tabs.TabLayout;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-01-21
  * <p>
  * TabLayout 的 onScrollChanged 被限制到 API 23 ,为了兼容，接口处理一下

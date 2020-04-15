@@ -10,7 +10,7 @@ import android.view.View;
 import java8.util.Optional;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-01-16
  */
 public class DragView extends View {

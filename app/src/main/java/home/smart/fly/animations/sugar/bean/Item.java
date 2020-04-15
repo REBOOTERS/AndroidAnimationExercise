@@ -1,7 +1,7 @@
 package home.smart.fly.animations.sugar.bean;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2018-12-27
  */
 public class Item {

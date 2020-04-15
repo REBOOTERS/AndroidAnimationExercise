@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 /**
  *
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-04-18
  */
 class OverLapDecoration(context: Context?) : RecyclerView.ItemDecoration() {

@@ -13,7 +13,7 @@ import home.smart.fly.animations.R;
 import home.smart.fly.animations.sugar.bean.Item;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2018-12-27
  */
 @Layout(R.layout.large_info_item)

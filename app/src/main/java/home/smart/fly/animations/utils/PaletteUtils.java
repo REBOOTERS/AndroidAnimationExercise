@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
 import java8.util.Optional;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-01-13
  */
 public class PaletteUtils {

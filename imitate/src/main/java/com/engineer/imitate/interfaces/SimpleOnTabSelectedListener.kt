@@ -4,7 +4,7 @@ import com.google.android.material.tabs.TabLayout
 
 /**
  *
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-01-05
  */
 interface SimpleOnTabSelectedListener: TabLayout.OnTabSelectedListener {

@@ -2,7 +2,7 @@ package com.engineer.imitate.ui.widget.split
 
 /**
  *
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-03-23
  */
 class Ball : Cloneable {

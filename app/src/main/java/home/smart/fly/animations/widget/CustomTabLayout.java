@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import home.smart.fly.animations.R;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-01-08
  */
 public class CustomTabLayout extends FrameLayout {

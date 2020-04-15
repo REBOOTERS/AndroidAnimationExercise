@@ -1,7 +1,7 @@
 package home.smart.fly.animations.utils;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-02-24
  */
 

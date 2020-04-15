@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
 import io.reactivex.annotations.NonNull;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-02-20
  */
 public class SuperTools {

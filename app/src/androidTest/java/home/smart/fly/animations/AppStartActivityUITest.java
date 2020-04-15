@@ -3,7 +3,7 @@ package home.smart.fly.animations;
 import android.app.Activity;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-05-09
  */
 public class AppStartActivityUITest {

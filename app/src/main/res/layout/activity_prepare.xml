@@ -16,6 +16,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+        <TextView
+            android:text="11111111111111111111111"
+            android:layout_margin="10dp"
+            android:id="@+id/color_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/more_text_view"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:background="@color/black"
+            android:text="@string/text_long_chinese"
+            android:layout_height="wrap_content"/>
+
         <RelativeLayout
                 android:layout_margin="18dp"
                 android:layout_width="match_parent"

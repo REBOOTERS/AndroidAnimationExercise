@@ -10,7 +10,7 @@ import com.engineer.dateview.dao.ActivityDao;
 import com.engineer.dateview.model.ActModel;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-06-04
  */
 @Database(entities = {ActModel.class}, version = 1,exportSchema = false)

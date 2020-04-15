@@ -9,7 +9,7 @@ import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-03-17
  */
 public class MySimpleTarget extends CustomViewTarget {

@@ -1,5 +1,6 @@
 package home.smart.fly.animations.ui.activity
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
@@ -10,6 +11,7 @@ import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import home.smart.fly.animations.R
+import home.smart.fly.animations.utils.MyMoreText
 import home.smart.fly.animations.widget.dp2px
 import kotlinx.android.synthetic.main.activity_prepare.*
 
@@ -17,12 +19,18 @@ import kotlinx.android.synthetic.main.activity_prepare.*
 const val TAG_1 = "PrepareActivity"
 
 class PrepareActivity : AppCompatActivity() {
-    private val url = "http://pic.vjshi.com/2018-04-11/78243894ece50c9b1ad6fa6c211a1bdb/00003.jpg?x-oss-process=style/watermark"
+    private val url =
+        "http://pic.vjshi.com/2018-04-11/78243894ece50c9b1ad6fa6c211a1bdb/00003.jpg?x-oss-process=style/watermark"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prepare)
         Glide.with(this).load(url).into(webImage)
+
+        color_text.setTextColor(Color.parseColor("#ff3366"))
+
+        MyMoreText.getInstance()
+            .getLastIndexForLimit(more_text_view, 1, getString(R.string.text_long_chinese))
 
         name.maxWidth = 0
         name1.maxWidth = 20
@@ -57,11 +65,11 @@ class PrepareActivity : AppCompatActivity() {
         }
 
         scroll_to.setOnClickListener {
-            nested_scrollview.scrollTo(0,600)
+            nested_scrollview.scrollTo(0, 600)
         }
 
         scroll_by.setOnClickListener {
-            nested_scrollview.scrollBy(0,300)
+            nested_scrollview.scrollBy(0, 300)
         }
 
     }

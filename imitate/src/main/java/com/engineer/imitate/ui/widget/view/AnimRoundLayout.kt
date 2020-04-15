@@ -6,7 +6,7 @@ import android.widget.FrameLayout
 
 /**
  *
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-01-28
  */
 class AnimRoundLayout : FrameLayout {

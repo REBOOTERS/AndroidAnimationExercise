@@ -10,7 +10,7 @@ import home.smart.fly.animations.R
 
 /**
  *
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-04-14
  */
 

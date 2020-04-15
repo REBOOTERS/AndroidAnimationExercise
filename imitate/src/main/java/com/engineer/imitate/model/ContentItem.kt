@@ -2,7 +2,7 @@ package com.engineer.imitate.model
 
 /**
  *
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-03-01
  */
 

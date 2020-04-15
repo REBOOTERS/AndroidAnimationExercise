@@ -13,7 +13,7 @@ import android.view.View;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-03-21
  */
 public class ViewUtils {

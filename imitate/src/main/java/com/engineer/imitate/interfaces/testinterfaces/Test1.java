@@ -3,7 +3,7 @@ package com.engineer.imitate.interfaces.testinterfaces;
 import com.engineer.imitate.interfaces.testinterfaces.SimpleJavaInterface;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-05-30
  */
 public class Test1 {

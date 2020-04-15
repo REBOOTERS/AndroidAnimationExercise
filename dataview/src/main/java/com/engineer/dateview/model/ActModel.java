@@ -11,7 +11,7 @@ import com.bin.david.form.annotation.SmartColumn;
 import com.bin.david.form.annotation.SmartTable;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-06-04
  */
 @Entity(tableName = "activity_table")

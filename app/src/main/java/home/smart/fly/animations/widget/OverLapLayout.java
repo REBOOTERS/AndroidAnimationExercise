@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-03-07
  */
 public class OverLapLayout extends LinearLayout {

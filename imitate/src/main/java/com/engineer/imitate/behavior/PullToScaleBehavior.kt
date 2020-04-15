@@ -12,7 +12,7 @@ import com.engineer.imitate.behavior.internel.DisInterceptNestedScrollView
 
 /**
  *
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-01-15
  */
 class PullToScaleBehavior : AppBarLayout.Behavior {

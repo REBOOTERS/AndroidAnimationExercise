@@ -5,7 +5,7 @@ import com.engineer.imitate.interfaces.testinterfaces.SimpleJavaInterface
 import com.engineer.imitate.interfaces.testinterfaces.SimpleJavaInterface1
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-05-30
  */
 class Test {

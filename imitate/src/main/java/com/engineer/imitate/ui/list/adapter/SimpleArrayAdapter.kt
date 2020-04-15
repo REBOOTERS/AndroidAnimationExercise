@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 /**
  *
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-04-21
  */
 class SimpleArrayAdapter : RecyclerView.Adapter<SimpleArrayAdapter.MyHolder>() {

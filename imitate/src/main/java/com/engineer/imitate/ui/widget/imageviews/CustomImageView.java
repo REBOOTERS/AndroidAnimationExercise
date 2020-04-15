@@ -6,7 +6,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 /**
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-03-17
  */
 public class CustomImageView extends AppCompatImageView {

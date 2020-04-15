@@ -7,7 +7,7 @@ import android.view.MotionEvent
 
 /**
  *
- * @author: zhuyongging
+ * @authro: Rookie
  * @since: 2019-01-15
  */
 class DisInterceptNestedScrollView : NestedScrollView {

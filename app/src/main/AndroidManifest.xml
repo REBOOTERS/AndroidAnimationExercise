@@ -50,7 +50,7 @@
             android:name=".ui.activity.AllActivity"
             android:label="@string/title_activity_all"
             android:theme="@style/MyTheme.NoActionBar" />
-        <activity android:name=".ui.activity.PrepareActivity" />
+        <activity android:name=".ui.activity.PrepareActivity" android:exported="true" />
         <activity
             android:name=".AppStartActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
