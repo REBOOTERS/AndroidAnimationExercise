@@ -22,6 +22,10 @@ class FakeJikeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fake_jike)
 
+        heart.setOnClickListener {
+            flutter_layout.addHeart()
+        }
+
         add.setOnClickListener {
             toastShort("got it")
         }

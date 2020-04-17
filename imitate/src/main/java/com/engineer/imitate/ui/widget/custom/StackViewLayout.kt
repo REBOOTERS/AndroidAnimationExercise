@@ -27,6 +27,16 @@ class StackViewLayout : LinearLayout {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         Log.e(TAG,"width==${MeasureSpec.getSize(widthMeasureSpec)}")
+        if (childCount == 0) {
+            return
+        }
+        val child = getChildAt(0)
+        val childW = child.measuredWidth
+        val childH = child.measuredHeight
+        val width = childW * childCount - childW / 4 * (childCount - 1)
+        val s = MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST)
+        val t = MeasureSpec.makeMeasureSpec(childH, MeasureSpec.EXACTLY)
+        setMeasuredDimension(s, t)
     }
 
 

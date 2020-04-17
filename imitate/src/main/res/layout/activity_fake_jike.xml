@@ -9,6 +9,104 @@
     tools:context=".ui.activity.FakeJikeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/heart"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="#63656B">
+
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="100dp"
+            android:contentDescription="@null"
+            android:src="@drawable/maomao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.widget.Space
+            android:id="@+id/space"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/holo_blue_bright"
+            app:layout_constraintBottom_toBottomOf="@+id/iv"
+            app:layout_constraintEnd_toEndOf="@+id/iv" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/red_round_card"
+            android:gravity="center"
+            android:text="Hello World!"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toEndOf="@+id/space"
+            app:layout_constraintTop_toBottomOf="@+id/space" />
+
+
+        <com.engineer.imitate.ui.widget.FlutteringLayout
+            android:id="@+id/flutter_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp" />
+
+
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/blue_round_no_padding_card"
+            android:paddingStart="6dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="4dp"
+            android:text="测试测试"
+            android:textColor="@color/white"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.widget.Space
+            android:id="@+id/space_1"
+            android:layout_width="0dp"
+            android:layout_marginStart="6dp"
+            app:layout_constraintStart_toStartOf="@id/count"
+            app:layout_constraintTop_toTopOf="@id/count"
+            android:layout_height="0dp"/>
+
+        <com.engineer.imitate.ui.widget.custom.StackViewLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layoutDirection="rtl"
+            app:layout_constraintEnd_toEndOf="@id/space_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/maomao" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/maomao" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/maomao" />
+
+        </com.engineer.imitate.ui.widget.custom.StackViewLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@color/colorAccent">
@@ -19,24 +117,22 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@id/text"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-             />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <TextView
-            app:layout_constraintTop_toTopOf="parent"
-            android:paddingBottom="12dp"
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:paddingBottom="12dp"
             android:text="@string/click"
             android:textColor="@color/white"
             android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-             />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
