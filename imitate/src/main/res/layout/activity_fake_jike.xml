@@ -38,13 +38,24 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/red_round_card"
             android:gravity="center"
             android:text="Hello World!"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toEndOf="@+id/space"
             app:layout_constraintTop_toBottomOf="@+id/space" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_round_card"
+            android:text="11111111"
+            android:textColor="@color/white"
+            android:translationX="20dp"
+            android:translationY="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv"
+            app:layout_constraintEnd_toStartOf="@id/iv" />
 
 
         <com.engineer.imitate.ui.widget.FlutteringLayout
@@ -73,10 +84,10 @@
         <android.widget.Space
             android:id="@+id/space_1"
             android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="6dp"
             app:layout_constraintStart_toStartOf="@id/count"
-            app:layout_constraintTop_toTopOf="@id/count"
-            android:layout_height="0dp"/>
+            app:layout_constraintTop_toTopOf="@id/count" />
 
         <com.engineer.imitate.ui.widget.custom.StackViewLayout
             android:layout_width="wrap_content"
