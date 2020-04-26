@@ -12,15 +12,23 @@
         android:icon="@mipmap/kotlin"
         android:label="@string/app_name"
         android:theme="@style/MyAppTheme"
+        android:windowSoftInputMode="adjustResize|stateHidden"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.HorizontalListActivity" android:exported="true"/>
+        <activity
+            android:theme="@style/MyAppTheme.NoActionBar.FullScreen"
+            android:name=".ui.activity.ConstraintLayoutActivity" android:exported="true"/>
+        <activity
+            android:name=".ui.activity.HorizontalListActivity"
+            android:exported="true" />
         <activity android:name=".ui.activity.ViewPager2Activity" />
         <activity
             android:name=".ui.activity.ScreenRecorderActivity"
             android:exported="true"
             android:label="@string/title_activity_screen_recoder"
             android:theme="@style/MyAppTheme.NoActionBar" />
-        <activity android:name=".ui.activity.DateAndTimePickerActivity" android:exported="true" />
+        <activity
+            android:name=".ui.activity.DateAndTimePickerActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.activity.MyExpandableListViewActivity"
             android:theme="@style/MyAppTheme" />
@@ -46,11 +54,11 @@
             android:theme="@style/MyAppTheme" />
         <activity android:name=".ui.activity.ReverseGifActivity" />
         <activity android:name=".ui.activity.RunShellActivity" />
-        <activity android:name=".ui.activity.StarShowActivity"/>
+        <activity android:name=".ui.activity.StarShowActivity" />
 
         <receiver android:name=".receivers.AlarmReceiver">
             <intent-filter>
-                <action android:name="alarm_log"/>
+                <action android:name="alarm_log" />
             </intent-filter>
         </receiver>
     </application>

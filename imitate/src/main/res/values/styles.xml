@@ -24,6 +24,14 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="MyAppTheme.NoActionBar.FullScreen">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--状态栏透明-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="MyAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar"/>
 
     <style name="MyAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight"/>
