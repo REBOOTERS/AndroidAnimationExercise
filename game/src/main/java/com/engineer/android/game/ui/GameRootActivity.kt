@@ -37,6 +37,7 @@ class Hybrid(private var context: Context) {
             "towerBuild" -> intent = Intent(context,TowerBuilderActivity::class.java)
             "sensor" -> intent = Intent(context,SensorViewActivity::class.java)
             "memory" -> intent = Intent(context,MemoryGameActivity::class.java)
+            "square" -> intent = Intent(context,SquareActivity::class.java)
         }
         context.startActivity(intent)
     }
