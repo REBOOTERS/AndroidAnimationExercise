@@ -2,9 +2,13 @@ package com.engineer.imitate.ui.fragments
 
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -23,14 +27,17 @@ import kotlinx.android.synthetic.main.fragment_recycler_view.*
 @Route(path = "/anim/recycler_view")
 class RecyclerViewFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_recycler_view, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val adapter = SimpleImageAdapter(getList())
         recyclerView.addItemDecoration(OverLapDecoration(context))
         recyclerView.adapter = adapter
@@ -38,16 +45,27 @@ class RecyclerViewFragment : Fragment() {
         val _context = context ?: return
 
         val focusLayoutManager = FocusLayoutManager.Builder()
-                .layerPadding(_context.dp2px(14f))
-                .normalViewGap(_context.dp2px(14f))
-                .focusOrientation(FocusLayoutManager.FOCUS_LEFT)
-                .isAutoSelect(true)
-                .maxLayerCount(3)
-                .setOnFocusChangeListener { focusdPosition, lastFocusdPosition -> }
-                .build()
+            .layerPadding(_context.dp2px(14f))
+            .normalViewGap(_context.dp2px(14f))
+            .focusOrientation(FocusLayoutManager.FOCUS_LEFT)
+            .isAutoSelect(true)
+            .maxLayerCount(3)
+            .setOnFocusChangeListener { focusdPosition, lastFocusdPosition -> }
+            .build()
 
         recyclerView_1.layoutManager = focusLayoutManager
         recyclerView_1.adapter = LargeImageAdapter(getList())
+
+        recyclerView_2.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView_2.adapter = LargeImageAdapter(getList())
+        head_home_layout.setOnStartActivity {
+            Toast.makeText(context, "bingo", Toast.LENGTH_SHORT).show()
+            drawer_layout.openDrawer(GravityCompat.END)
+        }
+        btn_close_right.setOnClickListener {
+            drawer_layout.closeDrawer(GravityCompat.END)
+        }
 
 
         for (i in 1..5) {
@@ -63,6 +81,7 @@ class RecyclerViewFragment : Fragment() {
 
         stack_view_layout_1.layoutDirection = View.LAYOUT_DIRECTION_LTR
         stack_view_layout_2.layoutDirection = View.LAYOUT_DIRECTION_RTL
+
 
     }
 

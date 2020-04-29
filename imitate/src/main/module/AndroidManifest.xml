@@ -15,7 +15,7 @@
         android:windowSoftInputMode="adjustResize|stateHidden"
         android:usesCleartextTraffic="true">
         <activity
-            android:theme="@style/MyAppTheme.NoActionBar.FullScreen"
+            android:theme="@style/MyAppTheme.NoActionBar"
             android:name=".ui.activity.ConstraintLayoutActivity" android:exported="true"/>
         <activity
             android:name=".ui.activity.HorizontalListActivity"
