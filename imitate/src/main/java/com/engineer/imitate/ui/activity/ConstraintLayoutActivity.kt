@@ -10,7 +10,7 @@ import com.engineer.imitate.R
 import kotlinx.android.synthetic.main.activity_constraint_layout.*
 
 class ConstraintLayoutActivity : AppCompatActivity() {
-    val tag = "ConstraintLayoutActivity"
+    val tag = "ConstraintLayout"
 
     private lateinit var layoutParams: FrameLayout.LayoutParams
     private val globalLayoutListener = object : ViewTreeObserver.OnGlobalLayoutListener {
