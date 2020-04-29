@@ -17,6 +17,7 @@ import com.engineer.imitate.ui.list.adapter.LargeImageAdapter
 import com.engineer.imitate.ui.list.adapter.SimpleImageAdapter
 import com.engineer.imitate.ui.list.decoration.OverLapDecoration
 import com.engineer.imitate.ui.list.layoutmanager.FocusLayoutManager
+import com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
 import com.engineer.imitate.util.dp2px
 import kotlinx.android.synthetic.main.fragment_layout_manager.*
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
@@ -53,16 +54,21 @@ class RecyclerViewFragment : Fragment() {
             .setOnFocusChangeListener { focusdPosition, lastFocusdPosition -> }
             .build()
 
+        val emojiStr = String(Character.toChars(Integer.parseInt("1F5F3", 16)))
+        emoji.setText("emoji $emojiStr")
+        Toast.makeText(context, "value is ${text2.text}", Toast.LENGTH_SHORT).show()
+
         recyclerView_1.layoutManager = focusLayoutManager
         recyclerView_1.adapter = LargeImageAdapter(getList())
 
         recyclerView_2.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView_2.adapter = LargeImageAdapter(getList())
-        head_home_layout.setOnStartActivity {
-            Toast.makeText(context, "bingo", Toast.LENGTH_SHORT).show()
-            drawer_layout.openDrawer(GravityCompat.END)
-        }
+        head_home_layout.setOnStartActivity(object : DZStickyNavLayouts.OnStartActivityListener {
+            override fun onStart() {
+                drawer_layout.openDrawer(GravityCompat.END)
+            }
+        })
         btn_close_right.setOnClickListener {
             drawer_layout.closeDrawer(GravityCompat.END)
         }
