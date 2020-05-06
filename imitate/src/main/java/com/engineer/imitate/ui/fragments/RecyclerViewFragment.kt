@@ -37,6 +37,10 @@ class RecyclerViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        tv1.gravity = Gravity.CENTER
+        tv2.gravity = Gravity.START or Gravity.CENTER_VERTICAL
+
         recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val adapter = SimpleImageAdapter(getList())
