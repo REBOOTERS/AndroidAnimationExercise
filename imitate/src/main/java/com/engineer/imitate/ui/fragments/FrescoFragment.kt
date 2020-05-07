@@ -17,7 +17,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleObserver
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
@@ -27,6 +26,9 @@ import com.facebook.common.executors.CallerThreadExecutor
 import com.facebook.common.references.CloseableReference
 import com.facebook.datasource.DataSource
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.drawee.generic.GenericDraweeHierarchy
+import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder
+import com.facebook.drawee.generic.RoundingParams
 import com.facebook.imagepipeline.datasource.BaseBitmapDataSubscriber
 import com.facebook.imagepipeline.image.CloseableImage
 import com.facebook.imagepipeline.request.ImageRequestBuilder
@@ -47,8 +49,10 @@ class FrescoFragment : Fragment() {
 
     val c: CompositeDisposable = CompositeDisposable()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_fresco, container, false)
     }
@@ -56,8 +60,23 @@ class FrescoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        s1.setActualImageResource(R.drawable.totoro)
 
-        val url = "http://h.hiphotos.baidu.com/image/pic/item/960a304e251f95ca060674a0c7177f3e67095231.jpg"
+
+        //获取GenericDraweeHierarchy对象
+        //获取GenericDraweeHierarchy对象
+        val hierarchy: GenericDraweeHierarchy =
+            GenericDraweeHierarchyBuilder(resources).build()
+        val roundingParams = RoundingParams()
+        roundingParams.roundAsCircle = true
+        roundingParams.borderWidth = 10f
+        roundingParams.borderColor = Color.BLUE
+        hierarchy.roundingParams = roundingParams
+        s2.hierarchy = hierarchy
+        s2.setActualImageResource(R.drawable.totoro)
+
+        val url =
+            "http://h.hiphotos.baidu.com/image/pic/item/960a304e251f95ca060674a0c7177f3e67095231.jpg"
 
 
         val t = System.currentTimeMillis()
@@ -81,21 +100,24 @@ class FrescoFragment : Fragment() {
 
         val request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(url)).build()
         Fresco.getImagePipeline().fetchDecodedImage(request, url)
-                .subscribe(object : BaseBitmapDataSubscriber() {
-                    override fun onFailureImpl(dataSource: DataSource<CloseableReference<CloseableImage>>?) {
-                        Log.e("zyq", "fail " + dataSource.toString())
-                    }
+            .subscribe(object : BaseBitmapDataSubscriber() {
+                override fun onFailureImpl(dataSource: DataSource<CloseableReference<CloseableImage>>?) {
+                    Log.e("zyq", "fail " + dataSource.toString())
+                }
 
-                    override fun onNewResultImpl(bitmap: Bitmap?) {
-                        if (bitmap != null) {
-                            Log.e("zyq", "thread ==${Thread.currentThread() == Looper.getMainLooper().thread}")
-                            imageView1.post {
-                                imageView1.setImageBitmap(bitmap)
-                            }
+                override fun onNewResultImpl(bitmap: Bitmap?) {
+                    if (bitmap != null) {
+                        Log.e(
+                            "zyq",
+                            "thread ==${Thread.currentThread() == Looper.getMainLooper().thread}"
+                        )
+                        imageView1.post {
+                            imageView1.setImageBitmap(bitmap)
                         }
                     }
+                }
 
-                }, CallerThreadExecutor.getInstance())
+            }, CallerThreadExecutor.getInstance())
 
 
 
@@ -151,10 +173,11 @@ class FrescoFragment : Fragment() {
             Log.e("bitmapMagic", "colorArray==$colorArray")
             emitter.onNext(bitmap)
         }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ bitmap ->
-                    setupBitmap(bitmap)
-                }, { t -> t.printStackTrace() }))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ bitmap ->
+                setupBitmap(bitmap)
+            }, { t -> t.printStackTrace() })
+        )
 
     }
 
