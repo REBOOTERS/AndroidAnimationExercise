@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.RecyclerViewFragment">
 
-    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragments.RecyclerViewFragment">
@@ -20,22 +19,22 @@
 
 
             <TextView
-                android:textColor="@color/white"
                 android:id="@+id/tv1"
                 android:layout_width="200dp"
                 android:layout_height="34dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/round_card"
-                android:text="1111..." />
+                android:text="1111..."
+                android:textColor="@color/white" />
 
             <TextView
-                android:textColor="@color/white"
                 android:id="@+id/tv2"
                 android:layout_width="200dp"
                 android:layout_height="34dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/round_card"
-                android:text="1111..." />
+                android:text="1111..."
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -98,10 +97,22 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/red_round_card"
-                android:text="选择你支持的阵营 🗳️"
+                android:text="横向滑动️"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
+            <com.engineer.imitate.ui.widget.more.OverScrollLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/round_card"
+                    android:overScrollMode="never" />
+
+            </com.engineer.imitate.ui.widget.more.OverScrollLayout>
 
             <com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
                 android:id="@+id/head_home_layout"

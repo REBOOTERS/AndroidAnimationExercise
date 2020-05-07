@@ -1,6 +1,7 @@
 package com.engineer.imitate.ui.widget.more
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -80,7 +81,13 @@ class DZStickyNavLayouts(
         parent.requestDisallowInterceptTouchEvent(true)
         Log.d(TAG, "onNestedPreScroll() called scrollX = " + scrollX);
         // dx>0 往左滑动 dx<0往右滑动
-        //System.out.println("dx:" + dx + "=======getScrollX:" + getScrollX() + "==========canScrollHorizontally:" + !ViewCompat.canScrollHorizontally(target, -1));
+        Log.e(
+            TAG,
+            "dx:" + dx + "=======getScrollX:" + getScrollX() + "==========canScrollHorizontally:" + !ViewCompat.canScrollHorizontally(
+                target,
+                -1
+            )
+        );
         val hiddenLeft =
             dx > 0 && scrollX < maxWidth && !ViewCompat.canScrollHorizontally(
                 target,
@@ -88,14 +95,16 @@ class DZStickyNavLayouts(
             )
         val showLeft =
             dx < 0 && !ViewCompat.canScrollHorizontally(target, -1)
+
+
         val hiddenRight =
             dx < 0 && scrollX > maxWidth && !ViewCompat.canScrollHorizontally(
                 target,
                 1
             )
         val showRight =
-            dx > 0 && !ViewCompat.canScrollHorizontally(target, 1)
-        if (hiddenLeft || showLeft || hiddenRight || showRight) {
+            dx > 0 && !target.canScrollHorizontally(1)
+        if (hiddenLeft || hiddenRight || showRight) {
             scrollBy(dx / DRAG, 0)
             consumed[0] = dx
         }
@@ -262,8 +271,8 @@ class DZStickyNavLayouts(
         mHeaderView = View(context)
         mHeaderView.setBackgroundColor(-0x1)
         mFooterView = AnimatorView(context)
-        mFooterView.setBackgroundColor(-0x1)
-        maxWidth = dp2Px(context, 120f)
+        mFooterView.setBackgroundColor(Color.TRANSPARENT)
+        maxWidth = dp2Px(context, 100f)
         mParentHelper = NestedScrollingParentHelper(this)
     }
 }

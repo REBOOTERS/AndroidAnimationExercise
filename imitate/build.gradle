@@ -32,6 +32,9 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+
+        //只保留中文资源和 xxhdpi 分辨率图片
+        resConfigs "zh-rCN", "xxhdpi"
     }
 
     buildTypes {

@@ -2,12 +2,35 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root_content"
+    android:background="#cc1d1f24"
     tools:context=".ui.activity.ConstraintLayoutActivity">
 
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
+            android:id="@+id/head_home_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_card" />
+        </com.engineer.imitate.ui.widget.more.DZStickyNavLayouts>
+
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
+        android:visibility="gone"
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -41,7 +64,9 @@
     </androidx.core.widget.NestedScrollView>
 
 
+
     <View
+        android:visibility="gone"
         android:id="@+id/bottom_bar"
         android:layout_width="0dp"
         android:layout_height="50dp"

@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fitsSystemWindows="true">
 
     <LinearLayout
         android:id="@+id/animator_ll"
-        android:layout_width="30dp"
-        android:layout_height="100dp"
-        android:background="#009688"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentRight="true">
+        android:background="@color/dark_bg"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/animator_text"
             android:layout_width="15dp"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textColor="@color/white"
+            android:layout_marginEnd="6dp"
             android:gravity="center"
-            android:text="查看更多"/>
+            android:text="查看"
+            android:textColor="@color/white"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/arrowImage"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/dark_circle"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>
 

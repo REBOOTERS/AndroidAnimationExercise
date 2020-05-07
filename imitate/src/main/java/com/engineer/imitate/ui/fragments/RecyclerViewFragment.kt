@@ -68,6 +68,11 @@ class RecyclerViewFragment : Fragment() {
         recyclerView_2.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView_2.adapter = LargeImageAdapter(getList())
+
+        recyclerView_3.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView_3.adapter = LargeImageAdapter(getList())
+
         head_home_layout.setOnStartActivity(object : DZStickyNavLayouts.OnStartActivityListener {
             override fun onStart() {
                 drawer_layout.openDrawer(GravityCompat.END)
