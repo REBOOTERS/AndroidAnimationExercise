@@ -88,10 +88,7 @@ class RecyclerViewFragment : Fragment() {
             }
 
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-                slide_view.update(
-                    (1 - slideOffset) * 200,
-                    resources.displayMetrics.heightPixels / 2f
-                )
+                slide_view.update(1 - slideOffset)
             }
 
             override fun onDrawerClosed(drawerView: View) {

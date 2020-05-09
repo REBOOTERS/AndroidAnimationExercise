@@ -46,12 +46,9 @@ class SlideArrowView : View {
     private var deltaX = 0.0f
 
     private var waveHeight = 0.0f
-    private var waveWidth = 40
 
     private var screenWidth = 0
     private var screenHeight = 0
-
-    private var canvasPositionY = 0.0f
 
 
     private fun init(context: Context) {
@@ -64,7 +61,7 @@ class SlideArrowView : View {
         arrowPaint.isAntiAlias = true
         arrowPaint.style = Paint.Style.FILL_AND_STROKE
         arrowPaint.color = Color.WHITE
-        arrowPaint.strokeWidth = 12.0f
+        arrowPaint.strokeWidth = 10.0f
 
         alpha = 1.0f
 
@@ -72,11 +69,10 @@ class SlideArrowView : View {
         screenHeight = resources.displayMetrics.heightPixels
     }
 
-    fun update(deltaX: Float, deltaY: Float) {
+    fun update(deltaX: Float) {
         Log.e(TAG, "deltaX==$deltaX")
 
-        this.deltaX = deltaX
-        this.canvasPositionY = deltaY
+        this.deltaX = deltaX * 200
         invalidate()
     }
 
@@ -102,6 +98,11 @@ class SlideArrowView : View {
             0f,
             waveHeight * 18 / 32
         )
+        if (deltaX > 0) {
+            arrowPaint.strokeWidth = 10.0f
+        } else {
+            arrowPaint.strokeWidth = 20.0f
+        }
         canvas.drawPath(arrowPath, arrowPaint)
 
 //        alpha = deltaX / (screenWidth / 6)
