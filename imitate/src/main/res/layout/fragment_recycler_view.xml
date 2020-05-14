@@ -103,18 +103,14 @@
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
-            <com.engineer.imitate.ui.widget.more.OverScrollLayout
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_3"
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="150dp"
+                android:background="@drawable/round_card"
+                android:overScrollMode="never" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@drawable/round_card"
-                    android:overScrollMode="never" />
-
-            </com.engineer.imitate.ui.widget.more.OverScrollLayout>
 
             <com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
                 android:id="@+id/head_home_layout"
@@ -149,29 +145,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp" />
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/innerList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/cpb_blue"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="右边菜单"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btn_close_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:text="关闭" />
-        </LinearLayout>
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>

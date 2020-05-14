@@ -45,7 +45,7 @@ class DZStickyNavLayouts(
             mChildView = getChildAt(0) as RecyclerView
             val layoutParams = LayoutParams(
                 maxWidth,
-                LayoutParams.MATCH_PARENT
+                LayoutParams.WRAP_CONTENT
             )
             addView(mHeaderView, 0, layoutParams)
             addView(mFooterView, childCount, layoutParams)

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
+import com.engineer.imitate.ui.list.adapter.ImageAdapter
 import com.engineer.imitate.ui.list.adapter.LargeImageAdapter
 import com.engineer.imitate.ui.list.adapter.SimpleImageAdapter
 import com.engineer.imitate.ui.list.decoration.OverLapDecoration
@@ -77,28 +78,16 @@ class RecyclerViewFragment : Fragment() {
                 drawer_layout.openDrawer(GravityCompat.END)
             }
         })
-        btn_close_right.setOnClickListener {
-            drawer_layout.closeDrawer(GravityCompat.END)
-        }
+
+        innerList.layoutManager =
+            LinearLayoutManager(context)
+        innerList.adapter = ImageAdapter(getList())
 
 
-        drawer_layout.addDrawerListener(object : DrawerLayout.DrawerListener {
-            override fun onDrawerStateChanged(newState: Int) {
-
-            }
-
+        drawer_layout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 slide_view.update(1 - slideOffset)
             }
-
-            override fun onDrawerClosed(drawerView: View) {
-
-            }
-
-            override fun onDrawerOpened(drawerView: View) {
-
-            }
-
         })
 
         for (i in 1..5) {

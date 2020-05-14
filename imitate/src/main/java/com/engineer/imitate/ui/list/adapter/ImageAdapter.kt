@@ -14,8 +14,8 @@ import com.engineer.imitate.Routes
 import com.engineer.imitate.util.dp2px
 
 
-class LargeImageAdapter(private var datas: List<String>) :
-    RecyclerView.Adapter<LargeImageAdapter.MyHolder>() {
+class ImageAdapter(private var datas: List<String>) :
+    RecyclerView.Adapter<ImageAdapter.MyHolder>() {
 
     private lateinit var mContext: Context
     private var option: RequestOptions = RequestOptions.circleCropTransform()
@@ -27,7 +27,7 @@ class LargeImageAdapter(private var datas: List<String>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         mContext = parent.context
         val view = LayoutInflater.from(mContext)
-            .inflate(R.layout.large_image_item, parent, false)
+            .inflate(R.layout.h_image_item, parent, false)
 
         return MyHolder(view)
     }
@@ -37,17 +37,17 @@ class LargeImageAdapter(private var datas: List<String>) :
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-
+//        Glide.with(mContext).load(datas[position])
+//                .apply(option)
+//                .into(holder.imageView)
         val index = position % Routes.IMAGES.size
         val res = Routes.IMAGES[index]
 
         Glide.with(mContext).load(res).into(holder.imageView)
-        holder.tv.text = "$position"
     }
 
 
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView = itemView.findViewById(com.engineer.imitate.R.id.image)
-        var tv: TextView = itemView.findViewById(com.engineer.imitate.R.id.item_tv)
     }
 }
