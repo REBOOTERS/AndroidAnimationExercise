@@ -82,11 +82,21 @@ class RecyclerViewFragment : Fragment() {
         innerList.layoutManager =
             LinearLayoutManager(context)
         innerList.adapter = ImageAdapter(getList())
-
+        webView.settings?.apply {
+            domStorageEnabled = true
+            javaScriptEnabled = true
+        }
+        webView.loadUrl("https://ddadaal.me/")
 
         drawer_layout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                Log.e("tag", "offset == $slideOffset")
                 slide_view.update(1 - slideOffset)
+                if (slideOffset < 0.1) {
+                    webView.visibility = View.INVISIBLE
+                } else {
+                    webView.visibility = View.VISIBLE
+                }
             }
         })
 

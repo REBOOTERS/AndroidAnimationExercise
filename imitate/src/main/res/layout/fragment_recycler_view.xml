@@ -136,7 +136,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:background="@color/cpb_green"
+        android:background="@color/black"
         android:orientation="horizontal">
 
         <com.engineer.imitate.ui.widget.custom.SlideArrowView
@@ -145,10 +145,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/innerList"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:visibility="visible" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/innerList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
