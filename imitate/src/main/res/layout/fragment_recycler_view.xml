@@ -104,14 +104,6 @@
                 android:textStyle="bold" />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_3"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/round_card"
-                android:overScrollMode="never" />
-
-
             <com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
                 android:id="@+id/head_home_layout"
                 android:layout_width="match_parent"
@@ -145,26 +137,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp" />
 
-        <LinearLayout
+
+        <WebView
+            android:id="@+id/webView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <WebView
-                android:id="@+id/webView"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:visibility="visible" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/innerList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+            android:visibility="visible" />
 
         </LinearLayout>
 
-
-    </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

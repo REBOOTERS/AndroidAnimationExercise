@@ -67,11 +67,7 @@ class RecyclerViewFragment : Fragment() {
 
         recyclerView_2.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView_2.adapter = LargeImageAdapter(getList())
-
-        recyclerView_3.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView_3.adapter = LargeImageAdapter(getList())
+        recyclerView_2.adapter = LargeImageAdapter(getList().subList(0,3))
 
         head_home_layout.setOnStartActivity(object : DZStickyNavLayouts.OnStartActivityListener {
             override fun onStart() {
@@ -79,10 +75,6 @@ class RecyclerViewFragment : Fragment() {
             }
         })
 
-        innerList.layoutManager =
-            LinearLayoutManager(context)
-        innerList.adapter = ImageAdapter(getList())
-        innerList.visibility = View.GONE
         webView.settings?.apply {
             domStorageEnabled = true
             javaScriptEnabled = true
@@ -91,7 +83,6 @@ class RecyclerViewFragment : Fragment() {
 
         drawer_layout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-                Log.e("tag", "offset == $slideOffset")
                 slide_view.update(1 - slideOffset)
                 if (slideOffset < 0.1) {
                     webView.visibility = View.INVISIBLE

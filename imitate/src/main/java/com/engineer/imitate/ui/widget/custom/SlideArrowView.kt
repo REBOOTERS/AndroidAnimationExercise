@@ -71,6 +71,12 @@ class SlideArrowView : View {
         screenHeight = resources.displayMetrics.heightPixels
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        val width = 20.dp
+        setMeasuredDimension(width,heightMeasureSpec)
+    }
+
     fun update(deltaX: Float) {
 
         this.deltaX = deltaX * 200
@@ -81,14 +87,14 @@ class SlideArrowView : View {
         super.onDraw(canvas)
 
         canvas.translate(0.0f, screenHeight / 2 - waveHeight / 2)
-
+        val base = 10f
         val delta = 12.dp * this.deltaX / (screenWidth / 6)
         arrowPath.reset()
-        arrowPath.moveTo(deltaX / 6, waveHeight * 14 / 32)
+        arrowPath.moveTo(base , waveHeight * 14 / 32)
         if (delta > 0) {
-            arrowPath.lineTo(deltaX / 6 + delta, waveHeight * 16f / 32)
+            arrowPath.lineTo(base  + delta, waveHeight * 16f / 32)
         }
-        arrowPath.lineTo(deltaX / 6, waveHeight * 18 / 32)
+        arrowPath.lineTo(base , waveHeight * 18 / 32)
         canvas.drawPath(arrowPath, arrowPaint)
     }
 }

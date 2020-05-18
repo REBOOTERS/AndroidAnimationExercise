@@ -1,5 +1,6 @@
 package com.engineer.imitate.ui.widget.more
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
@@ -13,6 +14,7 @@ import androidx.core.view.NestedScrollingParent
 import androidx.core.view.NestedScrollingParentHelper
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.engineer.imitate.util.dp
 
 class DZStickyNavLayouts(
     context: Context,
@@ -72,6 +74,7 @@ class DZStickyNavLayouts(
      * @param dy       垂直滑动距离
      * @param consumed 父类消耗掉的距离
      */
+    @SuppressLint("LogNotTimber")
     override fun onNestedPreScroll(
         target: View,
         dx: Int,
@@ -79,31 +82,21 @@ class DZStickyNavLayouts(
         consumed: IntArray
     ) {
         parent.requestDisallowInterceptTouchEvent(true)
-        Log.d(TAG, "onNestedPreScroll() called scrollX = " + scrollX);
+        Log.d(TAG, "onNestedPreScroll() called scrollX = $scrollX")
         // dx>0 往左滑动 dx<0往右滑动
-        Log.e(
-            TAG,
-            "dx:" + dx + "=======getScrollX:" + getScrollX() + "==========canScrollHorizontally:" + !ViewCompat.canScrollHorizontally(
-                target,
-                -1
-            )
-        );
+        Log.d(TAG, "dx=" + dx + ",getScrollX=" + scrollX +
+                ",canScrollHorizontally=" + !target.canScrollHorizontally(1))
         val hiddenLeft =
-            dx > 0 && scrollX < maxWidth && !ViewCompat.canScrollHorizontally(
-                target,
-                -1
-            )
+            dx > 0 && scrollX < maxWidth && !target.canScrollHorizontally(-1)
         val showLeft =
-            dx < 0 && !ViewCompat.canScrollHorizontally(target, -1)
-
-
+            dx < 0 && !target.canScrollHorizontally( -1)
         val hiddenRight =
-            dx < 0 && scrollX > maxWidth && !ViewCompat.canScrollHorizontally(
-                target,
-                1
-            )
+            dx < 0 && scrollX > maxWidth && !target.canScrollHorizontally(1)
         val showRight =
             dx > 0 && !target.canScrollHorizontally(1)
+
+        Log.d(TAG,"showRight = $showRight, hideRight = $hiddenRight")
+
         if (hiddenLeft || hiddenRight || showRight) {
             scrollBy(dx / DRAG, 0)
             consumed[0] = dx
@@ -113,18 +106,11 @@ class DZStickyNavLayouts(
         }
 
         // 限制错位问题
-        if (dx > 0 && scrollX > maxWidth && !ViewCompat.canScrollHorizontally(
-                target,
-                -1
-            )
-        ) {
+        if (dx > 0 && scrollX > maxWidth  && !target.canScrollHorizontally(-1)) {
             scrollTo(maxWidth, 0)
         }
-        if (dx < 0 && scrollX < maxWidth && !ViewCompat.canScrollHorizontally(
-                target,
-                1
-            )
-        ) {
+
+        if (dx < 0 && scrollX < maxWidth && !target.canScrollHorizontally(1)) {
             scrollTo(maxWidth, 0)
         }
     }
@@ -175,6 +161,7 @@ class DZStickyNavLayouts(
      * 回弹动画
      */
     private inner class ProgressAnimation : Animation() {
+
         override fun applyTransformation(
             interpolatedTime: Float,
             t: Transformation
@@ -272,7 +259,7 @@ class DZStickyNavLayouts(
         mHeaderView.setBackgroundColor(-0x1)
         mFooterView = AnimatorView(context)
         mFooterView.setBackgroundColor(Color.TRANSPARENT)
-        maxWidth = dp2Px(context, 120f)
+        maxWidth = 60.dp
         mParentHelper = NestedScrollingParentHelper(this)
     }
 }
