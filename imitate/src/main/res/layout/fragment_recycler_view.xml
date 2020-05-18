@@ -141,7 +141,7 @@
 
         <com.engineer.imitate.ui.widget.custom.SlideArrowView
             android:id="@+id/slide_view"
-            android:layout_width="18dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp" />
 

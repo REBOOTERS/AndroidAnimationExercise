@@ -82,6 +82,7 @@ class RecyclerViewFragment : Fragment() {
         innerList.layoutManager =
             LinearLayoutManager(context)
         innerList.adapter = ImageAdapter(getList())
+        innerList.visibility = View.GONE
         webView.settings?.apply {
             domStorageEnabled = true
             javaScriptEnabled = true

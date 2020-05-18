@@ -272,7 +272,7 @@ class DZStickyNavLayouts(
         mHeaderView.setBackgroundColor(-0x1)
         mFooterView = AnimatorView(context)
         mFooterView.setBackgroundColor(Color.TRANSPARENT)
-        maxWidth = dp2Px(context, 100f)
+        maxWidth = dp2Px(context, 120f)
         mParentHelper = NestedScrollingParentHelper(this)
     }
 }

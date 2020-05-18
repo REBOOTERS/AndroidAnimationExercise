@@ -74,7 +74,7 @@ public class AnimatorView extends RelativeLayout {
         if (mMove > DZStickyNavLayouts.maxWidth / 4) {
             imageView.setVisibility(View.VISIBLE);
         } else {
-            imageView.setVisibility(View.GONE);
+            imageView.setVisibility(View.INVISIBLE);
         }
 
         if (mMove > DZStickyNavLayouts.maxWidth * 3 / 4) {

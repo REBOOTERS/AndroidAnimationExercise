@@ -1,5 +1,6 @@
 package com.engineer.imitate.util
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,3 +42,5 @@ fun View.visible(value: Boolean) {
         this.visibility = View.GONE
     }
 }
+
+val Number.dp get() = (toInt() * Resources.getSystem().displayMetrics.density).toInt()

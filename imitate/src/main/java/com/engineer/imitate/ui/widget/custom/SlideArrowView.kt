@@ -8,6 +8,7 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import com.engineer.imitate.util.dp
 import com.engineer.imitate.util.dp2px
 
 /**
@@ -59,8 +60,9 @@ class SlideArrowView : View {
 
         arrowPaint = Paint()
         arrowPaint.isAntiAlias = true
-        arrowPaint.style = Paint.Style.FILL_AND_STROKE
-        arrowPaint.color = Color.WHITE
+        arrowPaint.strokeCap = Paint.Cap.ROUND
+        arrowPaint.style = Paint.Style.STROKE
+        arrowPaint.color = Color.parseColor("#646464")
         arrowPaint.strokeWidth = 10.0f
 
         alpha = 1.0f
@@ -70,7 +72,6 @@ class SlideArrowView : View {
     }
 
     fun update(deltaX: Float) {
-        Log.e(TAG, "deltaX==$deltaX")
 
         this.deltaX = deltaX * 200
         invalidate()
@@ -81,30 +82,13 @@ class SlideArrowView : View {
 
         canvas.translate(0.0f, screenHeight / 2 - waveHeight / 2)
 
+        val delta = 12.dp * this.deltaX / (screenWidth / 6)
         arrowPath.reset()
-        arrowPath.moveTo(
-            0f,
-            waveHeight * 14 / 32
-        )
-        arrowPath.lineTo(
-            (context.dp2px(12.0f) * (deltaX / (screenWidth / 6))),
-            waveHeight * 16.1f / 32
-        )
-        arrowPath.moveTo(
-            (context.dp2px(12.0f) * (deltaX / (screenWidth / 6))),
-            waveHeight * 15.9f / 32
-        )
-        arrowPath.lineTo(
-            0f,
-            waveHeight * 18 / 32
-        )
-        if (deltaX > 0) {
-            arrowPaint.strokeWidth = 10.0f
-        } else {
-            arrowPaint.strokeWidth = 20.0f
+        arrowPath.moveTo(deltaX / 6, waveHeight * 14 / 32)
+        if (delta > 0) {
+            arrowPath.lineTo(deltaX / 6 + delta, waveHeight * 16f / 32)
         }
+        arrowPath.lineTo(deltaX / 6, waveHeight * 18 / 32)
         canvas.drawPath(arrowPath, arrowPaint)
-
-//        alpha = deltaX / (screenWidth / 6)
     }
 }

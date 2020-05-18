@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true">
@@ -11,7 +12,9 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:background="@color/dark_bg"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp">
 
         <TextView
             android:id="@+id/animator_text"
@@ -29,7 +32,8 @@
             android:layout_height="15dp"
             android:background="@drawable/dark_circle"
             android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-            android:visibility="gone" />
+            android:visibility="invisible"
+            tools:visibility="visible" />
     </LinearLayout>
 </RelativeLayout>
 
