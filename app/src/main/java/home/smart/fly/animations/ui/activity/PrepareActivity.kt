@@ -12,6 +12,9 @@ import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import home.smart.fly.animations.R
 import home.smart.fly.animations.utils.MyMoreText
+import home.smart.fly.animations.utils.dp
+import home.smart.fly.animations.utils.lg
+import home.smart.fly.animations.utils.screenWidth
 import home.smart.fly.animations.widget.dp2px
 import kotlinx.android.synthetic.main.activity_prepare.*
 
@@ -50,6 +53,7 @@ class PrepareActivity : AppCompatActivity() {
                 content1.text = result
                 content2.text = result
                 content2.invalidate()
+                content3.text = result
             }
 
         })
@@ -72,5 +76,11 @@ class PrepareActivity : AppCompatActivity() {
             nested_scrollview.scrollBy(0, 300)
         }
 
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        lg("content3 width is ${content3.measuredWidth}")
+        content3.maxWidth = screenWidth - (32 + 24 + 6).dp
     }
 }
