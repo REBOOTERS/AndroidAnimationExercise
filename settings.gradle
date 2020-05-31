@@ -1,1 +1,1 @@
-include ':app', ':imitate', ':buildSrc', ':skeleton', ':dataview', ':gif-revert', ':game'
+include ':app', ':imitate',  ':skeleton', ':dataview', ':gif-revert', ':game'

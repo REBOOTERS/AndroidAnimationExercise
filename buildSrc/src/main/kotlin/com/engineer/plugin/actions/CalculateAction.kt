@@ -49,7 +49,8 @@ class CalculateAction(project: Project) : BaseAction(project) {
             android.applicationVariants.all { variant ->
                 variant.packageApplicationProvider.configure {
                     val dir = it.outputDirectory
-                    val filePath = getApkFullPath(dir.absolutePath, variant.name)
+//                    val filePath = getApkFullPath(dir.absolutePath, variant.name)
+                    val filePath = ""
                     val file = File(filePath)
                     if (file.exists()) {
                         val info = String.format(

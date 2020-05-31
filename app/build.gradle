@@ -8,7 +8,7 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: "com.dorongold.task-tree"
 //apply plugin: 'android-aspectjx'
-apply plugin: 'jacoco-android'
+//apply plugin: 'jacoco-android'
 
 
 def ext = rootProject.ext
@@ -130,9 +130,9 @@ android {
     }
 }
 
-jacocoAndroidUnitTestReport {
-    excludes += ['**/home/smart/fly/animations/adapter/*.*']
-}
+//jacocoAndroidUnitTestReport {
+//    excludes += ['**/home/smart/fly/animations/adapter/*.*']
+//}
 
 
 configurations.all {

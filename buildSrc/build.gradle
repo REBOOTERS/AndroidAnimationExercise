@@ -9,7 +9,7 @@ dependencies {
 //    implementation localGroovy()
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     // 添加了这个，就可以看 Android Gradle 插件的源码了
-    implementation "com.android.tools.build:gradle:3.5.3"
+    implementation "com.android.tools.build:gradle:4.0.0"
 //    implementation "org.jetbrains.kotlin:kotlin-script-runtime:1.3.40"
 }
 
@@ -30,7 +30,7 @@ uploadArchives {
 }
 
 buildscript {
-    ext.kotlin_version = '1.3.61'
+    ext.kotlin_version = '1.3.72'
     repositories {
         mavenCentral()
     }
@@ -67,6 +67,6 @@ compileTestKotlin {
  *  kotlin 依赖 Groovy https://stackoverflow.com/questions/36214437/compile-groovy-and-kotlin
  */
 
-compileGroovy.dependsOn.remove('compileJava')
-compileKotlin.dependsOn compileGroovy
-compileKotlin.classpath += files(compileGroovy.destinationDir)
+//compileGroovy.dependsOn.remove('compileJava')
+//compileKotlin.dependsOn compileGroovy
+//compileKotlin.classpath += files(compileGroovy.destinationDir)

@@ -9,8 +9,8 @@ import com.engineer.plugin.transforms.FooTransform
 import com.engineer.plugin.transforms.cat.CatTransform
 import com.engineer.plugin.transforms.tiger.TigerTransform
 import com.engineer.plugin.transforms.track.TrackTransform
-import com.engineer.plugin.utils.GitTool
-import com.engineer.plugin.utils.JsonTool
+//import com.engineer.plugin.utils.GitTool
+//import com.engineer.plugin.utils.JsonTool
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -37,8 +37,8 @@ class PhoenixPlugin : Plugin<Project> {
             println("===================================PhoenixPlugin===============end==================")
             println()
 
-            JsonTool.test()
-            GitTool.getGitBranch(project)
+//            JsonTool.test()
+//            GitTool.getGitBranch(project)
         }
 
         registerTransform(project)
