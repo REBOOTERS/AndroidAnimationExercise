@@ -11,10 +11,7 @@ import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import home.smart.fly.animations.R
-import home.smart.fly.animations.utils.MyMoreText
-import home.smart.fly.animations.utils.dp
-import home.smart.fly.animations.utils.lg
-import home.smart.fly.animations.utils.screenWidth
+import home.smart.fly.animations.utils.*
 import home.smart.fly.animations.widget.dp2px
 import kotlinx.android.synthetic.main.activity_prepare.*
 
@@ -31,6 +28,10 @@ class PrepareActivity : AppCompatActivity() {
         Glide.with(this).load(url).into(webImage)
 
         color_text.setTextColor(Color.parseColor("#ff3366"))
+
+        val up = resources.getDrawable(R.drawable.ic_expand_less_black_24dp)
+        val down = resources.getDrawable(R.drawable.ic_expand_more_black_24dp)
+        UtilMoreText(color_text, getString(R.string.text_long_chinese), up, down).createImg()
 
         MyMoreText.getInstance()
             .getLastIndexForLimit(more_text_view, 1, getString(R.string.text_long_chinese))
