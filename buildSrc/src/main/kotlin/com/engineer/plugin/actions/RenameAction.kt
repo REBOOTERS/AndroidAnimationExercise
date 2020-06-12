@@ -31,7 +31,7 @@ class RenameAction {
                 val withVariantVersion = rename.withVariantVersion
                 val onlyDebug = rename.onlyDebug
 
-                val releaseTime = Common.releaseTime()
+                val releaseTime = Common.releaseTime().replace(" ","-")
 
                 val android = project.extensions.getByName("android")
 
@@ -83,7 +83,7 @@ class RenameAction {
                 output.append(variant.versionName).append("_")
             }
             if (withTime) {
-                output.append(releaseTime).append("_")
+//                output.append(releaseTime).append("_")
             }
             if (withVariantName) {
                 output.append(variant.name)
