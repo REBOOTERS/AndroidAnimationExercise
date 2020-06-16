@@ -17,9 +17,9 @@ import androidx.core.app.ShareCompat
 import com.bumptech.glide.Glide
 import com.engineer.gif.revert.GifFactory
 import com.engineer.imitate.R
-import com.engineer.imitate.ui.widget.transformationlayout.onTransformationEndContainer
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
+import com.skydoves.transformationlayout.onTransformationEndContainer
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.wang.avi.indicators.*
 import com.zhihu.matisse.Matisse

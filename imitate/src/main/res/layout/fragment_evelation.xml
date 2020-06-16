@@ -33,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.engineer.imitate.ui.widget.transformationlayout.TransformationLayout
+    <com.skydoves.transformationlayout.TransformationLayout
         android:id="@+id/transformationLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:src="@drawable/ic_add_black_24dp"
             app:fabSize="normal" />
 
-    </com.engineer.imitate.ui.widget.transformationlayout.TransformationLayout>
+    </com.skydoves.transformationlayout.TransformationLayout>
 
 
     <com.engineer.imitate.ui.widget.custom.JikeSlideView

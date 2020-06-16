@@ -25,7 +25,7 @@
     <include layout="@layout/content_kotlin_root" />
 
 
-    <com.engineer.imitate.ui.widget.transformationlayout.TransformationLayout
+    <com.skydoves.transformationlayout.TransformationLayout
         android:id="@+id/transformationLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:src="@drawable/ic_gif_white_24dp"
             app:fabSize="normal" />
 
-    </com.engineer.imitate.ui.widget.transformationlayout.TransformationLayout>
+    </com.skydoves.transformationlayout.TransformationLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

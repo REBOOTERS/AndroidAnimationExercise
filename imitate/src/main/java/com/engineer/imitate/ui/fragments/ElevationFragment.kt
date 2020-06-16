@@ -7,12 +7,11 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import androidx.fragment.app.Fragment
-import androidx.core.app.NotificationManagerCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ShareCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.interfaces.SimpleProgressChangeListener

@@ -18,7 +18,7 @@
             android:orientation="vertical"
             tools:context=".ui.fragments.EntranceFragment">
 
-            <com.engineer.imitate.ui.widget.transformationlayout.TransformationLayout
+            <com.skydoves.transformationlayout.TransformationLayout
                 android:id="@+id/transformationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                     android:textColor="@color/white" />
 
 
-            </com.engineer.imitate.ui.widget.transformationlayout.TransformationLayout>
+            </com.skydoves.transformationlayout.TransformationLayout>
 
 
             <androidx.appcompat.widget.AppCompatButton

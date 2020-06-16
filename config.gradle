@@ -5,8 +5,9 @@ ext {
 
     support_version = '1.1.0'
     support_version_appcompat = '1.1.0'
-    support_version_material = '1.1.0'
+    support_version_material = '1.3.0-alpha01'
     constraint_layout = '1.1.3'
+    core_ktx = '1.3.0'
 
     kotlin_version = '1.3.72'
     gradle_version = '4.0.0'
@@ -19,7 +20,7 @@ ext {
     rxjava = '2.2.2'
     rxandroid = '2.1.0'
 
-    roomVersion = '2.2.4'
+    roomVersion = '2.2.5'
     archLifecycleVersion = '2.2.0'
 }
 

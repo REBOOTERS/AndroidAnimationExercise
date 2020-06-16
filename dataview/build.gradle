@@ -47,9 +47,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$ext.archLifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$ext.archLifecycleVersion"
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.18'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:3.0.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.github.huangyanbin:SmartTable:2.2.0'
 }

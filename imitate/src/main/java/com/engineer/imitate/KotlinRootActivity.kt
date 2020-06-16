@@ -23,10 +23,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.ui.activity.ReverseGifActivity
-import com.engineer.imitate.ui.widget.transformationlayout.onTransformationStartContainer
-import com.engineer.imitate.util.isNetworkConnected
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
+import com.skydoves.transformationlayout.onTransformationStartContainer
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
@@ -54,6 +53,7 @@ class KotlinRootActivity : AppCompatActivity() {
         onTransformationStartContainer()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin_root)
+
         setSupportActionBar(toolbar)
         loadView()
         jsonTest()
@@ -78,7 +78,6 @@ class KotlinRootActivity : AppCompatActivity() {
             intent.putExtra("TransformationParams", transformationLayout.getParcelableParams())
             startActivity(intent, bundle)
         }
-
 
 
     }
