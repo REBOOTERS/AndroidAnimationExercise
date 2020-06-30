@@ -23,6 +23,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.ui.activity.ReverseGifActivity
+import com.engineer.imitate.util.AnimDelegate
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
 import com.skydoves.transformationlayout.onTransformationStartContainer
@@ -142,6 +143,11 @@ class KotlinRootActivity : AppCompatActivity() {
         adapter = recyclerView.bind(list, R.layout.view_item) { item: FragmentItem ->
             desc.text = item.name
             path.text = item.path
+
+            path.setOnClickListener {
+                AnimDelegate.apply(context, path, gif, shell_root)
+            }
+
             shell.setOnClickListener {
                 gif.hide()
 

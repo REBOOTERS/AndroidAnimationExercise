@@ -13,7 +13,7 @@ import com.engineer.imitate.R
 import java.util.*
 
 /**
- * @author zhuyongqing @ Zhihu Inc.
+ * @author Rookie
  * @since 04-16-2020
  */
 class FlutteringLayout @JvmOverloads constructor(

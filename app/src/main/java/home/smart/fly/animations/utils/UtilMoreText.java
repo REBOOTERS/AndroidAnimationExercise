@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 /**
- * @author zhuyongqing @ Zhihu Inc.
+ * @author Rookie
  * @since 05-29-2020
  */
 public class UtilMoreText {

@@ -21,7 +21,7 @@ import androidx.core.content.ContextCompat;
 import home.smart.fly.animations.R;
 
 /**
- * @author zhuyongqing @ Zhihu Inc.
+ * @author Rookie
  * @since 04-07-2020
  */
 public class MyMoreText implements View.OnClickListener {
