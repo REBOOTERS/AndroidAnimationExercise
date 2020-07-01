@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.engineer.imitate.R;
-import com.engineer.imitate.ui.widget.AbsBannerAdapter;
+import com.engineer.imitate.ui.widget.opensource.AbsBannerAdapter;
 
 public class BannerAdapter extends AbsBannerAdapter {
 

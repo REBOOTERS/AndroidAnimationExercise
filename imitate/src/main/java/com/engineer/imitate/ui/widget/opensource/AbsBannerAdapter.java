@@ -1,4 +1,4 @@
-package com.engineer.imitate.ui.widget;
+package com.engineer.imitate.ui.widget.opensource;
 
 import android.content.Context;
 import android.database.DataSetObservable;

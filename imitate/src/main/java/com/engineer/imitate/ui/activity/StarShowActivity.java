@@ -7,7 +7,7 @@ import android.widget.SeekBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.engineer.imitate.R;
-import com.engineer.imitate.ui.widget.ShadowLayout;
+import com.engineer.imitate.ui.widget.opensource.ShadowLayout;
 
 public class StarShowActivity extends AppCompatActivity {
     private ShadowLayout ShadowLayout;

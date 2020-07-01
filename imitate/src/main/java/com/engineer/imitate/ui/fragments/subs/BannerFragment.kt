@@ -10,7 +10,7 @@ import android.widget.Toast
 
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.adapter.BannerAdapter
-import com.engineer.imitate.ui.widget.InfiniteBannerView
+import com.engineer.imitate.ui.widget.opensource.InfiniteBannerView
 import com.rd.PageIndicatorView
 
 /**

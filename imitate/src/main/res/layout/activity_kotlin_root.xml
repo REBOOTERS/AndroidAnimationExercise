@@ -47,14 +47,5 @@
 
     </com.skydoves.transformationlayout.TransformationLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="156dp"
-        android:src="@drawable/ic_add_white_24dp" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

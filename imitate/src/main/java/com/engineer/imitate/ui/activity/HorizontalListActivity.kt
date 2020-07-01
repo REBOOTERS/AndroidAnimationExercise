@@ -31,7 +31,7 @@ class HorizontalListActivity : AppCompatActivity() {
         val datas = initData()
 
 
-        adapter = list.bind(datas, R.layout.view_item_h_square) { value: String ->
+        adapter = list.bind(datas, R.layout.view_item_h_square) { value: String, _: Int ->
             setOnClickListener {
                 val pos = datas.indexOf(value)
                 Toast.makeText(context, "pos $pos", Toast.LENGTH_SHORT).show()
@@ -44,7 +44,7 @@ class HorizontalListActivity : AppCompatActivity() {
         list.addItemDecoration(DividerItemDecoration(this, RecyclerView.HORIZONTAL))
 
 
-        list2.bind(datas, R.layout.view_item_h) { value: String ->
+        list2.bind(datas, R.layout.view_item_h) { value: String, _: Int ->
             setOnClickListener {
                 val pos = datas.indexOf(value)
                 Toast.makeText(context, "pos $pos", Toast.LENGTH_SHORT).show()
@@ -65,11 +65,16 @@ class HorizontalListActivity : AppCompatActivity() {
         pagerSnapHelper.attachToRecyclerView(list2)
 
 
-        list3.bind(datas, R.layout.view_item_h_image) { value: String ->
+        list3.bind(datas, R.layout.view_item_h_image) { value: String, _: Int ->
             desc.text = value
 
         }.layoutManager(LinearLayoutManager(this, RecyclerView.HORIZONTAL, false))
         list3.addItemDecoration(DecorationGod(this))
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val result = true
     }
 
     private fun initData(): ArrayList<String> {

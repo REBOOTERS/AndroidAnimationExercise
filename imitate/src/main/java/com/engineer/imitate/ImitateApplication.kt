@@ -1,11 +1,14 @@
 package com.engineer.imitate
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import com.alibaba.android.arouter.launcher.ARouter
+import com.engineer.imitate.interfaces.SimpleActivityCallback
 import com.engineer.imitate.util.TextUtil
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.stetho.Stetho
@@ -16,15 +19,28 @@ import com.facebook.stetho.Stetho
  * @date: 2018-08-21 19:14
  * @version V1.0
  */
+@SuppressLint("LogNotTimber")
 class ImitateApplication : Application() {
 
     companion object {
         lateinit var application: Context
+        val TAG = "activity-life"
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        Log.d(TAG, "attachBaseContext() called with: base = $base")
+
     }
 
     private var view: View? = null
     override fun onCreate() {
         super.onCreate()
+        Log.d(TAG, "onCreate() called")
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            Log.d(TAG, "process name " + getProcessName())
+        }
         Stetho.initializeWithDefaults(this)
         WebView.setWebContentsDebuggingEnabled(true)
 
@@ -41,6 +57,8 @@ class ImitateApplication : Application() {
         kotlinTest()
 
         application = this
+
+        registerActivityLifecycleCallbacks(object : SimpleActivityCallback() {})
     }
 
 
@@ -55,7 +73,7 @@ class ImitateApplication : Application() {
         testHighFun()
 
         val json = TextUtil.getJson()
-        Log.e("json", "json form json-dsl is : $json" )
+        Log.e("json", "json form json-dsl is : $json")
     }
 
 

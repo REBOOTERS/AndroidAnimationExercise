@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.subs.BannerFragment">
 
-    <com.engineer.imitate.ui.widget.InfiniteBannerView
+    <com.engineer.imitate.ui.widget.opensource.InfiniteBannerView
         android:id="@+id/infinite_banner_1"
         android:layout_width="0dp"
         android:layout_height="200dp"
@@ -29,7 +29,7 @@
         app:piv_selectedColor="#ffffff"
         app:piv_unselectedColor="#000000" />
 
-    <com.engineer.imitate.ui.widget.InfiniteBannerView
+    <com.engineer.imitate.ui.widget.opensource.InfiniteBannerView
         android:id="@+id/infinite_banner_0"
         android:layout_width="0dp"
         android:layout_height="200dp"

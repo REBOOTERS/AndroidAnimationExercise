@@ -9,9 +9,7 @@
     tools:context=".ui.activity.ConstraintLayoutActivity">
 
 
-
     <androidx.core.widget.NestedScrollView
-        android:visibility="visible"
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -19,6 +17,7 @@
         android:layout_marginTop="96dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="60dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/bottom_bar"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,10 +27,10 @@
             android:background="@color/white">
 
             <LinearLayout
-                android:layout_marginTop="100dp"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="100dp"
+                android:orientation="vertical">
 
                 <com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
                     android:id="@+id/head_home_layout"
@@ -65,14 +64,41 @@
     </androidx.core.widget.NestedScrollView>
 
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/star"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_alpha"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:alpha="0"
+        android:src="@drawable/totoro"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <View
-        android:visibility="gone"
         android:id="@+id/bottom_bar"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@color/md_blue"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

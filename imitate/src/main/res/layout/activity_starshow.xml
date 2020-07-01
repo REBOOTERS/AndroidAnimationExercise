@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
-        <com.engineer.imitate.ui.widget.ShadowLayout
+        <com.engineer.imitate.ui.widget.opensource.ShadowLayout
             android:id="@+id/ShadowLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
                 android:text="圆角"
                 android:textColor="#000" />
 
-        </com.engineer.imitate.ui.widget.ShadowLayout>
+        </com.engineer.imitate.ui.widget.opensource.ShadowLayout>
 
     </RelativeLayout>
 

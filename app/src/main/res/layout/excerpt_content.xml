@@ -14,18 +14,19 @@
   limitations under the License.
   -->
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- Dummy content. -->
-    <TextView style="?android:textAppearanceMedium"
-        android:lineSpacingMultiplier="1.2"
+    <TextView
+        style="?android:textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.2"
+        android:padding="16dp"
         android:text="@string/lorem_ipsum"
-        android:textIsSelectable="true"
-        android:padding="16dp" />
+        android:textIsSelectable="true" />
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -48,6 +48,16 @@ class ConstraintLayoutActivity : AppCompatActivity() {
                 Toast.makeText(this@ConstraintLayoutActivity, "bingo", Toast.LENGTH_SHORT).show()
             }
         })
+
+        var toggle = false
+        anim.setOnClickListener {
+            if (toggle) {
+                image_alpha.alpha = 0.0f
+            } else {
+                image_alpha.alpha = 1.0f
+            }
+            toggle = !toggle
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="prepare datas">

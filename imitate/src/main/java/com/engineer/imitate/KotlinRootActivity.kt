@@ -140,7 +140,7 @@ class KotlinRootActivity : AppCompatActivity() {
         }).start()
 
         val list = initList()
-        adapter = recyclerView.bind(list, R.layout.view_item) { item: FragmentItem ->
+        adapter = recyclerView.bind(list, R.layout.view_item) { item: FragmentItem, _: Int ->
             desc.text = item.name
             path.text = item.path
 

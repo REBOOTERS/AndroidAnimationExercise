@@ -62,4 +62,10 @@
 
     </declare-styleable>
 
+    <declare-styleable name="SelectableTextView">
+        <attr name="textJustify" format="boolean"/>
+        <attr name="forbiddenActionMenu" format="boolean"/>
+        <attr name="textHeightColor" format="color"/>
+    </declare-styleable>
+
 </resources>

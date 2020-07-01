@@ -9,7 +9,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "com.dorongold.task-tree"
 //apply plugin: 'android-aspectjx'
 //apply plugin: 'jacoco-android'
-
+apply plugin: 'com.didi.dokit'
 
 def ext = rootProject.ext
 
@@ -183,8 +183,8 @@ dependencies {
 
     // https://github.com/didi/DoraemonKit
 
-    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.2.1'
-    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.2.0'
+    debugImplementation "com.didichuxing.doraemonkit:doraemonkit:$doraemonkit"
+    releaseImplementation "com.didichuxing.doraemonkit:doraemonkit-no-op:$doraemonkit"
 
     // https://github.com/skydoves/TransformationLayout
     implementation "com.github.skydoves:transformationlayout:1.0.4"
