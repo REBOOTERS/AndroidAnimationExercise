@@ -63,7 +63,14 @@ class ImitateApplication : Application() {
 
 
     private fun kotlinTest() {
-
+        var result = null == true
+        println("null is true ? $result")
+        result = null == false
+        println("null is false? $result")
+        result = null != false
+        println("null not false? $result")
+        result = null != true
+        println("null not true? $result")
         if (view != null) {
             println("result ==" + view.hashCode())
         } else {

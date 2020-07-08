@@ -111,6 +111,8 @@ dependencies {
     implementation 'com.wang.avi:library:2.1.3'
 
     implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    // https://github.com/prostory/AndroidZdog
     implementation 'com.github.prostory:AndroidZdog:v1.0.0'
 
     // robolectric
@@ -124,7 +126,6 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '20030203.000550'
     implementation project(path: ':game')
     implementation project(path: ':gif-revert')
-//    implementation project(':fast-list')
     implementation 'bg.devlabs.fastlist:fast-list:1.4'
     implementation 'com.jaredrummler:simple-mvp:1.0.2'
 

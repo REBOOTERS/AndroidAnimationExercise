@@ -56,6 +56,17 @@
                 android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/constraintLayout_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="constraintLayout_layout"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/game"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

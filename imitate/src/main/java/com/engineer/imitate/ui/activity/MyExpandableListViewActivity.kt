@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.ExpandableListView.OnGroupCollapseListener
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
+import com.engineer.imitate.util.dp
 import com.engineer.imitate.util.toastShort
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
@@ -23,23 +26,26 @@ class MyExpandableListViewActivity : AppCompatActivity() {
     private lateinit var mContext: Context
 
     private var lastGroupPosition = -1
-    private val groupData = arrayOf("同事", "老师", "朋友", "同事", "老师",
-            "朋友", "同事", "老师", "朋友", "老师", "朋友", "同事", "老师", "朋友")
+    private val groupData = arrayOf(
+        "同事", "老师", "朋友", "同事", "老师",
+        "朋友", "同事", "老师", "朋友", "老师", "朋友", "同事", "老师", "朋友"
+    )
     private val childData = arrayOf(
-            arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
-            arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
-            arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
-            arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
-            arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"))
+        arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
+        arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
+        arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
+        arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
+        arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
+        arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
+        arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
+        arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
+        arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
+        arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
+        arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻"),
+        arrayOf("小小", "小明", "吴老师", "肖老师", "雯雯", "哔哔", "饭饭", "流浪"),
+        arrayOf("李老师", "张老师", "吴老师", "肖老师", "柳老师", "小小", "小明", "饭饭", "流浪"),
+        arrayOf("李老师", "张老师", "吴老师", "肖老师", "雯雯", "哔哔", "嘻嘻")
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +81,16 @@ class MyExpandableListViewActivity : AppCompatActivity() {
 //        expandable_lv.smoothScrollToPosition(12)
         val pos: Int = (Random.nextFloat() * groupData.size).toInt()
         expandable_lv.setSelection(pos)
-        expandable_lv.expandGroup(pos)
+        val count = expandable_lv.count
+        for (i in 0 until count) {
+            expandable_lv.expandGroup(i)
+        }
+        val image = ImageView(this)
+        image.setImageResource(R.drawable.totoro)
+        val container = LinearLayout(this)
+        val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 100.dp)
+        container.addView(image, params)
+        expandable_lv.addHeaderView(container)
         toastShort("expand group $pos")
     }
 
@@ -133,8 +148,10 @@ class MyExpandableListViewActivity : AppCompatActivity() {
         /**
          * 确定一个组的展示视图--groupPosition表示的当前需要展示的组的索引
          */
-        override fun getGroupView(groupPosition: Int, isExpanded: Boolean,
-                                  convertView: View?, parent: ViewGroup): View? {
+        override fun getGroupView(
+            groupPosition: Int, isExpanded: Boolean,
+            convertView: View?, parent: ViewGroup
+        ): View? {
 
             val inflater = LayoutInflater.from(mContext)
             val view = inflater.inflate(R.layout.expandable_group_item, parent, false)
@@ -146,8 +163,10 @@ class MyExpandableListViewActivity : AppCompatActivity() {
         /**
          * 确定一个组的一个子的展示视图--groupPostion表示当前组的索引,childPosition表示的是需要展示的子的索引
          */
-        override fun getChildView(groupPosition: Int, childPosition: Int,
-                                  isLastChild: Boolean, convertView: View?, parent: ViewGroup): View? {
+        override fun getChildView(
+            groupPosition: Int, childPosition: Int,
+            isLastChild: Boolean, convertView: View?, parent: ViewGroup
+        ): View? {
             var view = convertView
             var holder: ChildViewHolder?
             if (view == null) {
@@ -162,7 +181,8 @@ class MyExpandableListViewActivity : AppCompatActivity() {
             val datas = childData[groupPosition].toList()
             holder.flow.adapter = object : TagAdapter<String>(datas) {
                 override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
-                    val view = LayoutInflater.from(parent?.context).inflate(R.layout.simple_tv, parent, false)
+                    val view = LayoutInflater.from(parent?.context)
+                        .inflate(R.layout.simple_tv, parent, false)
                     val textView = view.findViewById<TextView>(R.id.text)
                     textView.text = t
                     return textView

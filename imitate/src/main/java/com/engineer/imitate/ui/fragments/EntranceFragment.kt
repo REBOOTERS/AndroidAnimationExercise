@@ -165,6 +165,15 @@ class EntranceFragment : Fragment() {
 
         shell.setOnClickListener { startActivity(Intent(context, RunShellActivity::class.java)) }
 
+        constraintLayout_ll.setOnClickListener {
+            startActivity(
+                Intent(
+                    context,
+                    ConstraintLayoutActivity::class.java
+                )
+            )
+        }
+
         adapter = MyListAdapter()
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = adapter
