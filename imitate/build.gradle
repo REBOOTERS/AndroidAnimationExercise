@@ -77,7 +77,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$ext.support_version_appcompat"
 //    implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.constraintlayout:constraintlayout:$ext.constraint_layout"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta8"
     implementation "com.github.bumptech.glide:glide:$ext.glide"
     implementation 'com.xw.repo:bubbleseekbar:3.18'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

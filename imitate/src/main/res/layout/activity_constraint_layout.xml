@@ -6,59 +6,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#cc1d1f24"
+    android:fitsSystemWindows="true"
     tools:context=".ui.activity.ConstraintLayoutActivity">
 
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_marginStart="20dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="60dp"
+        android:background="@color/cpb_grey"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/bottom_bar"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:visibility="visible">
 
-            <LinearLayout
+            <com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
+                android:id="@+id/head_home_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="100dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
-                    android:id="@+id/head_home_layout"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp">
+                    android:background="@drawable/round_card" />
+            </com.engineer.imitate.ui.widget.more.DZStickyNavLayouts>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerView_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_card" />
-                </com.engineer.imitate.ui.widget.more.DZStickyNavLayouts>
 
-            </LinearLayout>
+            <EditText
+                android:id="@+id/et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/cpb_green"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/head_home_layout" />
+
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/cpb_green"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/et" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

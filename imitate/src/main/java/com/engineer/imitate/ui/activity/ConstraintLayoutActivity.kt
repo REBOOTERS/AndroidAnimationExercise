@@ -29,7 +29,7 @@ class ConstraintLayoutActivity : AppCompatActivity() {
 
 //                scrollView.scrollBy(0, -displayRect.bottom)
 //                layoutParams.height = displayRect.bottom
-                layoutParams.bottomMargin = 1000
+//                layoutParams.bottomMargin = 1000
                 it.layoutParams = layoutParams
 
             }

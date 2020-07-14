@@ -11,7 +11,7 @@ import com.engineer.imitate.R
 import com.engineer.imitate.ui.adapter.BasicShapesAdapter
 import kotlinx.android.synthetic.main.fragment_basic_shapes.*
 
-@Route(path = "/anim/pure_3d_shapre")
+@Route(path = "/anim/pure_3d_share")
 class Pure3DShapesFragment : Fragment() {
 
     private val adapter by lazy { BasicShapesAdapter() }

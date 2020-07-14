@@ -12,11 +12,15 @@
         android:icon="@mipmap/kotlin"
         android:label="@string/app_name"
         android:theme="@style/MyAppTheme"
-        android:windowSoftInputMode="adjustResize|stateHidden"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:windowSoftInputMode="adjustResize|stateHidden">
+        <activity android:name=".ui.activity.fragmentmanager.ContentActivity" android:exported="true"></activity>
         <activity
+            android:name=".ui.activity.ConstraintLayoutActivity"
+            android:configChanges="keyboardHidden|screenSize|smallestScreenSize|screenLayout|orientation|uiMode"
+            android:exported="true"
             android:theme="@style/MyAppTheme.NoActionBar"
-            android:name=".ui.activity.ConstraintLayoutActivity" android:exported="true"/>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".ui.activity.HorizontalListActivity"
             android:exported="true" />
