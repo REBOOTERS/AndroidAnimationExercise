@@ -14,7 +14,12 @@
         android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustResize|stateHidden">
-        <activity android:name=".ui.activity.fragmentmanager.ContentActivity" android:exported="true"></activity>
+        <activity
+            android:name=".ui.activity.fragmentmanager.ContentActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+
+        </activity>
         <activity
             android:name=".ui.activity.ConstraintLayoutActivity"
             android:configChanges="keyboardHidden|screenSize|smallestScreenSize|screenLayout|orientation|uiMode"

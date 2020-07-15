@@ -39,7 +39,7 @@ class BlinkFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        text.text = param1?.plus(param2)
+//        text.text = param1?.plus(param2)
     }
 
     companion object {

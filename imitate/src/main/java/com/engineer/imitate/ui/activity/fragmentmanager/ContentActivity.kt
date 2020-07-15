@@ -25,7 +25,7 @@ class ContentActivity : AppCompatActivity() {
                 .add(R.id.fragment_content, fragment, "Blink")
                 .commitAllowingStateLoss()
         }
-
+        replace.performClick()
         remove.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .remove(fragment)
