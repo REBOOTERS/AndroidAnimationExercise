@@ -1,6 +1,7 @@
 package com.engineer.imitate.ui.activity.fragmentmanager
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +40,16 @@ class BlinkFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        text.text = param1?.plus(param2)
+        text.text = param1?.plus(param2)
+        image.setOnClickListener {
+            Log.e("BlinkFragment", "onViewCreated: 1 " + nestedScrollview.canScrollVertically(1))
+            Log.e("BlinkFragment", "onViewCreated: -1" + nestedScrollview.canScrollVertically(-1))
+            if (nestedScrollview.canScrollVertically(-1)) {
+                nestedScrollview.scrollTo(0, 0)
+            } else {
+                nestedScrollview.scrollTo(0, 10000)
+            }
+        }
     }
 
     companion object {

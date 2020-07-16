@@ -17,7 +17,7 @@
         <activity
             android:name=".ui.activity.fragmentmanager.ContentActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize|stateHidden">
+            android:windowSoftInputMode="adjustPan|stateHidden">
 
         </activity>
         <activity

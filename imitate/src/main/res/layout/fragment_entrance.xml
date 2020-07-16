@@ -67,6 +67,17 @@
                 android:textColor="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fragment_manager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="fragment_manager"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/game"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
