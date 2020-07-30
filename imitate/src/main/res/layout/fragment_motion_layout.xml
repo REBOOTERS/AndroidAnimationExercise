@@ -2,11 +2,14 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:id="@+id/motion_layout"
+    android:layout_width="match_parent"
+    android:background="@color/md_blue"
+    android:layout_height="match_parent"
     app:layoutDescription="@xml/fragment_motion_layout_scene"
-    tools:context=".ui.fragments.MotionLayoutFragment">
+    tools:context=".ui.fragments.MotionLayoutFragment"
+    tools:showPaths="true">
+
 
     <TextView
         android:id="@+id/textView3"
@@ -15,5 +18,6 @@
         android:text="@string/hello_blank_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.engineer.imitate.R
+import com.engineer.imitate.util.dp
 import kotlinx.android.synthetic.main.fragment_blink.*
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +22,7 @@ private const val ARG_PARAM2 = "param2"
 class BlinkFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
+    private var toggle = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,16 @@ class BlinkFragment : Fragment() {
             } else {
                 nestedScrollview.scrollTo(0, 10000)
             }
+        }
+        nestedScrollview.setOnClickListener {
+            val p = nestedScrollview.layoutParams
+            if (toggle) {
+                p.height = ViewGroup.LayoutParams.MATCH_PARENT
+            } else {
+                p.height = 100.dp
+            }
+            nestedScrollview.layoutParams = p
+            toggle = !toggle
         }
     }
 

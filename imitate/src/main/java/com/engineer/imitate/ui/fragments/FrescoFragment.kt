@@ -100,8 +100,9 @@ class FrescoFragment : Fragment() {
 
         val request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(url)).build()
         Fresco.getImagePipeline().fetchDecodedImage(request, url)
+
             .subscribe(object : BaseBitmapDataSubscriber() {
-                override fun onFailureImpl(dataSource: DataSource<CloseableReference<CloseableImage>>?) {
+                override fun onFailureImpl(dataSource: DataSource<CloseableReference<CloseableImage>>) {
                     Log.e("zyq", "fail " + dataSource.toString())
                 }
 
@@ -155,28 +156,29 @@ class FrescoFragment : Fragment() {
     private fun bitmapMagic() {
         shimmer_layout.startShimmerAnimation()
 
-        c.add(Observable.create(ObservableOnSubscribe<Bitmap> { emitter ->
-            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.star)
-            val width = bitmap.width
-            val height = bitmap.height
-            val colorArray = Array(width) { IntArray(height) }
-            for (i in 0 until width) {
-                for (j in 0 until height) {
+        c.add(
+            Observable.create(ObservableOnSubscribe<Bitmap> { emitter ->
+                val bitmap = BitmapFactory.decodeResource(resources, R.drawable.star)
+                val width = bitmap.width
+                val height = bitmap.height
+                val colorArray = Array(width) { IntArray(height) }
+                for (i in 0 until width) {
+                    for (j in 0 until height) {
 //                    Log.e("zyq", "i==$i j==$j")
 //                    Log.e("zyq", "live=${emitter.isDisposed}")
-                    if (emitter.isDisposed) {
-                        break
+                        if (emitter.isDisposed) {
+                            break
+                        }
+                        colorArray[i][j] = bitmap.getPixel(i, j)
                     }
-                    colorArray[i][j] = bitmap.getPixel(i, j)
                 }
-            }
-            Log.e("bitmapMagic", "colorArray==$colorArray")
-            emitter.onNext(bitmap)
-        }).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ bitmap ->
-                setupBitmap(bitmap)
-            }, { t -> t.printStackTrace() })
+                Log.e("bitmapMagic", "colorArray==$colorArray")
+                emitter.onNext(bitmap)
+            }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ bitmap ->
+                    setupBitmap(bitmap)
+                }, { t -> t.printStackTrace() })
         )
 
     }
