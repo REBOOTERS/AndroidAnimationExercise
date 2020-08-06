@@ -12,7 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="148dp"
         android:background="@color/cpb_white"
-        android:listDivider="@drawable/gradient_bg" />
+        android:listDivider="@drawable/gradient_bg"
+        tools:itemCount="7"
+        tools:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/view_item_h_square"
+        tools:orientation="horizontal" />
 
     <Space
         android:layout_width="match_parent"
@@ -22,7 +26,11 @@
         android:id="@+id/list2"
         android:layout_width="match_parent"
         android:layout_height="148dp"
-        android:background="@color/cpb_white" />
+        android:background="@color/cpb_white"
+        tools:itemCount="7"
+        tools:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/view_item_h"
+        tools:orientation="horizontal" />
 
     <Space
         android:layout_width="match_parent"
@@ -32,6 +40,10 @@
         android:id="@+id/list3"
         android:layout_width="match_parent"
         android:layout_height="128dp"
-        android:background="@color/cpb_white" />
+        android:background="@color/cpb_white"
+        tools:itemCount="7"
+        tools:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/view_item_h_image"
+        tools:orientation="horizontal" />
 
 </LinearLayout>

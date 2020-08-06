@@ -9,6 +9,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_motion_layout.*
 
 @Route(path = "/anim/motion_layout")
@@ -50,5 +51,20 @@ class MotionLayoutFragment : Fragment() {
 
         })
         motion_layout.startLayoutAnimation()
+
+
+        Observable.just(1)
+            .map {
+                dealData(1)
+            }
+            .subscribe({
+//                dealData(1)
+            },{
+                it.printStackTrace()
+            })
+    }
+
+    private fun dealData(i: Int) {
+//        throw ExceptionInInitializerError("test")
     }
 }

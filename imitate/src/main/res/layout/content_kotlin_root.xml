@@ -16,26 +16,27 @@
 
 
         <WebView
-            android:visibility="gone"
-            android:layout_margin="10dp"
             android:id="@+id/hybrid"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:visibility="gone"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:listitem="@layout/view_item"
+            tools:visibility="visible" />
 
     </FrameLayout>
 
 
-
     <FrameLayout
-        android:visibility="gone"
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </FrameLayout>
