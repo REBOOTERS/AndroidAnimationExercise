@@ -11,7 +11,7 @@ task writeFile doLast {
     println(pretty)
     rootProject.file("./gradle/jsonObj.json").text = pretty
 
-    def list =[]
+    def list = []
     list.add(obj)
     rootProject.file("./gradle/jsonList.json").text = JsonOutput.prettyPrint(JsonOutput.toJson(list))
 

@@ -28,6 +28,7 @@
         android:layout_height="148dp"
         android:background="@color/cpb_white"
         tools:itemCount="7"
+        tools:itemDecoration="com.engineer.imitate.ui.widget.DecorationOne"
         tools:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/view_item_h"
         tools:orientation="horizontal" />

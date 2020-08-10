@@ -2,6 +2,7 @@ package com.engineer.imitate.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import com.engineer.imitate.ui.widget.DecorationOne
 import com.engineer.imitate.util.dp2px
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
+import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
 import kotlinx.android.synthetic.main.activity_horizontal_list.*
 import kotlinx.android.synthetic.main.view_item_h.view.*
@@ -25,7 +27,9 @@ class HorizontalListActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
-        onTransformationEndContainer(intent.getParcelableExtra("TransformationParams"))
+        intent.getParcelableExtra<TransformationLayout.Params>("TransformationParams")?.let {
+            onTransformationEndContainer(it)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_horizontal_list)
         val datas = initData()
