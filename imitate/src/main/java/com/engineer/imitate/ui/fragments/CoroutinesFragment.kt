@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 
 import com.engineer.imitate.R
+import com.engineer.imitate.util.IOTool
 import kotlinx.coroutines.*
 import kotlin.coroutines.EmptyCoroutineContext
 
@@ -25,14 +26,22 @@ private const val ARG_PARAM2 = "param2"
 @Route(path = "/anim/coroutines")
 class CoroutinesFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_coroutines, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val start = System.currentTimeMillis()
+        val json = IOTool.readStrFromAssets("school.json", context)
+        Log.e("Coroutines","read json cost ${System.currentTimeMillis() - start}")
+        println("json is $json")
+
 
 //        GlobalScope.launch( EmptyCoroutineContext, CoroutineStart.DEFAULT) {
 //            delay(1000)
@@ -52,9 +61,9 @@ class CoroutinesFragment : Fragment() {
 
 
     fun coroutines() = runBlocking(EmptyCoroutineContext) {
-        GlobalScope.launch(EmptyCoroutineContext,CoroutineStart.DEFAULT) {
+        GlobalScope.launch(EmptyCoroutineContext, CoroutineStart.DEFAULT) {
             delay(1000)
-            Log.e("coroutine","finish")
+            Log.e("coroutine", "finish")
         }
     }
 

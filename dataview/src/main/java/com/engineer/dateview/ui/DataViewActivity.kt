@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.bin.david.form.core.SmartTable
+import com.engineer.college.IOTool
 import com.engineer.dateview.R
 import com.engineer.dateview.api.DataView
 import com.engineer.dateview.internal.AutoSchedulerTransformer
@@ -43,6 +44,14 @@ internal class DataViewActivity : AppCompatActivity() {
     private fun loadUI(it: List<ActModel>) {
         val view: SmartTable<ActModel> = table as SmartTable<ActModel>
         view.setData(it)
+
+        loadJson()
+    }
+
+    private fun loadJson() {
+        val result = IOTool.readStrFromAssets("school.json", this)
+
+        Log.d("ui", "loadJson() called $result")
     }
 
     override fun onDetachedFromWindow() {
