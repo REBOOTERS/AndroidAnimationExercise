@@ -91,7 +91,7 @@ class CoroutinesFragment : Fragment() {
         val fragments = ArrayList<Item>()
         it?.forEach { sc ->
             sc.schoolList?.let {
-                val item = Item(sc.province ?: "", ListFragment.newInstance(ArrayList(it)))
+                val item = Item(sc.province ?: "", ListFragment.newInstance(ArrayList(it)), it.size)
                 fragments.add(item)
             }
         }
@@ -100,7 +100,7 @@ class CoroutinesFragment : Fragment() {
         school_tab_layout.tabMode = TabLayout.MODE_SCROLLABLE
         school_tab_layout.isTabIndicatorFullWidth = false
         TabLayoutMediator(school_tab_layout, school_view_pager2) { tab, position ->
-            tab.text = fragments[position].title
+            tab.text = fragments[position].title + "(${fragments[position].size})"
         }.attach()
     }
 }
@@ -156,7 +156,8 @@ class ListFragment : Fragment() {
     }
 }
 
-data class Item(val title: String, val fragment: Fragment)
+data class Item(val title: String, val fragment: Fragment, val size: Int)
+
 
 private fun parseWithKlaxon(json: String): List<Schools>? {
     val s = System.currentTimeMillis()
