@@ -34,6 +34,29 @@ class HorizontalListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_horizontal_list)
         val datas = initData()
 
+        adapter = list00.bind(datas, R.layout.view_item_h_card) { value: String, _: Int ->
+            setOnClickListener {
+                val pos = datas.indexOf(value)
+                Toast.makeText(context, "pos $pos", Toast.LENGTH_SHORT).show()
+                list.smoothScrollToPosition(pos + 1)
+            }
+            desc.text = value
+            path.text = "pos " + datas.indexOf(value)
+
+        }.layoutManager(LinearLayoutManager(this, RecyclerView.HORIZONTAL, false))
+
+        adapter = list0.bind(datas, R.layout.view_item_h_card) { value: String, _: Int ->
+            setOnClickListener {
+                val pos = datas.indexOf(value)
+                Toast.makeText(context, "pos $pos", Toast.LENGTH_SHORT).show()
+                list.smoothScrollToPosition(pos + 1)
+            }
+            desc.text = value
+            path.text = "pos " + datas.indexOf(value)
+
+        }.layoutManager(LinearLayoutManager(this, RecyclerView.HORIZONTAL, false))
+
+
 
         adapter = list.bind(datas, R.layout.view_item_h_square) { value: String, _: Int ->
             setOnClickListener {

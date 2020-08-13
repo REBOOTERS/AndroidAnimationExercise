@@ -68,4 +68,25 @@
         <attr name="textHeightColor" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="CustomShadowLayout">
+        <!--阴影的圆角大小-->
+        <attr name="panel_cornerRadius" format="dimension" />
+        <!--阴影的扩散范围(也可以理解为扩散程度)-->
+        <attr name="panel_shadowLimit" format="dimension" />
+        <attr name="panel_shadowColor" format="color" />
+        <!--x轴的偏移量-->
+        <attr name="panel_dx" format="dimension" />
+        <!--y轴的偏移量-->
+        <attr name="panel_dy" format="dimension" />
+        <!--左边是否显示阴影-->
+        <attr name="panel_leftShow" format="boolean" />
+        <!--右边是否显示阴影-->
+        <attr name="panel_rightShow" format="boolean" />
+        <!--上边是否显示阴影-->
+        <attr name="panel_topShow" format="boolean" />
+        <!--下面是否显示阴影-->
+        <attr name="panel_bottomShow" format="boolean" />
+
+    </declare-styleable>
+
 </resources>
