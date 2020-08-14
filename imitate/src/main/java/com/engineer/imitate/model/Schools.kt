@@ -2,11 +2,20 @@ package com.engineer.imitate.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.engineer.imitate.room.SchoolConverters
 
-class Schools() : Parcelable {
-    var province: String? = null
-
+@Entity
+@TypeConverters(SchoolConverters::class)
+data class Schools(
+    @PrimaryKey
+    var id: Int = 0,
+    var province: String? = null,
     var schoolList: List<School>? = null
+) : Parcelable {
+
 
     override fun toString(): String {
         return "Schools(province=$province, schoolList=$schoolList)"

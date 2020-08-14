@@ -17,6 +17,7 @@ import com.beust.klaxon.Klaxon
 import com.engineer.imitate.R
 import com.engineer.imitate.model.School
 import com.engineer.imitate.model.Schools
+import com.engineer.imitate.room.SchoolRepository
 import com.engineer.imitate.util.IOTool
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -67,6 +68,7 @@ class CoroutinesFragment : Fragment() {
             val list = block(json)
             if (list != null) {
                 it.onNext(list)
+                saveToRoom(list)
                 it.onComplete()
             } else {
                 it.onError(Throwable("list is null"))
@@ -85,6 +87,15 @@ class CoroutinesFragment : Fragment() {
                 it.printStackTrace()
             }
             .subscribe()
+    }
+
+    private fun saveToRoom(list: List<Schools>) {
+        context?.let {
+            val schoolRepository = SchoolRepository(it)
+            list.forEach { sc ->
+                schoolRepository.insert(sc)
+            }
+        }
     }
 
     private fun setUpPager(it: List<Schools>?) {

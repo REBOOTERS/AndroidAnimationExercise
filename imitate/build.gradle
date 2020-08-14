@@ -139,6 +139,11 @@ dependencies {
     implementation 'com.beust:klaxon:5.0.1'
     implementation 'com.alibaba:fastjson:1.2.66'
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    //room 
+    implementation "androidx.room:room-runtime:$ext.roomVersion"
+    implementation "androidx.room:room-rxjava2:$ext.roomVersion"
+    kapt "androidx.room:room-compiler:$ext.roomVersion"
 }
 
 apply from: file('hyperion-config.gradle')
