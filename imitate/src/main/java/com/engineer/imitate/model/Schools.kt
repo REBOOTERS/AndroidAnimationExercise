@@ -10,7 +10,7 @@ import com.engineer.imitate.room.SchoolConverters
 @Entity
 @TypeConverters(SchoolConverters::class)
 data class Schools(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     var province: String? = null,
     var schoolList: List<School>? = null
