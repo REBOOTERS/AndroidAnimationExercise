@@ -19,6 +19,8 @@ import com.engineer.imitate.model.School
 import com.engineer.imitate.model.Schools
 import com.engineer.imitate.room.SchoolRepository
 import com.engineer.imitate.util.IOTool
+import com.engineer.imitate.util.lg
+import com.engineer.imitate.util.toastShort
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
@@ -52,11 +54,58 @@ class CoroutinesFragment : Fragment() {
     @SuppressLint("LogNotTimber")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        useRx {
-//            parseWithFastJson(it)
-//            parseWithKlaxon(it)
-            parseWithGson(it)
+//        useRx {
+////            parseWithFastJson(it)
+////            parseWithKlaxon(it)
+//            parseWithGson(it)
+//        }
+
+//        usCoroutine {
+//            parseWithGson(it)
+//        }
+        useCoroutine2 { parseWithGson(it) }
+    }
+
+    private fun useCoroutine2(block: (String) -> List<Schools>?) {
+        Thread.currentThread().name.lg(TAG)
+        CoroutineScope(Dispatchers.IO).launch {
+            Thread.currentThread().name.lg(TAG)
+            val start = System.currentTimeMillis()
+            val json = IOTool.readStrFromAssets("school.json", context!!)
+            Log.e(TAG, "read json cost ${System.currentTimeMillis() - start}")
+            val list = block(json)
+            withContext(Dispatchers.Main) {
+                Thread.currentThread().name.lg(TAG)
+                setUpPager(list)
+                progress.visibility =View.GONE
+            }
         }
+    }
+
+    private fun usCoroutine(block: (String) -> List<Schools>?) {
+        context.toastShort("use coroutine")
+        "1".lg(TAG)
+        val coroutineScope = CoroutineScope(Dispatchers.Main)
+        "5".lg(TAG)
+        coroutineScope.launch {
+            "2".lg(TAG)
+            val list = readJsonAndParse(block)
+            setUpPager(list)
+            progress.visibility = View.GONE
+            "4".lg(TAG)
+        }
+        "3".lg(TAG)
+    }
+
+    private suspend fun readJsonAndParse(block: (String) -> List<Schools>?) :List<Schools>?{
+        var list: List<Schools>?
+        withContext(Dispatchers.IO) {
+            val start = System.currentTimeMillis()
+            val json = IOTool.readStrFromAssets("school.json", context!!)
+            Log.e(TAG, "read json cost ${System.currentTimeMillis() - start}")
+            list = block(json)
+        }
+        return list
     }
 
     @SuppressLint("CheckResult,LogNotTimber")
@@ -77,16 +126,13 @@ class CoroutinesFragment : Fragment() {
 
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnComplete {
-                progress.visibility = View.GONE
-            }
-            .doOnNext {
+            .subscribe({
                 setUpPager(it)
-            }
-            .doOnError {
+                progress.visibility = View.GONE
+            },{
                 it.printStackTrace()
-            }
-            .subscribe()
+                progress.visibility = View.GONE
+            })
     }
 
     private fun saveToRoom(list: List<Schools>) {

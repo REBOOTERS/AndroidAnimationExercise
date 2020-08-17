@@ -1,9 +1,11 @@
 package com.engineer.imitate.util
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 
 /**
@@ -13,8 +15,13 @@ import android.widget.Toast
  * @version V1.0
  */
 
-fun Context.toastShort(message: String) {
+fun Context?.toastShort(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+@SuppressLint("LogNotTimber")
+fun String.lg(tag:String) {
+    Log.e(tag,this)
 }
 
 
