@@ -44,7 +44,7 @@ public class MyApplication extends Application {
 
 
         DoraemonKit.disableUpload();
-        DoraemonKit.install(this);
+        DoraemonKit.install(this,"fa15f7ee4d8174ba07efb60dfc50cfb5");
 //        DoraemonKit.hide();
         logLifeCycleCallBacks();
 
