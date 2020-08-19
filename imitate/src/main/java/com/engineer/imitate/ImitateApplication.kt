@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import com.alibaba.android.arouter.launcher.ARouter
+import com.didichuxing.doraemonkit.*
 import com.engineer.imitate.interfaces.SimpleActivityCallback
 import com.engineer.imitate.util.TextUtil
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -43,6 +44,9 @@ class ImitateApplication : Application() {
         }
         Stetho.initializeWithDefaults(this)
         WebView.setWebContentsDebuggingEnabled(true)
+
+        DoraemonKit.disableUpload()
+        DoraemonKit.install(this)
 
         if (BuildConfig.DEBUG) {
             ARouter.openLog()
