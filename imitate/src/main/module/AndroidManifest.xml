@@ -14,12 +14,11 @@
         android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustResize|stateHidden">
+        <activity android:name=".ui.activity.InflateRealActivity"></activity>
         <activity
             android:name=".ui.activity.fragmentmanager.ContentActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan|stateHidden">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <activity
             android:name=".ui.activity.ConstraintLayoutActivity"
             android:configChanges="keyboardHidden|screenSize|smallestScreenSize|screenLayout|orientation|uiMode"

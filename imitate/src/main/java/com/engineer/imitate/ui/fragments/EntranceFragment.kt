@@ -115,7 +115,9 @@ class EntranceFragment : Fragment() {
             sheet.show(childFragmentManager, EntranceFragment::class.toString())
         }
 
-
+        inflate_real.setOnClickListener {
+            startActivity(Intent(context, InflateRealActivity::class.java))
+        }
 
         final_one.setOnClickListener {
             context?.startActivity<FinalActivity>()

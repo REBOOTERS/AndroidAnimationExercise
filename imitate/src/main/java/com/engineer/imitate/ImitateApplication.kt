@@ -84,7 +84,7 @@ class ImitateApplication : Application() {
         testHighFun()
 
         val json = TextUtil.getJson()
-        Log.e("json", "json form json-dsl is : $json")
+//        Log.e("json", "json form json-dsl is : $json")
     }
 
 

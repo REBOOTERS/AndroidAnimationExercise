@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.engineer.imitate.ui.widget.ViewG xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image_cover"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/beauty_4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_cover_best"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/hello_blank_fragment"
+        android:textColor="#FF4081"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/image_cover"
+        app:layout_constraintEnd_toEndOf="@id/image_cover" />
+
+
+</com.engineer.imitate.ui.widget.ViewG>

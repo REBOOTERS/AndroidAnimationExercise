@@ -42,6 +42,18 @@
 
             </com.skydoves.transformationlayout.TransformationLayout>
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/inflate_real"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/md_blue"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="inflate_real"
+                android:textColor="@color/white"
+                android:visibility="visible" />
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/gif_revert"
