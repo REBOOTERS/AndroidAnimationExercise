@@ -21,7 +21,7 @@
         android:layout_margin="10dp"
         android:text="@string/hello_blank_fragment"
         android:textColor="#FF4081"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/image_cover"
         app:layout_constraintEnd_toEndOf="@id/image_cover" />
