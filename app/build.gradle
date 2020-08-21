@@ -162,7 +162,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt 'com.jakewharton:butterknife-compiler:10.2.1'
     implementation 'com.facebook.stetho:stetho:1.5.1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
     implementation 'com.airbnb.android:lottie:3.4.1'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'

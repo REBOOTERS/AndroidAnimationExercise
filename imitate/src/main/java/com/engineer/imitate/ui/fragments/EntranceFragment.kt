@@ -32,6 +32,8 @@ import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
 import kotlinx.android.synthetic.main.fragment_entrance.*
+import kotlinx.android.synthetic.main.fragment_entrance.shell
+import kotlinx.android.synthetic.main.view_item_h_image.*
 import java.io.File
 
 
@@ -257,9 +259,11 @@ class EntranceFragment : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             context = parent.context
-            var view =
-                LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent, false)
-            return Holder(view)
+//            var view =
+//                LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent, false)
+            val imageView = ImageView(parent.context)
+            imageView.scaleType = ImageView.ScaleType.FIT_XY
+            return Holder(imageView)
         }
 
         override fun getItemCount(): Int {
@@ -273,7 +277,7 @@ class EntranceFragment : Fragment() {
         private lateinit var context: Context
 
         private inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
-            var image: ImageView = view.findViewById(R.id.image);
+            var image: ImageView = view as ImageView
         }
     }
 
