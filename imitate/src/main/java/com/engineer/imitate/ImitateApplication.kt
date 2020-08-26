@@ -7,6 +7,10 @@ import android.os.Build
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ProcessLifecycleOwner
 import com.alibaba.android.arouter.launcher.ARouter
 import com.didichuxing.doraemonkit.*
 import com.engineer.imitate.interfaces.SimpleActivityCallback
@@ -63,6 +67,30 @@ class ImitateApplication : Application() {
         application = this
 
         registerActivityLifecycleCallbacks(object : SimpleActivityCallback() {})
+
+        ProcessLifecycleOwner.get().lifecycle.addObserver(object : LifecycleObserver {
+            val TAG = "ProcessLifecycleOwner"
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+            fun onCreate() {
+                Log.d(TAG, "onCreate() called")
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+            fun onResume() {
+                Log.d(TAG, "onResume() called")
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+            fun onPause() {
+                Log.d(TAG, "onPause() called")
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+            fun onStop() {
+                Log.d(TAG, "onStop() called")
+            }
+        })
     }
 
 

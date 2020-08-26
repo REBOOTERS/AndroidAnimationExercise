@@ -142,8 +142,8 @@ configurations.all {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation "androidx.appcompat:appcompat:$ext.androidx_appcompat"
-    implementation "com.google.android.material:material:$ext.androidx_material"
+    implementation "androidx.appcompat:appcompat:${ext.androidx_appcompat}"
+    implementation "com.google.android.material:material:${ext.androidx_material}"
     implementation 'com.orhanobut:logger:2.2.0'
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'

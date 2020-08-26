@@ -81,6 +81,7 @@ dependencies {
     implementation 'com.xw.repo:bubbleseekbar:3.18'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
 
 
     testImplementation 'junit:junit:4.13'
