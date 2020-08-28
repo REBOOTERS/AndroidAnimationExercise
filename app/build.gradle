@@ -154,7 +154,7 @@ dependencies {
     implementation 'com.squareup.okio:okio:2.7.0-alpha.lockfree.2'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation "androidx.vectordrawable:vectordrawable:1.1.0"
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
     implementation 'cn.bingoogolapple:bga-refreshlayout:1.1.8@aar'
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
     implementation 'cn.bingoogolapple:bga-adapter:1.2.0@aar'
