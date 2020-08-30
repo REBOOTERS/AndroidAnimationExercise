@@ -50,6 +50,7 @@ class MotionLayoutFragment : Fragment() {
             }
 
         })
+        image_girl.visibility = View.VISIBLE
         motion_layout.startLayoutAnimation()
 
 
@@ -59,7 +60,7 @@ class MotionLayoutFragment : Fragment() {
             }
             .subscribe({
 //                dealData(1)
-            },{
+            }, {
                 it.printStackTrace()
             })
     }
