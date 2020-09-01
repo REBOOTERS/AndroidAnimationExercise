@@ -5,12 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
+import com.engineer.imitate.util.hide
 import io.reactivex.Observable
+import kotlinx.android.synthetic.main.activity_fake_jike.*
 import kotlinx.android.synthetic.main.fragment_motion_layout.*
+import kotlinx.android.synthetic.main.fragment_motion_layout.add
 
 @Route(path = "/anim/motion_layout")
 class MotionLayoutFragment : Fragment() {
@@ -47,12 +51,15 @@ class MotionLayoutFragment : Fragment() {
 
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
                 Log.d(TAG, "onTransitionCompleted() called with: p1 = $p1")
+                image_girl.hide()
             }
 
         })
         image_girl.visibility = View.VISIBLE
-        motion_layout.startLayoutAnimation()
-
+        motion_layout.transitionToEnd()
+        add.setOnClickListener {
+            Toast.makeText(context, "1", Toast.LENGTH_SHORT).show()
+        }
 
         Observable.just(1)
             .map {
