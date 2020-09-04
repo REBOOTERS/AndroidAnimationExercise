@@ -6,7 +6,16 @@
         motion:autoTransition="animateToEnd"
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
-        motion:duration="1000" />
+        motion:duration="1000" >
+        <KeyFrameSet >
+            <KeyPosition
+                motion:motionTarget="@+id/textView3"
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:percentX="0.1"
+                motion:percentY="0.7" />
+        </KeyFrameSet>
+    </Transition>
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
@@ -51,7 +60,7 @@
             android:id="@+id/image_girl"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:alpha="1"
+            android:alpha="0"
             motion:visibilityMode="ignore"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"

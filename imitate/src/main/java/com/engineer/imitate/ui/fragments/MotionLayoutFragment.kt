@@ -63,16 +63,26 @@ class MotionLayoutFragment : Fragment() {
 
         Observable.just(1)
             .map {
-                dealData(1)
+//                middle()
+            }
+            .onErrorReturn {
+                it.printStackTrace()
+            }
+            .onExceptionResumeNext {
+                Observable.just(20)
             }
             .subscribe({
-//                dealData(1)
+                dealData(1)
             }, {
                 it.printStackTrace()
             })
     }
 
     private fun dealData(i: Int) {
-//        throw ExceptionInInitializerError("test")
+        Toast.makeText(context, i, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun middle() {
+        throw ExceptionInInitializerError("test")
     }
 }

@@ -36,6 +36,7 @@ import org.apache.commons.io.FileUtils
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
+import java.lang.IllegalStateException
 
 @Route(path = Routes.INDEX)
 class KotlinRootActivity : AppCompatActivity() {
@@ -295,7 +296,6 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     private fun jsonTest() {
-
         val uri = "https://www.zhihu.com/search?q=%E5%88%A9%E7%89%A9%E6%B5%A6&type=content"
         val parseUri = Uri.parse(uri)
 
