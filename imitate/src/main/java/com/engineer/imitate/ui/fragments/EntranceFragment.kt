@@ -21,13 +21,17 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
 import com.engineer.android.game.ui.GameRootActivity
+import com.engineer.imitate.ImitateApplication
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.activity.*
 import com.engineer.imitate.ui.activity.fragmentmanager.ContentActivity
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.startActivity
 import com.engineer.imitate.util.toastShort
+import com.hitomi.tilibrary.transfer.TransferConfig
+import com.hitomi.tilibrary.transfer.Transferee
 import com.tbruyelle.rxpermissions2.RxPermissions
+import com.vansz.glideimageloader.GlideImageLoader
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
@@ -259,11 +263,24 @@ class EntranceFragment : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             context = parent.context
+            transferee = Transferee.getDefault(context)
 //            var view =
 //                LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent, false)
-            val imageView = ImageView(parent.context)
-            imageView.scaleType = ImageView.ScaleType.FIT_XY
-            return Holder(imageView)
+            val imageView = ImageView(context)
+            imageView.scaleType = ImageView.ScaleType.FIT_CENTER
+            val holder = Holder(imageView)
+            imageView.setOnClickListener {
+                val pos = holder.adapterPosition
+                val url = datas[pos]
+                transferee.apply {
+                    TransferConfig.build()
+                        .setImageLoader(GlideImageLoader.with(ImitateApplication.application))
+                        .bindImageView(imageView, url)
+
+                }
+                transferee?.show()
+            }
+            return holder
         }
 
         override fun getItemCount(): Int {
@@ -275,9 +292,14 @@ class EntranceFragment : Fragment() {
         }
 
         private lateinit var context: Context
+        private var transferee: Transferee? = null
 
         private inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
             var image: ImageView = view as ImageView
+        }
+
+        fun onClear() {
+            transferee?.destroy()
         }
     }
 

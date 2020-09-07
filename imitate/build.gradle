@@ -165,6 +165,12 @@ dependencies {
 
     debugImplementation "com.didichuxing.doraemonkit:doraemonkit:$doraemonkit"
     releaseImplementation "com.didichuxing.doraemonkit:doraemonkit-no-op:$doraemonkit"
+
+    // https://github.com/Hitomis/transferee
+    // 单独添加核心 module Transferee, 之后至少还需要添加以下三种图片加载器中的一种
+    implementation 'com.github.Hitomis.transferee:Transferee:1.6.1'
+    // 添加 Glide 图片加载器
+    implementation 'com.github.Hitomis.transferee:GlideImageLoader:1.6.1'
 }
 
 apply from: file('hyperion-config.gradle')
