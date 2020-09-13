@@ -29,7 +29,7 @@ class ImitateApplication : Application() {
 
     companion object {
         lateinit var application: Context
-        val TAG = "activity-life"
+        val TAG = "activity_life"
     }
 
     override fun attachBaseContext(base: Context?) {

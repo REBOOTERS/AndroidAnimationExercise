@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -196,6 +197,11 @@ class EntranceFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        adapter.onClear()
+    }
+
     class MyBottomSheetFragment : SuperBottomSheetFragment() {
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -272,13 +278,11 @@ class EntranceFragment : Fragment() {
             imageView.setOnClickListener {
                 val pos = holder.adapterPosition
                 val url = datas[pos]
-                transferee.apply {
+                transferee?.apply(
                     TransferConfig.build()
                         .setImageLoader(GlideImageLoader.with(ImitateApplication.application))
                         .bindImageView(imageView, url)
-
-                }
-                transferee?.show()
+                )?.show()
             }
             return holder
         }
