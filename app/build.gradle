@@ -27,6 +27,7 @@ android {
         }
     }
     compileSdkVersion ext.compileSdkVersion
+    buildToolsVersion ext.buildToolsVersion
     defaultConfig {
         applicationId "home.smart.fly.animations"
         minSdkVersion ext.minSdkVersion

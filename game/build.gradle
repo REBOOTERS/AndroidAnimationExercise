@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 def ext = rootProject.ext
 android {
     compileSdkVersion ext.compileSdkVersion
-
+    buildToolsVersion ext.buildToolsVersion
     defaultConfig {
         minSdkVersion ext.minSdkVersion
         targetSdkVersion ext.targetSdkVersion

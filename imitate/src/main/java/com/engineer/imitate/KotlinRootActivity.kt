@@ -24,6 +24,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.ui.activity.ReverseGifActivity
 import com.engineer.imitate.util.AnimDelegate
+import com.gyf.immersionbar.ImmersionBar
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
 import com.skydoves.transformationlayout.onTransformationStartContainer
@@ -54,6 +55,7 @@ class KotlinRootActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         onTransformationStartContainer()
         super.onCreate(savedInstanceState)
+        ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).init()
         setContentView(R.layout.activity_kotlin_root)
 
         setSupportActionBar(toolbar)

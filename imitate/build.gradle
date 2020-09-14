@@ -13,7 +13,7 @@ def ext = rootProject.ext
 
 android {
     compileSdkVersion ext.compileSdkVersion
-
+    buildToolsVersion ext.buildToolsVersion
     defaultConfig {
         minSdkVersion ext.minSdkVersion
         targetSdkVersion ext.targetSdkVersion
@@ -73,6 +73,7 @@ android {
             storePassword IMITATE_DEBUG_STORE_PASSWORD
         }
     }
+    ndkVersion "21.3.6528147"
 }
 
 kapt {
@@ -171,6 +172,10 @@ dependencies {
     implementation 'com.github.Hitomis.transferee:Transferee:1.6.1'
     // 添加 Glide 图片加载器
     implementation 'com.github.Hitomis.transferee:GlideImageLoader:1.6.1'
+
+    //  https://github.com/gyf-dev/ImmersionBar
+    // 基础依赖包，必须要依赖
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
 }
 
 apply from: file('hyperion-config.gradle')
