@@ -3,6 +3,7 @@ package com.engineer.imitate.util
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Path
 import android.graphics.PathMeasure
@@ -19,7 +20,9 @@ import com.engineer.imitate.R
  *
  * 小鱼干领取动画
  */
+@SuppressLint("LogNotTimber")
 object AnimDelegate {
+
 
     fun apply(context: Context?, source: View?, target: View?, container: ViewGroup?) {
         if (context == null || source === null || target == null || container == null) {
@@ -70,10 +73,12 @@ object AnimDelegate {
         anim.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator?) {
                 super.onAnimationEnd(animation)
-//                container.removeView(img)
+                img.animate().alpha(0f).withEndAction {
+                    container.removeView(img)
+                }.start()
             }
         })
-        anim.duration = 2000
+        anim.duration = 800
         anim.start()
     }
 }

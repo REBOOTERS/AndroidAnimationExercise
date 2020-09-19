@@ -9,7 +9,6 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,8 +36,6 @@ import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
 import kotlinx.android.synthetic.main.fragment_entrance.*
-import kotlinx.android.synthetic.main.fragment_entrance.shell
-import kotlinx.android.synthetic.main.view_item_h_image.*
 import java.io.File
 
 

@@ -1,5 +1,6 @@
 package com.engineer.imitate.ui.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_motion_layout.*
 import kotlinx.android.synthetic.main.fragment_motion_layout.add
 
 @Route(path = "/anim/motion_layout")
+@SuppressLint("LogNotTimber")
 class MotionLayoutFragment : Fragment() {
     val TAG = "MotionLayoutFragment"
 

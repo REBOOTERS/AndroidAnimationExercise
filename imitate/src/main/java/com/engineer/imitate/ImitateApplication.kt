@@ -7,6 +7,7 @@ import android.os.Build
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -14,6 +15,7 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import com.alibaba.android.arouter.launcher.ARouter
 import com.didichuxing.doraemonkit.*
 import com.engineer.imitate.interfaces.SimpleActivityCallback
+import com.engineer.imitate.util.SpUtil
 import com.engineer.imitate.util.TextUtil
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.stetho.Stetho
@@ -48,7 +50,9 @@ class ImitateApplication : Application() {
         }
         Stetho.initializeWithDefaults(this)
         WebView.setWebContentsDebuggingEnabled(true)
-
+        if (SpUtil(this).getBool(SpUtil.KEY_THEME_NIGHT_ON)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
         DoraemonKit.disableUpload()
         DoraemonKit.install(this)
 

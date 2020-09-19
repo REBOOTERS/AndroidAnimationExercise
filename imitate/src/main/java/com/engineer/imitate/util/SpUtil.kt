@@ -1,13 +1,17 @@
 package com.engineer.imitate.util
 
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 
 /**
  * @author rookie
  * @since 08-21-2019
  */
 class SpUtil(context: Context) {
+
+    companion object {
+        const val KEY_THEME_NIGHT_ON = "key_theme_night_mode_on"
+    }
 
     private val sp = PreferenceManager.getDefaultSharedPreferences(context)
 

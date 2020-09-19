@@ -18,6 +18,11 @@
             android:orientation="vertical"
             tools:context=".ui.fragments.EntranceFragment">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
             <com.skydoves.transformationlayout.TransformationLayout
                 android:id="@+id/transformationLayout"
                 android:layout_width="match_parent"
@@ -28,195 +33,188 @@
                 app:transformation_fitMode="auto"
                 app:transformation_pathMode="arc">
 
-                <androidx.appcompat.widget.AppCompatButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/horizontal_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:backgroundTint="@color/md_blue"
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="horizontal_list"
-                    android:textColor="@color/white" />
+                    android:textColor="?android:attr/textColorPrimary" />
 
 
             </com.skydoves.transformationlayout.TransformationLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/inflate_real"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="inflate_real"
-                android:textColor="@color/white"
+                android:textColor="?android:attr/textColorPrimary"
                 android:visibility="visible" />
 
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/gif_revert"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="gif_revert"
-                android:textColor="@color/white"
+                android:textColor="?android:attr/textColorPrimary"
                 android:visibility="gone" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/constraintLayout_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="constraintLayout_layout"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/fragment_manager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="fragment_manager"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/game"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="game"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/shell"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="shell"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/set_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="设置桌面"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="matisse choose"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/bottom_sheet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="bottom_sheet"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/bottom_sheet_google"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="bottom_sheet_google"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/final_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="final_one"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/fake_jike"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="fake_jike"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/expandable_listview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="expandable_listview"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/date_and_time_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="date_and_time_picker"
-                android:textColor="@color/white" />
+                android:textColor="?android:attr/textColorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/screen_recorder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:backgroundTint="@color/md_blue"
+
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="screen_recorder"
-                android:textColor="@color/white" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:textColor="?android:attr/textColorPrimary" />
 
 
         </LinearLayout>

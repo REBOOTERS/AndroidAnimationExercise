@@ -77,7 +77,7 @@ class CoroutinesFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 Thread.currentThread().name.lg(TAG)
                 setUpPager(list)
-                progress.visibility =View.GONE
+                progress.visibility = View.GONE
             }
         }
     }
@@ -97,7 +97,7 @@ class CoroutinesFragment : Fragment() {
         "3".lg(TAG)
     }
 
-    private suspend fun readJsonAndParse(block: (String) -> List<Schools>?) :List<Schools>?{
+    private suspend fun readJsonAndParse(block: (String) -> List<Schools>?): List<Schools>? {
         var list: List<Schools>?
         withContext(Dispatchers.IO) {
             val start = System.currentTimeMillis()
@@ -129,7 +129,7 @@ class CoroutinesFragment : Fragment() {
             .subscribe({
                 setUpPager(it)
                 progress.visibility = View.GONE
-            },{
+            }, {
                 it.printStackTrace()
                 progress.visibility = View.GONE
             })
@@ -199,7 +199,7 @@ class ListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return RecyclerView(context!!)
+        return RecyclerView(requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -236,11 +236,4 @@ private fun parseWithGson(json: String): List<Schools>? {
     val list: List<Schools> = gson.fromJson(json, object : TypeToken<List<Schools>>() {}.type)
     Log.e(TAG, "parse json cost ${System.currentTimeMillis() - s}")
     return list
-}
-
-fun coroutines() = runBlocking(EmptyCoroutineContext) {
-    GlobalScope.launch(EmptyCoroutineContext, CoroutineStart.DEFAULT) {
-        delay(1000)
-        Log.e(TAG, "finish")
-    }
 }

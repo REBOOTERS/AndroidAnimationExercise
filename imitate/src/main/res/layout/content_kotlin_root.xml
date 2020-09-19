@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cpb_white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".KotlinRootActivity"
     tools:showIn="@layout/activity_kotlin_root">
@@ -12,7 +11,8 @@
     <FrameLayout
         android:id="@+id/index"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?android:attr/colorBackground">
 
 
         <WebView
@@ -37,6 +37,7 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?android:attr/colorBackground"
         android:visibility="gone" />
 
 </FrameLayout>

@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -24,6 +25,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.ui.activity.ReverseGifActivity
 import com.engineer.imitate.util.AnimDelegate
+import com.engineer.imitate.util.SpUtil
 import com.gyf.immersionbar.ImmersionBar
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
@@ -55,7 +57,9 @@ class KotlinRootActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         onTransformationStartContainer()
         super.onCreate(savedInstanceState)
-        ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).init()
+        ImmersionBar.with(this)
+            .fitsSystemWindows(true)
+            .statusBarColor(R.color.colorPrimary).init()
         setContentView(R.layout.activity_kotlin_root)
 
         setSupportActionBar(toolbar)
@@ -228,12 +232,20 @@ class KotlinRootActivity : AppCompatActivity() {
         return true
     }
 
+
+    private fun isNightMode(): Boolean {
+        val flag = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return flag == Configuration.UI_MODE_NIGHT_YES
+    }
+
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         val item = menu?.findItem(R.id.theme_switch)
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            item?.setIcon(R.drawable.ic_brightness_high_white_24dp)
-        } else {
+        if (isNightMode()) {
             item?.setIcon(R.drawable.ic_brightness_low_white_24dp)
+            item?.setTitle("日间模式")
+        } else {
+            item?.setIcon(R.drawable.ic_brightness_high_white_24dp)
+            item?.title = "夜间模式"
         }
         val change = menu?.findItem(R.id.action_change)
         change?.isVisible = (recyclerView.visibility == View.VISIBLE)
@@ -265,12 +277,14 @@ class KotlinRootActivity : AppCompatActivity() {
                 return true
             }
         } else if (item.itemId == R.id.theme_switch) {
-            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
+            if (isNightMode()) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                SpUtil(this).saveBool(SpUtil.KEY_THEME_NIGHT_ON, false)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                SpUtil(this).saveBool(SpUtil.KEY_THEME_NIGHT_ON, true)
             }
-            recreate()
+//            recreate()
         }
         return super.onOptionsItemSelected(item)
     }

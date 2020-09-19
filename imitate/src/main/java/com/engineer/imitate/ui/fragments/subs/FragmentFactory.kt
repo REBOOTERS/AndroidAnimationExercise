@@ -15,6 +15,7 @@ object FragmentFactory {
         list.add(Item("animText", AnimationTextFragment()))
         list.add(Item("shadow", ShadowLayoutFragment()))
         list.add(Item("FitText", FitTextViewFragment()))
+        list.add(Item("test", TestFragment()))
     }
 
     data class Item(val title: String, val fragment: Fragment)
