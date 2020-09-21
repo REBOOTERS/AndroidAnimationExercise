@@ -3,6 +3,7 @@ ext {
     buildToolsVersion = "30.0.2"
     minSdkVersion = 21
     targetSdkVersion = 29
+    ndk_version = "21.3.6528147"
 
     support_version = '1.1.0'
     androidx_appcompat = '1.2.0'

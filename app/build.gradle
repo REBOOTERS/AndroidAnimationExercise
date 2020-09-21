@@ -129,6 +129,7 @@ android {
         timeOutInMs 5 * 1000
         installOptions '-d'
     }
+    ndkVersion ext.ndk_version
 }
 
 //jacocoAndroidUnitTestReport {

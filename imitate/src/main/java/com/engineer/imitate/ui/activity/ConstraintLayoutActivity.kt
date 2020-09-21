@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.list.adapter.LargeImageAdapter
 import com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
+import com.engineer.imitate.util.hide
+import com.engineer.imitate.util.show
 import kotlinx.android.synthetic.main.activity_constraint_layout.*
 
 class ConstraintLayoutActivity : AppCompatActivity() {
@@ -67,7 +69,13 @@ class ConstraintLayoutActivity : AppCompatActivity() {
             rotate_anim.rotation = 0f
             rotateAnim(rotate_anim)
         }
-
+        button_2.setOnClickListener {
+            if (button_1.visibility == View.VISIBLE) {
+                button_1.hide()
+            } else {
+                button_1.show()
+            }
+        }
     }
 
     private var rotation: ViewPropertyAnimator? = null

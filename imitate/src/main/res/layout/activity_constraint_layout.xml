@@ -9,6 +9,28 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.activity.ConstraintLayoutActivity">
 
+    <Button
+        android:id="@+id/button_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:text="button_1"
+        android:textColor="?android:attr/textColorPrimary"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:text="gone_margin"
+        android:textColor="?android:attr/textColorPrimary"
+        app:layout_constraintEnd_toStartOf="@id/button_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginEnd="180dp" />
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
@@ -29,6 +51,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:visibility="visible">
+
 
             <com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
                 android:id="@+id/head_home_layout"

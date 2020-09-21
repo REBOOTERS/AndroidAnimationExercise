@@ -73,7 +73,7 @@ android {
             storePassword IMITATE_DEBUG_STORE_PASSWORD
         }
     }
-    ndkVersion "21.3.6528147"
+    ndkVersion ext.ndk_version
 }
 
 kapt {
