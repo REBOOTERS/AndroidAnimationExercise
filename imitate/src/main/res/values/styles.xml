@@ -9,9 +9,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="MyAppTheme" parent="AppTheme">
         <item name="android:windowBackground">@color/white</item>
@@ -32,7 +32,12 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="MyAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar"/>
+    <style name="MyAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />
 
-    <style name="MyAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight"/>
+    <style name="MyAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
+
+    <style name="margin_start_end_10">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+    </style>
 </resources>

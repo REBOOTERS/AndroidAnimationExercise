@@ -2,6 +2,7 @@ package com.engineer.imitate.ui.widget
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.engineer.imitate.R
@@ -36,6 +37,11 @@ class ViewA : ConstraintLayout {
     private fun initView(context: Context?) {
         val view = LayoutInflater.from(context).inflate(R.layout.inflate_example, this, true)
         view.text_cover.text = this.javaClass.canonicalName
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        Log.d("ViewA", "onDetachedFromWindow() called")
     }
 }
 
