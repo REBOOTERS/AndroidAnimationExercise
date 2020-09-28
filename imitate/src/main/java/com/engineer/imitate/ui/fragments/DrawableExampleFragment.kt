@@ -16,6 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_text_drawable.*
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 
 
 /**
@@ -26,6 +27,8 @@ import java.util.concurrent.TimeUnit
 class DrawableExampleFragment : Fragment() {
     private val TAG = "DrawableExampleFragment"
     private var disposable: Disposable? = null
+    private var count = AtomicInteger()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,16 +58,18 @@ class DrawableExampleFragment : Fragment() {
     }
 
     private fun poll() {
-        releaseDisposable()
-        disposable = Observable.intervalRange(1, 100, 0, 300, TimeUnit.MILLISECONDS)
+        Log.e(TAG, "next : ${count.getAndIncrement()}")
+        val base = 10L
+//        releaseDisposable()
+        disposable = Observable.intervalRange(1, base, 0, 1, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 Log.e(TAG, "onViewCreated: it      ==$it")
-                value_text.text = "${it} %"
-                val percent = it / 100f
+                val percent = it * 1f / base
                 Log.e(TAG, "onViewCreated: percent ==$percent")
+                value_text.text = "${percent} %"
                 progress_view.setProgress(percent)
-                if (it.toInt() == 100) {
+                if (it.toInt() == base.toInt()) {
                     poll()
                 }
             }
@@ -84,7 +89,7 @@ class DrawableExampleFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        Log.e(TAG, "onDestroyView() called")
+        Log.e(TAG, "onDestroyView() called ${count}")
         super.onDestroyView()
         releaseDisposable()
     }

@@ -31,7 +31,9 @@ import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_content.*
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
 import kotlinx.android.synthetic.main.content_kotlin_root.*
 import kotlinx.android.synthetic.main.view_item.view.*
@@ -40,8 +42,10 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import java.lang.IllegalStateException
+import java.util.concurrent.TimeUnit
 
 @Route(path = Routes.INDEX)
+@SuppressLint("LogNotTimber")
 class KotlinRootActivity : AppCompatActivity() {
     private val TAG = KotlinRootActivity::class.java.simpleName
     private val ORIGINAL_URL = "file:///android_asset/index.html"
@@ -167,8 +171,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 index.visibility = View.GONE
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
-
-                Log.e(TAG, "transaction===" + transaction.isEmpty)
+                updateState()
             }
         }.layoutManager(mLayoutManager)
 
@@ -302,14 +305,31 @@ class KotlinRootActivity : AppCompatActivity() {
         content.visibility = View.GONE
         index.visibility = View.VISIBLE
         gif.show()
-        val transaction = supportFragmentManager.beginTransaction()
-        if (!transaction.isEmpty) {
-            transaction.remove(currentFragment)
+        Log.e(TAG, "fragments size = " + supportFragmentManager.fragments.size)
+        if (supportFragmentManager.fragments.size > 0) {
+            supportFragmentManager.beginTransaction()
+                .remove(currentFragment)
+                .commitAllowingStateLoss()
+            updateState()
         }
-        Log.e(TAG, "transaction===" + transaction.isEmpty)
-        Log.e(TAG, "transaction===" + supportFragmentManager.fragments.size)
+    }
 
-
+    private fun updateState() {
+        Observable.just(1)
+            .delay(1, TimeUnit.SECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext {
+                Log.e(TAG, "updateState: ======================================================\n")
+                Log.e(TAG, "fragments size = " + supportFragmentManager.fragments.size)
+                supportFragmentManager.fragments.forEach {
+                    Log.e(
+                        TAG,
+                        "fragment [ ${it.javaClass.name} ] in activity [ ${it.activity?.javaClass?.simpleName} ]"
+                    )
+                }
+                Log.e(TAG, "updateState: ======================================================\n")
+            }
+            .subscribe()
     }
 
     private fun jsonTest() {
