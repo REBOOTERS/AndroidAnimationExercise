@@ -51,6 +51,11 @@ class DrawableExampleFragment : Fragment() {
 
         })
 
+        poll()
+    }
+
+    private fun poll() {
+        releaseDisposable()
         disposable = Observable.intervalRange(1, 100, 0, 300, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
@@ -59,11 +64,28 @@ class DrawableExampleFragment : Fragment() {
                 val percent = it / 100f
                 Log.e(TAG, "onViewCreated: percent ==$percent")
                 progress_view.setProgress(percent)
+                if (it.toInt() == 100) {
+                    poll()
+                }
             }
     }
 
+    private fun releaseDisposable() {
+        disposable?.let {
+            if (it.isDisposed.not()) {
+                it.dispose()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e(TAG, "onDestroy() called")
+    }
+
     override fun onDestroyView() {
+        Log.e(TAG, "onDestroyView() called")
         super.onDestroyView()
-        disposable?.dispose()
+        releaseDisposable()
     }
 }

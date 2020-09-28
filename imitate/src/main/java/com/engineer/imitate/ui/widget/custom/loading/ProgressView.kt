@@ -52,14 +52,14 @@ class ProgressView : View {
     private fun initPaint(context: Context) {
         mCirclePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = WHITE
-            strokeWidth = 12f
+            strokeWidth = 8f
             style = Paint.Style.STROKE
         }
 
         mArcPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = RED
             style = Paint.Style.STROKE
-            strokeWidth = 12f
+            strokeWidth = 8f
         }
 
 
