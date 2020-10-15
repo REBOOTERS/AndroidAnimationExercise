@@ -25,7 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
-import com.muddzdev.pixelshot.PixelShot;
+//import com.muddzdev.pixelshot.PixelShot;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yhao.floatwindow.FloatWindow;
 import com.yhao.floatwindow.MoveType;
@@ -168,75 +168,75 @@ public class ScreenCaptureActivity extends AppCompatActivity {
 
     private void takeScreenShotWithPixel() {
         View viewRoot = getWindow().getDecorView().getRootView();
-        PixelShot.of(viewRoot)
-                .setFilename("screen" + System.currentTimeMillis())
-                .setResultListener(new PixelShot.PixelShotListener() {
-                    @SuppressLint("CheckResult")
-                    @Override
-                    public void onPixelShotSuccess(String path) {
-                        Toast.makeText(mContext, path, Toast.LENGTH_SHORT).show();
-
-                        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_floating_window, null);
-                        ImageView imageView = view.findViewById(R.id.target_view);
-                        Glide.with(mContext).load(path).into(imageView);
-                        view.setOnClickListener(v -> {
-                            FloatWindow.get().hide();
-                            FloatWindow.destroy();
-                            if (timer != null && timer.isDisposed()) {
-                                timer.dispose();
-                            }
-                            Intent mIntent = new Intent();
-                            mIntent.setAction(Intent.ACTION_VIEW);
-                            Uri contentUri;
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                // 将文件转换成content://Uri的形式
-                                contentUri = FileProvider.getUriForFile(mContext, getPackageName() + ".fileprovider", new File(path));
-                                // 申请临时访问权限
-                                mIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                            } else {
-                                contentUri = Uri.fromFile(new File(path));
-                            }
-
-                            mIntent.setDataAndType(contentUri, "image/*");
-                            startActivity(mIntent);
-                        });
-
-
-                        FloatWindow
-                                .with(getApplicationContext())
-                                .setView(view)
-                                .setWidth(Screen.width, 0.3f)
-                                .setHeight(Screen.width, 0.4f)
-                                .setX(Screen.width, 0.1f)
-                                .setY(Screen.height, 0.7f)
-                                .setMoveType(MoveType.inactive)
-                                .setFilter(true, ScreenCaptureActivity.class)
-                                .setPermissionListener(mPermissionListener)
-                                .setDesktopShow(false)
-                                .build();
-
-                        FloatWindow.get().show();
-
-                        timer = Observable.timer(3, TimeUnit.SECONDS)
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(aLong ->
-                                        {
-                                            Log.e(TAG, "accept: aLong==" + aLong);
-                                            FloatWindow.get().hide();
-                                            FloatWindow.destroy();
-                                        },
-                                        throwable -> {
-
-                                        });
-
-
-                    }
-
-                    @Override
-                    public void onPixelShotFailed() {
-                        Toast.makeText(mContext, "Fail", Toast.LENGTH_SHORT).show();
-                    }
-                }).save();
+//        PixelShot.of(viewRoot)
+//                .setFilename("screen" + System.currentTimeMillis())
+//                .setResultListener(new PixelShot.PixelShotListener() {
+//                    @SuppressLint("CheckResult")
+//                    @Override
+//                    public void onPixelShotSuccess(String path) {
+//                        Toast.makeText(mContext, path, Toast.LENGTH_SHORT).show();
+//
+//                        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_floating_window, null);
+//                        ImageView imageView = view.findViewById(R.id.target_view);
+//                        Glide.with(mContext).load(path).into(imageView);
+//                        view.setOnClickListener(v -> {
+//                            FloatWindow.get().hide();
+//                            FloatWindow.destroy();
+//                            if (timer != null && timer.isDisposed()) {
+//                                timer.dispose();
+//                            }
+//                            Intent mIntent = new Intent();
+//                            mIntent.setAction(Intent.ACTION_VIEW);
+//                            Uri contentUri;
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                                // 将文件转换成content://Uri的形式
+//                                contentUri = FileProvider.getUriForFile(mContext, getPackageName() + ".fileprovider", new File(path));
+//                                // 申请临时访问权限
+//                                mIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+//                            } else {
+//                                contentUri = Uri.fromFile(new File(path));
+//                            }
+//
+//                            mIntent.setDataAndType(contentUri, "image/*");
+//                            startActivity(mIntent);
+//                        });
+//
+//
+//                        FloatWindow
+//                                .with(getApplicationContext())
+//                                .setView(view)
+//                                .setWidth(Screen.width, 0.3f)
+//                                .setHeight(Screen.width, 0.4f)
+//                                .setX(Screen.width, 0.1f)
+//                                .setY(Screen.height, 0.7f)
+//                                .setMoveType(MoveType.inactive)
+//                                .setFilter(true, ScreenCaptureActivity.class)
+//                                .setPermissionListener(mPermissionListener)
+//                                .setDesktopShow(false)
+//                                .build();
+//
+//                        FloatWindow.get().show();
+//
+//                        timer = Observable.timer(3, TimeUnit.SECONDS)
+//                                .observeOn(AndroidSchedulers.mainThread())
+//                                .subscribe(aLong ->
+//                                        {
+//                                            Log.e(TAG, "accept: aLong==" + aLong);
+//                                            FloatWindow.get().hide();
+//                                            FloatWindow.destroy();
+//                                        },
+//                                        throwable -> {
+//
+//                                        });
+//
+//
+//                    }
+//
+//                    @Override
+//                    public void onPixelShotFailed() {
+//                        Toast.makeText(mContext, "Fail", Toast.LENGTH_SHORT).show();
+//                    }
+//                }).save();
     }
 
     private PermissionListener mPermissionListener = new PermissionListener() {

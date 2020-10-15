@@ -48,9 +48,9 @@ class CalculateAction(project: Project) : BaseAction(project) {
         if (android is BaseAppModuleExtension) {
             android.applicationVariants.all {variant ->
                 variant.packageApplicationProvider.configure { config ->
-                    config.apkNames.forEach {
-                        println(it)
-                    }
+//                    config.apkNames.forEach {
+//                        println(it)
+//                    }
                 }
 
             }
