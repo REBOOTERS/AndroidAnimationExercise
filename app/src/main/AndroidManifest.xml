@@ -50,7 +50,9 @@
             android:name=".ui.activity.AllActivity"
             android:label="@string/title_activity_all"
             android:theme="@style/MyTheme.NoActionBar" />
-        <activity android:name=".ui.activity.PrepareActivity" android:exported="true" />
+        <activity
+            android:name=".ui.activity.PrepareActivity"
+            android:exported="true" />
         <activity
             android:name=".AppStartActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -311,7 +313,8 @@
         <activity android:name=".master.ui.MasterFilterActivity" />
         <activity
             android:name=".ui.activity.OrientationActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme.NoActionBar" />
         <activity android:name=".ui.activity.PhysicsViewActivity" />
         <activity
             android:name=".ui.activity.ClockViewActivity"
