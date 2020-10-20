@@ -15,6 +15,7 @@
 
     <style name="MyAppTheme" parent="AppTheme">
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
     </style>
 
     <style name="MyAppTheme.NoActionBar">
@@ -22,6 +23,17 @@
         <item name="windowNoTitle">true</item>
         <!--状态栏透明-->
         <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
+    </style>
+
+    <style name="WindowAnimationStyle">
+        <item name="android:windowEnterAnimation">@android:anim/linear_interpolator</item>
     </style>
 
     <style name="MyAppTheme.NoActionBar.FullScreen">
