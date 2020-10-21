@@ -11,9 +11,11 @@ import android.os.Bundle
 import android.os.Environment
 import android.text.TextUtils
 import android.util.Log
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
@@ -24,8 +26,11 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.ui.activity.ReverseGifActivity
+import com.engineer.imitate.ui.widget.opensource.text.ActionMenu
 import com.engineer.imitate.util.AnimDelegate
 import com.engineer.imitate.util.SpUtil
+import com.engineer.imitate.util.dp
+import com.engineer.imitate.util.toastShort
 import com.gyf.immersionbar.ImmersionBar
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
@@ -33,7 +38,6 @@ import com.skydoves.transformationlayout.onTransformationStartContainer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_content.*
 import kotlinx.android.synthetic.main.activity_kotlin_root.*
 import kotlinx.android.synthetic.main.content_kotlin_root.*
 import kotlinx.android.synthetic.main.view_item.view.*
@@ -41,7 +45,6 @@ import org.apache.commons.io.FileUtils
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
-import java.lang.IllegalStateException
 import java.util.concurrent.TimeUnit
 
 @Route(path = Routes.INDEX)
@@ -65,7 +68,6 @@ class KotlinRootActivity : AppCompatActivity() {
             .fitsSystemWindows(true)
             .statusBarColor(R.color.colorPrimary).init()
         setContentView(R.layout.activity_kotlin_root)
-
         setSupportActionBar(toolbar)
         loadView()
         jsonTest()
@@ -160,6 +162,9 @@ class KotlinRootActivity : AppCompatActivity() {
             path.setOnClickListener {
                 AnimDelegate.apply(context, path, gif, shell_root)
             }
+            more_menu.setOnClickListener {
+                showMenu(more_menu)
+            }
 
             shell.setOnClickListener {
                 gif.hide()
@@ -185,6 +190,12 @@ class KotlinRootActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    private fun showMenu(view: View) {
+        val popupMenu = PopupMenu(this, view,Gravity.END)
+        popupMenu.menuInflater.inflate(R.menu.index_setting_menu, popupMenu.menu)
+        popupMenu.show()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
