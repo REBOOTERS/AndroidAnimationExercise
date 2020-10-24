@@ -63,6 +63,11 @@ class MotionLayoutFragment : Fragment() {
             Toast.makeText(context, "1", Toast.LENGTH_SHORT).show()
         }
 
+        image_btn.setOnLongClickListener {
+            Log.e(TAG, "long click")
+            true
+        }
+
         Observable.just(1)
             .map {
 //                middle()
