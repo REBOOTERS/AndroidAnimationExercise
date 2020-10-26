@@ -13,11 +13,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/start"
+        android:id="@+id/stop_all"
         style="@style/margin_start_end_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start"
+        android:text="stop_all"
         app:layout_constraintTop_toBottomOf="@id/content" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/stop_all" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/start1"
+        style="@style/margin_start_end_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="custom_lifecycle"
+        app:layout_constraintTop_toBottomOf="@id/line" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/start2"
+        style="@style/margin_start_end_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="callable"
+        app:layout_constraintTop_toBottomOf="@id/start1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
