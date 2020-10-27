@@ -16,7 +16,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_rx_play.*
-import java.util.concurrent.Callable
 import java.util.concurrent.TimeUnit
 
 @SuppressLint("LogNotTimber")
@@ -43,13 +42,31 @@ class RxPlayGroundFragment : Fragment() {
             customLifecycle()
         }
 
-        fun provideStr(): String? = null
+        fun providerValue(): Int = 0
 
 
         start2.setOnClickListener {
-            Observable.fromCallable { provideStr() }
-                .filter { s -> s != null }
-                .onErrorResumeNext(Observable.empty())
+//            Observable.fromCallable { providerValue() }
+//                .filter { value -> value != 0 }
+////                .onErrorResumeNext(Observable.empty())
+//                .switchIfEmpty(Observable.create {
+//                    it.onNext(1)
+//                })
+//                .subscribe({
+//                    Log.e(TAG, " it==$it")
+//                }, {
+//                    Log.e(TAG, " error=$it")
+//                })
+
+            Observable.create<Int> {
+                it.onNext(0)
+                it.onComplete()
+            }
+                .filter { value -> value != 0 }
+//                .onErrorResumeNext(Observable.empty())
+                .switchIfEmpty(Observable.create {
+                    it.onNext(1)
+                })
                 .subscribe({
                     Log.e(TAG, " it==$it")
                 }, {
