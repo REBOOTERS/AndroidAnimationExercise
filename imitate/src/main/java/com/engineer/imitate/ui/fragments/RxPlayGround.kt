@@ -63,15 +63,30 @@ class RxPlayGroundFragment : Fragment() {
                 it.onComplete()
             }
                 .filter { value -> value != 0 }
-//                .onErrorResumeNext(Observable.empty())
+                .onErrorResumeNext(Observable.empty())
                 .switchIfEmpty(Observable.create {
                     it.onNext(1)
+                    it.onComplete()
                 })
-                .subscribe({
-                    Log.e(TAG, " it==$it")
-                }, {
-                    Log.e(TAG, " error=$it")
-                })
+                .doOnNext {
+                    Log.e(TAG, "doOnNext and it=$it")
+                }
+                .doAfterNext {
+                    Log.e(TAG, "doAfterNext and it=$it")
+                }
+                .doOnError { Log.e(TAG, "doOnError") }
+                .doOnComplete { Log.e(TAG, "doOnComplete") }
+                .subscribe()
+
+//            Observable.just(1)
+//                .filter { it > 0 }
+//                .switchIfEmpty(Observable.create { 100 })
+//                .doOnNext {
+//                    Log.e(TAG, "doOnNext and it=$it")
+//                }
+//                .doOnError { Log.e(TAG, "doOnError") }
+//                .doOnComplete { Log.e(TAG, "doOnComplete") }
+//                .subscribe()
         }
 
         stop_all.setOnClickListener {
