@@ -28,7 +28,7 @@ ext {
     roomVersion = '2.2.5'
     archLifecycleVersion = '2.2.0'
 
-    kotlin_coroutines = '1.3.7'
+    kotlin_coroutines = '1.3.9'
 }
 
 ext.allDependencies = [
