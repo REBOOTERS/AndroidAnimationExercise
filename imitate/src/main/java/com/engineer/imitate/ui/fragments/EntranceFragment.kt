@@ -27,7 +27,7 @@ import com.engineer.imitate.ui.activity.fragmentmanager.ContentActivity
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.startActivity
 import com.engineer.imitate.util.toastShort
-import com.tbruyelle.rxpermissions2.RxPermissions
+import com.permissionx.guolindev.PermissionX
 import com.wanglu.photoviewerlibrary.PhotoViewer
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
@@ -60,46 +60,53 @@ class EntranceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         button.setOnClickListener {
-            val permissions = RxPermissions(this)
-            permissions.request(
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA
-            )
-                .subscribe {
-                    Matisse.from(this)
-                        .choose(MimeType.ofAll(), false)
-                        .countable(true)
-                        .capture(true)
-                        .captureStrategy(
-                            CaptureStrategy(true, context!!.packageName + ".fileprovider")
-                        )
-                        .maxSelectable(9)
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(Glide4Engine())
-                        .forResult(100)
+            PermissionX.init(this)
+                .permissions(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA
+                )
+                .request { it, _, _ ->
+                    if (it) {
+                        Matisse.from(this)
+                            .choose(MimeType.ofAll(), false)
+                            .countable(true)
+                            .capture(true)
+                            .captureStrategy(
+                                CaptureStrategy(true, requireContext().packageName + ".fileprovider")
+                            )
+                            .maxSelectable(9)
+                            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                            .thumbnailScale(0.85f)
+                            .imageEngine(Glide4Engine())
+                            .forResult(100)
+                    }
                 }
         }
 
         set_bg.setOnClickListener {
-            val permissions = RxPermissions(this)
-            permissions.request(
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA
-            )
-                .subscribe {
-                    Matisse.from(this)
-                        .choose(MimeType.ofAll(), false)
-                        .countable(true)
-                        .capture(true)
-                        .captureStrategy(
-                            CaptureStrategy(true, context!!.packageName + ".fileprovider")
-                        )
-                        .maxSelectable(9)
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(Glide4Engine())
-                        .forResult(101)
+            PermissionX.init(this)
+                .permissions(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA
+                )
+                .request { it, _, _ ->
+                    if (it) {
+                        Matisse.from(this)
+                            .choose(MimeType.ofAll(), false)
+                            .countable(true)
+                            .capture(true)
+                            .captureStrategy(
+                                CaptureStrategy(
+                                    true,
+                                    requireContext().packageName + ".fileprovider"
+                                )
+                            )
+                            .maxSelectable(9)
+                            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                            .thumbnailScale(0.85f)
+                            .imageEngine(Glide4Engine())
+                            .forResult(101)
+                    }
                 }
         }
 

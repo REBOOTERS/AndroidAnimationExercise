@@ -1,14 +1,11 @@
 package home.smart.fly.animations.ui.activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -22,28 +19,19 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
-import com.bumptech.glide.Glide;
-//import com.muddzdev.pixelshot.PixelShot;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.yhao.floatwindow.FloatWindow;
-import com.yhao.floatwindow.MoveType;
+import com.permissionx.guolindev.PermissionX;
 import com.yhao.floatwindow.PermissionListener;
-import com.yhao.floatwindow.Screen;
-
-import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.utils.FileUtil;
 import home.smart.fly.animations.utils.GenBitmapDelegate;
 import home.smart.fly.animations.utils.SysUtil;
 import home.smart.fly.animations.widget.DrawingThread;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import kotlin.Unit;
+
+//import com.muddzdev.pixelshot.PixelShot;
 
 public class ScreenCaptureActivity extends AppCompatActivity {
     private static final String TAG = "ScreenCaptureActivity";
@@ -259,21 +247,19 @@ public class ScreenCaptureActivity extends AppCompatActivity {
     }
 
     private void saveBitmap(Bitmap bitmap) {
-        RxPermissions rxPermissions = new RxPermissions(this);
-        mDisposable = rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(aBoolean -> {
-                    if (aBoolean) {
-                        String path = FileUtil.savaBitmap2SDcard(ScreenCaptureActivity.this, bitmap, "myfile");
-                        if (!TextUtils.isEmpty(path)) {
-                            Toast.makeText(ScreenCaptureActivity.this, "success path is " + path, Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ScreenCaptureActivity.this, FullscreenActivity.class);
-                            intent.putExtra("path", path);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(ScreenCaptureActivity.this, "fail", Toast.LENGTH_SHORT).show();
-                        }
+        PermissionX.init(this).permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .request((allGranted, grantedList, deniedList) -> {
+                    String path = FileUtil.savaBitmap2SDcard(ScreenCaptureActivity.this, bitmap, "myfile");
+                    if (!TextUtils.isEmpty(path)) {
+                        Toast.makeText(ScreenCaptureActivity.this, "success path is " + path, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ScreenCaptureActivity.this, FullscreenActivity.class);
+                        intent.putExtra("path", path);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ScreenCaptureActivity.this, "fail", Toast.LENGTH_SHORT).show();
                     }
-                }, Throwable::printStackTrace);
+                });
+
     }
 
     @Override

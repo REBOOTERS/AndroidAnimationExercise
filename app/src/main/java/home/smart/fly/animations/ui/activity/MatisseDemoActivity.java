@@ -5,15 +5,16 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
-import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.permissionx.guolindev.PermissionX;
 import com.yalantis.ucrop.UCrop;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
@@ -33,8 +34,6 @@ import home.smart.fly.animations.internal.annotations.Cat;
 import home.smart.fly.animations.utils.GifSizeFilter;
 import home.smart.fly.animations.utils.Glide4Engine;
 import home.smart.fly.animations.utils.Tools;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 
 public class MatisseDemoActivity extends AppCompatActivity implements View.OnClickListener, BGAOnRVItemClickListener {
@@ -88,65 +87,46 @@ public class MatisseDemoActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(final View v) {
-        RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(new Observer<Boolean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Boolean aBoolean) {
-                        if (aBoolean) {
-                            switch (v.getId()) {
-                                case R.id.zhihu:
-                                    Matisse.from(MatisseDemoActivity.this)
-                                            .choose(MimeType.ofAll(), false)
-                                            .countable(true)
-                                            .capture(true)
-                                            .captureStrategy(
-                                                    new CaptureStrategy(true, getPackageName() + ".fileprovider"))
-                                            .maxSelectable(9)
-                                            .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-                                            .gridExpectedSize(
-                                                    getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
-                                            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                                            .thumbnailScale(0.85f)
-                                            .imageEngine(new Glide4Engine())
-                                            .forResult(REQUEST_CODE_CHOOSE);
-                                    break;
-                                case R.id.dracula:
-                                    Matisse.from(MatisseDemoActivity.this)
-                                            .choose(MimeType.of(MimeType.JPEG,MimeType.PNG))
-                                            .theme(R.style.Matisse_Dracula)
-                                            .countable(false)
-                                            .maxSelectable(1)
-                                            .imageEngine(new PicassoEngine())
-                                            .forResult(REQUEST_CODE_CHOOSE);
-                                    break;
-                                case R.id.custom:
-                                    Matisse.from(MatisseDemoActivity.this)
-                                            .choose(MimeType.ofImage())
-                                            .forResult(REQUEST_CODE_CHOOSE);
-                                    break;
-                                default:
-                                    break;
-                            }
-                        } else {
-                            Toast.makeText(MatisseDemoActivity.this, R.string.permission_request_denied, Toast.LENGTH_LONG)
-                                    .show();
+        PermissionX.init(this).permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .request((allGranted, grantedList, deniedList) -> {
+                    if (allGranted) {
+                        switch (v.getId()) {
+                            case R.id.zhihu:
+                                Matisse.from(MatisseDemoActivity.this)
+                                        .choose(MimeType.ofAll(), false)
+                                        .countable(true)
+                                        .capture(true)
+                                        .captureStrategy(
+                                                new CaptureStrategy(true, getPackageName() + ".fileprovider"))
+                                        .maxSelectable(9)
+                                        .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
+                                        .gridExpectedSize(
+                                                getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
+                                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                                        .thumbnailScale(0.85f)
+                                        .imageEngine(new Glide4Engine())
+                                        .forResult(REQUEST_CODE_CHOOSE);
+                                break;
+                            case R.id.dracula:
+                                Matisse.from(MatisseDemoActivity.this)
+                                        .choose(MimeType.of(MimeType.JPEG, MimeType.PNG))
+                                        .theme(R.style.Matisse_Dracula)
+                                        .countable(false)
+                                        .maxSelectable(1)
+                                        .imageEngine(new PicassoEngine())
+                                        .forResult(REQUEST_CODE_CHOOSE);
+                                break;
+                            case R.id.custom:
+                                Matisse.from(MatisseDemoActivity.this)
+                                        .choose(MimeType.ofImage())
+                                        .forResult(REQUEST_CODE_CHOOSE);
+                                break;
+                            default:
+                                break;
                         }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                    } else {
+                        Toast.makeText(MatisseDemoActivity.this, R.string.permission_request_denied, Toast.LENGTH_LONG)
+                                .show();
                     }
                 });
     }

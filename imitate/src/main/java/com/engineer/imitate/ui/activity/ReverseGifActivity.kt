@@ -19,8 +19,8 @@ import com.engineer.gif.revert.GifFactory
 import com.engineer.imitate.R
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
+import com.permissionx.guolindev.PermissionX
 import com.skydoves.transformationlayout.onTransformationEndContainer
-import com.tbruyelle.rxpermissions2.RxPermissions
 import com.wang.avi.indicators.*
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
@@ -75,22 +75,24 @@ class ReverseGifActivity : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
     private fun selectGif() {
-        val permissions = RxPermissions(this)
-        permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            .subscribe {
-                Matisse.from(this)
-                    .choose(MimeType.of(MimeType.GIF))
-                    .showSingleMediaType(true)
-                    .countable(false)
-                    .capture(false)
-                    .captureStrategy(
-                        CaptureStrategy(true, mContext.packageName + ".fileprovider")
-                    )
-                    .maxSelectable(1)
-                    .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                    .thumbnailScale(0.85f)
-                    .imageEngine(Glide4Engine())
-                    .forResult(GIF_REQUEST_CODE)
+        PermissionX.init(this)
+            .permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            .request{it,_,_ ->
+                if (it) {
+                    Matisse.from(this)
+                        .choose(MimeType.of(MimeType.GIF))
+                        .showSingleMediaType(true)
+                        .countable(false)
+                        .capture(false)
+                        .captureStrategy(
+                            CaptureStrategy(true, mContext.packageName + ".fileprovider")
+                        )
+                        .maxSelectable(1)
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                        .thumbnailScale(0.85f)
+                        .imageEngine(Glide4Engine())
+                        .forResult(GIF_REQUEST_CODE)
+                }
             }
     }
 
