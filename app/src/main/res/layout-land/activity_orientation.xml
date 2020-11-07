@@ -17,6 +17,23 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
 
+    <TextView
+        android:id="@+id/pos_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp"
+        android:text="measure self position"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/switcher"
+        app:layout_constraintStart_toEndOf="@id/switcher"
+        app:layout_constraintTop_toTopOf="@id/switcher"
+        tools:ignore="HardcodedText" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

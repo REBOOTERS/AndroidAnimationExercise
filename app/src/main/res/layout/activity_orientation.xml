@@ -29,6 +29,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/switcher" />
 
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/colorPrimary"
+        android:id="@+id/pos_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="measure self position"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        tools:ignore="HardcodedText" />
+
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
@@ -36,7 +52,7 @@
         android:layout_margin="10dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/a6"
-        app:layout_constraintTop_toBottomOf="@id/text" />
+        app:layout_constraintTop_toBottomOf="@id/pos_tv" />
 
     <CalendarView
         android:layout_width="match_parent"
