@@ -10,19 +10,20 @@
     <application
         android:name=".ImitateApplication"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
         android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustResize|stateHidden"
         tools:targetApi="q">
+        <activity android:name=".ui.activity.CLActivity"></activity>
         <activity
             android:name=".ui.FantasySplashActivity"
             android:exported="true"
             android:noHistory="true"
-            android:theme="@style/SplashTheme" >
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -63,8 +64,7 @@
         <activity
             android:name=".KotlinRootActivity"
             android:label="@string/app_name"
-            android:theme="@style/MyAppTheme">
-        </activity>
+            android:theme="@style/MyAppTheme"></activity>
         <activity
             android:name=".ui.activity.FinalActivity"
             android:exported="true"

@@ -72,7 +72,10 @@ class EntranceFragment : Fragment() {
                             .countable(true)
                             .capture(true)
                             .captureStrategy(
-                                CaptureStrategy(true, requireContext().packageName + ".fileprovider")
+                                CaptureStrategy(
+                                    true,
+                                    requireContext().packageName + ".fileprovider"
+                                )
                             )
                             .maxSelectable(9)
                             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
@@ -181,6 +184,14 @@ class EntranceFragment : Fragment() {
                 Intent(
                     context,
                     ConstraintLayoutActivity::class.java
+                )
+            )
+        }
+        constraintLayout_ll2.setOnClickListener {
+            startActivity(
+                Intent(
+                    context,
+                    CLActivity::class.java
                 )
             )
         }
