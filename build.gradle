@@ -25,7 +25,7 @@ buildscript {
         // jacoco  https://github.com/arturdm/jacoco-android-gradle-plugin
         classpath 'com.dicedmelon.gradle:jacoco-android:0.1.4'
         // https://github.com/didi/DoraemonKit
-        classpath "com.didichuxing.doraemonkit:doraemonkit-plugin:$doraemonkit"
+        classpath "com.didichuxing.doraemonkit:dokitx-plugin:$doraemonkit"
     }
 
 

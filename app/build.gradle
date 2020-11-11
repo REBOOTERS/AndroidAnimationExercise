@@ -208,8 +208,11 @@ dependencies {
 
     // https://github.com/didi/DoraemonKit
 
-    debugImplementation "com.didichuxing.doraemonkit:doraemonkit:$doraemonkit"
-    releaseImplementation "com.didichuxing.doraemonkit:doraemonkit-no-op:$doraemonkit"
+//    debugImplementation "com.didichuxing.doraemonkit:doraemonkit:$doraemonkit"
+    debugImplementation ("com.didichuxing.doraemonkit:dokitx:$doraemonkit") {
+        exclude group: "org.jsoup", module: "jsoup"
+    }
+    releaseImplementation "com.didichuxing.doraemonkit:dokitx-no-op:$doraemonkit"
 
     // https://github.com/skydoves/TransformationLayout
     implementation "com.github.skydoves:transformationlayout:1.0.5"

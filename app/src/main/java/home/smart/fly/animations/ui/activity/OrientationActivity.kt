@@ -35,7 +35,12 @@ class OrientationActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 val xy = IntArray(2)
+                val start = System.nanoTime()
                 pos_tv.getLocationOnScreen(xy)
+                Log.e(
+                    "zyq",
+                    "cost time = ${System.nanoTime() - start}"
+                )
                 pos_tv.text = "position info: x=${xy[0]},y=${xy[1]}"
 
                 val hour = TimeUnit.DAYS.toHours(1)

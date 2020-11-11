@@ -171,8 +171,8 @@ dependencies {
 
     // https://github.com/didi/DoraemonKit
 
-    debugImplementation "com.didichuxing.doraemonkit:doraemonkit:$doraemonkit"
-    releaseImplementation "com.didichuxing.doraemonkit:doraemonkit-no-op:$doraemonkit"
+    debugImplementation "com.didichuxing.doraemonkit:dokitx:$doraemonkit"
+    releaseImplementation "com.didichuxing.doraemonkit:dokitx-no-op:$doraemonkit"
 
     implementation 'com.github.wanglu1209:PhotoViewer:0.50'
 
