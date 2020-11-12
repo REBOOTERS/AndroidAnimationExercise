@@ -18,7 +18,7 @@
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustResize|stateHidden"
         tools:targetApi="q">
-        <activity android:name=".ui.activity.CLActivity"></activity>
+        <activity android:name=".ui.activity.CLActivity" android:exported="true"/>
         <activity
             android:name=".ui.FantasySplashActivity"
             android:exported="true"
