@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
+import com.engineer.imitate.util.add
 import com.engineer.imitate.util.dp
 import com.engineer.imitate.util.hide
 import com.engineer.imitate.util.show
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_c_l.*
 import java.util.concurrent.TimeUnit
@@ -19,6 +21,7 @@ import java.util.concurrent.TimeUnit
 class CLActivity : AppCompatActivity() {
     private val TAG = "CLActivity"
     var disposable: Disposable? = null
+    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +35,7 @@ class CLActivity : AppCompatActivity() {
         layout_container.translationX = x + 20.dp
         layout_container.alpha = 0f
 
-        Log.e(TAG,"46.dp = ${46.dp}, 20.dp = ${20.dp}")
+        Log.e(TAG, "46.dp = ${46.dp}, 20.dp = ${20.dp}")
         var open = false
 
         comment.setOnClickListener {
@@ -40,7 +43,7 @@ class CLActivity : AppCompatActivity() {
             var y2 = comment.translationY
             val x = layout_container.translationX
 
-            Log.e(TAG,"y1=$y1,y2=$y2,x=$x")
+            Log.e(TAG, "y1=$y1,y2=$y2,x=$x")
 
             if (open) {
                 open = false
@@ -99,25 +102,15 @@ class CLActivity : AppCompatActivity() {
 
             val maxY = resources.displayMetrics.heightPixels - 56.dp - statusBarHeight
             Log.e(TAG, "maxY = $maxY")
-
-//            val params = layout_container.layoutParams
-//            params.height = 0
-//            layout_container.layoutParams = params
-//
-//            val valueAnimator = ValueAnimator.ofInt(36.dp)
-//            valueAnimator.addUpdateListener {
-//                val value: Int = it.animatedValue as Int
-//                val fraction = it.animatedFraction
-////            layout_container.alpha = it.animatedFraction
-//                Log.e(TAG, "value = $value, fraction = $fraction")
-//                params.height = value
-//                layout_container.layoutParams = params
-//            }
-//            valueAnimator.startDelay = 1000
-//            valueAnimator.start()
         }
 
-
+        Observable.interval(4, TimeUnit.SECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext {
+                Log.e(TAG,"IT == $it")
+                comment.performClick()
+            }
+            .subscribe().add(compositeDisposable)
     }
 
     private fun show() {
@@ -148,5 +141,6 @@ class CLActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         disposable?.dispose()
+        compositeDisposable.dispose()
     }
 }

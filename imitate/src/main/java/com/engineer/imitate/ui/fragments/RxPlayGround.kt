@@ -149,7 +149,7 @@ class ThreadExTransform<T> : ObservableTransformer<T, T> {
     }
 }
 
-class OneTransform<T>(private val observer: Observable<Any>) : ObservableTransformer<T, T> {
+class OneTransform<T>(private val observer: Observable<T>) : ObservableTransformer<T, T> {
     override fun apply(upstream: Observable<T>): ObservableSource<T> {
         return upstream.takeUntil(observer)
     }
