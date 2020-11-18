@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.util.add
@@ -46,6 +47,8 @@ class CLActivity : AppCompatActivity() {
             Log.e(TAG, "y1=$y1,y2=$y2,x=$x")
 
             if (open) {
+
+                updateView(comment, 200.dp)
                 open = false
                 val anim1 = ObjectAnimator.ofFloat(layout_container, "translationY", y1, y1 + 46.dp)
                     .setDuration(200)
@@ -67,6 +70,7 @@ class CLActivity : AppCompatActivity() {
                 anim3.start()
 //                anim4.start()
             } else {
+                updateView(comment, 144.dp)
                 open = true
                 val anim1 = ObjectAnimator.ofFloat(layout_container, "translationY", y1, y1 - 46.dp)
                     .setDuration(200)
@@ -77,7 +81,7 @@ class CLActivity : AppCompatActivity() {
                 val anim4 = ObjectAnimator.ofFloat(layout_container, "translationX", x, x - 20.dp)
                     .setDuration(200)
                 anim3.startDelay = 50
-                anim4.startDelay = 50
+                anim4.startDelay = 150
                 anim1.start()
                 anim2.start()
                 anim3.start()
@@ -96,21 +100,27 @@ class CLActivity : AppCompatActivity() {
             )
 
 
-            // 获得状态栏高度
-            val resourceId: Int = resources.getIdentifier("status_bar_height", "dimen", "android")
-            val statusBarHeight = resources.getDimensionPixelSize(resourceId)
-
-            val maxY = resources.displayMetrics.heightPixels - 56.dp - statusBarHeight
-            Log.e(TAG, "maxY = $maxY")
+//            // 获得状态栏高度
+//            val resourceId: Int = resources.getIdentifier("status_bar_height", "dimen", "android")
+//            val statusBarHeight = resources.getDimensionPixelSize(resourceId)
+//
+//            val maxY = resources.displayMetrics.heightPixels - 56.dp - statusBarHeight
+//            Log.e(TAG, "maxY = $maxY")
         }
 
-        Observable.interval(4, TimeUnit.SECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                Log.e(TAG,"IT == $it")
-                comment.performClick()
-            }
-            .subscribe().add(compositeDisposable)
+//        Observable.interval(4, TimeUnit.SECONDS)
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .doOnNext {
+//                Log.e(TAG,"IT == $it")
+//                comment.performClick()
+//            }
+//            .subscribe().add(compositeDisposable)
+    }
+
+    private fun updateView(view: View, height: Int) {
+        val param = view.layoutParams
+        param.height = height
+        view.layoutParams = param
     }
 
     private fun show() {
