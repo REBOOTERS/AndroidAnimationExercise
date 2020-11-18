@@ -6,17 +6,18 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.engineer.imitate.R
-import com.engineer.imitate.util.add
-import com.engineer.imitate.util.dp
-import com.engineer.imitate.util.hide
-import com.engineer.imitate.util.show
+import com.engineer.imitate.util.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_c_l.*
+import kotlinx.android.synthetic.main.activity_kotlin_root.view.*
+import kotlinx.android.synthetic.main.fragment_animation_text.*
 import java.util.concurrent.TimeUnit
 
 class CLActivity : AppCompatActivity() {
@@ -108,6 +109,9 @@ class CLActivity : AppCompatActivity() {
 //            Log.e(TAG, "maxY = $maxY")
         }
 
+        var count = 0
+        var continueCount = 0
+
 //        Observable.interval(4, TimeUnit.SECONDS)
 //            .observeOn(AndroidSchedulers.mainThread())
 //            .doOnNext {
@@ -115,6 +119,54 @@ class CLActivity : AppCompatActivity() {
 //                comment.performClick()
 //            }
 //            .subscribe().add(compositeDisposable)
+
+        var d: Disposable? = null
+
+        send_gift.setOnClickListener {
+            ++ count
+            if (d != null && d!!.isDisposed.not()) {
+                d!!.dispose()
+            }
+
+            d = Observable.just(0).delay(200, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    continue_send_view.ldEnd.value = false
+                    continue_send_view.restartCountdown()
+                }
+            count_time.text = "送礼 $count 次,连击 $continueCount 次"
+        }
+//        continue_send_view.setOnClickListener {
+//            if (d != null && d!!.isDisposed.not()) {
+//                d!!.dispose()
+//            }
+//            ++continueCount
+//            d = Observable.just(0).delay(100, TimeUnit.MILLISECONDS)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe {
+//                    continue_send_view.restartCountdown()
+//                }
+//            count_time.text = "送礼 $count 次,连击 $continueCount 次"
+//        }
+        continue_send_view.ldEnd.observe(this, Observer {
+            if (it) {
+                continue_send_view.invisible()
+                send_gift.show()
+            } else {
+                continue_send_view.show()
+                send_gift.invisible()
+            }
+        })
+
+        continue_send_view.giftCount.observe(this) {
+            toastShort("发送礼物 $it 个")
+        }
+
+        continue_send_view.invisible()
+
+        force_hide.setOnClickListener {
+            continue_send_view.forceStop()
+        }
     }
 
     private fun updateView(view: View, height: Int) {
