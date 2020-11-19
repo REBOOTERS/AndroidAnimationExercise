@@ -147,4 +147,6 @@
     <string name="run">RUN</string>
     <string name="click">click me</string>
     <string name="click_revert">please click  me again and again, please click  me again and again,please click  me again and again </string>
+
+    <string name="what_the_html">img: <img style="width: 200px;height: 28px;" src="https://pic4.zhimg.com/80/v2-79c67914c36e759700e24d386d6ac66e_hd.webp" /><b>What</b> <i>the</i> <u>Html</u></string>
 </resources>

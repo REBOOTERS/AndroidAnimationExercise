@@ -4,8 +4,13 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.text.Editable
+import android.text.InputFilter
+import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -167,6 +172,40 @@ class CLActivity : AppCompatActivity() {
         force_hide.setOnClickListener {
             continue_send_view.forceStop()
         }
+
+        val html = getText(R.string.what_the_html)
+        html_tv.text = html
+
+        test_button.setOnClickListener {
+            if (test_button.visibility == View.VISIBLE) {
+                test_button.invisible()
+            } else {
+                test_button.show()
+            }
+        }
+        //过滤换行符
+        val filter = InputFilter { source, start, end, dest, dstart, dend ->
+            source.toString().replace("\n", " ")
+        }
+//        input.filters = arrayOf(InputFilter.LengthFilter(81), filter)
+        input.addTextChangedListener(object :TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        })
+        input.setOnEditorActionListener { v, actionId, event ->
+            actionId == EditorInfo.IME_ACTION_DONE && (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER)
+        }
+        input.setHorizontallyScrolling(false)
+        input.maxLines = Int.MAX_VALUE
+
     }
 
     private fun updateView(view: View, height: Int) {
