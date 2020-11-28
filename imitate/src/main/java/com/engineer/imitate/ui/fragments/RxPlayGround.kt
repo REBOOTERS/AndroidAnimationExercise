@@ -93,6 +93,37 @@ class RxPlayGroundFragment : Fragment() {
             subject.onNext("onDestroyView")
         }
 
+        var hasComplete = false
+        start3.setOnClickListener {
+
+            if (!hasComplete) {
+                Observable.intervalRange(1L, 100L, 0, 100, TimeUnit.MILLISECONDS)
+                    .compose(ThreadExTransform())
+                    .compose(bindUntilOnDestroyView())
+                    .doOnNext {
+                        Log.e(TAG, "it = $it")
+                    }
+                    .doOnComplete {
+                        hasComplete = true
+                        Log.e(TAG, "doOnComplete() called")
+                    }
+                    .subscribe()
+            } else {
+                Observable.intervalRange(100L, 200L, 0, 100, TimeUnit.MILLISECONDS)
+                    .compose(ThreadExTransform())
+                    .compose(bindUntilOnDestroyView())
+                    .doOnNext {
+                        Log.e(TAG, "it2 = $it")
+                    }
+                    .doOnComplete {
+                        hasComplete = true
+                        Log.e(TAG, "doOnComplete() called")
+                    }
+                    .subscribe()
+            }
+
+
+        }
     }
 
     private fun customLifecycle() {
@@ -120,7 +151,7 @@ class RxPlayGroundFragment : Fragment() {
             .subscribe()
     }
 
-    private fun bindUntilOnDestroyView(): ObservableTransformer<Any, Any> {
+    private fun <T> bindUntilOnDestroyView(): ObservableTransformer<T, T> {
         return ObservableTransformer {
             it.takeUntil(subject.filter { it == "onDestroyView" })
         }

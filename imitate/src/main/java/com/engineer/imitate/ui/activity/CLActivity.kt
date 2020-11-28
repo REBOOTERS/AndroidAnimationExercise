@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.engineer.imitate.R
+import com.engineer.imitate.ui.ContinueSendView
 import com.engineer.imitate.util.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,13 +34,20 @@ class CLActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_c_l)
+        var out = true
+        toggle.setOnClickListener {
+            if (out) {
+                magic_card.animate().translationX(0f).start()
+            } else {
+                magic_card.animate().translationX(220.dp.toFloat()).start()
+            }
+            out = !out
+        }
 
-        val current = layout_container.translationY
-        layout_container.translationY = current + 46.dp
-        val y1 = comment.translationY
-        val x = layout_container.translationX
-        comment.translationY = y1 + 46.dp
-        layout_container.translationX = x + 20.dp
+
+        layout_container.translationY = 46.dp.toFloat()
+        comment.translationY = 46.dp.toFloat()
+        layout_container.translationX = 20.dp.toFloat()
         layout_container.alpha = 0f
 
         Log.e(TAG, "46.dp = ${46.dp}, 20.dp = ${20.dp}")
@@ -128,7 +136,7 @@ class CLActivity : AppCompatActivity() {
         var d: Disposable? = null
 
         send_gift.setOnClickListener {
-            ++ count
+            ++count
             if (d != null && d!!.isDisposed.not()) {
                 d!!.dispose()
             }
@@ -166,6 +174,17 @@ class CLActivity : AppCompatActivity() {
         continue_send_view.giftCount.observe(this) {
             toastShort("发送礼物 $it 个")
         }
+        continue_send_view.setOnProgressUpdateListener(object :
+            ContinueSendView.OnProgressUpdateListener {
+            var lastValue = -1
+            override fun update(count: Int) {
+                if (count != lastValue) {
+                    count_time.text = "count $count"
+                }
+                lastValue = count
+            }
+
+        })
 
         continue_send_view.invisible()
 
@@ -188,7 +207,7 @@ class CLActivity : AppCompatActivity() {
             source.toString().replace("\n", " ")
         }
 //        input.filters = arrayOf(InputFilter.LengthFilter(81), filter)
-        input.addTextChangedListener(object :TextWatcher {
+        input.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
