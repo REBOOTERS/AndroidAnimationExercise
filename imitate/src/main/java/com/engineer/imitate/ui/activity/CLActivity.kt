@@ -173,6 +173,7 @@ class CLActivity : AppCompatActivity() {
 
         continue_send_view.giftCount.observe(this) {
             toastShort("发送礼物 $it 个")
+            Log.e("ContinueSendView","发送礼物 $it 个")
         }
         continue_send_view.setOnProgressUpdateListener(object :
             ContinueSendView.OnProgressUpdateListener {

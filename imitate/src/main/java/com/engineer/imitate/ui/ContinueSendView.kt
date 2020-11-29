@@ -43,7 +43,7 @@ class ContinueSendView(context: Context, attrs: AttributeSet? = null) :
     private var lastCount = 0
 
     // 最毒可以送出的礼物数量，动画执行的时候，等于这个数量时直接
-    private var maxCount: Long = 0
+    private var maxCount: Long = Int.MAX_VALUE.toLong()
 
     // 手指是否按在屏幕上进行连击
     private var inTouch = false
@@ -70,8 +70,10 @@ class ContinueSendView(context: Context, attrs: AttributeSet? = null) :
         }
         Log.e("ContinueSendView", "giftCountDisposable is null")
         giftCountDisposable =
-            Observable.intervalRange(2, Int.MAX_VALUE.toLong(),
-                0, time, TimeUnit.MILLISECONDS)
+            Observable.intervalRange(
+                2, Int.MAX_VALUE.toLong(),
+                time, time, TimeUnit.MILLISECONDS
+            )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     if (it <= maxCount) {
@@ -98,7 +100,6 @@ class ContinueSendView(context: Context, attrs: AttributeSet? = null) :
         giftCountDisposable?.dispose()
         giftCountDisposable = null
     }
-
 
 
     private fun initTimeAnimator() {
@@ -173,53 +174,13 @@ class ContinueSendView(context: Context, attrs: AttributeSet? = null) :
         timeAnimator.cancel()
         stopRecount()
     }
-    val TAG ="guesture"
-    private val guesture = GestureDetector(context,
-        object : GestureDetector.SimpleOnGestureListener() {
-            override fun onLongPress(e: MotionEvent?) {
-                Log.e(TAG, "onLongPress() called with: e = $e")
-                inTouch = false
-                if (hasSend.not()) {
-                    giftCount.value = currentCount
-                    hasSend = true
-                }
-                stopRecount()
-            }
-
-            override fun onSingleTapUp(e: MotionEvent?): Boolean {
-                Log.e(TAG, "onSingleTapUp() called with: e = $e")
-                return true
-            }
-
-            override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
-                Log.e(TAG, "onSingleTapConfirmed() called with: e = $e")
-                return true
-            }
-
-            override fun onShowPress(e: MotionEvent?) {
-                super.onShowPress(e)
-                Log.e(TAG, "onShowPress() called with: e = $e")
-            }
-
-            override fun onDown(e: MotionEvent?): Boolean {
-                Log.e(TAG, "onDown() called with: e = $e")
-
-                inTouch = true
-                lastCount = currentCount
-                restartCountdown()
-                startReCount()
-                return true
-            }
-
-        })
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-
-        return guesture.onTouchEvent(event)
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
-                Log.e("ContinueSendView", "action down")
+                vibrator?.vibrate(40)
+                Log.e("ContinueSendView", "action down : ${System.currentTimeMillis()}")
                 // 当前要送出的礼物数量暂存一下
                 inTouch = true
                 lastCount = currentCount
@@ -229,13 +190,20 @@ class ContinueSendView(context: Context, attrs: AttributeSet? = null) :
 
             }
             MotionEvent.ACTION_UP -> {
-                Log.e("ContinueSendView", "action up")
+                Log.e("ContinueSendView", "action up : ${System.currentTimeMillis()}")
                 inTouch = false
-                if (hasSend.not()) {
+                if (hasSend.not() && currentCount > 0) {
                     giftCount.value = currentCount
                     hasSend = true
                 }
                 stopRecount()
+                if (currentCount == lastCount) {
+                    Log.e("ContinueSendView", "单击？？$currentCount,$lastCount")
+                    currentCount += 1
+                    updateListener?.update(currentCount)
+                    giftCount.value = currentCount
+                    hasSend = true
+                }
                 return true
             }
             else -> {
