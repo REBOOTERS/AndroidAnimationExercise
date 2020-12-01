@@ -77,9 +77,6 @@ class ContinueSendView(context: Context, attrs: AttributeSet? = null) :
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     if (it <= maxCount) {
-//                                if (it.toInt() % 2 == 0) {
-
-//                                }
                         val result = it.toInt() + lastCount
                         updateListener?.update(result)
                         vibrator?.vibrate(40)
