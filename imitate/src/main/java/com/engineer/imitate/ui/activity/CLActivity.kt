@@ -31,17 +31,37 @@ class CLActivity : AppCompatActivity() {
     var disposable: Disposable? = null
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
+    private var countDisposable:Disposable ? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_c_l)
         var out = true
         toggle.setOnClickListener {
             if (out) {
-                magic_card.animate().translationX(0f).start()
-            } else {
-                magic_card.animate().translationX(220.dp.toFloat()).start()
+                out = false
+                magic_card.animate().translationX(0f).setStartDelay(0)
+                    .withEndAction {
+
+                       countDisposable = Observable.just(0).delay(10, TimeUnit.SECONDS)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe {
+                                magic_card.animate().translationX(220.dp.toFloat())
+                                    .withEndAction { out = true }.start()
+                            }
+
+                    }.start()
+
             }
-            out = !out
+        }
+        close_card.setOnClickListener {
+            countDisposable?.dispose()
+            magic_card.hide()
+            magic_card.animate().translationX(220.dp.toFloat())
+                .withEndAction {
+                    magic_card.show()
+                    out = true
+                }.start()
         }
 
 
@@ -173,7 +193,7 @@ class CLActivity : AppCompatActivity() {
 
         continue_send_view.giftCount.observe(this) {
             toastShort("发送礼物 $it 个")
-            Log.e("ContinueSendView","发送礼物 $it 个")
+            Log.e("ContinueSendView", "发送礼物 $it 个")
         }
         continue_send_view.setOnProgressUpdateListener(object :
             ContinueSendView.OnProgressUpdateListener {

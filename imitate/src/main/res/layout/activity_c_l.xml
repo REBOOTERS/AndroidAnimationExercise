@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.CLActivity">
 
-    <View
+    <RelativeLayout
         android:id="@+id/magic_card"
         android:layout_width="200dp"
         android:layout_height="100dp"
@@ -15,7 +15,17 @@
         android:translationX="220dp"
         app:layout_constraintBottom_toBottomOf="@+id/line"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:translationX="0dp" />
+        tools:translationX="0dp">
+
+        <ImageView
+            android:id="@+id/close_card"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_baseline_close_24" />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/toggle"
