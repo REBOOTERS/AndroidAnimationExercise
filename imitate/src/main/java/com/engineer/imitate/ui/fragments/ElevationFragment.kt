@@ -121,7 +121,7 @@ class ElevationFragment : Fragment() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     intent.action = Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS
                 }
-                intent.data = Uri.fromParts("package", context!!.getPackageName(), null)
+                intent.data = Uri.fromParts("package", context?.packageName, null)
 
                 try {
                     startActivity(intent)
@@ -157,11 +157,11 @@ class ElevationFragment : Fragment() {
         intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
 
         //for Android 5-7
-        intent.putExtra("app_package", context!!.getPackageName())
-        intent.putExtra("app_uid", context!!.getApplicationInfo().uid)
+        intent.putExtra("app_package", context?.packageName)
+        intent.putExtra("app_uid", context?.applicationInfo?.uid)
 
         // for Android O
-        intent.putExtra("android.provider.extra.APP_PACKAGE", context!!.getPackageName())
+        intent.putExtra("android.provider.extra.APP_PACKAGE", context?.packageName)
 
 
         try {
@@ -176,17 +176,17 @@ class ElevationFragment : Fragment() {
         when {
             Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1 -> {
                 intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
-                intent.putExtra("android.provider.extra.APP_PACKAGE", context!!.getPackageName())
+                intent.putExtra("android.provider.extra.APP_PACKAGE", context?.getPackageName())
             }
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {
                 intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
-                intent.putExtra("app_package", context!!.getPackageName())
-                intent.putExtra("app_uid", context!!.getApplicationInfo().uid)
+                intent.putExtra("app_package", context?.getPackageName())
+                intent.putExtra("app_uid", context?.getApplicationInfo()?.uid)
             }
             else -> {
                 intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
                 intent.addCategory(Intent.CATEGORY_DEFAULT)
-                intent.data = Uri.parse("package:" + context!!.getPackageName())
+                intent.data = Uri.parse("package:" + context?.packageName)
             }
         }
 
@@ -200,8 +200,11 @@ class ElevationFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        notification.text =
-            NotificationManagerCompat.from(this.context!!).areNotificationsEnabled().toString()
+        context?.let {
+            notification.text =
+                NotificationManagerCompat.from(it).areNotificationsEnabled().toString()
+        }
+
 
     }
 

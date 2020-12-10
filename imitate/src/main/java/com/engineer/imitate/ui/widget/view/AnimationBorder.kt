@@ -46,7 +46,7 @@ class AnimationBorder : RelativeLayout {
     private var count = 0
     private lateinit var rect: RectF
     private var OneDp = 0f
-    private lateinit var mContext: Context
+    private var mContext: Context? = null
 
 
     private fun initView(context: Context?) {
@@ -56,7 +56,7 @@ class AnimationBorder : RelativeLayout {
         mPaint.alpha = 0
         mPaint.strokeWidth = mStrokeWidth
         setWillNotDraw(false)
-        mContext = context!!
+        mContext = context
         OneDp = context?.dp2px(1f) ?: 0f
     }
 

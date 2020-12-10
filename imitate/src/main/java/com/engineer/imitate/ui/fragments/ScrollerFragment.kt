@@ -27,7 +27,7 @@ class ScrollerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         customView.setOnClickListener {
-            context!!.toastShort("click")
+            context?.toastShort("click")
             if (toggle) {
                 customView.smoothScrollTo(195, 195)
             } else {

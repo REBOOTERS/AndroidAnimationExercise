@@ -18,7 +18,7 @@ class OverLapDecoration(context: Context?) : RecyclerView.ItemDecoration() {
     var overlapWidth = 0
 
     init {
-        val displayMetrics = context!!.resources.displayMetrics
+        val displayMetrics = context?.resources?.displayMetrics
         overlapWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -12f, displayMetrics).toInt()
     }
 
