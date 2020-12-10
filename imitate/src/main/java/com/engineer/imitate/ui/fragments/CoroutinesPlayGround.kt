@@ -71,7 +71,7 @@ class CoroutinesFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             Thread.currentThread().name.lg(TAG)
             val start = System.currentTimeMillis()
-            val json = IOTool.readStrFromAssets("school.json", context!!)
+            val json = IOTool.readStrFromAssets("school.json", context)
             Log.e(TAG, "read json cost ${System.currentTimeMillis() - start}")
             val list = block(json)
             withContext(Dispatchers.Main) {
@@ -101,7 +101,7 @@ class CoroutinesFragment : Fragment() {
         var list: List<Schools>?
         withContext(Dispatchers.IO) {
             val start = System.currentTimeMillis()
-            val json = IOTool.readStrFromAssets("school.json", context!!)
+            val json = IOTool.readStrFromAssets("school.json", context)
             Log.e(TAG, "read json cost ${System.currentTimeMillis() - start}")
             list = block(json)
         }
@@ -112,7 +112,7 @@ class CoroutinesFragment : Fragment() {
     private fun useRx(block: (String) -> List<Schools>?) {
         Observable.create<List<Schools>> {
             val start = System.currentTimeMillis()
-            val json = IOTool.readStrFromAssets("school.json", context!!)
+            val json = IOTool.readStrFromAssets("school.json", context)
             Log.e(TAG, "read json cost ${System.currentTimeMillis() - start}")
             val list = block(json)
             if (list != null) {

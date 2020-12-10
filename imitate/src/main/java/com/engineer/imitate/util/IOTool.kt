@@ -13,11 +13,14 @@ import java.io.IOException
 object IOTool {
     fun readStrFromAssets(
         filename: String?,
-        mContext: Context
+        mContext: Context?
     ): String {
+        if (mContext == null) {
+            return ""
+        }
         var result = ""
         try {
-            val mInputStream = mContext?.assets.open(filename!!)
+            val mInputStream = mContext.assets.open(filename!!)
             val sb = StringBuilder()
             val buffer = ByteArray(mInputStream.available())
             var len: Int
