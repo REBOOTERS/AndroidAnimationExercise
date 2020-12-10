@@ -276,9 +276,8 @@ class FinalActivity : AppCompatActivity() {
             savedInstanceState: Bundle?
         ): View? {
             val rootView = inflater.inflate(R.layout.fragment_final, container, false)
-            val type = arguments!!.getInt(ARG_SECTION_NUMBER)
             val list = rootView.list
-            val adapter = DataAdapter(type)
+            val adapter = DataAdapter()
             adapter.setSize(20)
             list.adapter = adapter
             list.layoutManager = LinearLayoutManager(context)

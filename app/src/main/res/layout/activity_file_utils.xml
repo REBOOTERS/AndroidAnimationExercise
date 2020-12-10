@@ -37,7 +37,7 @@
             app:backgroundTint="@color/colorPrimary"
             app:backgroundTintMode="src_in"
             app:elevation="20dp"
-            android:tint="@color/white"
+            app:tint="@color/white"
             app:fabSize="normal"
             app:srcCompat="@drawable/ic_sync_black_24dp"/>
 

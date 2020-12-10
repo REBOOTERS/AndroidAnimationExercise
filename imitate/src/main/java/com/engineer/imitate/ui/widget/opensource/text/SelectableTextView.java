@@ -29,6 +29,8 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 import com.engineer.imitate.R;
 
 import java.util.regex.Matcher;
@@ -42,7 +44,7 @@ import static android.content.Context.VIBRATOR_SERVICE;
  * <p> 2：文本两端对齐功能；适用于中文文本，英文文本 以及中英混合文本
  * Created by zengpu on 2016/11/20.
  */
-public class SelectableTextView extends EditText {
+public class SelectableTextView extends AppCompatEditText {
 
     private final int TRIGGER_LONGPRESS_TIME_THRESHOLD = 300;    // 触发长按事件的时间阈值
     private final int TRIGGER_LONGPRESS_DISTANCE_THRESHOLD = 10; // 触发长按事件的位移阈值

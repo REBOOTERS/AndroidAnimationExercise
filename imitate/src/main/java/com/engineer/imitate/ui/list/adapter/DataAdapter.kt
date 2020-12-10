@@ -14,7 +14,7 @@ import com.engineer.imitate.R
  * @authro: Rookie
  * @since: 2019-01-05
  */
-class DataAdapter(private var type: Int) : RecyclerView.Adapter<DataAdapter.MyViewHolder>() {
+class DataAdapter() : RecyclerView.Adapter<DataAdapter.MyViewHolder>() {
 
     private  var size = 100;
 
