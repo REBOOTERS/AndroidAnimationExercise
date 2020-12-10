@@ -11,19 +11,16 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.engineer.imitate.R
-import com.engineer.imitate.ui.ContinueSendView
+import com.engineer.imitate.ui.BulletView
 import com.engineer.imitate.util.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_c_l.*
-import kotlinx.android.synthetic.main.activity_kotlin_root.view.*
-import kotlinx.android.synthetic.main.fragment_animation_text.*
 import java.util.concurrent.TimeUnit
 
 class CLActivity : AppCompatActivity() {
@@ -196,7 +193,7 @@ class CLActivity : AppCompatActivity() {
             Log.e("ContinueSendView", "发送礼物 $it 个")
         }
         continue_send_view.setOnProgressUpdateListener(object :
-            ContinueSendView.OnProgressUpdateListener {
+            BulletView.OnProgressUpdateListener {
             var lastValue = -1
             override fun update(count: Int) {
                 if (count != lastValue) {

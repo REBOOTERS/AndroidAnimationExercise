@@ -82,7 +82,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="12dp"
                 android:paddingBottom="5dp"
-                android:text="ABCD"
+                android:text="      ABCD"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 
@@ -151,7 +151,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.engineer.imitate.ui.ContinueSendView
+    <com.engineer.imitate.ui.BulletView
         android:id="@+id/continue_send_view"
         android:layout_width="90dp"
         android:layout_height="90dp"

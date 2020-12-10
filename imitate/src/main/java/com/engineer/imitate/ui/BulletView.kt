@@ -9,7 +9,6 @@ import android.content.Context
 import android.os.Vibrator
 import android.util.AttributeSet
 import android.util.Log
-import android.view.GestureDetector
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -20,10 +19,10 @@ import com.engineer.imitate.R
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.vx_continue_send_view.view.*
+import kotlinx.android.synthetic.main.bullet_view.view.*
 import java.util.concurrent.TimeUnit
 
-class ContinueSendView(context: Context, attrs: AttributeSet? = null) :
+class BulletView(context: Context, attrs: AttributeSet? = null) :
     FrameLayout(context, attrs) {
 
     companion object {
@@ -133,12 +132,12 @@ class ContinueSendView(context: Context, attrs: AttributeSet? = null) :
     }
 
     private fun initView() {
-        view = LayoutInflater.from(context).inflate(R.layout.vx_continue_send_view, this, true)
+        view = LayoutInflater.from(context).inflate(R.layout.bullet_view, this, true)
         view.progress.max = TOTAL_TIME
     }
 
     private fun updateTime(time: Int) {
-        view.text_time.text = context.getString(R.string.vx_gift_continue_send_time, time)
+        view.text_time.text = context.getString(R.string.bullet_send_time, time)
     }
 
     private fun updateProgress(progress: Int) {

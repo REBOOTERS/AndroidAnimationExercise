@@ -19,7 +19,7 @@
     <string name="action_refresh">refresh</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_kotlin_root">KotlinRootActivity</string>
-    <string name="vx_gift_continue_send_time">%ds</string>
+    <string name="bullet_send_time">%ds</string>
     <string name="content">
         草帽主要是节流厉害，开源一般般，真正算得上开源的只有空岛带来的财宝、恐怖岛带走的财宝和罗宾上船给的财宝（你看我连这个都算进去了）\n\n
 
