@@ -24,6 +24,7 @@ import com.engineer.android.game.ui.GameRootActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.activity.*
 import com.engineer.imitate.ui.activity.fragmentmanager.ContentActivity
+import com.engineer.imitate.ui.activity.surface.SurfaceViewActivity
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.startActivity
 import com.engineer.imitate.util.toastShort
@@ -200,6 +201,14 @@ class EntranceFragment : Fragment() {
                 Intent(
                     context,
                     ContentActivity::class.java
+                )
+            )
+        }
+        surface.setOnClickListener {
+            startActivity(
+                Intent(
+                    context,
+                    SurfaceViewActivity::class.java
                 )
             )
         }

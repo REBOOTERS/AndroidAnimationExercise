@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.webkit.JavascriptInterface
+import com.bird.BirdActivity
 import com.snatik.matches.MemoryGameActivity
 
 /**
@@ -17,7 +18,7 @@ class GameRootActivity : BaseWebViewActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        webView.addJavascriptInterface(Hybrid(this),"hybrid")
+        webView.addJavascriptInterface(Hybrid(this), "hybrid")
     }
 
     override fun onResume() {
@@ -30,14 +31,15 @@ class Hybrid(private var context: Context) {
 
     @JavascriptInterface
     fun go(path: String) {
-        var intent : Intent? = null
+        var intent: Intent? = null
         when (path) {
-            "2048" -> intent = Intent(context,Game2048Activity::class.java)
-            "schulte" -> intent = Intent(context,SchulteGridActivity::class.java)
-            "towerBuild" -> intent = Intent(context,TowerBuilderActivity::class.java)
-            "sensor" -> intent = Intent(context,SensorViewActivity::class.java)
-            "memory" -> intent = Intent(context,MemoryGameActivity::class.java)
-            "square" -> intent = Intent(context,SquareActivity::class.java)
+            "2048" -> intent = Intent(context, Game2048Activity::class.java)
+            "schulte" -> intent = Intent(context, SchulteGridActivity::class.java)
+            "towerBuild" -> intent = Intent(context, TowerBuilderActivity::class.java)
+            "sensor" -> intent = Intent(context, SensorViewActivity::class.java)
+            "memory" -> intent = Intent(context, MemoryGameActivity::class.java)
+            "square" -> intent = Intent(context, SquareActivity::class.java)
+            "bird" -> intent = Intent(context, BirdActivity::class.java)
         }
         context.startActivity(intent)
     }

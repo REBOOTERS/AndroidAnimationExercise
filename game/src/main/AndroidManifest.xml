@@ -3,7 +3,8 @@
     package="com.engineer.android.game">
 
     <application>
-        <activity android:name=".ui.SquareActivity"/>
+        <activity android:name="com.bird.BirdActivity" android:exported="true"/>
+        <activity android:name=".ui.SquareActivity" />
         <activity android:name=".ui.GameRootActivity" />
         <activity android:name=".ui.TowerBuilderActivity" />
         <activity android:name=".ui.SchulteGridActivity" />

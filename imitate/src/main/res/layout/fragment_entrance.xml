@@ -93,6 +93,16 @@
                 android:textColor="?android:attr/textColorPrimary" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/surface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="surfaceview"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/fragment_manager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
