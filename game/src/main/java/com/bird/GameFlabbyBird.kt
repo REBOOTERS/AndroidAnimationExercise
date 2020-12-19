@@ -15,6 +15,7 @@ import java.util.*
 class GameFlabbyBird @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
     SurfaceView(context, attrs), SurfaceHolder.Callback, Runnable {
 
+    var customBg = true
 
     private val mHolder: SurfaceHolder = holder
 
@@ -294,7 +295,11 @@ class GameFlabbyBird @JvmOverloads constructor(context: Context?, attrs: Attribu
      * 绘制背景
      */
     private fun drawBg() {
-        mCanvas!!.drawBitmap(mBg!!, null, mGamePanelRect, null)
+        if (customBg) {
+            mCanvas?.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
+        } else {
+            mCanvas!!.drawBitmap(mBg!!, null, mGamePanelRect, null)
+        }
     }
 
     private fun drawBird() {
@@ -397,4 +402,5 @@ class GameFlabbyBird @JvmOverloads constructor(context: Context?, attrs: Attribu
         // 初始化速度
         mPipeWidth = PIPE_WIDTH.dp
     }
+
 }
