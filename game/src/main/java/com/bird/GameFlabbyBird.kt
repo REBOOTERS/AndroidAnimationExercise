@@ -222,7 +222,7 @@ class GameFlabbyBird @JvmOverloads constructor(context: Context?, attrs: Attribu
      */
     private fun initBitmaps() {
         mBg = loadImageByResId(R.drawable.bg1)
-        mBirdBitmap = loadImageByResId(R.drawable.b1)
+        mBirdBitmap = loadImageByResId(R.drawable.bird_0)
         mFloorBg = loadImageByResId(R.drawable.floor_bg2)
         mPipeTop = loadImageByResId(R.drawable.g2)
         mPipeBottom = loadImageByResId(R.drawable.g1)
