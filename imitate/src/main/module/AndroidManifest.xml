@@ -19,6 +19,7 @@
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustResize|stateHidden"
         tools:targetApi="q">
+        <activity android:name=".ui.activity.ViewDispathchActivity" android:exported="true"/>
         <activity
             android:name=".ui.activity.surface.SurfaceViewActivity"
             android:exported="true" />
