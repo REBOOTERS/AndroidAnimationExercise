@@ -1,7 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">WeChatBubble</string>
-
-    <string name="back" tools:ignore="ExtraTranslation">返回</string>
-    <string name="title_name" tools:ignore="ExtraTranslation">chat</string>
-    <string name="send" tools:ignore="ExtraTranslation">发送</string>
+    <string name="back">返回</string>
+    <string name="title_name">chat</string>
+    <string name="send">发送</string>
 </resources>

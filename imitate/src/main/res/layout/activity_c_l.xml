@@ -234,17 +234,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        app:layout_constraintStart_toStartOf="parent"
-
         android:id="@+id/input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/container"
-        android:hint="please input something"
+        android:background="@drawable/chatfrom_bg_normal"
+        android:hint="please input"
         android:imeOptions="actionDone"
         android:maxLength="50"
         android:singleLine="true"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/html_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

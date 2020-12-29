@@ -57,8 +57,7 @@ android {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             }
 
-            res.srcDirs = [
-                    'src/main/res',
+            res.srcDirs +=   [
                     'src/main/res/layouts/ninepoint'
             ]
         }
