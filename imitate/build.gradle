@@ -56,6 +56,11 @@ android {
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             }
+
+            res.srcDirs = [
+                    'src/main/res',
+                    'src/main/res/layouts/ninepoint'
+            ]
         }
     }
 

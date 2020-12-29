@@ -3,11 +3,15 @@ package com.engineer.imitate.ui.activity
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.Log
+import android.util.SparseArray
+import android.util.SparseBooleanArray
+import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -28,38 +32,42 @@ class CLActivity : AppCompatActivity() {
     var disposable: Disposable? = null
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    private var countDisposable:Disposable ? = null
+    private var countDisposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_c_l)
         var out = true
         toggle.setOnClickListener {
+            val sparseArray = SparseArray<String>()
+            sparseArray.put(1, "a")
+            sparseArray.put(2, "b")
             if (out) {
                 out = false
                 magic_card.animate().translationX(0f).setStartDelay(0)
                     .withEndAction {
 
-                       countDisposable = Observable.just(0).delay(10, TimeUnit.SECONDS)
+                        countDisposable = Observable.just(0).delay(10, TimeUnit.SECONDS)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe {
-                                magic_card.animate().translationX(220.dp.toFloat())
+                                magic_card.animate().translationX(240.dp.toFloat())
                                     .withEndAction { out = true }.start()
                             }
 
                     }.start()
-
             }
         }
         close_card.setOnClickListener {
             countDisposable?.dispose()
             magic_card.hide()
-            magic_card.animate().translationX(220.dp.toFloat())
+            magic_card.animate().translationX(240.dp.toFloat())
                 .withEndAction {
                     magic_card.show()
                     out = true
                 }.start()
         }
+        magic_card_tv.setTypeface(null, Typeface.BOLD)
+        magic_card_tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
 
 
         layout_container.translationY = 46.dp.toFloat()

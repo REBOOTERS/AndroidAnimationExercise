@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.CLActivity">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/magic_card"
-        android:layout_width="200dp"
+        android:layout_width="220dp"
         android:layout_height="100dp"
         android:layout_margin="10dp"
         android:background="#00BCD4"
-        android:translationX="220dp"
+        android:translationX="250dp"
         app:layout_constraintBottom_toBottomOf="@+id/line"
         app:layout_constraintEnd_toEndOf="parent"
         tools:translationX="0dp">
@@ -21,11 +21,36 @@
             android:id="@+id/close_card"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
             android:layout_margin="8dp"
-            android:src="@drawable/ic_baseline_close_24" />
+            android:src="@drawable/ic_baseline_close_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/magic_card_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:lines="2"
+            android:text="@string/content"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@id/close_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/close_card" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:lines="2"
+            android:text="@string/content"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/close_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/magic_card_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/toggle"
@@ -209,10 +234,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        app:layout_constraintStart_toStartOf="parent"
+
         android:id="@+id/input"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:background="@drawable/container"
         android:hint="please input something"
         android:imeOptions="actionDone"
         android:maxLength="50"
