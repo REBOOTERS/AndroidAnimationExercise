@@ -27,12 +27,24 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/cpb_red"
+            android:text="广告"
+            android:padding="2dp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/magic_card_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:lines="2"
-            android:text="@string/content"
+            android:text="           草帽主要是节流厉害，开源一般般，真正算得上开源的只有空岛带来的财宝、恐怖岛带走的财宝和罗宾上船给的财宝"
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@id/close_card"
             app:layout_constraintStart_toStartOf="parent"
