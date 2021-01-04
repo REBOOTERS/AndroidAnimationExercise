@@ -66,8 +66,9 @@ class CLActivity : AppCompatActivity() {
                     out = true
                 }.start()
         }
+        magic_card_tv.text = "\u3000\u3000\u3000" + getString(R.string.content)
         magic_card_tv.setTypeface(null, Typeface.BOLD)
-        magic_card_tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+        magic_card_tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
 
 
         layout_container.translationY = 46.dp.toFloat()

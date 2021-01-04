@@ -41,7 +41,7 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="horizontal_list"
-                    android:textColor="?android:attr/textColorPrimary" />
+                    android:textColor="?android:attr/textColorSecondaryInverse" />
 
 
             </com.skydoves.transformationlayout.TransformationLayout>
@@ -54,7 +54,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="inflate_real"
-                android:textColor="?android:attr/textColorPrimary"
+                android:textColor="?android:attr/textColorSecondaryInverse"
                 android:visibility="visible" />
 
 
@@ -67,7 +67,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="gif_revert"
-                android:textColor="?android:attr/textColorPrimary"
+                android:textColor="?android:attr/textColorSecondaryInverse"
                 android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
@@ -79,7 +79,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="constraintLayout_layout"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/constraintLayout_ll2"
@@ -90,7 +90,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="constraintLayout_layout2"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/surface"
@@ -100,7 +100,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="surfaceview"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/fragment_manager"
@@ -111,7 +111,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="fragment_manager"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/game"
@@ -122,7 +122,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="game"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
 
             <com.google.android.material.button.MaterialButton
@@ -134,7 +134,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="shell"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
 
             <com.google.android.material.button.MaterialButton
@@ -146,7 +146,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="设置桌面"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
 
             <com.google.android.material.button.MaterialButton
@@ -158,7 +158,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="matisse choose"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bottom_sheet"
@@ -169,7 +169,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="bottom_sheet"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bottom_sheet_google"
@@ -180,7 +180,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="bottom_sheet_google"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/final_one"
@@ -191,7 +191,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="final_one"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/fake_jike"
@@ -202,7 +202,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="fake_jike"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/expandable_listview"
@@ -213,7 +213,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="expandable_listview"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/date_and_time_picker"
@@ -224,7 +224,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="date_and_time_picker"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/screen_recorder"
@@ -235,7 +235,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="screen_recorder"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
 
         </LinearLayout>

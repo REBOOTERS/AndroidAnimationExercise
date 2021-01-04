@@ -54,7 +54,7 @@ class KotlinRootActivity : AppCompatActivity() {
     private val ORIGINAL_URL = "file:///android_asset/index.html"
     private lateinit var hybridHelper: HybridHelper
 
-    private lateinit var currentFragment: Fragment
+    private var currentFragment: Fragment? = null
     private lateinit var mLinearManager: LinearLayoutManager
     private lateinit var mGridLayoutManager: GridLayoutManager
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
@@ -193,7 +193,7 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     private fun showMenu(view: View) {
-        val popupMenu = PopupMenu(this, view,Gravity.END)
+        val popupMenu = PopupMenu(this, view, Gravity.END)
         popupMenu.menuInflater.inflate(R.menu.index_setting_menu, popupMenu.menu)
         popupMenu.show()
     }
@@ -317,12 +317,16 @@ class KotlinRootActivity : AppCompatActivity() {
         index.visibility = View.VISIBLE
         gif.show()
         Log.e(TAG, "fragments size = " + supportFragmentManager.fragments.size)
-        if (supportFragmentManager.fragments.size > 0) {
-            supportFragmentManager.beginTransaction()
-                .remove(currentFragment)
-                .commitAllowingStateLoss()
-            updateState()
+        currentFragment?.let {
+            if (supportFragmentManager.fragments.size > 0) {
+                supportFragmentManager.beginTransaction()
+                    .remove(it)
+                    .commitAllowingStateLoss()
+                currentFragment = null
+                updateState()
+            }
         }
+
     }
 
     private fun updateState() {
