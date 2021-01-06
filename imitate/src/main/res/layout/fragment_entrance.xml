@@ -136,6 +136,16 @@
                 android:text="shell"
                 android:textColor="?android:attr/textColorSecondaryInverse" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nine_point"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="点 9 png 图"
+                android:textColor="?android:attr/textColorSecondaryInverse" />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/set_bg"
