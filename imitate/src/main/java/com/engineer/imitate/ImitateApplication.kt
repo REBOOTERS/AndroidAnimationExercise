@@ -16,6 +16,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.didichuxing.doraemonkit.*
 import com.engineer.imitate.interfaces.SimpleActivityCallback
 import com.engineer.imitate.util.SpUtil
+import com.engineer.imitate.util.SystemUtil
 import com.engineer.imitate.util.TextUtil
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.stetho.Stetho
@@ -95,6 +96,12 @@ class ImitateApplication : Application() {
                 Log.d(TAG, "onStop() called")
             }
         })
+
+        val model = SystemUtil.getSystemModel()
+        Log.e(TAG, "onCreate() called model $model")
+        val brand = SystemUtil.getDeviceBrand()
+        Log.e(TAG, "onCreate() called brand $brand")
+
     }
 
 

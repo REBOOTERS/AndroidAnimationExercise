@@ -2,6 +2,7 @@ package com.engineer.imitate.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,11 +10,14 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.MotionLayout.*
 import com.engineer.imitate.KotlinRootActivity
 import com.engineer.imitate.R
+import com.engineer.imitate.util.SystemUtil
 import kotlinx.android.synthetic.main.activity_fantasy_splash.*
-
 class FantasySplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (SystemUtil.getDeviceBrand() == "Xiaomi") {
+            startActivity(Intent(this@FantasySplashActivity, KotlinRootActivity::class.java))
+        }
         setContentView(R.layout.activity_fantasy_splash)
 
         motion_layout.setTransitionListener(object : TransitionListener {
