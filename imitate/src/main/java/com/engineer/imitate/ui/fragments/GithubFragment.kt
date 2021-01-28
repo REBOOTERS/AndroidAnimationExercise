@@ -36,10 +36,16 @@ class GithubFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        FragmentFactory.initData()
         val adapter = ViewPagerFragmentStateAdapter(this)
         pager.adapter = adapter
         TabLayoutMediator(tabs, pager) { tab, position ->
             tab.text = FragmentFactory.list[position].title
         }.attach()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        FragmentFactory.clear()
     }
 }

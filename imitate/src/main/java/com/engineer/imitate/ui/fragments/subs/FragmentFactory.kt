@@ -10,7 +10,7 @@ object FragmentFactory {
 
     val list = ArrayList<Item>()
 
-    init {
+    fun initData() {
         list.add(Item("banner", BannerFragment()))
         list.add(Item("animText", AnimationTextFragment()))
         list.add(Item("shadow", ShadowLayoutFragment()))
@@ -20,4 +20,7 @@ object FragmentFactory {
 
     data class Item(val title: String, val fragment: Fragment)
 
+    fun clear() {
+        list.clear()
+    }
 }

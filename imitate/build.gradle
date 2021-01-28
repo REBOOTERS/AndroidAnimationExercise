@@ -184,6 +184,7 @@ dependencies {
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
 
     debugImplementation 'com.huya.mobile:Uinspector:1.0.10'
+    debugImplementation 'com.huya.mobile:Uinspector-optional-lottie:1.0.10'
 }
 
 apply from: file('hyperion-config.gradle')
