@@ -100,7 +100,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$ext.glide"
     implementation 'com.xw.repo:bubbleseekbar:3.18'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.3.0'
 
 
     testImplementation 'junit:junit:4.13'
@@ -183,8 +183,8 @@ dependencies {
     // 基础依赖包，必须要依赖
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
 
-    debugImplementation 'com.huya.mobile:Uinspector:1.0.10'
-    debugImplementation 'com.huya.mobile:Uinspector-optional-lottie:1.0.10'
+//    debugImplementation 'com.huya.mobile:Uinspector:1.0.10'
+//    debugImplementation 'com.huya.mobile:Uinspector-optional-lottie:1.0.10'
 }
 
 apply from: file('hyperion-config.gradle')
