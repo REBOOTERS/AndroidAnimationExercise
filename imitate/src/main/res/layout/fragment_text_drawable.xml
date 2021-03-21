@@ -8,6 +8,11 @@
     tools:context=".ui.fragments.DrawableExampleFragment"
     tools:ignore="HardcodedText">
 
+    <TextView
+        android:id="@+id/textMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
     <TextView
         android:layout_width="match_parent"
