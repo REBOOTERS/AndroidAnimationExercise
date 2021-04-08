@@ -1,6 +1,7 @@
 package com.engineer.imitate.ui.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
+import com.engineer.imitate.ui.activity.RVActivity
 import com.engineer.imitate.ui.list.adapter.ImageAdapter
 import com.engineer.imitate.ui.list.adapter.LargeImageAdapter
 import com.engineer.imitate.ui.list.adapter.SimpleImageAdapter
@@ -67,7 +69,7 @@ class RecyclerViewFragment : Fragment() {
 
         recyclerView_2.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView_2.adapter = LargeImageAdapter(getList().subList(0,3))
+        recyclerView_2.adapter = LargeImageAdapter(getList().subList(0, 3))
 
         head_home_layout.setOnStartActivity(object : DZStickyNavLayouts.OnStartActivityListener {
             override fun onStart() {
@@ -128,6 +130,10 @@ class RecyclerViewFragment : Fragment() {
                 }
             }
             false
+        }
+
+        rv.setOnClickListener {
+            startActivity(Intent(it.context, RVActivity::class.java))
         }
     }
 
