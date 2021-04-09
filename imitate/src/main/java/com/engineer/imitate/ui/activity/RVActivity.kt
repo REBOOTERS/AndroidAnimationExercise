@@ -55,8 +55,7 @@ private class SimpleAdapter(val items: List<Int>) : RecyclerView.Adapter<SimpleA
         val iv = ImageView(ctx)
         iv.scaleType = ImageView.ScaleType.CENTER
         val params = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.MATCH_PARENT,
-            FrameLayout.LayoutParams.MATCH_PARENT
+            FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT
         )
         val tv = TextView(ctx)
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22f)

@@ -18,11 +18,6 @@ class LargeImageAdapter(private var datas: List<String>) :
     RecyclerView.Adapter<LargeImageAdapter.MyHolder>() {
 
     private lateinit var mContext: Context
-    private var option: RequestOptions = RequestOptions.circleCropTransform()
-
-    private fun dp2dx(context: Context, value: Int): Float {
-        return context.dp2px(value.toFloat())
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         mContext = parent.context
@@ -47,7 +42,7 @@ class LargeImageAdapter(private var datas: List<String>) :
 
 
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView: ImageView = itemView.findViewById(com.engineer.imitate.R.id.image)
-        var tv: TextView = itemView.findViewById(com.engineer.imitate.R.id.item_tv)
+        var imageView: ImageView = itemView.findViewById(R.id.image)
+        var tv: TextView = itemView.findViewById(R.id.item_tv)
     }
 }
