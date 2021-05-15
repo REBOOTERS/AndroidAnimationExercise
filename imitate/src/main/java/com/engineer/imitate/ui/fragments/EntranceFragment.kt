@@ -217,6 +217,10 @@ class EntranceFragment : Fragment() {
             startActivity(Intent(context, NinePointActivity::class.java))
         }
 
+        self_draw_btn.setOnClickListener {
+            startActivity(Intent(context, SelfDrawViewActivity::class.java))
+        }
+
         adapter = MyListAdapter()
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = adapter

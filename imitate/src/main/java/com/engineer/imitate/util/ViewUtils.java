@@ -1,12 +1,21 @@
 package com.engineer.imitate.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+
 import androidx.annotation.RequiresApi;
+
 import android.view.PixelCopy;
 import android.view.View;
 
@@ -40,7 +49,7 @@ public class ViewUtils {
 
 
     public static Bitmap getBitmapFromView(View view) {
-        Bitmap bitmap ;
+        Bitmap bitmap;
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
         bitmap = view.getDrawingCache();

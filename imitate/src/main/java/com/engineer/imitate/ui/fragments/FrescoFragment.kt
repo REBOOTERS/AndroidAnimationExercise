@@ -2,6 +2,7 @@ package com.engineer.imitate.ui.fragments
 
 
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.app.WallpaperManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -57,6 +58,7 @@ class FrescoFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_fresco, container, false)
     }
 
+    @SuppressLint("LogNotTimber")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -103,14 +105,14 @@ class FrescoFragment : Fragment() {
 
             .subscribe(object : BaseBitmapDataSubscriber() {
                 override fun onFailureImpl(dataSource: DataSource<CloseableReference<CloseableImage>>) {
-                    Log.e("zyq", "fail " + dataSource.toString())
+                    Log.e("zyq", "fail $dataSource")
                 }
 
                 override fun onNewResultImpl(bitmap: Bitmap?) {
                     if (bitmap != null) {
                         Log.e(
                             "zyq",
-                            "thread ==${Thread.currentThread() == Looper.getMainLooper().thread}"
+                            "thread ==${Thread.currentThread().name}"
                         )
                         imageView1.post {
                             imageView1.setImageBitmap(bitmap)

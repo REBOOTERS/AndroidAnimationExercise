@@ -20,6 +20,9 @@
         android:windowSoftInputMode="adjustResize|stateHidden"
         tools:targetApi="q">
         <activity
+            android:name=".ui.activity.SelfDrawViewActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.activity.RVActivity"
             android:exported="true" />
         <activity
