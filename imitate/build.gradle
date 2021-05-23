@@ -185,5 +185,3 @@ dependencies {
 //    debugImplementation 'com.huya.mobile:Uinspector:1.0.10'
 //    debugImplementation 'com.huya.mobile:Uinspector-optional-lottie:1.0.10'
 }
-
-apply from: file('hyperion-config.gradle')
