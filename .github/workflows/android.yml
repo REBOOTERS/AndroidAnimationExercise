@@ -13,5 +13,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: build app apk
+      run: ./gradlew :app:assembleDebug;
+    - name: build imitate apk
+      run: ./gradlew :imitate:assembleDebug;

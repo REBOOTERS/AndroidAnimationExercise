@@ -2,8 +2,9 @@ package com.engineer.imitate.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Ignore
 
-class School() : Parcelable {
+class School : Parcelable {
     class Location {
         var lat = 0f
         var lng = 0f
@@ -37,6 +38,10 @@ class School() : Parcelable {
                 ", location=" + location +
                 '}'
     }
+
+    @Ignore
+    constructor(){}
+
 
     constructor(source: Parcel) : this()
 
