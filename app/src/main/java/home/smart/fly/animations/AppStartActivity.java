@@ -12,9 +12,18 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
@@ -24,27 +33,31 @@ import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.engineer.dateview.api.DataView;
 import com.google.android.material.snackbar.Snackbar;
-import com.skydoves.transformationlayout.TransitionExtensionKt;
 import com.tencent.mmkv.MMKV;
-import home.smart.fly.animations.fragments.base.BaseFragment;
-import home.smart.fly.animations.fragments.base.RoutePaths;
-import home.smart.fly.animations.internal.annotations.Cat;
-import home.smart.fly.animations.internal.NormalStatus;
-import home.smart.fly.animations.internal.Single;
-import home.smart.fly.animations.ui.SuperTools;
-import home.smart.fly.animations.ui.activity.AllActivity;
-import home.smart.fly.animations.utils.*;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+
+import home.smart.fly.animations.fragments.base.BaseFragment;
+import home.smart.fly.animations.fragments.base.RoutePaths;
+import home.smart.fly.animations.internal.NormalStatus;
+import home.smart.fly.animations.internal.Single;
+import home.smart.fly.animations.ui.SuperTools;
+import home.smart.fly.animations.ui.activity.AllActivity;
+import home.smart.fly.animations.utils.AppUtils;
+import home.smart.fly.animations.utils.PaletteUtils;
+import home.smart.fly.animations.utils.RxBus;
+import home.smart.fly.animations.utils.SimpleEvent;
+import home.smart.fly.animations.utils.StatusBarUtil;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
 public class AppStartActivity extends AppCompatActivity {
@@ -61,7 +74,6 @@ public class AppStartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TransitionExtensionKt.onTransformationStartContainer(this);
         setContentView(R.layout.activity_app_start);
         mContext = this;
         mPreferences = getSharedPreferences("fragment_pos", MODE_PRIVATE);
