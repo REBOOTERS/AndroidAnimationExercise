@@ -13,7 +13,7 @@ ext {
     core_ktx = '1.3.1'
 
     kotlin_version = '1.5.21'
-    gradle_version = '4.2.2'
+    gradle_version = '7.0.0'
 
     doraemonkit = '3.3.4'
 
