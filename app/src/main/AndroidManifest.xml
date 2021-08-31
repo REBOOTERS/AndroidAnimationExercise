@@ -337,6 +337,7 @@
         <activity
             android:name=".ui.activity.multifragments.MultiFragmentsActivity"
             android:label="@string/title_activity_multi_fragments"
+            android:exported="true"
             android:theme="@style/MyTheme.NoActionBar" />
         <activity android:name=".ui.activity.WebViewMenuActivity" />
         <activity android:name=".ui.activity.OptionalActivity" />

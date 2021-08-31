@@ -2,7 +2,9 @@ package home.smart.fly.animations.ui.activity.multifragments;
 
 import android.net.Uri;
 import android.os.Bundle;
+
 import com.google.android.material.tabs.TabLayout;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -11,6 +13,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -53,11 +56,18 @@ public class MultiFragmentsActivity extends AppCompatActivity implements Communi
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         tabLayout.setupWithViewPager(mViewPager);
 
+        findViewById(R.id.under_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "under_text", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        Toast.makeText(getApplicationContext(),"url=="+uri.toString(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "url==" + uri.toString(), Toast.LENGTH_SHORT).show();
     }
 
 

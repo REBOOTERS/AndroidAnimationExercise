@@ -13,6 +13,16 @@
         android:layout_height="wrap_content"
         app:tabMode="scrollable" />
 
+    <TextView
+        android:id="@+id/under_text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="under flow"
+        android:textColor="@color/cpb_red"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="match_parent"

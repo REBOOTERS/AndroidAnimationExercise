@@ -61,7 +61,6 @@
         <activity
             android:name=".ui.activity.HorizontalListActivity"
             android:exported="true" />
-        <activity android:name=".ui.activity.ViewPager2Activity" />
         <activity
             android:name=".ui.activity.ScreenRecorderActivity"
             android:exported="true"

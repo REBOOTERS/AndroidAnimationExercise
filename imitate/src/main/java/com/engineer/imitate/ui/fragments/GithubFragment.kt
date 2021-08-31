@@ -15,6 +15,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
@@ -42,6 +44,10 @@ class GithubFragment : Fragment() {
         TabLayoutMediator(tabs, pager) { tab, position ->
             tab.text = FragmentFactory.list[position].title
         }.attach()
+
+        view.findViewById<TextView>(R.id.under_text_2).setOnClickListener {
+            Toast.makeText(context, "under_text_2", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroy() {
