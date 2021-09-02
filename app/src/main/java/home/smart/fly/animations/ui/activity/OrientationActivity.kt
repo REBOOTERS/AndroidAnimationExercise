@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import home.smart.fly.animations.R
 import io.reactivex.Observable
@@ -20,6 +21,7 @@ class OrientationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orientation)
+        Toast.makeText(this, "OrientationActivity-onCreate", Toast.LENGTH_SHORT).show()
         switcher.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 switcher.text = "切竖屏"

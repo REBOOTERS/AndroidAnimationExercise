@@ -314,7 +314,8 @@
         <activity android:name=".master.ui.MasterFilterActivity" />
         <activity
             android:name=".ui.activity.OrientationActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@style/MyTheme.NoActionBar" />
         <activity android:name=".ui.activity.PhysicsViewActivity" />
         <activity
