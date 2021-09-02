@@ -2,6 +2,7 @@ package home.smart.fly.animations.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
@@ -49,6 +50,13 @@ class OrientationActivity : AppCompatActivity() {
 
                 Log.e("zyq", "hour is == $hour")
             }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        Log.e("newConfig", "onConfigurationChanged() called with: newConfig = $newConfig")
+        Log.e("newConfig", "${newConfig.orientation}")
+//        setContentView(R.layout.activity_orientation)
     }
 
     override fun onDestroy() {

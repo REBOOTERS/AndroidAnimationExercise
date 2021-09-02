@@ -315,7 +315,7 @@
         <activity
             android:name=".ui.activity.OrientationActivity"
             android:screenOrientation="fullSensor"
-            android:configChanges="orientation|keyboardHidden"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/MyTheme.NoActionBar" />
         <activity android:name=".ui.activity.PhysicsViewActivity" />
         <activity
