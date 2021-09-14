@@ -111,7 +111,6 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
     implementation 'com.facebook.fresco:fresco:2.5.0'
     implementation 'com.zhihu.android:matisse:0.5.3-beta3'
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.permissionx.guolindev:permissionx:1.4.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
