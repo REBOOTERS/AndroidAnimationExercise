@@ -161,7 +161,7 @@ dependencies {
     implementation "androidx.vectordrawable:vectordrawable:1.1.0"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
     implementation 'cn.bingoogolapple:bga-refreshlayout:1.1.8@aar'
-    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+    implementation 'cn.bingoogolapple:bga-banner:2.2.7@aar'
     implementation 'cn.bingoogolapple:bga-adapter:1.2.0@aar'
     implementation 'com.jakewharton:butterknife:10.2.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
