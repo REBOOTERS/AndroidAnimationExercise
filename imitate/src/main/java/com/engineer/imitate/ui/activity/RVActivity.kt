@@ -44,7 +44,7 @@ class RVActivity : AppCompatActivity() {
 
 private class SimpleAdapter(val items: List<Int>) : RecyclerView.Adapter<SimpleAdapter.MyHolder>() {
 
-    private class MyHolder(view: View) : RecyclerView.ViewHolder(view) {
+     class MyHolder(view: View) : RecyclerView.ViewHolder(view) {
         val frameLayout = view as FrameLayout
         val imageView: ImageView = frameLayout.getChildAt(0) as ImageView
         val textView: TextView = frameLayout.getChildAt(1) as TextView

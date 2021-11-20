@@ -4,7 +4,8 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Ignore
 
-class School : Parcelable {
+class School @Ignore constructor() : Parcelable {
+
     class Location {
         var lat = 0f
         var lng = 0f
@@ -39,13 +40,6 @@ class School : Parcelable {
                 '}'
     }
 
-    @Ignore
-    constructor(){}
-
-
-    constructor(source: Parcel) : this()
-
-
 
     override fun describeContents() = 0
 
@@ -54,7 +48,7 @@ class School : Parcelable {
     companion object {
         @JvmField
         val CREATOR: Parcelable.Creator<School> = object : Parcelable.Creator<School> {
-            override fun createFromParcel(source: Parcel): School = School(source)
+            override fun createFromParcel(source: Parcel): School = School()
             override fun newArray(size: Int): Array<School?> = arrayOfNulls(size)
         }
     }
