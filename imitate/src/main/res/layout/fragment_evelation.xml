@@ -182,4 +182,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/label"
         app:layout_constraintTop_toBottomOf="@+id/open_push_setting" />
 
+    <Button
+            android:id="@+id/read_sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="读 sp"
+            app:layout_constraintLeft_toLeftOf="@+id/label"
+            app:layout_constraintTop_toBottomOf="@+id/open_system_share" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

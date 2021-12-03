@@ -2,6 +2,8 @@
 
 # AndroidAnimationExercise
 
+![Alt](https://repobeats.axiom.co/api/embed/0bdca57875ae2605128ec32c680a0bd5e59a6ce7.svg "Repobeats analytics image")
+
 [![Build Status](https://travis-ci.org/REBOOTERS/AndroidAnimationExercise.svg?branch=master)](https://travis-ci.org/REBOOTERS/AndroidAnimationExercise)
 
 

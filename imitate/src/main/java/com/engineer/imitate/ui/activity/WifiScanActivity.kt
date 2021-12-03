@@ -9,7 +9,9 @@ import android.content.IntentFilter
 import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
@@ -33,6 +35,7 @@ class WifiScanActivity : AppCompatActivity() {
     private var currentWifiSsid = ""
     private var currentWifiBssid = ""
     private lateinit var resultTv: TextView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +49,7 @@ class WifiScanActivity : AppCompatActivity() {
                     .permissions(Manifest.permission.ACCESS_FINE_LOCATION)
                     .request { allGranted, _, _ ->
                         if (allGranted) {
+                            progressBar.visibility = View.VISIBLE
                             val success = it.startScan()
                             Log.e(TAG, "onCreate: start scan $success")
                         }
@@ -59,10 +63,11 @@ class WifiScanActivity : AppCompatActivity() {
         wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         val tv = findViewById<TextView>(R.id.wifi_ssid)
         resultTv = findViewById(R.id.wifi_scan_result)
+        progressBar = findViewById(R.id.progress)
 
         wifiManager?.let {
             currentWifiSsid = it.connectionInfo.ssid
-            currentWifiBssid = it.connectionInfo.bssid
+            currentWifiBssid = it.connectionInfo.bssid ?: ""
             tv.text = "当前连接 WIFI SSID: $currentWifiSsid BSSID: $currentWifiBssid"
         }
 
@@ -81,7 +86,7 @@ class WifiScanActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             Log.e(TAG, "onReceive: thread ${Thread.currentThread().name}")
             toastShort("scan success")
-
+            progressBar.visibility = View.GONE
             intent?.let { it ->
                 if (it.action == WifiManager.SCAN_RESULTS_AVAILABLE_ACTION) {
                     val list = wifiManager?.scanResults
@@ -117,9 +122,9 @@ class WifiScanActivity : AppCompatActivity() {
         second %= 60;//剩余秒数
 
         if (0 < days) {
-            return "$days 天，" + hours + "小时，" + minutes + "分，" + second + "秒"
+            return "$days 天:" + hours + "小时:" + minutes + "分:" + second + "秒"
         } else {
-            return "$hours 小时，" + minutes + "分，" + second + "秒";
+            return "$hours 小时:" + minutes + "分:" + second + "秒";
         }
     }
 }

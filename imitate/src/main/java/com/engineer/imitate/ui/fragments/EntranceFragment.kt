@@ -88,6 +88,10 @@ class EntranceFragment : Fragment() {
                 }
         }
 
+        scan_wifi.setOnClickListener {
+            startActivity(Intent(context, WifiScanActivity::class.java))
+        }
+
         set_bg.setOnClickListener {
             PermissionX.init(this)
                 .permissions(

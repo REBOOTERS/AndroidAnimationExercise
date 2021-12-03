@@ -2,11 +2,14 @@ package com.engineer.imitate.ui.fragments
 
 
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +19,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.interfaces.SimpleProgressChangeListener
 import com.engineer.imitate.util.toastShort
+import com.facebook.stetho.common.LogUtil
 import com.xw.repo.BubbleSeekBar
 import kotlinx.android.synthetic.main.fragment_evelation.*
 
@@ -41,7 +45,7 @@ class ElevationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val anim = ObjectAnimator.ofFloat(fab,"rotation", 180f)
+        val anim = ObjectAnimator.ofFloat(fab, "rotation", 180f)
         anim.repeatMode = ObjectAnimator.REVERSE
         anim.repeatCount = ObjectAnimator.INFINITE
         anim.start()
@@ -148,6 +152,17 @@ class ElevationFragment : Fragment() {
 //                        }
 //                    }
 //            startActivity(shareIntent)
+        }
+
+        read_sp.setOnClickListener {
+            val sp = it.context.getSharedPreferences("shared_prefs_doraemon", Context.MODE_PRIVATE)
+            val map = sp.all
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                map.forEach { t, any ->
+                    Log.e("read_sp", "key = $t, value = $any")
+                }
+            }
+
         }
 
     }
