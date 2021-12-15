@@ -11,7 +11,7 @@ import com.engineer.imitate.R
 
 /**
  * A simple [Fragment] subclass.
- *
+ * how to use dependency injection
  */
 @Route(path = "/anim/dependency_injection")
 class DIFragment : Fragment() {
@@ -21,7 +21,7 @@ class DIFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_parallax, container, false)
+        return inflater.inflate(R.layout.fragment_di, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
-import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.list.adapter.ParallaxAdapter
-import kotlinx.android.synthetic.main.fragment_evelation.*
 import kotlinx.android.synthetic.main.fragment_parallax.*
 
 /**
