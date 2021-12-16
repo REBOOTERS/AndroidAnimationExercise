@@ -74,11 +74,12 @@ class UserRepository @Inject constructor(
         return remoteDataSource.getData()
     }
 }
+
 //
 // @Component makes Dagger create a graph of dependencies
-//@Component
-//interface ApplicationGraph {
-//    // The return type  of functions inside the component interface is
-//    // what can be provided from the container
-//    fun repository()
-//}
+@Component(modules = [NetworkModule::class])
+interface ApplicationGraph {
+    // The return type  of functions inside the component interface is
+    // what can be provided from the container
+    fun repository(): UserRepository
+}

@@ -46,11 +46,11 @@ class DIFragment : Fragment() {
     private fun testDagger() {
 
 
-//        val applicationGraph = DaggerApplicationGraph.create()
-//
-//        val userRepo1 = applicationGraph.repository()
-//        val userRepo2 = applicationGraph.repository()
-//        Log.e(TAG, "testDagger: user1 == user2 ${userRepo1 == userRepo2}")
+        val applicationGraph = DaggerApplicationGraph.create()
+
+        val userRepo1 = applicationGraph.repository()
+        val userRepo2 = applicationGraph.repository()
+        Log.e(TAG, "testDagger: user1 == user2 ${userRepo1 == userRepo2}")
 
 
         val myGraph = DaggerMyGraph.create()
