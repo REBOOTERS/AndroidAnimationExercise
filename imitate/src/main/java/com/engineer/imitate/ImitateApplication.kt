@@ -15,6 +15,8 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import com.alibaba.android.arouter.launcher.ARouter
 import com.didichuxing.doraemonkit.*
 import com.engineer.imitate.interfaces.SimpleActivityCallback
+import com.engineer.imitate.ui.fragments.di.ApplicationComponent
+import com.engineer.imitate.ui.fragments.di.DaggerApplicationComponent
 import com.engineer.imitate.util.SpUtil
 import com.engineer.imitate.util.SystemUtil
 import com.engineer.imitate.util.TextUtil
@@ -29,6 +31,8 @@ import com.facebook.stetho.Stetho
  */
 @SuppressLint("LogNotTimber")
 class ImitateApplication : Application() {
+
+    val applicationComponent = DaggerApplicationComponent.create()
 
     companion object {
         lateinit var application: Context
@@ -101,7 +105,6 @@ class ImitateApplication : Application() {
         Log.e(TAG, "onCreate() called model $model")
         val brand = SystemUtil.getDeviceBrand()
         Log.e(TAG, "onCreate() called brand $brand")
-
     }
 
 
