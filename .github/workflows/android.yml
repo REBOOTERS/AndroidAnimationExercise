@@ -14,7 +14,7 @@ jobs:
       with:
         java-version: 1.8
     - name: build app apk
-      run: ./gradlew :app:assembleDebug;
+      run: ./gradlew :app:assembleChargeDebug;
     - name: build imitate apk
       run: ./gradlew :imitate:assembleDebug;
 
@@ -29,6 +29,6 @@ jobs:
         with:
           java-version: 1.8
       - name: build app apk
-        run: ./gradlew :app:assembleRelease;
+        run: ./gradlew :app:assembleChargeRelease;
       - name: build imitate apk
         run: ./gradlew :imitate:assembleRelease;
