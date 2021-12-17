@@ -16,6 +16,9 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <queries>
+        <package android:name="home.smart.fly.animations" />
+    </queries>
     <application
             android:name=".ImitateApplication"
             android:icon="@mipmap/ic_launcher"

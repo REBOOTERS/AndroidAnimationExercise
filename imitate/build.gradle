@@ -50,8 +50,9 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "app_" + variant.name + "_" + versionName +
-                    "_" + versionCode + "_" + releaseTime() + ".apk"
+//            outputFileName = "app_" + variant.name + "_" + versionName +
+//                    "_" + versionCode + "_" + releaseTime() + ".apk"
+//            outputFileName = releaseTime() + ".apk"
         }
     }
 

@@ -13,11 +13,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.interfaces.SimpleProgressChangeListener
+import com.engineer.imitate.ui.fragments.di.TestHelper
 import com.engineer.imitate.util.toastShort
 import com.facebook.stetho.common.LogUtil
 import com.xw.repo.BubbleSeekBar
@@ -162,7 +164,17 @@ class ElevationFragment : Fragment() {
                     Log.e("read_sp", "key = $t, value = $any")
                 }
             }
+        }
 
+
+        view.findViewById<Button>(R.id.start11).setOnClickListener {
+            TestHelper.openActivity(it.context)
+        }
+        view.findViewById<Button>(R.id.start22).setOnClickListener {
+            TestHelper.openActivityHome(it.context)
+        }
+        view.findViewById<Button>(R.id.start33).setOnClickListener {
+            TestHelper.openActivityByUrl(it.context)
         }
 
     }

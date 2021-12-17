@@ -1,186 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parent"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    tools:context=".ui.fragments.ElevationFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".ui.fragments.ElevationFragment">
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:cardBackgroundColor="@color/cpb_red"
-        app:cardCornerRadius="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+            android:id="@+id/cardView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardBackgroundColor="@color/cpb_red"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/myCardView"
-        android:layout_width="240dp"
-        android:layout_height="312dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        app:cardBackgroundColor="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            android:id="@+id/myCardView"
+            android:layout_width="240dp"
+            android:layout_height="312dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     <com.skydoves.transformationlayout.TransformationLayout
-        android:id="@+id/transformationLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
-        app:layout_constraintLeft_toRightOf="@+id/cardView"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:transformation_duration="550"
-        app:transformation_targetView="@+id/myCardView">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/transformationLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/ic_add_black_24dp"
-            app:fabSize="normal" />
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintLeft_toRightOf="@+id/cardView"
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:transformation_duration="550"
+            app:transformation_targetView="@+id/myCardView">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_add_black_24dp"
+                app:fabSize="normal" />
 
     </com.skydoves.transformationlayout.TransformationLayout>
 
 
     <com.engineer.imitate.ui.widget.custom.JikeSlideView
-        android:id="@+id/slide_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/slide_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.xw.repo.BubbleSeekBar
-        android:id="@+id/cardElevationSeekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:bsb_bubble_color="@color/cpb_green"
-        app:bsb_bubble_text_color="@color/colorPrimaryDark"
-        app:bsb_max="100"
-        app:bsb_min="0"
-        app:bsb_progress="0"
-        app:bsb_show_section_text="true"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            android:id="@+id/cardElevationSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:bsb_bubble_color="@color/cpb_green"
+            app:bsb_bubble_text_color="@color/colorPrimaryDark"
+            app:bsb_max="100"
+            app:bsb_min="0"
+            app:bsb_progress="0"
+            app:bsb_show_section_text="true"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <com.xw.repo.BubbleSeekBar
-        android:id="@+id/cardRadiusSeekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:bsb_bubble_color="@color/cpb_green"
-        app:bsb_bubble_text_color="@color/colorPrimaryDark"
-        app:bsb_max="45"
-        app:bsb_min="0"
-        app:bsb_progress="0"
-        app:bsb_show_section_text="true"
-        app:layout_constraintStart_toStartOf="@+id/cardElevationSeekBar"
-        app:layout_constraintTop_toBottomOf="@+id/cardElevationSeekBar" />
+            android:id="@+id/cardRadiusSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:bsb_bubble_color="@color/cpb_green"
+            app:bsb_bubble_text_color="@color/colorPrimaryDark"
+            app:bsb_max="45"
+            app:bsb_min="0"
+            app:bsb_progress="0"
+            app:bsb_show_section_text="true"
+            app:layout_constraintStart_toStartOf="@+id/cardElevationSeekBar"
+            app:layout_constraintTop_toBottomOf="@+id/cardElevationSeekBar" />
 
     <com.xw.repo.BubbleSeekBar
-        android:id="@+id/deltaXSeekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:bsb_bubble_color="@color/cpb_green"
-        app:bsb_bubble_text_color="@color/colorPrimaryDark"
-        app:bsb_max="200"
-        app:bsb_min="0"
-        app:bsb_progress="0"
-        app:bsb_show_section_text="true"
-        app:layout_constraintStart_toStartOf="@+id/cardRadiusSeekBar"
-        app:layout_constraintTop_toBottomOf="@+id/cardRadiusSeekBar" />
+            android:id="@+id/deltaXSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:bsb_bubble_color="@color/cpb_green"
+            app:bsb_bubble_text_color="@color/colorPrimaryDark"
+            app:bsb_max="200"
+            app:bsb_min="0"
+            app:bsb_progress="0"
+            app:bsb_show_section_text="true"
+            app:layout_constraintStart_toStartOf="@+id/cardRadiusSeekBar"
+            app:layout_constraintTop_toBottomOf="@+id/cardRadiusSeekBar" />
 
 
     <com.xw.repo.BubbleSeekBar
-        android:id="@+id/deltaYSeekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:bsb_bubble_color="@color/cpb_green"
-        app:bsb_bubble_text_color="@color/colorPrimaryDark"
-        app:bsb_max="100"
-        app:bsb_min="0"
-        app:bsb_progress="0"
-        app:bsb_show_section_text="true"
-        app:layout_constraintStart_toStartOf="@+id/deltaXSeekBar"
-        app:layout_constraintTop_toBottomOf="@+id/deltaXSeekBar" />
+            android:id="@+id/deltaYSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:bsb_bubble_color="@color/cpb_green"
+            app:bsb_bubble_text_color="@color/colorPrimaryDark"
+            app:bsb_max="100"
+            app:bsb_min="0"
+            app:bsb_progress="0"
+            app:bsb_show_section_text="true"
+            app:layout_constraintStart_toStartOf="@+id/deltaXSeekBar"
+            app:layout_constraintTop_toBottomOf="@+id/deltaXSeekBar" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="button"
-        android:textColor="@color/cpb_blue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deltaYSeekBar" />
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="button"
+            android:textColor="@color/cpb_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deltaYSeekBar" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:foreground="@drawable/ripple_background"
-        android:gravity="center"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:text="click me"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:foreground="@drawable/ripple_background"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="click me"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
-        android:id="@+id/label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Notification Status："
-        android:textColor="@color/black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Notification Status："
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/notification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:textColor="@color/black"
-        app:layout_constraintLeft_toRightOf="@+id/label"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:text="Notification Status11：" />
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toRightOf="@+id/label"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:text="Notification Status11：" />
 
     <Button
-        android:id="@+id/open_push_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="打开推送设置"
-        app:layout_constraintLeft_toLeftOf="@+id/label"
-        app:layout_constraintTop_toBottomOf="@+id/label" />
+            android:id="@+id/open_push_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打开推送设置"
+            app:layout_constraintLeft_toLeftOf="@+id/label"
+            app:layout_constraintTop_toBottomOf="@+id/label" />
 
     <Button
-        android:id="@+id/open_system_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="打开系统分享"
-        app:layout_constraintLeft_toLeftOf="@+id/label"
-        app:layout_constraintTop_toBottomOf="@+id/open_push_setting" />
+            android:id="@+id/open_system_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打开系统分享"
+            app:layout_constraintLeft_toLeftOf="@+id/label"
+            app:layout_constraintTop_toBottomOf="@+id/open_push_setting" />
 
     <Button
             android:id="@+id/read_sp"
@@ -189,5 +189,41 @@
             android:text="读 sp"
             app:layout_constraintLeft_toLeftOf="@+id/label"
             app:layout_constraintTop_toBottomOf="@+id/open_system_share" />
+
+    <androidx.core.widget.NestedScrollView
+            app:layout_constraintStart_toStartOf="@id/read_sp"
+            app:layout_constraintTop_toBottomOf="@id/read_sp"
+            android:orientation="vertical"
+            android:scrollbars="none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <Button
+                    android:id="@+id/start11"
+                    android:text="start1"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <Button
+                    android:id="@+id/start22"
+                    android:text="start2"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <Button
+                    android:id="@+id/start33"
+                    android:text="start3"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
