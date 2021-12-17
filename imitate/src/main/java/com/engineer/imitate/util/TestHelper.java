@@ -1,4 +1,4 @@
-package com.engineer.imitate.ui.fragments.di;
+package com.engineer.imitate.util;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -49,7 +49,7 @@ public class TestHelper {
         Log.d(TAG, "openActivityByUrl() called with: context = [" + context + "]");
         Intent intent = new Intent();
         intent.setData(Uri.parse("custom_scheme://custom_host"));
-        intent.putExtra("", "");//这里Intent当然也可传递参数,但是一般情况下都会放到上面的URL中进行传递
+        intent.putExtra("", ""); // 这里Intent当然也可传递参数,但是一般情况下都会放到上面的URL中进行传递
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         return true;

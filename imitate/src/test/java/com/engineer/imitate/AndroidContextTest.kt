@@ -8,16 +8,16 @@ import org.junit.Assert.*
 import org.junit.BeforeClass
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
+//import org.robolectric.RobolectricTestRunner
+//import org.robolectric.annotation.Config
 
 
 /**
  * @author rookie
  * @since 07-30-2019
  */
-@RunWith(RobolectricTestRunner::class)
-@Config(sdk = [27],application = ImitateApplication::class)
+//@RunWith(RobolectricTestRunner::class)
+//@Config(sdk = [27],application = ImitateApplication::class)
 class AndroidContextTest {
 
     @Test

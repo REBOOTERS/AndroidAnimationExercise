@@ -18,6 +18,8 @@ import javax.inject.Inject
  * https://developer.android.google.cn/training/dependency-injection/dagger-basics?hl=zh-cn#kotlin
  *
  * Dagger 入门
+ *
+ * 控制反转 --- 通用代码控制特定代码的执行
  */
 @Route(path = "/anim/dependency_injection")
 class DIFragment : Fragment() {
@@ -36,30 +38,11 @@ class DIFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        testDagger()
-
         loginViewModel.request {
             Log.e(TAG, "onViewCreated: result = $it")
         }
     }
 
-    private fun testDagger() {
-
-
-        val applicationGraph = DaggerApplicationGraph.create()
-
-        val userRepo1 = applicationGraph.repository()
-        val userRepo2 = applicationGraph.repository()
-        Log.e(TAG, "testDagger: user1 == user2 ${userRepo1 == userRepo2}")
-
-
-        val myGraph = DaggerMyGraph.create()
-        val obj1 = myGraph.getObj()
-        val obj2 = myGraph.getObj()
-        Log.e(TAG, "testDagger: obj1 == obj2 ${obj1 == obj2}")
-        Log.e(TAG, "testDagger: obj.getInfo() = ${obj1.getInfo()}")
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

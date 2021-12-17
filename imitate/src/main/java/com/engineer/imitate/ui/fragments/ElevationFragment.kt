@@ -4,7 +4,6 @@ package com.engineer.imitate.ui.fragments
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -19,9 +18,8 @@ import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.interfaces.SimpleProgressChangeListener
-import com.engineer.imitate.ui.fragments.di.TestHelper
+import com.engineer.imitate.util.TestHelper
 import com.engineer.imitate.util.toastShort
-import com.facebook.stetho.common.LogUtil
 import com.xw.repo.BubbleSeekBar
 import kotlinx.android.synthetic.main.fragment_evelation.*
 
