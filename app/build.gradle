@@ -222,6 +222,7 @@ dependencies {
     implementation project(path: ':dataview')
     implementation project(path: ':skeleton')
 
+    implementation 'com.alibaba:fastjson:1.2.78'
 
 }
 

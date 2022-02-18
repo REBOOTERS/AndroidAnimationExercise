@@ -13,9 +13,8 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.alibaba.android.arouter.launcher.ARouter
-import com.didichuxing.doraemonkit.*
+import com.didichuxing.doraemonkit.DoraemonKit
 import com.engineer.imitate.interfaces.SimpleActivityCallback
-import com.engineer.imitate.ui.fragments.di.ApplicationComponent
 import com.engineer.imitate.ui.fragments.di.DaggerApplicationComponent
 import com.engineer.imitate.util.SpUtil
 import com.engineer.imitate.util.SystemUtil
