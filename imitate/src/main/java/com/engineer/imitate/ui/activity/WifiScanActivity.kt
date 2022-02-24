@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.wifi.WifiManager
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -15,9 +16,11 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
+import com.engineer.imitate.util.TimeUtilTool
 import com.engineer.imitate.util.toastShort
 import com.permissionx.guolindev.PermissionX
 import java.lang.StringBuilder
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -68,6 +71,8 @@ class WifiScanActivity : AppCompatActivity() {
         wifiManager?.let {
             currentWifiSsid = it.connectionInfo.ssid
             currentWifiBssid = it.connectionInfo.bssid ?: ""
+
+
             tv.text = "当前连接 WIFI SSID: $currentWifiSsid BSSID: $currentWifiBssid"
         }
 
@@ -86,12 +91,31 @@ class WifiScanActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             Log.e(TAG, "onReceive: thread ${Thread.currentThread().name}")
             toastShort("scan success")
+
             progressBar.visibility = View.GONE
             intent?.let { it ->
                 if (it.action == WifiManager.SCAN_RESULTS_AVAILABLE_ACTION) {
                     val list = wifiManager?.scanResults
+                    list?.sortBy {
+                        it.SSID
+                    }
                     list?.forEach { result ->
-                        Log.e(TAG, "onReceive: ScanResult $result")
+//                        Log.e(TAG, "onReceive: ScanResult $result")
+
+                        val actualTimeStamp = System.currentTimeMillis() - SystemClock
+                            .elapsedRealtime() + result.timestamp / 1000
+
+                        val info = String.format(
+                            "%-35s,%-17s,%-20s,%-4.3s 小时,%-20d,%s",
+                            result.SSID,
+                            result.BSSID,
+                            result.timestamp,
+                            TimeUtilTool.millionSecondsToHour(result.timestamp / 1000),
+                            actualTimeStamp,
+                            TimeUtilTool.timeStampToDate(actualTimeStamp)
+                        )
+
+                        Log.e(TAG, info)
 
                         if (result.BSSID.equals(currentWifiBssid)) {
                             val timestamp = result.timestamp
