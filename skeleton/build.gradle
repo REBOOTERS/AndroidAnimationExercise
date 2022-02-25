@@ -7,8 +7,6 @@ android {
     defaultConfig {
         minSdkVersion ext.minSdkVersion
         targetSdkVersion ext.targetSdkVersion
-        versionCode 10
-        versionName "1.1.2"
     }
     buildTypes {
         release {

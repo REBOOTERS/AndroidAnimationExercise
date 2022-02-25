@@ -3,17 +3,11 @@ package com.engineer.plugin.transforms
 import com.android.SdkConstants
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
-import com.android.build.gradle.internal.pipeline.TransformTask
 import com.android.builder.utils.isValidZipEntryName
 import com.android.utils.FileUtils
 import com.engineer.plugin.utils.BeautyLog
 import com.google.common.io.Files
-import org.apache.commons.io.IOUtils
 import org.gradle.api.Project
-import org.gradle.internal.io.IoUtils
-import org.objectweb.asm.ClassReader
-import org.objectweb.asm.ClassVisitor
-import org.objectweb.asm.ClassWriter
 import java.io.*
 import java.util.function.BiConsumer
 import java.util.zip.ZipEntry
@@ -189,8 +183,13 @@ abstract class BaseTransform(private val project: Project) : Transform() {
     ): File {
         return File(
             outputDir,
-            FileUtils.relativePossiblyNonExistingPath(inputFile, inputDir)
+            relativePossiblyNonExistingPath(inputFile, inputDir)
         )
+    }
+
+    open fun relativePossiblyNonExistingPath(file: File, dir: File): String? {
+        val path = dir.toURI().relativize(file.toURI()).path
+        return FileUtils.toSystemDependentPath(path)
     }
 
     @Throws(IOException::class)

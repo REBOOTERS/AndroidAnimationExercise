@@ -57,7 +57,8 @@ class RenameAction {
                                 )
 
                                 if (it is ApkVariantOutput) {
-                                    it.outputFileName = outputFileName
+//                                    it.outputFileName = outputFileName
+                                    // TODO: fix me when
                                 }
 
                                 result.invoke(outputFileName)
