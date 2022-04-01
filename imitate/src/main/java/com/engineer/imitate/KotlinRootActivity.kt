@@ -71,6 +71,18 @@ class KotlinRootActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         loadView()
         jsonTest()
+
+//        autoStartPage()
+    }
+
+    private fun autoStartPage() {
+        val fragment: Fragment =
+            ARouter.getInstance().build("/anim/fresco").navigation(this) as Fragment
+        currentFragment = fragment
+        content.visibility = View.VISIBLE
+        index.visibility = View.GONE
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.content, fragment).commit()
     }
 
     private fun loadView() {

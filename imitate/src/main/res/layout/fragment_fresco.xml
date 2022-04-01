@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,73 +7,120 @@
     android:orientation="vertical"
     tools:context=".ui.fragments.FrescoFragment">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/simpleDraweeView"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_margin="8dp"
-        app:placeholderImage="@drawable/totoro" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingBottom="60dp">
+
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/s1"
-            android:layout_width="100dp"
+            android:id="@+id/simpleDraweeView"
+            android:layout_width="300dp"
             android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/totoro" />
+            android:layout_margin="8dp"
+            app:placeholderImage="@drawable/totoro" />
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="100dp"
-            android:id="@+id/s2"
-            android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/totoro"
-            app:roundAsCircle="true"
-            app:roundedCornerRadius="50dp"
-            app:roundingBorderColor="@color/cpb_green"
-            app:roundingBorderWidth="2dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/s1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/totoro" />
 
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/s2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/totoro"
+                app:roundAsCircle="true"
+                app:roundedCornerRadius="50dp"
+                app:roundingBorderColor="@color/cpb_green"
+                app:roundingBorderWidth="2dp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_margin="8dp"
-        android:background="@drawable/clip"
-        android:scaleType="fitXY" />
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_margin="8dp"
-        android:background="@drawable/clip"
-        android:scaleType="fitXY" />
-
-    <com.engineer.imitate.ui.widget.ShimmerLayout
-        android:id="@+id/shimmer_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/draw_bitmap"
-            android:layout_width="100dp"
+            android:id="@+id/imageView"
+            android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_margin="8dp"
             android:background="@drawable/clip"
             android:scaleType="fitXY" />
 
-        <View
-            android:id="@+id/mask"
-            android:layout_width="100dp"
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_margin="8dp"
-            android:background="@color/shimmer_background_color" />
-    </com.engineer.imitate.ui.widget.ShimmerLayout>
-</LinearLayout>
+            android:background="@drawable/clip"
+            android:scaleType="fitXY" />
+
+        <com.engineer.imitate.ui.widget.ShimmerLayout
+            android:id="@+id/shimmer_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/draw_bitmap"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/clip"
+                android:scaleType="fitXY" />
+
+            <View
+                android:id="@+id/mask"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:background="@color/shimmer_background_color" />
+        </com.engineer.imitate.ui.widget.ShimmerLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+            <com.engineer.imitate.ui.widget.custom.LightningView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp" />
+        </LinearLayout>
+
+
+        <com.engineer.imitate.ui.widget.shimmer.ShimmerLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:background="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:paddingStart="15dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="8dp"
+                android:text="111111111"
+                android:visibility="visible" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/beauty_4"
+                android:visibility="gone" />
+
+        </com.engineer.imitate.ui.widget.shimmer.ShimmerLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
