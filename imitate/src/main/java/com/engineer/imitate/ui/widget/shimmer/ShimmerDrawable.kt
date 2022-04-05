@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
+import com.engineer.imitate.util.dp
 
 
 class ShimmerLayout @JvmOverloads constructor(
@@ -18,9 +19,17 @@ class ShimmerLayout @JvmOverloads constructor(
 
     private val shimmerDrawable = ShimmerDrawable()
 
+    private val paint = Paint()
+
+    private val path = Path()
+    private val radius = 22.dp.toFloat()
+    private val radii = floatArrayOf(radius, radius, radius, radius, radius, radius, 0f, 0f)
+
     init {
         setWillNotDraw(false)
         shimmerDrawable.callback = this
+//        paint.color = Color.TRANSPARENT
+        paint.isAntiAlias = true
     }
 
     fun startAnim() {
@@ -31,9 +40,20 @@ class ShimmerLayout @JvmOverloads constructor(
         shimmerDrawable.stopAnim()
     }
 
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        val rectF = RectF(0f, 0f, width.toFloat(), height.toFloat())
+        path.addRoundRect(rectF, radii, Path.Direction.CW)
+    }
+
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
         shimmerDrawable.setBounds(0, 0, width, height)
+    }
+
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+        canvas?.clipPath(path)
     }
 
     override fun dispatchDraw(canvas: Canvas?) {
@@ -170,8 +190,8 @@ class ShimmerDrawable : Drawable() {
 }
 
 object Shimmer {
-    private const val baseColor = 0x00ffffff
-    private const val highlightColor = 0x73ffffff
+    private const val baseColor = Color.TRANSPARENT
+    private const val highlightColor = 0x66ffffff
     const val duration = 1940L
 
     val colors = intArrayOf(baseColor, highlightColor, highlightColor, baseColor)

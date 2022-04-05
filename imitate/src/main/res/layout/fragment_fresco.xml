@@ -95,32 +95,32 @@
                 android:layout_margin="10dp" />
         </LinearLayout>
 
-
-        <com.engineer.imitate.ui.widget.shimmer.ShimmerLayout
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@android:color/transparent">
+            android:background="@drawable/beauty_4">
 
-            <TextView
-                android:background="@color/colorPrimary"
+            <com.engineer.imitate.ui.widget.shimmer.ShimmerLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:paddingStart="15dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="8dp"
-                android:text="111111111"
-                android:visibility="visible" />
+                android:layout_margin="20dp">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@drawable/beauty_4"
-                android:visibility="gone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="15dp"
+                    android:background="#4c000000"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="15dp"
+                    android:paddingBottom="8dp"
+                    android:text="111111111"
+                    android:visibility="visible" />
 
-        </com.engineer.imitate.ui.widget.shimmer.ShimmerLayout>
+
+            </com.engineer.imitate.ui.widget.shimmer.ShimmerLayout>
+
+        </FrameLayout>
+
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
