@@ -33,13 +33,16 @@
                 motion:framePosition="40"
                 motion:motionTarget="@+id/imageView" />
             <KeyAttribute
-                android:scaleY="150"
+                android:alpha="0.8"
+                android:scaleY="100"
                 motion:framePosition="100"
                 motion:motionTarget="@+id/imageView" />
             <KeyAttribute
+                android:alpha="0.1"
                 android:scaleX="150"
                 motion:framePosition="100"
                 motion:motionTarget="@+id/imageView" />
+
         </KeyFrameSet>
     </Transition>
 

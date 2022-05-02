@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/motion_layout"
+    android:fitsSystemWindows="true"
     android:background="@color/colorPrimary"
     app:layoutDescription="@xml/activity_fantasy_splash_scene"
     tools:context=".ui.FantasySplashActivity">

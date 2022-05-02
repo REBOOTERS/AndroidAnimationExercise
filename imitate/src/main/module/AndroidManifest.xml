@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        package="com.engineer.imitate">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.engineer.imitate">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -20,19 +20,19 @@
         <package android:name="home.smart.fly.animations" />
     </queries>
     <application
-            android:name=".ImitateApplication"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:requestLegacyExternalStorage="true"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/MyAppTheme"
-            android:usesCleartextTraffic="true"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            tools:targetApi="q">
+        android:name=".ImitateApplication"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/MyAppTheme"
+        android:usesCleartextTraffic="true"
+        android:windowSoftInputMode="adjustResize|stateHidden"
+        tools:targetApi="q">
         <activity
-                android:name=".ui.activity.WifiScanActivity"
-                android:exported="true">
+            android:name=".ui.activity.WifiScanActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -40,31 +40,31 @@
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data
-                        android:scheme="phoenix"
-                        android:host="easy_link" />
+                    android:host="easy_link"
+                    android:scheme="phoenix" />
             </intent-filter>
         </activity>
         <activity
-                android:name=".ui.activity.SelfDrawViewActivity"
-                android:exported="true" />
+            android:name=".ui.activity.SelfDrawViewActivity"
+            android:exported="true" />
         <activity
-                android:name=".ui.activity.RVActivity"
-                android:exported="true" />
+            android:name=".ui.activity.RVActivity"
+            android:exported="true" />
         <activity
-                android:name=".ui.activity.ViewDispathchActivity"
-                android:exported="true" />
+            android:name=".ui.activity.ViewDispathchActivity"
+            android:exported="true" />
         <activity
-                android:name=".ui.activity.surface.SurfaceViewActivity"
-                android:exported="true" />
+            android:name=".ui.activity.surface.SurfaceViewActivity"
+            android:exported="true" />
         <activity
-                android:name=".ui.activity.CLActivity"
-                android:exported="true"
-                android:windowSoftInputMode="adjustPan" />
+            android:name=".ui.activity.CLActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity
-                android:name=".ui.FantasySplashActivity"
-                android:exported="true"
-                android:noHistory="true"
-                android:theme="@style/SplashTheme">
+            android:name=".ui.FantasySplashActivity"
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -74,53 +74,54 @@
         </activity>
         <activity android:name=".ui.activity.InflateRealActivity" />
         <activity
-                android:name=".ui.activity.fragmentmanager.ContentActivity"
-                android:exported="true"
-                android:windowSoftInputMode="adjustPan|stateHidden" />
+            android:name=".ui.activity.fragmentmanager.ContentActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-                android:name=".ui.activity.ConstraintLayoutActivity"
-                android:configChanges="keyboardHidden|screenSize|smallestScreenSize|screenLayout|orientation|uiMode"
-                android:exported="true"
-                android:theme="@style/MyAppTheme.NoActionBar"
-                android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:name=".ui.activity.ConstraintLayoutActivity"
+            android:configChanges="keyboardHidden|screenSize|smallestScreenSize|screenLayout|orientation|uiMode"
+            android:exported="true"
+            android:theme="@style/MyAppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-                android:name=".ui.activity.HorizontalListActivity"
-                android:exported="true" />
+            android:name=".ui.activity.HorizontalListActivity"
+            android:exported="true" />
         <activity
-                android:name=".ui.activity.ScreenRecorderActivity"
-                android:exported="true"
-                android:label="@string/title_activity_screen_recoder"
-                android:theme="@style/MyAppTheme.NoActionBar" />
+            android:name=".ui.activity.ScreenRecorderActivity"
+            android:exported="true"
+            android:label="@string/title_activity_screen_recoder"
+            android:theme="@style/MyAppTheme.NoActionBar" />
         <activity
-                android:name=".ui.activity.DateAndTimePickerActivity"
-                android:exported="true" />
+            android:name=".ui.activity.DateAndTimePickerActivity"
+            android:exported="true" />
         <activity
-                android:name=".ui.activity.MyExpandableListViewActivity"
-                android:theme="@style/MyAppTheme" />
+            android:name=".ui.activity.MyExpandableListViewActivity"
+            android:theme="@style/MyAppTheme" />
         <activity
-                android:name=".ui.activity.FakeJikeActivity"
-                android:exported="true"
-                android:theme="@style/MyAppTheme" />
+            android:name=".ui.activity.FakeJikeActivity"
+            android:exported="true"
+            android:theme="@style/MyAppTheme" />
         <activity
-                android:name=".KotlinRootActivity"
-                android:label="@string/app_name"
-                android:theme="@style/MyAppTheme" />
+            android:name=".KotlinRootActivity"
+            android:label="@string/app_name"
+            android:theme="@style/MyAppTheme" />
         <activity
-                android:name=".ui.activity.FinalActivity"
-                android:exported="true"
-                android:label="@string/title_activity_final"
-                android:theme="@style/MyAppTheme" />
+            android:name=".ui.activity.FinalActivity"
+            android:exported="true"
+            android:label="@string/title_activity_final"
+            android:theme="@style/MyAppTheme" />
         <activity android:name=".ui.activity.ReverseGifActivity" />
         <activity android:name=".ui.activity.RunShellActivity" />
         <activity android:name=".ui.activity.StarShowActivity" />
         <activity
-                android:name=".ui.activity.ninepoint.NinePointActivity"
-                android:exported="true" />
+            android:name=".ui.activity.ninepoint.NinePointActivity"
+            android:exported="true" />
 
-        <receiver android:name=".receivers.AlarmReceiver" android:exported="false">
+        <receiver
+            android:name=".receivers.AlarmReceiver"
+            android:exported="false">
             <intent-filter>
-                <action
-                    android:name="alarm_log" />
+                <action android:name="alarm_log" />
             </intent-filter>
         </receiver>
     </application>

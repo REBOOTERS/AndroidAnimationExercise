@@ -26,7 +26,7 @@
     </style>
 
     <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFullscreen">false</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
     </style>
