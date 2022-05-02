@@ -19,6 +19,7 @@ import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,10 +28,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.ui.activity.ReverseGifActivity
 import com.engineer.imitate.ui.widget.opensource.text.ActionMenu
-import com.engineer.imitate.util.AnimDelegate
-import com.engineer.imitate.util.SpUtil
-import com.engineer.imitate.util.dp
-import com.engineer.imitate.util.toastShort
+import com.engineer.imitate.util.*
 import com.example.cpp_native.app.NativeRoot
 import com.gyf.immersionbar.ImmersionBar
 import com.list.rados.fast_list.FastListAdapter
@@ -77,6 +75,9 @@ class KotlinRootActivity : AppCompatActivity() {
 
         NativeRoot.init()
         NativeRoot.test()
+        val patchViewModel = ViewModelProvider(this)[PatchViewModel::class.java]
+        patchViewModel.copyFile()
+
     }
 
     private fun autoStartPage() {
