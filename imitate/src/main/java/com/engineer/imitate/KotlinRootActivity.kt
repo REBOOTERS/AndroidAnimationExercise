@@ -31,6 +31,7 @@ import com.engineer.imitate.util.AnimDelegate
 import com.engineer.imitate.util.SpUtil
 import com.engineer.imitate.util.dp
 import com.engineer.imitate.util.toastShort
+import com.example.cpp_native.app.NativeRoot
 import com.gyf.immersionbar.ImmersionBar
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
@@ -73,6 +74,9 @@ class KotlinRootActivity : AppCompatActivity() {
         jsonTest()
 
 //        autoStartPage()
+
+        NativeRoot.init()
+        NativeRoot.test()
     }
 
     private fun autoStartPage() {
