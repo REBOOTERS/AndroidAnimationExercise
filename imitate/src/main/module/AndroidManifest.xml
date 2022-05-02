@@ -117,9 +117,10 @@
                 android:name=".ui.activity.ninepoint.NinePointActivity"
                 android:exported="true" />
 
-        <receiver android:name=".receivers.AlarmReceiver">
+        <receiver android:name=".receivers.AlarmReceiver" android:exported="false">
             <intent-filter>
-                <action android:name="alarm_log" />
+                <action
+                    android:name="alarm_log" />
             </intent-filter>
         </receiver>
     </application>

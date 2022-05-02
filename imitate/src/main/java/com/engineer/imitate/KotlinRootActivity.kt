@@ -72,7 +72,7 @@ class KotlinRootActivity : AppCompatActivity() {
         loadView()
         jsonTest()
 
-        autoStartPage()
+//        autoStartPage()
     }
 
     private fun autoStartPage() {

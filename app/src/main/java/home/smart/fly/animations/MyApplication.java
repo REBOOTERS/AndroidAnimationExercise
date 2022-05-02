@@ -1,11 +1,9 @@
 package home.smart.fly.animations;
 
 import android.app.Application;
-import android.os.Debug;
+import android.os.Looper;
 import android.util.Log;
 import android.webkit.WebView;
-
-import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.didichuxing.doraemonkit.DoraemonKit;
@@ -21,37 +19,45 @@ import hugo.weaving.DebugLog;
  */
 
 public class MyApplication extends Application {
+    private static final String TAG = "MyApplication";
+
+    private static MyApplication sInstance;
+
     @Override
     @DebugLog
     public void onCreate() {
         super.onCreate();
+        sInstance = this;
+        Log.e("TAG-----ZYQ", "onCreate1: " + this.getClass().getName());
+        Looper.myQueue().addIdleHandler(() -> {
+            Log.e("TAG-----ZYQ", "queueIdle:");
+            Fresco.initialize(MyApplication.this);
 
-        Debug.startMethodTracing("sample");
+            WebView.setWebContentsDebuggingEnabled(true);
+            Stetho.initializeWithDefaults(MyApplication.this);
 
-        MultiDex.install(this);
-        Stetho.initializeWithDefaults(this);
-
+            DoraemonKit.disableUpload();
+            DoraemonKit.install(MyApplication.this, "fa15f7ee4d8174ba07efb60dfc50cfb5");
+            //        DoraemonKit.hide();
+            return false;
+        });
         if (BuildConfig.DEBUG) {
             ARouter.openLog();
             ARouter.openDebug();
         }
-
-        ARouter.init(this);
-        Fresco.initialize(this);
-        String dir = MMKV.initialize(this);
+        ARouter.init(MyApplication.getsInstance());
+        String dir = MMKV.initialize(MyApplication.this);
         Log.e("application", "onCreate: mmkv.dir==" + dir);
-        WebView.setWebContentsDebuggingEnabled(true);
 
-
-        DoraemonKit.disableUpload();
-        DoraemonKit.install(this,"fa15f7ee4d8174ba07efb60dfc50cfb5");
-//        DoraemonKit.hide();
         logLifeCycleCallBacks();
-
-        Debug.stopMethodTracing();
+        Log.e("TAG-----ZYQ", "onCreate2: " + this.getClass().getName());
     }
 
     @Path(value = "", level = 1100)
     protected void logLifeCycleCallBacks() {
+    }
+
+    public static MyApplication getsInstance() {
+        return sInstance;
     }
 }

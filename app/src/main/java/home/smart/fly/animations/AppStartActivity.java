@@ -74,15 +74,16 @@ public class AppStartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("TAG-----ZYQ", "onCreate1: " + this.getClass().getName());
         setContentView(R.layout.activity_app_start);
         mContext = this;
         mPreferences = getSharedPreferences("fragment_pos", MODE_PRIVATE);
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
-
+//
         mAutoCompleteTextView = findViewById(R.id.auto_complete_text);
-        // Setup spinner
+//        // Setup spinner
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(new MyAdapter(mToolbar.getContext(), getResources().getStringArray(R.array.fragments)));
 
@@ -127,13 +128,14 @@ public class AppStartActivity extends AppCompatActivity {
                         snackbar.show();
                     }
                 }));
-
+//
         setupAutoCompleteTextView();
-
+//
         reportFullyDrawn();
-
-
-        testCode();
+//
+//
+//        testCode();
+        Log.e("TAG-----ZYQ", "onCreate2: " + this.getClass().getName());
     }
 
     // <editor-fold defaultstate="collapsed" desc="some test code">
@@ -201,6 +203,7 @@ public class AppStartActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.e("TAG-----ZYQ", "onResume() called");
         String info = BuildConfig.BUILD_TYPE + "-" + BuildConfig.VERSION_NAME;
         if (BuildConfig.DEBUG) {
             Toast.makeText(mContext, info, Toast.LENGTH_SHORT).show();

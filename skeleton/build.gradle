@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 
 def ext = rootProject.ext
 android {
-    compileSdkVersion ext.compileSdkVersion
-    buildToolsVersion ext.buildToolsVersion
+    compileSdk ext.compileSdk
+
     defaultConfig {
-        minSdkVersion ext.minSdkVersion
-        targetSdkVersion ext.targetSdkVersion
+        minSdk ext.minSdk
+        targetSdk ext.targetSdk
     }
     buildTypes {
         release {
