@@ -1,0 +1,23 @@
+@startuml
+
+
+start
+if(播放广告条件 ready) then (true)
+    :play_ad;
+
+if(成功打开播放页面) then (true)
+    :ad_video_play_show;
+
+if(播放器成功启播) then (true)
+    : dcs 记录播放的点;
+    : 正常播放流程;
+    else (false)
+    :ad_video_play_error;
+    :直接打开 homeFeed;
+endif
+endif
+endif
+
+stop
+
+@enduml
