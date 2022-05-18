@@ -19,8 +19,6 @@ import com.engineer.imitate.R
 import com.engineer.imitate.util.TimeUtilTool
 import com.engineer.imitate.util.toastShort
 import com.permissionx.guolindev.PermissionX
-import java.lang.StringBuilder
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -95,39 +93,38 @@ class WifiScanActivity : AppCompatActivity() {
             progressBar.visibility = View.GONE
             intent?.let { it ->
                 if (it.action == WifiManager.SCAN_RESULTS_AVAILABLE_ACTION) {
-                    val list = wifiManager?.scanResults
-                    list?.sortBy {
-                        it.SSID
-                    }
-                    list?.forEach { result ->
-//                        Log.e(TAG, "onReceive: ScanResult $result")
+                    wifiManager?.scanResults?.let {
+                        it.asSequence()
+                            .sortedBy { sr -> sr.SSID }
+                            .toMutableList()
+                            .forEach { result ->
+                                val actualTimeStamp = System.currentTimeMillis() - SystemClock
+                                    .elapsedRealtime() + result.timestamp / 1000
 
-                        val actualTimeStamp = System.currentTimeMillis() - SystemClock
-                            .elapsedRealtime() + result.timestamp / 1000
+                                val info = String.format(
+                                    "%-35s,%-17s,%-20s,%-4.3s 小时,%-20d,%s",
+                                    result.SSID,
+                                    result.BSSID,
+                                    result.timestamp,
+                                    TimeUtilTool.millionSecondsToHour(result.timestamp / 1000),
+                                    actualTimeStamp,
+                                    TimeUtilTool.timeStampToDate(actualTimeStamp)
+                                )
 
-                        val info = String.format(
-                            "%-35s,%-17s,%-20s,%-4.3s 小时,%-20d,%s",
-                            result.SSID,
-                            result.BSSID,
-                            result.timestamp,
-                            TimeUtilTool.millionSecondsToHour(result.timestamp / 1000),
-                            actualTimeStamp,
-                            TimeUtilTool.timeStampToDate(actualTimeStamp)
-                        )
+                                Log.e(TAG, info)
 
-                        Log.e(TAG, info)
-
-                        if (result.BSSID.equals(currentWifiBssid)) {
-                            val timestamp = result.timestamp
-                            val second = TimeUnit.MICROSECONDS.toSeconds(timestamp)
-                            val time = secondToTime(second)
-                            val sb = StringBuilder()
-                            sb.append(result.toString()).append("\n\n")
-                                .append("timestamp: $timestamp").append("\n")
-                                .append("second: $second").append("\n")
-                                .append("time: $time")
-                            resultTv.text = sb.toString()
-                        }
+                                if (result.BSSID.equals(currentWifiBssid)) {
+                                    val timestamp = result.timestamp
+                                    val second = TimeUnit.MICROSECONDS.toSeconds(timestamp)
+                                    val time = secondToTime(second)
+                                    val sb = StringBuilder()
+                                    sb.append(result.toString()).append("\n\n")
+                                        .append("timestamp: $timestamp").append("\n")
+                                        .append("second: $second").append("\n")
+                                        .append("time: $time")
+                                    resultTv.text = sb.toString()
+                                }
+                            }
                     }
                 }
             }
