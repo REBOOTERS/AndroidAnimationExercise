@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.wifi.WifiManager
+import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
@@ -88,7 +89,12 @@ class WifiScanActivity : AppCompatActivity() {
     private inner class WifiBroadcastReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             Log.e(TAG, "onReceive: thread ${Thread.currentThread().name}")
-            toastShort("scan success")
+            val success = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                intent?.getBooleanExtra(WifiManager.EXTRA_RESULTS_UPDATED, false)
+            } else {
+                true
+            }
+            toastShort("scan result : $success")
 
             progressBar.visibility = View.GONE
             intent?.let { it ->
@@ -111,7 +117,8 @@ class WifiScanActivity : AppCompatActivity() {
                                     TimeUtilTool.timeStampToDate(actualTimeStamp)
                                 )
 
-                                Log.e(TAG, info)
+
+                        Log.d(TAG, info)
 
                                 if (result.BSSID.equals(currentWifiBssid)) {
                                     val timestamp = result.timestamp
