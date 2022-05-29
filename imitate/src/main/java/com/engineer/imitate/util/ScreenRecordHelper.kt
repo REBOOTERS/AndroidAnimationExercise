@@ -14,6 +14,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.os.Handler
+import android.os.Looper
 import android.util.DisplayMetrics
 import android.util.Log
 import android.widget.Toast
@@ -26,7 +27,6 @@ import java.io.File
 import java.nio.ByteBuffer
 
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class ScreenRecordHelper @JvmOverloads constructor(
         private var activity: Activity,
         private val listener: OnVideoRecordListener?,
@@ -59,23 +59,27 @@ class ScreenRecordHelper @JvmOverloads constructor(
 
         val permissionsGranted: Boolean = activity.isAllGranted(Permission.WRITE_EXTERNAL_STORAGE,
                 Permission.CAMERA)
-        activity.askForPermissions(Permission.WRITE_EXTERNAL_STORAGE,
-                Permission.CAMERA) {
-            if (permissionsGranted) {
-                Log.d(TAG, "start record")
-                mediaProjectionManager?.apply {
-                    listener?.onBeforeRecord()
-                    val intent = this.createScreenCaptureIntent()
-                    if (activity.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
-                        activity.startActivityForResult(intent, REQUEST_CODE)
-                    } else {
-                        showToast(R.string.phone_not_support_screen_record)
-                    }
+
+        if (permissionsGranted) {
+            Log.d(TAG, "start record")
+            mediaProjectionManager?.apply {
+                listener?.onBeforeRecord()
+                val intent = this.createScreenCaptureIntent()
+                if (activity.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
+                    activity.startActivityForResult(intent, REQUEST_CODE)
+                } else {
+                    showToast(R.string.phone_not_support_screen_record)
                 }
-            } else {
-                showToast(R.string.permission_denied)
+            }
+        } else {
+            showToast(R.string.permission_denied)
+            activity.askForPermissions(Permission.WRITE_EXTERNAL_STORAGE,
+                Permission.CAMERA) {
+                startRecord()
             }
         }
+
+
 
     }
 
@@ -94,7 +98,7 @@ class ScreenRecordHelper @JvmOverloads constructor(
             if (resultCode == Activity.RESULT_OK) {
                 mediaProjection = mediaProjectionManager!!.getMediaProjection(resultCode, data)
                 // 实测，部分手机上录制视频的时候会有弹窗的出现
-                Handler().postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     if (initRecorder()) {
                         isRecording = true
                         mediaRecorder?.start()

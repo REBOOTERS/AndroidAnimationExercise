@@ -16,6 +16,9 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <!-- 声明权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
     <queries>
         <package android:name="home.smart.fly.animations" />
     </queries>
@@ -124,6 +127,10 @@
                 <action android:name="alarm_log" />
             </intent-filter>
         </receiver>
+        <service
+            android:name=".services.MediaRecordService"
+            android:foregroundServiceType="mediaProjection" />
+
     </application>
 
 </manifest>
