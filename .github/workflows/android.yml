@@ -8,11 +8,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Repo Visualizer
+      uses: githubocto/repo-visualizer@0.8.2
     - uses: actions/checkout@v1
-    - name: set up JDK 1.8
-      uses: actions/setup-java@v1
+    - name: set up JDK 11
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.8
+        java-version: '11'
+        distribution: 'adopt'
     - name: build app apk
       run: ./gradlew :app:assembleChargeDebug;
     - name: build imitate apk
@@ -24,10 +27,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v1
+      - name: set up JDK 11
+        uses: actions/setup-java@v2
         with:
-          java-version: 1.8
+         java-version: '11'
+         distribution: 'adopt'
       - name: build app apk
         run: ./gradlew :app:assembleChargeRelease;
       - name: build imitate apk
