@@ -180,3 +180,7 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 
 </details>
+
+## diagram 
+
+<img src="diagram.svg" />
