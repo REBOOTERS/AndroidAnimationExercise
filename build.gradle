@@ -4,7 +4,7 @@ buildscript {
     apply from: file('config.gradle')
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         mavenCentral()
         maven {
             url('repo')
@@ -42,7 +42,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven {
             url('repo')
         }
