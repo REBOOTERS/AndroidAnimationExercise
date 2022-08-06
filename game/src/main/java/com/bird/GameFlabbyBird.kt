@@ -212,6 +212,7 @@ class GameFlabbyBird @JvmOverloads constructor(context: Context?, attrs: Attribu
             when (mStatus) {
                 GameStatus.WAITTING -> mStatus = GameStatus.RUNNING
                 GameStatus.RUNNING -> mTmpBirdDis = mBirdUpDis
+                else -> {}
             }
         }
         return true

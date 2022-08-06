@@ -174,7 +174,7 @@ dependencies {
     //room 
     implementation "androidx.room:room-runtime:$ext.roomVersion_runtime"
     implementation "androidx.room:room-rxjava2:$ext.roomVersion"
-    kapt 'org.xerial:sqlite-jdbc:3.36.0.3' // for mac m1
+//    kapt 'org.xerial:sqlite-jdbc:3.36.0.3' // for mac m1
     kapt "androidx.room:room-compiler:$ext.roomVersion"
 
 
