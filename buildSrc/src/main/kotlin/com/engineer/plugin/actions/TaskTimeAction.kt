@@ -43,7 +43,6 @@ class TaskTimeAction(project: Project) : BaseAction(project) {
         project.gradle.addBuildListener(object : BuildSimpleListener() {
 
             override fun buildFinished(buildResult: BuildResult) {
-                super.buildFinished(buildResult)
                 if (taskTimeMap.isEmpty()) {
                     return
                 }
