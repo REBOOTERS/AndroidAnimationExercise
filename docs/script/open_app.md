@@ -44,6 +44,3 @@ java.lang.SecurityException: Permission Denial: starting Intent { flg=0x10000000
         at android.os.Binder.execTransactInternal(Binder.java:1170)
         at android.os.Binder.execTransact(Binder.java:1134)
 ```
-
-
-

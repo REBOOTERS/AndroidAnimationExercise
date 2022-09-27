@@ -32,15 +32,15 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation "androidx.room:room-runtime:$ext.roomVersion"
     implementation "androidx.room:room-rxjava2:$ext.roomVersion"
-    kapt "androidx.room:room-compiler:2.4.2"
+    kapt "androidx.room:room-compiler:$ext.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$ext.roomVersion"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$ext.archLifecycleVersion"

@@ -6,11 +6,11 @@ ext {
 
 
     support_version = '1.2.1'
-    androidx_appcompat = '1.4.0'
-    androidx_material = '1.4.0'
-    androidx_preference = '1.1.1'
-    constraint_layout = '2.1.0'
-    core_ktx = '1.7.0'
+    androidx_appcompat = '1.5.1'
+    androidx_material = '1.6.1'
+    androidx_preference = '1.2.0'
+    constraint_layout = '2.1.4'
+    core_ktx = '1.8.0'
 
     kotlin_version = '1.7.10'
     gradle_version = '7.3.0'
@@ -25,8 +25,8 @@ ext {
     rxjava = '2.2.2'
     rxandroid = '2.1.0'
 
-    roomVersion = '2.4.2'
-    roomVersion_runtime = '2.4.2'
+    roomVersion = '2.4.3'
+    roomVersion_runtime = '2.4.3'
     archLifecycleVersion = '2.2.0'
 
     kotlin_coroutines = '1.5.2-native-mt'
