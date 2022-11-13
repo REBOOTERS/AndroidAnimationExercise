@@ -71,7 +71,7 @@ object AnimDelegate {
             img.translationY = position[1]
         }
         anim.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
                 img.animate().alpha(0f).withEndAction {
                     container.removeView(img)

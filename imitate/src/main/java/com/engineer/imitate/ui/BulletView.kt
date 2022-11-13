@@ -120,12 +120,12 @@ class BulletView(context: Context, attrs: AttributeSet? = null) :
             }
         }
         timeAnimator.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
                 updateProgress(TOTAL_TIME)
                 updateTime(TOTAL_TIME / 1000)
             }
 
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
 
             }
         })

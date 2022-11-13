@@ -42,6 +42,7 @@ class TaskTimeAction(project: Project) : BaseAction(project) {
 
         project.gradle.addBuildListener(object : BuildSimpleListener() {
 
+            @Deprecated("don't use", replaceWith = ReplaceWith(""))
             override fun buildFinished(buildResult: BuildResult) {
                 if (taskTimeMap.isEmpty()) {
                     return

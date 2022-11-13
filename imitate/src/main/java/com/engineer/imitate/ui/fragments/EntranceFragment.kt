@@ -244,6 +244,7 @@ class EntranceFragment : Fragment() {
         override fun getStatusBarColor() = Color.RED
     }
 
+    @Deprecated("don't use", replaceWith = ReplaceWith("ActivityResultLauncher"))
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

@@ -110,7 +110,7 @@ class ShimmerDrawable : Drawable() {
         }
     }
 
-    override fun onBoundsChange(bounds: Rect?) {
+    override fun onBoundsChange(bounds: Rect) {
         super.onBoundsChange(bounds)
         bounds?.let {
             mDrawRect.set(it)
@@ -145,6 +145,7 @@ class ShimmerDrawable : Drawable() {
 
     override fun setColorFilter(colorFilter: ColorFilter?) {}
 
+    @Deprecated("don't use", replaceWith = ReplaceWith(""))
     override fun getOpacity(): Int {
         return PixelFormat.TRANSLUCENT
     }

@@ -63,7 +63,7 @@ class CircleLoadingPro: View, Animatable, ValueAnimator.AnimatorUpdateListener {
         stop()
     }
 
-    override fun onAnimationUpdate(animation: ValueAnimator?) {
+    override fun onAnimationUpdate(animation: ValueAnimator) {
         if (animation != null) {
             mRotateAngle = 360.0f * animation.animatedValue as Float
             invalidate()

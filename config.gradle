@@ -1,23 +1,23 @@
 ext {
-    compileSdk = 32
+    compileSdk = 33
 
     minSdk = 21
-    targetSdk = 32
+    targetSdk = 33
 
 
     support_version = '1.2.1'
     androidx_appcompat = '1.5.1'
-    androidx_material = '1.6.1'
+    androidx_material = '1.7.0'
     androidx_preference = '1.2.0'
     constraint_layout = '2.1.4'
-    core_ktx = '1.8.0'
+    core_ktx = '1.9.0'
 
-    kotlin_version = '1.7.10'
-    gradle_version = '7.3.0'
+    kotlin_version = '1.7.21'
+    gradle_version = '7.3.1'
 
     doraemonkit = '3.3.4'
 
-    glide = '4.13.1'
+    glide = '4.14.2'
     arouter_api = '1.5.2'
     arouter_compiler = '1.5.2'
     arouter_register = '1.0.2'
@@ -29,6 +29,6 @@ ext {
     roomVersion_runtime = '2.4.3'
     archLifecycleVersion = '2.2.0'
 
-    kotlin_coroutines = '1.5.2-native-mt'
-    kotlin_coroutines_android = '1.6.0'
+    kotlin_coroutines = '1.6.4'
+    kotlin_coroutines_android = '1.6.4'
 }

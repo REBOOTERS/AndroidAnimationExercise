@@ -120,8 +120,8 @@ dependencies {
 
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.4.1-alpha01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-alpha01'
+    androidTestImplementation 'androidx.test:runner:1.5.0-rc01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-rc01'
 
 
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
@@ -155,7 +155,7 @@ dependencies {
     testImplementation 'androidx.test:rules:1.4.0'
     testImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 //    testImplementation 'org.robolectric:robolectric:4.6.1'
-    testImplementation 'com.facebook.soloader:soloader:0.10.1'
+    testImplementation 'com.facebook.soloader:soloader:0.10.4'
     // robolectric
 
     implementation group: 'commons-io', name: 'commons-io', version: '20030203.000550'
@@ -194,10 +194,10 @@ dependencies {
     // from 2021
     implementation 'com.github.skydoves:transformationlayout:1.1.1'
     implementation 'com.beust:klaxon:5.6'
-    implementation 'com.alibaba:fastjson:1.2.78'
-    implementation 'com.google.code.gson:gson:2.9.0'
-    implementation 'com.google.dagger:dagger:2.40.1'
-    kapt 'com.google.dagger:dagger-compiler:2.40.1'
+    implementation 'com.alibaba:fastjson:2.0.19.graal'
+    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.google.dagger:dagger:2.44.1'
+    kapt 'com.google.dagger:dagger-compiler:2.44.1'
 
     // coroutines
     //                                       👇 依赖协程核心库

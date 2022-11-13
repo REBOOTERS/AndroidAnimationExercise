@@ -127,6 +127,7 @@ class ReverseGifActivity : AppCompatActivity() {
 
 
     // <editor-fold defaultstate="collapsed" desc="onActivityResult">
+    @Deprecated("don't use", replaceWith = ReplaceWith("ActivityResultLauncher"))
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == GIF_REQUEST_CODE) {

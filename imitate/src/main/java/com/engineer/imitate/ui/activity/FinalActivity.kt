@@ -153,7 +153,11 @@ class FinalActivity : AppCompatActivity() {
 
             }
             marginTopAnim?.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationRepeat(animation: Animator) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onAnimationEnd(animation: Animator) {
                     super.onAnimationEnd(animation)
                     isExpand = !isExpand
                 }
@@ -307,17 +311,17 @@ class FinalActivity : AppCompatActivity() {
     //</editor-fold>
 
     open inner class AnimatorListenerAdapter : Animator.AnimatorListener {
-        override fun onAnimationRepeat(animation: Animator?) {
+        override fun onAnimationRepeat(animation: Animator) {
 
         }
 
-        override fun onAnimationEnd(animation: Animator?) {
+        override fun onAnimationEnd(animation: Animator) {
         }
 
-        override fun onAnimationCancel(animation: Animator?) {
+        override fun onAnimationCancel(animation: Animator) {
         }
 
-        override fun onAnimationStart(animation: Animator?) {
+        override fun onAnimationStart(animation: Animator) {
         }
     }
 }

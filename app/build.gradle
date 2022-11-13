@@ -146,7 +146,7 @@ configurations.all {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.10'
     implementation "androidx.appcompat:appcompat:${ext.androidx_appcompat}"
     implementation "com.google.android.material:material:${ext.androidx_material}"
     implementation 'com.orhanobut:logger:2.2.0'
@@ -156,7 +156,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "com.github.bumptech.glide:glide:$ext.glide"
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.7'
-    implementation 'com.squareup.okio:okio:3.1.0'
+    implementation 'com.squareup.okio:okio:3.2.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation "androidx.vectordrawable:vectordrawable:1.1.0"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
@@ -168,7 +168,7 @@ dependencies {
     kapt 'com.jakewharton:butterknife-compiler:10.2.3'
     implementation 'com.facebook.stetho:stetho:1.6.0'
     implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
-    implementation 'com.airbnb.android:lottie:5.0.3'
+    implementation 'com.airbnb.android:lottie:5.2.0'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
     implementation 'net.sourceforge.streamsupport:streamsupport:1.7.4'
@@ -177,7 +177,7 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
 
     implementation "androidx.palette:palette-ktx:1.0.0"
-    implementation 'com.tencent:mmkv:1.2.13'
+    implementation 'com.tencent:mmkv:1.2.14'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0'
@@ -222,7 +222,7 @@ dependencies {
     implementation project(path: ':dataview')
     implementation project(path: ':skeleton')
 
-    implementation 'com.alibaba:fastjson:1.2.78'
+    implementation 'com.alibaba:fastjson:2.0.19.graal'
 
 }
 

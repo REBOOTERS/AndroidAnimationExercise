@@ -146,6 +146,7 @@ class ScreenRecorderActivity : AppCompatActivity() {
         mediaPlayer = null
     }
 
+    @Deprecated("don't use", replaceWith = ReplaceWith("ActivityResultLauncher"))
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null) {

@@ -109,7 +109,7 @@ class AnimationBorder : RelativeLayout {
         set.start()
 
         set.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
                 count += 1
                 if (count < maxCount) {

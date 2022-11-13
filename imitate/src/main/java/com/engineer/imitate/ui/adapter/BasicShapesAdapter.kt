@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.engineer.imitate.R
 import com.engineer.imitate.model.Basic
-import com.engineer.imitate.model.World
 import com.engineer.imitate.util.inflate
 import kotlinx.android.synthetic.main.fragment_weather_status_item.view.*
 import kotlin.properties.Delegates
@@ -15,7 +14,7 @@ class BasicShapesAdapter: RecyclerView.Adapter<BasicShapesAdapter.ViewHolder>() 
         ROTATE_CHANGED
     }
 
-    private val collection = Basic().shapes
+    private val collection = emptyArray<Any>()
 
     internal var rotate: Boolean by Delegates.observable(true) { _, old, new->
         if (old != new) {
@@ -31,7 +30,7 @@ class BasicShapesAdapter: RecyclerView.Adapter<BasicShapesAdapter.ViewHolder>() 
     override fun getItemCount() = collection.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(collection[position])
+//        holder.bind(collection[position])
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
@@ -47,12 +46,12 @@ class BasicShapesAdapter: RecyclerView.Adapter<BasicShapesAdapter.ViewHolder>() 
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(shape: World) {
-            with(itemView) {
-                icon.setImageDrawable(shape)
-                rotate(itemView, rotate)
-            }
-        }
+//        fun bind(shape: World) {
+//            with(itemView) {
+//                icon.setImageDrawable(shape)
+//                rotate(itemView, rotate)
+//            }
+//        }
     }
 
     private fun rotate(itemView: View, rotate: Boolean) {

@@ -102,7 +102,7 @@ class CLActivity : AppCompatActivity() {
                 anim1.start()
                 anim2.start()
                 anim3.addListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator?) {
+                    override fun onAnimationEnd(animation: Animator) {
                         super.onAnimationEnd(animation)
                         anim4.start()
                     }

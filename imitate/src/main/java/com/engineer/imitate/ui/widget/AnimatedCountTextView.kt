@@ -69,7 +69,7 @@ class AnimatedCountTextView(context: Context, attrs: AttributeSet?) :
                 text = "$prefix${numberType.formatter.format(it.animatedValue.toString().toFloat())}$suffix"
             }
             addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     animationEndListener?.onCountFinish()
                 }
             })

@@ -165,7 +165,7 @@ class KotlinRootActivity : AppCompatActivity() {
 
     private fun loadRecyclerView() {
         hybrid.animate().alpha(0f).setListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
                 hybrid.visibility = View.GONE
                 recyclerView.visibility = View.VISIBLE
@@ -219,7 +219,7 @@ class KotlinRootActivity : AppCompatActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     private fun loadWebView() {
         hybrid.animate().alpha(1f).setListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
                 hybrid.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE

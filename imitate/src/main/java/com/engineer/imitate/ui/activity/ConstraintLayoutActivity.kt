@@ -82,11 +82,11 @@ class ConstraintLayoutActivity : AppCompatActivity() {
     private fun rotateAnim(view: View) {
         rotation = view.animate().rotation(90f).setStartDelay(400).setDuration(600)
             .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     super.onAnimationEnd(animation)
                     rotation = view.animate().rotation(0f).setStartDelay(400).setDuration(600)
                         .setListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: Animator?) {
+                            override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationEnd(animation)
                                 rotation =
                                     view.animate().rotation(90f).setStartDelay(400).setDuration(600)
