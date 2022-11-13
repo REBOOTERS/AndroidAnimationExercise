@@ -15,7 +15,9 @@ import android.graphics.PathMeasure;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
+
 import androidx.annotation.Nullable;
+
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -155,6 +157,8 @@ public class BallGameView extends View {
         grayW = playeBgBitmap.getWidth();
         grayH = playeBgBitmap.getHeight();
 
+        initSize(screenW, (int) (screenW * 1.544117));
+
     }
 
     @Override
@@ -166,8 +170,8 @@ public class BallGameView extends View {
         canvas.drawRoundRect(mRoundRect, 8, 8, mRectPaint);
         //绘制底部提示文字 ( TextPiant 文字垂直居中实现 http://blog.csdn.net/hursing/article/details/18703599)
         Paint.FontMetricsInt fontMetrics = mTipPaint.getFontMetricsInt();
-        float baseY = (mRoundRect.bottom + mRoundRect.top) / 2 - (fontMetrics.top + fontMetrics.bottom) / 2;
-        canvas.drawText(tips, screenW / 2, baseY, mTipPaint);
+        float baseY = (mRoundRect.bottom + mRoundRect.top) / 2f - (fontMetrics.top + fontMetrics.bottom) / 2f;
+        canvas.drawText(tips, screenW / 2f, baseY, mTipPaint);
 
 
         //绘制初始的11个气泡
@@ -177,25 +181,25 @@ public class BallGameView extends View {
 
                 if (players[i].isSetReal()) {
                     //绘制球员头像
-                    canvas.drawBitmap(players[i].getBitmap(), positions[i].x - playW / 2,
-                            positions[i].y - playW / 2, mPaint);
+                    canvas.drawBitmap(players[i].getBitmap(), positions[i].x - playW / 2f,
+                            positions[i].y - playW / 2f, mPaint);
                     //绘制选中球员金色底座
-                    canvas.drawBitmap(playSelectedBitmap, positions[i].x - goldW / 2,
-                            positions[i].y - goldH / 2, mPaint);
+                    canvas.drawBitmap(playSelectedBitmap, positions[i].x - goldW / 2f,
+                            positions[i].y - goldH / 2f, mPaint);
 
                     //绘制球员姓名
                     canvas.drawText(players[i].getName(), positions[i].x,
                             positions[i].y + playW, mTextPaint);
 
                 } else {
-                    canvas.drawBitmap(selectedBitmap, positions[i].x - playW / 2,
-                            positions[i].y - playW / 2, mPaint);
+                    canvas.drawBitmap(selectedBitmap, positions[i].x - playW / 2f,
+                            positions[i].y - playW / 2f, mPaint);
                 }
 
 
             } else {
-                canvas.drawBitmap(players[i].getBitmap(), positions[i].x - playW / 2,
-                        positions[i].y - playW / 2, mPaint);
+                canvas.drawBitmap(players[i].getBitmap(), positions[i].x - playW / 2f,
+                        positions[i].y - playW / 2f, mPaint);
 
                 //设置了真实头像的气泡
                 if (players[i].isSetReal()) {
@@ -204,7 +208,7 @@ public class BallGameView extends View {
                     canvas.drawText(players[i].getName(), positions[i].x,
                             positions[i].y + playW, mTextPaint);
                     //绘制已设置正常图片球员背景
-                    canvas.drawBitmap(playeBgBitmap, positions[i].x - grayW / 2,
+                    canvas.drawBitmap(playeBgBitmap, positions[i].x - grayW / 2f,
                             positions[i].y + 200, mPaint);
                 }
             }
@@ -234,7 +238,7 @@ public class BallGameView extends View {
                 int deltaY = positions[i].y - lastY;
 
                 // 手指 -- ACTION_DOWN 时，落在了某一个气泡上时，刷新选中气泡（球员）的bitmap
-                if (Math.abs(deltaX) < playW / 2 && Math.abs(deltaY) < playW / 2) {
+                if (Math.abs(deltaX) < playW / 2f && Math.abs(deltaY) < playW / 2f) {
                     position = i;
                     currentPos = i;
                     invalidate();
@@ -310,8 +314,8 @@ public class BallGameView extends View {
     public void updatePlayer(final Bitmap bitmap, final String name, int[] location, final ViewGroup contentView) {
 
         Path mPath = new Path();
-        mPath.moveTo(location[0] + bitmap.getWidth() / 2, location[1] - bitmap.getHeight() / 2);
-        mPath.lineTo(positions[currentPos].x - playW / 2, positions[currentPos].y - playW / 2);
+        mPath.moveTo(location[0] + bitmap.getWidth() / 2f, location[1] - bitmap.getHeight() / 2f);
+        mPath.lineTo(positions[currentPos].x - playW / 2f, positions[currentPos].y - playW / 2f);
 
 
         final ImageView animImage = new ImageView(getContext());
@@ -378,8 +382,8 @@ public class BallGameView extends View {
             mRoundRect.left = mRoundRect.left - 100;
             mRoundRect.right = mRoundRect.right + 100;
 
-            mRoundRect.left = mRoundRect.left < screenW / 2 - 300 ? screenW / 2 - 300 : mRoundRect.left;
-            mRoundRect.right = mRoundRect.right > screenW / 2 + 300 ? screenW / 2 + 300 : mRoundRect.right;
+            mRoundRect.left = mRoundRect.left < screenW / 2f - 300 ? screenW / 2f - 300 : mRoundRect.left;
+            mRoundRect.right = mRoundRect.right > screenW / 2f + 300 ? screenW / 2f + 300 : mRoundRect.right;
 
             //绘制底部提示文字
             tips = "点击右上角下一步，预览惊喜";
@@ -405,7 +409,7 @@ public class BallGameView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int viewW = screenW;
-        int viewH = (int) (screenW * 1.15);
+        int viewH = (int) (screenW * 1.544117);
         setMeasuredDimension(viewW, viewH);
     }
 
@@ -415,15 +419,18 @@ public class BallGameView extends View {
         viewW = w;
         viewH = h;
 
-
-        initBubblePositions(w, h);
-        //目标区域，在整个视图的大小中，绘制Bitmap
-        mViewRect = new Rect(0, 0, viewW, viewH);
-        mRoundRect = new RectF(screenW / 2 - 200, maxY + 15, screenW / 2 + 200, getHeight() - 15);
+        initSize(w, h);
 
         Log.e(TAG, "onSizeChanged: w= " + w);
         Log.e(TAG, "onSizeChanged: h= " + h);
 
+    }
+
+    private void initSize(int w, int h) {
+        initBubblePositions(w, h);
+        //目标区域，在整个视图的大小中，绘制Bitmap
+        mViewRect = new Rect(0, 0, viewW, viewH);
+        mRoundRect = new RectF(screenW / 2f - 200, maxY + 15, screenW / 2f + 200, getHeight() - 15);
     }
 
     /**
