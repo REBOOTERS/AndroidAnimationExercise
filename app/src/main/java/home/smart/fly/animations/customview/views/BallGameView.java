@@ -156,9 +156,6 @@ public class BallGameView extends View {
         playeBgBitmap = BitmapFactory.decodeResource(res, R.drawable.bg_battle_element_normal);
         grayW = playeBgBitmap.getWidth();
         grayH = playeBgBitmap.getHeight();
-
-        initSize(screenW, (int) (screenW * 1.544117));
-
     }
 
     @Override
@@ -403,14 +400,6 @@ public class BallGameView extends View {
 
     public int getCurrentPos() {
         return currentPos;
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int viewW = screenW;
-        int viewH = (int) (screenW * 1.544117);
-        setMeasuredDimension(viewW, viewH);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package home.smart.fly.animations.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,12 +8,14 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,6 +57,13 @@ import home.smart.fly.animations.customview.views.BallGameView;
 import home.smart.fly.animations.ui.SimpleBaseActivity;
 import home.smart.fly.animations.utils.StatusBarUtil;
 import home.smart.fly.animations.utils.Tools;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class FakeFootballActivity extends SimpleBaseActivity {
     private static final String TAG = "FakeFootballActivity";
@@ -155,14 +165,10 @@ public class FakeFootballActivity extends SimpleBaseActivity {
 
 
     private void initData() {
-        String json = Tools.readStrFromAssets("player.json", mContext);
-        Gson mGson = new Gson();
-        mPlayerBeanList = mGson.fromJson(json, new TypeToken<List<PlayerBean>>() {
-        }.getType());
+
 
         adapter = new PlayAdapter(mPlayerBeanList);
-        GridLayoutManager manager = new GridLayoutManager(mContext,
-                2, LinearLayoutManager.HORIZONTAL, false);
+        GridLayoutManager manager = new GridLayoutManager(mContext, 2, LinearLayoutManager.HORIZONTAL, false);
         playerLists.setLayoutManager(manager);
         playerLists.setAdapter(adapter);
         adapter.setOnRVItemClickListener(new PlayAdapter.OnRVItemClickListener() {
@@ -206,6 +212,24 @@ public class FakeFootballActivity extends SimpleBaseActivity {
                 }
             }
         });
+        loadPlayerData();
+
+    }
+
+    @SuppressLint({"CheckResult", "NotifyDataSetChanged"})
+    private void loadPlayerData() {
+        Observable.create((ObservableOnSubscribe<List<PlayerBean>>) emitter -> {
+            String json = Tools.readStrFromAssets("player.json", mContext);
+            Gson mGson = new Gson();
+            ArrayList<PlayerBean> list = mGson.fromJson(json, new TypeToken<List<PlayerBean>>() {
+            }.getType());
+            emitter.onNext(list);
+            emitter.onComplete();
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(playerBeans -> {
+            mPlayerBeanList.clear();
+            mPlayerBeanList.addAll(playerBeans);
+            adapter.notifyDataSetChanged();
+        }, Throwable::printStackTrace);
     }
 
 
@@ -233,8 +257,7 @@ public class FakeFootballActivity extends SimpleBaseActivity {
         @Override
         public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             mContext = parent.getContext();
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.dqd_player_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dqd_player_item, parent, false);
             MyHolder myHolder = new MyHolder(view);
             view.setOnClickListener(v -> {
                 if (mOnRVItemClickListener != null) {
@@ -253,10 +276,10 @@ public class FakeFootballActivity extends SimpleBaseActivity {
                     .listener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                           if(e!=null){
-                               Log.e(TAG, "onLoadFailed: "+e.getMessage() );
-                               Log.e(TAG, "onLoadFailed: "+e.fillInStackTrace());
-                           }
+                            if (e != null) {
+                                Log.e(TAG, "onLoadFailed: " + e.getMessage());
+                                Log.e(TAG, "onLoadFailed: " + e.fillInStackTrace());
+                            }
                             return false;
                         }
 
@@ -264,8 +287,7 @@ public class FakeFootballActivity extends SimpleBaseActivity {
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                             return false;
                         }
-                    })
-                    .into(holder.mPlayerImg);
+                    }).into(holder.mPlayerImg);
             if (model.isSelected()) {
                 holder.mPlayerSel.setImageResource(R.drawable.battle_player_state_checked);
             } else {

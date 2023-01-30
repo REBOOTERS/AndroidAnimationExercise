@@ -20,7 +20,8 @@
         <home.smart.fly.animations.customview.views.BallGameView
             android:id="@+id/gameView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_weight="7"
+            android:layout_height="0dp" />
 
 
         <TextView
@@ -36,7 +37,7 @@
             android:id="@+id/playerLists"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="2" />
 
 
     </LinearLayout>
