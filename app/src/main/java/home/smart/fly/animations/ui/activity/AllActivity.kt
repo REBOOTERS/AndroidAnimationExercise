@@ -4,14 +4,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.zhihu.android.sugaradapter.SugarAdapter
 import home.smart.fly.animations.R
 import home.smart.fly.animations.sugar.viewholder.ActivityListViewHolder
 import home.smart.fly.animations.utils.AppUtils
-import kotlinx.android.synthetic.main.activity_all.*
-import kotlinx.android.synthetic.main.content_all.*
 import java.util.*
 
 class AllActivity : AppCompatActivity() {
@@ -19,15 +20,13 @@ class AllActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-
+        val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show()
         }
-        val adapter = SugarAdapter.Builder.with(getActivities())
-                .add(ActivityListViewHolder::class.java)
-                .build();
+        val adapter = SugarAdapter.Builder.with(getActivities()).add(ActivityListViewHolder::class.java).build();
         adapter.addSugarHolderListener(object : SugarAdapter.SugarHolderListener<ActivityListViewHolder>() {
             override fun onSugarHolderBindData(holder: ActivityListViewHolder) {
                 super.onSugarHolderBindData(holder)
@@ -39,6 +38,7 @@ class AllActivity : AppCompatActivity() {
                 }
             }
         })
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
@@ -47,8 +47,7 @@ class AllActivity : AppCompatActivity() {
 
     private fun getActivities(): List<Pair<String, String>> {
         val results = ArrayList<Pair<String, String>>()
-        val info = packageManager
-                .getPackageInfo(AppUtils.getPackageName(this), PackageManager.GET_ACTIVITIES)
+        val info = packageManager.getPackageInfo(AppUtils.getPackageName(this), PackageManager.GET_ACTIVITIES)
         for (item in info.activities) {
             val fullName = item.name
             val simpleName = fullName.substring(fullName.lastIndexOf(".") + 1)

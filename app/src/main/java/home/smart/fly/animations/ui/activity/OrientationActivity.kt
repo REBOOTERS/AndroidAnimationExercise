@@ -6,22 +6,32 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.switchmaterial.SwitchMaterial
 import home.smart.fly.animations.R
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.activity_orientation.*
 import java.util.concurrent.TimeUnit
 
 class OrientationActivity : AppCompatActivity() {
     private var disposable: Disposable? = null
+    private lateinit var switcher: SwitchMaterial
+    private lateinit var text: TextView
+    private lateinit var pos_tv: TextView
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orientation)
+
+        switcher = findViewById(R.id.switcher)
+        text = findViewById(R.id.text)
+        pos_tv = findViewById(R.id.pos_tv)
+
+
         Toast.makeText(this, "OrientationActivity-onCreate", Toast.LENGTH_SHORT).show()
         switcher.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -34,22 +44,19 @@ class OrientationActivity : AppCompatActivity() {
         }
         text.movementMethod = ScrollingMovementMethod.getInstance()
 
-        disposable = Observable.just(0).delay(1, TimeUnit.SECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                val xy = IntArray(2)
-                val start = System.nanoTime()
-                pos_tv.getLocationOnScreen(xy)
-                Log.e(
-                    "zyq",
-                    "cost time = ${System.nanoTime() - start}"
-                )
-                pos_tv.text = "position info: x=${xy[0]},y=${xy[1]}"
+        disposable = Observable.just(0).delay(1, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe {
+            val xy = IntArray(2)
+            val start = System.nanoTime()
+            pos_tv.getLocationOnScreen(xy)
+            Log.e(
+                "zyq", "cost time = ${System.nanoTime() - start}"
+            )
+            pos_tv.text = "position info: x=${xy[0]},y=${xy[1]}"
 
-                val hour = TimeUnit.DAYS.toHours(1)
+            val hour = TimeUnit.DAYS.toHours(1)
 
-                Log.e("zyq", "hour is == $hour")
-            }
+            Log.e("zyq", "hour is == $hour")
+        }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

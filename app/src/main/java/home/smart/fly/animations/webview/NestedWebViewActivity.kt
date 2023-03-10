@@ -2,22 +2,27 @@ package home.smart.fly.animations.webview
 
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ScrollView
+import androidx.appcompat.app.AppCompatActivity
 import home.smart.fly.animations.R
-import kotlinx.android.synthetic.main.activity_nested_web_view.*
 
 class NestedWebViewActivity : AppCompatActivity() {
     private val TAG = "NestedWebViewActivity"
     private val BASE_URL = "https://www.baidu.com"
 
+    private lateinit var webView: CustomWebView
+    private lateinit var scrollView: ScrollView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nested_web_view)
+        webView = findViewById(R.id.webView)
+        scrollView = findViewById(R.id.scrollView)
+
         webView.loadUrl(BASE_URL)
         val settings = webView.settings
         settings.javaScriptEnabled = true
