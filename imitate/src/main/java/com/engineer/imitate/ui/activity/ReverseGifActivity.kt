@@ -17,6 +17,7 @@ import androidx.core.app.ShareCompat
 import com.bumptech.glide.Glide
 import com.engineer.gif.revert.GifFactory
 import com.engineer.imitate.R
+import com.engineer.imitate.databinding.ActivityReverseGifBinding
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
 import com.permissionx.guolindev.PermissionX
@@ -25,9 +26,9 @@ import com.wang.avi.indicators.*
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
-import kotlinx.android.synthetic.main.activity_reverse_gif.*
 
 class ReverseGifActivity : AppCompatActivity() {
+    private lateinit var viewBinding: ActivityReverseGifBinding
 
     // <editor-fold defaultstate="collapsed" desc="onCreate">
 
@@ -39,26 +40,20 @@ class ReverseGifActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mContext = this
         window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
+            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-        setContentView(R.layout.activity_reverse_gif)
-        start.setOnClickListener {
+        viewBinding = ActivityReverseGifBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
+        viewBinding.start.setOnClickListener {
             selectGif()
         }
 
-        share.setOnClickListener {
+        viewBinding.share.setOnClickListener {
             if (originalUrl != null && revertedlUrl != null) {
-                val shareIntent = ShareCompat.IntentBuilder.from(this)
-                    .addStream(originalUrl ?: Uri.EMPTY)
-                    .addStream(revertedlUrl ?: Uri.EMPTY)
-                    .setText("反转 gif")
-                    .setType("text/richtext")
-                    .createChooserIntent()
-                    .addFlags(
-                        Intent.FLAG_ACTIVITY_NEW_DOCUMENT
-                                or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-                                or Intent.FLAG_ACTIVITY_NEW_TASK
+                val shareIntent = ShareCompat.IntentBuilder.from(this).addStream(originalUrl ?: Uri.EMPTY)
+                    .addStream(revertedlUrl ?: Uri.EMPTY).setText("反转 gif").setType("text/richtext")
+                    .createChooserIntent().addFlags(
+                        Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_MULTIPLE_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     )
                 startActivity(shareIntent)
             } else {
@@ -66,32 +61,22 @@ class ReverseGifActivity : AppCompatActivity() {
             }
         }
 
-        Glide.with(this).load(R.drawable.haha).into(original)
-        Glide.with(this).load(R.drawable.haha_revert).into(reversed)
+        Glide.with(this).load(R.drawable.haha).into(viewBinding.original)
+        Glide.with(this).load(R.drawable.haha_revert).into(viewBinding.reversed)
         val random = (Math.random() * indicators.size).toInt()
-        av.indicator = indicators[random]
+        viewBinding.av.indicator = indicators[random]
     }
     // </editor-fold>
 
     @SuppressLint("CheckResult")
     private fun selectGif() {
-        PermissionX.init(this)
-            .permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            .request{it,_,_ ->
+        PermissionX.init(this).permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE).request { it, _, _ ->
                 if (it) {
-                    Matisse.from(this)
-                        .choose(MimeType.of(MimeType.GIF))
-                        .showSingleMediaType(true)
-                        .countable(false)
-                        .capture(false)
-                        .captureStrategy(
+                    Matisse.from(this).choose(MimeType.of(MimeType.GIF)).showSingleMediaType(true).countable(false)
+                        .capture(false).captureStrategy(
                             CaptureStrategy(true, mContext.packageName + ".fileprovider")
-                        )
-                        .maxSelectable(1)
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(Glide4Engine())
-                        .forResult(GIF_REQUEST_CODE)
+                        ).maxSelectable(1).restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                        .thumbnailScale(0.85f).imageEngine(Glide4Engine()).forResult(GIF_REQUEST_CODE)
                 }
             }
     }
@@ -100,28 +85,27 @@ class ReverseGifActivity : AppCompatActivity() {
     @SuppressLint("CheckResult")
     private fun doRevert(source: String?) {
 
-        loading.visibility = View.VISIBLE
-        result.text = "转换中 ......."
-        timer.base = SystemClock.elapsedRealtime()
-        timer.start()
+        viewBinding.loading.visibility = View.VISIBLE
+        viewBinding.result.text = "转换中 ......."
+        viewBinding.timer.base = SystemClock.elapsedRealtime()
+        viewBinding.timer.start()
 
-        GifFactory.getReverseRes(mContext, source)
-            .subscribe({
-                loading.visibility = View.GONE
+        GifFactory.getReverseRes(mContext, source).subscribe({
+                viewBinding.loading.visibility = View.GONE
 
                 originalUrl = Uri.parse(source)
                 revertedlUrl = Uri.parse(it)
-                result.text = "图片保存在 :$it"
-                timer.stop()
+                viewBinding.result.text = "图片保存在 :$it"
+                viewBinding.timer.stop()
 
-                Glide.with(mContext).load(it).into(reversed)
+                Glide.with(mContext).load(it).into(viewBinding.reversed)
                 // 原图和反转图同时加载，看看效果
-                Glide.with(mContext).load(source).into(original)
+                Glide.with(mContext).load(source).into(viewBinding.original)
             }, {
                 it.printStackTrace()
-                loading.visibility = View.GONE
-                timer.stop()
-                Toast.makeText(mContext,it.message,Toast.LENGTH_SHORT).show()
+                viewBinding.loading.visibility = View.GONE
+                viewBinding.timer.stop()
+                Toast.makeText(mContext, it.message, Toast.LENGTH_SHORT).show()
             })
     }
 
@@ -144,13 +128,12 @@ class ReverseGifActivity : AppCompatActivity() {
     // <editor-fold defaultstate="collapsed" desc="revert drawable">
     @SuppressLint("CheckResult")
     private fun doRevert(source: Int?) {
-        loading.visibility = View.VISIBLE
-        GifFactory.getReverseRes(mContext, source)
-            .subscribe({
-                loading.visibility = View.GONE
-                Glide.with(mContext).load(it).into(reversed)
+        viewBinding.loading.visibility = View.VISIBLE
+        GifFactory.getReverseRes(mContext, source).subscribe({
+                viewBinding.loading.visibility = View.GONE
+                Glide.with(mContext).load(it).into(viewBinding.reversed)
                 // 原图和反转图同时加载，看看效果
-                Glide.with(mContext).load(source).into(original)
+                Glide.with(mContext).load(source).into(viewBinding.original)
             }, {
                 it.printStackTrace()
             })
@@ -161,9 +144,12 @@ class ReverseGifActivity : AppCompatActivity() {
     companion object {
         val GIF_REQUEST_CODE = 100
         val indicators = arrayListOf(
-            BallClipRotateIndicator(), CubeTransitionIndicator(),
-            SquareSpinIndicator(), LineScaleIndicator(),
-            TriangleSkewSpinIndicator(), PacmanIndicator(),
+            BallClipRotateIndicator(),
+            CubeTransitionIndicator(),
+            SquareSpinIndicator(),
+            LineScaleIndicator(),
+            TriangleSkewSpinIndicator(),
+            PacmanIndicator(),
             SemiCircleSpinIndicator()
         )
     }

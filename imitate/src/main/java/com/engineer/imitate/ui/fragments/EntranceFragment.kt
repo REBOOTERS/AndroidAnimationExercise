@@ -22,6 +22,7 @@ import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
 import com.engineer.android.game.ui.GameRootActivity
 import com.engineer.imitate.R
+import com.engineer.imitate.databinding.FragmentEntranceBinding
 import com.engineer.imitate.ui.activity.*
 import com.engineer.imitate.ui.activity.fragmentmanager.ContentActivity
 import com.engineer.imitate.ui.activity.ninepoint.NinePointActivity
@@ -34,7 +35,6 @@ import com.wanglu.photoviewerlibrary.PhotoViewer
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
-import kotlinx.android.synthetic.main.fragment_entrance.*
 import java.io.File
 
 
@@ -48,194 +48,164 @@ class EntranceFragment : Fragment() {
 
     private var datas: MutableList<String> = ArrayList()
     private lateinit var adapter: MyListAdapter
+    private lateinit var viewBinding: FragmentEntranceBinding
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_entrance, container, false)
+        viewBinding = FragmentEntranceBinding.inflate(inflater, container, false)
+        return viewBinding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        button.setOnClickListener {
-            PermissionX.init(this)
-                .permissions(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.CAMERA
-                )
-                .request { it, _, _ ->
-                    if (it) {
-                        Matisse.from(this)
-                            .choose(MimeType.ofAll(), false)
-                            .countable(true)
-                            .capture(true)
-                            .captureStrategy(
-                                CaptureStrategy(
-                                    true,
-                                    requireContext().packageName + ".fileprovider"
-                                )
+        viewBinding.button.setOnClickListener {
+            PermissionX.init(this).permissions(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
+            ).request { it, _, _ ->
+                if (it) {
+                    Matisse.from(this).choose(MimeType.ofAll(), false).countable(true).capture(true).captureStrategy(
+                            CaptureStrategy(
+                                true, requireContext().packageName + ".fileprovider"
                             )
-                            .maxSelectable(9)
-                            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                            .thumbnailScale(0.85f)
-                            .imageEngine(Glide4Engine())
-                            .forResult(100)
-                    }
+                        ).maxSelectable(9).restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                        .thumbnailScale(0.85f).imageEngine(Glide4Engine()).forResult(100)
                 }
+            }
         }
 
-        scan_wifi.setOnClickListener {
+        viewBinding.scanWifi.setOnClickListener {
             startActivity(Intent(context, WifiScanActivity::class.java))
         }
 
-        set_bg.setOnClickListener {
-            PermissionX.init(this)
-                .permissions(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.CAMERA
-                )
-                .request { it, _, _ ->
-                    if (it) {
-                        Matisse.from(this)
-                            .choose(MimeType.ofAll(), false)
-                            .countable(true)
-                            .capture(true)
-                            .captureStrategy(
-                                CaptureStrategy(
-                                    true,
-                                    requireContext().packageName + ".fileprovider"
-                                )
+        viewBinding.setBg.setOnClickListener {
+            PermissionX.init(this).permissions(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
+            ).request { it, _, _ ->
+                if (it) {
+                    Matisse.from(this).choose(MimeType.ofAll(), false).countable(true).capture(true).captureStrategy(
+                            CaptureStrategy(
+                                true, requireContext().packageName + ".fileprovider"
                             )
-                            .maxSelectable(9)
-                            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-                            .thumbnailScale(0.85f)
-                            .imageEngine(Glide4Engine())
-                            .forResult(101)
-                    }
+                        ).maxSelectable(9).restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                        .thumbnailScale(0.85f).imageEngine(Glide4Engine()).forResult(101)
                 }
+            }
         }
 
 
-        bottom_sheet.setOnClickListener {
+        viewBinding.bottomsheet.setOnClickListener {
             val imageView = ImageView(context)
             imageView.setImageResource(R.drawable.comic)
             val view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_content, null)
-            bottomsheet.showWithSheetView(view)
+            viewBinding.bottomsheet.showWithSheetView(view)
         }
 
-        bottom_sheet_google.setOnClickListener {
+        viewBinding.bottomSheetGoogle.setOnClickListener {
             val sheet = MyBottomSheetFragment()
             sheet.show(childFragmentManager, EntranceFragment::class.toString())
         }
 
-        inflate_real.setOnClickListener {
+        viewBinding.inflateReal.setOnClickListener {
             startActivity(Intent(context, InflateRealActivity::class.java))
         }
 
-        final_one.setOnClickListener {
+        viewBinding.finalOne.setOnClickListener {
             context?.startActivity<FinalActivity>()
         }
 
 
-        fake_jike.setOnClickListener {
+        viewBinding.fakeJike.setOnClickListener {
             // just test weather work-thread start activity is ok
             Thread(Runnable {
                 startActivity(
                     Intent(
-                        context,
-                        FakeJikeActivity::class.java
+                        context, FakeJikeActivity::class.java
                     )
                 )
             }).start()
         }
 
-        horizontal_list.setOnClickListener {
+        viewBinding.horizontalList.setOnClickListener {
 
             //            startActivity(Intent(context, HorizontalListActivity::class.java))
 
-            val bundle = transformationLayout.withView(transformationLayout, "myTransitionName")
+            val bundle = viewBinding.transformationLayout.withView(viewBinding.transformationLayout, "myTransitionName")
             val intent = Intent(context, HorizontalListActivity::class.java)
-            intent.putExtra("TransformationParams", transformationLayout.getParcelableParams())
+            intent.putExtra("TransformationParams", viewBinding.transformationLayout.getParcelableParams())
             startActivity(intent, bundle)
         }
 
-        expandable_listview.setOnClickListener {
+        viewBinding.expandableListview.setOnClickListener {
             context?.startActivity<MyExpandableListViewActivity>()
         }
 
-        date_and_time_picker.setOnClickListener {
+        viewBinding.dateAndTimePicker.setOnClickListener {
             startActivity(Intent(context, DateAndTimePickerActivity::class.java))
         }
 
-        screen_recorder.setOnClickListener {
+        viewBinding.screenRecorder.setOnClickListener {
             startActivity(Intent(context, ScreenRecorderActivity::class.java))
         }
 
-        gif_revert.setOnClickListener {
+        viewBinding.gifRevert.setOnClickListener {
             startActivity(Intent(context, ReverseGifActivity::class.java))
         }
 
-        game.setOnClickListener {
+        viewBinding.game.setOnClickListener {
             startActivity(Intent(context, GameRootActivity::class.java))
         }
 
-        shell.setOnClickListener { startActivity(Intent(context, RunShellActivity::class.java)) }
+        viewBinding.shell.setOnClickListener { startActivity(Intent(context, RunShellActivity::class.java)) }
 
-        constraintLayout_ll.setOnClickListener {
+        viewBinding.constraintLayoutLl.setOnClickListener {
             startActivity(
                 Intent(
-                    context,
-                    ConstraintLayoutActivity::class.java
+                    context, ConstraintLayoutActivity::class.java
                 )
             )
         }
-        constraintLayout_ll2.setOnClickListener {
+        viewBinding.constraintLayoutLl2.setOnClickListener {
             startActivity(
                 Intent(
-                    context,
-                    CLActivity::class.java
+                    context, CLActivity::class.java
                 )
             )
         }
-        fragment_manager.setOnClickListener {
+        viewBinding.fragmentManager.setOnClickListener {
             startActivity(
                 Intent(
-                    context,
-                    ContentActivity::class.java
+                    context, ContentActivity::class.java
                 )
             )
         }
-        surface.setOnClickListener {
+        viewBinding.surface.setOnClickListener {
             startActivity(
                 Intent(
-                    context,
-                    SurfaceViewActivity::class.java
+                    context, SurfaceViewActivity::class.java
                 )
             )
         }
-        nine_point.setOnClickListener {
+        viewBinding.ninePoint.setOnClickListener {
             startActivity(Intent(context, NinePointActivity::class.java))
         }
 
-        self_draw_btn.setOnClickListener {
+        viewBinding.selfDrawBtn.setOnClickListener {
             startActivity(Intent(context, SelfDrawViewActivity::class.java))
         }
 
         adapter = MyListAdapter()
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
-        recyclerView.adapter = adapter
+        viewBinding.recyclerView.layoutManager = GridLayoutManager(context, 2)
+        viewBinding.recyclerView.adapter = adapter
     }
 
 
     class MyBottomSheetFragment : SuperBottomSheetFragment() {
         override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
         ): View? {
             super.onCreateView(inflater, container, savedInstanceState)
             return inflater.inflate(R.layout.my_bottom_sheet_layout, container, false)

@@ -9,36 +9,39 @@ import android.view.View
 import android.view.ViewTreeObserver
 import androidx.fragment.app.Fragment
 import com.engineer.imitate.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.activity_content.*
 import java.util.concurrent.TimeUnit
 
 class ContentActivity : AppCompatActivity() {
     private lateinit var fragment: Fragment
+    private lateinit var replace: FloatingActionButton
+    private lateinit var add: FloatingActionButton
+    private lateinit var remove: FloatingActionButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content)
+        replace = findViewById(R.id.replace)
+        add = findViewById(R.id.add)
+        remove = findViewById(R.id.remove)
 
         replace.setOnClickListener {
             fragment = BlinkFragment.newInstance("1", "2")
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_content, fragment, "Blink")
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_content, fragment, "Blink")
                 .commitAllowingStateLoss()
             updateState()
         }
 
         add.setOnClickListener {
             fragment = TabLayoutsFragment.newInstance("1", "2")
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_content, fragment, "Blink")
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_content, fragment, "Blink")
                 .commitAllowingStateLoss()
             updateState()
         }
         remove.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .remove(fragment)
-                .commitAllowingStateLoss()
+            supportFragmentManager.beginTransaction().remove(fragment).commitAllowingStateLoss()
             updateState()
         }
         add.performClick()
@@ -63,19 +66,16 @@ class ContentActivity : AppCompatActivity() {
                 return true
             }
         })
-        replace.viewTreeObserver.addOnGlobalLayoutListener(object :
-            ViewTreeObserver.OnGlobalLayoutListener {
+        replace.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 Log.d(TAG, "onGlobalLayout() called")
                 viewInfo(replace)
             }
         })
-        replace.viewTreeObserver.addOnGlobalFocusChangeListener(object :
-            ViewTreeObserver.OnGlobalFocusChangeListener {
+        replace.viewTreeObserver.addOnGlobalFocusChangeListener(object : ViewTreeObserver.OnGlobalFocusChangeListener {
             override fun onGlobalFocusChanged(oldFocus: View?, newFocus: View?) {
                 Log.d(
-                    TAG,
-                    "onGlobalFocusChanged() called with: oldFocus = $oldFocus, newFocus = $newFocus"
+                    TAG, "onGlobalFocusChanged() called with: oldFocus = $oldFocus, newFocus = $newFocus"
                 )
             }
         })
@@ -84,18 +84,14 @@ class ContentActivity : AppCompatActivity() {
     private fun viewInfo(view: View) {
         val TAG = "viewTree"
         Log.d(
-            TAG, "width=${view.width},height=${view.height}," +
-                    "left=${view.left},top=${view.top}," +
-                    "right=${view.right},bottom=${view.bottom}"
+            TAG,
+            "width=${view.width},height=${view.height}," + "left=${view.left},top=${view.top}," + "right=${view.right},bottom=${view.bottom}"
         )
     }
 
     @SuppressLint("CheckResult")
     private fun updateState() {
-        Observable.just(1)
-            .delay(1, TimeUnit.SECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+        Observable.just(1).delay(1, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe {
                 supportFragmentManager.fragments.forEach {
                     Log.e("ContentActivity", "updateState: " + it.activity?.javaClass?.name)
                     Log.e("ContentActivity", "updateState: " + it.javaClass.name)

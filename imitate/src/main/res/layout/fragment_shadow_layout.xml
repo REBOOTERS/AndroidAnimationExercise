@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.subs.ShadowLayoutFragment">
 
-    <include layout="@layout/include_shadow_layout"/>
+    <include
+        android:id="@+id/include_shadow_layout"
+        layout="@layout/include_shadow_layout"/>
 
 </FrameLayout>

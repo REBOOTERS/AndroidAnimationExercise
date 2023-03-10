@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import com.engineer.android.game.R
-import kotlinx.android.synthetic.main.activity_bird.*
 
 class BirdActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,6 +11,7 @@ class BirdActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_bird)
         val choice = arrayOf(true, false)
-        game_board.customBg = choice.random()
+        val view = findViewById<GameFlabbyBird>(R.id.game_board)
+        view.customBg = choice.random()
     }
 }

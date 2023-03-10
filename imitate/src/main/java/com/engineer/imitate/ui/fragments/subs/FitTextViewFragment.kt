@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.widget.opensource.text.ActionMenu
 import com.engineer.imitate.ui.widget.opensource.text.CustomActionMenuCallBack
-import kotlinx.android.synthetic.main.fragment_fit_text_view_layout.*
+import com.engineer.imitate.ui.widget.opensource.text.SelectableTextView
 
 /**
  * @author Rookie
@@ -18,15 +18,14 @@ import kotlinx.android.synthetic.main.fragment_fit_text_view_layout.*
  */
 class FitTextViewFragment : Fragment() {
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_fit_text_view_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val ctv_content: SelectableTextView = view.findViewById(R.id.ctv_content)
         ctv_content.setCustomActionMenuCallBack(object : CustomActionMenuCallBack {
             override fun onCustomActionItemClicked(itemTitle: String?, selectedContent: String?) {
                 Toast.makeText(context, "ActionMenu: " + itemTitle, Toast.LENGTH_SHORT).show()

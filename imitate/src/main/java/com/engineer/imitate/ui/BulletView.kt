@@ -14,16 +14,16 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import com.engineer.imitate.R
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.bullet_view.view.*
 import java.util.concurrent.TimeUnit
 
-class BulletView(context: Context, attrs: AttributeSet? = null) :
-    FrameLayout(context, attrs) {
+class BulletView(context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
 
     companion object {
         private const val COUNT = 100
@@ -68,27 +68,23 @@ class BulletView(context: Context, attrs: AttributeSet? = null) :
             return
         }
         Log.e("ContinueSendView", "giftCountDisposable is null")
-        giftCountDisposable =
-            Observable.intervalRange(
-                2, Int.MAX_VALUE.toLong(),
-                time, time, TimeUnit.MILLISECONDS
-            )
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    if (it <= maxCount) {
-                        val result = it.toInt() + lastCount
-                        updateListener?.update(result)
-                        vibrator?.vibrate(40)
-                        Log.e("ContinueSendView", "it ==$result, ldEnd=${ldEnd.value}")
-                        currentCount = result
-                        if (ldEnd.value == true) {
-                            stopRecount()
-                        }
-                    } else {
+        giftCountDisposable = Observable.intervalRange(
+            2, Int.MAX_VALUE.toLong(), time, time, TimeUnit.MILLISECONDS
+        ).observeOn(AndroidSchedulers.mainThread()).subscribe {
+                if (it <= maxCount) {
+                    val result = it.toInt() + lastCount
+                    updateListener?.update(result)
+                    vibrator?.vibrate(40)
+                    Log.e("ContinueSendView", "it ==$result, ldEnd=${ldEnd.value}")
+                    currentCount = result
+                    if (ldEnd.value == true) {
                         stopRecount()
                     }
-
+                } else {
+                    stopRecount()
                 }
+
+            }
 
     }
 
@@ -131,17 +127,21 @@ class BulletView(context: Context, attrs: AttributeSet? = null) :
         })
     }
 
+    private lateinit var progress: ProgressBar
+    private lateinit var text_time: TextView
     private fun initView() {
         view = LayoutInflater.from(context).inflate(R.layout.bullet_view, this, true)
-        view.progress.max = TOTAL_TIME
+        progress = findViewById(R.id.progress)
+        text_time = findViewById(R.id.text_time)
+        progress.max = TOTAL_TIME
     }
 
     private fun updateTime(time: Int) {
-        view.text_time.text = context.getString(R.string.bullet_send_time, time)
+        text_time.text = context.getString(R.string.bullet_send_time, time)
     }
 
     private fun updateProgress(progress: Int) {
-        view.progress.progress = progress
+        this.progress.progress = progress
     }
 
     //重新倒计时

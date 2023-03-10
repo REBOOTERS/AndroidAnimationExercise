@@ -7,22 +7,22 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.MotionLayout.TransitionListener
 import com.engineer.imitate.KotlinRootActivity
 import com.engineer.imitate.R
+import com.engineer.imitate.databinding.ActivityFantasySplashBinding
 import com.engineer.imitate.util.SystemUtil
 import com.gyf.immersionbar.ImmersionBar
-import kotlinx.android.synthetic.main.activity_fantasy_splash.*
 
 class FantasySplashActivity : AppCompatActivity() {
+    private lateinit var viewBinding: ActivityFantasySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ImmersionBar.with(this)
-            .fitsSystemWindows(true)
-            .statusBarColor(R.color.colorPrimary).init()
+        ImmersionBar.with(this).fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init()
         if (SystemUtil.getDeviceBrand() == "Xiaomi") {
             startActivity(Intent(this@FantasySplashActivity, KotlinRootActivity::class.java))
         }
-        setContentView(R.layout.activity_fantasy_splash)
+        viewBinding = ActivityFantasySplashBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
-        motion_layout.setTransitionListener(object : TransitionListener {
+        viewBinding.motionLayout.setTransitionListener(object : TransitionListener {
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
                 startActivity(Intent(this@FantasySplashActivity, KotlinRootActivity::class.java))
             }

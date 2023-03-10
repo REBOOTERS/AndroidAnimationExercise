@@ -7,12 +7,12 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.TraceCompat
 import com.engineer.imitate.R
 import com.engineer.imitate.util.CropCircleHelper
 import com.engineer.imitate.util.dp2px
-import kotlinx.android.synthetic.main.activity_self_draw_view.*
 
 
 class SelfDrawViewActivity : AppCompatActivity() {
@@ -25,6 +25,8 @@ class SelfDrawViewActivity : AppCompatActivity() {
         TraceCompat.beginSection("cropCircle")
         val b2 = CropCircleHelper.cropCircle(b, _100dp.toInt())
         TraceCompat.endSection()
+        val scaled_view = findViewById<ImageView>(R.id.scaled_view)
+        val self_draw = findViewById<ImageView>(R.id.self_draw)
         scaled_view.setImageBitmap(b2)
         drawBitmap("mike", b2) {
             runOnUiThread {
@@ -50,8 +52,7 @@ class SelfDrawViewActivity : AppCompatActivity() {
             paint.color = Color.WHITE
             paint.textAlign = Paint.Align.CENTER
             paint.textSize = TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_SP,
-                16f, resources.displayMetrics
+                TypedValue.COMPLEX_UNIT_SP, 16f, resources.displayMetrics
             )
             canvas.drawText(name, w / 2f, h / 2f + dp2px(120f), paint)
             Thread.sleep(2000)
@@ -70,9 +71,7 @@ class SelfDrawViewActivity : AppCompatActivity() {
         }
 
         constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-            context,
-            attrs,
-            defStyleAttr
+            context, attrs, defStyleAttr
         ) {
             init(context)
         }

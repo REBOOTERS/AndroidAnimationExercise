@@ -13,9 +13,9 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <RelativeLayout
-            app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -39,7 +39,9 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <include layout="@layout/content_kotlin_root" />
+    <include
+        android:id="@+id/content_kotlin_root"
+        layout="@layout/content_kotlin_root" />
 
 
     <com.skydoves.transformationlayout.TransformationLayout
@@ -55,12 +57,12 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/gif"
-            app:backgroundTint="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
             android:elevation="10dp"
             android:src="@drawable/ic_gif_white_24dp"
+            app:backgroundTint="@color/colorPrimary"
             app:fabSize="normal" />
 
     </com.skydoves.transformationlayout.TransformationLayout>

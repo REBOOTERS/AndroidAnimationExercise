@@ -1,8 +1,6 @@
 package com.engineer.imitate.ui.activity
 
 import android.animation.Animator
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Outline
@@ -18,21 +16,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.engineer.imitate.R
-import com.engineer.imitate.ui.list.adapter.DataAdapter
+import com.engineer.imitate.databinding.ActivityFinalBinding
 import com.engineer.imitate.interfaces.SimpleOnTabSelectedListener
+import com.engineer.imitate.ui.list.adapter.DataAdapter
 import com.engineer.imitate.util.dp2px
 import com.engineer.imitate.util.px2dp
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.activity_final.*
-import kotlinx.android.synthetic.main.fragment_evelation.*
-import kotlinx.android.synthetic.main.fragment_final.view.*
 
 const val TAG = "Final_Activity"
 
 class FinalActivity : AppCompatActivity() {
+    private lateinit var viewBinding: ActivityFinalBinding
 
     /**
      * The [android.support.v4.view.PagerAdapter] that will provide
@@ -47,8 +45,13 @@ class FinalActivity : AppCompatActivity() {
     //<editor-fold desc="data">
     private val titles = arrayOf(
         R.string.tab_text_1,
-        R.string.tab_text_2, R.string.tab_text_3, R.string.tab_text_4,
-        R.string.tab_text_5, R.string.tab_text_6, R.string.tab_text_7, R.string.tab_text_8
+        R.string.tab_text_2,
+        R.string.tab_text_3,
+        R.string.tab_text_4,
+        R.string.tab_text_5,
+        R.string.tab_text_6,
+        R.string.tab_text_7,
+        R.string.tab_text_8
     )
     //</editor-fold>
 
@@ -65,26 +68,26 @@ class FinalActivity : AppCompatActivity() {
 
     private var isExpand = false
 
-    private val listener: ViewTreeObserver.OnGlobalLayoutListener =
-        ViewTreeObserver.OnGlobalLayoutListener {
-            Log.e("onLayout", "onLayout")
-        }
+    private val listener: ViewTreeObserver.OnGlobalLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
+        Log.e("onLayout", "onLayout")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this
-        setContentView(R.layout.activity_final)
-        setSupportActionBar(toolbar)
+        viewBinding = ActivityFinalBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
+        setSupportActionBar(viewBinding.toolbar)
         title = ""
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
 
         // Set up the ViewPager with the sections adapter.
-        container.adapter = mSectionsPagerAdapter
-        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+        viewBinding.container.adapter = mSectionsPagerAdapter
+        viewBinding.container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(viewBinding.tabs))
 
-        container.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        viewBinding.container.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {
             }
 
@@ -97,30 +100,28 @@ class FinalActivity : AppCompatActivity() {
 
         })
 
-        tabs.tabMode = TabLayout.MODE_SCROLLABLE
-        tabs.setupWithViewPager(container)
-        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+        viewBinding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
+        viewBinding.tabs.setupWithViewPager(viewBinding.container)
+        viewBinding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewBinding.container))
 
-        tabs.addOnTabSelectedListener(object : SimpleOnTabSelectedListener {
+        viewBinding.tabs.addOnTabSelectedListener(object : SimpleOnTabSelectedListener {
             override fun onTabSelected(p0: TabLayout.Tab?) {
                 Log.e("TAG", "onTabSelected==" + p0!!.position)
-                appbar.setExpanded(false)
+                viewBinding.appbar.setExpanded(false)
             }
         })
 
         var marginTopAnim: ValueAnimator? = null
-        image.setOnClickListener {
+        viewBinding.image.setOnClickListener {
             if (marginTopAnim != null && marginTopAnim?.isRunning != false) {
                 return@setOnClickListener
             }
 
 
-            val params: ConstraintLayout.LayoutParams =
-                layout.layoutParams as ConstraintLayout.LayoutParams
+            val params: ConstraintLayout.LayoutParams = viewBinding.layout.layoutParams as ConstraintLayout.LayoutParams
 
 
-            val params1: ConstraintLayout.LayoutParams =
-                card.layoutParams as ConstraintLayout.LayoutParams
+            val params1: ConstraintLayout.LayoutParams = viewBinding.card.layoutParams as ConstraintLayout.LayoutParams
 
             marginTopAnim = if (isExpand) {
                 ValueAnimator.ofInt(dp2px(250f).toInt(), 0)
@@ -135,13 +136,13 @@ class FinalActivity : AppCompatActivity() {
                 if (isExpand) {
                     alpha = 1.0f - alpha
                 }
-                card.alpha = alpha
+                viewBinding.card.alpha = alpha
                 val value: Int = it.animatedValue as Int
 
                 Log.e("value", "value=======$value")
 
                 params.setMargins(0, value, 0, 0)
-                layout.layoutParams = params
+                viewBinding.layout.layoutParams = params
                 val dp = px2dp(value.toFloat())
                 Log.e("value", "dp=======$dp")
 
@@ -167,10 +168,10 @@ class FinalActivity : AppCompatActivity() {
 
 
 
-        appbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
+        viewBinding.appbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             override fun onOffsetChanged(p0: AppBarLayout, p1: Int) {
                 Log.e("TAG", "p1==$p1")
-                toolbar.setBackgroundColor(ContextCompat.getColor(p0.context, R.color.transparent))
+                viewBinding.toolbar.setBackgroundColor(ContextCompat.getColor(p0.context, R.color.transparent))
 
 
                 app_bar_h = p1
@@ -180,15 +181,15 @@ class FinalActivity : AppCompatActivity() {
                     percent = 1.0f
                 }
 
-                toolbar.alpha = 1 - percent
+                viewBinding.toolbar.alpha = 1 - percent
 
                 provider.radius = 100f * (1 - percent * 2)
-                round.invalidateOutline()
+                viewBinding.round.invalidateOutline()
 
-                toolbar_layout.title = ""
-                toolbar_up.translationY = toolbarHeight * percent - toolbarHeight
+                viewBinding.toolbarLayout.title = ""
+                viewBinding.toolbarUp.translationY = toolbarHeight * percent - toolbarHeight
 
-                round.viewTreeObserver.addOnGlobalLayoutListener(listener)
+                viewBinding.round.viewTreeObserver.addOnGlobalLayoutListener(listener)
             }
         })
 
@@ -199,14 +200,14 @@ class FinalActivity : AppCompatActivity() {
 
 
         provider = CustomViewOutLineProvider()
-        round.outlineProvider = provider
-        round.clipToOutline = true
+        viewBinding.round.outlineProvider = provider
+        viewBinding.round.clipToOutline = true
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        round.viewTreeObserver.removeOnGlobalLayoutListener(listener)
+        viewBinding.round.viewTreeObserver.removeOnGlobalLayoutListener(listener)
     }
 
     inner class CustomViewOutLineProvider : ViewOutlineProvider() {
@@ -224,9 +225,9 @@ class FinalActivity : AppCompatActivity() {
         super.onResume()
         toolbarHeight = context.dp2px(48.0f)
         Log.e(TAG, "toolbarHeight=$toolbarHeight")
-        toolbar_up.translationY = -toolbarHeight
-        toolbar_up.visibility = View.VISIBLE
-        Log.e(TAG, "yyyy====" + toolbar_up.translationY)
+        viewBinding.toolbarUp.translationY = -toolbarHeight
+        viewBinding.toolbarUp.visibility = View.VISIBLE
+        Log.e(TAG, "yyyy====" + viewBinding.toolbarUp.translationY)
 
         val dm = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(dm)
@@ -249,7 +250,7 @@ class FinalActivity : AppCompatActivity() {
 
     /**
      * A [FragmentPagerAdapter] that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
+     * one of the sections/viewBinding.tabs/pages.
      */
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
@@ -276,11 +277,10 @@ class FinalActivity : AppCompatActivity() {
     class PlaceholderFragment : Fragment() {
 
         override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
         ): View? {
             val rootView = inflater.inflate(R.layout.fragment_final, container, false)
-            val list = rootView.list
+            val list: RecyclerView = rootView.findViewById(R.id.list)
             val adapter = DataAdapter()
             adapter.setSize(20)
             list.adapter = adapter

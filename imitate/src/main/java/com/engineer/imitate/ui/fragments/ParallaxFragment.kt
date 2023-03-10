@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.list.adapter.ParallaxAdapter
-import kotlinx.android.synthetic.main.fragment_parallax.*
 
 /**
  * A simple [Fragment] subclass.
@@ -19,10 +19,10 @@ import kotlinx.android.synthetic.main.fragment_parallax.*
  */
 @Route(path = "/anim/parallax")
 class ParallaxFragment : Fragment() {
+    private lateinit var rvContent: RecyclerView
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_parallax, container, false)
@@ -30,6 +30,7 @@ class ParallaxFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        rvContent = view.findViewById(R.id.rvContent)
         rvContent.apply {
             layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             adapter = ParallaxAdapter(prepareBackTestData(), prepareFrontTestData())

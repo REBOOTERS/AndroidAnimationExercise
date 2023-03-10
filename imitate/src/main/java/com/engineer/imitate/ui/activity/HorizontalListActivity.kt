@@ -2,8 +2,8 @@ package com.engineer.imitate.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Parcelable
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.engineer.imitate.R
+import com.engineer.imitate.databinding.ActivityHorizontalListBinding
 import com.engineer.imitate.ui.widget.DecorationGod
 import com.engineer.imitate.ui.widget.DecorationOne
 import com.engineer.imitate.util.dp2px
@@ -18,11 +19,9 @@ import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
-import kotlinx.android.synthetic.main.activity_horizontal_list.*
-import kotlinx.android.synthetic.main.view_item_h.view.*
 
 class HorizontalListActivity : AppCompatActivity() {
-
+    private lateinit var viewBinding: ActivityHorizontalListBinding
     private lateinit var adapter: FastListAdapter<String>
 
     @SuppressLint("SetTextI18n")
@@ -31,26 +30,31 @@ class HorizontalListActivity : AppCompatActivity() {
             onTransformationEndContainer(it)
         }
         super.onCreate(savedInstanceState)
+        viewBinding = ActivityHorizontalListBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_horizontal_list)
         val datas = initData()
 
-        adapter = list00.bind(datas, R.layout.view_item_h_card) { value: String, _: Int ->
+        adapter = viewBinding.list00.bind(datas, R.layout.view_item_h_card) { value: String, _: Int ->
             setOnClickListener {
                 val pos = datas.indexOf(value)
                 Toast.makeText(context, "pos $pos", Toast.LENGTH_SHORT).show()
-                list.smoothScrollToPosition(pos + 1)
+                viewBinding.list.smoothScrollToPosition(pos + 1)
             }
+            val desc = findViewById<TextView>(R.id.desc)
+            val path = findViewById<TextView>(R.id.path)
             desc.text = value
             path.text = "pos " + datas.indexOf(value)
 
         }.layoutManager(LinearLayoutManager(this, RecyclerView.HORIZONTAL, false))
 
-        adapter = list0.bind(datas, R.layout.view_item_h_card) { value: String, _: Int ->
+        adapter = viewBinding.list0.bind(datas, R.layout.view_item_h_card) { value: String, _: Int ->
             setOnClickListener {
                 val pos = datas.indexOf(value)
                 Toast.makeText(context, "pos $pos", Toast.LENGTH_SHORT).show()
-                list.smoothScrollToPosition(pos + 1)
+                viewBinding.list.smoothScrollToPosition(pos + 1)
             }
+            val desc = findViewById<TextView>(R.id.desc)
+            val path = findViewById<TextView>(R.id.path)
             desc.text = value
             path.text = "pos " + datas.indexOf(value)
 
@@ -58,20 +62,22 @@ class HorizontalListActivity : AppCompatActivity() {
 
 
 
-        adapter = list.bind(datas, R.layout.view_item_h_square) { value: String, _: Int ->
+        adapter = viewBinding.list.bind(datas, R.layout.view_item_h_square) { value: String, _: Int ->
             setOnClickListener {
                 val pos = datas.indexOf(value)
                 Toast.makeText(context, "pos $pos", Toast.LENGTH_SHORT).show()
-                list.smoothScrollToPosition(pos + 1)
+                viewBinding.list.smoothScrollToPosition(pos + 1)
             }
+            val desc = findViewById<TextView>(R.id.desc)
+            val path = findViewById<TextView>(R.id.path)
             desc.text = value
             path.text = "pos " + datas.indexOf(value)
 
         }.layoutManager(LinearLayoutManager(this, RecyclerView.HORIZONTAL, false))
-        list.addItemDecoration(DividerItemDecoration(this, RecyclerView.HORIZONTAL))
+        viewBinding.list.addItemDecoration(DividerItemDecoration(this, RecyclerView.HORIZONTAL))
 
 
-        list2.bind(datas, R.layout.view_item_h) { value: String, _: Int ->
+        viewBinding.list2.bind(datas, R.layout.view_item_h) { value: String, _: Int ->
             setOnClickListener {
                 val pos = datas.indexOf(value)
                 Toast.makeText(context, "pos $pos", Toast.LENGTH_SHORT).show()
@@ -80,23 +86,27 @@ class HorizontalListActivity : AppCompatActivity() {
                 val dest = xy[0] - dp2px(24f)
                 Log.e(TAG, "dest==: $dest")
                 if (dest > 0) {
-                    list2.smoothScrollBy(dest.toInt(), 0)
+                    viewBinding.list2.smoothScrollBy(dest.toInt(), 0)
                 }
             }
+            val desc = findViewById<TextView>(R.id.desc)
+            val path = findViewById<TextView>(R.id.path)
             desc.text = value
             path.text = "pos " + datas.indexOf(value)
 
         }.layoutManager(LinearLayoutManager(this, RecyclerView.HORIZONTAL, false))
-        list2.addItemDecoration(DecorationOne(this))
+        viewBinding.list2.addItemDecoration(DecorationOne(this))
         val pagerSnapHelper = PagerSnapHelper()
-        pagerSnapHelper.attachToRecyclerView(list2)
+        pagerSnapHelper.attachToRecyclerView(viewBinding.list2)
 
 
-        list3.bind(datas, R.layout.view_item_h_image) { value: String, _: Int ->
+        viewBinding.list3.bind(datas, R.layout.view_item_h_image) { value: String, _: Int ->
+            val desc = findViewById<TextView>(R.id.desc)
+            val path = findViewById<TextView>(R.id.path)
             desc.text = value
 
         }.layoutManager(LinearLayoutManager(this, RecyclerView.HORIZONTAL, false))
-        list3.addItemDecoration(DecorationGod(this))
+        viewBinding.list3.addItemDecoration(DecorationGod(this))
     }
 
     override fun onResume() {

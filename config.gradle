@@ -12,8 +12,8 @@ ext {
     constraint_layout = '2.1.4'
     core_ktx = '1.9.0'
 
-    kotlin_version = '1.7.21'
-    gradle_version = '7.3.1'
+    kotlin_version = '1.8.0'
+    gradle_version = '7.4.2'
 
     doraemonkit = '3.3.4'
 

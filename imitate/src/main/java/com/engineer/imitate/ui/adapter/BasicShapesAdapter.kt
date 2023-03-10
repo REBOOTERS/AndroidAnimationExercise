@@ -4,19 +4,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.engineer.imitate.R
-import com.engineer.imitate.model.Basic
+import com.engineer.imitate.ui.widget.DynamicImageView
 import com.engineer.imitate.util.inflate
-import kotlinx.android.synthetic.main.fragment_weather_status_item.view.*
 import kotlin.properties.Delegates
 
-class BasicShapesAdapter: RecyclerView.Adapter<BasicShapesAdapter.ViewHolder>() {
+class BasicShapesAdapter : RecyclerView.Adapter<BasicShapesAdapter.ViewHolder>() {
     enum class PayloadType {
         ROTATE_CHANGED
     }
 
     private val collection = emptyArray<Any>()
 
-    internal var rotate: Boolean by Delegates.observable(true) { _, old, new->
+    internal var rotate: Boolean by Delegates.observable(true) { _, old, new ->
         if (old != new) {
             collection.indices.forEach {
                 notifyItemChanged(it, PayloadType.ROTATE_CHANGED)
@@ -55,6 +54,7 @@ class BasicShapesAdapter: RecyclerView.Adapter<BasicShapesAdapter.ViewHolder>() 
     }
 
     private fun rotate(itemView: View, rotate: Boolean) {
+        val icon = itemView.findViewById<DynamicImageView>(R.id.icon)
         with(itemView) {
             if (rotate) {
                 icon.start()

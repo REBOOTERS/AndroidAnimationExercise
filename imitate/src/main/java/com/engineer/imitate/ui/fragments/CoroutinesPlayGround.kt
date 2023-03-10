@@ -7,10 +7,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.fastjson.JSONObject
 import com.beust.klaxon.Klaxon
@@ -29,10 +32,7 @@ import com.list.rados.fast_list.bind
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_coroutines.*
-import kotlinx.android.synthetic.main.view_item.view.*
 import kotlinx.coroutines.*
-import kotlin.coroutines.EmptyCoroutineContext
 
 private const val ARG_PARAM1 = "param1"
 private const val TAG = "Coroutines"
@@ -43,10 +43,11 @@ private const val TAG = "Coroutines"
  */
 @Route(path = "/anim/coroutines")
 class CoroutinesFragment : Fragment() {
-
+    private lateinit var progress: ProgressBar
+    private lateinit var school_view_pager2: ViewPager2
+    private lateinit var school_tab_layout: TabLayout
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_coroutines, container, false)
     }
@@ -63,6 +64,9 @@ class CoroutinesFragment : Fragment() {
 //        usCoroutine {
 //            parseWithGson(it)
 //        }
+        progress = view.findViewById(R.id.progress)
+        school_view_pager2 = view.findViewById(R.id.school_view_pager2)
+        school_tab_layout = view.findViewById(R.id.school_tab_layout)
         useCoroutine2 { parseWithGson(it) }
     }
 
@@ -124,9 +128,7 @@ class CoroutinesFragment : Fragment() {
                 it.onComplete()
             }
 
-        }.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
+        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
                 setUpPager(it)
                 progress.visibility = View.GONE
             }, {
@@ -195,9 +197,7 @@ class ListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return RecyclerView(requireContext())
     }
@@ -206,6 +206,8 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (view is RecyclerView) {
             view.bind(datas, R.layout.view_item) { value: School, _: Int ->
+                val desc = findViewById<TextView>(R.id.desc)
+                val path = findViewById<TextView>(R.id.path)
                 desc.text = value.name
                 path.text = value.address
             }.layoutManager(LinearLayoutManager(context))

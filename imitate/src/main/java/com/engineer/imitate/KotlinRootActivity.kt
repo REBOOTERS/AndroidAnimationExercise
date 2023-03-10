@@ -15,7 +15,10 @@ import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.PopupMenu
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
@@ -25,9 +28,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.engineer.imitate.databinding.ActivityKotlinRootBinding
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.ui.activity.ReverseGifActivity
-import com.engineer.imitate.ui.widget.opensource.text.ActionMenu
 import com.engineer.imitate.util.*
 import com.example.cpp_native.app.NativeRoot
 import com.gyf.immersionbar.ImmersionBar
@@ -37,9 +40,6 @@ import com.skydoves.transformationlayout.onTransformationStartContainer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_kotlin_root.*
-import kotlinx.android.synthetic.main.content_kotlin_root.*
-import kotlinx.android.synthetic.main.view_item.view.*
 import org.apache.commons.io.FileUtils
 import org.json.JSONArray
 import org.json.JSONObject
@@ -59,15 +59,16 @@ class KotlinRootActivity : AppCompatActivity() {
     private lateinit var mLayoutManager: RecyclerView.LayoutManager
 
     private var adapter: FastListAdapter<FragmentItem>? = null
+    private lateinit var viewBinding: ActivityKotlinRootBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         onTransformationStartContainer()
         super.onCreate(savedInstanceState)
-        ImmersionBar.with(this)
-            .fitsSystemWindows(true)
-            .statusBarColor(R.color.colorPrimary).init()
-        setContentView(R.layout.activity_kotlin_root)
-        setSupportActionBar(toolbar)
+        ImmersionBar.with(this).fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init()
+        viewBinding = ActivityKotlinRootBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
+        setSupportActionBar(viewBinding.toolbar)
         loadView()
         jsonTest()
 
@@ -81,11 +82,10 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     private fun autoStartPage() {
-        val fragment: Fragment =
-            ARouter.getInstance().build("/anim/fresco").navigation(this) as Fragment
+        val fragment: Fragment = ARouter.getInstance().build("/anim/fresco").navigation(this) as Fragment
         currentFragment = fragment
-        content.visibility = View.VISIBLE
-        index.visibility = View.GONE
+        viewBinding.contentKotlinRoot.content.visibility = View.VISIBLE
+        viewBinding.contentKotlinRoot.index.visibility = View.GONE
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.content, fragment).commit()
     }
@@ -101,12 +101,12 @@ class KotlinRootActivity : AppCompatActivity() {
         loadRecyclerView()
 //        loadWebView()
 
-        gif.setOnClickListener {
+        viewBinding.gif.setOnClickListener {
 //            startActivity(Intent(this, ReverseGifActivity::class.java))
 
-            val bundle = transformationLayout.withView(transformationLayout, "myTransitionName")
+            val bundle = viewBinding.transformationLayout.withView(viewBinding.transformationLayout, "myTransitionName")
             val intent = Intent(this, ReverseGifActivity::class.java)
-            intent.putExtra("TransformationParams", transformationLayout.getParcelableParams())
+            intent.putExtra("TransformationParams", viewBinding.transformationLayout.getParcelableParams())
             startActivity(intent, bundle)
         }
 
@@ -127,11 +127,9 @@ class KotlinRootActivity : AppCompatActivity() {
                 val destDir = Environment.getExternalStorageDirectory()
                 for (file in this) {
                     Log.e(TAG, ": " + file.absolutePath)
-                    Observable.just("")
-                        .subscribeOn(Schedulers.io())
-                        .subscribe {
-                            FileUtils.copyFileToDirectory(file, destDir)
-                        }
+                    Observable.just("").subscribeOn(Schedulers.io()).subscribe {
+                        FileUtils.copyFileToDirectory(file, destDir)
+                    }
                 }
             }
 
@@ -164,42 +162,46 @@ class KotlinRootActivity : AppCompatActivity() {
     // </editor-fold>
 
     private fun loadRecyclerView() {
-        hybrid.animate().alpha(0f).setListener(object : AnimatorListenerAdapter() {
+        viewBinding.contentKotlinRoot.hybrid.animate().alpha(0f).setListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
-                hybrid.visibility = View.GONE
-                recyclerView.visibility = View.VISIBLE
+                viewBinding.contentKotlinRoot.hybrid.visibility = View.GONE
+                viewBinding.contentKotlinRoot.recyclerView.visibility = View.VISIBLE
             }
         }).start()
 
         val list = initList()
-        adapter = recyclerView.bind(list, R.layout.view_item) { item: FragmentItem, _: Int ->
-            desc.text = item.name
-            path.text = item.path
+        adapter =
+            viewBinding.contentKotlinRoot.recyclerView.bind(list, R.layout.view_item) { item: FragmentItem, _: Int ->
+                val desc = findViewById<TextView>(R.id.desc)
+                val path = findViewById<TextView>(R.id.path)
+                val more_menu = findViewById<ImageView>(R.id.more_menu)
+                val shell = findViewById<ViewGroup>(R.id.shell)
+                desc.text = item.name
+                path.text = item.path
 
-            path.setOnClickListener {
-                AnimDelegate.apply(context, path, gif, shell_root)
-            }
-            more_menu.setOnClickListener {
-                showMenu(more_menu)
-            }
+                path.setOnClickListener {
+                    AnimDelegate.apply(context, path, viewBinding.gif, viewBinding.shellRoot)
+                }
+                more_menu.setOnClickListener {
+                    showMenu(more_menu)
+                }
 
-            shell.setOnClickListener {
-                gif.hide()
+                shell.setOnClickListener {
+                    viewBinding.gif.hide()
 
-                val fragment: Fragment =
-                    ARouter.getInstance().build(item.path).navigation(context) as Fragment
-                currentFragment = fragment
-                content.visibility = View.VISIBLE
-                index.visibility = View.GONE
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.content, fragment).commit()
-                updateState()
-            }
-        }.layoutManager(mLayoutManager)
+                    val fragment: Fragment = ARouter.getInstance().build(item.path).navigation(context) as Fragment
+                    currentFragment = fragment
+                    viewBinding.contentKotlinRoot.content.visibility = View.VISIBLE
+                    viewBinding.contentKotlinRoot.index.visibility = View.GONE
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.content, fragment).commit()
+                    updateState()
+                }
+            }.layoutManager(mLayoutManager)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            viewBinding.contentKotlinRoot.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     Log.e(TAG, "dy==$dy")
@@ -218,22 +220,22 @@ class KotlinRootActivity : AppCompatActivity() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun loadWebView() {
-        hybrid.animate().alpha(1f).setListener(object : AnimatorListenerAdapter() {
+        viewBinding.contentKotlinRoot.hybrid.animate().alpha(1f).setListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
-                hybrid.visibility = View.VISIBLE
-                recyclerView.visibility = View.GONE
+                viewBinding.contentKotlinRoot.hybrid.visibility = View.VISIBLE
+                viewBinding.contentKotlinRoot.recyclerView.visibility = View.GONE
             }
         }).start()
 
 
-        hybrid.settings.javaScriptEnabled = true
-        hybrid.settings.allowFileAccess = true
+        viewBinding.contentKotlinRoot.hybrid.settings.javaScriptEnabled = true
+        viewBinding.contentKotlinRoot.hybrid.settings.allowFileAccess = true
         hybridHelper = HybridHelper(this)
         hybridHelper.setOnItemClickListener(SimpleClickListener())
-        hybrid.addJavascriptInterface(hybridHelper, "hybrid")
+        viewBinding.contentKotlinRoot.hybrid.addJavascriptInterface(hybridHelper, "hybrid")
 
-        hybrid.loadUrl(ORIGINAL_URL)
+        viewBinding.contentKotlinRoot.hybrid.loadUrl(ORIGINAL_URL)
     }
 
     private inner class SimpleClickListener : HybridHelper.OnItemClickListener {
@@ -249,9 +251,9 @@ class KotlinRootActivity : AppCompatActivity() {
                 if (!TextUtils.isEmpty(title)) {
                     setTitle(title)
                 }
-                content.visibility = View.VISIBLE
-                index.visibility = View.GONE
-                gif.hide()
+                viewBinding.contentKotlinRoot.content.visibility = View.VISIBLE
+                viewBinding.contentKotlinRoot.index.visibility = View.GONE
+                viewBinding.gif.hide()
                 currentFragment = fragment
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.content, fragment).commit()
@@ -281,27 +283,27 @@ class KotlinRootActivity : AppCompatActivity() {
             item?.title = "夜间模式"
         }
         val change = menu?.findItem(R.id.action_change)
-        change?.isVisible = (recyclerView.visibility == View.VISIBLE)
+        change?.isVisible = (viewBinding.contentKotlinRoot.recyclerView.visibility == View.VISIBLE)
         return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            if (content.visibility == View.VISIBLE) {
+            if (viewBinding.contentKotlinRoot.content.visibility == View.VISIBLE) {
                 releaseFragment()
             } else {
                 finish()
             }
         } else if (item.itemId == R.id.action_refresh) {
-            if (recyclerView.visibility == View.VISIBLE) {
+            if (viewBinding.contentKotlinRoot.recyclerView.visibility == View.VISIBLE) {
                 loadWebView()
             } else {
                 loadRecyclerView()
             }
             return true
         } else if (item.itemId == R.id.action_change) {
-            if (recyclerView.visibility == View.VISIBLE) {
-                if (recyclerView.layoutManager == mLinearManager) {
+            if (viewBinding.contentKotlinRoot.recyclerView.visibility == View.VISIBLE) {
+                if (viewBinding.contentKotlinRoot.recyclerView.layoutManager == mLinearManager) {
                     mLayoutManager = mGridLayoutManager
                 } else {
                     mLayoutManager = mLinearManager
@@ -323,7 +325,7 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (content.visibility == View.VISIBLE) {
+        if (viewBinding.contentKotlinRoot.content.visibility == View.VISIBLE) {
             releaseFragment()
         } else {
             super.onBackPressed()
@@ -331,15 +333,13 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     private fun releaseFragment() {
-        content.visibility = View.GONE
-        index.visibility = View.VISIBLE
-        gif.show()
+        viewBinding.contentKotlinRoot.content.visibility = View.GONE
+        viewBinding.contentKotlinRoot.index.visibility = View.VISIBLE
+        viewBinding.gif.show()
         Log.e(TAG, "fragments size = " + supportFragmentManager.fragments.size)
         currentFragment?.let {
             if (supportFragmentManager.fragments.size > 0) {
-                supportFragmentManager.beginTransaction()
-                    .remove(it)
-                    .commitAllowingStateLoss()
+                supportFragmentManager.beginTransaction().remove(it).commitAllowingStateLoss()
                 currentFragment = null
                 updateState()
             }
@@ -348,21 +348,16 @@ class KotlinRootActivity : AppCompatActivity() {
     }
 
     private fun updateState() {
-        Observable.just(1)
-            .delay(1, TimeUnit.SECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                Log.e(TAG, "updateState: ======================================================\n")
-                Log.e(TAG, "fragments size = " + supportFragmentManager.fragments.size)
-                supportFragmentManager.fragments.forEach {
-                    Log.e(
-                        TAG,
-                        "fragment [ ${it.javaClass.name} ] in activity [ ${it.activity?.javaClass?.simpleName} ]"
-                    )
-                }
-                Log.e(TAG, "updateState: ======================================================\n")
+        Observable.just(1).delay(1, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).doOnNext {
+            Log.e(TAG, "updateState: ======================================================\n")
+            Log.e(TAG, "fragments size = " + supportFragmentManager.fragments.size)
+            supportFragmentManager.fragments.forEach {
+                Log.e(
+                    TAG, "fragment [ ${it.javaClass.name} ] in activity [ ${it.activity?.javaClass?.simpleName} ]"
+                )
             }
-            .subscribe()
+            Log.e(TAG, "updateState: ======================================================\n")
+        }.subscribe()
     }
 
     private fun jsonTest() {
@@ -385,6 +380,6 @@ class KotlinRootActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        hybrid.removeJavascriptInterface("hybrid")
+        viewBinding.contentKotlinRoot.hybrid.removeJavascriptInterface("hybrid")
     }
 }

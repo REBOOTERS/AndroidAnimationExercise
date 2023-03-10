@@ -2,7 +2,6 @@ package com.engineer.imitate.ui.activity
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.animation.ValueAnimator
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
@@ -13,20 +12,19 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.engineer.imitate.R
+import com.engineer.imitate.databinding.ActivityConstraintLayoutBinding
 import com.engineer.imitate.ui.list.adapter.LargeImageAdapter
 import com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
 import com.engineer.imitate.util.hide
 import com.engineer.imitate.util.show
-import kotlinx.android.synthetic.main.activity_constraint_layout.*
 
 class ConstraintLayoutActivity : AppCompatActivity() {
     val tag = "ConstraintLayout"
-
+    private lateinit var viewBinding: ActivityConstraintLayoutBinding
     private lateinit var layoutParams: FrameLayout.LayoutParams
     private val globalLayoutListener = object : ViewTreeObserver.OnGlobalLayoutListener {
         override fun onGlobalLayout() {
-            root_content?.let {
+            viewBinding.rootContent?.let {
                 val displayRect = Rect()
                 it.getWindowVisibleDisplayFrame(displayRect)
                 Log.e(tag, "${displayRect.top}")
@@ -45,35 +43,36 @@ class ConstraintLayoutActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_constraint_layout)
+        viewBinding = ActivityConstraintLayoutBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
-        recyclerView_2.layoutManager =
+        viewBinding.recyclerView2.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView_2.adapter = LargeImageAdapter(getList())
-        head_home_layout.setOnStartActivity(object : DZStickyNavLayouts.OnStartActivityListener {
+        viewBinding.recyclerView2.adapter = LargeImageAdapter(getList())
+        viewBinding.headHomeLayout.setOnStartActivity(object : DZStickyNavLayouts.OnStartActivityListener {
             override fun onStart() {
                 Toast.makeText(this@ConstraintLayoutActivity, "bingo", Toast.LENGTH_SHORT).show()
             }
         })
 
         var toggle = false
-        anim.setOnClickListener {
+        viewBinding.anim.setOnClickListener {
             if (toggle) {
-                image_alpha.alpha = 0.0f
+                viewBinding.imageAlpha.alpha = 0.0f
             } else {
-                image_alpha.alpha = 1.0f
+                viewBinding.imageAlpha.alpha = 1.0f
             }
             toggle = !toggle
         }
-        rotate_anim.setOnClickListener {
-            rotate_anim.rotation = 0f
-            rotateAnim(rotate_anim)
+        viewBinding.rotateAnim.setOnClickListener {
+            viewBinding.rotateAnim.rotation = 0f
+            rotateAnim(viewBinding.rotateAnim)
         }
-        button_2.setOnClickListener {
-            if (button_1.visibility == View.VISIBLE) {
-                button_1.hide()
+        viewBinding.button2.setOnClickListener {
+            if (viewBinding.button1.visibility == View.VISIBLE) {
+                viewBinding.button1.hide()
             } else {
-                button_1.show()
+                viewBinding.button1.show()
             }
         }
     }
@@ -115,12 +114,12 @@ class ConstraintLayoutActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        layoutParams = root_content.layoutParams as FrameLayout.LayoutParams
-        root_content.viewTreeObserver.addOnGlobalLayoutListener(globalLayoutListener)
+        layoutParams = viewBinding.rootContent.layoutParams as FrameLayout.LayoutParams
+        viewBinding.rootContent.viewTreeObserver.addOnGlobalLayoutListener(globalLayoutListener)
     }
 
     override fun onPause() {
         super.onPause()
-        root_content.viewTreeObserver.removeOnGlobalLayoutListener(globalLayoutListener)
+        viewBinding.rootContent.viewTreeObserver.removeOnGlobalLayoutListener(globalLayoutListener)
     }
 }

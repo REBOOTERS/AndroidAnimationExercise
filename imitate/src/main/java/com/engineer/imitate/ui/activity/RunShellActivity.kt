@@ -25,23 +25,23 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.engineer.imitate.R
+import com.engineer.imitate.databinding.ActivityRunShellBinding
 import com.engineer.imitate.ui.widget.view.DemoPresenter
 import com.engineer.imitate.ui.widget.view.DemoView
 import com.jaredrummler.simplemvp.MvpAppCompatActivity
-import kotlinx.android.synthetic.main.activity_run_shell.*
 
 
 class RunShellActivity : MvpAppCompatActivity<DemoPresenter>(), DemoView {
 
     private var dialog: ProgressDialog? = null
-
+    private lateinit var viewBinding: ActivityRunShellBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_run_shell)
-        commandsEditText.addTextChangedListener(object : TextChangeListener() {
+        viewBinding = ActivityRunShellBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
+        viewBinding.commandsEditText.addTextChangedListener(object : TextChangeListener() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                runButton.isEnabled = !TextUtils.isEmpty(s)
+                viewBinding.runButton.isEnabled = !TextUtils.isEmpty(s)
             }
         })
         presenter.checkIfRootIsAvailable()
@@ -49,14 +49,14 @@ class RunShellActivity : MvpAppCompatActivity<DemoPresenter>(), DemoView {
 
     fun onRun(v: View) {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(commandsEditText.windowToken, 0)
-        val command = commandsEditText.text.toString()
-        val asRoot = rootCheckBox.isChecked
+        imm.hideSoftInputFromWindow(viewBinding.commandsEditText.windowToken, 0)
+        val command = viewBinding.commandsEditText.text.toString()
+        val asRoot = viewBinding.rootCheckBox.isChecked
         presenter.execute(asRoot, command)
     }
 
     override fun onRootAvailable(available: Boolean) {
-        rootCheckBox.isChecked = available
+        viewBinding.rootCheckBox.isChecked = available
     }
 
     override fun showProgress() {
@@ -70,7 +70,7 @@ class RunShellActivity : MvpAppCompatActivity<DemoPresenter>(), DemoView {
 
     override fun showResult(result: CharSequence) {
         Log.e("tag", ": $result")
-        outputTextView.text = result
+        viewBinding.outputTextView.text = result
     }
 
     override fun createPresenter(): DemoPresenter = DemoPresenter()

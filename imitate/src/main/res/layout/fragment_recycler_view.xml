@@ -70,7 +70,9 @@
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
-            <include layout="@layout/fragment_layout_manager" />
+            <include
+                android:id="@+id/fragment_layout_manager"
+                layout="@layout/fragment_layout_manager" />
 
 
             <TextView

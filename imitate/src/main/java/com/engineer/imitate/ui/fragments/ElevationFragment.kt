@@ -13,16 +13,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.interfaces.SimpleProgressChangeListener
+import com.engineer.imitate.ui.widget.custom.JikeSlideView
 import com.engineer.imitate.util.TestHelper
 import com.engineer.imitate.util.toastShort
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.skydoves.transformationlayout.TransformationLayout
 import com.xw.repo.BubbleSeekBar
-import kotlinx.android.synthetic.main.fragment_evelation.*
-
 
 /**
  * A simple [Fragment] subclass.
@@ -34,9 +38,24 @@ class ElevationFragment : Fragment() {
     private var mDeltaX = 0.0f
     private var mDeltaY = 0.0f
 
+    private lateinit var fab: FloatingActionButton
+    private lateinit var transformationLayout: TransformationLayout
+    private lateinit var parent: ConstraintLayout
+    private lateinit var myCardView: CardView
+    private lateinit var cardView: CardView
+    private lateinit var cardElevationSeekBar: BubbleSeekBar
+    private lateinit var cardRadiusSeekBar: BubbleSeekBar
+    private lateinit var deltaXSeekBar: BubbleSeekBar
+    private lateinit var deltaYSeekBar: BubbleSeekBar
+    private lateinit var slide_view: JikeSlideView
+    private lateinit var textView: TextView
+    private lateinit var notification: TextView
+    private lateinit var open_push_setting: Button
+    private lateinit var open_system_share: Button
+    private lateinit var read_sp: Button
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_evelation, container, false)
@@ -44,6 +63,22 @@ class ElevationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fab = view.findViewById(R.id.fab)
+        parent = view.findViewById(R.id.parent)
+        transformationLayout = view.findViewById(R.id.transformationLayout)
+        myCardView = view.findViewById(R.id.myCardView)
+        cardView = view.findViewById(R.id.cardView)
+        cardElevationSeekBar = view.findViewById(R.id.cardElevationSeekBar)
+        cardRadiusSeekBar = view.findViewById(R.id.cardRadiusSeekBar)
+        deltaXSeekBar = view.findViewById(R.id.deltaXSeekBar)
+        deltaYSeekBar = view.findViewById(R.id.deltaYSeekBar)
+        deltaYSeekBar = view.findViewById(R.id.deltaYSeekBar)
+        slide_view = view.findViewById(R.id.slide_view)
+        textView = view.findViewById(R.id.textView)
+        notification = view.findViewById(R.id.notification)
+        open_push_setting = view.findViewById(R.id.open_push_setting)
+        open_system_share = view.findViewById(R.id.open_system_share)
+        read_sp = view.findViewById(R.id.read_sp)
 
         val anim = ObjectAnimator.ofFloat(fab, "rotation", 180f)
         anim.repeatMode = ObjectAnimator.REVERSE
@@ -61,10 +96,7 @@ class ElevationFragment : Fragment() {
 
         cardElevationSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
             override fun onProgressChanged(
-                bubbleSeekBar: BubbleSeekBar?,
-                progress: Int,
-                progressFloat: Float,
-                fromUser: Boolean
+                bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean
             ) {
                 super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
                 cardView.cardElevation = progressFloat
@@ -74,10 +106,7 @@ class ElevationFragment : Fragment() {
 
         cardRadiusSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
             override fun onProgressChanged(
-                bubbleSeekBar: BubbleSeekBar?,
-                progress: Int,
-                progressFloat: Float,
-                fromUser: Boolean
+                bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean
             ) {
                 super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
                 cardView.radius = progressFloat
@@ -86,10 +115,7 @@ class ElevationFragment : Fragment() {
 
         deltaXSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
             override fun onProgressChanged(
-                bubbleSeekBar: BubbleSeekBar?,
-                progress: Int,
-                progressFloat: Float,
-                fromUser: Boolean
+                bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean
             ) {
                 super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
                 mDeltaX = progressFloat
@@ -99,10 +125,7 @@ class ElevationFragment : Fragment() {
 
         deltaYSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
             override fun onProgressChanged(
-                bubbleSeekBar: BubbleSeekBar?,
-                progress: Int,
-                progressFloat: Float,
-                fromUser: Boolean
+                bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean
             ) {
                 super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
                 val screenHeight = resources.displayMetrics.heightPixels
@@ -226,8 +249,7 @@ class ElevationFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         context?.let {
-            notification.text =
-                NotificationManagerCompat.from(it).areNotificationsEnabled().toString()
+            notification.text = NotificationManagerCompat.from(it).areNotificationsEnabled().toString()
         }
 
 

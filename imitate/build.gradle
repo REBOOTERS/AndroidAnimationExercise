@@ -5,7 +5,6 @@ if (imitate_isApp.toBoolean()) {
 }
 
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
@@ -62,6 +61,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
     }
 
     sourceSets {

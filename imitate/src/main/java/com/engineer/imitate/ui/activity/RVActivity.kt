@@ -1,7 +1,6 @@
 package com.engineer.imitate.ui.activity
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
@@ -10,24 +9,26 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.*
-import com.engineer.imitate.R
 import com.engineer.imitate.Routes
+import com.engineer.imitate.databinding.ActivityRVBinding
 import com.engineer.imitate.util.dp
-import kotlinx.android.synthetic.main.activity_r_v.*
 
 class RVActivity : AppCompatActivity() {
+    private lateinit var viewBinding :ActivityRVBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_r_v)
+        viewBinding = ActivityRVBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
-        rv_list.layoutManager = LinearLayoutManager(this)
+        viewBinding.rvList.layoutManager = LinearLayoutManager(this)
         val adapter = SimpleAdapter(provideData())
-        rv_list.adapter = adapter
-        rv_list.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL))
+        viewBinding.rvList.adapter = adapter
+        viewBinding.rvList.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL))
 
         val snapHelper = getSnapHelper()
-        snapHelper.attachToRecyclerView(rv_list)
+        snapHelper.attachToRecyclerView(viewBinding.rvList)
     }
 
     private fun getSnapHelper(): SnapHelper {

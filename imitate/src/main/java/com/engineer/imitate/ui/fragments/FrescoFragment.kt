@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.engineer.imitate.R
+import com.engineer.imitate.databinding.FragmentFrescoBinding
 import com.facebook.common.executors.CallerThreadExecutor
 import com.facebook.common.references.CloseableReference
 import com.facebook.datasource.DataSource
@@ -38,8 +39,6 @@ import io.reactivex.ObservableOnSubscribe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_fresco.*
-
 
 /**
  * A simple [Fragment] subclass.
@@ -47,7 +46,7 @@ import kotlinx.android.synthetic.main.fragment_fresco.*
  */
 @Route(path = "/anim/fresco")
 class FrescoFragment : Fragment() {
-
+    private lateinit var viewBinding: FragmentFrescoBinding
     val c: CompositeDisposable = CompositeDisposable()
 
     override fun onCreateView(
@@ -55,14 +54,15 @@ class FrescoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fresco, container, false)
+        viewBinding = FragmentFrescoBinding.inflate(inflater, container, false)
+        return viewBinding.root
     }
 
     @SuppressLint("LogNotTimber")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        s1.setActualImageResource(R.drawable.totoro)
+        viewBinding.s1.setActualImageResource(R.drawable.totoro)
 
 
         //获取GenericDraweeHierarchy对象
@@ -74,21 +74,21 @@ class FrescoFragment : Fragment() {
         roundingParams.borderWidth = 10f
         roundingParams.borderColor = Color.BLUE
         hierarchy.roundingParams = roundingParams
-        s2.hierarchy = hierarchy
-        s2.setActualImageResource(R.drawable.totoro)
+        viewBinding.s2.hierarchy = hierarchy
+        viewBinding.s2.setActualImageResource(R.drawable.totoro)
 
         val url =
             "http://h.hiphotos.baidu.com/image/pic/item/960a304e251f95ca060674a0c7177f3e67095231.jpg"
 
 
         val t = System.currentTimeMillis()
-        simpleDraweeView.setImageURI(url)
+        viewBinding.simpleDraweeView.setImageURI(url)
         Log.e("zyq", "use time=" + (System.currentTimeMillis() - t))
-        simpleDraweeView
+        viewBinding.simpleDraweeView
         bitmapMagic()
 
 
-        val drawable = imageView.background as ClipDrawable
+        val drawable = viewBinding.imageView.background as ClipDrawable
 //        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.totoro)
 //        drawable.drawable = BitmapDrawable(resources,bitmap)
 
@@ -114,8 +114,8 @@ class FrescoFragment : Fragment() {
                             "zyq",
                             "thread ==${Thread.currentThread().name}"
                         )
-                        imageView1.post {
-                            imageView1.setImageBitmap(bitmap)
+                        viewBinding.imageView1.post {
+                            viewBinding.imageView1.setImageBitmap(bitmap)
                         }
                     }
                 }
@@ -135,7 +135,7 @@ class FrescoFragment : Fragment() {
         values.start()
 
 
-        imageView.setOnClickListener {
+        viewBinding.imageView.setOnClickListener {
             if (drawable.level == 0) {
                 values.start()
             } else {
@@ -156,7 +156,7 @@ class FrescoFragment : Fragment() {
     }
 
     private fun bitmapMagic() {
-        shimmer_layout.startShimmerAnimation()
+        viewBinding.shimmerLayout.startShimmerAnimation()
 
         c.add(
             Observable.create(ObservableOnSubscribe<Bitmap> { emitter ->
@@ -194,12 +194,12 @@ class FrescoFragment : Fragment() {
         drawBitmap.setPixel(0, 1, Color.WHITE)
         drawBitmap.setPixel(1, 1, Color.BLUE)
 
-        if (draw_bitmap == null) {
+        if (viewBinding.drawBitmap == null) {
             return
         }
-        draw_bitmap.setImageBitmap(drawBitmap)
-        shimmer_layout.stopShimmerAnimation()
-        mask.visibility = View.GONE
+        viewBinding.drawBitmap.setImageBitmap(drawBitmap)
+        viewBinding.shimmerLayout.stopShimmerAnimation()
+        viewBinding.mask.visibility = View.GONE
     }
 
 

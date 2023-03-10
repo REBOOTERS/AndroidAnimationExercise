@@ -5,35 +5,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.engineer.imitate.R
 import com.engineer.imitate.util.toastShort
-import kotlinx.android.synthetic.main.activity_view_dispathch.*
 
 class ViewDispathchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_dispathch)
 
-        button.setOnClickListener {
+        findViewById<Button>(R.id.button).setOnClickListener {
             toastShort("button clicked")
         }
 
 
         val fragments = arrayListOf(TransparentFragment(), BlankFragment())
-        pager.adapter = MyAdapter(supportFragmentManager, fragments)
+        findViewById<ViewPager>(R.id.pager).adapter = MyAdapter(supportFragmentManager, fragments)
     }
 }
 
 class TransparentFragment : Fragment() {
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         context?.let {
             return FrameLayout(it)
@@ -44,9 +43,7 @@ class TransparentFragment : Fragment() {
 
 class BlankFragment : Fragment() {
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         context?.let {
             val child = FrameLayout(it)

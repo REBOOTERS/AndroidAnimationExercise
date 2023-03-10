@@ -13,17 +13,18 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.imitate.R
+import com.engineer.imitate.databinding.ActivityExpandableListViewBinding
 import com.engineer.imitate.util.dp
 import com.engineer.imitate.util.toastShort
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
-import kotlinx.android.synthetic.main.activity_expandable_list_view.*
 import kotlin.random.Random
 
 class MyExpandableListViewActivity : AppCompatActivity() {
 
     private lateinit var mContext: Context
+    private lateinit var viewBinding:ActivityExpandableListViewBinding
 
     private var lastGroupPosition = -1
     private val groupData = arrayOf(
@@ -49,19 +50,20 @@ class MyExpandableListViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_expandable_list_view)
+        viewBinding = ActivityExpandableListViewBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
         mContext = this
         //给ExpandableListAdapter设置适配器---自定义适配器需要继承BaseExpandableListAdapter()实现其中的方法
         val myExpandableListAdapter = MyExpandableListAdapter()
 
-//        expandable_lv.divider = getDrawable(R.drawable.line)
-//        expandable_lv.setChildDivider(getDrawable(R.drawable.line))
+//        viewBinding.expandableLv.divider = getDrawable(R.drawable.line)
+//        viewBinding.expandableLv.setChildDivider(getDrawable(R.drawable.line))
         //设置适配器
-        expandable_lv.setAdapter(myExpandableListAdapter)
+        viewBinding.expandableLv.setAdapter(myExpandableListAdapter)
         //去掉group默认的箭头
-//        expandable_lv.setGroupIndicator(null)
+//        viewBinding.expandableLv.setGroupIndicator(null)
         //设置组可拉伸的监听器,拉伸时会调用其中的onGroupExpand()方法
-        expandable_lv.setOnGroupExpandListener {
+        viewBinding.expandableLv.setOnGroupExpandListener {
             /**
              * 实现打开只能打开一个组的功能,打开一个组,已将打开的组会自动收缩
              */
@@ -69,28 +71,28 @@ class MyExpandableListViewActivity : AppCompatActivity() {
              * 实现打开只能打开一个组的功能,打开一个组,已将打开的组会自动收缩
              */
 //            if (it !== lastGroupPosition) {
-//                expandable_lv.collapseGroup(lastGroupPosition)
+//                viewBinding.expandableLv.collapseGroup(lastGroupPosition)
 //            }
 //            lastGroupPosition = it
         }
         //设置组收缩的监听器,收缩时会调用其中的onGroupCollapse()方法
-        expandable_lv.setOnGroupCollapseListener(OnGroupCollapseListener { })
+        viewBinding.expandableLv.setOnGroupCollapseListener(OnGroupCollapseListener { })
 
-//        expandable_lv.setSelectedChild(1, 0, true)
+//        viewBinding.expandableLv.setSelectedChild(1, 0, true)
 
-//        expandable_lv.smoothScrollToPosition(12)
+//        viewBinding.expandableLv.smoothScrollToPosition(12)
         val pos: Int = (Random.nextFloat() * groupData.size).toInt()
-        expandable_lv.setSelection(pos)
-        val count = expandable_lv.count
+        viewBinding.expandableLv.setSelection(pos)
+        val count = viewBinding.expandableLv.count
         for (i in 0 until count) {
-            expandable_lv.expandGroup(i)
+            viewBinding.expandableLv.expandGroup(i)
         }
         val image = ImageView(this)
         image.setImageResource(R.drawable.totoro)
         val container = LinearLayout(this)
         val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 100.dp)
         container.addView(image, params)
-        expandable_lv.addHeaderView(container)
+        viewBinding.expandableLv.addHeaderView(container)
         toastShort("expand group $pos")
     }
 

@@ -12,18 +12,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.engineer.imitate.R
+import com.engineer.imitate.databinding.ActivityScreenRecorderBinding
 import com.engineer.imitate.services.MediaRecordService
-import com.engineer.imitate.ui.widget.headsup.Choco
 import com.engineer.imitate.ui.widget.headsup.Pudding
 import com.engineer.imitate.util.PathUtils
 import com.engineer.imitate.util.ScreenRecordHelper
 import com.engineer.imitate.util.SpUtil
-import kotlinx.android.synthetic.main.activity_screen_recorder.*
-import kotlinx.android.synthetic.main.item_heads_up.*
 import java.io.File
 
 class ScreenRecorderActivity : AppCompatActivity() {
-
+    private lateinit var viewBinding: ActivityScreenRecorderBinding
     private var screenRecordHelper: ScreenRecordHelper? = null
     private val music: AssetFileDescriptor by lazy { assets.openFd("test.aac") }
     private val fit_key = "fit"
@@ -35,13 +33,14 @@ class ScreenRecorderActivity : AppCompatActivity() {
         fit = SpUtil(this).getBool(fit_key)
         println("value ==$fit")
 //        window.decorView.fitsSystemWindows = fit
-        setContentView(R.layout.activity_screen_recorder)
+        viewBinding = ActivityScreenRecorderBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
-        start.setOnClickListener {
+        viewBinding.start.setOnClickListener {
             record()
         }
 
-        stop.setOnClickListener {
+        viewBinding.stop.setOnClickListener {
             screenRecordHelper?.apply {
                 if (isRecording) {
                     if (mediaPlayer != null) {
@@ -54,31 +53,33 @@ class ScreenRecorderActivity : AppCompatActivity() {
             }
         }
 
-        revert.setOnClickListener {
+        viewBinding.revert.setOnClickListener {
             fit = !fit
 //            window.decorView.fitsSystemWindows = !fit
             SpUtil(this).saveBool(fit_key, fit)
             if (fit) {
-                revert.text = "true"
+                viewBinding.revert.text = "true"
             } else {
-                revert.text = "false"
+                viewBinding.revert.text = "false"
             }
             recreate()
         }
 
-        headsup.setOnClickListener {
+        viewBinding.headsup.setOnClickListener {
             val view = LayoutInflater.from(this).inflate(R.layout.item_heads_up, null)
             Log.e("zyq", "on==view==h==${view.measuredHeight}")
             Pudding.create(this, view) {}
                 .show()
         }
 
-        headsup_img.setOnClickListener {
+        viewBinding.headsupImg.setOnClickListener {
             val view = LayoutInflater.from(this).inflate(R.layout.item_heads_up, null)
             val target = view.findViewById<ImageView>(R.id.headsup_image)
-            Glide.with(this).load("http://e.hiphotos.baidu.com/image/pic/item/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg").into(target)
+            Glide.with(this)
+                .load("http://e.hiphotos.baidu.com/image/pic/item/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg")
+                .into(target)
             Log.e("zyq", "on==view==h==${view.measuredHeight}")
-            target.setOnClickListener { Toast.makeText(this,"1",Toast.LENGTH_SHORT).show() }
+            target.setOnClickListener { Toast.makeText(this, "1", Toast.LENGTH_SHORT).show() }
             Pudding.create(this, view) {}
                 .show()
         }
@@ -151,7 +152,7 @@ class ScreenRecorderActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null) {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
-                val service = Intent(this@ScreenRecorderActivity,MediaRecordService::class.java)
+                val service = Intent(this@ScreenRecorderActivity, MediaRecordService::class.java)
                 startForegroundService(service)
             } else {
                 screenRecordHelper?.onActivityResult(requestCode, resultCode, data)

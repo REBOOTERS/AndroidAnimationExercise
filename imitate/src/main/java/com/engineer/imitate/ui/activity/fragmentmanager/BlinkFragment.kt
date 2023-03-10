@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.widget.NestedScrollView
 import com.engineer.imitate.R
 import com.engineer.imitate.util.dp
-import kotlinx.android.synthetic.main.fragment_blink.*
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -39,9 +41,16 @@ class BlinkFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_blink, container, false)
     }
+    private lateinit var nestedScrollview:NestedScrollView
+    private lateinit var text:TextView
+    private lateinit var image:ImageView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        nestedScrollview = view.findViewById(R.id.nestedScrollview)
+        text =view.findViewById(R.id.text)
+        image = view.findViewById(R.id.image)
+
         text.text = param1?.plus(param2)
         image.setOnClickListener {
             Log.e("BlinkFragment", "onViewCreated: 1 " + nestedScrollview.canScrollVertically(1))

@@ -18,20 +18,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
 import com.engineer.imitate.ui.adapter.ViewPagerFragmentStateAdapter
 import com.engineer.imitate.ui.fragments.subs.FragmentFactory
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.fragment_github.*
 
 
 @Route(path = "/anim/github")
 class GithubFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_github, container, false)
     }
@@ -40,6 +40,8 @@ class GithubFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         FragmentFactory.initData()
         val adapter = ViewPagerFragmentStateAdapter(this)
+        val pager = view.findViewById<ViewPager2>(R.id.pager)
+        val tabs = view.findViewById<TabLayout>(R.id.tabs)
         pager.adapter = adapter
         TabLayoutMediator(tabs, pager) { tab, position ->
             tab.text = FragmentFactory.list[position].title

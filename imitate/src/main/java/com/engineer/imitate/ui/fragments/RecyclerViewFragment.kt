@@ -12,16 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.imitate.R
+import com.engineer.imitate.databinding.FragmentRecyclerViewBinding
 import com.engineer.imitate.ui.activity.RVActivity
-import com.engineer.imitate.ui.list.adapter.ImageAdapter
 import com.engineer.imitate.ui.list.adapter.LargeImageAdapter
 import com.engineer.imitate.ui.list.adapter.SimpleImageAdapter
 import com.engineer.imitate.ui.list.decoration.OverLapDecoration
 import com.engineer.imitate.ui.list.layoutmanager.FocusLayoutManager
 import com.engineer.imitate.ui.widget.more.DZStickyNavLayouts
 import com.engineer.imitate.util.dp2px
-import kotlinx.android.synthetic.main.fragment_layout_manager.*
-import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import kotlin.math.abs
 
 /**
@@ -29,25 +27,26 @@ import kotlin.math.abs
  */
 @Route(path = "/anim/recycler_view")
 class RecyclerViewFragment : Fragment() {
-
+    private lateinit var viewBinding: FragmentRecyclerViewBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_recycler_view, container, false)
+        viewBinding = FragmentRecyclerViewBinding.inflate(inflater, container, false)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tv1.gravity = Gravity.CENTER
-        tv2.gravity = Gravity.START or Gravity.CENTER_VERTICAL
+        viewBinding.tv1.gravity = Gravity.CENTER
+        viewBinding.tv2.gravity = Gravity.START or Gravity.CENTER_VERTICAL
 
-        recyclerView.layoutManager =
+        viewBinding.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val adapter = SimpleImageAdapter(getList())
-        recyclerView.addItemDecoration(OverLapDecoration(context))
-        recyclerView.adapter = adapter
+        viewBinding.recyclerView.addItemDecoration(OverLapDecoration(context))
+        viewBinding.recyclerView.adapter = adapter
 
         val _context = context ?: return
 
@@ -61,55 +60,55 @@ class RecyclerViewFragment : Fragment() {
             .build()
 
         val emojiStr = String(Character.toChars(Integer.parseInt("1F5F3", 16)))
-        emoji.setText("emoji $emojiStr")
-        Toast.makeText(context, "value is ${text2.text}", Toast.LENGTH_SHORT).show()
+        viewBinding.emoji.setText("emoji $emojiStr")
+        Toast.makeText(context, "value is ${viewBinding.text2.text}", Toast.LENGTH_SHORT).show()
 
-        recyclerView_1.layoutManager = focusLayoutManager
-        recyclerView_1.adapter = LargeImageAdapter(getList())
+        viewBinding.recyclerView1.layoutManager = focusLayoutManager
+        viewBinding.recyclerView1.adapter = LargeImageAdapter(getList())
 
-        recyclerView_2.layoutManager =
+        viewBinding.recyclerView2.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView_2.adapter = LargeImageAdapter(getList().subList(0, 3))
+        viewBinding.recyclerView2.adapter = LargeImageAdapter(getList().subList(0, 3))
 
-        head_home_layout.setOnStartActivity(object : DZStickyNavLayouts.OnStartActivityListener {
+        viewBinding.headHomeLayout.setOnStartActivity(object : DZStickyNavLayouts.OnStartActivityListener {
             override fun onStart() {
-                drawer_layout.openDrawer(GravityCompat.END)
+                viewBinding.drawerLayout.openDrawer(GravityCompat.END)
             }
         })
 
-        webView.settings?.apply {
+        viewBinding.webView.settings?.apply {
             domStorageEnabled = true
             javaScriptEnabled = true
         }
-        webView.loadUrl("https://ddadaal.me/")
+        viewBinding.webView.loadUrl("https://ddadaal.me/")
 
-        drawer_layout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
+        viewBinding.drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-                slide_view.update(1 - slideOffset)
+                viewBinding.slideView.update(1 - slideOffset)
                 if (slideOffset < 0.1) {
-                    webView.visibility = View.INVISIBLE
+                    viewBinding.webView.visibility = View.INVISIBLE
                 } else {
-                    webView.visibility = View.VISIBLE
+                    viewBinding.webView.visibility = View.VISIBLE
                 }
             }
         })
 
         for (i in 1..5) {
             val view = LayoutInflater.from(context).inflate(R.layout.image_item, null)
-            container_vertical.addView(view)
+            viewBinding.fragmentLayoutManager.containerVertical.addView(view)
         }
 
 
         for (i in 1..5) {
             val view = LayoutInflater.from(context).inflate(R.layout.image_item, null)
-            container_horizontal.addView(view)
+            viewBinding.fragmentLayoutManager.containerHorizontal.addView(view)
         }
 
-        stack_view_layout_1.layoutDirection = View.LAYOUT_DIRECTION_LTR
-        stack_view_layout_2.layoutDirection = View.LAYOUT_DIRECTION_RTL
+        viewBinding.fragmentLayoutManager.stackViewLayout1.layoutDirection = View.LAYOUT_DIRECTION_LTR
+        viewBinding.fragmentLayoutManager.stackViewLayout2.layoutDirection = View.LAYOUT_DIRECTION_RTL
         var x = 0f
         var y = 0f
-        nestedScrollview.setOnTouchListener { v, event ->
+        viewBinding.nestedScrollview.setOnTouchListener { v, event ->
 
             when (event.actionMasked) {
                 MotionEvent.ACTION_DOWN -> {
@@ -123,7 +122,7 @@ class RecyclerViewFragment : Fragment() {
                     Log.e("tag", "deltaX = $deltaX,deltaY = $deltaY")
                     if (deltaX > deltaY) {
                         if (deltaXOrigin < 0 && deltaX > 100) {
-                            drawer_layout.openDrawer(GravityCompat.END)
+                            viewBinding.drawerLayout.openDrawer(GravityCompat.END)
                         }
                         return@setOnTouchListener true
                     }
@@ -132,7 +131,7 @@ class RecyclerViewFragment : Fragment() {
             false
         }
 
-        rv.setOnClickListener {
+        viewBinding.rv.setOnClickListener {
             startActivity(Intent(it.context, RVActivity::class.java))
         }
     }

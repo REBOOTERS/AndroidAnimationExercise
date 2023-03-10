@@ -4,10 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.engineer.imitate.R
-import kotlinx.android.synthetic.main.inflate_example.view.*
-import kotlinx.android.synthetic.main.inflate_example_best.view.*
 
 /**
  * Created on 2020/8/20.
@@ -25,9 +24,7 @@ class ViewA : ConstraintLayout {
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     ) {
         initView(context)
     }
@@ -36,7 +33,8 @@ class ViewA : ConstraintLayout {
 
     private fun initView(context: Context?) {
         val view = LayoutInflater.from(context).inflate(R.layout.inflate_example, this, true)
-        view.text_cover.text = this.javaClass.canonicalName
+        val text_cover: TextView = view.findViewById(R.id.text_cover)
+        text_cover.text = this.javaClass.canonicalName
     }
 
     override fun onDetachedFromWindow() {
@@ -57,9 +55,7 @@ class ViewB : ConstraintLayout {
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     ) {
         initView(context)
     }
@@ -68,7 +64,8 @@ class ViewB : ConstraintLayout {
 
     private fun initView(context: Context?) {
         val view = LayoutInflater.from(context).inflate(R.layout.inflate_example, this, false)
-        view.text_cover.text = this.javaClass.canonicalName
+        val text_cover: TextView = view.findViewById(R.id.text_cover)
+        text_cover.text = this.javaClass.canonicalName
         addView(view)
     }
 }
@@ -84,9 +81,7 @@ class ViewC : ConstraintLayout {
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     ) {
         initView(context)
     }
@@ -95,7 +90,8 @@ class ViewC : ConstraintLayout {
 
     private fun initView(context: Context?) {
         val view = LayoutInflater.from(context).inflate(R.layout.inflate_example, null, false)
-        view.text_cover.text = this.javaClass.canonicalName
+        val text_cover: TextView = view.findViewById(R.id.text_cover)
+        text_cover.text = this.javaClass.canonicalName
         addView(view)
     }
 }
@@ -111,9 +107,7 @@ class ViewD : ConstraintLayout {
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     ) {
         initView(context)
     }
@@ -122,7 +116,8 @@ class ViewD : ConstraintLayout {
 
     private fun initView(context: Context?) {
         val view = LayoutInflater.from(context).inflate(R.layout.inflate_example, null, true)
-        view.text_cover.text = this.javaClass.canonicalName
+        val text_cover: TextView = view.findViewById(R.id.text_cover)
+        text_cover.text = this.javaClass.canonicalName
         addView(view)
     }
 }
@@ -138,9 +133,7 @@ class ViewE : ConstraintLayout {
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     ) {
         initView(context)
     }
@@ -151,7 +144,8 @@ class ViewE : ConstraintLayout {
         val view = LayoutInflater.from(context).inflate(R.layout.inflate_example, null)
         // return inflate(resource, root, root != null);
         // 等价于  LayoutInflater.from(context).inflate(R.layout.inflate_example, null,false)
-        view.text_cover.text = this.javaClass.canonicalName
+        val text_cover: TextView = view.findViewById(R.id.text_cover)
+        text_cover.text = this.javaClass.canonicalName
         addView(view)
     }
 }
@@ -167,9 +161,7 @@ class ViewF : ConstraintLayout {
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     ) {
         initView(context)
     }
@@ -181,7 +173,8 @@ class ViewF : ConstraintLayout {
         // return inflate(resource, root, root != null);
         // 等价于  LayoutInflater.from(context).inflate(R.layout.inflate_example, this,true)
 //        addView(view) 在 addView 会报错
-        view.text_cover.text = this.javaClass.canonicalName
+        val text_cover: TextView = view.findViewById(R.id.text_cover)
+        text_cover.text = this.javaClass.canonicalName
     }
 }
 
@@ -196,9 +189,7 @@ class ViewG : ConstraintLayout {
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     ) {
         initView(context)
     }
@@ -207,6 +198,7 @@ class ViewG : ConstraintLayout {
 
     override fun onFinishInflate() {
         super.onFinishInflate()
+        val text_cover_best: TextView = findViewById(R.id.text_cover)
         text_cover_best.text = this.javaClass.canonicalName
     }
 

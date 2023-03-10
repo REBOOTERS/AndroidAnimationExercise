@@ -9,7 +9,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.engineer.imitate.R
 import com.engineer.imitate.util.dp
-import kotlinx.android.synthetic.main.label_layout_container.view.*
 
 
 class LabelLayoutProvider {
@@ -42,8 +41,10 @@ class LabelLayoutContainer : FrameLayout {
 
     // </editor-fold>
 
+    private lateinit var toggle:ToggleLayout
     private fun initView(context: Context?) {
-        LayoutInflater.from(context).inflate(R.layout.label_layout_container, this, true)
+        val view =LayoutInflater.from(context).inflate(R.layout.label_layout_container, this, true)
+        toggle = view.findViewById(R.id.toggle)
     }
 
     fun setData(labels: Array<String>) {
