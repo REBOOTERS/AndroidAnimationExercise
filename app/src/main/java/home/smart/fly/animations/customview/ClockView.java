@@ -94,6 +94,7 @@ public class ClockView extends View {
         mAnimator.setDuration(time * 1000);
         mAnimator.setInterpolator(new LinearInterpolator());
         mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 Log.e(TAG, "onAnimationUpdate: fraction=" + animation.getAnimatedFraction() * time);
@@ -124,10 +125,12 @@ public class ClockView extends View {
 
     public void pause() {
         if (mAnimator != null) {
-            if (mAnimator.isRunning()) {
-                mAnimator.pause();
-            } else if (mAnimator.isPaused()) {
+            if (mAnimator.isPaused()) {
+                Log.i(TAG, "do resume");
                 mAnimator.resume();
+            } else {
+                Log.i(TAG, "do pause");
+                mAnimator.pause();
             }
         }
     }
@@ -135,7 +138,7 @@ public class ClockView extends View {
 
     public void stop() {
         if (mAnimator != null) {
-            mAnimator.cancel();
+            mAnimator.end();
         }
     }
 
