@@ -181,6 +181,8 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 </details>
 
+[![Star History Chart](https://api.star-history.com/svg?repos=REBOOTERS/AndroidAnimationExercise&type=Date)](https://star-history.com/#REBOOTERS/AndroidAnimationExercise)
+
 ## diagram 
 
 <img src="diagram.svg" />
