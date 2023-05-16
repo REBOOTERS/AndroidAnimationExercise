@@ -109,8 +109,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     testOptions {
@@ -132,6 +132,7 @@ android {
         timeOutInMs 5 * 1000
         installOptions '-d'
     }
+    namespace 'home.smart.fly.animations'
 }
 
 //jacocoAndroidUnitTestReport {
@@ -145,7 +146,7 @@ configurations.all {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.google.code.gson:gson:2.10.1'
     implementation "androidx.appcompat:appcompat:${ext.androidx_appcompat}"
     implementation "com.google.android.material:material:${ext.androidx_material}"
     implementation 'com.orhanobut:logger:2.2.0'
@@ -155,7 +156,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "com.github.bumptech.glide:glide:$ext.glide"
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.7'
-    implementation 'com.squareup.okio:okio:3.2.0'
+    implementation 'com.squareup.okio:okio:3.3.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation "androidx.vectordrawable:vectordrawable:1.1.0"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
@@ -167,25 +168,25 @@ dependencies {
     kapt 'com.jakewharton:butterknife-compiler:10.2.3'
     implementation 'com.facebook.stetho:stetho:1.6.0'
     implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
-    implementation 'com.airbnb.android:lottie:5.2.0'
+    implementation 'com.airbnb.android:lottie:6.0.0'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
     implementation 'net.sourceforge.streamsupport:streamsupport:1.7.4'
 
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
 
     implementation "androidx.palette:palette-ktx:1.0.0"
-    implementation 'com.tencent:mmkv:1.2.14'
+    implementation 'com.tencent:mmkv:1.2.16'
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     implementation 'com.jakewharton.hugo:hugo-runtime:1.2.1'
 
 
-    implementation 'com.facebook.fresco:fresco:2.6.0'
+    implementation 'com.facebook.fresco:fresco:3.0.0'
     implementation 'com.lzy.widget:view-core:0.2.2'
     implementation 'com.github.chrisbanes:PhotoView:2.1.4'
     implementation 'com.zhihu.android:matisse:0.5.2'
@@ -212,7 +213,7 @@ dependencies {
     releaseImplementation "com.didichuxing.doraemonkit:dokitx-no-op:$doraemonkit"
 
     // https://github.com/skydoves/TransformationLayout
-    implementation 'com.github.skydoves:transformationlayout:1.1.1'
+    implementation 'com.github.skydoves:transformationlayout:1.1.2'
 
 
     if (!imitate_isApp.toBoolean()) {
@@ -236,6 +237,5 @@ repositories {
 
 
 // 自定义插件的一些测试，如果无法运行，可以暂时注释掉
-apply from: file("../gradle/custom_plugin.gradle")
 apply from: file("../gradle/funs.gradle")
 //apply from: file("dokit-config.gradle")
