@@ -81,6 +81,10 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 ### Android 构建流程 Gradle 的学习和 Gradle 插件自定义
 
+- **由于 AGP 8.0 开始 Gradle 官方移除了 Transform API，因此这部分内容已经不适用于 AGP 8.0 以上版本。
+`main` 分支已删除这部分代码，使用 AGP 8.0 以下版本仍然可以用 `master` 分支进行编译和学习**
+- **对于这部分的功能，将通过新的 API 尝试在 `main` 分支继续实现**
+
 在 buildSrc 内包含一些关于 gradle 构建流程的自定义内容，包括
 
 - 实现生成 apk 根据 flavor 改名。
