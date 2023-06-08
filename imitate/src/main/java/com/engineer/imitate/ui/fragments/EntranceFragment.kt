@@ -23,10 +23,21 @@ import com.bumptech.glide.Glide
 import com.engineer.android.game.ui.GameRootActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.databinding.FragmentEntranceBinding
-import com.engineer.imitate.ui.activity.*
+import com.engineer.imitate.ui.activity.CLActivity
+import com.engineer.imitate.ui.activity.ConstraintLayoutActivity
+import com.engineer.imitate.ui.activity.DateAndTimePickerActivity
+import com.engineer.imitate.ui.activity.FakeJikeActivity
+import com.engineer.imitate.ui.activity.FinalActivity
+import com.engineer.imitate.ui.activity.HorizontalListActivity
+import com.engineer.imitate.ui.activity.InflateRealActivity
+import com.engineer.imitate.ui.activity.MyExpandableListViewActivity
+import com.engineer.imitate.ui.activity.ReverseGifActivity
+import com.engineer.imitate.ui.activity.RunShellActivity
+import com.engineer.imitate.ui.activity.ScreenRecorderActivity
+import com.engineer.imitate.ui.activity.SelfDrawViewActivity
+import com.engineer.imitate.ui.activity.WifiScanActivity
 import com.engineer.imitate.ui.activity.fragmentmanager.ContentActivity
 import com.engineer.imitate.ui.activity.ninepoint.NinePointActivity
-import com.engineer.imitate.ui.activity.surface.SurfaceViewActivity
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.startActivity
 import com.engineer.imitate.util.toastShort
@@ -179,13 +190,6 @@ class EntranceFragment : Fragment() {
             startActivity(
                 Intent(
                     context, ContentActivity::class.java
-                )
-            )
-        }
-        viewBinding.surface.setOnClickListener {
-            startActivity(
-                Intent(
-                    context, SurfaceViewActivity::class.java
                 )
             )
         }

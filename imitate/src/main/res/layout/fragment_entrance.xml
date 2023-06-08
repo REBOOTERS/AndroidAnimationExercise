@@ -58,15 +58,15 @@
                 android:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton
-                    android:id="@+id/scan_wifi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="scan_wifi"
-                    android:textColor="?android:attr/textColorSecondaryInverse"
-                    android:visibility="visible" />
+                android:id="@+id/scan_wifi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="scan_wifi"
+                android:textColor="?android:attr/textColorSecondaryInverse"
+                android:visibility="visible" />
 
 
             <com.google.android.material.button.MaterialButton
@@ -101,16 +101,6 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="constraintLayout_layout2"
-                android:textColor="?android:attr/textColorSecondaryInverse" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/surface"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="surfaceview"
                 android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton

@@ -129,7 +129,7 @@ dependencies {
 
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
-    implementation 'com.facebook.fresco:fresco:3.0.0'
+    implementation 'com.facebook.fresco:fresco:2.6.0'
     implementation 'com.zhihu.android:matisse:0.5.3-beta3'
     implementation 'com.permissionx.guolindev:permissionx:1.4.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'

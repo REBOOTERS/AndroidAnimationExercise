@@ -198,8 +198,8 @@ class ViewG : ConstraintLayout {
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        val text_cover_best: TextView = findViewById(R.id.text_cover)
-        text_cover_best.text = this.javaClass.canonicalName
+        val textCoverBest: TextView? = findViewById(R.id.text_cover)
+        textCoverBest?.text = this.javaClass.canonicalName
     }
 
     private fun initView(context: Context?) {

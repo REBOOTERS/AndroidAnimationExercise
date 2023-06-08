@@ -57,9 +57,6 @@
             android:name=".ui.activity.ViewDispathchActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.activity.surface.SurfaceViewActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.activity.CLActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
