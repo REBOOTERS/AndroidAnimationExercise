@@ -22,13 +22,22 @@
             android:layout_margin="10dp"
             android:visibility="gone" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/smart_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            tools:listitem="@layout/view_item"
-            tools:visibility="visible" />
+            tools:visibility="visible">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:itemCount="5"
+                tools:listitem="@layout/view_item"
+                tools:visibility="visible" />
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
 
     </FrameLayout>
 

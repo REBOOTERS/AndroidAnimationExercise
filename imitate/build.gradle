@@ -207,4 +207,13 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines"
     //                                       👇 依赖当前平台所对应的平台库
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_android"
+
+    implementation  'io.github.scwang90:refresh-layout-kernel:2.0.6'      //核心必须依赖
+    implementation  'io.github.scwang90:refresh-header-classics:2.0.6'    //经典刷新头
+    implementation  'io.github.scwang90:refresh-header-radar:2.0.6'       //雷达刷新头
+    implementation  'io.github.scwang90:refresh-header-falsify:2.0.6'     //虚拟刷新头
+    implementation  'io.github.scwang90:refresh-header-material:2.0.6'    //谷歌刷新头
+    implementation  'io.github.scwang90:refresh-header-two-level:2.0.6'   //二级刷新头
+    implementation  'io.github.scwang90:refresh-footer-ball:2.0.6'        //球脉冲加载
+    implementation  'io.github.scwang90:refresh-footer-classics:2.0.6'    //经典加载
 }

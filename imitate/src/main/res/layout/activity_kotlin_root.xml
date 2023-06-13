@@ -62,7 +62,7 @@
             android:contentDescription="@string/app_name"
             android:elevation="10dp"
             android:src="@drawable/ic_gif_white_24dp"
-            app:backgroundTint="@color/colorPrimary"
+            app:backgroundTint="@color/colorAccent"
             app:fabSize="normal" />
 
     </com.skydoves.transformationlayout.TransformationLayout>

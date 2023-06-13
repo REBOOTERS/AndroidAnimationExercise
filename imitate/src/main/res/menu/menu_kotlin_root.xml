@@ -10,7 +10,7 @@
         android:title="theme_switch"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_refresh"
+        android:id="@+id/action_switch_view"
         android:orderInCategory="100"
         android:title="@string/switchview"
         app:showAsAction="never" />
@@ -18,5 +18,10 @@
     <item
         android:id="@+id/action_change"
         android:title="@string/change"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/refresh"
+        android:title="@string/refresh"
         app:showAsAction="never" />
 </menu>

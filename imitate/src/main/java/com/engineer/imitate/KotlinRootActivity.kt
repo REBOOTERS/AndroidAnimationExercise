@@ -36,6 +36,12 @@ import com.example.cpp_native.app.NativeRoot
 import com.gyf.immersionbar.ImmersionBar
 import com.list.rados.fast_list.FastListAdapter
 import com.list.rados.fast_list.bind
+import com.scwang.smart.refresh.footer.ClassicsFooter
+import com.scwang.smart.refresh.header.BezierRadarHeader
+import com.scwang.smart.refresh.header.ClassicsHeader
+import com.scwang.smart.refresh.header.FalsifyHeader
+import com.scwang.smart.refresh.header.MaterialHeader
+import com.scwang.smart.refresh.layout.api.RefreshHeader
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -145,7 +151,6 @@ class KotlinRootActivity : AppCompatActivity() {
             FragmentItem("/anim/rx_play", "rx_play"),
             FragmentItem("/anim/motion_layout", "motion_layout"),
             FragmentItem("/anim/github", "github features"),
-            FragmentItem("/anim/pure_3d_share", "3D shape"),
             FragmentItem("/anim/circleLoading", "circle-loading"),
             FragmentItem("/anim/coroutines", "coroutines"),
             FragmentItem("/anim/recycler_view", "RecyclerView"),
@@ -166,7 +171,7 @@ class KotlinRootActivity : AppCompatActivity() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
                 viewBinding.contentKotlinRoot.hybrid.visibility = View.GONE
-                viewBinding.contentKotlinRoot.recyclerView.visibility = View.VISIBLE
+                viewBinding.contentKotlinRoot.smartRefreshLayout.visibility = View.VISIBLE
             }
         }).start()
 
@@ -210,6 +215,15 @@ class KotlinRootActivity : AppCompatActivity() {
                 }
             })
         }
+        val heads = arrayListOf<RefreshHeader>(
+            ClassicsHeader(this), BezierRadarHeader(this), FalsifyHeader(this), MaterialHeader(this)
+        )
+        viewBinding.contentKotlinRoot.smartRefreshLayout.autoRefresh()
+        viewBinding.contentKotlinRoot.smartRefreshLayout.setRefreshHeader(heads.random())
+        viewBinding.contentKotlinRoot.smartRefreshLayout.setRefreshFooter(ClassicsFooter(this))
+        viewBinding.contentKotlinRoot.smartRefreshLayout.setOnRefreshListener {
+            viewBinding.contentKotlinRoot.smartRefreshLayout.finishRefresh(2000)
+        }
     }
 
     private fun showMenu(view: View) {
@@ -224,7 +238,7 @@ class KotlinRootActivity : AppCompatActivity() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
                 viewBinding.contentKotlinRoot.hybrid.visibility = View.VISIBLE
-                viewBinding.contentKotlinRoot.recyclerView.visibility = View.GONE
+                viewBinding.contentKotlinRoot.smartRefreshLayout.visibility = View.GONE
             }
         }).start()
 
@@ -277,13 +291,15 @@ class KotlinRootActivity : AppCompatActivity() {
         val item = menu?.findItem(R.id.theme_switch)
         if (isNightMode()) {
             item?.setIcon(R.drawable.ic_brightness_low_white_24dp)
-            item?.setTitle("日间模式")
+            item?.title = "日间模式"
         } else {
             item?.setIcon(R.drawable.ic_brightness_high_white_24dp)
             item?.title = "夜间模式"
         }
         val change = menu?.findItem(R.id.action_change)
-        change?.isVisible = (viewBinding.contentKotlinRoot.recyclerView.visibility == View.VISIBLE)
+        val refresh = menu?.findItem(R.id.refresh)
+        change?.isVisible = (viewBinding.contentKotlinRoot.smartRefreshLayout.visibility == View.VISIBLE)
+        refresh?.isVisible = (viewBinding.contentKotlinRoot.smartRefreshLayout.visibility == View.VISIBLE)
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -294,15 +310,15 @@ class KotlinRootActivity : AppCompatActivity() {
             } else {
                 finish()
             }
-        } else if (item.itemId == R.id.action_refresh) {
-            if (viewBinding.contentKotlinRoot.recyclerView.visibility == View.VISIBLE) {
+        } else if (item.itemId == R.id.action_switch_view) {
+            if (viewBinding.contentKotlinRoot.smartRefreshLayout.visibility == View.VISIBLE) {
                 loadWebView()
             } else {
                 loadRecyclerView()
             }
             return true
         } else if (item.itemId == R.id.action_change) {
-            if (viewBinding.contentKotlinRoot.recyclerView.visibility == View.VISIBLE) {
+            if (viewBinding.contentKotlinRoot.smartRefreshLayout.visibility == View.VISIBLE) {
                 if (viewBinding.contentKotlinRoot.recyclerView.layoutManager == mLinearManager) {
                     mLayoutManager = mGridLayoutManager
                 } else {
@@ -320,6 +336,10 @@ class KotlinRootActivity : AppCompatActivity() {
                 SpUtil(this).saveBool(SpUtil.KEY_THEME_NIGHT_ON, true)
             }
 //            recreate()
+        } else if (item.itemId == R.id.refresh) {
+            if (viewBinding.contentKotlinRoot.recyclerView.visibility == View.VISIBLE) {
+                viewBinding.contentKotlinRoot.smartRefreshLayout.autoRefresh()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

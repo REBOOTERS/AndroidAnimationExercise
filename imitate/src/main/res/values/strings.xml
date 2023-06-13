@@ -133,6 +133,7 @@
 
     <string name="pull_scale_behavior">com.engineer.imitate.behavior.AppBarLayoutOverScrollViewBehavior</string>
     <string name="change">change</string>
+    <string name="refresh">refresh</string>
     <string name="switchview">switchView</string>
 
     <string name="phone_not_support_screen_record">抱歉，你的手机暂不支持录屏</string>
