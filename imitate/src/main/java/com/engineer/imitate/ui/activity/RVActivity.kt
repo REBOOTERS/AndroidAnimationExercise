@@ -16,7 +16,7 @@ import com.engineer.imitate.databinding.ActivityRVBinding
 import com.engineer.imitate.util.dp
 
 class RVActivity : AppCompatActivity() {
-    private lateinit var viewBinding :ActivityRVBinding
+    private lateinit var viewBinding: ActivityRVBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityRVBinding.inflate(layoutInflater)
@@ -29,6 +29,10 @@ class RVActivity : AppCompatActivity() {
 
         val snapHelper = getSnapHelper()
         snapHelper.attachToRecyclerView(viewBinding.rvList)
+
+        viewBinding.rvList.postDelayed({
+            viewBinding.refreshLayout.autoRefresh()
+        }, 1000)
     }
 
     private fun getSnapHelper(): SnapHelper {
@@ -45,7 +49,7 @@ class RVActivity : AppCompatActivity() {
 
 private class SimpleAdapter(val items: List<Int>) : RecyclerView.Adapter<SimpleAdapter.MyHolder>() {
 
-     class MyHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class MyHolder(view: View) : RecyclerView.ViewHolder(view) {
         val frameLayout = view as FrameLayout
         val imageView: ImageView = frameLayout.getChildAt(0) as ImageView
         val textView: TextView = frameLayout.getChildAt(1) as TextView
@@ -64,7 +68,7 @@ private class SimpleAdapter(val items: List<Int>) : RecyclerView.Adapter<SimpleA
         params.gravity = Gravity.CENTER
         val frame = FrameLayout(ctx)
         frame.layoutParams = params
-        frame.setBackgroundColor(Color.CYAN)
+        frame.setBackgroundColor(Color.BLACK)
         frame.addView(iv, params)
         params.gravity = Gravity.BOTTOM
         params.bottomMargin = 16.dp
