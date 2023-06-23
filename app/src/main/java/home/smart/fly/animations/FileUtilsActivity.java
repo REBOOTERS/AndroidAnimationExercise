@@ -7,44 +7,29 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
+import android.text.TextUtils;
+import android.util.ArrayMap;
+import android.util.DisplayMetrics;
+import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.text.TextUtils;
-import android.util.ArrayMap;
-import android.util.DisplayMetrics;
-import android.util.Log;
-
-import com.zhihu.android.sugaradapter.SugarAdapter;
-import com.zhihu.android.sugaradapter.SugarHolder;
-
-import home.smart.fly.animations.internal.annotations.Cat;
-import home.smart.fly.animations.internal.annotations.Tiger;
-import home.smart.fly.animations.utils.RxBus;
-import home.smart.fly.animations.utils.SimpleEvent;
-
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+import home.smart.fly.animations.internal.annotations.Tiger;
 import home.smart.fly.animations.sugar.bean.Item;
-import home.smart.fly.animations.sugar.viewholder.LargeItemHolder;
-import home.smart.fly.animations.sugar.viewholder.SmallItemHolder;
 import home.smart.fly.animations.utils.AppUtils;
+import home.smart.fly.animations.utils.RxBus;
+import home.smart.fly.animations.utils.SimpleEvent;
 import home.smart.fly.animations.utils.StatusBarUtil;
 
 @Tiger
@@ -53,7 +38,6 @@ public class FileUtilsActivity extends AppCompatActivity {
     private static final String TAG = "FileUtilsActivity";
 
     private List<Item> items;
-    private SugarAdapter mSugarAdapter;
     private RecyclerView mRecyclerView;
     private Context mContext;
     private FloatingActionButton mRetry;
@@ -70,31 +54,15 @@ public class FileUtilsActivity extends AppCompatActivity {
         mRxBus = findViewById(R.id.rxbus);
 
         items = new ArrayList<>();
-        mSugarAdapter = SugarAdapter.Builder.with(items)
-                .add(LargeItemHolder.class)
-                .add(SmallItemHolder.class)
-                .build();
+
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mSugarAdapter);
-
-        mSugarAdapter.addDispatcher(new SugarAdapter.Dispatcher<Item>() {
-            @NotNull
-            @Override
-            public Class<? extends SugarHolder> dispatch(@NonNull Item data) {
-                if (data.getTitle().length() < 40) {
-                    return LargeItemHolder.class;
-                }
-                return SmallItemHolder.class;
-            }
-        });
 
         refreshList();
 
         mRetry.setOnClickListener(v -> recyclerview());
 
-        mRxBus.setOnClickListener(v -> RxBus.getInstance()
-                .post(new SimpleEvent(FileUtilsActivity.class.getSimpleName())));
+        mRxBus.setOnClickListener(v -> RxBus.getInstance().post(new SimpleEvent(FileUtilsActivity.class.getSimpleName())));
 
         ArrayMap<String, String> arrayMap = new ArrayMap<>();
         arrayMap.put("name", "mike");
@@ -177,45 +145,31 @@ public class FileUtilsActivity extends AppCompatActivity {
         final int version = Build.VERSION.SDK_INT;
         final String mRelease = Build.VERSION.RELEASE;
         final String mSerial = Build.SERIAL;
-        String android_id = Settings.Secure
-                .getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
+        String android_id = Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
         String filepath = Environment.getExternalStorageDirectory().getAbsolutePath();
         //
         String getDataDirectory = Environment.getDataDirectory().getAbsolutePath();
         String getRootDirectory = Environment.getRootDirectory().getAbsolutePath();
-        String getDownloadCacheDirectory =
-                Environment.getDownloadCacheDirectory().getAbsolutePath();
+        String getDownloadCacheDirectory = Environment.getDownloadCacheDirectory().getAbsolutePath();
         //
-        String DIRECTORY_DCIM =
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
-                        .getAbsolutePath();
-        String DIRECTORY_DOCUMENTS =
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
-                        .getAbsolutePath();
-        String DIRECTORY_PICTURES =
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                        .getAbsolutePath();
-        String DIRECTORY_DOWNLOADS =
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                        .getAbsolutePath();
+        String DIRECTORY_DCIM = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
+        String DIRECTORY_DOCUMENTS = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
+        String DIRECTORY_PICTURES = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        String DIRECTORY_DOWNLOADS = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
         //
         String cacheDir = mContext.getCacheDir().getAbsolutePath();
         String filesDir = mContext.getFilesDir().getAbsolutePath();
         //
         String getExternalCacheDir = mContext.getExternalCacheDir().getAbsolutePath();
-        String getExternalFilesDir_DIRECTORY_PICTURES =
-                mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
-        String getExternalFilesDir_DIRECTORY_DOCUMENTS =
-                mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
+        String getExternalFilesDir_DIRECTORY_PICTURES = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        String getExternalFilesDir_DIRECTORY_DOCUMENTS = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
 
-        ActivityManager mManager =
-                (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager mManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         int size = mManager.getMemoryClass();
 
         items.add(new Item("应用包名", AppUtils.getPackageName(this)));
 
-        items.add(
-                new Item("BuildConfig.APPLICATION_ID", String.valueOf(BuildConfig.APPLICATION_ID)));
+        items.add(new Item("BuildConfig.APPLICATION_ID", String.valueOf(BuildConfig.APPLICATION_ID)));
         items.add(new Item("BuildConfig.BUILD_TYPE", String.valueOf(BuildConfig.BUILD_TYPE)));
         items.add(new Item("BuildConfig.FLAVOR", String.valueOf(BuildConfig.FLAVOR)));
         items.add(new Item("BuildConfig.VERSION_NAME", String.valueOf(BuildConfig.VERSION_NAME)));
@@ -230,33 +184,19 @@ public class FileUtilsActivity extends AppCompatActivity {
         items.add(new Item("Environment.getExternalStorageDirectory()", String.valueOf(filepath)));
         items.add(new Item("Environment.getDataDirectory()", String.valueOf(getDataDirectory)));
         items.add(new Item("Environment.getRootDirectory()", String.valueOf(getRootDirectory)));
-        items.add(new Item("Environment.getDownloadCacheDirectory()",
-                String.valueOf(getDownloadCacheDirectory)));
+        items.add(new Item("Environment.getDownloadCacheDirectory()", String.valueOf(getDownloadCacheDirectory)));
 
-        items.add(new Item("Environment.getExternalStorageDirectory(Environment.DIRECTORY_DCIM)",
-                String.valueOf(DIRECTORY_DCIM)));
-        items.add(
-                new Item("Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOCUMENTS)",
-                        String.valueOf(DIRECTORY_DOCUMENTS)));
-        items.add(
-                new Item("Environment.getExternalStorageDirectory(Environment.DIRECTORY_PICTURES)",
-                        String.valueOf(DIRECTORY_PICTURES)));
-        items.add(
-                new Item("Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOWNLOADS)",
-                        String.valueOf(DIRECTORY_DOWNLOADS)));
+        items.add(new Item("Environment.getExternalStorageDirectory(Environment.DIRECTORY_DCIM)", String.valueOf(DIRECTORY_DCIM)));
+        items.add(new Item("Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOCUMENTS)", String.valueOf(DIRECTORY_DOCUMENTS)));
+        items.add(new Item("Environment.getExternalStorageDirectory(Environment.DIRECTORY_PICTURES)", String.valueOf(DIRECTORY_PICTURES)));
+        items.add(new Item("Environment.getExternalStorageDirectory(Environment.DIRECTORY_DOWNLOADS)", String.valueOf(DIRECTORY_DOWNLOADS)));
 
         items.add(new Item("mContext.getCacheDir()", String.valueOf(cacheDir)));
         items.add(new Item("mContext.getFilesDir()", String.valueOf(filesDir)));
 
-        items.add(
-                new Item("mContext.getExternalCacheDir()()", String.valueOf(getExternalCacheDir)));
-        items.add(new Item("mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES)",
-                String.valueOf(getExternalFilesDir_DIRECTORY_PICTURES)));
-        items.add(new Item("mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)",
-                String.valueOf(getExternalFilesDir_DIRECTORY_DOCUMENTS)));
-
-        mSugarAdapter.notifyDataSetChanged();
-
+        items.add(new Item("mContext.getExternalCacheDir()()", String.valueOf(getExternalCacheDir)));
+        items.add(new Item("mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES)", String.valueOf(getExternalFilesDir_DIRECTORY_PICTURES)));
+        items.add(new Item("mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)", String.valueOf(getExternalFilesDir_DIRECTORY_DOCUMENTS)));
 
 
         test();
@@ -299,66 +239,10 @@ public class FileUtilsActivity extends AppCompatActivity {
 
         @Override
         public String toString() {
-            return "Info{" +
-                    "time='" + time + '\'' +
-                    ", value='" + value + '\'' +
-                    '}';
+            return "Info{" + "time='" + time + '\'' + ", value='" + value + '\'' + '}';
         }
     }
 
-    public static final String json = "{\n"
-            + "  \"2022-02-01\": [\n"
-            + "    {\n"
-            + "      \"time\": \"mike\",\n"
-            + "      \"value\": \"北京\"\n"
-            + "    },\n"
-            + "    {\n"
-            + "      \"time\": \"mike1\",\n"
-            + "      \"value\": \"北京1\"\n"
-            + "    },\n"
-            + "    {\n"
-            + "      \"time\": \"mike2\",\n"
-            + "      \"value\": \"北京2\"\n"
-            + "    }\n"
-            + "  ],\n"
-            + "  \"2022-02-02\": [\n"
-            + "    {\n"
-            + "      \"time\": \"lucy\",\n"
-            + "      \"value\": \"南京\"\n"
-            + "    },\n"
-            + "    {\n"
-            + "      \"time\": \"lucy1\",\n"
-            + "      \"value\": \"南京1\"\n"
-            + "    }\n"
-            + "  ],\n"
-            + "  \"2022-02-03\": [\n"
-            + "    {\n"
-            + "      \"time\": \"lily\",\n"
-            + "      \"value\": \"西安\"\n"
-            + "    },\n"
-            + "    {\n"
-            + "      \"time\": \"lily1\",\n"
-            + "      \"value\": \"西安1\"\n"
-            + "    },\n"
-            + "    {\n"
-            + "      \"time\": \"lily2\",\n"
-            + "      \"value\": \"西安2\"\n"
-            + "    }\n"
-            + "  ],\n"
-            + "  \"2022-02-04\": [\n"
-            + "    {\n"
-            + "      \"time\": \"tom\",\n"
-            + "      \"value\": \"tokyo\"\n"
-            + "    },\n"
-            + "    {\n"
-            + "      \"time\": \"tom1\",\n"
-            + "      \"value\": \"tokyo1\"\n"
-            + "    },\n"
-            + "    {\n"
-            + "      \"time\": \"tom2\",\n"
-            + "      \"value\": \"tokyo2\"\n"
-            + "    }\n"
-            + "  ]\n"
-            + "}";
+    public static final String json = "{\n" + "  \"2022-02-01\": [\n" + "    {\n" + "      \"time\": \"mike\",\n" + "      \"value\": \"北京\"\n" + "    },\n" + "    {\n" + "      \"time\": \"mike1\",\n" + "      \"value\": \"北京1\"\n" + "    },\n" + "    {\n" + "      \"time\": \"mike2\",\n" + "      \"value\": \"北京2\"\n" + "    }\n" + "  ],\n" + "  \"2022-02-02\": [\n" + "    {\n" + "      \"time\": \"lucy\",\n" + "      \"value\": \"南京\"\n" + "    },\n" + "    {\n" + "      \"time\": \"lucy1\",\n" + "      \"value\": \"南京1\"\n" + "    }\n" + "  ],\n" + "  \"2022-02-03\": [\n" + "    {\n" + "      \"time\": \"lily\",\n" + "      \"value\": \"西安\"\n" + "    },\n" + "    {\n" + "      \"time\": \"lily1\",\n" + "      \"value\": \"西安1\"\n" + "    },\n" + "    {\n" + "      \"time\": \"lily2\",\n" + "      \"value\": \"西安2\"\n" + "    }\n" + "  ],\n" + "  \"2022-02-04\": [\n" + "    {\n" + "      \"time\": \"tom\",\n" + "      \"value\": \"tokyo\"\n" + "    },\n" + "    {\n" + "      \"time\": \"tom1\",\n" + "      \"value\": \"tokyo1\"\n" + "    },\n" + "    {\n" + "      \"time\": \"tom2\",\n" + "      \"value\": \"tokyo2\"\n" + "    }\n" + "  ]\n" + "}";
 
 }

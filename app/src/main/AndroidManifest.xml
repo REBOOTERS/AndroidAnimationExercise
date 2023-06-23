@@ -280,9 +280,6 @@
             android:exported="false"
             android:theme="@style/MyTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.PullRecyclerViewActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.activity.FlipViewActivity"
             android:exported="false" />
         <activity
@@ -365,13 +362,6 @@
             android:exported="false"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.PhotoBrowse"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.SwipeFinishActivity"
-            android:exported="false"
-            android:theme="@style/Swipe.Back.Activity.Theme" />
-        <activity
             android:name=".ui.activity.ViewTransformActivity"
             android:exported="false" />
         <activity
@@ -420,7 +410,6 @@
         <activity
             android:name=".master.ui.MasterPaintActivity"
             android:hardwareAccelerated="false" />
-        <activity android:name=".master.ui.MasterFilterActivity" />
         <activity
             android:name=".ui.activity.OrientationActivity"
             android:screenOrientation="fullSensor"

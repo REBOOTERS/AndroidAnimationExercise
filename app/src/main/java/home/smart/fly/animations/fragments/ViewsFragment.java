@@ -6,7 +6,6 @@ import home.smart.fly.animations.R;
 import home.smart.fly.animations.fragments.base.BaseFragment;
 import home.smart.fly.animations.fragments.base.ItemInfo;
 import home.smart.fly.animations.fragments.base.RoutePaths;
-import home.smart.fly.animations.master.ui.MasterFilterActivity;
 import home.smart.fly.animations.master.ui.MasterPaintActivity;
 import home.smart.fly.animations.ui.activity.BitmapMeshActivity;
 import home.smart.fly.animations.ui.activity.CollegeActivity;
@@ -36,7 +35,6 @@ public class ViewsFragment extends BaseFragment {
         demos.add(new ItemInfo(R.string.profile, ScrollingActivity.class));
         demos.add(new ItemInfo(R.string.pull_to_scale, PullToScaleActivity.class));
         demos.add(new ItemInfo(R.string.master, MasterPaintActivity.class));
-        demos.add(new ItemInfo(R.string.filter, MasterFilterActivity.class));
         demos.add(new ItemInfo(R.string.view_transform, ViewTransformActivity.class));
         demos.add(new ItemInfo(R.string.bitmap_mesh, BitmapMeshActivity.class));
         demos.add(new ItemInfo(R.string.view_property, PlayActivity.class));

@@ -11,12 +11,10 @@ import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.bigkoo.pickerview.builder.TimePickerBuilder
-import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.engineer.imitate.databinding.ActivityDateAndTimePickerBinding
 import com.engineer.imitate.receivers.AlarmReceiver
 import com.engineer.imitate.util.SysUtil
-import java.util.*
+import java.util.Calendar
 
 
 class DateAndTimePickerActivity : AppCompatActivity() {
@@ -51,7 +49,9 @@ class DateAndTimePickerActivity : AppCompatActivity() {
             calendar.set(Calendar.SECOND, 0)
 
             val intent = Intent(alarm_log)
-            val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+            val pendingIntent = PendingIntent.getBroadcast(
+                this, 0, intent, PendingIntent.FLAG_IMMUTABLE
+            )
             val alarm: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
             alarm.setRepeating(
                 AlarmManager.RTC_WAKEUP, calendar.timeInMillis, 1000 * 120, pendingIntent
@@ -64,8 +64,7 @@ class DateAndTimePickerActivity : AppCompatActivity() {
         }
 
         viewBinding.select.setOnClickListener {
-            val pvTime = TimePickerBuilder(this@DateAndTimePickerActivity, OnTimeSelectListener { date, v -> }).build()
-            pvTime.show()
+
         }
 
         testStandLib()

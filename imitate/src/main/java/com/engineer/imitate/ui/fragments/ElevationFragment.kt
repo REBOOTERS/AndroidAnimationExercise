@@ -13,7 +13,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.SeekBar
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.NotificationManagerCompat
@@ -26,7 +28,6 @@ import com.engineer.imitate.util.TestHelper
 import com.engineer.imitate.util.toastShort
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.skydoves.transformationlayout.TransformationLayout
-import com.xw.repo.BubbleSeekBar
 
 /**
  * A simple [Fragment] subclass.
@@ -43,10 +44,10 @@ class ElevationFragment : Fragment() {
     private lateinit var parent: ConstraintLayout
     private lateinit var myCardView: CardView
     private lateinit var cardView: CardView
-    private lateinit var cardElevationSeekBar: BubbleSeekBar
-    private lateinit var cardRadiusSeekBar: BubbleSeekBar
-    private lateinit var deltaXSeekBar: BubbleSeekBar
-    private lateinit var deltaYSeekBar: BubbleSeekBar
+    private lateinit var cardElevationSeekBar: AppCompatSeekBar
+    private lateinit var cardRadiusSeekBar: AppCompatSeekBar
+    private lateinit var deltaXSeekBar: AppCompatSeekBar
+    private lateinit var deltaYSeekBar: AppCompatSeekBar
     private lateinit var slide_view: JikeSlideView
     private lateinit var textView: TextView
     private lateinit var notification: TextView
@@ -94,46 +95,38 @@ class ElevationFragment : Fragment() {
             transformationLayout.finishTransform(parent)
         }
 
-        cardElevationSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
-            override fun onProgressChanged(
-                bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean
-            ) {
-                super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
-                cardView.cardElevation = progressFloat
-                fab.compatElevation = progressFloat
+        cardElevationSeekBar.setOnSeekBarChangeListener(object : SimpleProgressChangeListener() {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                super.onProgressChanged(p0, p1, p2)
+                cardView.cardElevation = p1.toFloat()
+                fab.compatElevation = p1.toFloat()
             }
-        }
+        })
 
-        cardRadiusSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
-            override fun onProgressChanged(
-                bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean
-            ) {
-                super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
-                cardView.radius = progressFloat
+        cardRadiusSeekBar.setOnSeekBarChangeListener(object : SimpleProgressChangeListener() {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                super.onProgressChanged(p0, p1, p2)
+                cardView.radius = p1.toFloat()
             }
-        }
-
-        deltaXSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
-            override fun onProgressChanged(
-                bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean
-            ) {
-                super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
-                mDeltaX = progressFloat
-                slide_view.update(progressFloat, mDeltaY)
+        })
+        deltaXSeekBar.setOnSeekBarChangeListener(object : SimpleProgressChangeListener() {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                super.onProgressChanged(p0, p1, p2)
+                mDeltaX = p1.toFloat()
+                slide_view.update(p1.toFloat(), mDeltaY)
             }
-        }
 
-        deltaYSeekBar.onProgressChangedListener = object : SimpleProgressChangeListener() {
-            override fun onProgressChanged(
-                bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean
-            ) {
-                super.onProgressChanged(bubbleSeekBar, progress, progressFloat, fromUser)
+        })
+        deltaYSeekBar.setOnSeekBarChangeListener(object : SimpleProgressChangeListener() {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                super.onProgressChanged(p0, p1, p2)
+
                 val screenHeight = resources.displayMetrics.heightPixels
-                val delatY = progressFloat / deltaYSeekBar.max * screenHeight
+                val delatY = p1.toFloat() / deltaYSeekBar.max * screenHeight
                 mDeltaY = delatY
                 slide_view.update(mDeltaX, delatY)
             }
-        }
+        })
 
 
         textView.setOnClickListener {
@@ -226,11 +219,13 @@ class ElevationFragment : Fragment() {
                 intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
                 intent.putExtra("android.provider.extra.APP_PACKAGE", context?.getPackageName())
             }
+
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {
                 intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
                 intent.putExtra("app_package", context?.getPackageName())
                 intent.putExtra("app_uid", context?.getApplicationInfo()?.uid)
             }
+
             else -> {
                 intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
                 intent.addCategory(Intent.CATEGORY_DEFAULT)
@@ -249,7 +244,8 @@ class ElevationFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         context?.let {
-            notification.text = NotificationManagerCompat.from(it).areNotificationsEnabled().toString()
+            notification.text =
+                NotificationManagerCompat.from(it).areNotificationsEnabled().toString()
         }
 
 

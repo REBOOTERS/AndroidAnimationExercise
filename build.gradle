@@ -18,13 +18,6 @@ buildscript {
         classpath "com.alibaba:arouter-register:$arouter_register"
 //        classpath "com.engineer.plugin:phoenix:1.0.7"
         classpath "gradle.plugin.com.dorongold.plugins:task-tree:1.3.1"
-//        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
-        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'
-
-        // jacoco  https://github.com/arturdm/jacoco-android-gradle-plugin
-        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.4'
-        // https://github.com/didi/DoraemonKit
-        classpath "com.didichuxing.doraemonkit:dokitx-plugin:$doraemonkit"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 

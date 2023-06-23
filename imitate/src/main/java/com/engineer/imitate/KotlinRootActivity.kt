@@ -34,8 +34,6 @@ import com.engineer.imitate.ui.activity.ReverseGifActivity
 import com.engineer.imitate.util.*
 import com.example.cpp_native.app.NativeRoot
 import com.gyf.immersionbar.ImmersionBar
-import com.list.rados.fast_list.FastListAdapter
-import com.list.rados.fast_list.bind
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.BezierRadarHeader
 import com.scwang.smart.refresh.header.ClassicsHeader

@@ -1,6 +1,5 @@
 package home.smart.fly.animations.ui.activity
 
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,9 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.zhihu.android.sugaradapter.SugarAdapter
 import home.smart.fly.animations.R
-import home.smart.fly.animations.sugar.viewholder.ActivityListViewHolder
 import home.smart.fly.animations.utils.AppUtils
 import java.util.*
 
@@ -26,23 +23,23 @@ class AllActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show()
         }
-        val adapter = SugarAdapter.Builder.with(getActivities()).add(ActivityListViewHolder::class.java).build();
-        adapter.addSugarHolderListener(object : SugarAdapter.SugarHolderListener<ActivityListViewHolder>() {
-            override fun onSugarHolderBindData(holder: ActivityListViewHolder) {
-                super.onSugarHolderBindData(holder)
-                holder.itemshell.setOnClickListener {
-                    val data = holder.data
-                    val target = Class.forName(data.second)
-                    val intent = Intent(this@AllActivity, target)
-                    startActivity(intent)
-                }
-            }
-        })
+//        val adapter = SugarAdapter.Builder.with(getActivities()).add(ActivityListViewHolder::class.java).build();
+//        adapter.addSugarHolderListener(object : SugarAdapter.SugarHolderListener<ActivityListViewHolder>() {
+//            override fun onSugarHolderBindData(holder: ActivityListViewHolder) {
+//                super.onSugarHolderBindData(holder)
+//                holder.itemshell.setOnClickListener {
+//                    val data = holder.data
+//                    val target = Class.forName(data.second)
+//                    val intent = Intent(this@AllActivity, target)
+//                    startActivity(intent)
+//                }
+//            }
+//        })
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
-        title = getString(R.string.activity_count, adapter.list.size)
+//        recyclerView.adapter = adapter
+//        title = getString(R.string.activity_count, adapter.list.size)
     }
 
     private fun getActivities(): List<Pair<String, String>> {

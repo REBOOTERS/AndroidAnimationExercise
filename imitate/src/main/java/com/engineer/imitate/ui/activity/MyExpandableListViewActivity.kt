@@ -16,15 +16,12 @@ import com.engineer.imitate.R
 import com.engineer.imitate.databinding.ActivityExpandableListViewBinding
 import com.engineer.imitate.util.dp
 import com.engineer.imitate.util.toastShort
-import com.zhy.view.flowlayout.FlowLayout
-import com.zhy.view.flowlayout.TagAdapter
-import com.zhy.view.flowlayout.TagFlowLayout
 import kotlin.random.Random
 
 class MyExpandableListViewActivity : AppCompatActivity() {
 
     private lateinit var mContext: Context
-    private lateinit var viewBinding:ActivityExpandableListViewBinding
+    private lateinit var viewBinding: ActivityExpandableListViewBinding
 
     private var lastGroupPosition = -1
     private val groupData = arrayOf(
@@ -174,26 +171,12 @@ class MyExpandableListViewActivity : AppCompatActivity() {
             if (view == null) {
                 holder = ChildViewHolder()
                 val inflater = LayoutInflater.from(mContext)
-                view = inflater.inflate(R.layout.expandable_childe_item, parent, false)
-                holder.flow = view.findViewById(R.id.id_flowlayout) as TagFlowLayout
-                view.tag = holder
+
             } else {
                 holder = view.tag as ChildViewHolder
             }
             val datas = childData[groupPosition].toList()
-            holder.flow.adapter = object : TagAdapter<String>(datas) {
-                override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
-                    val view = LayoutInflater.from(parent?.context)
-                        .inflate(R.layout.simple_tv, parent, false)
-                    val textView = view.findViewById<TextView>(R.id.text)
-                    textView.text = t
-                    return textView
-                }
-            }
-            holder.flow.setMaxSelectCount(1)
-            holder.flow.setOnSelectListener {
-                Log.e("flow", "it==$it")
-            }
+
 
             return view
         }
@@ -207,7 +190,7 @@ class MyExpandableListViewActivity : AppCompatActivity() {
         }
 
         inner class ChildViewHolder {
-            lateinit var flow: TagFlowLayout
+
         }
 
     }

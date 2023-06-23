@@ -14,9 +14,9 @@ import com.engineer.imitate.R
 import com.engineer.imitate.databinding.ActivityHorizontalListBinding
 import com.engineer.imitate.ui.widget.DecorationGod
 import com.engineer.imitate.ui.widget.DecorationOne
+import com.engineer.imitate.util.FastListAdapter
+import com.engineer.imitate.util.bind
 import com.engineer.imitate.util.dp2px
-import com.list.rados.fast_list.FastListAdapter
-import com.list.rados.fast_list.bind
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
 

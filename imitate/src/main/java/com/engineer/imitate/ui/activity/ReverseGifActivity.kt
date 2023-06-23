@@ -22,7 +22,6 @@ import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
 import com.permissionx.guolindev.PermissionX
 import com.skydoves.transformationlayout.onTransformationEndContainer
-import com.wang.avi.indicators.*
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
@@ -63,8 +62,7 @@ class ReverseGifActivity : AppCompatActivity() {
 
         Glide.with(this).load(R.drawable.haha).into(viewBinding.original)
         Glide.with(this).load(R.drawable.haha_revert).into(viewBinding.reversed)
-        val random = (Math.random() * indicators.size).toInt()
-        viewBinding.av.indicator = indicators[random]
+
     }
     // </editor-fold>
 
@@ -143,15 +141,6 @@ class ReverseGifActivity : AppCompatActivity() {
     // <editor-fold defaultstate="collapsed" desc="companion object">
     companion object {
         val GIF_REQUEST_CODE = 100
-        val indicators = arrayListOf(
-            BallClipRotateIndicator(),
-            CubeTransitionIndicator(),
-            SquareSpinIndicator(),
-            LineScaleIndicator(),
-            TriangleSkewSpinIndicator(),
-            PacmanIndicator(),
-            SemiCircleSpinIndicator()
-        )
     }
     // </editor-fold>
 }

@@ -11,6 +11,7 @@ apply plugin: 'kotlin-kapt'
 static def releaseTime() {
     return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+8"))
 }
+
 def ext = rootProject.ext
 
 android {
@@ -115,7 +116,6 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.constraintlayout:constraintlayout:${ext.constraint_layout}"
     implementation "com.github.bumptech.glide:glide:$ext.glide"
-    implementation 'com.xw.repo:bubbleseekbar:3.18'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-process:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
@@ -130,8 +130,8 @@ dependencies {
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
     implementation 'com.facebook.fresco:fresco:2.6.0'
-    implementation 'com.zhihu.android:matisse:0.5.3-beta3'
-    implementation 'com.permissionx.guolindev:permissionx:1.4.0'
+    implementation 'com.github.REBOOTERS:Matisse:0.5.3'
+    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'com.facebook.stetho:stetho:1.6.0'
@@ -139,14 +139,12 @@ dependencies {
     implementation 'net.sourceforge.streamsupport:streamsupport:1.7.4'
     //
     implementation 'com.github.andrefrsousa:SuperBottomSheet:1.3.0'
-    implementation 'com.flipboard:bottomsheet-core:1.5.3'
+
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'androidx.viewpager:viewpager:1.0.0'
-    implementation 'com.hyman:flowlayout-lib:1.1.2'
-    implementation 'com.contrarywind:Android-PickerView:4.1.8'
 
     implementation 'com.afollestad:assent:2.3.1'
-    implementation 'com.wang.avi:library:2.1.3'
+
 
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
@@ -164,11 +162,12 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '20030203.000550'
     implementation project(path: ':game')
     implementation project(path: ':gif-revert')
-    implementation 'bg.devlabs.fastlist:fast-list:1.4'
+
     implementation 'com.jaredrummler:simple-mvp:1.0.2'
 
     implementation 'com.github.Dovar66:DToast:1.1.5'
-    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+//    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+    implementation 'com.github.romandanylyk:PageIndicatorView:v.1.0.3'
 
     // from 2020
     implementation "com.google.android.material:material:$ext.androidx_material"
@@ -184,15 +183,16 @@ dependencies {
 
 
     // https://github.com/didi/DoraemonKit
-
-    debugImplementation "com.didichuxing.doraemonkit:dokitx:$doraemonkit"
-    releaseImplementation "com.didichuxing.doraemonkit:dokitx-no-op:$doraemonkit"
+    debugImplementation ("io.github.didi.dokit:dokitx:${doraemonkit}") {
+        exclude group: "com.android.volley", module: "volley"
+    }
+    releaseImplementation "io.github.didi.dokit:dokitx-no-op:${doraemonkit}"
 
     implementation 'com.github.wanglu1209:PhotoViewer:0.50'
 
     //  https://github.com/gyf-dev/ImmersionBar
     // 基础依赖包，必须要依赖
-    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+    implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
 
     // from 2021
     implementation 'com.github.skydoves:transformationlayout:1.1.2'

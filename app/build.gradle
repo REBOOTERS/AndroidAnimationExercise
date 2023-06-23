@@ -6,8 +6,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: "com.dorongold.task-tree"
-//apply plugin: 'android-aspectjx'
-//apply plugin: 'jacoco-android'
 
 
 def ext = rootProject.ext
@@ -51,8 +49,7 @@ android {
 //        }
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [
-                        AROUTER_MODULE_NAME: project.getName(),
+                arguments = [AROUTER_MODULE_NAME: project.getName(),
 //                        subModulesOfSugarAdapter: 'dataview'
                 ]
 
@@ -119,11 +116,6 @@ android {
         }
     }
 
-    dexOptions {
-        preDexLibraries true
-        maxProcessCount 8
-    }
-
     lintOptions {
         abortOnError false
     }
@@ -160,9 +152,10 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation "androidx.vectordrawable:vectordrawable:1.1.0"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
-    implementation 'cn.bingoogolapple:bga-refreshlayout:1.1.8@aar'
-    implementation 'cn.bingoogolapple:bga-banner:2.2.7@aar'
-    implementation 'cn.bingoogolapple:bga-adapter:1.2.0@aar'
+
+    implementation 'com.github.bingoogolapple:BGARefreshLayout-Android:2.0.1'
+    implementation 'com.github.bingoogolapple:BGABanner-Android:3.0.1'
+    implementation 'com.github.bingoogolapple:BGABaseAdapter-Android:1.2.0'
     implementation 'com.jakewharton:butterknife:10.2.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt 'com.jakewharton:butterknife-compiler:10.2.3'
@@ -187,30 +180,30 @@ dependencies {
 
 
     implementation 'com.facebook.fresco:fresco:3.0.0'
-    implementation 'com.lzy.widget:view-core:0.2.2'
+//    implementation 'com.lzy.widget:view-core:0.2.2'
     implementation 'com.github.chrisbanes:PhotoView:2.1.4'
-    implementation 'com.zhihu.android:matisse:0.5.2'
-    implementation 'com.permissionx.guolindev:permissionx:1.4.0'
+    implementation 'com.github.REBOOTERS:Matisse:0.5.3'
+    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.yalantis:ucrop:2.2.1'
-    implementation 'com.bm.photoview:library:1.4.1'
-    implementation 'com.gongwen:swipeback:1.0.1'
+//    implementation 'com.bm.photoview:library:1.4.1'
+//    implementation 'com.gongwen:swipeback:1.0.1'
     implementation 'me.leolin:ShortcutBadger:1.1.22@aar'
-    implementation 'com.xw.repo:bubbleseekbar:3.18'
+//    implementation 'com.xw.repo:bubbleseekbar:3.18'
 //    implementation 'com.muddzdev:pixelshot:1.3.0'
-    implementation 'com.zhihu.android:sugaradapter:1.8.19'
-    kapt 'com.zhihu.android:sugaradapter-processor:1.8.21'
+//    implementation 'com.zhihu.android:sugaradapter:1.8.19'
+//    kapt 'com.zhihu.android:sugaradapter-processor:1.8.21'
     implementation 'com.github.yhaolpz:FloatWindow:1.0.9'
 
     // https://github.com/didi/DoraemonKit
 
-//    debugImplementation "com.didichuxing.doraemonkit:doraemonkit:$doraemonkit"
-    debugImplementation ("com.didichuxing.doraemonkit:dokitx:$doraemonkit") {
+    debugImplementation("io.github.didi.dokit:dokitx:${doraemonkit}") {
         exclude group: "org.jsoup", module: "jsoup"
+        exclude group: "com.android.volley", module: "volley"
     }
-    releaseImplementation "com.didichuxing.doraemonkit:dokitx-no-op:$doraemonkit"
+    releaseImplementation "io.github.didi.dokit:dokitx-no-op:${doraemonkit}"
 
     // https://github.com/skydoves/TransformationLayout
     implementation 'com.github.skydoves:transformationlayout:1.1.2'

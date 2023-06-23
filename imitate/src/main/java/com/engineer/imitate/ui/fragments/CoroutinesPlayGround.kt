@@ -22,13 +22,13 @@ import com.engineer.imitate.model.School
 import com.engineer.imitate.model.Schools
 import com.engineer.imitate.room.SchoolRepository
 import com.engineer.imitate.util.IOTool
+import com.engineer.imitate.util.bind
 import com.engineer.imitate.util.lg
 import com.engineer.imitate.util.toastShort
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.list.rados.fast_list.bind
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -129,12 +129,12 @@ class CoroutinesFragment : Fragment() {
             }
 
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
-                setUpPager(it)
-                progress.visibility = View.GONE
-            }, {
-                it.printStackTrace()
-                progress.visibility = View.GONE
-            })
+            setUpPager(it)
+            progress.visibility = View.GONE
+        }, {
+            it.printStackTrace()
+            progress.visibility = View.GONE
+        })
     }
 
     private fun saveToRoom(list: List<Schools>) {

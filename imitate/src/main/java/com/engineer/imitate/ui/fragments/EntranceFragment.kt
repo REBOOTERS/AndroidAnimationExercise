@@ -108,12 +108,6 @@ class EntranceFragment : Fragment() {
         }
 
 
-        viewBinding.bottomsheet.setOnClickListener {
-            val imageView = ImageView(context)
-            imageView.setImageResource(R.drawable.comic)
-            val view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_content, null)
-            viewBinding.bottomsheet.showWithSheetView(view)
-        }
 
         viewBinding.bottomSheetGoogle.setOnClickListener {
             val sheet = MyBottomSheetFragment()

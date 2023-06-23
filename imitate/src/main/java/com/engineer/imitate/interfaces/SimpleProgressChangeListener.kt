@@ -1,6 +1,6 @@
 package com.engineer.imitate.interfaces
 
-import com.xw.repo.BubbleSeekBar
+import android.widget.SeekBar
 
 /**
  *
@@ -10,16 +10,16 @@ import com.xw.repo.BubbleSeekBar
  * @version V1.0
  */
 
-abstract class SimpleProgressChangeListener:BubbleSeekBar.OnProgressChangedListener {
-
-    override fun onProgressChanged(bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean) {
+abstract class SimpleProgressChangeListener : SeekBar.OnSeekBarChangeListener {
+    override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
 
     }
 
-    override fun getProgressOnActionUp(bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float) {
+    override fun onStartTrackingTouch(p0: SeekBar?) {
+
     }
 
-    override fun getProgressOnFinally(bubbleSeekBar: BubbleSeekBar?, progress: Int, progressFloat: Float, fromUser: Boolean) {
-    }
+    override fun onStopTrackingTouch(p0: SeekBar?) {
 
+    }
 }

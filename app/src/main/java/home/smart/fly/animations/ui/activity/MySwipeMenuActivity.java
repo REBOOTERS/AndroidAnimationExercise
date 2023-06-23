@@ -1,16 +1,16 @@
 package home.smart.fly.animations.ui.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.IdRes;
-import androidx.core.view.ViewCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.IdRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -122,7 +122,6 @@ public class MySwipeMenuActivity extends AppCompatActivity {
     public void click(View view) {
         switch (view.getId()) {
             case R.id.avatar:
-                startActivity(new Intent(this, PullRecyclerViewActivity.class));
                 break;
             case R.id.smallAvatar:
 

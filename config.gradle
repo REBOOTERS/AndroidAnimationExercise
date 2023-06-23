@@ -15,7 +15,7 @@ ext {
     kotlin_version = '1.8.21'
     gradle_version = '8.0.2'
 
-    doraemonkit = '3.3.4'
+    doraemonkit = '3.5.0'
 
     glide = '4.15.1'
     arouter_api = '1.5.2'
