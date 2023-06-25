@@ -1,58 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.activity.MatisseDemoActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.MatisseDemoActivity">
 
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/zhihu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginLeft="@dimen/item_margin_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="@dimen/item_margin_horizontal"
+            android:minHeight="56dp"
+            android:text="Zhihu"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:theme="@style/ZhihuOverlay" />
 
         <Button
-                android:id="@+id/zhihu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/item_margin_horizontal"
-                android:layout_marginRight="@dimen/item_margin_horizontal"
-                android:layout_marginTop="8dp"
-                android:minHeight="56dp"
-                android:text="Zhihu"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:theme="@style/ZhihuOverlay"/>
-
-        <Button
-                android:id="@+id/dracula"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/item_margin_horizontal"
-                android:layout_marginRight="@dimen/item_margin_horizontal"
-                android:layout_marginTop="16dp"
-                android:minHeight="56dp"
-                android:text="Dracula"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:theme="@style/DraculaOverlay"/>
+            android:id="@+id/dracula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/item_margin_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="@dimen/item_margin_horizontal"
+            android:minHeight="56dp"
+            android:text="Dracula"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:theme="@style/DraculaOverlay" />
     </LinearLayout>
 
-    <com.bm.library.PhotoView
-            android:id="@+id/img"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/a5"/>
-
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"/>
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp" />
 
 
 </LinearLayout>

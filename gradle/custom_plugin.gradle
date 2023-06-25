@@ -1,25 +1,11 @@
 apply plugin: 'phoenix-plugin'
 
 phoenix {
-    rename {
-        println "apk dist    into: " + rootDir.toString() + File.separator + apkDir
-
-//        prefix = "test"
-        withTime true
-        withVariantName true
-        withVariantVersion true
-        onlyDebug false
-
-        result { name ->
-            println '应用名称 rename to : ' + name
-            return name
-        }
-    }
 
     transform {
         catOn = false
         tigerOn = false
-        traceOn = true
+        trackOn = true
         tigerClassList = ["com/bumptech/glide/RequestManager": ["load"]]
     }
 }
