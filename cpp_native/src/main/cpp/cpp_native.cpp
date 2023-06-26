@@ -22,10 +22,10 @@ Java_com_example_cpp_1native_internal_PatchUtil_patchAPK(JNIEnv *env, jclass cla
                                                          jstring new_apk_file, jstring patch_file) {
     int argc = 4;
     char *argv[argc];
-    argv[0] = "bspatch";
-    argv[1] = (char *) (env->GetStringUTFChars(old_apk_file, 0));
-    argv[2] = (char *) (env->GetStringUTFChars(new_apk_file, 0));
-    argv[3] = (char *) (env->GetStringUTFChars(patch_file, 0));
+    argv[0] = (char *) ("bspatch");
+    argv[1] = (char *) (env->GetStringUTFChars(old_apk_file, nullptr));
+    argv[2] = (char *) (env->GetStringUTFChars(new_apk_file, nullptr));
+    argv[3] = (char *) (env->GetStringUTFChars(patch_file, nullptr));
 
     LOGD("argv[1] = %s", argv[1]);
     LOGD("argv[2] = %s", argv[2]);
