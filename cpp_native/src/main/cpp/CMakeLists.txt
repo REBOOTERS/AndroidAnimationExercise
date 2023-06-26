@@ -12,7 +12,9 @@ project("cpp_native")
 
 #定义一个全局变量包含了所有要编译的C文件
 file(GLOB BZIP bzip/*.c)
-message(BZIP)
+message("11111")
+message("${BZIP}")
+message("22222")
 #导入头文件
 include_directories(bzip)
 include_directories(logcat)
