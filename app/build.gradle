@@ -219,6 +219,21 @@ dependencies {
 
 }
 
+import com.engineer.plugin.transforms.FooClassVisitorFactory
+import com.engineer.plugin.transforms.track.TrackClassVisitorFactory
+import com.android.build.api.instrumentation.FramesComputationMode
+import com.android.build.api.instrumentation.InstrumentationScope
+
+androidComponents {
+    onVariants(selector().all(), {
+        instrumentation.transformClassesWith(FooClassVisitorFactory.class, InstrumentationScope.PROJECT) {}
+        instrumentation.transformClassesWith(TrackClassVisitorFactory.class,InstrumentationScope.PROJECT) { param ->
+            param.trackOn = true
+        }
+        instrumentation.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
+    })
+}
+
 //ext.allDependencies.each {
 //    dependencies.add('implementation', it)
 //}
@@ -230,6 +245,7 @@ repositories {
 
 
 // 自定义插件的一些测试，如果无法运行，可以暂时注释掉
-apply from: file("../gradle/custom_plugin.gradle")
+//apply from: file("../gradle/custom_plugin.gradle")
 apply from: file("../gradle/funs.gradle")
 //apply from: file("dokit-config.gradle")
+//apply from: file("./build.gradle.kts")
