@@ -216,4 +216,6 @@ dependencies {
     implementation  'io.github.scwang90:refresh-header-two-level:2.0.6'   //二级刷新头
     implementation  'io.github.scwang90:refresh-footer-ball:2.0.6'        //球脉冲加载
     implementation  'io.github.scwang90:refresh-footer-classics:2.0.6'    //经典加载
+
+    implementation "androidx.metrics:metrics-performance:1.0.0-alpha04"
 }
