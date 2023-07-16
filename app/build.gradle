@@ -221,6 +221,7 @@ dependencies {
 
 import com.engineer.plugin.transforms.FooClassVisitorFactory
 import com.engineer.plugin.transforms.track.TrackClassVisitorFactory
+import com.engineer.plugin.transforms.tiger.TigerClassVisitorFactory
 import com.android.build.api.instrumentation.FramesComputationMode
 import com.android.build.api.instrumentation.InstrumentationScope
 
@@ -229,6 +230,9 @@ androidComponents {
         instrumentation.transformClassesWith(FooClassVisitorFactory.class, InstrumentationScope.PROJECT) {}
         instrumentation.transformClassesWith(TrackClassVisitorFactory.class,InstrumentationScope.PROJECT) { param ->
             param.trackOn = true
+        }
+        instrumentation.transformClassesWith(TigerClassVisitorFactory.class,InstrumentationScope.PROJECT) { param ->
+            param.tigerOn = true
         }
         instrumentation.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
     })

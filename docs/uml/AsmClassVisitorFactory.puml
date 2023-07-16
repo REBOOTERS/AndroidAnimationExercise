@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:自定义 AsmClassVisitorFactory;
+:创建 ClassVisitor;
+:自定义 MethodVisitor;
+:注册自定义的AsmClassVisitorFactory;
+stop
+
+@enduml
