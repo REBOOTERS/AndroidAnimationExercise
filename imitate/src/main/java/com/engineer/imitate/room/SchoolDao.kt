@@ -2,6 +2,7 @@ package com.engineer.imitate.room
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.Query
 import com.engineer.imitate.model.Schools
 
 /**
@@ -13,4 +14,7 @@ interface SchoolDao {
 
     @Insert
     fun insert(schools: Schools)
+
+    @Query("SELECT * FROM Schools")
+    fun getAll(): Schools
 }

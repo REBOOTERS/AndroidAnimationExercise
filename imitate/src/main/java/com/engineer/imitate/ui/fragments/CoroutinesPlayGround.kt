@@ -78,6 +78,7 @@ class CoroutinesFragment : Fragment() {
             val json = IOTool.readStrFromAssets("school.json", context)
             Log.e(TAG, "read json cost ${System.currentTimeMillis() - start}")
             val list = block(json)
+            saveToRoom(list)
             withContext(Dispatchers.Main) {
                 Thread.currentThread().name.lg(TAG)
                 setUpPager(list)
@@ -137,10 +138,10 @@ class CoroutinesFragment : Fragment() {
         })
     }
 
-    private fun saveToRoom(list: List<Schools>) {
+    private fun saveToRoom(list: List<Schools>?) {
         context?.let {
             val schoolRepository = SchoolRepository(it)
-            list.forEach { sc ->
+            list?.forEach { sc ->
                 schoolRepository.insert(sc)
             }
         }

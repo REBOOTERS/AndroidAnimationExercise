@@ -32,6 +32,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.imitate.databinding.ActivityKotlinRootBinding
 import com.engineer.imitate.model.FragmentItem
+import com.engineer.imitate.room.SchoolDatabase
 import com.engineer.imitate.ui.activity.ReverseGifActivity
 import com.engineer.imitate.util.*
 import com.example.cpp_native.app.NativeRoot
@@ -427,6 +428,11 @@ class KotlinRootActivity : AppCompatActivity() {
             jsonArray.put(jsonObj)
         }
         Log.e(TAG, "result ==$jsonArray")
+
+        Thread {
+            val s = SchoolDatabase.getInstance(this).schoolDao().getAll()
+            Log.i(TAG, "$s")
+        }.start()
     }
 
 

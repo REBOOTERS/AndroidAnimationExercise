@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.library'
+    id 'kotlin-android'
 }
-apply plugin: 'kotlin-android'
 
 def ext = rootProject.ext
 android {

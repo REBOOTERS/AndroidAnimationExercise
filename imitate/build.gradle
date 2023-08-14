@@ -8,6 +8,24 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-kapt'
 
+class RoomSchemaArgProvider implements CommandLineArgumentProvider {
+
+    @InputDirectory
+    @PathSensitive(PathSensitivity.RELATIVE)
+    File schemaDir
+
+    RoomSchemaArgProvider(File schemaDir) {
+        this.schemaDir = schemaDir
+    }
+
+    @Override
+    Iterable<String> asArguments() {
+        // Note: If you're using KSP, change the line below to return
+        // ["room.schemaLocation=${schemaDir.path}".toString()].
+        return ["-Aroom.schemaLocation=${schemaDir.path}".toString()]
+    }
+}
+
 static def releaseTime() {
     return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+8"))
 }
@@ -33,6 +51,9 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
+                compilerArgumentProviders(
+                        new RoomSchemaArgProvider(new File(projectDir, "schemas"))
+                )
             }
         }
         resConfigs 'zh-rCN', 'xxhdpi'

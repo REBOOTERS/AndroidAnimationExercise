@@ -2,6 +2,7 @@ package com.engineer.imitate.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
@@ -13,7 +14,11 @@ data class Schools(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     var province: String? = null,
-    var schoolList: List<School>? = null
+    var schoolList: List<School>? = null,
+    var type: Int = 0,
+
+    @ColumnInfo(name = "code")
+    var code: String? = "aa"
 ) : Parcelable {
 
 
