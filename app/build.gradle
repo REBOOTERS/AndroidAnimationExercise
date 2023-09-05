@@ -85,7 +85,7 @@ android {
     productFlavors {
         free {
             versionNameSuffix "_free"
-            resConfigs('ch', 'xhdpi')
+            resourceConfigurations += ['ch', 'xhdpi']
             minSdk 21
             aaptOptions.cruncherEnabled = false
             ext.alwaysUpdateBuildId = false
@@ -93,7 +93,7 @@ android {
 
         charge {
             versionNameSuffix "_charge"
-            resConfigs('en', 'xhdpi')
+            resourceConfigurations += ['en', 'xhdpi']
             minSdk 21
             aaptOptions.cruncherEnabled = false
             ext.alwaysUpdateBuildId = false
@@ -116,15 +116,11 @@ android {
         }
     }
 
-    lintOptions {
+
+    namespace 'home.smart.fly.animations'
+    lint {
         abortOnError false
     }
-
-    adbOptions {
-        timeOutInMs 5 * 1000
-        installOptions '-d'
-    }
-    namespace 'home.smart.fly.animations'
 }
 
 //jacocoAndroidUnitTestReport {

@@ -56,7 +56,7 @@ android {
                 )
             }
         }
-        resConfigs 'zh-rCN', 'xxhdpi'
+        resourceConfigurations += ['zh-rCN', 'xxhdpi']
 
         //只保留中文资源和 xxhdpi 分辨率图片
     }
