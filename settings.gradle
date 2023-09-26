@@ -1,1 +1,1 @@
-include ':app', ':imitate', ':skeleton', ':dataview', ':gif-revert', ':game', ':cpp_native'
+include ':app', ':imitate', ':subs:skeleton', ':subs:dataview', ':subs:gif-revert', ':subs:game', ':subs:cpp_native'

@@ -200,8 +200,8 @@ dependencies {
     if (!imitate_isApp.toBoolean()) {
         implementation project(':imitate')
     }
-    implementation project(path: ':dataview')
-    implementation project(path: ':skeleton')
+    implementation project(path: ':subs:dataview')
+    implementation project(path: ':subs:skeleton')
 
     implementation 'com.alibaba:fastjson:2.0.19.graal'
 

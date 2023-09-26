@@ -140,7 +140,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-process:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
-    implementation project(path: ':cpp_native')
+    implementation project(path: ':subs:cpp_native')
 
 
     testImplementation 'junit:junit:4.13.2'
@@ -181,8 +181,8 @@ dependencies {
     // robolectric
 
     implementation group: 'commons-io', name: 'commons-io', version: '20030203.000550'
-    implementation project(path: ':game')
-    implementation project(path: ':gif-revert')
+    implementation project(path: ':subs:game')
+    implementation project(path: ':subs:gif-revert')
 
     implementation 'com.jaredrummler:simple-mvp:1.0.2'
 
