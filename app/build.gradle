@@ -1,11 +1,10 @@
-apply plugin: 'com.android.application'
-
-// Android Gradle Plugin source @ https://android.googlesource.com/platform/tools/base/+/gradle_3.1.2
-
-apply plugin: 'kotlin-android'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
 apply plugin: 'kotlin-kapt'
 
-apply plugin: "com.dorongold.task-tree"
+//apply plugin: "com.dorongold.task-tree"
 
 
 def ext = rootProject.ext
@@ -231,9 +230,6 @@ androidComponents {
 //}
 
 
-repositories {
-    mavenCentral()
-}
 
 
 // 自定义插件的一些测试，如果无法运行，可以暂时注释掉
