@@ -32,7 +32,7 @@ class CircleLoadingLite : View, Animatable, ValueAnimator.AnimatorUpdateListener
         stopLoading()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         var outR = centerX - lineWidth
         outR *= mRotateAngle

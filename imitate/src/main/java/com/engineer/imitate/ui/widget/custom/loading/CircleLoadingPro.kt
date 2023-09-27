@@ -32,7 +32,7 @@ class CircleLoadingPro: View, Animatable, ValueAnimator.AnimatorUpdateListener {
         stopLoading()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         centerX = width / 2
         centerY = height / 2

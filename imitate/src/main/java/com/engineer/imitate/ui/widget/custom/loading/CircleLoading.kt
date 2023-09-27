@@ -32,7 +32,7 @@ class CircleLoading: View, Animatable, ValueAnimator.AnimatorUpdateListener {
         stopLoading()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         centerX = width / 2
         centerY = height / 2
@@ -43,10 +43,10 @@ class CircleLoading: View, Animatable, ValueAnimator.AnimatorUpdateListener {
         mOuterCircleRectF.set(centerX - outR, centerY - outR, centerX + outR, centerY + outR)
         mInnerCircleRectF.set(centerX - inR, centerY - inR, centerX + inR, centerY + inR)
 
-        canvas?.save()
-        canvas?.drawArc(mOuterCircleRectF, mRotateAngle % 360, OUTER_CIRCLE_ANGLE, false, mStrokePaint)
-        canvas?.drawArc(mInnerCircleRectF, 270 - mRotateAngle % 360, INTER_CIRCLE_ANGLE, false, mStrokePaint)
-        canvas?.restore()
+        canvas.save()
+        canvas.drawArc(mOuterCircleRectF, mRotateAngle % 360, OUTER_CIRCLE_ANGLE, false, mStrokePaint)
+        canvas.drawArc(mInnerCircleRectF, 270 - mRotateAngle % 360, INTER_CIRCLE_ANGLE, false, mStrokePaint)
+        canvas.restore()
     }
 
     public fun startLoading() {

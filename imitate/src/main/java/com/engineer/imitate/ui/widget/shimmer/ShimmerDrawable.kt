@@ -51,12 +51,12 @@ class ShimmerLayout @JvmOverloads constructor(
         shimmerDrawable.setBounds(0, 0, width, height)
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas?.clipPath(path)
     }
 
-    override fun dispatchDraw(canvas: Canvas?) {
+    override fun dispatchDraw(canvas: Canvas) {
         super.dispatchDraw(canvas)
         canvas?.let {
             shimmerDrawable.draw(canvas)

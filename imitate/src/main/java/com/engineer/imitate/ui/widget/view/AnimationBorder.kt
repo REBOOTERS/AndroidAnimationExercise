@@ -72,8 +72,8 @@ class AnimationBorder : RelativeLayout {
         )
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        canvas?.drawRoundRect(rect, mRadius, mRadius, mPaint)
+    override fun onDraw(canvas: Canvas) {
+        canvas.drawRoundRect(rect, mRadius, mRadius, mPaint)
         super.onDraw(canvas)
     }
 

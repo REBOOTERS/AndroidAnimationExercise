@@ -32,7 +32,7 @@ class CircleLoadingUltimate : View, Animatable, ValueAnimator.AnimatorUpdateList
         stopLoading()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
 

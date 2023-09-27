@@ -85,9 +85,9 @@ class SelfDrawViewActivity : AppCompatActivity() {
             paint.shader = BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
         }
 
-        override fun onDraw(canvas: Canvas?) {
+        override fun onDraw(canvas: Canvas) {
             super.onDraw(canvas)
-            canvas?.drawCircle(size.toFloat(), size.toFloat(), size.toFloat(), paint)
+            canvas.drawCircle(size.toFloat(), size.toFloat(), size.toFloat(), paint)
         }
     }
 }
