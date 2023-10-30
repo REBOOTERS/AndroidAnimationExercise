@@ -151,6 +151,8 @@ dependencies {
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
     implementation 'com.facebook.fresco:fresco:3.1.0'
+    implementation 'com.facebook.fresco:animated-webp:3.1.3'
+    implementation 'com.facebook.fresco:webpsupport:3.1.3'
     implementation 'com.github.REBOOTERS:Matisse:0.5.3'
     implementation 'com.guolindev.permissionx:permissionx:1.7.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
