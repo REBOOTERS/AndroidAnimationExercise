@@ -18,6 +18,17 @@
             android:orientation="vertical"
             tools:context=".ui.fragments.EntranceFragment">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="ai"
+                android:textColor="?android:attr/textColorSecondaryInverse"
+                android:visibility="visible" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"

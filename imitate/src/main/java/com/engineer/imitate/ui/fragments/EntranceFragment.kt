@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
+import com.engineer.ai.DigitalClassificationActivity
 import com.engineer.android.game.ui.GameRootActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.databinding.FragmentEntranceBinding
@@ -79,13 +80,17 @@ class EntranceFragment : Fragment() {
             ).request { it, _, _ ->
                 if (it) {
                     Matisse.from(this).choose(MimeType.ofAll(), false).countable(true).capture(true).captureStrategy(
-                            CaptureStrategy(
-                                true, requireContext().packageName + ".fileprovider"
-                            )
-                        ).maxSelectable(9).restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                        CaptureStrategy(
+                            true, requireContext().packageName + ".fileprovider"
+                        )
+                    ).maxSelectable(9).restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                         .thumbnailScale(0.85f).imageEngine(Glide4Engine()).forResult(100)
                 }
             }
+        }
+
+        viewBinding.ai.setOnClickListener {
+            startActivity(Intent(context, DigitalClassificationActivity::class.java))
         }
 
         viewBinding.scanWifi.setOnClickListener {
@@ -98,10 +103,10 @@ class EntranceFragment : Fragment() {
             ).request { it, _, _ ->
                 if (it) {
                     Matisse.from(this).choose(MimeType.ofAll(), false).countable(true).capture(true).captureStrategy(
-                            CaptureStrategy(
-                                true, requireContext().packageName + ".fileprovider"
-                            )
-                        ).maxSelectable(9).restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                        CaptureStrategy(
+                            true, requireContext().packageName + ".fileprovider"
+                        )
+                    ).maxSelectable(9).restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                         .thumbnailScale(0.85f).imageEngine(Glide4Engine()).forResult(101)
                 }
             }
@@ -241,6 +246,7 @@ class EntranceFragment : Fragment() {
 //                    startActivity(shareIntent)
 
                 }
+
                 101 -> {
                     val result = Matisse.obtainPathResult(data)
                     val bitmap = BitmapFactory.decodeFile(File(result[0]).absolutePath)
