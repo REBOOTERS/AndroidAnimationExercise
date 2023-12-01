@@ -66,7 +66,7 @@ class DigitClassifier(private val context: Context) {
         inputImageHeight = inputShape[2]
         modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
 
-// Finish interpreter initialization
+        // Finish interpreter initialization
         this.interpreter = interpreter
         isInitialized = true
         Log.d(TAG, "Initialized TFLite interpreter.")

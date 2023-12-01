@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.widget.Button
 import android.widget.TextView
 import com.divyanshu.draw.widget.DrawView
+import org.tensorflow.lite.TensorFlowLite
 
 class DigitalClassificationActivity : AppCompatActivity() {
     private var drawView: DrawView? = null
@@ -48,7 +49,8 @@ class DigitalClassificationActivity : AppCompatActivity() {
 
             true
         }
-
+        Log.d(TAG,"ver ${TensorFlowLite.schemaVersion()}")
+        Log.d(TAG,"ver ${TensorFlowLite.runtimeVersion()}")
         // Setup digit classifier.
         digitClassifier.initialize()
             .addOnFailureListener { e -> Log.e(TAG, "Error to setting up digit classifier.", e) }
