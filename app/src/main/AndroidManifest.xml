@@ -440,7 +440,7 @@
         <activity android:name=".ui.activity.WebViewMenuActivity" />
         <activity android:name=".ui.activity.OptionalActivity" />
         <activity android:name=".ui.activity.ClipBoardActivity" />
-        <activity android:name=".ui.activity.LoaderActivity" />
+        <activity android:name=".ui.activity.LoaderActivity" android:exported="true"/>
         <activity android:name=".ui.activity.AnimateDrawableActivity" />
         <activity
             android:name=".ui.activity.FullscreenADActivity"

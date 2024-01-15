@@ -163,6 +163,7 @@ class Game2048Activity : AppCompatActivity() {
      * quit the app.
      */
 
+    @Deprecated("")
     override fun onBackPressed() {
         val currentTime = System.currentTimeMillis()
         if (Math.abs(currentTime - mLastBackPress) > mBackPressThreshold) {

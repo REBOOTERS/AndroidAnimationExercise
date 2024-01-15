@@ -375,6 +375,7 @@ class KotlinRootActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    @Deprecated("")
     override fun onBackPressed() {
         if (viewBinding.contentKotlinRoot.content.visibility == View.VISIBLE) {
             releaseFragment()

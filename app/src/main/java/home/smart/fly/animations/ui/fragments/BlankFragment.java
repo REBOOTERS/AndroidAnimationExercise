@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -17,6 +18,7 @@ import androidx.core.content.PermissionChecker;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +40,7 @@ import java8.util.Optional;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragment extends Fragment implements
-        LoaderManager.LoaderCallbacks<Cursor>,
-        SearchView.OnQueryTextListener,
-        SearchView.OnCloseListener {
+public class BlankFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener, SearchView.OnCloseListener {
 
 
     private List<String> datas = new ArrayList<>();
@@ -51,8 +51,7 @@ public class BlankFragment extends Fragment implements
     private final String CONTACTS = android.Manifest.permission.READ_CONTACTS;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_blank, container, false);
     }
@@ -60,6 +59,7 @@ public class BlankFragment extends Fragment implements
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
         RecyclerView recyclerView = view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mMyAdapter = new MyAdapter();
@@ -73,7 +73,7 @@ public class BlankFragment extends Fragment implements
 
         Optional.ofNullable(getActivity()).ifPresent(fragmentActivity -> {
             if (PermissionChecker.checkSelfPermission(getActivity(), CONTACTS) == PermissionChecker.PERMISSION_GRANTED) {
-                getLoaderManager().initLoader(0, null, BlankFragment.this);
+                LoaderManager.getInstance(this).initLoader(0, null, BlankFragment.this);
             } else {
                 ActivityCompat.requestPermissions(getActivity(), new String[]{CONTACTS}, 100);
             }
@@ -84,7 +84,7 @@ public class BlankFragment extends Fragment implements
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 100) {
             if (grantResults[0] == PermissionChecker.PERMISSION_GRANTED) {
-                getLoaderManager().initLoader(0, null, this);
+                LoaderManager.getInstance(this).initLoader(0, null, this);
             } else {
                 Toast.makeText(getContext(), "Permission denied !", Toast.LENGTH_SHORT).show();
             }
@@ -93,12 +93,16 @@ public class BlankFragment extends Fragment implements
     }
 
     @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Place an action bar item for searching.
         MenuItem item = menu.add("Search");
         item.setIcon(android.R.drawable.ic_menu_search);
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM
-                | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         mSearchView = new MySearchView(getActivity());
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setOnCloseListener(this);
@@ -106,34 +110,22 @@ public class BlankFragment extends Fragment implements
         item.setActionView(mSearchView);
     }
 
-    static final String[] CONTACTS_SUMMARY_PROJECTION = new String[]{
-            ContactsContract.Contacts._ID,
-            ContactsContract.Contacts.DISPLAY_NAME,
-            ContactsContract.Contacts.CONTACT_STATUS,
-            ContactsContract.Contacts.CONTACT_PRESENCE,
-            ContactsContract.Contacts.PHOTO_ID,
-            ContactsContract.Contacts.LOOKUP_KEY,
-    };
+    static final String[] CONTACTS_SUMMARY_PROJECTION = new String[]{ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.Contacts.CONTACT_STATUS, ContactsContract.Contacts.CONTACT_PRESENCE, ContactsContract.Contacts.PHOTO_ID, ContactsContract.Contacts.LOOKUP_KEY,};
 
     @NonNull
     @Override
     public Loader onCreateLoader(int id, @Nullable Bundle args) {
         Uri baseUri;
         if (mCurFilter != null) {
-            baseUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_FILTER_URI,
-                    Uri.encode(mCurFilter));
+            baseUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_FILTER_URI, Uri.encode(mCurFilter));
         } else {
             baseUri = ContactsContract.Contacts.CONTENT_URI;
         }
 
         // Now create and return a CursorLoader that will take care of
         // creating a Cursor for the data being displayed.
-        String select = "((" + ContactsContract.Contacts.DISPLAY_NAME + " NOTNULL) AND ("
-                + ContactsContract.Contacts.HAS_PHONE_NUMBER + "=1) AND ("
-                + ContactsContract.Contacts.DISPLAY_NAME + " != '' ))";
-        return new CursorLoader(getActivity(), baseUri,
-                CONTACTS_SUMMARY_PROJECTION, select, null,
-                ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC");
+        String select = "((" + ContactsContract.Contacts.DISPLAY_NAME + " NOTNULL) AND (" + ContactsContract.Contacts.HAS_PHONE_NUMBER + "=1) AND (" + ContactsContract.Contacts.DISPLAY_NAME + " != '' ))";
+        return new CursorLoader(getContext(), baseUri, CONTACTS_SUMMARY_PROJECTION, select, null, ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC");
     }
 
     @Override
@@ -142,9 +134,12 @@ public class BlankFragment extends Fragment implements
         if (data != null) {
             data.moveToFirst();
             while (data.moveToNext()) {
-                String name = data.getString(data.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                Log.e("loader", "onLoadFinished: name==" +name);
-                datas.add(name);
+                int index = data.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+                if (index >= 0) {
+                    String name = data.getString(index);
+                    Log.e("loader", "onLoadFinished: name==" + name);
+                    datas.add(name);
+                }
             }
         }
 
@@ -191,7 +186,7 @@ public class BlankFragment extends Fragment implements
             return true;
         }
         mCurFilter = newFilter;
-        getLoaderManager().restartLoader(0, null, this);
+        LoaderManager.getInstance(this).restartLoader(0, null, this);
         return true;
     }
 
