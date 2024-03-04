@@ -1,24 +1,10 @@
-package home.smart.fly.animations.ui.fragments;
-
+package home.smart.fly.animations.ui.activity.fragments;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
-import androidx.core.content.PermissionChecker;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,19 +15,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.content.PermissionChecker;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import home.smart.fly.animations.R;
 import java8.util.Optional;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class BlankFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener, SearchView.OnCloseListener {
-
+public class ContractsLoaderFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener, SearchView.OnCloseListener {
+    private static final String TAG = "ContractsLoaderFragment";
 
     private List<String> datas = new ArrayList<>();
     private SearchView mSearchView;
@@ -64,32 +61,29 @@ public class BlankFragment extends Fragment implements LoaderManager.LoaderCallb
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mMyAdapter = new MyAdapter();
         recyclerView.setAdapter(mMyAdapter);
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
 
-        Optional.ofNullable(getActivity()).ifPresent(fragmentActivity -> {
-            if (PermissionChecker.checkSelfPermission(getActivity(), CONTACTS) == PermissionChecker.PERMISSION_GRANTED) {
-                LoaderManager.getInstance(this).initLoader(0, null, BlankFragment.this);
-            } else {
-                ActivityCompat.requestPermissions(getActivity(), new String[]{CONTACTS}, 100);
-            }
-        });
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 100) {
-            if (grantResults[0] == PermissionChecker.PERMISSION_GRANTED) {
-                LoaderManager.getInstance(this).initLoader(0, null, this);
+        ActivityResultLauncher<String> launcher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), o -> {
+            if (o) {
+                requestData();
             } else {
                 Toast.makeText(getContext(), "Permission denied !", Toast.LENGTH_SHORT).show();
             }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        });
+
+        Optional.ofNullable(getActivity()).ifPresent(fragmentActivity -> {
+            if (PermissionChecker.checkSelfPermission(getActivity(), CONTACTS) == PermissionChecker.PERMISSION_GRANTED) {
+                requestData();
+            } else {
+                launcher.launch(CONTACTS);
+            }
+        });
+
+    }
+
+    private void requestData() {
+        LoaderManager.getInstance(this).initLoader(0, null, ContractsLoaderFragment.this);
     }
 
     @Override
@@ -125,6 +119,10 @@ public class BlankFragment extends Fragment implements LoaderManager.LoaderCallb
         // Now create and return a CursorLoader that will take care of
         // creating a Cursor for the data being displayed.
         String select = "((" + ContactsContract.Contacts.DISPLAY_NAME + " NOTNULL) AND (" + ContactsContract.Contacts.HAS_PHONE_NUMBER + "=1) AND (" + ContactsContract.Contacts.DISPLAY_NAME + " != '' ))";
+        Log.d(TAG, "baseUri : " + baseUri);
+        Log.d(TAG, "proj : " + Arrays.toString(CONTACTS_SUMMARY_PROJECTION));
+        Log.d(TAG, "select : " + select);
+
         return new CursorLoader(getContext(), baseUri, CONTACTS_SUMMARY_PROJECTION, select, null, ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC");
     }
 
@@ -137,28 +135,19 @@ public class BlankFragment extends Fragment implements LoaderManager.LoaderCallb
                 int index = data.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
                 if (index >= 0) {
                     String name = data.getString(index);
-                    Log.e("loader", "onLoadFinished: name==" + name);
+                    Log.e(TAG, "onLoadFinished: name==" + name);
                     datas.add(name);
                 }
             }
         }
 
         mMyAdapter.notifyDataSetChanged();
-//        mMyAdapter.swapCursor(data);
-
-        // The list should now be shown.
-//        if (isResumed()) {
-//            setListShown(true);
-//        } else {
-//            setListShownNoAnimation(true);
-//        }
     }
 
     @Override
     public void onLoaderReset(@NonNull Loader loader) {
         datas.clear();
         mMyAdapter.notifyDataSetChanged();
-//        mMyAdapter.swapCursor(null);
     }
 
     @Override
@@ -199,8 +188,9 @@ public class BlankFragment extends Fragment implements LoaderManager.LoaderCallb
             return new MyHolder(view);
         }
 
+
         @Override
-        public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+        public void onBindViewHolder(@NonNull MyAdapter.MyHolder holder, int position) {
             holder.mTextView.setText(datas.get(position));
         }
 
@@ -209,9 +199,9 @@ public class BlankFragment extends Fragment implements LoaderManager.LoaderCallb
             return datas.size();
         }
 
-        public class MyHolder extends RecyclerView.ViewHolder {
+        static class MyHolder extends RecyclerView.ViewHolder {
 
-            private TextView mTextView;
+            private final TextView mTextView;
 
             public MyHolder(View itemView) {
                 super(itemView);
@@ -221,7 +211,7 @@ public class BlankFragment extends Fragment implements LoaderManager.LoaderCallb
 
     }
 
-    public static class MySearchView extends SearchView {
+    static class MySearchView extends SearchView {
         public MySearchView(Context context) {
             super(context);
         }
