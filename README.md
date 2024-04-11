@@ -4,7 +4,7 @@
 
 ![Alt](https://repobeats.axiom.co/api/embed/0bdca57875ae2605128ec32c680a0bd5e59a6ce7.svg "Repobeats analytics image")
 
-[![Build Status](https://travis-ci.org/REBOOTERS/AndroidAnimationExercise.svg?branch=master)](https://travis-ci.org/REBOOTERS/AndroidAnimationExercise)![Language](https://img.shields.io/github/languages/top/REBOOTERS/AndroidAnimationExercise?color=blue&logo=java)
+[![Android CI](https://github.com/REBOOTERS/AndroidAnimationExercise/actions/workflows/android.yml/badge.svg)](https://github.com/REBOOTERS/AndroidAnimationExercise/actions/workflows/android.yml)![Language](https://img.shields.io/github/languages/top/REBOOTERS/AndroidAnimationExercise?color=blue&logo=java)
 
 
 这是一个关于Android中各种View的集合，里面包含自己日常开发和博客总结中的代码。
