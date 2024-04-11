@@ -22,9 +22,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
-import com.didichuxing.doraemonkit.util.ScreenUtils
 import com.engineer.imitate.R
 import com.engineer.imitate.databinding.FragmentFrescoBinding
+import com.engineer.imitate.util.ScreenUtils
 import com.engineer.imitate.util.dp
 import com.facebook.common.executors.CallerThreadExecutor
 import com.facebook.common.references.CloseableReference
@@ -69,17 +69,21 @@ class FrescoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val listener = object : BaseControllerListener<ImageInfo>() {
-            override fun onFinalImageSet(id: String?, imageInfo: ImageInfo?, animatable: Animatable?) {
+            override fun onFinalImageSet(
+                id: String?, imageInfo: ImageInfo?, animatable: Animatable?
+            ) {
                 super.onFinalImageSet(id, imageInfo, animatable)
                 imageInfo?.let {
                     val w1 = it.width
                     val h1 = it.height
-                    val width = ScreenUtils.getScreenWidth() - 16.dp
-                    val height = ScreenUtils.getScreenHeight()
+                    val width = ScreenUtils.getScreenWidth(context) - 16.dp
+                    val height = ScreenUtils.getScreenHeight(context)
                     Log.d("Fresco", "onFinalImageSet() called w1=$w1,h1=$h1")
                     Log.d("Fresco", "onFinalImageSet() called w=$width,h=$height")
                     Log.d("Fresco", "onFinalImageSet() called ${it.qualityInfo.isOfFullQuality}")
-                    Log.d("Fresco", "onFinalImageSet() called ${it.qualityInfo.isOfGoodEnoughQuality}")
+                    Log.d(
+                        "Fresco", "onFinalImageSet() called ${it.qualityInfo.isOfGoodEnoughQuality}"
+                    )
                     Log.d("Fresco", "onFinalImageSet() called ${it.extras}")
                     viewBinding.s0.layoutParams.width = width
 //                    viewBinding.s0.layoutParams.height = h1
@@ -109,7 +113,8 @@ class FrescoFragment : Fragment() {
         viewBinding.s2.hierarchy = hierarchy
         viewBinding.s2.setActualImageResource(R.drawable.totoro)
 
-        val url = "http://h.hiphotos.baidu.com/image/pic/item/960a304e251f95ca060674a0c7177f3e67095231.jpg"
+        val url =
+            "http://h.hiphotos.baidu.com/image/pic/item/960a304e251f95ca060674a0c7177f3e67095231.jpg"
 
 
         val t = System.currentTimeMillis()
@@ -188,26 +193,28 @@ class FrescoFragment : Fragment() {
     private fun bitmapMagic() {
         viewBinding.shimmerLayout.startShimmerAnimation()
 
-        c.add(Observable.create(ObservableOnSubscribe<Bitmap> { emitter ->
-            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.star)
-            val width = bitmap.width
-            val height = bitmap.height
-            val colorArray = Array(width) { IntArray(height) }
-            for (i in 0 until width) {
-                for (j in 0 until height) {
+        c.add(
+            Observable.create(ObservableOnSubscribe<Bitmap> { emitter ->
+                val bitmap = BitmapFactory.decodeResource(resources, R.drawable.star)
+                val width = bitmap.width
+                val height = bitmap.height
+                val colorArray = Array(width) { IntArray(height) }
+                for (i in 0 until width) {
+                    for (j in 0 until height) {
 //                    Log.e("zyq", "i==$i j==$j")
 //                    Log.e("zyq", "live=${emitter.isDisposed}")
-                    if (emitter.isDisposed) {
-                        break
+                        if (emitter.isDisposed) {
+                            break
+                        }
+                        colorArray[i][j] = bitmap.getPixel(i, j)
                     }
-                    colorArray[i][j] = bitmap.getPixel(i, j)
                 }
-            }
-            Log.e("bitmapMagic", "colorArray==$colorArray")
-            emitter.onNext(bitmap)
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({ bitmap ->
-            setupBitmap(bitmap)
-        }, { t -> t.printStackTrace() })
+                Log.e("bitmapMagic", "colorArray==$colorArray")
+                emitter.onNext(bitmap)
+            }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ bitmap ->
+                    setupBitmap(bitmap)
+                }, { t -> t.printStackTrace() })
         )
 
     }

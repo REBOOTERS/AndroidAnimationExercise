@@ -24,9 +24,7 @@ android {
 
     // Sanity check if you have trained and downloaded TF Lite model.
     preBuild.doFirst {
-        assert file("./src/main/assets/mnist.tflite").exists() :
-                "mnist.tflite not found. Make sure you have trained and " +
-                        "downloaded your TensorFlow Lite model to assets/ folder"
+        assert file("./src/main/assets/mnist.tflite").exists(): "mnist.tflite not found. Make sure you have trained and " + "downloaded your TensorFlow Lite model to assets/ folder"
     }
 
     compileOptions {
@@ -53,6 +51,8 @@ dependencies {
 
     // AndroidDraw Library
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
-    implementation 'org.tensorflow:tensorflow-lite:2.15.0'
+    implementation('org.tensorflow:tensorflow-lite:2.15.0') {
+        exclude group: "com.google.inject", module: "guice"
+    }
     implementation 'com.google.android.gms:play-services-tasks:18.1.0'
 }
