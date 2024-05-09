@@ -21,5 +21,11 @@ dependencyResolutionManagement {
         }
     }
 }
-include ':app', ':imitate', ':subs:skeleton', ':subs:dataview', ':subs:gif-revert', ':subs:game',
-        ':subs:cpp_native',':subs:ai'
+include ':app',
+        ':imitate',
+        ':subs:skeleton',
+        ':subs:dataview',
+        ':subs:gif-revert',
+        ':subs:game',
+        ':subs:cpp_native',
+        ':subs:ai'

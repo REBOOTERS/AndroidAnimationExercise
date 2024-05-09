@@ -50,7 +50,7 @@ abstract class BaseListFragment<T> : Fragment() {
         mRecyclerView = view.findViewById(R.id.recyclerview)
         mRecyclerView.layoutManager = getCustomLayoutManager()
         mRecyclerView.adapter = getCustomAdapter()
-        mRecyclerView.addRecyclerListener { holder ->
+        mRecyclerView.setRecyclerListener { holder ->
             Log.e("recyclerview", "itemViewType    " + holder.itemViewType.toString())
             Log.e("recyclerview", "itemId          " + holder.itemId.toString())
             Log.e("recyclerview", "adapterPosition " + holder.adapterPosition.toString())

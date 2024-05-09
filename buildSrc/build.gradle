@@ -25,15 +25,7 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 
-// 进行上传任务的命令：./gradlew -p plugin/ clean build uploadArchives
-//uploadArchives {
-//    repositories.mavenDeployer {
-//        repository(url: uri('../repo')) //仓库的路径，此处是项目根目录下的 repo 的文件夹
-//        pom.groupId = 'com.engineer.plugin'  //groupId ，自行定义，一般是包名
-//        pom.artifactId = 'phoenix' //artifactId ，自行定义
-//        pom.version = '1.0.7' //version 版本号
-//    }
-//}
+
 
 buildscript {
     ext.kotlin_version = '1.9.22'
@@ -44,14 +36,3 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
-
-//compileKotlin {
-//    kotlinOptions {
-//        jvmTarget = "17"
-//    }
-//}
-//compileTestKotlin {
-//    kotlinOptions {
-//        jvmTarget = "17"
-//    }
-//}
