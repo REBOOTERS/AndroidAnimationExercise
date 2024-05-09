@@ -58,9 +58,11 @@ allprojects {
     }
 
     gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xmaxerrs" << "4000"
-            options.compilerArgs << "-Xmaxwarns" << "4000"
+        tasks.withType(JavaCompile).tap {
+            configureEach {
+                options.compilerArgs << "-Xmaxerrs" << "4000"
+                options.compilerArgs << "-Xmaxwarns" << "4000"
+            }
         }
     }
 }
