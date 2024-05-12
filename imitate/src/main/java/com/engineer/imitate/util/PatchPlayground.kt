@@ -22,7 +22,7 @@ private const val PATCH = "patch"
 class PatchViewModel(val app: Application) : AndroidViewModel(app) {
 
     fun copyFile() {
-        val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
             Log.e(TAG, "exceptionHandler: " + throwable.stackTraceToString())
         }
         viewModelScope.launch(exceptionHandler) {
