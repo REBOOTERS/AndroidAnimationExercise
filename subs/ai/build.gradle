@@ -51,8 +51,8 @@ dependencies {
 
     // AndroidDraw Library
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
-    implementation('org.tensorflow:tensorflow-lite:2.15.0') {
+    implementation('org.tensorflow:tensorflow-lite:2.16.1') {
         exclude group: "com.google.inject", module: "guice"
     }
-    implementation 'com.google.android.gms:play-services-tasks:18.1.0'
+    implementation 'com.google.android.gms:play-services-tasks:18.2.0'
 }

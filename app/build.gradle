@@ -133,7 +133,7 @@ configurations.all {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.code.gson:gson:2.11.0'
     implementation "androidx.appcompat:appcompat:${ext.androidx_appcompat}"
     implementation "com.google.android.material:material:${ext.androidx_material}"
     implementation 'com.orhanobut:logger:2.2.0'
@@ -142,10 +142,10 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "com.github.bumptech.glide:glide:$ext.glide"
-    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.12'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.14'
     implementation 'com.squareup.okio:okio:3.9.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation "androidx.vectordrawable:vectordrawable:1.1.0"
+    implementation 'androidx.vectordrawable:vectordrawable:1.2.0'
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
 
     implementation 'com.github.bingoogolapple:BGARefreshLayout-Android:2.0.1'
@@ -156,9 +156,9 @@ dependencies {
     kapt 'com.jakewharton:butterknife-compiler:10.2.3'
     implementation 'com.facebook.stetho:stetho:1.6.0'
     implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
-    implementation 'com.airbnb.android:lottie:6.4.0'
+    implementation 'com.airbnb.android:lottie:6.4.1'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.13'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
     implementation 'net.sourceforge.streamsupport:streamsupport:1.7.4'
 
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
@@ -174,10 +174,10 @@ dependencies {
     implementation 'com.jakewharton.hugo:hugo-runtime:1.2.1'
 
 
-    implementation 'com.facebook.fresco:fresco:3.1.3'
+    implementation 'com.facebook.fresco:fresco:3.2.0'
     implementation 'com.github.chrisbanes:PhotoView:2.1.4'
     implementation 'com.github.REBOOTERS:Matisse:v0.5.7'
-    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
+    implementation 'com.guolindev.permissionx:permissionx:1.8.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
