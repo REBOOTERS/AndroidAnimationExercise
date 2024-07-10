@@ -11,6 +11,8 @@ import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,9 +30,13 @@ import java.util.Map;
 import home.smart.fly.animations.internal.annotations.Tiger;
 import home.smart.fly.animations.sugar.bean.Item;
 import home.smart.fly.animations.utils.AppUtils;
+import home.smart.fly.animations.utils.BaseListKt;
 import home.smart.fly.animations.utils.RxBus;
 import home.smart.fly.animations.utils.SimpleEvent;
 import home.smart.fly.animations.utils.StatusBarUtil;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.functions.Function3;
 
 @Tiger
 public class FileUtilsActivity extends AppCompatActivity {
@@ -57,8 +63,20 @@ public class FileUtilsActivity extends AppCompatActivity {
 
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         refreshList();
+        BaseListKt.bind(mRecyclerView, items).map(R.layout.large_info_item, (item, integer) -> item.getTitle().length() < 40, (view, item, integer) -> {
+            TextView titleTv = view.findViewById(R.id.title);
+            TextView descTv = view.findViewById(R.id.desc);
+            titleTv.setText(item.getTitle());
+            descTv.setText(item.getSubTitle());
+            return Unit.INSTANCE;
+        }).map(R.layout.small_info_item, (item, integer) -> item.getTitle().length() >= 40, (view, item, integer) -> {
+            TextView titleTv = view.findViewById(R.id.title);
+            TextView descTv = view.findViewById(R.id.desc);
+            titleTv.setText(item.getTitle());
+            descTv.setText(item.getSubTitle());
+            return Unit.INSTANCE;
+        });
 
         mRetry.setOnClickListener(v -> recyclerview());
 

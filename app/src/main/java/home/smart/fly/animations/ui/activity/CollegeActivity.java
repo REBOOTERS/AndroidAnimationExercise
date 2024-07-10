@@ -277,7 +277,7 @@ public class CollegeActivity extends AppCompatActivity {
             LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getContext());
             mLinearLayoutManager.setSmoothScrollbarEnabled(true);
             mRecyclerView.setLayoutManager(mLinearLayoutManager);
-            mRecyclerView.setHasFixedSize(true);
+//            mRecyclerView.setHasFixedSize(true);
             mRecyclerView.setNestedScrollingEnabled(false);
             MyAdapter mMyAdapter = new MyAdapter(datas);
             mRecyclerView.setAdapter(mMyAdapter);

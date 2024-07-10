@@ -1,7 +1,9 @@
 package home.smart.fly.animations.ui.activity
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import home.smart.fly.animations.R
 import home.smart.fly.animations.utils.AppUtils
+import home.smart.fly.animations.utils.bind
 import java.util.*
 
 class AllActivity : AppCompatActivity() {
@@ -23,23 +26,22 @@ class AllActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show()
         }
-//        val adapter = SugarAdapter.Builder.with(getActivities()).add(ActivityListViewHolder::class.java).build();
-//        adapter.addSugarHolderListener(object : SugarAdapter.SugarHolderListener<ActivityListViewHolder>() {
-//            override fun onSugarHolderBindData(holder: ActivityListViewHolder) {
-//                super.onSugarHolderBindData(holder)
-//                holder.itemshell.setOnClickListener {
-//                    val data = holder.data
-//                    val target = Class.forName(data.second)
-//                    val intent = Intent(this@AllActivity, target)
-//                    startActivity(intent)
-//                }
-//            }
-//        })
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.adapter = adapter
-//        title = getString(R.string.activity_count, adapter.list.size)
+       val list = getActivities()
+        title = getString(R.string.activity_count, list.size)
+        recyclerView.bind(list, R.layout.demo_info_item) { data, i ->
+            val titleTv:TextView = findViewById(R.id.title)
+            val descTv:TextView = findViewById(R.id.desc)
+            titleTv.text= data.first
+            descTv.text = data.second
+            this.setOnClickListener {
+                val target = Class.forName(data.second)
+                startActivity(Intent(this@AllActivity, target))
+            }
+        }
+
     }
 
     private fun getActivities(): List<Pair<String, String>> {
@@ -49,16 +51,12 @@ class AllActivity : AppCompatActivity() {
             val fullName = item.name
             val simpleName = fullName.substring(fullName.lastIndexOf(".") + 1)
             val pair = Pair(simpleName, fullName)
-            if (simpleName.equals("AllActivity")) {
+            if (simpleName == "AllActivity") {
                 continue
             }
             results.add(pair)
         }
-        Collections.sort(results, object : Comparator<Pair<String, String>> {
-            override fun compare(o1: Pair<String, String>?, o2: Pair<String, String>?): Int {
-                return o1!!.first.compareTo(o2!!.first)
-            }
-        })
+        results.sortWith { o1, o2 -> o1!!.first.compareTo(o2!!.first) }
 
         return results
     }
