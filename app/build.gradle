@@ -185,13 +185,6 @@ dependencies {
     implementation 'me.leolin:ShortcutBadger:1.1.22@aar'
     implementation 'com.github.yhaolpz:FloatWindow:1.0.9'
 
-    // https://github.com/didi/DoraemonKit
-    debugImplementation("io.github.didi.dokit:dokitx:${doraemonkit}") {
-        exclude group: "org.jsoup", module: "jsoup"
-        exclude group: "com.android.volley", module: "volley"
-    }
-    releaseImplementation "io.github.didi.dokit:dokitx-no-op:${doraemonkit}"
-
     // https://github.com/skydoves/TransformationLayout
     implementation 'com.github.skydoves:transformationlayout:1.1.3'
 

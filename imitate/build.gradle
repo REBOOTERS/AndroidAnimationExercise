@@ -51,9 +51,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
-                compilerArgumentProviders(
-                        new RoomSchemaArgProvider(new File(projectDir, "schemas"))
-                )
+                compilerArgumentProviders(new RoomSchemaArgProvider(new File(projectDir, "schemas")))
             }
         }
         resourceConfigurations += ['zh-rCN', 'xxhdpi']
@@ -96,9 +94,7 @@ android {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             }
 
-            res.srcDirs +=   [
-                    'src/main/res/layouts/ninepoint'
-            ]
+            res.srcDirs += ['src/main/res/layouts/ninepoint']
         }
     }
     packagingOptions {
@@ -210,14 +206,6 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$ext.roomVersion"
 //    kapt 'org.xerial:sqlite-jdbc:3.36.0.3' // for mac m1
     kapt "androidx.room:room-compiler:$ext.roomVersion"
-
-
-
-    // https://github.com/didi/DoraemonKit
-    debugImplementation ("io.github.didi.dokit:dokitx:${doraemonkit}") {
-        exclude group: "com.android.volley", module: "volley"
-    }
-    releaseImplementation "io.github.didi.dokit:dokitx-no-op:${doraemonkit}"
 
     implementation 'com.github.wanglu1209:PhotoViewer:0.50'
 

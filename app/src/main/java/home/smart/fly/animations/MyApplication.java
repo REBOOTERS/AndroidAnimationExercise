@@ -6,7 +6,6 @@ import android.util.Log;
 import android.webkit.WebView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.didichuxing.doraemonkit.DoraemonKit;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
 import com.tencent.mmkv.MMKV;
@@ -35,10 +34,6 @@ public class MyApplication extends Application {
 
             WebView.setWebContentsDebuggingEnabled(true);
             Stetho.initializeWithDefaults(MyApplication.this);
-
-            DoraemonKit.disableUpload();
-            DoraemonKit.install(MyApplication.this, "fa15f7ee4d8174ba07efb60dfc50cfb5");
-            //        DoraemonKit.hide();
             return false;
         });
         if (BuildConfig.DEBUG) {
