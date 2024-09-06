@@ -1,8 +1,8 @@
 ext {
-    compileSdk = 34
+    compileSdk = 35
 
     minSdk = 21
-    targetSdk = 34
+    targetSdk = 35
 
 
     support_version = '1.3.2'

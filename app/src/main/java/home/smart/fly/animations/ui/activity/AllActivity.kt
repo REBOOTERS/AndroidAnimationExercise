@@ -47,15 +47,18 @@ class AllActivity : AppCompatActivity() {
     private fun getActivities(): List<Pair<String, String>> {
         val results = ArrayList<Pair<String, String>>()
         val info = packageManager.getPackageInfo(AppUtils.getPackageName(this), PackageManager.GET_ACTIVITIES)
-        for (item in info.activities) {
-            val fullName = item.name
-            val simpleName = fullName.substring(fullName.lastIndexOf(".") + 1)
-            val pair = Pair(simpleName, fullName)
-            if (simpleName == "AllActivity") {
-                continue
+        info.activities?.let {
+            for (item in it) {
+                val fullName = item.name
+                val simpleName = fullName.substring(fullName.lastIndexOf(".") + 1)
+                val pair = Pair(simpleName, fullName)
+                if (simpleName == "AllActivity") {
+                    continue
+                }
+                results.add(pair)
             }
-            results.add(pair)
         }
+
         results.sortWith { o1, o2 -> o1!!.first.compareTo(o2!!.first) }
 
         return results
