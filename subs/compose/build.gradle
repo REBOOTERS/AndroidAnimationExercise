@@ -3,9 +3,17 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.plugin.compose'
 }
+def ext = rootProject.ext
 android {
     namespace 'com.engineer.compose'
     compileSdk 34
+
+    defaultConfig {
+        minSdk ext.minSdk
+        targetSdk ext.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
 
     buildTypes {
         release {

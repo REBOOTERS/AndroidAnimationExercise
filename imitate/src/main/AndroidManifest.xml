@@ -9,7 +9,7 @@
     <application>
         <activity
             android:name=".KotlinRootActivity"
-            android:label="@string/app_name"
+            android:label="imitate"
             android:theme="@style/MyAppTheme" />
 
         <activity

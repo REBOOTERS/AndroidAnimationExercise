@@ -5,7 +5,7 @@ if (imitate_isApp.toBoolean()) {
 }
 
 apply plugin: 'kotlin-android'
-
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 apply plugin: 'kotlin-kapt'
 
 class RoomSchemaArgProvider implements CommandLineArgumentProvider {
@@ -84,6 +84,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        compose true
     }
 
     sourceSets {

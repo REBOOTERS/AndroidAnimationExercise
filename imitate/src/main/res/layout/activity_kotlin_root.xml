@@ -24,7 +24,7 @@
                 android:background="@color/colorPrimary"
                 app:navigationIcon="?android:attr/homeAsUpIndicator"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="@string/app_name" />
+                app:title="imitate" />
 
             <ImageView
                 android:layout_width="36dp"
