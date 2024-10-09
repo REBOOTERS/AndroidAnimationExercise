@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <application>
+        <activity
+            android:name=".ui.GalleryActivity"
+            android:exported="false"
+            android:label="@string/title_activity_gallery"
+            android:theme="@style/Theme.MiniApp" />
+        <activity
+            android:name=".ui.MainComposeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main_compose"
+            android:theme="@style/ComposeApp.Theme" />
+        <activity
+            android:name=".ui.ChatActivity"
+            android:exported="true"
+            android:theme="@style/ComposeApp.Theme"
+            android:windowSoftInputMode="adjustResize" />
+    </application>
+
+</manifest>

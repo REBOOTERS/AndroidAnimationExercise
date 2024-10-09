@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.engineer.compose.ui.MainComposeActivity
 import com.engineer.imitate.databinding.ActivityKotlinRootBinding
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.room.SchoolDatabase
@@ -170,6 +171,7 @@ class KotlinRootActivity : AppCompatActivity() {
     // <editor-fold defaultstate="collapsed" desc="init fragments">
     private fun initList(): MutableList<FragmentItem> {
         return mutableListOf(
+            FragmentItem("/anim/compose", "compose"),
             FragmentItem("/anim/entrance", "entrance"),
             FragmentItem("/anim/dependency_injection", "dependency_injection"),
             FragmentItem("/anim/rx_play", "rx_play"),

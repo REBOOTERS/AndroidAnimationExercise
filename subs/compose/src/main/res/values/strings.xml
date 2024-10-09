@@ -1,0 +1,4 @@
+<resources>
+    <string name="title_activity_main_compose">MainComposeActivity</string>
+    <string name="title_activity_gallery">GalleryActivity</string>
+</resources>

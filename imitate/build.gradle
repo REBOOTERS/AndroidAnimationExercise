@@ -136,7 +136,6 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-process:2.8.5'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5'
-    implementation project(path: ':subs:cpp_native')
 
 
     testImplementation 'junit:junit:4.13.2'
@@ -189,6 +188,8 @@ dependencies {
     implementation project(path: ':subs:game')
     implementation project(path: ':subs:gif-revert')
     implementation project(path: ':subs:ai')
+    implementation project(path: ':subs:cpp_native')
+    implementation project(path: ':subs:compose')
 
     implementation 'com.jaredrummler:simple-mvp:1.0.2'
 

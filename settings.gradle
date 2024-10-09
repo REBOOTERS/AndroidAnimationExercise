@@ -28,4 +28,5 @@ include ':app',
         ':subs:gif-revert',
         ':subs:game',
         ':subs:cpp_native',
-        ':subs:ai'
+        ':subs:ai',
+        ':subs:compose'
