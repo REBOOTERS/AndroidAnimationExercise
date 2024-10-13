@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.engineer.compose.ui.Message
 import com.engineer.compose.ui.MessageCard
-import com.engineer.compose.ui.ui.theme.MiniAppTheme
+import com.engineer.compose.ui.ui.theme.ComposeAppTheme
 import com.engineer.imitate.R
 
 /**
@@ -34,7 +34,7 @@ class ComposeFragment : Fragment() {
             // is destroyed
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                MiniAppTheme {
+                ComposeAppTheme {
                     // A surface container using the 'background' color from the theme
                     Surface(color = MaterialTheme.colorScheme.background) {
                         MessageCard(Message("lucy", "hello world"))

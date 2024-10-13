@@ -2,11 +2,9 @@ package com.engineer.compose.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,7 +47,7 @@ import com.engineer.compose.ui.preview.ChatUIWithKeyboard
 import com.engineer.compose.ui.preview.ChatUIWithKeyboardPre
 import com.engineer.compose.ui.preview.provideTestChat
 import com.engineer.compose.ui.ui.theme.ChatPop
-import com.engineer.compose.ui.ui.theme.MiniAppTheme
+import com.engineer.compose.ui.ui.theme.ComposeAppTheme
 import com.engineer.compose.uitls.KeyBoardUtil
 import com.engineer.compose.viewmodel.ChatMessage
 import com.engineer.compose.viewmodel.ChatViewModel
@@ -59,7 +57,7 @@ class ChatActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MiniAppTheme {
+            ComposeAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
                     ChatScreen(chatUIWithKeyboard = ChatUIWithKeyboard {
