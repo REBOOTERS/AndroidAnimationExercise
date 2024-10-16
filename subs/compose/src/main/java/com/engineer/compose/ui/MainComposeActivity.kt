@@ -3,6 +3,7 @@ package com.engineer.compose.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import com.engineer.compose.ui.ui.theme.ComposeAppTheme
@@ -20,7 +21,9 @@ class MainComposeActivity : ComponentActivity() {
             ComposeAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    MessageCard(Message("lucy", "hello world"))
+                    Column {
+                        MessageCard(Message("lucy", "hello world"))
+                    }
                 }
             }
         }

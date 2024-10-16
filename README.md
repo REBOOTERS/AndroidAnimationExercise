@@ -25,9 +25,6 @@
 </details>
 
 
-
-
-
 ## ImitateFragment （模仿三方应用特效）
 
 - 仿新浪微博雷达扫描效果及卡片动画效果（[Android 动画实战-仿微博雷达功能](https://juejin.im/post/586d0f9eda2f600055cf3021)）
@@ -72,6 +69,11 @@
 - Bitmap LRUCache，LruDiskCache 相关
 
 ### What's New
+
+#### Compose
+
+- [Jetpack Compose From GuoLin](https://blog.csdn.net/guolin_blog/category_12374243.html?spm=1001.2014.3001.5482)
+- [Which Compose API to use?](https://www.jetpackcompose.app/What-is-the-equivalent-of-DrawerLayout-in-Jetpack-Compose)
 
 随着累计的动画效果越来越多，导致工程内代码越来越多，app 运行和编译时间变长。因此采用了**组件化**的方式，单独抽取了 imitate moulde . 
 
