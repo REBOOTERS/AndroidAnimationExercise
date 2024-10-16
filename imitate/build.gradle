@@ -242,3 +242,4 @@ dependencies {
 
     implementation 'com.github.daquexian:FlexibleRichTextView:0.8.2'
 }
+apply from: file("../gradle/report_apk_size_after_package.gradle")

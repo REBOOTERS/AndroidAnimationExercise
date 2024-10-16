@@ -230,3 +230,4 @@ androidComponents {
 apply from: file("../gradle/funs.gradle")
 //apply from: file("dokit-config.gradle")
 //apply from: file("./build.gradle.kts")
+apply from: file("../gradle/report_apk_size_after_package.gradle")

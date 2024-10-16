@@ -1,0 +1,22 @@
+static def getFileHumanSize(length) {
+    def oneMB = 1024f * 1024f
+    def size = String.valueOf((length / oneMB))
+    def value = new BigDecimal(size)
+    return value.setScale(2, BigDecimal.ROUND_HALF_UP)
+}
+/**
+ * 打包完成后输出 apk 大小
+ */
+android {
+    applicationVariants.all { variant ->
+        variant.assemble.doLast {
+            variant.outputs.forEach {
+                logger.error("apk fileName ==> ${it.outputFile.name}")
+                logger.error("apk filePath ==> ${it.outputFile}")
+                logger.error("apk fileSize ==> ${it.outputFile.length()} , ${getFileHumanSize(it.outputFile.length())} MB")
+            }
+        }
+    }
+}
+
+

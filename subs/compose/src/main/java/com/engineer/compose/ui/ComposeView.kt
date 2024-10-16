@@ -42,6 +42,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
@@ -68,14 +69,15 @@ fun SelectImageButton() {
 //    var imageUris by remember { mutableStateOf<List<Uri>>(emptyList()) }
     val context = LocalContext.current
     val pickImagesLauncher =
-        rememberLauncherForActivityResult(contract = ActivityResultContracts.GetMultipleContents(), onResult = { uris ->
-            Log.i("tag", "uris = $uris")
-            val intent = Intent(context, GalleryActivity::class.java)
-            val list = uris.map { it.toString() }
-            val payload = ImagePreviewPayload(2, list)
-            intent.putExtra("payload", payload)
-            context.startActivity(intent)
-        })
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.GetMultipleContents(),
+            onResult = { uris ->
+                Log.i("tag", "uris = $uris")
+                val intent = Intent(context, GalleryActivity::class.java)
+                val list = uris.map { it.toString() }
+                val payload = ImagePreviewPayload(2, list)
+                intent.putExtra("payload", payload)
+                context.startActivity(intent)
+            })
     Button(
         modifier = Modifier.padding(5.dp),
         onClick = { pickImagesLauncher.launch("image/*") },
@@ -90,8 +92,10 @@ fun MessageCard(msg: Message) {
     var text by rememberSaveable { mutableStateOf("") }
     var count by remember { mutableIntStateOf(0) }
     val list by remember { mutableStateOf(ArrayList<String>()) }
-    val kk = remember { mutableIntStateOf(0) }
+    val kk = remember { mutableStateListOf<String>() }
+
     ScrollableList(list)
+    ScrollableList(kk.toList())
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -109,6 +113,7 @@ fun MessageCard(msg: Message) {
                 Toast.makeText(context, "you clicked me", Toast.LENGTH_SHORT).show()
                 count++
                 list.add(count.toString())
+                kk.add(count.toString())
             }) {
                 Text(text = "click me")
             }
@@ -126,8 +131,10 @@ fun MessageCard(msg: Message) {
         }
         Text(modifier = Modifier.padding(start = 10.dp), text = "$count")
         Text(modifier = Modifier.padding(start = 10.dp), text = "$list")
-        TTT(list)
-//        TTT(list, count)
+        Content1(list)
+        Content11(kk.toList())
+        Content2(count)
+        Content3(list, count)
         Row(modifier = Modifier.padding(all = 8.dp)) {
             Image(
                 painter = painterResource(R.drawable.profile_picture),
@@ -153,8 +160,7 @@ fun MessageCard(msg: Message) {
             }
         }
 
-        OutlinedTextField(
-            value = text,
+        OutlinedTextField(value = text,
             onValueChange = { text = it },
             label = { Text("输入消息") },
             modifier = Modifier
@@ -168,9 +174,11 @@ fun MessageCard(msg: Message) {
             .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
             .requiredSize(100.dp)
             .background(Color.Cyan)
-            .draggable(orientation = Orientation.Horizontal, state = rememberDraggableState { delta ->
-                offsetX += delta
-            })
+            .draggable(
+                orientation = Orientation.Horizontal,
+                state = rememberDraggableState { delta ->
+                    offsetX += delta
+                })
             .draggable(orientation = Orientation.Vertical, state = rememberDraggableState { delta ->
                 offsetY += delta
             })
@@ -187,23 +195,40 @@ fun MessageCard(msg: Message) {
 }
 
 @Composable
-fun TTT(list: ArrayList<String>) {
-    val num = 0
-    Log.d(TAG, "TTT() called with: list = $list, num = $num")
-    Column {
-        Text(modifier = Modifier.padding(start = 10.dp), color = Color.Red, text = "$list")
-        Text(modifier = Modifier.padding(start = 10.dp), color = Color.Red, text = num.toString())
-    }
-
+fun Content1(list: List<String>) {
+    Log.d(TAG, "Content1() called with: list = $list")
+    Text(modifier = Modifier.padding(start = 10.dp), color = Color.Red, text = "$list")
 }
 
 @Composable
-fun ScrollableList(msg: ArrayList<String>) {
+fun Content11(list: List<String>) {
+    Log.d(TAG, "Content11() called with: list = $list")
+    Text(modifier = Modifier.padding(start = 10.dp), color = Color.Red, text = "$list")
+}
+
+@Composable
+fun Content2(num: Int) {
+    Log.d(TAG, "Content2() called with: num = $num")
+    Text(modifier = Modifier.padding(start = 10.dp), color = Color.Blue, text = num.toString())
+}
+
+@Composable
+fun Content3(list: ArrayList<String>, num: Int) {
+    Log.d(TAG, "Content3() called with: list = $list, num = $num")
+    Column {
+        Text(modifier = Modifier.padding(start = 10.dp), color = Color.Green, text = num.toString())
+        Text(modifier = Modifier.padding(start = 10.dp), color = Color.Green, text = "$list")
+    }
+}
+
+@Composable
+fun ScrollableList(msg: List<String>) {
     Log.d(TAG, "ScrollableList() called with: msg = $msg")
     LazyColumn {
         items(msg.size, key = { it }) { i ->
             Text(
-                text = "item_${msg[i]}", modifier = Modifier
+                text = "item_${msg[i]}",
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp)
                     .height(20.dp)

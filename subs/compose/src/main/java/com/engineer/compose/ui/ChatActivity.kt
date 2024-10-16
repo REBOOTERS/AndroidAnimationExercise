@@ -75,8 +75,8 @@ fun ChatScreen(
     viewModel: ChatViewModel = viewModel(),
     @PreviewParameter(ChatUIWithKeyboardPre::class, 1) chatUIWithKeyboard: ChatUIWithKeyboard
 ) {
-    var inpuValue by remember { mutableStateOf("") }
-    val msg by viewModel.messageList.observeAsState(ArrayList())
+    var inputValue by remember { mutableStateOf("") }
+    val msg by viewModel.messageList.observeAsState()
     val temp = provideTestChat()
     val kk by viewModel.kkk.observeAsState("11")
     Column(modifier = Modifier.fillMaxSize()) {
@@ -84,8 +84,8 @@ fun ChatScreen(
         // 消息列表
         MessageList(messages = msg, modifier = Modifier.weight(1f))
         // 输入框和发送按钮
-        InputArea(inputValue = inpuValue, viewModel = viewModel, messageText = {
-            inpuValue = it
+        InputArea(inputValue = inputValue, viewModel = viewModel, messageText = {
+            inputValue = it
         }) {
             chatUIWithKeyboard.hideKeyboard()
         }
@@ -133,15 +133,18 @@ fun InputArea(
 }
 
 @Composable
-fun MessageList(messages: ArrayList<ChatMessage>, modifier: Modifier) {
+fun MessageList(messages: ArrayList<ChatMessage>?, modifier: Modifier) {
     Log.d("TAG_TAG", "msg $messages")
-    LazyColumn(
-        modifier = modifier
-    ) {
-        items(messages.size, key = { it }) { index ->
-            ChatMessageItem(message = messages[index])
+    messages?.let {
+        LazyColumn(
+            modifier = modifier
+        ) {
+            items(messages.size, key = { it }) { index ->
+                ChatMessageItem(message = messages[index])
+            }
         }
     }
+
 }
 
 @Preview
