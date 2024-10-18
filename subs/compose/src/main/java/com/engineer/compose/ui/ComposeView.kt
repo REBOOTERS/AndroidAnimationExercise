@@ -113,7 +113,11 @@ fun MessageCard(msg: Message) {
                 Toast.makeText(context, "you clicked me", Toast.LENGTH_SHORT).show()
                 count++
                 list.add(count.toString())
-                kk.add(count.toString())
+                if (kk.toList().size > 3) {
+                    kk[3] = count.toString()
+                } else {
+                    kk.add(count.toString())
+                }
             }) {
                 Text(text = "click me")
             }
