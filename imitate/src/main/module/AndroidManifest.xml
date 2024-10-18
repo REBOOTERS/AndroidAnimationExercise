@@ -25,12 +25,13 @@
     <application
         android:name=".ImitateApplication"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="imitate"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme"
         android:usesCleartextTraffic="true"
+        tools:replace="android:label"
         android:windowSoftInputMode="adjustResize|stateHidden"
         tools:targetApi="q">
         <activity
