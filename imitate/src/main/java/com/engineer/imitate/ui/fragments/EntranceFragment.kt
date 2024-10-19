@@ -21,7 +21,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
 import com.engineer.ai.DigitalClassificationActivity
-import com.engineer.android.game.ui.GameRootActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.databinding.FragmentEntranceBinding
 import com.engineer.imitate.ui.activity.CLActivity
@@ -166,7 +165,7 @@ class EntranceFragment : Fragment() {
         }
 
         viewBinding.game.setOnClickListener {
-            startActivity(Intent(context, GameRootActivity::class.java))
+//            startActivity(Intent(context, GameRootActivity::class.java))
         }
 
         viewBinding.shell.setOnClickListener { startActivity(Intent(context, RunShellActivity::class.java)) }

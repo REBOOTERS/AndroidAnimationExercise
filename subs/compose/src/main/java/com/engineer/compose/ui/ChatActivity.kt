@@ -40,6 +40,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.engineer.compose.R
 import com.engineer.compose.ui.preview.ChatMessageItemPre
@@ -79,6 +80,13 @@ fun ChatScreen(
     val msg by viewModel.messageList.observeAsState()
     val temp = provideTestChat()
     val kk by viewModel.kkk.observeAsState("11")
+
+    viewModel.messageList.observe(LocalLifecycleOwner.current) {
+        if (it.size > 1) {
+            Log.e("ChatListPage", "list = ${it[1].text}")
+        }
+    }
+
     Column(modifier = Modifier.fillMaxSize()) {
         Text(text = kk, modifier = Modifier.size(1.dp))
         // 消息列表
@@ -150,6 +158,7 @@ fun MessageList(messages: ArrayList<ChatMessage>?, modifier: Modifier) {
 @Preview
 @Composable
 fun ChatMessageItem(@PreviewParameter(ChatMessageItemPre::class, 2) message: ChatMessage) {
+    Log.d("TAG_TAG", message.text)
     Row(
         modifier = Modifier
             .fillMaxWidth()

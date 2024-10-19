@@ -186,10 +186,10 @@ dependencies {
     // robolectric
 
     implementation group: 'commons-io', name: 'commons-io', version: '20030203.000550'
-    implementation project(path: ':subs:game')
+//    implementation project(path: ':subs:game')
     implementation project(path: ':subs:gif-revert')
     implementation project(path: ':subs:ai')
-    implementation project(path: ':subs:cpp_native')
+//    implementation project(path: ':subs:cpp_native')
     implementation project(path: ':subs:compose')
 
     implementation 'com.jaredrummler:simple-mvp:1.0.2'
