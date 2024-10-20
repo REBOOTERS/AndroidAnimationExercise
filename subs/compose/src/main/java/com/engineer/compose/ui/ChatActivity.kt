@@ -26,6 +26,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -77,7 +78,8 @@ fun ChatScreen(
     @PreviewParameter(ChatUIWithKeyboardPre::class, 1) chatUIWithKeyboard: ChatUIWithKeyboard
 ) {
     var inputValue by remember { mutableStateOf("") }
-    val msg by viewModel.messageList.observeAsState()
+    val msg by viewModel.messageList.observeAsState(ArrayList<ChatMessage>())
+    val msg1 by viewModel.messages.collectAsState()
     val temp = provideTestChat()
     val kk by viewModel.kkk.observeAsState("11")
 
@@ -89,8 +91,15 @@ fun ChatScreen(
 
     Column(modifier = Modifier.fillMaxSize()) {
         Text(text = kk, modifier = Modifier.size(1.dp))
+        LazyColumn(
+
+        ) {
+            items(msg.size, key = { it }, contentType = {msg[it].sender}) { index ->
+                ChatMessageItem(message = msg[index])
+            }
+        }
         // 消息列表
-        MessageList(messages = msg, modifier = Modifier.weight(1f))
+        MessageList(messages = msg1, modifier = Modifier.weight(1f))
         // 输入框和发送按钮
         InputArea(inputValue = inputValue, viewModel = viewModel, messageText = {
             inputValue = it
@@ -141,15 +150,13 @@ fun InputArea(
 }
 
 @Composable
-fun MessageList(messages: ArrayList<ChatMessage>?, modifier: Modifier) {
+fun MessageList(messages: List<ChatMessage>, modifier: Modifier) {
     Log.d("TAG_TAG", "msg $messages")
-    messages?.let {
-        LazyColumn(
-            modifier = modifier
-        ) {
-            items(messages.size, key = { it }) { index ->
-                ChatMessageItem(message = messages[index])
-            }
+    LazyColumn(
+        modifier = modifier
+    ) {
+        items(messages.size, key = { messages[it].text }) { index ->
+            ChatMessageItem(message = messages[index])
         }
     }
 
@@ -226,4 +233,5 @@ fun ProfilePicture(resId: Int, modifier: Modifier = Modifier) {
 
 fun sendMessage(viewModel: ChatViewModel, message: String) {
     viewModel.query(message)
+//    viewModel.queryFlow(message)
 }

@@ -6,6 +6,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class ChatViewModel : ViewModel() {
     private val TAG = "ChatViewModel"
@@ -49,42 +54,86 @@ class ChatViewModel : ViewModel() {
         val mockResponse =
             "天空呈现蓝色的原因主要与光的散射有关。当太阳光进入大气层后，大气中的气体分子和悬浮微粒会对阳光进行散射".toCharArray()
         val sb = StringBuffer()
+        sendData(sb, mockResponse)
+    }
 
-        val subThread = true
-        if (subThread) {
-            Thread {
-                sendData(sb, mockResponse, subThread)
-            }.start()
-        } else {
-            sendData(sb, mockResponse, subThread)
+    private fun sendData(sb: StringBuffer, mockResponse: CharArray) {
+        viewModelScope.launch {
+            for (c in mockResponse) {
+                val history = _messageList.value ?: ArrayList()
+                val lastMsg = history.last()
+                sb.append(c)
+                kkk.postValue(sb.toString())
+                if (lastMsg.sender == "Bot") {
+                    val newMsg = ChatMessage("Bot", sb.toString(), false)
+                    history[history.size -1 ] = newMsg
+
+                    _messageList.value = ArrayList(history)
+
+                } else {
+                    val newMsg = ChatMessage("Bot", sb.toString(), false)
+                    history.add(newMsg)
+                    _messageList.value = history
+                }
+//                _messageList.postValue(history)
+
+                delay(10)
+                Log.d(TAG, "history ${_messageList.value}")
+            }
         }
 
-//
 
     }
 
-    private fun sendData(sb: StringBuffer, mockResponse: CharArray, subThread: Boolean) {
+    private val _messages = MutableStateFlow<List<ChatMessage>>(emptyList())
+    val messages: StateFlow<List<ChatMessage>> = _messages
 
-        for (c in mockResponse) {
-            val history = _messageList.value ?: ArrayList()
-            val lastMsg = history.last()
-            sb.append(c)
-            kkk.postValue(sb.toString())
-            if (lastMsg.sender == "Bot") {
-                val newMsg = ChatMessage("Bot", sb.toString(), false)
-                history[history.size - 1] = newMsg
-            } else {
-                val newMsg = ChatMessage("Bot", sb.toString(), false)
-                history.add(newMsg)
-            }
-            Log.d(TAG, "history $history")
+    fun addMessage(message: ChatMessage) {
+        _messages.value = _messages.value + message
+    }
 
-            if (subThread) {
-                _messageList.postValue(history)
-                Thread.sleep(10)
-            } else {
-                _messageList.value = history
+    // 更新特定 index 的消息
+    fun updateMessageAt(index: Int, newMessage: ChatMessage) {
+        _messages.value = _messages.value.toMutableList().apply {
+            if (index in indices) {
+                this[index] = newMessage
             }
         }
+    }
+
+    // 模拟流式添加消息
+    fun startReceivingMessages() {
+        var i = 0
+        val mockResponse =
+            "天空呈现蓝色的原因主要与光的散射有关。当太阳光进入大气层后，大气中的气体分子和悬浮微粒会对阳光进行散射".toCharArray()
+        val sb = StringBuffer()
+
+
+
+        viewModelScope.launch {
+            for (c in mockResponse) {
+                val history = _messages.value ?: ArrayList()
+                val lastMsg = history.last()
+                sb.append(c)
+                kkk.postValue(sb.toString())
+                if (lastMsg.sender == "Bot") {
+                    val newMsg = ChatMessage("Bot", sb.toString(), false)
+                    updateMessageAt(history.size - 1, newMsg)
+                } else {
+                    val newMsg = ChatMessage("Bot", sb.toString(), false)
+                    addMessage(newMsg)
+                }
+                Log.d(TAG, "history $history")
+                delay(20)
+            }
+
+
+        }
+    }
+
+    fun queryFlow(userQuery: String) {
+        val userMsg = ChatMessage("IAM四十二", userQuery, true)
+        addMessage(userMsg)
+        startReceivingMessages()
     }
 }
