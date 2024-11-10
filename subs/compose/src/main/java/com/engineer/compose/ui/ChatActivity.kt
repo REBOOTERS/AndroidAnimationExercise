@@ -81,7 +81,6 @@ fun ChatScreen(
     val msg by viewModel.messageList.observeAsState(ArrayList<ChatMessage>())
     val msg1 by viewModel.messages.collectAsState()
     val temp = provideTestChat()
-    val kk by viewModel.kkk.observeAsState("11")
 
     viewModel.messageList.observe(LocalLifecycleOwner.current) {
         if (it.size > 1) {
@@ -90,7 +89,6 @@ fun ChatScreen(
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        Text(text = kk, modifier = Modifier.size(1.dp))
         LazyColumn(
 
         ) {

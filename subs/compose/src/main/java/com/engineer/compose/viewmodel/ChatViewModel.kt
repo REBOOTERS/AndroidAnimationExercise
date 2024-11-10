@@ -63,26 +63,19 @@ class ChatViewModel : ViewModel() {
                 val history = _messageList.value ?: ArrayList()
                 val lastMsg = history.last()
                 sb.append(c)
-                kkk.postValue(sb.toString())
                 if (lastMsg.sender == "Bot") {
                     val newMsg = ChatMessage("Bot", sb.toString(), false)
                     history[history.size -1 ] = newMsg
-
                     _messageList.value = ArrayList(history)
-
                 } else {
                     val newMsg = ChatMessage("Bot", sb.toString(), false)
                     history.add(newMsg)
                     _messageList.value = history
                 }
-//                _messageList.postValue(history)
-
                 delay(10)
                 Log.d(TAG, "history ${_messageList.value}")
             }
         }
-
-
     }
 
     private val _messages = MutableStateFlow<List<ChatMessage>>(emptyList())
