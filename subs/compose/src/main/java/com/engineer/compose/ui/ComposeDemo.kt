@@ -32,7 +32,12 @@ fun DemoCard() {
     var list by remember { mutableStateOf(ArrayList<String>()) }
     val list2 = remember { mutableStateListOf<String>() }
     val list3 = remember { mutableStateListOf("") }
+    val count1 = { mutableIntStateOf(0) }
+    val count2 = { mutableStateOf(0) }
     var list4 = remember { mutableStateOf(ArrayList<String>())}
+
+
+
 
     Log.i(TAG,"count -> ${count::class}")
     Log.i(TAG,"list  -> ${list::class}")
