@@ -1,7 +1,7 @@
 ext {
     compileSdk = 35
 
-    minSdk = 21
+    minSdk = 23
     targetSdk = 35
 
 
@@ -9,8 +9,8 @@ ext {
     androidx_appcompat = '1.7.0'
     androidx_material = '1.12.0'
     androidx_preference = '1.2.1'
-    constraint_layout = '2.1.4'
-    core_ktx = '1.13.1'
+    constraint_layout = '2.2.0'
+    core_ktx = '1.15.0'
 
     kotlin_version = '2.0.0'
     gradle_version = '8.1.1'
@@ -29,6 +29,6 @@ ext {
     roomVersion_runtime = '2.6.1'
     archLifecycleVersion = '2.2.0'
 
-    kotlin_coroutines = '1.8.1'
-    kotlin_coroutines_android = '1.8.1'
+    kotlin_coroutines = '1.10.1'
+    kotlin_coroutines_android = '1.10.1'
 }

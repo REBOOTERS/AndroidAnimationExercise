@@ -7,16 +7,16 @@ dependencies {
     // groovy sdk
     implementation gradleApi()
 //    implementation localGroovy()
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.0.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.1.0'
     // 添加了这个，就可以看 Android Gradle 插件的源码了
     implementation 'com.android.tools.build:gradle-api:8.8.0'
 //    implementation "org.jetbrains.kotlin:kotlin-script-runtime:1.3.40"
     implementation 'com.google.code.gson:gson:2.11.0'
-    implementation 'com.android.tools:common:31.6.0'
-    implementation 'commons-io:commons-io:2.16.1'
+    implementation 'com.android.tools:common:31.7.3'
+    implementation 'commons-io:commons-io:2.18.0'
 //    implementation 'org.ow2.asm:asm:7.0'
     implementation 'org.ow2.asm:asm-commons:9.7'
-    implementation('org.ow2.asm:asm-util:9.7')
+    implementation('org.ow2.asm:asm-util:9.7.1')
 }
 
 repositories {
@@ -28,11 +28,11 @@ repositories {
 
 
 buildscript {
-    ext.kotlin_version = '1.9.22'
+//    ext.kotlin_version = '1.9.22'
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0"
     }
 }

@@ -1,17 +1,17 @@
 [versions]
 agp = "8.7.0"
 kotlin = "2.0.0"
-coreKtx = "1.10.1"
+coreKtx = "1.15.0"
 junit = "4.14-SNAPSHOT"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.6.1"
-activityCompose = "1.8.0"
-composeBom = "2024.04.01"
-coilCompose = "2.4.0"
-composeRuntimeLiveData="1.7.0"
-accompanistPager = "0.24.7-alpha"
-lifecycleViewmodelCompose = "2.8.5"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+lifecycleRuntimeKtx = "2.8.7"
+activityCompose = "1.9.3"
+composeBom = "2024.12.01"
+coilCompose = "2.7.0"
+composeRuntimeLiveData= "1.7.6"
+accompanistPager = "0.36.0"
+lifecycleViewmodelCompose = "2.8.7"
 
 
 [libraries]
