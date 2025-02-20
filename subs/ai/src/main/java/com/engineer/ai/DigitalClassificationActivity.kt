@@ -14,6 +14,7 @@ import org.tensorflow.lite.TensorFlowLite
 class DigitalClassificationActivity : AppCompatActivity() {
     private var drawView: DrawView? = null
     private var clearButton: Button? = null
+    private var initButton: Button? = null
     private var predictedTextView: TextView? = null
     private var digitClassifier = DigitClassifier(this)
 
@@ -28,6 +29,7 @@ class DigitalClassificationActivity : AppCompatActivity() {
         drawView?.setColor(Color.WHITE)
         drawView?.setBackgroundColor(Color.BLACK)
         clearButton = findViewById(R.id.clear_button)
+        initButton = findViewById(R.id.init_model)
         predictedTextView = findViewById(R.id.predicted_text)
 
         // Setup clear drawing button.
@@ -52,8 +54,11 @@ class DigitalClassificationActivity : AppCompatActivity() {
         Log.d(TAG,"ver ${TensorFlowLite.schemaVersion()}")
         Log.d(TAG,"ver ${TensorFlowLite.runtimeVersion()}")
         // Setup digit classifier.
-        digitClassifier.initialize()
-            .addOnFailureListener { e -> Log.e(TAG, "Error to setting up digit classifier.", e) }
+        initButton?.setOnClickListener {
+            digitClassifier.initialize()
+                .addOnFailureListener { e -> Log.e(TAG, "Error to setting up digit classifier.", e) }
+        }
+
     }
 
     override fun onDestroy() {
@@ -78,6 +83,6 @@ class DigitalClassificationActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "MainActivity"
+        private const val TAG = "DigitalClassification"
     }
 }

@@ -4,7 +4,7 @@
     <application>
         <activity
             android:name=".DigitalClassificationActivity"
-            android:exported="false" />
+            android:exported="true" />
     </application>
 
 </manifest>
