@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.widget.Button
 import android.widget.TextView
 import com.divyanshu.draw.widget.DrawView
+import com.engineer.ai.util.DigitClassifier
 import org.tensorflow.lite.TensorFlowLite
 
 class DigitalClassificationActivity : AppCompatActivity() {

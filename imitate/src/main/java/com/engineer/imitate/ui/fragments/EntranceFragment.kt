@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.andrefrsousa.superbottomsheet.SuperBottomSheetFragment
 import com.bumptech.glide.Glide
-import com.engineer.ai.DigitalClassificationActivity
+import com.engineer.ai.AIHomeActivity
 import com.engineer.imitate.R
 import com.engineer.imitate.databinding.FragmentEntranceBinding
 import com.engineer.imitate.ui.activity.CLActivity
@@ -89,7 +89,7 @@ class EntranceFragment : Fragment() {
         }
 
         viewBinding.ai.setOnClickListener {
-            startActivity(Intent(context, DigitalClassificationActivity::class.java))
+            startActivity(Intent(context, AIHomeActivity::class.java))
         }
 
         viewBinding.scanWifi.setOnClickListener {

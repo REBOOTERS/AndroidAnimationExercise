@@ -59,6 +59,9 @@ dependencies {
     }
     implementation 'com.google.android.gms:play-services-tasks:18.2.0'
 
-    implementation 'org.pytorch:pytorch_android_lite:1.9.0'
-    implementation 'org.pytorch:pytorch_android_torchvision:1.9.0'
+
+    implementation 'org.pytorch:pytorch_android_lite:1.12.2'
+    implementation 'org.pytorch:pytorch_android_torchvision_lite:1.12.2'
+//    implementation 'org.pytorch:pytorch_android:1.10.0'
+//    implementation 'org.pytorch:pytorch_android_torchvision:1.10.0'
 }

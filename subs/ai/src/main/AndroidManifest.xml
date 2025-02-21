@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
+        <activity android:name=".AIHomeActivity" android:exported="true" />
         <activity
             android:name=".DigitalClassificationActivity"
             android:exported="true" />
