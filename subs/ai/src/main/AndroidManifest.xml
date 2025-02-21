@@ -5,6 +5,9 @@
         <activity
             android:name=".DigitalClassificationActivity"
             android:exported="true" />
+        <activity
+            android:name=".GanActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

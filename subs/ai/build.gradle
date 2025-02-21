@@ -37,6 +37,9 @@ android {
     androidResources {
         noCompress = 'tflite'
     }
+    buildFeatures {
+        viewBinding true
+    }
 
 }
 
@@ -55,4 +58,7 @@ dependencies {
         exclude group: "com.google.inject", module: "guice"
     }
     implementation 'com.google.android.gms:play-services-tasks:18.2.0'
+
+    implementation 'org.pytorch:pytorch_android_lite:1.9.0'
+    implementation 'org.pytorch:pytorch_android_torchvision:1.9.0'
 }
