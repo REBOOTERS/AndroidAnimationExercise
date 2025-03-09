@@ -54,9 +54,13 @@ android {
                 compilerArgumentProviders(new RoomSchemaArgProvider(new File(projectDir, "schemas")))
             }
         }
+        //只保留中文资源和 xxhdpi 分辨率图片
         resourceConfigurations += ['zh-rCN', 'xxhdpi']
 
-        //只保留中文资源和 xxhdpi 分辨率图片
+        ndk {
+            //目前已支持 "armeabi-v7a","arm64-v8a","x86","x86_64" 平台架构
+            abiFilters "arm64-v8a"
+        }
     }
 
     buildTypes {
