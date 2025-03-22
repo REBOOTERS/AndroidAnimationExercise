@@ -114,7 +114,9 @@ android {
             includeAndroidResources = true
         }
     }
-
+    buildFeatures {
+        viewBinding true
+    }
 
     namespace 'home.smart.fly.animations'
     lint {
@@ -133,6 +135,7 @@ configurations.all {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
     implementation 'com.google.code.gson:gson:2.11.0'
     implementation "androidx.appcompat:appcompat:${ext.androidx_appcompat}"
     implementation "com.google.android.material:material:${ext.androidx_material}"

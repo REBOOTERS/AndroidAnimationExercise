@@ -10,6 +10,7 @@ import home.smart.fly.animations.master.ui.MasterPaintActivity;
 import home.smart.fly.animations.ui.activity.BitmapMeshActivity;
 import home.smart.fly.animations.ui.activity.CollegeActivity;
 import home.smart.fly.animations.ui.activity.FlowLayoutActivity;
+import home.smart.fly.animations.ui.activity.GPUPixelActivity;
 import home.smart.fly.animations.ui.activity.MyDrawingBoardActivity;
 import home.smart.fly.animations.ui.activity.PlayActivity;
 import home.smart.fly.animations.ui.activity.PullToScaleActivity;
@@ -30,6 +31,7 @@ public class ViewsFragment extends BaseFragment {
 
     @Override
     protected void InitView() {
+        demos.add(new ItemInfo(R.string.gpu_pixel, GPUPixelActivity.class));
         demos.add(new ItemInfo(R.string.app_name, CollegeActivity.class));
         demos.add(new ItemInfo(R.string.view_drag, ViewDragHelperActivity.class));
         demos.add(new ItemInfo(R.string.profile, ScrollingActivity.class));

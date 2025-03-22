@@ -71,14 +71,6 @@
             android:textColor="#000" />
 
 
-        <home.smart.fly.animations.customview.swipeanim.lib.SwipeCardRecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/downText"
-            android:layout_below="@id/upText"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" />
 
     </RelativeLayout>
 

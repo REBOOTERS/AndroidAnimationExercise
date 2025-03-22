@@ -49,6 +49,9 @@
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
+            android:name=".ui.activity.GPUPixelActivity"
+            android:exported="true" />
+        <activity
             android:name=".webview.FullscreenPage"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen_page"
@@ -440,7 +443,9 @@
         <activity android:name=".ui.activity.WebViewMenuActivity" />
         <activity android:name=".ui.activity.OptionalActivity" />
         <activity android:name=".ui.activity.ClipBoardActivity" />
-        <activity android:name=".ui.activity.LoaderActivity" android:exported="true"/>
+        <activity
+            android:name=".ui.activity.LoaderActivity"
+            android:exported="true" />
         <activity android:name=".ui.activity.AnimateDrawableActivity" />
         <activity
             android:name=".ui.activity.FullscreenADActivity"
