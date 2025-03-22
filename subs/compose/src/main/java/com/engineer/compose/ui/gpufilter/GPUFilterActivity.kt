@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import com.engineer.compose.ui.ui.theme.ComposeAppTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -41,7 +42,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.engineer.compose.ui.gpufilter.ui.theme.AndroidAnimationExerciseTheme
 import com.pixpark.gpupixel.GPUPixel
 import com.pixpark.gpupixel.GPUPixelSourceImage
 import com.pixpark.gpupixel.filter.GPUPixelFilter
@@ -57,7 +57,7 @@ class GPUFilterActivity : ComponentActivity() {
         gpuPixelSourceImage = GPUPixelSourceImage(BitmapFactory.decodeFile(url))
 
         setContent {
-            AndroidAnimationExerciseTheme {
+            ComposeAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Log.i("", innerPadding.toString())
                     PhotoFilterScreen(url) {
@@ -173,7 +173,7 @@ fun FilterItem(filterName: String, isSelected: Boolean, onClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    AndroidAnimationExerciseTheme {
+    ComposeAppTheme {
         PhotoFilterScreen("") {}
     }
 }
