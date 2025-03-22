@@ -95,8 +95,7 @@ fun ViewPagerExample(imageUrls: List<String>, initialPage: Int = 0, modifier: Mo
                 .fillMaxSize()
         ) { page ->
             Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+                modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
             ) {
 //                val painter = rememberAsyncImagePainter(model = imageUrls[page])
                 val painter = rememberAsyncImagePainter(

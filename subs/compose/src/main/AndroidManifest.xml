@@ -5,6 +5,11 @@
 
     <application>
         <activity
+            android:name=".ui.gpufilter.GPUFilterActivity"
+            android:exported="true"
+            android:label="@string/title_activity_gpufilter"
+            android:theme="@style/Theme.AndroidAnimationExercise" />
+        <activity
             android:name=".ui.GalleryActivity"
             android:exported="false"
             android:label="@string/title_activity_gallery"

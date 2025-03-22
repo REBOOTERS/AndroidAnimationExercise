@@ -22,11 +22,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
     buildFeatures {
         compose true
@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
     implementation libs.androidx.core.ktx
     implementation libs.androidx.lifecycle.runtime.ktx
     api libs.androidx.activity.compose
@@ -51,6 +51,12 @@ dependencies {
 
     api libs.accompanist.pager
     api libs.accompanist.pager.indicator
+    implementation libs.androidx.activity.compose
+    implementation platform(libs.androidx.compose.bom)
+    implementation libs.androidx.ui
+    implementation libs.androidx.ui.graphics
+    implementation libs.androidx.ui.tooling.preview
+    implementation libs.androidx.material3
 
 
     testImplementation libs.junit
@@ -60,4 +66,5 @@ dependencies {
     androidTestImplementation libs.androidx.ui.test.junit4
     debugApi libs.androidx.ui.tooling
     debugImplementation libs.androidx.ui.test.manifest
+    debugImplementation libs.androidx.ui.tooling
 }

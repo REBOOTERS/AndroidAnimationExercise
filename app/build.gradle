@@ -197,7 +197,7 @@ dependencies {
     }
     implementation project(path: ':subs:dataview')
     implementation project(path: ':subs:skeleton')
-
+    implementation project(path: ':subs:compose')
     implementation 'com.alibaba:fastjson:2.0.19.graal'
 
 }
@@ -211,10 +211,10 @@ import com.android.build.api.instrumentation.InstrumentationScope
 androidComponents {
     onVariants(selector().all(), {
         instrumentation.transformClassesWith(FooClassVisitorFactory.class, InstrumentationScope.PROJECT) {}
-        instrumentation.transformClassesWith(TrackClassVisitorFactory.class,InstrumentationScope.PROJECT) { param ->
+        instrumentation.transformClassesWith(TrackClassVisitorFactory.class, InstrumentationScope.PROJECT) { param ->
             param.trackOn = true
         }
-        instrumentation.transformClassesWith(TigerClassVisitorFactory.class,InstrumentationScope.PROJECT) { param ->
+        instrumentation.transformClassesWith(TigerClassVisitorFactory.class, InstrumentationScope.PROJECT) { param ->
             param.tigerOn = true
         }
         instrumentation.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
@@ -224,8 +224,6 @@ androidComponents {
 //ext.allDependencies.each {
 //    dependencies.add('implementation', it)
 //}
-
-
 
 
 // 自定义插件的一些测试，如果无法运行，可以暂时注释掉

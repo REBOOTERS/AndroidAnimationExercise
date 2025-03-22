@@ -10,4 +10,6 @@
     <style name="Theme.MiniApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Theme.MiniApp" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.AndroidAnimationExercise" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
