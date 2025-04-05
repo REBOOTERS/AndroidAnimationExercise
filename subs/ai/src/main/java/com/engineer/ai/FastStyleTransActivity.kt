@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.engineer.ai.databinding.ActivityGanBinding
+import com.engineer.ai.databinding.ActivityTansStyleBinding
 import com.engineer.ai.util.AndroidAssetsFileUtil
 import com.engineer.ai.util.Utils
 import org.pytorch.IValue
@@ -13,15 +14,15 @@ import org.pytorch.Tensor
 import java.util.Random
 
 
-class GanActivity : AppCompatActivity() {
-    private val TAG = "GanActivity"
+class FastStyleTransActivity : AppCompatActivity() {
+    private val TAG = "FastStyleTransActivity"
     private lateinit var module: Module
     private val modelName = "dcgan.pt"
 
-    private lateinit var viewBinding: ActivityGanBinding
+    private lateinit var viewBinding: ActivityTansStyleBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = ActivityGanBinding.inflate(layoutInflater)
+        viewBinding = ActivityTansStyleBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         initModel()
         viewBinding.gen.setOnClickListener {
@@ -34,13 +35,13 @@ class GanActivity : AppCompatActivity() {
         val outDims = intArrayOf(64, 64, 3)
         Log.d(TAG, zDim.contentToString())
         val z = FloatArray(zDim[0] * zDim[1])
-        Log.d(TAG,"z = ${z.contentToString()}")
+        Log.d(TAG, "z = ${z.contentToString()}")
         val rand = Random()
         // 生成高斯随机数
         for (c in 0 until zDim[0] * zDim[1]) {
             z[c] = rand.nextGaussian().toFloat()
         }
-        Log.d(TAG,"z = ${z.contentToString()}")
+        Log.d(TAG, "z = ${z.contentToString()}")
         val shape = longArrayOf(1, 100)
         val tensor = Tensor.fromBlob(z, shape)
         Log.d(TAG, tensor.dataAsFloatArray.contentToString())
@@ -58,7 +59,7 @@ class GanActivity : AppCompatActivity() {
             }
         }
         val bitmap = Utils.getBitmap(resultImg, outDims)
-        viewBinding.ganResult.setImageBitmap(bitmap)
+        viewBinding.transResult.setImageBitmap(bitmap)
     }
 
     private fun initModel() {
