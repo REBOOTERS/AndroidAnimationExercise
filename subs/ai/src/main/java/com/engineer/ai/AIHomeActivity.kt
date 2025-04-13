@@ -9,8 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 
 class AIHomeActivity : AppCompatActivity() {
 
-    private val pages = arrayOf(GanActivity::class.java,
-        DigitalClassificationActivity::class.java)
+    private val pages = arrayOf(
+        GanActivity::class.java,
+        DigitalClassificationActivity::class.java,
+        FastStyleTransActivity::class.java
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
