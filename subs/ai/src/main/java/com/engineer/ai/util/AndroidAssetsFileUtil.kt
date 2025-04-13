@@ -1,6 +1,7 @@
 package com.engineer.ai.util
 
 import android.content.Context
+import android.view.View
 import java.io.File
 import java.io.FileOutputStream
 
@@ -24,5 +25,17 @@ object AndroidAssetsFileUtil {
             }
             file.absolutePath
         }
+    }
+}
+
+fun View?.show() {
+    this?.let {
+        visibility = View.VISIBLE
+    }
+}
+
+fun View?.gone() {
+    this?.let {
+        visibility = View.GONE
     }
 }
