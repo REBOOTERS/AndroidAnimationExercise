@@ -48,9 +48,6 @@ class FastStyleTransActivity : AppCompatActivity() {
         }
         viewBinding.gen.setOnClickListener {
             refreshLoading(true)
-//            lifecycleScope.launch {
-//                genImage()
-//            }
             GlobalScope.launch {
                 genImage()
             }
@@ -75,42 +72,17 @@ class FastStyleTransActivity : AppCompatActivity() {
 
 
     private fun genImage() {
-
         currentBitmap?.let {
-//            AsyncExecutor.fromIO().execute {
-//                StyleTransferProcessor.initModule(module)
-//                StyleTransferProcessor.transferStyle(it, 1.0f)
-//            }.awaitResult<Bitmap>(onSuccess = {
-//                Log.i(TAG, "onSuccess")
-//                refreshLoading(false)
-//                Log.i(TAG, "output ${it.width},${it.height}")
-//                viewBinding.transResult.setImageBitmap(it)
-//            }, onError = {
-//                refreshLoading(false)
-//                Log.i(TAG, it.stackTraceToString())
-//            })
-
             AsyncExecutor.fromIO().execute {
                 StyleTransferProcessor.initModule(module)
-//                val it = StyleTransferProcessor.transferStyle(it, 1.0f)
-//
-//                withContext(Dispatchers.Main) {
-//                    refreshLoading(false)
-//                    Log.i(TAG, "output ${it.width},${it.height}")
-//                    viewBinding.transResult.setImageBitmap(it)
-//                }
-
-                StyleTransferProcessor.transferStyleAsync(it, 0.5f) {
+                StyleTransferProcessor.transferStyleAsync(it, 1.0f) {
                     runOnUiThread {
                         refreshLoading(false)
-
                         viewBinding.transResult.setImageBitmap(it)
                     }
                 }
             }
         }
-
-
     }
 
     private fun initModel() {
@@ -118,7 +90,7 @@ class FastStyleTransActivity : AppCompatActivity() {
     }
 
 
-    fun pickImage() {
+    private fun pickImage() {
         // 检查设备是否支持照片选择器
         if (isPhotoPickerAvailable(this)) {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
@@ -128,16 +100,15 @@ class FastStyleTransActivity : AppCompatActivity() {
         }
     }
 
-    private val pickMedia =
-        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-            // 处理选择的图片
-            uri?.let {
-                val inputStream = contentResolver.openInputStream(uri)
-                val bitmap = BitmapFactory.decodeStream(inputStream)
-                inputStream?.close()
-                showBitmap(bitmap)
-            }
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        // 处理选择的图片
+        uri?.let {
+            val inputStream = contentResolver.openInputStream(uri)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            inputStream?.close()
+            showBitmap(bitmap)
         }
+    }
 
     // 定义权限请求和图片选择启动器
     private val requestPermissionLauncher = registerForActivityResult(
@@ -191,8 +162,7 @@ class FastStyleTransActivity : AppCompatActivity() {
                 this, permission
             ) -> {
                 // 解释为什么需要权限
-                AlertDialog.Builder(this).setTitle("需要权限")
-                    .setMessage("需要存储权限才能从相册选择图片")
+                AlertDialog.Builder(this).setTitle("需要权限").setMessage("需要存储权限才能从相册选择图片")
                     .setPositiveButton("确定") { _, _ ->
                         requestPermissionLauncher.launch(permission)
                     }.setNegativeButton("取消", null).show()

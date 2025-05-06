@@ -136,7 +136,7 @@ configurations.all {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation fileTree(include: ['*.aar'], dir: 'libs')
-    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'com.google.code.gson:gson:2.13.1'
     implementation "androidx.appcompat:appcompat:${ext.androidx_appcompat}"
     implementation "com.google.android.material:material:${ext.androidx_material}"
     implementation 'com.orhanobut:logger:2.2.0'
@@ -146,7 +146,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "com.github.bumptech.glide:glide:$ext.glide"
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.14'
-    implementation 'com.squareup.okio:okio:3.9.1'
+    implementation 'com.squareup.okio:okio:3.11.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.vectordrawable:vectordrawable:1.2.0'
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
@@ -158,8 +158,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt 'com.jakewharton:butterknife-compiler:10.2.3'
     implementation 'com.facebook.stetho:stetho:1.6.0'
-    implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
-    implementation 'com.airbnb.android:lottie:6.6.2'
+    implementation 'androidx.dynamicanimation:dynamicanimation:1.1.0'
+    implementation 'com.airbnb.android:lottie:6.6.6'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
     implementation 'net.sourceforge.streamsupport:streamsupport:1.7.4'
@@ -168,7 +168,7 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
 
     implementation "androidx.palette:palette-ktx:1.0.0"
-    implementation 'com.tencent:mmkv:2.0.2'
+    implementation 'com.tencent:mmkv:2.2.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.6.2'
@@ -177,7 +177,7 @@ dependencies {
     implementation 'com.jakewharton.hugo:hugo-runtime:1.2.1'
 
 
-    implementation 'com.facebook.fresco:fresco:3.5.0'
+    implementation 'com.facebook.fresco:fresco:3.6.0'
     implementation 'com.github.chrisbanes:PhotoView:2.1.4'
     implementation 'com.github.REBOOTERS:Matisse:v0.6.0'
     implementation 'com.guolindev.permissionx:permissionx:1.8.1'
@@ -189,7 +189,7 @@ dependencies {
     implementation 'com.github.yhaolpz:FloatWindow:1.0.9'
 
     // https://github.com/skydoves/TransformationLayout
-    implementation 'com.github.skydoves:transformationlayout:1.1.4'
+    implementation 'com.github.skydoves:transformationlayout:1.1.5'
 
 
     if (!imitate_isApp.toBoolean()) {

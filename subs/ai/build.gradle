@@ -47,21 +47,21 @@ dependencies {
     implementation "androidx.core:core-ktx:${ext.core_ktx}"
     implementation "androidx.appcompat:appcompat:$ext.androidx_appcompat"
     implementation "com.google.android.material:material:${ext.androidx_material}"
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
     // AndroidDraw Library
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
-    implementation('org.tensorflow:tensorflow-lite:2.16.1') {
+    implementation('org.tensorflow:tensorflow-lite:2.17.0') {
         exclude group: "com.google.inject", module: "guice"
     }
     implementation 'com.google.android.gms:play-services-tasks:18.2.0'
 
 
-    implementation 'org.pytorch:pytorch_android_lite:1.12.2'
-    implementation 'org.pytorch:pytorch_android_torchvision_lite:1.12.2'
+    implementation 'org.pytorch:pytorch_android_lite:2.1.0'
+    implementation 'org.pytorch:pytorch_android_torchvision_lite:2.1.0'
 //    implementation 'org.pytorch:pytorch_android:1.10.0'
 //    implementation 'org.pytorch:pytorch_android_torchvision:1.10.0'
 }
