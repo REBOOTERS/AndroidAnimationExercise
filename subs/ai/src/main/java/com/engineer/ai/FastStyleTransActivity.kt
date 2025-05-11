@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import com.engineer.ai.databinding.ActivityTansStyleBinding
 import com.engineer.ai.util.AndroidAssetsFileUtil
@@ -40,6 +43,7 @@ class FastStyleTransActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        WindowInsetsControllerCompat(window, window.decorView).hide(WindowInsetsCompat.Type.statusBars())
         viewBinding = ActivityTansStyleBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         initModel()
@@ -73,9 +77,10 @@ class FastStyleTransActivity : AppCompatActivity() {
 
     private fun genImage() {
         currentBitmap?.let {
+            viewBinding.transResult.setImageBitmap(null)
             AsyncExecutor.fromIO().execute {
                 StyleTransferProcessor.initModule(module)
-                StyleTransferProcessor.transferStyleAsync(it, 1.0f) {
+                StyleTransferProcessor.transferStyleAsync(it, 0.5f) {
                     runOnUiThread {
                         refreshLoading(false)
                         viewBinding.transResult.setImageBitmap(it)
