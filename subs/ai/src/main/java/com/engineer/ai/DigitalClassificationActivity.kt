@@ -55,21 +55,12 @@ class DigitalClassificationActivity : AppCompatActivity() {
             true
         }
 
-
         // Setup digit classifier.
         initButton?.setOnClickListener {
             digitClassifier.initialize {
                 runOnUiThread { if (it) "init success".toast(this) else "init fail".toast(this) }
             }
         }
-
-    }
-
-    override fun onDestroy() {
-        // Sync DigitClassifier instance lifecycle with MainActivity lifecycle,
-        // and free up resources (e.g. TF Lite instance) once the activity is destroyed.
-        digitClassifier.close()
-        super.onDestroy()
     }
 
     private fun classifyDrawing() {
@@ -85,6 +76,14 @@ class DigitalClassificationActivity : AppCompatActivity() {
                 }
         }
     }
+
+    override fun onDestroy() {
+        // Sync DigitClassifier instance lifecycle with MainActivity lifecycle,
+        // and free up resources (e.g. TF Lite instance) once the activity is destroyed.
+        digitClassifier.close()
+        super.onDestroy()
+    }
+
 
     companion object {
         private const val TAG = "DigitalClassification"

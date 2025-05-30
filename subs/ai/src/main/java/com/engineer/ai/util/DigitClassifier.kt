@@ -14,22 +14,14 @@ limitations under the License.
 package com.engineer.ai.util
 
 import android.content.Context
-import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.util.Log
+import androidx.core.graphics.scale
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
-import com.google.android.gms.tflite.java.TfLite
 import org.tensorflow.lite.InterpreterApi
-import org.tensorflow.lite.TensorFlowLite
-import java.io.FileInputStream
-import java.io.IOException
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
-import java.nio.channels.FileChannel
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import androidx.core.graphics.scale
 
 class DigitClassifier(private val context: Context) {
 
@@ -45,60 +37,33 @@ class DigitClassifier(private val context: Context) {
     private var inputImageHeight: Int = 0 // will be inferred from TF Lite model.
     private var modelInputSize: Int = 0 // will be inferred from TF Lite model.
 
-    private val initializeTask: Task<Void> by lazy { TfLite.initialize(context) }
     private var interpreter: InterpreterApi? = null
 
     fun initialize(cb: (Boolean) -> Unit) {
-        val assetManager = context.assets
-        val model = loadModelFile(assetManager, "mnist.tflite")
-
-        initializeTask.addOnSuccessListener {
-            val interpreterOption =
-                InterpreterApi.Options().setRuntime(InterpreterApi.Options.TfLiteRuntime.FROM_SYSTEM_ONLY)
-            interpreter = InterpreterApi.create(model, interpreterOption)
-
-            Log.d(TAG, "ver ${TensorFlowLite.schemaVersion(InterpreterApi.Options.TfLiteRuntime.FROM_SYSTEM_ONLY)}")
-            Log.d(TAG, "ver ${TensorFlowLite.runtimeVersion(InterpreterApi.Options.TfLiteRuntime.FROM_SYSTEM_ONLY)}")
-            // Read input shape from model file
-            interpreter?.let {
-                val inputShape = it.getInputTensor(0).shape()
-                inputImageWidth = inputShape[1]
-                inputImageHeight = inputShape[2]
-                modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
-
-
-                isInitialized = true
-                Log.d(TAG, "Initialized TFLite interpreter.")
-                cb(true)
-            } ?: run {
-                Log.d(TAG, "Initialized TFLite fail.")
+        TensorFlowLiteHelper.init(context) {
+            cb(it)
+            if (it) {
+                interpreter = TensorFlowLiteHelper.createInterpreterApi(context, "mnist.tflite")
+                // Read input shape from model file
+                interpreter?.let { inter ->
+                    val inputShape = inter.getInputTensor(0).shape()
+                    inputImageWidth = inputShape[1]
+                    inputImageHeight = inputShape[2]
+                    modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
+                    isInitialized = true
+                }
             }
-
-        }.addOnFailureListener { e ->
-            cb(false)
-            Log.e(TAG, "Cannot initialize interpreter", e)
         }
-
-
     }
 
-    @Throws(IOException::class)
-    private fun loadModelFile(assetManager: AssetManager, filename: String): ByteBuffer {
-        val fileDescriptor = assetManager.openFd(filename)
-        val inputStream = FileInputStream(fileDescriptor.fileDescriptor)
-        val fileChannel = inputStream.channel
-        val startOffset = fileDescriptor.startOffset
-        val declaredLength = fileDescriptor.declaredLength
-        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
-    }
 
     private fun classify(bitmap: Bitmap): String {
         check(isInitialized) { "TF Lite Interpreter is not initialized yet." }
-
-
         // Preprocessing: resize the input image to match the model input shape.
         val resizedImage = bitmap.scale(inputImageWidth, inputImageHeight)
-        val byteBuffer = convertBitmapToByteBuffer(resizedImage)
+        val config = TensorFlowLiteHelper.Config(modelInputSize, inputImageWidth, inputImageHeight)
+        val byteBuffer = TensorFlowLiteHelper.convertBitmapToByteBuffer(config, resizedImage)
+
         // Define an array to store the model output.
         val output = Array(1) { FloatArray(OUTPUT_CLASSES_COUNT) }
 
@@ -131,25 +96,6 @@ class DigitClassifier(private val context: Context) {
         }
     }
 
-    private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
-        val byteBuffer = ByteBuffer.allocateDirect(modelInputSize)
-        byteBuffer.order(ByteOrder.nativeOrder())
-
-        val pixels = IntArray(inputImageWidth * inputImageHeight)
-        bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
-
-        for (pixelValue in pixels) {
-            val r = (pixelValue shr 16 and 0xFF)
-            val g = (pixelValue shr 8 and 0xFF)
-            val b = (pixelValue and 0xFF)
-
-            // Convert RGB to grayscale and normalize pixel value to [0..1].
-            val normalizedPixelValue = (r + g + b) / 3.0f / 255.0f
-            byteBuffer.putFloat(normalizedPixelValue)
-        }
-
-        return byteBuffer
-    }
 
     companion object {
         private const val TAG = "DigitClassifier"
