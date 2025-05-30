@@ -2,15 +2,16 @@ package com.engineer.ai
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import com.divyanshu.draw.widget.DrawView
 import com.engineer.ai.util.DigitClassifier
-import org.tensorflow.lite.TensorFlowLite
+import com.engineer.ai.util.toast
 
 class DigitalClassificationActivity : AppCompatActivity() {
     private var drawView: DrawView? = null
@@ -22,6 +23,7 @@ class DigitalClassificationActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_digital_classification)
 
         // Setup view instances.
@@ -52,12 +54,13 @@ class DigitalClassificationActivity : AppCompatActivity() {
 
             true
         }
-        Log.d(TAG,"ver ${TensorFlowLite.schemaVersion()}")
-        Log.d(TAG,"ver ${TensorFlowLite.runtimeVersion()}")
+
+
         // Setup digit classifier.
         initButton?.setOnClickListener {
-            digitClassifier.initialize()
-                .addOnFailureListener { e -> Log.e(TAG, "Error to setting up digit classifier.", e) }
+            digitClassifier.initialize {
+                runOnUiThread { if (it) "init success".toast(this) else "init fail".toast(this) }
+            }
         }
 
     }

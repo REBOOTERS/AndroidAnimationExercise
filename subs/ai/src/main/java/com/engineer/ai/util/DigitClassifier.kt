@@ -19,7 +19,9 @@ import android.graphics.Bitmap
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
-import org.tensorflow.lite.Interpreter
+import com.google.android.gms.tflite.java.TfLite
+import org.tensorflow.lite.InterpreterApi
+import org.tensorflow.lite.TensorFlowLite
 import java.io.FileInputStream
 import java.io.IOException
 import java.nio.ByteBuffer
@@ -27,10 +29,11 @@ import java.nio.ByteOrder
 import java.nio.channels.FileChannel
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import androidx.core.graphics.scale
 
 class DigitClassifier(private val context: Context) {
 
-    private var interpreter: Interpreter? = null
+//    private var interpreter: Interpreter? = null
 
     var isInitialized = false
         private set
@@ -42,34 +45,41 @@ class DigitClassifier(private val context: Context) {
     private var inputImageHeight: Int = 0 // will be inferred from TF Lite model.
     private var modelInputSize: Int = 0 // will be inferred from TF Lite model.
 
-    fun initialize(): Task<Void?> {
-        val task = TaskCompletionSource<Void?>()
-        executorService.execute {
-            try {
-                initializeInterpreter()
-                task.setResult(null)
-            } catch (e: IOException) {
-                task.setException(e)
-            }
-        }
-        return task.task
-    }
+    private val initializeTask: Task<Void> by lazy { TfLite.initialize(context) }
+    private var interpreter: InterpreterApi? = null
 
-    @Throws(IOException::class)
-    private fun initializeInterpreter() {
+    fun initialize(cb: (Boolean) -> Unit) {
         val assetManager = context.assets
         val model = loadModelFile(assetManager, "mnist.tflite")
-        val interpreter = Interpreter(model)
-        // Read input shape from model file
-        val inputShape = interpreter.getInputTensor(0).shape()
-        inputImageWidth = inputShape[1]
-        inputImageHeight = inputShape[2]
-        modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
 
-        // Finish interpreter initialization
-        this.interpreter = interpreter
-        isInitialized = true
-        Log.d(TAG, "Initialized TFLite interpreter.")
+        initializeTask.addOnSuccessListener {
+            val interpreterOption =
+                InterpreterApi.Options().setRuntime(InterpreterApi.Options.TfLiteRuntime.FROM_SYSTEM_ONLY)
+            interpreter = InterpreterApi.create(model, interpreterOption)
+
+            Log.d(TAG, "ver ${TensorFlowLite.schemaVersion(InterpreterApi.Options.TfLiteRuntime.FROM_SYSTEM_ONLY)}")
+            Log.d(TAG, "ver ${TensorFlowLite.runtimeVersion(InterpreterApi.Options.TfLiteRuntime.FROM_SYSTEM_ONLY)}")
+            // Read input shape from model file
+            interpreter?.let {
+                val inputShape = it.getInputTensor(0).shape()
+                inputImageWidth = inputShape[1]
+                inputImageHeight = inputShape[2]
+                modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
+
+
+                isInitialized = true
+                Log.d(TAG, "Initialized TFLite interpreter.")
+                cb(true)
+            } ?: run {
+                Log.d(TAG, "Initialized TFLite fail.")
+            }
+
+        }.addOnFailureListener { e ->
+            cb(false)
+            Log.e(TAG, "Cannot initialize interpreter", e)
+        }
+
+
     }
 
     @Throws(IOException::class)
@@ -87,9 +97,7 @@ class DigitClassifier(private val context: Context) {
 
 
         // Preprocessing: resize the input image to match the model input shape.
-        val resizedImage = Bitmap.createScaledBitmap(
-            bitmap, inputImageWidth, inputImageHeight, true
-        )
+        val resizedImage = bitmap.scale(inputImageWidth, inputImageHeight)
         val byteBuffer = convertBitmapToByteBuffer(resizedImage)
         // Define an array to store the model output.
         val output = Array(1) { FloatArray(OUTPUT_CLASSES_COUNT) }
@@ -99,7 +107,7 @@ class DigitClassifier(private val context: Context) {
         // Post-processing: find the digit that has the highest probability
         // and return it a human-readable string.
         val result = output[0]
-        val maxIndex = result.indices.maxBy { result[it] } ?: -1
+        val maxIndex = result.indices.maxBy { result[it] }
         val resultString = "Prediction Result: %d\nConfidence: %2f".format(maxIndex, result[maxIndex])
 
         return resultString

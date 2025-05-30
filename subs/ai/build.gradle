@@ -54,9 +54,6 @@ dependencies {
 
     // AndroidDraw Library
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
-    implementation('org.tensorflow:tensorflow-lite:2.17.0') {
-        exclude group: "com.google.inject", module: "guice"
-    }
     implementation 'com.google.android.gms:play-services-tasks:18.2.0'
 
 
@@ -64,4 +61,9 @@ dependencies {
     implementation 'org.pytorch:pytorch_android_torchvision_lite:2.1.0'
 //    implementation 'org.pytorch:pytorch_android:1.10.0'
 //    implementation 'org.pytorch:pytorch_android_torchvision:1.10.0'
+
+    // LiteRT dependencies for Google Play services
+    implementation 'com.google.android.gms:play-services-tflite-java:16.4.0'
+    // Optional: include LiteRT Support Library
+    implementation 'com.google.android.gms:play-services-tflite-support:16.4.0'
 }

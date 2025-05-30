@@ -2,8 +2,13 @@ package com.engineer.ai.util
 
 import android.content.Context
 import android.view.View
+import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
+
+fun String.toast(context: Context) {
+    Toast.makeText(context, this, Toast.LENGTH_SHORT).show()
+}
 
 object AndroidAssetsFileUtil {
 
