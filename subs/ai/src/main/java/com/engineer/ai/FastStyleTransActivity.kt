@@ -36,7 +36,7 @@ import org.pytorch.Module
 class FastStyleTransActivity : AppCompatActivity() {
     private val TAG = "FastStyleTransActivity_TAG"
     private lateinit var module: Module
-    private val modelName = "mosaic.pt"
+    private val modelNames = arrayOf("mosaic.pt","udnie.pt","candy.pt")
     private var currentBitmap: Bitmap? = null
 
     private lateinit var viewBinding: ActivityTansStyleBinding
@@ -46,15 +46,13 @@ class FastStyleTransActivity : AppCompatActivity() {
         WindowInsetsControllerCompat(window, window.decorView).hide(WindowInsetsCompat.Type.statusBars())
         viewBinding = ActivityTansStyleBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-        initModel()
+
         viewBinding.pickImg.setOnClickListener {
             pickImage()
         }
         viewBinding.gen.setOnClickListener {
             refreshLoading(true)
-            GlobalScope.launch {
-                genImage()
-            }
+            genImage()
         }
     }
 
@@ -76,6 +74,7 @@ class FastStyleTransActivity : AppCompatActivity() {
 
 
     private fun genImage() {
+        initModel()
         currentBitmap?.let {
             viewBinding.transResult.setImageBitmap(null)
             AsyncExecutor.fromIO().execute {
@@ -91,6 +90,7 @@ class FastStyleTransActivity : AppCompatActivity() {
     }
 
     private fun initModel() {
+        val modelName = modelNames.random()
         module = LiteModuleLoader.load(AndroidAssetsFileUtil.assetFilePath(this, modelName))
     }
 
