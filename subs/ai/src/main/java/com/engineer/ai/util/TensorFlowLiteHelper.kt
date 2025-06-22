@@ -33,8 +33,7 @@ object TensorFlowLiteHelper {
     }
 
     fun createInterpreterApi(context: Context, modelName: String): InterpreterApi? {
-        val assetManager = context.assets
-        val model = loadModelFile(assetManager, modelName)
+        val model = loadModelFile(context.assets, modelName)
         val interpreterOption =
             InterpreterApi.Options().setRuntime(InterpreterApi.Options.TfLiteRuntime.FROM_SYSTEM_ONLY)
         interpreter = InterpreterApi.create(model, interpreterOption)
