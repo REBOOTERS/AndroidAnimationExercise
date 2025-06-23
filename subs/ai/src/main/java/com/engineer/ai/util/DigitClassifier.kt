@@ -47,7 +47,7 @@ class DigitClassifier(private val context: Context) {
                 // Read input shape from model file
                 interpreter?.let { inter ->
                     val inputShape = inter.getInputTensor(0).shape()
-                    Log.d(TAG,inputShape.toString())
+                    Log.d(TAG, "input shape = ${inputShape.contentToString()}")
                     inputImageWidth = inputShape[1]
                     inputImageHeight = inputShape[2]
                     modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
@@ -73,7 +73,7 @@ class DigitClassifier(private val context: Context) {
         // Post-processing: find the digit that has the highest probability
         // and return it a human-readable string.
         val result = output[0]
-        Log.d(TAG,"result = $result")
+        Log.d(TAG, "result = ${result.contentToString()}")
         val maxIndex = result.indices.maxBy { result[it] }
         val resultString = "Prediction Result: %d\nConfidence: %2f".format(maxIndex, result[maxIndex])
 
