@@ -27,8 +27,9 @@ object TensorFlowLiteHelper {
             Log.d(TAG, "ver ${TensorFlowLite.runtimeVersion(InterpreterApi.Options.TfLiteRuntime.FROM_SYSTEM_ONLY)}")
             cb(true)
         }.addOnFailureListener {
-            Log.d(TAG, "Initialized TFLite fail.")
+            Log.d(TAG, "Initialized TFLite fail")
             cb(false)
+            Log.e(TAG, "error ", it)
         }
     }
 
