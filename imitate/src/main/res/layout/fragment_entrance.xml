@@ -34,28 +34,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-            <com.skydoves.transformationlayout.TransformationLayout
-                android:id="@+id/transformationLayout"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/horizontal_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:transformation_direction="auto"
-                app:transformation_duration="450"
-                app:transformation_fadeMode="cross"
-                app:transformation_fitMode="auto"
-                app:transformation_pathMode="arc">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/horizontal_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="horizontal_list"
-                    android:textColor="?android:attr/textColorSecondaryInverse" />
-
-
-            </com.skydoves.transformationlayout.TransformationLayout>
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="horizontal_list"
+                android:textColor="?android:attr/textColorSecondaryInverse" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/inflate_real"

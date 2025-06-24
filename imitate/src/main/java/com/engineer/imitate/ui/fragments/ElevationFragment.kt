@@ -27,7 +27,6 @@ import com.engineer.imitate.ui.widget.custom.JikeSlideView
 import com.engineer.imitate.util.TestHelper
 import com.engineer.imitate.util.toastShort
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.skydoves.transformationlayout.TransformationLayout
 
 /**
  * A simple [Fragment] subclass.
@@ -40,7 +39,7 @@ class ElevationFragment : Fragment() {
     private var mDeltaY = 0.0f
 
     private lateinit var fab: FloatingActionButton
-    private lateinit var transformationLayout: TransformationLayout
+
     private lateinit var parent: ConstraintLayout
     private lateinit var myCardView: CardView
     private lateinit var cardView: CardView
@@ -66,7 +65,7 @@ class ElevationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fab = view.findViewById(R.id.fab)
         parent = view.findViewById(R.id.parent)
-        transformationLayout = view.findViewById(R.id.transformationLayout)
+
         myCardView = view.findViewById(R.id.myCardView)
         cardView = view.findViewById(R.id.cardView)
         cardElevationSeekBar = view.findViewById(R.id.cardElevationSeekBar)
@@ -86,14 +85,6 @@ class ElevationFragment : Fragment() {
         anim.repeatCount = ObjectAnimator.INFINITE
         anim.start()
         // start transformation when touching the fab.
-        fab.setOnClickListener {
-            transformationLayout.startTransform(parent)
-        }
-
-        // finish transformation when touching the myCardView.
-        myCardView.setOnClickListener {
-            transformationLayout.finishTransform(parent)
-        }
 
         cardElevationSeekBar.setOnSeekBarChangeListener(object : SimpleProgressChangeListener() {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {

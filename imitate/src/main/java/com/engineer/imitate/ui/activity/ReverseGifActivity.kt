@@ -21,7 +21,6 @@ import com.engineer.imitate.databinding.ActivityReverseGifBinding
 import com.engineer.imitate.util.Glide4Engine
 import com.engineer.imitate.util.toastShort
 import com.permissionx.guolindev.PermissionX
-import com.skydoves.transformationlayout.onTransformationEndContainer
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
@@ -35,7 +34,7 @@ class ReverseGifActivity : AppCompatActivity() {
     private var originalUrl: Uri? = null
     private var revertedlUrl: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
-        onTransformationEndContainer(intent.getParcelableExtra("TransformationParams"))
+
         super.onCreate(savedInstanceState)
         mContext = this
         window.setFlags(

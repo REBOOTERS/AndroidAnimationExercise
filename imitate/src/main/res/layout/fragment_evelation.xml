@@ -33,26 +33,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.skydoves.transformationlayout.TransformationLayout
-        android:id="@+id/transformationLayout"
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_add_black_24dp"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintLeft_toRightOf="@+id/cardView"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:transformation_duration="550"
-        app:transformation_targetView="@+id/myCardView">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/ic_add_black_24dp"
-            app:fabSize="normal" />
-
-    </com.skydoves.transformationlayout.TransformationLayout>
+        app:layout_constraintStart_toEndOf="@+id/cardView" />
 
 
     <com.engineer.imitate.ui.widget.custom.JikeSlideView

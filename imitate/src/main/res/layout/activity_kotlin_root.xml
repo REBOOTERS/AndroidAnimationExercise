@@ -44,8 +44,8 @@
         layout="@layout/content_kotlin_root" />
 
 
-    <com.skydoves.transformationlayout.TransformationLayout
-        android:id="@+id/transformationLayout"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/gif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -53,19 +53,11 @@
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="56dp"
-        app:transformation_duration="550">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/gif"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/app_name"
-            android:elevation="10dp"
-            android:src="@drawable/ic_gif_white_24dp"
-            app:backgroundTint="@color/colorAccent"
-            app:fabSize="normal" />
-
-    </com.skydoves.transformationlayout.TransformationLayout>
+        android:contentDescription="@string/app_name"
+        android:elevation="10dp"
+        android:src="@drawable/ic_gif_white_24dp"
+        app:backgroundTint="@color/colorAccent"
+        app:fabSize="normal" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

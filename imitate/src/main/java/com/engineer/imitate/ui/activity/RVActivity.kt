@@ -30,9 +30,6 @@ class RVActivity : AppCompatActivity() {
         val snapHelper = getSnapHelper()
         snapHelper.attachToRecyclerView(viewBinding.rvList)
 
-        viewBinding.rvList.postDelayed({
-            viewBinding.refreshLayout.autoRefresh()
-        }, 1000)
     }
 
     private fun getSnapHelper(): SnapHelper {

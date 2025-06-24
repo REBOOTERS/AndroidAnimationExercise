@@ -116,7 +116,6 @@
         <activity
             android:name=".ui.activity.ninepoint.NinePointActivity"
             android:exported="true" />
-        <activity android:name=".ui.activity.GroundDuActivity" android:exported="true" />
 
         <receiver
             android:name=".receivers.AlarmReceiver"

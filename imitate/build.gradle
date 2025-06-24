@@ -221,7 +221,6 @@ dependencies {
     implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
 
     // from 2021
-    implementation 'com.github.skydoves:transformationlayout:1.1.5'
     implementation 'com.beust:klaxon:5.6'
     implementation 'com.alibaba:fastjson:2.0.19.graal'
     implementation 'com.google.code.gson:gson:2.11.0'
@@ -234,17 +233,5 @@ dependencies {
     //                                       👇 依赖当前平台所对应的平台库
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_android"
 
-    implementation 'io.github.scwang90:refresh-layout-kernel:2.1.1'      //核心必须依赖
-    implementation 'io.github.scwang90:refresh-header-classics:2.1.0'    //经典刷新头
-    implementation 'io.github.scwang90:refresh-header-radar:2.1.0'       //雷达刷新头
-    implementation 'io.github.scwang90:refresh-header-falsify:2.1.1'     //虚拟刷新头
-    implementation 'io.github.scwang90:refresh-header-material:2.1.0'    //谷歌刷新头
-    implementation 'io.github.scwang90:refresh-header-two-level:2.1.0'   //二级刷新头
-    implementation 'io.github.scwang90:refresh-footer-ball:2.1.1'        //球脉冲加载
-    implementation 'io.github.scwang90:refresh-footer-classics:2.1.0'    //经典加载
-
-    implementation 'androidx.metrics:metrics-performance:1.0.0-beta02'
-
-    implementation 'com.github.daquexian:FlexibleRichTextView:0.8.2'
 }
 apply from: file("../gradle/report_apk_size_after_package.gradle")

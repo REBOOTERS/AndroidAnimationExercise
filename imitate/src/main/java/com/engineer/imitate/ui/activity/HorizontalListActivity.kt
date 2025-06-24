@@ -17,8 +17,6 @@ import com.engineer.imitate.ui.widget.DecorationOne
 import com.engineer.imitate.util.FastListAdapter
 import com.engineer.imitate.util.bind
 import com.engineer.imitate.util.dp2px
-import com.skydoves.transformationlayout.TransformationLayout
-import com.skydoves.transformationlayout.onTransformationEndContainer
 
 class HorizontalListActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityHorizontalListBinding
@@ -26,9 +24,7 @@ class HorizontalListActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
-        intent.getParcelableExtra<TransformationLayout.Params>("TransformationParams")?.let {
-            onTransformationEndContainer(it)
-        }
+
         super.onCreate(savedInstanceState)
         viewBinding = ActivityHorizontalListBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_horizontal_list)

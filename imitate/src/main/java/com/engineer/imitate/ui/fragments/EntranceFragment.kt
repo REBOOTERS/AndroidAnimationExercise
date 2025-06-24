@@ -78,11 +78,13 @@ class EntranceFragment : Fragment() {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
             ).request { it, _, _ ->
                 if (it) {
-                    Matisse.from(this).choose(MimeType.ofAll(), false).countable(true).capture(true).captureStrategy(
-                        CaptureStrategy(
-                            true, requireContext().packageName + ".fileprovider"
-                        )
-                    ).maxSelectable(9).restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                    Matisse.from(this).choose(MimeType.ofAll(), false).countable(true).capture(true)
+                        .captureStrategy(
+                            CaptureStrategy(
+                                true, requireContext().packageName + ".fileprovider"
+                            )
+                        ).maxSelectable(9)
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                         .thumbnailScale(0.85f).imageEngine(Glide4Engine()).forResult(100)
                 }
             }
@@ -101,11 +103,13 @@ class EntranceFragment : Fragment() {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
             ).request { it, _, _ ->
                 if (it) {
-                    Matisse.from(this).choose(MimeType.ofAll(), false).countable(true).capture(true).captureStrategy(
-                        CaptureStrategy(
-                            true, requireContext().packageName + ".fileprovider"
-                        )
-                    ).maxSelectable(9).restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                    Matisse.from(this).choose(MimeType.ofAll(), false).countable(true).capture(true)
+                        .captureStrategy(
+                            CaptureStrategy(
+                                true, requireContext().packageName + ".fileprovider"
+                            )
+                        ).maxSelectable(9)
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                         .thumbnailScale(0.85f).imageEngine(Glide4Engine()).forResult(101)
                 }
             }
@@ -142,10 +146,9 @@ class EntranceFragment : Fragment() {
 
             //            startActivity(Intent(context, HorizontalListActivity::class.java))
 
-            val bundle = viewBinding.transformationLayout.withView(viewBinding.transformationLayout, "myTransitionName")
+
             val intent = Intent(context, HorizontalListActivity::class.java)
-            intent.putExtra("TransformationParams", viewBinding.transformationLayout.getParcelableParams())
-            startActivity(intent, bundle)
+            startActivity(intent)
         }
 
         viewBinding.expandableListview.setOnClickListener {
@@ -168,7 +171,13 @@ class EntranceFragment : Fragment() {
 //            startActivity(Intent(context, GameRootActivity::class.java))
         }
 
-        viewBinding.shell.setOnClickListener { startActivity(Intent(context, RunShellActivity::class.java)) }
+        viewBinding.shell.setOnClickListener {
+            startActivity(
+                Intent(
+                    context, RunShellActivity::class.java
+                )
+            )
+        }
 
         viewBinding.constraintLayoutLl.setOnClickListener {
             startActivity(

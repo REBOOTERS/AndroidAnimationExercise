@@ -23,8 +23,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.metrics.performance.JankStats
-import androidx.metrics.performance.PerformanceMetricsState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,13 +34,6 @@ import com.engineer.imitate.room.SchoolDatabase
 import com.engineer.imitate.ui.activity.ReverseGifActivity
 import com.engineer.imitate.util.*
 import com.gyf.immersionbar.ImmersionBar
-import com.scwang.smart.refresh.footer.ClassicsFooter
-import com.scwang.smart.refresh.header.BezierRadarHeader
-import com.scwang.smart.refresh.header.ClassicsHeader
-import com.scwang.smart.refresh.header.FalsifyHeader
-import com.scwang.smart.refresh.header.MaterialHeader
-import com.scwang.smart.refresh.layout.api.RefreshHeader
-import com.skydoves.transformationlayout.onTransformationStartContainer
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -67,9 +58,8 @@ class KotlinRootActivity : AppCompatActivity() {
     private var adapter: FastListAdapter<FragmentItem>? = null
     private lateinit var viewBinding: ActivityKotlinRootBinding
 
-    private lateinit var jankStatus: JankStats
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        onTransformationStartContainer()
         super.onCreate(savedInstanceState)
         ImmersionBar.with(this).fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init()
         viewBinding = ActivityKotlinRootBinding.inflate(layoutInflater)
@@ -85,24 +75,6 @@ class KotlinRootActivity : AppCompatActivity() {
         val patchViewModel = ViewModelProvider(this)[PatchViewModel::class.java]
         patchViewModel.copyFile()
 
-        jankStatus = JankStats.createAndTrack(window) {
-            if (it.isJank) {
-                Log.i("${TAG}_Jank", "frameData $it")
-            }
-        }
-        jankStatus.jankHeuristicMultiplier = 3f
-        val state = PerformanceMetricsState.getHolderForHierarchy(viewBinding.root)
-        state.state?.putState("Activity_Name", this::class.java.simpleName)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        jankStatus.isTrackingEnabled = true
-    }
-
-    override fun onPause() {
-        super.onPause()
-        jankStatus.isTrackingEnabled = false
     }
 
     private fun autoStartPage() {
@@ -129,14 +101,9 @@ class KotlinRootActivity : AppCompatActivity() {
         viewBinding.gif.setOnClickListener {
 //            startActivity(Intent(this, ReverseGifActivity::class.java))
 
-            val bundle = viewBinding.transformationLayout.withView(
-                viewBinding.transformationLayout, "myTransitionName"
-            )
             val intent = Intent(this, ReverseGifActivity::class.java)
-            intent.putExtra(
-                "TransformationParams", viewBinding.transformationLayout.getParcelableParams()
-            )
-            startActivity(intent, bundle)
+
+            startActivity(intent)
         }
 
 
@@ -196,7 +163,6 @@ class KotlinRootActivity : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator) {
                     super.onAnimationEnd(animation)
                     viewBinding.contentKotlinRoot.hybrid.visibility = View.GONE
-                    viewBinding.contentKotlinRoot.smartRefreshLayout.visibility = View.VISIBLE
                 }
             }).start()
 
@@ -243,15 +209,7 @@ class KotlinRootActivity : AppCompatActivity() {
                 }
             })
         }
-        val heads = arrayListOf<RefreshHeader>(
-            ClassicsHeader(this), BezierRadarHeader(this), FalsifyHeader(this), MaterialHeader(this)
-        )
-        viewBinding.contentKotlinRoot.smartRefreshLayout.autoRefresh()
-        viewBinding.contentKotlinRoot.smartRefreshLayout.setRefreshHeader(heads.random())
-        viewBinding.contentKotlinRoot.smartRefreshLayout.setRefreshFooter(ClassicsFooter(this))
-        viewBinding.contentKotlinRoot.smartRefreshLayout.setOnRefreshListener {
-            viewBinding.contentKotlinRoot.smartRefreshLayout.finishRefresh(2000)
-        }
+
     }
 
     private fun showMenu(view: View) {
@@ -267,7 +225,6 @@ class KotlinRootActivity : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator) {
                     super.onAnimationEnd(animation)
                     viewBinding.contentKotlinRoot.hybrid.visibility = View.VISIBLE
-                    viewBinding.contentKotlinRoot.smartRefreshLayout.visibility = View.GONE
                 }
             }).start()
 
@@ -325,12 +282,7 @@ class KotlinRootActivity : AppCompatActivity() {
             item?.setIcon(R.drawable.ic_brightness_high_white_24dp)
             item?.title = "夜间模式"
         }
-        val change = menu?.findItem(R.id.action_change)
-        val refresh = menu?.findItem(R.id.refresh)
-        change?.isVisible =
-            (viewBinding.contentKotlinRoot.smartRefreshLayout.visibility == View.VISIBLE)
-        refresh?.isVisible =
-            (viewBinding.contentKotlinRoot.smartRefreshLayout.visibility == View.VISIBLE)
+
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -342,14 +294,14 @@ class KotlinRootActivity : AppCompatActivity() {
                 finish()
             }
         } else if (item.itemId == R.id.action_switch_view) {
-            if (viewBinding.contentKotlinRoot.smartRefreshLayout.visibility == View.VISIBLE) {
+            if (viewBinding.contentKotlinRoot.recyclerView.visibility == View.VISIBLE) {
                 loadWebView()
             } else {
                 loadRecyclerView()
             }
             return true
         } else if (item.itemId == R.id.action_change) {
-            if (viewBinding.contentKotlinRoot.smartRefreshLayout.visibility == View.VISIBLE) {
+            if (viewBinding.contentKotlinRoot.recyclerView.visibility == View.VISIBLE) {
                 if (viewBinding.contentKotlinRoot.recyclerView.layoutManager == mLinearManager) {
                     mLayoutManager = mGridLayoutManager
                 } else {
@@ -368,9 +320,7 @@ class KotlinRootActivity : AppCompatActivity() {
             }
 //            recreate()
         } else if (item.itemId == R.id.refresh) {
-            if (viewBinding.contentKotlinRoot.recyclerView.visibility == View.VISIBLE) {
-                viewBinding.contentKotlinRoot.smartRefreshLayout.autoRefresh()
-            }
+
         }
         return super.onOptionsItemSelected(item)
     }
