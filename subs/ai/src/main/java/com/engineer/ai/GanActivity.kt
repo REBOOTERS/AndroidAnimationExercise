@@ -9,16 +9,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.engineer.ai.databinding.ActivityGanBinding
-import com.engineer.ai.util.AndroidAssetsFileUtil
 import com.engineer.ai.util.AsyncExecutor
 import com.engineer.ai.util.BitmapGridAdapter
 import com.engineer.ai.util.TensorFlowLiteHelper
-import com.engineer.ai.util.Utils
-import org.pytorch.IValue
-import org.pytorch.LiteModuleLoader
-import org.pytorch.Module
-import org.pytorch.Tensor
-import org.pytorch.torchvision.TensorImageUtils
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.util.Random
@@ -26,8 +19,7 @@ import java.util.Random
 
 class GanActivity : AppCompatActivity() {
     private val TAG = "GanActivity"
-    private lateinit var module: Module
-    private val modelName = "dcgan.pt"
+
     private val bitmapList = mutableListOf<Bitmap>()
     private lateinit var adapter: BitmapGridAdapter
 
@@ -78,12 +70,14 @@ class GanActivity : AppCompatActivity() {
                 val noise = generateNoise(100)
 
                 // 2. 创建输入张量
-                val inputBuffer = TensorBuffer.createFixedSize(intArrayOf(1, 100), DataType.FLOAT32).apply {
-                    loadArray(noise)
-                }
+                val inputBuffer =
+                    TensorBuffer.createFixedSize(intArrayOf(1, 100), DataType.FLOAT32).apply {
+                        loadArray(noise)
+                    }
 
                 // 3. 准备输出张量 [1, 3, 64, 64]
-                val outputBuffer = TensorBuffer.createFixedSize(intArrayOf(1, 3, 64, 64), DataType.FLOAT32)
+                val outputBuffer =
+                    TensorBuffer.createFixedSize(intArrayOf(1, 3, 64, 64), DataType.FLOAT32)
                 it.run(inputBuffer, outputBuffer)
                 Log.d(TAG, outputBuffer.floatArray.contentToString())
 
@@ -130,42 +124,12 @@ class GanActivity : AppCompatActivity() {
         }
     }
 
-    private fun genImage(): Bitmap {
-        val zDim = intArrayOf(1, 100)
-        val outDims = intArrayOf(64, 64, 3)
-        Log.d(TAG, zDim.contentToString())
-        val z = FloatArray(zDim[0] * zDim[1])
-        Log.d(TAG, "z = ${z.contentToString()}")
-        val rand = Random()
-        // 生成高斯随机数
-        for (c in 0 until zDim[0] * zDim[1]) {
-            z[c] = rand.nextGaussian().toFloat()
-        }
-        Log.d(TAG, "z = ${z.contentToString()}")
-        val shape = longArrayOf(1, 100)
-        val tensor = Tensor.fromBlob(z, shape)
-        Log.d(TAG, tensor.dataAsFloatArray.contentToString())
-        val resultT = module.forward(IValue.from(tensor)).toTensor()
-        val resultArray = resultT.dataAsFloatArray
-        val resultImg = Array(outDims[0]) { Array(outDims[1]) { FloatArray(outDims[2]) { 0.0f } } }
-        var index = 0
-        // 根据输出的一维数组，解析生成的卡通图像
-        for (j in 0 until outDims[2]) {
-            for (k in 0 until outDims[0]) {
-                for (m in 0 until outDims[1]) {
-                    resultImg[k][m][j] = resultArray[index] * 127.5f + 127.5f
-                    index++
-                }
-            }
-        }
-        Log.e(TAG, "${resultImg.size}, ${resultImg[0].size},${resultImg[0][0].contentToString()}")
-        Log.e(TAG, "${resultImg.size}, ${resultImg[0].contentToString()}")
-        val bitmap = Utils.getBitmap(resultImg, outDims)
-        return bitmap
+    private fun genImage(): Bitmap? {
+        return null
     }
 
     private fun initModel() {
-        module = LiteModuleLoader.load(AndroidAssetsFileUtil.assetFilePath(this, modelName))
+
     }
 
 

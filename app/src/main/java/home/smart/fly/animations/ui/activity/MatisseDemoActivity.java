@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.engineer.compose.ui.gpufilter.GPUFilterActivity;
 import com.permissionx.guolindev.PermissionX;
-import com.pixpark.gpupixel.filter.GPUPixelFilter;
 import com.yalantis.ucrop.UCrop;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
@@ -67,8 +65,7 @@ public class MatisseDemoActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-//        Intent mIntent = new Intent(this, MatissePhotoActivity.class);
-        Intent mIntent = new Intent(MatisseDemoActivity.this, GPUFilterActivity.class);
+        Intent mIntent = new Intent(this, MatissePhotoActivity.class);
         mIntent.putExtra("url", mStrings.get(position));
         startActivity(mIntent);
         overridePendingTransition(R.anim.zoomin, R.anim.zoomout);

@@ -8,7 +8,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,29 +20,25 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import com.engineer.ai.databinding.ActivityTansStyleBinding
-import com.engineer.ai.util.AndroidAssetsFileUtil
 import com.engineer.ai.util.AsyncExecutor
-import com.engineer.ai.util.StyleTransferProcessor
 import com.engineer.ai.util.gone
 import com.engineer.ai.util.show
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
-import org.pytorch.LiteModuleLoader
-import org.pytorch.Module
 
 
 class FastStyleTransActivity : AppCompatActivity() {
     private val TAG = "FastStyleTransActivity_TAG"
-    private lateinit var module: Module
-    private val modelNames = arrayOf("mosaic.pt","udnie.pt","candy.pt")
+
     private var currentBitmap: Bitmap? = null
 
     private lateinit var viewBinding: ActivityTansStyleBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        WindowInsetsControllerCompat(window, window.decorView).hide(WindowInsetsCompat.Type.statusBars())
+        WindowInsetsControllerCompat(
+            window,
+            window.decorView
+        ).hide(WindowInsetsCompat.Type.statusBars())
         viewBinding = ActivityTansStyleBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
@@ -78,20 +73,13 @@ class FastStyleTransActivity : AppCompatActivity() {
         currentBitmap?.let {
             viewBinding.transResult.setImageBitmap(null)
             AsyncExecutor.fromIO().execute {
-                StyleTransferProcessor.initModule(module)
-                StyleTransferProcessor.transferStyleAsync(it, 0.5f) {
-                    runOnUiThread {
-                        refreshLoading(false)
-                        viewBinding.transResult.setImageBitmap(it)
-                    }
-                }
+
             }
         }
     }
 
     private fun initModel() {
-        val modelName = modelNames.random()
-        module = LiteModuleLoader.load(AndroidAssetsFileUtil.assetFilePath(this, modelName))
+
     }
 
 
@@ -105,15 +93,16 @@ class FastStyleTransActivity : AppCompatActivity() {
         }
     }
 
-    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        // 处理选择的图片
-        uri?.let {
-            val inputStream = contentResolver.openInputStream(uri)
-            val bitmap = BitmapFactory.decodeStream(inputStream)
-            inputStream?.close()
-            showBitmap(bitmap)
+    private val pickMedia =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            // 处理选择的图片
+            uri?.let {
+                val inputStream = contentResolver.openInputStream(uri)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                inputStream?.close()
+                showBitmap(bitmap)
+            }
         }
-    }
 
     // 定义权限请求和图片选择启动器
     private val requestPermissionLauncher = registerForActivityResult(
@@ -167,7 +156,8 @@ class FastStyleTransActivity : AppCompatActivity() {
                 this, permission
             ) -> {
                 // 解释为什么需要权限
-                AlertDialog.Builder(this).setTitle("需要权限").setMessage("需要存储权限才能从相册选择图片")
+                AlertDialog.Builder(this).setTitle("需要权限")
+                    .setMessage("需要存储权限才能从相册选择图片")
                     .setPositiveButton("确定") { _, _ ->
                         requestPermissionLauncher.launch(permission)
                     }.setNegativeButton("取消", null).show()

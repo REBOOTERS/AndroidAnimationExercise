@@ -56,9 +56,6 @@ dependencies {
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
     implementation 'com.google.android.gms:play-services-tasks:18.2.0'
 
-
-    implementation 'org.pytorch:pytorch_android_lite:2.1.0'
-    implementation 'org.pytorch:pytorch_android_torchvision_lite:2.1.0'
 //    implementation 'org.pytorch:pytorch_android:1.10.0'
 //    implementation 'org.pytorch:pytorch_android_torchvision:1.10.0'
 
