@@ -2,8 +2,8 @@ package home.smart.fly.animations.master.adapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
-import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
+import cn.bingoogolapple.baseadapter.BGARecyclerViewAdapter;
+import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.master.Tools;
 

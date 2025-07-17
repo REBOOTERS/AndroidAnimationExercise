@@ -1,22 +1,30 @@
 [versions]
 agp = "8.7.0"
+dagger = "2.57"
+daggerCompiler = "2.57"
 kotlin = "2.0.0"
 coreKtx = "1.16.0"
 junit = "4.14-SNAPSHOT"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.7"
+lifecycleRuntimeKtx = "2.9.2"
 activityCompose = "1.10.1"
-composeBom = "2025.04.01"
+composeBom = "2025.07.00"
 coilCompose = "2.7.0"
-composeRuntimeLiveData= "1.8.0"
+composeRuntimeLiveData= "1.8.3"
 accompanistPager = "0.36.0"
-lifecycleViewmodelCompose = "2.8.7"
-kotlinVersion = "2.0.21"
+lifecycleViewmodelCompose = "2.9.2"
+kotlinVersion = "2.2.0"
+roomRxjava2 = "2.7.2"
 
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "roomRxjava2" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

@@ -1,7 +1,7 @@
 ext {
     compileSdk = 35
 
-    minSdk = 23
+    minSdk = 26
     targetSdk = 35
 
 

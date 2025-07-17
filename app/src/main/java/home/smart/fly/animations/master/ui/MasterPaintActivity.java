@@ -17,7 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
+import cn.bingoogolapple.baseadapter.BGAOnRVItemClickListener;
 import home.smart.fly.animations.R;
 import home.smart.fly.animations.master.Tools;
 import home.smart.fly.animations.master.adapter.ModeSelectorAdapter;

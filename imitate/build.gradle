@@ -139,8 +139,8 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:${ext.constraint_layout}"
     implementation "com.github.bumptech.glide:glide:$ext.glide"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-process:2.8.7'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
+    implementation libs.androidx.lifecycle.process
+    implementation libs.androidx.lifecycle.viewmodel.ktx
 
 
     testImplementation 'junit:junit:4.13.2'
@@ -210,7 +210,7 @@ dependencies {
 
     //room 
     implementation "androidx.room:room-runtime:$ext.roomVersion_runtime"
-    implementation "androidx.room:room-rxjava2:$ext.roomVersion"
+    implementation libs.androidx.room.rxjava2
 //    kapt 'org.xerial:sqlite-jdbc:3.36.0.3' // for mac m1
     kapt "androidx.room:room-compiler:$ext.roomVersion"
 
@@ -222,10 +222,10 @@ dependencies {
 
     // from 2021
     implementation 'com.beust:klaxon:5.6'
-    implementation 'com.alibaba:fastjson:2.0.19.graal'
-    implementation 'com.google.code.gson:gson:2.11.0'
-    implementation 'com.google.dagger:dagger:2.56.2'
-    kapt 'com.google.dagger:dagger-compiler:2.56.2'
+    implementation 'com.alibaba:fastjson:2.0.57'
+    implementation 'com.google.code.gson:gson:2.13.1'
+    implementation libs.dagger
+    kapt libs.dagger.compiler
 
     // coroutines
     //                                       👇 依赖协程核心库
