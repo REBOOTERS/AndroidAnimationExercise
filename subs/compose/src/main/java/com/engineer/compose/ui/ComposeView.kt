@@ -88,6 +88,24 @@ fun SelectImageButton() {
 }
 
 @Composable
+fun SelectVideoButton() {
+    val context = LocalContext.current
+    val pickVideoLauncher = rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri ->
+        if (uri != null) {
+            val intent = Intent(context, VideoPlayerActivity::class.java)
+            intent.putExtra("video_uri", uri.toString())
+            context.startActivity(intent)
+        }
+    }
+    Button(
+        modifier = Modifier.padding(5.dp),
+        onClick = { pickVideoLauncher.launch("video/*") },
+    ) {
+        Text(text = "Pick Video")
+    }
+}
+
+@Composable
 fun MessageCard(msg: Message) {
     var text by rememberSaveable { mutableStateOf("") }
     var count by remember { mutableIntStateOf(0) }
@@ -109,6 +127,8 @@ fun MessageCard(msg: Message) {
                 .fillMaxSize()
                 .horizontalScroll(rememberScrollState())
         ) {
+            SelectImageButton()
+            SelectVideoButton()
             Button(modifier = Modifier.padding(5.dp), onClick = {
                 Toast.makeText(context, "you clicked me", Toast.LENGTH_SHORT).show()
                 count++
@@ -131,7 +151,6 @@ fun MessageCard(msg: Message) {
             }) {
                 Text(text = "open gallery")
             }
-            SelectImageButton()
         }
         Text(modifier = Modifier.padding(start = 10.dp), text = "$count")
         Text(modifier = Modifier.padding(start = 10.dp), text = "$list")

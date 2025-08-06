@@ -16,6 +16,7 @@ accompanistPager = "0.36.0"
 lifecycleViewmodelCompose = "2.9.2"
 kotlinVersion = "2.2.0"
 roomRxjava2 = "2.7.2"
+materialIconsExtended = "1.6.0"
 
 
 [libraries]
@@ -43,6 +44,7 @@ accompanist-pager = {group = "com.google.accompanist",name="accompanist-pager",v
 accompanist-pager-indicator = {group = "com.google.accompanist",name="accompanist-pager-indicators",version.ref = "accompanistPager"}
 androidx-compose-runtime = {group = "androidx.compose.runtime",name="runtime-livedata",version.ref = "composeRuntimeLiveData"}
 androidx-lifecycle-viewmodel-compose = {group = "androidx.lifecycle",name="lifecycle-viewmodel-compose",version.ref = "lifecycleViewmodelCompose"}
+androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "materialIconsExtended" }
 [plugins]
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
