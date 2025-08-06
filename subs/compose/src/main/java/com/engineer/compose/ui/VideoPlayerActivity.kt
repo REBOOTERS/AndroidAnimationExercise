@@ -7,6 +7,7 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -44,6 +45,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.engineer.compose.ui.ui.theme.ComposeAppTheme
 import kotlinx.coroutines.delay
+import androidx.core.net.toUri
+import java.util.Locale
 
 class VideoPlayerActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +60,7 @@ class VideoPlayerActivity : ComponentActivity() {
         setContent {
             ComposeAppTheme {
                 if (videoUri != null) {
-                    VideoPlayer(Uri.parse(videoUri))
+                    VideoPlayer(videoUri.toUri())
                 }
             }
         }
@@ -73,7 +76,7 @@ fun VideoPlayer(videoUri: Uri) {
     var duration by remember { mutableIntStateOf(0) }
     var progress by remember { mutableIntStateOf(0) }
 
-    val activity = LocalContext.current as? ComponentActivity
+    val activity = LocalActivity.current
 
     LaunchedEffect(isPlaying) {
         while (isPlaying) {
@@ -174,5 +177,5 @@ private fun formatTime(ms: Int): String {
     val totalSeconds = ms / 1000
     val minutes = totalSeconds / 60
     val seconds = totalSeconds % 60
-    return String.format("%02d:%02d", minutes, seconds)
+    return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
 }
