@@ -31,7 +31,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -42,10 +44,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
@@ -146,21 +146,22 @@ fun MessageCard(msg: Message) {
                 modifier = Modifier
                     .size(40.dp)
                     .clip(CircleShape)
-                    .rotate(45f)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Image(
-                painter = painterResource(R.drawable.profile_picture),
-                contentDescription = "null",
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(CircleShape)
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {
-                Text(text = msg.author)
+                Text(
+                    text = msg.author,
+                    color = MaterialTheme.colorScheme.secondary,
+                    style = MaterialTheme.typography.titleSmall
+                )
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = msg.body)
+                Surface(shape = MaterialTheme.shapes.medium, shadowElevation = 1.dp) {
+                    Text(
+                        text = msg.body,
+                        modifier = Modifier.padding(all = 4.dp),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
             }
         }
 

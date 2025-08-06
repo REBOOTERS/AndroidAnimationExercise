@@ -3,9 +3,9 @@ package com.engineer.compose.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
 import com.engineer.compose.ui.ui.theme.ComposeAppTheme
 
 /**
@@ -19,11 +19,8 @@ class MainComposeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colorScheme.background) {
-                    Column {
-                        MessageCard(Message("lucy", "hello world"))
-                    }
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    MessageCard(Message("Android", "Jetpack Compose"))
                 }
             }
         }
