@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cpp_native.internal.PatchUtil
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -77,7 +78,7 @@ suspend fun mergeFile(context: Context): Boolean {
     val oldFile = baseDir + "lastest.txt"
     val patchFile = baseDir + "diff.patch"
     withContext(Dispatchers.IO) {
-//        PatchUtil.patchAPK(oldFile, result, patchFile)
+        PatchUtil.patchAPK(oldFile, result, patchFile)
     }
 
     val mergeResult = FileUtils.fileRead(result)

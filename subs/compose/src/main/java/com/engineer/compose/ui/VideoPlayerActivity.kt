@@ -107,7 +107,6 @@ fun VideoPlayer(videoUri: Uri) {
                                     it.isLooping = true
                                     it.start()
                                 }
-                                setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT)
                             }
                         }
 
@@ -127,7 +126,6 @@ fun VideoPlayer(videoUri: Uri) {
                 }
             },
             modifier = Modifier
-                .fillMaxWidth()
                 .aspectRatio(if (videoSize.height > 0) videoSize.width.toFloat() / videoSize.height.toFloat() else 1f)
         )
 

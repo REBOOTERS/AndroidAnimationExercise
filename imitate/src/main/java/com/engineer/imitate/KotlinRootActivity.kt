@@ -28,11 +28,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.engineer.compose.ui.MainComposeActivity
 import com.engineer.imitate.databinding.ActivityKotlinRootBinding
 import com.engineer.imitate.model.FragmentItem
 import com.engineer.imitate.room.SchoolDatabase
 import com.engineer.imitate.ui.activity.ReverseGifActivity
 import com.engineer.imitate.util.*
+import com.example.cpp_native.app.NativeRoot
 import com.gyf.immersionbar.ImmersionBar
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -70,8 +72,8 @@ class KotlinRootActivity : AppCompatActivity() {
 
 //        autoStartPage()
 
-//        NativeRoot.init()
-//        NativeRoot.test()
+        NativeRoot.init()
+        NativeRoot.test()
         val patchViewModel = ViewModelProvider(this)[PatchViewModel::class.java]
         patchViewModel.copyFile()
 

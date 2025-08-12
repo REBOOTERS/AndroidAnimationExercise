@@ -120,7 +120,7 @@ fun MessageCard(msg: Message) {
             .verticalScroll(rememberScrollState())
     ) {
         CircularProgressIndicator()
-        NetImage()
+//        NetImage()
         val context = LocalContext.current
         Row(
             modifier = Modifier

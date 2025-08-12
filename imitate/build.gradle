@@ -150,7 +150,7 @@ dependencies {
 
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
     kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
-    implementation('com.facebook.fresco:fresco:3.2.0') {
+    implementation('com.facebook.fresco:fresco:3.6.0') {
         exclude group: 'com.facebook.soloader', module: 'soloader'
         exclude group: 'com.facebook.fresco', module: 'soloader'
         exclude group: 'com.facebook.fresco', module: 'nativeimagefilters'
@@ -191,10 +191,10 @@ dependencies {
     // robolectric
 
     implementation group: 'commons-io', name: 'commons-io', version: '20030203.000550'
-//    implementation project(path: ':subs:game')
+    implementation project(path: ':subs:game')
     implementation project(path: ':subs:gif-revert')
     implementation project(path: ':subs:ai')
-//    implementation project(path: ':subs:cpp_native')
+    implementation project(path: ':subs:cpp_native')
     implementation project(path: ':subs:compose')
 
     implementation 'com.jaredrummler:simple-mvp:1.0.2'
