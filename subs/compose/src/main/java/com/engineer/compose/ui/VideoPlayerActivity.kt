@@ -119,6 +119,7 @@ fun VideoPlayer(videoUri: Uri) {
                         }
 
                         override fun surfaceDestroyed(holder: SurfaceHolder) {
+                            isPlaying = false
                             mediaPlayer.stop()
                             mediaPlayer.release()
                         }

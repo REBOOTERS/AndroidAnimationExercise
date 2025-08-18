@@ -1,6 +1,6 @@
 #include <jni.h>
 #include <string>
-#include "androidlog.h"
+//#include "androidlog.h"
 #include "bspatch.h"
 
 using namespace std;
@@ -10,7 +10,7 @@ JNIEXPORT jstring
 
 JNICALL
 Java_com_example_cpp_1native_internal_NativeHouse_getNativeMessage(JNIEnv *env, jobject thiz) {
-    LOGE("native method getNativeMessage called");
+//    LOGE("native method getNativeMessage called");
     string result = "this is from c++";
     return env->NewStringUTF(result.c_str());
 }
@@ -27,9 +27,9 @@ Java_com_example_cpp_1native_internal_PatchUtil_patchAPK(JNIEnv *env, jclass cla
     argv[2] = (char *) (env->GetStringUTFChars(new_apk_file, nullptr));
     argv[3] = (char *) (env->GetStringUTFChars(patch_file, nullptr));
 
-    LOGD("argv[1] = %s", argv[1]);
-    LOGD("argv[2] = %s", argv[2]);
-    LOGD("argv[3] = %s", argv[3]);
+//    LOGD("argv[1] = %s", argv[1]);
+//    LOGD("argv[2] = %s", argv[2]);
+//    LOGD("argv[3] = %s", argv[3]);
 
     main(argc, argv);
 

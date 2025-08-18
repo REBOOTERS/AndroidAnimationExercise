@@ -16,6 +16,7 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags ''
+                arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
             }
         }
         ndk {
@@ -36,6 +37,7 @@ android {
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/CMakeLists.txt')
+//            path file('src/main/cpp/p/CMakeLists.txt')
             version '3.22.1'
         }
     }
