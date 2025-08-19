@@ -58,8 +58,8 @@ add_library(
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
-#target_link_libraries( # Specifies the target library.
-#        cpp_native
-#        # Links the target library to the log library
-#        # included in the NDK.
-#        ${log-lib})
+target_link_libraries( # Specifies the target library.
+        cpp_native
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib})
