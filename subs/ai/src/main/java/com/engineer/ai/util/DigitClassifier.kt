@@ -47,7 +47,9 @@ class DigitClassifier(private val context: Context) {
                 // Read input shape from model file
                 interpreter?.let { inter ->
                     val inputShape = inter.getInputTensor(0).shape()
-                    Log.d(TAG, "input shape = ${inputShape.contentToString()}")
+                    Log.d(TAG, "input  shape = ${inputShape.contentToString()}")
+                    Log.d(TAG, "elem   shape = ${inter.getInputTensor(0).numElements()}")
+                    Log.d(TAG, "output shape = ${inter.getOutputTensor(0).shape().contentToString()}")
                     inputImageWidth = inputShape[1]
                     inputImageHeight = inputShape[2]
                     modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
