@@ -19,8 +19,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -63,12 +66,19 @@ class KotlinRootActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ImmersionBar.with(this).fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init()
+        enableEdgeToEdge()
+//        ImmersionBar.with(this).fitsSystemWindows(true).statusBarColor(R.color.colorPrimary).init()
         viewBinding = ActivityKotlinRootBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         setSupportActionBar(viewBinding.toolbar)
         loadView()
         jsonTest()
+
+        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.root) {v,insets ->
+            val statusBar = insets.getInsets(WindowInsetsCompat.Type.statusBars())
+            v.setPadding(statusBar.left,statusBar.top,statusBar.right,statusBar.bottom)
+            insets
+        }
 
 //        autoStartPage()
 
