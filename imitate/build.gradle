@@ -1,3 +1,7 @@
+plugins {
+    id 'org.jetbrains.kotlin.plugin.serialization' version '2.2.10'
+}
+
 if (imitate_isApp.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
@@ -222,16 +226,23 @@ dependencies {
 
     // from 2021
     implementation 'com.beust:klaxon:5.6'
-    implementation 'com.alibaba:fastjson:2.0.57'
+//    implementation 'com.alibaba:fastjson:2.0.57'
+    implementation 'com.alibaba:fastjson:1.1.71.android'
     implementation 'com.google.code.gson:gson:2.13.1'
     implementation libs.dagger
     kapt libs.dagger.compiler
+
+    implementation("com.squareup.moshi:moshi:1.15.2") // 核心库
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.2") // Kotlin 扩展（支持数据类）
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.2") // 代码生成（替代反射）
 
     // coroutines
     //                                       👇 依赖协程核心库
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines"
     //                                       👇 依赖当前平台所对应的平台库
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_android"
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
 }
 apply from: file("../gradle/report_apk_size_after_package.gradle")

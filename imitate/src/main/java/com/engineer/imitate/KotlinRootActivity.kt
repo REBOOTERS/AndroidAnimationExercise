@@ -91,7 +91,7 @@ class KotlinRootActivity : AppCompatActivity() {
 
     private fun autoStartPage() {
         val fragment: Fragment =
-            ARouter.getInstance().build("/anim/fresco").navigation(this) as Fragment
+            ARouter.getInstance().build("/anim/coroutines").navigation(this) as Fragment
         currentFragment = fragment
         viewBinding.contentKotlinRoot.content.visibility = View.VISIBLE
         viewBinding.contentKotlinRoot.index.visibility = View.GONE

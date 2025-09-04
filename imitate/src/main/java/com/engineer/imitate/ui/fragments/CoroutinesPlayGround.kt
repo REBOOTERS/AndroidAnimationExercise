@@ -20,6 +20,7 @@ import com.beust.klaxon.Klaxon
 import com.engineer.imitate.R
 import com.engineer.imitate.model.School
 import com.engineer.imitate.model.Schools
+import com.engineer.imitate.model.sub.parseWithKotlinxSerializable
 import com.engineer.imitate.room.SchoolRepository
 import com.engineer.imitate.util.IOTool
 import com.engineer.imitate.util.bind
@@ -29,6 +30,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -67,10 +72,15 @@ class CoroutinesFragment : Fragment() {
         progress = view.findViewById(R.id.progress)
         school_view_pager2 = view.findViewById(R.id.school_view_pager2)
         school_tab_layout = view.findViewById(R.id.school_tab_layout)
+        useCoroutine2 { parseWithKlaxon(it) }
+        useCoroutine2 { parseWithFastJson(it) }
+        useCoroutine2 { parseWithFastJson1(it) }
         useCoroutine2 { parseWithGson(it) }
+        useCoroutine2 { parseWithMoshi(it) }
+        useCoroutine2 { parseWithKotlinxSerializable(it) }
     }
 
-    private fun useCoroutine2(block: (String) -> List<Schools>?) {
+    private fun useCoroutine2(block: (String) -> Unit) {
         Thread.currentThread().name.lg(TAG)
         CoroutineScope(Dispatchers.IO).launch {
             Thread.currentThread().name.lg(TAG)
@@ -78,10 +88,10 @@ class CoroutinesFragment : Fragment() {
             val json = IOTool.readStrFromAssets("school.json", context)
             Log.e(TAG, "read json cost ${System.currentTimeMillis() - start}")
             val list = block(json)
-            saveToRoom(list)
+//            saveToRoom(list)
             withContext(Dispatchers.Main) {
-                Thread.currentThread().name.lg(TAG)
-                setUpPager(list)
+//                Thread.currentThread().name.lg(TAG)
+////                setUpPager(list)
                 progress.visibility = View.GONE
             }
         }
@@ -218,18 +228,24 @@ class ListFragment : Fragment() {
 
 data class Item(val title: String, val fragment: Fragment, val size: Int)
 
-
 private fun parseWithKlaxon(json: String): List<Schools>? {
     val s = System.currentTimeMillis()
     val list = Klaxon().parseArray<Schools>(json)
-    Log.e(TAG, "parse json cost ${System.currentTimeMillis() - s}")
+    Log.e(TAG, "parseWithKlaxon cost ${System.currentTimeMillis() - s}")
     return list
 }
 
 private fun parseWithFastJson(json: String): List<Schools>? {
     val s = System.currentTimeMillis()
     val list = JSONObject.parseArray(json, Schools::class.java)
-    Log.e(TAG, "parse json cost ${System.currentTimeMillis() - s}")
+    Log.e(TAG, "parseWithFastJson cost ${System.currentTimeMillis() - s}")
+    return list
+}
+
+private fun parseWithFastJson1(json: String): List<com.engineer.imitate.model.java.Schools>? {
+    val s = System.currentTimeMillis()
+    val list = JSONObject.parseArray(json, com.engineer.imitate.model.java.Schools::class.java)
+    Log.e(TAG, "parseWithFastJson1 cost ${System.currentTimeMillis() - s}")
     return list
 }
 
@@ -237,6 +253,18 @@ private fun parseWithGson(json: String): List<Schools>? {
     val s = System.currentTimeMillis()
     val gson = Gson()
     val list: List<Schools> = gson.fromJson(json, object : TypeToken<List<Schools>>() {}.type)
-    Log.e(TAG, "parse json cost ${System.currentTimeMillis() - s}")
+    Log.e(TAG, "parseWithGson cost ${System.currentTimeMillis() - s}")
+    return list
+}
+
+private fun parseWithMoshi(json: String) :List<Schools>? {
+    val s = System.currentTimeMillis()
+
+    val moshi = Moshi.Builder()
+        .addLast(KotlinJsonAdapterFactory()) // 支持 Kotlin 数据类
+        .build()
+    val adapter = moshi.adapter<List<Schools>>(Types.newParameterizedType(List::class.java, Schools::class.java))
+    val list = adapter.fromJson(json)
+    Log.e(TAG, "parseWithMoshi cost ${System.currentTimeMillis() - s}")
     return list
 }
