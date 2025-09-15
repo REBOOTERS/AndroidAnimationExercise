@@ -13,18 +13,18 @@ fun main() {
 private fun testDagger() {
     val TAG = "Dagger"
 
-    val applicationGraph = DaggerApplicationGraph.create()
+//    val applicationGraph = DaggerApplicationGraph.create()
 
-    val userRepo1 = applicationGraph.repository()
-    val userRepo2 = applicationGraph.repository()
-    Log.e(TAG, "testDagger: user1 == user2 ${userRepo1 == userRepo2}")
-
-
-    val myGraph = DaggerMyGraph.create()
-    val obj1 = myGraph.getObj()
-    val obj2 = myGraph.getObj()
-    Log.e(TAG, "testDagger: obj1 == obj2 ${obj1 == obj2}")
-    Log.e(TAG, "testDagger: obj.getInfo() = ${obj1.getInfo()}")
+//    val userRepo1 = applicationGraph.repository()
+//    val userRepo2 = applicationGraph.repository()
+//    Log.e(TAG, "testDagger: user1 == user2 ${userRepo1 == userRepo2}")
+//
+//
+//    val myGraph = DaggerMyGraph.create()
+//    val obj1 = myGraph.getObj()
+//    val obj2 = myGraph.getObj()
+//    Log.e(TAG, "testDagger: obj1 == obj2 ${obj1 == obj2}")
+//    Log.e(TAG, "testDagger: obj.getInfo() = ${obj1.getInfo()}")
 }
 
 object Log {

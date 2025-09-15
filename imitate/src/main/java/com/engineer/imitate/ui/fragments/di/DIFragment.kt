@@ -47,7 +47,7 @@ class DIFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         val app = getContext()?.applicationContext as ImitateApplication
-        app.applicationComponent?.inject(this)
+//        app.applicationComponent?.inject(this)
 
     }
 
