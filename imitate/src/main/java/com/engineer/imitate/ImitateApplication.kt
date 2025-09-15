@@ -14,7 +14,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.alibaba.android.arouter.launcher.ARouter
 import com.engineer.imitate.interfaces.SimpleActivityCallback
-//import com.engineer.imitate.ui.fragments.di.DaggerApplicationComponent
+import com.engineer.imitate.ui.fragments.di.DaggerApplicationComponent
 import com.engineer.imitate.util.SpUtil
 import com.engineer.imitate.util.SystemUtil
 import com.engineer.imitate.util.TextUtil
@@ -30,7 +30,7 @@ import com.facebook.stetho.Stetho
 @SuppressLint("LogNotTimber")
 class ImitateApplication : Application() {
 
-//    val applicationComponent = DaggerApplicationComponent.create()
+    val applicationComponent = DaggerApplicationComponent.create()
 
     companion object {
         lateinit var application: Context

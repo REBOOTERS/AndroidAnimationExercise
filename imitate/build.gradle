@@ -1,6 +1,5 @@
 plugins {
-    id 'org.jetbrains.kotlin.plugin.serialization' version '2.2.20'
-    id 'com.google.devtools.ksp'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '2.2.10'
 }
 
 if (imitate_isApp.toBoolean()) {
@@ -11,6 +10,25 @@ if (imitate_isApp.toBoolean()) {
 
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.kotlin.plugin.compose'
+apply plugin: 'kotlin-kapt'
+
+class RoomSchemaArgProvider implements CommandLineArgumentProvider {
+
+    @InputDirectory
+    @PathSensitive(PathSensitivity.RELATIVE)
+    File schemaDir
+
+    RoomSchemaArgProvider(File schemaDir) {
+        this.schemaDir = schemaDir
+    }
+
+    @Override
+    Iterable<String> asArguments() {
+        // Note: If you're using KSP, change the line below to return
+        // ["room.schemaLocation=${schemaDir.path}".toString()].
+        return ["-Aroom.schemaLocation=${schemaDir.path}".toString()]
+    }
+}
 
 static def releaseTime() {
     return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+8"))
@@ -29,6 +47,17 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        kapt {
+            arguments {
+                arg("moduleName", project.getName())
+            }
+        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                compilerArgumentProviders(new RoomSchemaArgProvider(new File(projectDir, "schemas")))
+            }
+        }
         //只保留中文资源和 xxhdpi 分辨率图片
         resourceConfigurations += ['zh-rCN', 'xxhdpi']
 
@@ -101,9 +130,10 @@ android {
     namespace 'com.engineer.imitate'
 }
 
-ksp {
-    arg("AROUTER_MODULE_NAME", project.getName())
-    arg("room.schemaLocation", new File(projectDir, "schemas").path)
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
 }
 
 dependencies {
@@ -123,7 +153,7 @@ dependencies {
 
 
     implementation "com.alibaba:arouter-api:$ext.arouter_api"
-    ksp "com.alibaba:arouter-compiler:$ext.arouter_compiler"
+    kapt "com.alibaba:arouter-compiler:$ext.arouter_compiler"
     implementation('com.facebook.fresco:fresco:3.6.0') {
         exclude group: 'com.facebook.soloader', module: 'soloader'
         exclude group: 'com.facebook.fresco', module: 'soloader'
@@ -185,7 +215,8 @@ dependencies {
     //room 
     implementation "androidx.room:room-runtime:$ext.roomVersion_runtime"
     implementation libs.androidx.room.rxjava2
-    ksp "androidx.room:room-compiler:$ext.roomVersion"
+//    kapt 'org.xerial:sqlite-jdbc:3.36.0.3' // for mac m1
+    kapt "androidx.room:room-compiler:$ext.roomVersion"
 
     implementation 'com.github.wanglu1209:PhotoViewer:0.50'
 
@@ -194,14 +225,16 @@ dependencies {
     implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
 
     // from 2021
+    implementation 'com.beust:klaxon:5.6'
+//    implementation 'com.alibaba:fastjson:2.0.57'
     implementation 'com.alibaba:fastjson:1.1.71.android'
     implementation 'com.google.code.gson:gson:2.13.1'
     implementation libs.dagger
-    ksp libs.dagger.compiler
+    kapt libs.dagger.compiler
 
     implementation("com.squareup.moshi:moshi:1.15.2") // 核心库
     implementation("com.squareup.moshi:moshi-kotlin:1.15.2") // Kotlin 扩展（支持数据类）
-    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.2") // 代码生成（替代反射）
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.2") // 代码生成（替代反射）
 
     // coroutines
     //                                       👇 依赖协程核心库

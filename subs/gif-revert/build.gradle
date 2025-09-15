@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 def ext = rootProject.ext
 android {
     compileSdk ext.compileSdk
