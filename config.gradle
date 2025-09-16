@@ -25,8 +25,8 @@ ext {
     rxjava = '2.2.2'
     rxandroid = '2.1.0'
 
-    roomVersion = '2.7.1'
-    roomVersion_runtime = '2.6.1'
+    roomVersion = '2.8.0'
+    roomVersion_runtime = '2.8.0'
     archLifecycleVersion = '2.2.0'
 
     kotlin_coroutines = '1.10.1'

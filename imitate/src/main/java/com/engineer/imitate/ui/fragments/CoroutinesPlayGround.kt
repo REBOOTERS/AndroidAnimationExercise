@@ -16,7 +16,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.fastjson.JSONObject
-import com.beust.klaxon.Klaxon
 import com.engineer.imitate.R
 import com.engineer.imitate.model.School
 import com.engineer.imitate.model.Schools
@@ -62,7 +61,6 @@ class CoroutinesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 //        useRx {
 ////            parseWithFastJson(it)
-////            parseWithKlaxon(it)
 //            parseWithGson(it)
 //        }
 
@@ -72,7 +70,6 @@ class CoroutinesFragment : Fragment() {
         progress = view.findViewById(R.id.progress)
         school_view_pager2 = view.findViewById(R.id.school_view_pager2)
         school_tab_layout = view.findViewById(R.id.school_tab_layout)
-        useCoroutine2 { parseWithKlaxon(it) }
         useCoroutine2 { parseWithFastJson(it) }
         useCoroutine2 { parseWithFastJson1(it) }
         useCoroutine2 { parseWithGson(it) }
@@ -227,13 +224,6 @@ class ListFragment : Fragment() {
 }
 
 data class Item(val title: String, val fragment: Fragment, val size: Int)
-
-private fun parseWithKlaxon(json: String): List<Schools>? {
-    val s = System.currentTimeMillis()
-    val list = Klaxon().parseArray<Schools>(json)
-    Log.e(TAG, "parseWithKlaxon cost ${System.currentTimeMillis() - s}")
-    return list
-}
 
 private fun parseWithFastJson(json: String): List<Schools>? {
     val s = System.currentTimeMillis()
