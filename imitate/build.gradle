@@ -224,8 +224,7 @@ dependencies {
     // 基础依赖包，必须要依赖
     implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
 
-    // from 2021
-    implementation 'com.beust:klaxon:5.6'
+    // from 2022
 //    implementation 'com.alibaba:fastjson:2.0.57'
     implementation 'com.alibaba:fastjson:1.1.71.android'
     implementation 'com.google.code.gson:gson:2.13.1'
