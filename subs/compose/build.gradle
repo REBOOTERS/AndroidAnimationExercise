@@ -6,7 +6,7 @@ plugins {
 def ext = rootProject.ext
 android {
     namespace 'com.engineer.compose'
-    compileSdk 35
+    compileSdk ext.compileSdk
 
     defaultConfig {
         minSdk ext.minSdk
