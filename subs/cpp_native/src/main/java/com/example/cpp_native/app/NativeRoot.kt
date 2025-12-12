@@ -14,6 +14,10 @@ object NativeRoot {
 
     fun test() {
         lg(nativeHouse.nativeMessage)
+
+        nativeHouse.doHeavyWorkAsync {
+            lg("result is $it")
+        }
     }
 
     private fun lg(msg: String) {
