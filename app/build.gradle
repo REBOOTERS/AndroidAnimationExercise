@@ -66,14 +66,17 @@ android {
                 includeAndroidResources = true
             }
         }
+
     }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
+            signingConfig signingConfigs.debug
             splits.abi.enable = false
             splits.density.enable = false
         }
