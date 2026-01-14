@@ -1,0 +1,43 @@
+name: Android Release Build
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: '21'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Grant execute permission
+        run: chmod +x gradlew
+
+      - name: build app apk
+        run: ./gradlew :app:assembleChargeRelease;
+      - name: build imitate apk
+        run: ./gradlew :imitate:assembleRelease;
+
+      - name: Upload APK1 to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: app/build/outputs/apk/release/*.apk
+      - name: Upload APK2 to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: imitate/build/outputs/apk/release/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
