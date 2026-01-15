@@ -1,7 +1,17 @@
 name: Android CI
 
-on: [push]
-
+on:
+  push:
+    paths:
+      - "app/**"
+      - "imitate/**"
+      - "subs/**"
+      - "gradle/**"
+      - "*.gradle"
+      - "*.gradle.kts"
+    paths-ignore:
+      - "**/*.md"
+      - "docs/**"
 jobs:
   build-debug:
 

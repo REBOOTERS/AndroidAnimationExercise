@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - "v*"
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -34,7 +36,7 @@ jobs:
       - name: Upload APK1 to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: app/build/outputs/apk/release/*.apk
+          files: app/build/outputs/apk/charge/release/*.apk
       - name: Upload APK2 to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
