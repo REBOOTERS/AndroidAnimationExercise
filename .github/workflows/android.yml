@@ -2,6 +2,8 @@ name: Android CI
 
 on:
   push:
+    branches:
+      - main
     paths:
       - "app/**"
       - "imitate/**"
