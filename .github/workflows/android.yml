@@ -9,9 +9,7 @@ on:
       - "gradle/**"
       - "*.gradle"
       - "*.gradle.kts"
-    paths-ignore:
-      - "**/*.md"
-      - "docs/**"
+
 jobs:
   build-debug:
 
