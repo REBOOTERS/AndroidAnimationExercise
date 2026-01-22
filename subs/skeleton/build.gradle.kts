@@ -40,11 +40,11 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("io.supercharge:shimmerlayout:2.1.0")
-    implementation("androidx.recyclerview:recyclerview:$supportVersionProp")
-    implementation("androidx.appcompat:appcompat:$appcompatProp")
+    implementation(libs.io.supercharge.shimmerlayout)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.appcompat)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test:runner:1.6.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

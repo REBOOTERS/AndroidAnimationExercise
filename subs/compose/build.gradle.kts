@@ -56,9 +56,9 @@ dependencies {
     api(libs.androidx.ui.graphics)
     api(libs.androidx.ui.tooling.preview)
     api(libs.androidx.material3)
-    api("androidx.compose.material:material-icons-extended-android:1.6.8")
+    api(libs.androidx.material.icons.extended)
     api(libs.coil.compose)
-    api("io.coil-kt:coil-gif:2.7.0")
+    api(libs.coil.gif)
 
     api(libs.androidx.compose.runtime)
     api(libs.androidx.lifecycle.viewmodel.compose)

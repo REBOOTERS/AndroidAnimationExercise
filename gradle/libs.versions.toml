@@ -18,6 +18,63 @@ kotlinVersion = "2.2.0"
 roomRxjava2 = "2.7.2"
 materialIconsExtended = "1.6.0"
 
+# Added by migration: project-wide library versions discovered across modules
+appcompat = "1.7.1"
+coreKtx117 = "1.17.0"
+constraintLayout = "2.2.1"
+lifecycleExtensions = "2.2.0"
+room = "2.8.0"
+rxjava = "2.2.21"
+rxandroid = "2.1.1"
+material = "1.12.0"
+okhttp = "5.1.0"
+okio = "3.15.0"
+multidex = "2.0.1"
+vectordrawable = "1.2.0"
+stetho = "1.6.0"
+lottie = "6.6.7"
+moshi = "1.15.2"
+kotlinxSerializationJson = "1.9.0"
+kotlinxCoroutines = "1.10.1"
+kotlinxCoroutinesAndroid = "1.10.2"
+glide = "4.16.0"
+playServicesTasks = "18.2.0"
+playServicesTflite = "16.4.0"
+mpandroidchart = "3.0.3"
+smarttable = "2.2.0"
+photoViewer = "0.50"
+immersionbar = "3.2.2"
+fastjsonOld = "1.1.71.android"
+fastjsonNew = "2.0.57"
+picasso = "2.71828"
+ucrop = "2.2.1"
+shortcutbadger = "1.1.22"
+transformationlayout = "1.1.5"
+rebootersMatisse = "v0.6.0"
+pageIndicatorView = "v.1.0.3"
+androidDraw = "v0.1"
+commonsIo = "20030203.000550"
+coilGif = "2.7.0"
+gson = "2.13.1"
+cardview = "1.0.0"
+legacySupportV4 = "1.0.0"
+dynamicanimation = "1.1.0"
+arouter = "1.5.2"
+palette = "1.0.0"
+mmkv = "2.2.2"
+testRunner = "1.6.2"
+hugo = "1.2.1"
+fresco = "3.6.0"
+photoview = "2.1.4"
+permissionx = "1.8.1"
+floatwindow = "1.0.9"
+recyclerview = "1.4.0"
+shimmerlayout = "2.1.0"
+streamsupport = "1.7.4"
+circleimageview = "3.1.0"
+simpleMvp = "1.0.2"
+dtoast = "1.1.5"
+preferenceKtx = "1.2.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +102,73 @@ accompanist-pager-indicator = {group = "com.google.accompanist",name="accompanis
 androidx-compose-runtime = {group = "androidx.compose.runtime",name="runtime-livedata",version.ref = "composeRuntimeLiveData"}
 androidx-lifecycle-viewmodel-compose = {group = "androidx.lifecycle",name="lifecycle-viewmodel-compose",version.ref = "lifecycleViewmodelCompose"}
 androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "materialIconsExtended" }
+
+# Added libraries by migration
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-core-ktx117 = { module = "androidx.core:core-ktx", version.ref = "coreKtx117" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintLayout" }
+androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensions" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
+rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
+rxandroid = { module = "io.reactivex.rxjava2:rxandroid", version.ref = "rxandroid" }
+material-google = { module = "com.google.android.material:material", version.ref = "material" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
+vectordrawable = { module = "androidx.vectordrawable:vectordrawable", version.ref = "vectordrawable" }
+stetho = { module = "com.facebook.stetho:stetho", version.ref = "stetho" }
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
+moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
+moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
+moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+play-services-tasks = { module = "com.google.android.gms:play-services-tasks", version.ref = "playServicesTasks" }
+play-services-tflite-java = { module = "com.google.android.gms:play-services-tflite-java", version.ref = "playServicesTflite" }
+play-services-tflite-support = { module = "com.google.android.gms:play-services-tflite-support", version.ref = "playServicesTflite" }
+mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
+smarttable = { module = "com.github.huangyanbin:SmartTable", version.ref = "smarttable" }
+photo-viewer = { module = "com.github.wanglu1209:PhotoViewer", version.ref = "photoViewer" }
+immersionbar = { module = "com.geyifeng.immersionbar:immersionbar", version.ref = "immersionbar" }
+fastjson-old = { module = "com.alibaba:fastjson", version.ref = "fastjsonOld" }
+fastjson-new = { module = "com.alibaba:fastjson", version.ref = "fastjsonNew" }
+picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
+shortcutbadger = { module = "me.leolin:ShortcutBadger", version.ref = "shortcutbadger" }
+transformationlayout = { module = "com.github.skydoves:transformationlayout", version.ref = "transformationlayout" }
+rebooters-matisse = { module = "com.github.REBOOTERS:Matisse", version.ref = "rebootersMatisse" }
+page-indicator-view = { module = "com.github.romandanylyk:PageIndicatorView", version.ref = "pageIndicatorView" }
+android-draw = { module = "com.github.divyanshub024:AndroidDraw", version.ref = "androidDraw" }
+commons-io = { module = "commons-io:commons-io", version.ref = "commonsIo" }
+coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coilGif" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
+androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
+androidx-dynamicanimation = { module = "androidx.dynamicanimation:dynamicanimation", version.ref = "dynamicanimation" }
+arouter-api = { module = "com.alibaba:arouter-api", version.ref = "arouter" }
+arouter-compiler = { module = "com.alibaba:arouter-compiler", version.ref = "arouter" }
+androidx-palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "palette" }
+mmkv = { module = "com.tencent:mmkv", version.ref = "mmkv" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "testRunner" }
+hugo-runtime = { module = "com.jakewharton.hugo:hugo-runtime", version.ref = "hugo" }
+facebook-fresco = { module = "com.facebook.fresco:fresco", version.ref = "fresco" }
+facebook-fresco-animated-webp = { module = "com.facebook.fresco:animated-webp", version.ref = "fresco" }
+facebook-fresco-webpsupport = { module = "com.facebook.fresco:webpsupport", version.ref = "fresco" }
+photoview = { module = "com.github.chrisbanes:PhotoView", version.ref = "photoview" }
+permissionx = { module = "com.guolindev.permissionx:permissionx", version.ref = "permissionx" }
+floatwindow = { module = "com.github.yhaolpz:FloatWindow", version.ref = "floatwindow" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+io-supercharge-shimmerlayout = { module = "io.supercharge:shimmerlayout", version.ref = "shimmerlayout" }
+streamsupport = { module = "net.sourceforge.streamsupport:streamsupport", version.ref = "streamsupport" }
+circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
+jaredrummler-simple-mvp = { module = "com.jaredrummler:simple-mvp", version.ref = "simpleMvp" }
+dtoast = { module = "com.github.Dovar66:DToast", version.ref = "dtoast" }
+androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
+
 [plugins]
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }

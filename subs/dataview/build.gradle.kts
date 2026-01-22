@@ -47,21 +47,21 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test:runner:1.6.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation("androidx.room:room-runtime:$roomVersionProp")
-    implementation("androidx.room:room-rxjava2:$roomVersionProp")
-    kapt("androidx.room:room-compiler:$roomVersionProp")
-    androidTestImplementation("androidx.room:room-testing:$roomVersionProp")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.rxjava2)
+    kapt(libs.androidx.room.compiler)
+    androidTestImplementation(libs.androidx.room.testing)
 
-    implementation("androidx.lifecycle:lifecycle-extensions:$archLifecycleVersionProp")
+    implementation(libs.androidx.lifecycle.extensions)
 
-    implementation("io.reactivex.rxjava2:rxjava:2.2.21")
-    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
-    implementation("com.github.PhilJay:MPAndroidChart:3.0.3")
-    implementation("com.github.huangyanbin:SmartTable:2.2.0")
+    implementation(libs.rxjava)
+    implementation(libs.rxandroid)
+    implementation(libs.mpandroidchart)
+    implementation(libs.smarttable)
 }
