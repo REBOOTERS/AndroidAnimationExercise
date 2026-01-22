@@ -1,0 +1,6 @@
+/build
+/bin
+*.project
+*.settings/
+*.classpath
+.kotlin/

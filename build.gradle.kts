@@ -12,7 +12,7 @@ plugins {
 // Project-wide version/SDK properties are now managed in the version catalog (gradle/libs.versions.toml)
 
 tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+//    delete(rootProject.buildDir)
     delete(rootDir.toString() + File.separator + project.property("apkDir"))
     delete(rootDir.toString() + File.separator + "repo")
 }

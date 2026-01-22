@@ -24,6 +24,7 @@ rootProject.name = "AndroidAnimationExercise"
 include(
     ":app",
     ":imitate",
+    ":subs",
     ":subs:skeleton",
     ":subs:dataview",
     ":subs:gif-revert",

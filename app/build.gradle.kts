@@ -1,3 +1,9 @@
+import com.android.build.api.instrumentation.FramesComputationMode
+import com.android.build.api.instrumentation.InstrumentationScope
+import com.engineer.plugin.transforms.FooClassVisitorFactory
+import com.engineer.plugin.transforms.tiger.TigerClassVisitorFactory
+import com.engineer.plugin.transforms.track.TrackClassVisitorFactory
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -64,7 +70,9 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), file("proguard-rules.pro"))
+            proguardFiles(
+                getDefaultProguardFile("proguard-android.txt"), file("proguard-rules.pro")
+            )
         }
         getByName("debug") {
             // splits is a property; access via named API
@@ -189,18 +197,24 @@ dependencies {
 
 // Remove androidComponents instrumentation transforms for now (migrating custom transforms to KTS requires more work).
 // If you need these transforms, we can port them carefully to the new AGP instrumentation API.
-// androidComponents {
-//    onVariants(selector().all()) {
-//        instrumentation.transformClassesWith(FooClassVisitorFactory::class.java, InstrumentationScope.PROJECT) {}
-//        instrumentation.transformClassesWith(TrackClassVisitorFactory::class.java, InstrumentationScope.PROJECT) { param ->
-//            param.trackOn = true
-//        }
-//        instrumentation.transformClassesWith(TigerClassVisitorFactory::class.java, InstrumentationScope.PROJECT) { param ->
-//            param.tigerOn = true
-//        }
-//        instrumentation.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
-//    }
-// }
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        variant.instrumentation.transformClassesWith(
+            FooClassVisitorFactory::class.java, InstrumentationScope.PROJECT
+        ) {}
+        variant.instrumentation.transformClassesWith(
+            TrackClassVisitorFactory::class.java, InstrumentationScope.PROJECT
+        ) { param ->
+            param.trackOn = true
+        }
+        variant.instrumentation.transformClassesWith(
+            TigerClassVisitorFactory::class.java, InstrumentationScope.PROJECT
+        ) { param ->
+            param.tigerOn = true
+        }
+        variant.instrumentation.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
+    }
+}
 
 // apply Groovy script fragments (keep existing behavior)
 apply(from = file("../gradle/funs.gradle"))
