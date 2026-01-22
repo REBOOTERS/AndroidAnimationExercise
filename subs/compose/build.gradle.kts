@@ -4,27 +4,13 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-// Helper to safely read a string property from project or root extra with a fallback default
-val getProp: (String, String) -> String = { name, default ->
-    (project.findProperty(name) as? String)
-        ?: (rootProject.extra.properties[name] as? String)
-        ?: default
-}
-
-val compileSdkProp = (project.findProperty("compileSdk") as? String)?.toInt()
-    ?: (rootProject.extra.properties["compileSdk"] as? Int) ?: 36
-val minSdkProp = (project.findProperty("minSdk") as? String)?.toInt()
-    ?: (rootProject.extra.properties["minSdk"] as? Int) ?: 26
-val targetSdkProp = (project.findProperty("targetSdk") as? String)?.toInt()
-    ?: (rootProject.extra.properties["targetSdk"] as? Int) ?: 36
-
 android {
     namespace = "com.engineer.compose"
-    compileSdk = compileSdkProp
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = minSdkProp
-        targetSdk = targetSdkProp
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

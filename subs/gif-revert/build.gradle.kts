@@ -3,16 +3,12 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-val compileSdkProp = (project.findProperty("compileSdk") as String).toInt()
-val minSdkProp = (project.findProperty("minSdk") as String).toInt()
-val targetSdkProp = (project.findProperty("targetSdk") as String).toInt()
-
 android {
-    compileSdk = compileSdkProp
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = minSdkProp
-        targetSdk = targetSdkProp
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

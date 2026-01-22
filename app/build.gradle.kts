@@ -4,16 +4,6 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
 }
 
-//import com.android.build.api.instrumentation.FramesComputationMode
-//import com.android.build.api.instrumentation.InstrumentationScope
-//import com.engineer.plugin.transforms.FooClassVisitorFactory
-//import com.engineer.plugin.transforms.track.TrackClassVisitorFactory
-//import com.engineer.plugin.transforms.tiger.TigerClassVisitorFactory
-
-// Helper to read properties from gradle.properties (strings) and convert when needed
-val compileSdkProp = (project.findProperty("compileSdk") as String).toInt()
-val minSdkProp = (project.findProperty("minSdk") as String).toInt()
-val targetSdkProp = (project.findProperty("targetSdk") as String).toInt()
 
 android {
     signingConfigs {
@@ -36,7 +26,7 @@ android {
         }
     }
 
-    compileSdk = compileSdkProp
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     // Define flavor dimensions at the android top-level (not inside defaultConfig)
     flavorDimensions.clear()
@@ -44,8 +34,8 @@ android {
 
     defaultConfig {
         applicationId = "home.smart.fly.animations"
-        minSdk = minSdkProp
-        targetSdk = targetSdkProp
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 5
         versionName = "5.0"
         renderscriptTargetApi = 19

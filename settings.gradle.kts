@@ -1,12 +1,4 @@
 pluginManagement {
-    plugins {
-        id("com.android.application") version "8.13.1"
-        id("com.android.library") version "8.13.1"
-        id("org.jetbrains.kotlin.android") version "2.2.10"
-        id("org.jetbrains.kotlin.kapt") version "2.2.10"
-        id("com.google.devtools.ksp") version "2.2.10-2.0.2"
-        id("org.jetbrains.kotlin.plugin.compose") version "2.2.10"
-    }
     repositories {
         google()
         mavenCentral()
