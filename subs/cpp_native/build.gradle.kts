@@ -13,7 +13,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
         externalNativeBuild.cmake {
             cppFlags("")
-//            arguments(listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"))
+            arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
         }
         ndk {
             abiFilters.add("arm64-v8a")
