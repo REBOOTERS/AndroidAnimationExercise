@@ -10,7 +10,6 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
         
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
         externalNativeBuild.cmake {
             cppFlags("")
             arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
