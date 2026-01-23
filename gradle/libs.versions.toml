@@ -1,9 +1,9 @@
 [versions]
 # Plugin versions
-agp = "8.13.1"
+agp = "9.0.0"
 kotlin = "2.2.10"
-ksp = "2.2.10-2.0.2"
-
+#ksp = "2.2.10-2.0.2"
+ksp = "2.3.2"
 # Library versions
 dagger = "2.57"
 daggerCompiler = "2.57"

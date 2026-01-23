@@ -1,13 +1,7 @@
-import com.android.build.api.instrumentation.FramesComputationMode
-import com.android.build.api.instrumentation.InstrumentationScope
-import com.engineer.plugin.transforms.FooClassVisitorFactory
-import com.engineer.plugin.transforms.tiger.TigerClassVisitorFactory
-import com.engineer.plugin.transforms.track.TrackClassVisitorFactory
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
+    id("kotlin-kapt")
 }
 
 
@@ -41,7 +35,7 @@ android {
     defaultConfig {
         applicationId = "home.smart.fly.animations"
         minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
+        
         versionCode = 5
         versionName = "5.0"
         renderscriptTargetApi = 19
@@ -71,13 +65,13 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"), file("proguard-rules.pro")
+                getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro")
             )
         }
         getByName("debug") {
             // splits is a property; access via named API
             splits.abi.isEnable = false
-            splits.density.isEnable = false
+//            splits.density.isEnable = false
         }
     }
 
@@ -118,6 +112,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     namespace = "home.smart.fly.animations"
@@ -153,7 +148,8 @@ dependencies {
     implementation("com.github.bingoogolapple:BGABaseAdapter-Android:2.0.1")
     implementation("com.jakewharton:butterknife:10.2.3")
     implementation(libs.androidx.legacy.support.v4)
-    kapt("com.jakewharton:butterknife-compiler:10.2.3")
+    add("kapt","com.jakewharton:butterknife-compiler:10.2.3")
+//    ksp("com.jakewharton:butterknife-compiler:10.2.3")
     implementation(libs.stetho)
     implementation(libs.androidx.dynamicanimation)
     implementation(libs.lottie)
@@ -161,7 +157,7 @@ dependencies {
     implementation(libs.commons.io)
 
     implementation(libs.arouter.api)
-    kapt(libs.arouter.compiler)
+    add("kapt","com.alibaba:arouter-compiler:1.5.2")
 
     implementation(libs.androidx.palette.ktx)
     implementation(libs.mmkv)
@@ -192,28 +188,6 @@ dependencies {
     implementation(project(":subs:skeleton"))
     implementation(project(":subs:compose"))
     implementation(libs.fastjson.new)
-}
-
-
-// Remove androidComponents instrumentation transforms for now (migrating custom transforms to KTS requires more work).
-// If you need these transforms, we can port them carefully to the new AGP instrumentation API.
-androidComponents {
-    onVariants(selector().all()) { variant ->
-        variant.instrumentation.transformClassesWith(
-            FooClassVisitorFactory::class.java, InstrumentationScope.PROJECT
-        ) {}
-        variant.instrumentation.transformClassesWith(
-            TrackClassVisitorFactory::class.java, InstrumentationScope.PROJECT
-        ) { param ->
-            param.trackOn = true
-        }
-        variant.instrumentation.transformClassesWith(
-            TigerClassVisitorFactory::class.java, InstrumentationScope.PROJECT
-        ) { param ->
-            param.tigerOn = true
-        }
-        variant.instrumentation.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
-    }
 }
 
 // apply Groovy script fragments (keep existing behavior)

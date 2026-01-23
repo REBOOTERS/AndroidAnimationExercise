@@ -1,1 +1,0 @@
-<img src="/res/images/project_pro.webp" />
