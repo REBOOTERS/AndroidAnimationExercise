@@ -82,10 +82,9 @@ Java_com_example_cpp_1native_internal_NativeHouse_doHeavyWorkAsync(JNIEnv *env, 
         // 3. 子线程 attach
         if (gVm->AttachCurrentThread(&env, nullptr) != 0) return;
         worker(env, gCallback);   // 真正干活
-        // 4. 别忘了 detach，否则线程退出会崩
-        gVm->DetachCurrentThread();
-        // 5. 全局引用用完要释放
+        // 4. 全局引用用完要释放（必须在 detach 之前使用有效的 env）
         env->DeleteGlobalRef(gCallback);
+        // 5. 别忘了 detach，否则线程退出会崩
+        gVm->DetachCurrentThread();
     }).detach();
 }
-
