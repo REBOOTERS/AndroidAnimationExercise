@@ -30,11 +30,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "21"
+        jvmTarget = "17"
     }
     androidResources {
         noCompress("tflite")
@@ -58,4 +58,8 @@ dependencies {
 
     implementation(libs.play.services.tflite.java)
     implementation(libs.play.services.tflite.support)
+
+    implementation(libs.tensorflow.lite)
+    implementation(libs.tensorflow.lite.support)
+
 }
