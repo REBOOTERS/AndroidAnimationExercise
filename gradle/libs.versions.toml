@@ -1,6 +1,6 @@
 [versions]
 # Plugin versions
-agp = "9.0.0"
+agp = "9.0.1"
 kotlin = "2.2.10"
 #ksp = "2.2.10-2.0.2"
 ksp = "2.3.2"
@@ -114,7 +114,6 @@ androidx-material-icons-extended = { group = "androidx.compose.material", name =
 
 # Added libraries by migration
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-androidx-core-ktx117 = { module = "androidx.core:core-ktx", version.ref = "coreKtx117" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintLayout" }
 androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensions" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
@@ -147,7 +146,6 @@ fastjson-old = { module = "com.alibaba:fastjson", version.ref = "fastjsonOld" }
 fastjson-new = { module = "com.alibaba:fastjson", version.ref = "fastjsonNew" }
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
-shortcutbadger = { module = "me.leolin:ShortcutBadger", version.ref = "shortcutbadger" }
 transformationlayout = { module = "com.github.skydoves:transformationlayout", version.ref = "transformationlayout" }
 rebooters-matisse = { module = "com.github.REBOOTERS:Matisse", version.ref = "rebootersMatisse" }
 page-indicator-view = { module = "com.github.romandanylyk:PageIndicatorView", version.ref = "pageIndicatorView" }
