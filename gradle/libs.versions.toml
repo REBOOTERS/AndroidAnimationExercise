@@ -84,6 +84,8 @@ circleimageview = "3.1.0"
 simpleMvp = "1.0.2"
 dtoast = "1.1.5"
 preferenceKtx = "1.2.1"
+tensorflowLite = "2.14.0"
+tensorflowLiteSupport = "0.4.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -175,6 +177,8 @@ circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circ
 jaredrummler-simple-mvp = { module = "com.jaredrummler:simple-mvp", version.ref = "simpleMvp" }
 dtoast = { module = "com.github.Dovar66:DToast", version.ref = "dtoast" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
+tensorflow-lite = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflowLite" }
+tensorflow-lite-support = { module = "org.tensorflow:tensorflow-lite-support", version.ref = "tensorflowLiteSupport" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

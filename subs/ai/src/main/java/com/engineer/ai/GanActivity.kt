@@ -60,9 +60,13 @@ class GanActivity : AppCompatActivity() {
     }
 
     private fun genBitmap() {
-        TensorFlowLiteHelper.init(this) {
-            val interpreterApi = TensorFlowLiteHelper.createInterpreterApi(this, "dcgan.tflite")
-            interpreterApi?.let {
+        TensorFlowLiteHelper.init(this) { playServicesOk ->
+            val interpreterApi = TensorFlowLiteHelper.createInterpreterApi(
+                context = this,
+                modelName = "dcgan.tflite",
+                preferPlayServices = playServicesOk
+            )
+            interpreterApi.let {
                 Log.d(TAG, interpreterApi.getInputTensor(0).shape().contentToString())
                 Log.d(TAG, interpreterApi.getOutputTensor(0).shape().contentToString())
 
