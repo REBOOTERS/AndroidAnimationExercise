@@ -9,14 +9,16 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
-        
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro")
+            )
         }
     }
 
@@ -30,14 +32,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
+
     androidResources {
-        noCompress("tflite")
+        noCompress.add("tflite")
     }
     buildFeatures {
         viewBinding = true
@@ -54,12 +54,22 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.android.draw)
-    implementation(libs.play.services.tasks)
+//    implementation(libs.play.services.tasks)
 
-    implementation(libs.play.services.tflite.java)
-    implementation(libs.play.services.tflite.support)
-
-    implementation(libs.tensorflow.lite)
-    implementation(libs.tensorflow.lite.support)
-
+    implementation(libs.litert)
+    implementation(libs.litert.support) {
+        exclude(group = "com.google.ai.edge.litert", module = "litert-api")
+    }
+    implementation(libs.litert.metadata) {
+        exclude(group = "com.google.ai.edge.litert", module = "litert-api")
+    }
+//    implementation(libs.play.services.tflite.java) {
+//        exclude(group = "com.google.ai.edge.litert", module = "litert-api")
+//    }
+//    implementation(libs.play.services.tflite.support) {
+//        exclude(group = "com.google.ai.edge.litert", module = "litert-api")
+//    }
+//
+//    implementation(libs.tensorflow.lite)
+//    implementation(libs.tensorflow.lite.support)
 }

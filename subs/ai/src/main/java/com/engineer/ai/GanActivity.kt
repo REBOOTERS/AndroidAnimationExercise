@@ -66,37 +66,34 @@ class GanActivity : AppCompatActivity() {
     }
 
     private fun genBitmap() {
-        TensorFlowLiteHelper.init(this) { playServicesOk ->
-            val interpreterApi = TensorFlowLiteHelper.createInterpreterApi(
-                context = this,
-                modelName = "dcgan.tflite",
-                preferPlayServices = playServicesOk
-            )
-            interpreterApi.let {
-                Log.d(TAG, interpreterApi.getInputTensor(0).shape().contentToString())
-                Log.d(TAG, interpreterApi.getOutputTensor(0).shape().contentToString())
+        val interpreterApi = TensorFlowLiteHelper.createInterpreterApi(
+            context = this, modelName = "dcgan.tflite"
+        )
+        interpreterApi.let {
+            Log.d(TAG, interpreterApi.getInputTensor(0).shape().contentToString())
+            Log.d(TAG, interpreterApi.getOutputTensor(0).shape().contentToString())
 
 
-                val noise = generateNoise(100)
+            val noise = generateNoise(100)
 
-                // 2. 创建输入张量
-                val inputBuffer =
-                    TensorBuffer.createFixedSize(intArrayOf(1, 100), DataType.FLOAT32).apply {
-                        loadArray(noise)
-                    }
+            // 2. 创建输入张量
+            val inputBuffer =
+                TensorBuffer.createFixedSize(intArrayOf(1, 100), DataType.FLOAT32).apply {
+                    loadArray(noise)
+                }
 
-                // 3. 准备输出张量 [1, 3, 64, 64]
-                val outputBuffer =
-                    TensorBuffer.createFixedSize(intArrayOf(1, 3, 64, 64), DataType.FLOAT32)
-                it.run(inputBuffer, outputBuffer)
-                Log.d(TAG, outputBuffer.floatArray.contentToString())
+            // 3. 准备输出张量 [1, 3, 64, 64]
+            val outputBuffer =
+                TensorBuffer.createFixedSize(intArrayOf(1, 3, 64, 64), DataType.FLOAT32)
+            it.run(inputBuffer, outputBuffer)
+            Log.d(TAG, outputBuffer.floatArray.contentToString())
 
-                val bitmap = convertOutputToBitmap(outputBuffer.floatArray, 64, 64)
-                bitmapList.clear()
-                bitmapList.add(bitmap)
-                adapter.notifyDataSetChanged()
-            }
+            val bitmap = convertOutputToBitmap(outputBuffer.floatArray, 64, 64)
+            bitmapList.clear()
+            bitmapList.add(bitmap)
+            adapter.notifyDataSetChanged()
         }
+
     }
 
     private fun generateNoise(size: Int): FloatArray {

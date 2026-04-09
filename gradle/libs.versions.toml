@@ -87,6 +87,9 @@ preferenceKtx = "1.2.1"
 tensorflowLite = "2.14.0"
 tensorflowLiteSupport = "0.4.4"
 
+litert = "2.1.0"
+litertSupportAndMetadata = "1.0.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycleRuntimeKtx" }
@@ -179,6 +182,11 @@ dtoast = { module = "com.github.Dovar66:DToast", version.ref = "dtoast" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
 tensorflow-lite = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflowLite" }
 tensorflow-lite-support = { module = "org.tensorflow:tensorflow-lite-support", version.ref = "tensorflowLiteSupport" }
+
+
+litert = { group = "com.google.ai.edge.litert", name = "litert", version.ref = "litert" }
+litert-support = { group = "com.google.ai.edge.litert", name = "litert-support", version.ref = "litertSupportAndMetadata" }
+litert-metadata = { group = "com.google.ai.edge.litert", name = "litert-metadata", version.ref = "litertSupportAndMetadata" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

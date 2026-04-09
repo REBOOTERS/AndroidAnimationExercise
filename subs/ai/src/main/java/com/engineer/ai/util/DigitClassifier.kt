@@ -25,8 +25,6 @@ import java.util.concurrent.Executors
 
 class DigitClassifier(private val context: Context) {
 
-//    private var interpreter: Interpreter? = null
-
     var isInitialized = false
         private set
 
@@ -40,37 +38,34 @@ class DigitClassifier(private val context: Context) {
     private var interpreter: InterpreterApi? = null
 
     fun initialize(cb: (Boolean) -> Unit) {
-        TensorFlowLiteHelper.init(context) { playServicesOk ->
-            try {
-                interpreter = TensorFlowLiteHelper.createInterpreterApi(
-                    context = context,
-                    modelName = "mnist.tflite",
-                    preferPlayServices = playServicesOk
-                )
+        try {
+            interpreter = TensorFlowLiteHelper.createInterpreterApi(
+                context = context, modelName = "mnist.tflite"
+            )
 
-                val inter = interpreter
-                if (inter == null) {
-                    isInitialized = false
-                    cb(false)
-                    return@init
-                }
-
-                val inputShape = inter.getInputTensor(0).shape()
-                Log.d(TAG, "input  shape = ${inputShape.contentToString()}")
-                Log.d(TAG, "elem   shape = ${inter.getInputTensor(0).numElements()}")
-                Log.d(TAG, "output shape = ${inter.getOutputTensor(0).shape().contentToString()}")
-
-                inputImageWidth = inputShape[1]
-                inputImageHeight = inputShape[2]
-                modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
-                isInitialized = true
-                cb(true)
-            } catch (t: Throwable) {
-                Log.e(TAG, "Failed to initialize DigitClassifier.", t)
+            val inter = interpreter
+            if (inter == null) {
                 isInitialized = false
                 cb(false)
+                return
             }
+
+            val inputShape = inter.getInputTensor(0).shape()
+            Log.d(TAG, "input  shape = ${inputShape.contentToString()}")
+            Log.d(TAG, "elem   shape = ${inter.getInputTensor(0).numElements()}")
+            Log.d(TAG, "output shape = ${inter.getOutputTensor(0).shape().contentToString()}")
+
+            inputImageWidth = inputShape[1]
+            inputImageHeight = inputShape[2]
+            modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
+            isInitialized = true
+            cb(true)
+        } catch (t: Throwable) {
+            Log.e(TAG, "Failed to initialize DigitClassifier.", t)
+            isInitialized = false
+            cb(false)
         }
+
     }
 
 
@@ -91,7 +86,8 @@ class DigitClassifier(private val context: Context) {
         val result = output[0]
         Log.d(TAG, "result = ${result.contentToString()}")
         val maxIndex = result.indices.maxBy { result[it] }
-        val resultString = "Prediction Result: %d\nConfidence: %2f".format(maxIndex, result[maxIndex])
+        val resultString =
+            "Prediction Result: %d\nConfidence: %2f".format(maxIndex, result[maxIndex])
 
         return resultString
 
