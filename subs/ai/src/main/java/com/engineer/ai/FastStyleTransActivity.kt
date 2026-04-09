@@ -73,13 +73,12 @@ class FastStyleTransActivity : AppCompatActivity() {
         currentBitmap?.let {
             viewBinding.transResult.setImageBitmap(null)
             AsyncExecutor.fromIO().execute {
-
+                // 真实实现参考 dev-with-pytorch-lite 分支
             }
         }
     }
 
     private fun initModel() {
-
     }
 
 

@@ -8,10 +8,13 @@
 
     <com.divyanshu.draw.widget.DrawView
         android:id="@+id/draw_view"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1:1.2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/predicted_text" />
 
     <TextView
         android:id="@+id/predicted_text"

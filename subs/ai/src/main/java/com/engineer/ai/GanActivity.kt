@@ -47,7 +47,13 @@ class GanActivity : AppCompatActivity() {
                 runOnUiThread {
                     Log.i(TAG, "notify")
                     adapter.notifyDataSetChanged()
-                    genBitmap()
+
+                    try {
+//                        genBitmap()
+                        // dev-with-pytorch-lite 分支有完整实现，参考那个分支的 GanActivity.kt
+                    } catch (t: Throwable) {
+                        Log.e(TAG, "Failed to initialize DigitClassifier.", t)
+                    }
                 }
             }
         }
