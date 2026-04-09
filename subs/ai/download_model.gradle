@@ -1,0 +1,7 @@
+tasks.register('downloadDigitClassifierModel', Download) {
+    src 'https://storage.googleapis.com/ai-edge/interpreter-samples/digit_classifier/android/mnist_metadata.tflite'
+    dest project.ext.ASSET_DIR + '/mnist_metadata.tflite'
+    overwrite false
+}
+
+preBuild.dependsOn downloadDigitClassifierModel

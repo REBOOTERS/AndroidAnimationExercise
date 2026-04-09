@@ -11,14 +11,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.divyanshu.draw.widget.DrawView
 import com.engineer.ai.util.DigitClassifier
+import com.engineer.ai.util.LiteTRCompileModel
 import com.engineer.ai.util.toast
 
 class DigitalClassificationActivity : AppCompatActivity() {
     private var drawView: DrawView? = null
     private var clearButton: Button? = null
     private var initButton: Button? = null
+    private var initButton2: Button? = null
     private var predictedTextView: TextView? = null
     private var digitClassifier = DigitClassifier(this)
+    private val liteRtCompileModel = LiteTRCompileModel(this)
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +36,7 @@ class DigitalClassificationActivity : AppCompatActivity() {
         drawView?.setBackgroundColor(Color.BLACK)
         clearButton = findViewById(R.id.clear_button)
         initButton = findViewById(R.id.init_model)
+        initButton2 = findViewById(R.id.init_model2)
         predictedTextView = findViewById(R.id.predicted_text)
 
         // Setup clear drawing button.
@@ -61,6 +65,10 @@ class DigitalClassificationActivity : AppCompatActivity() {
                 runOnUiThread { if (it) "init success".toast(this) else "init fail".toast(this) }
             }
         }
+        initButton2?.setOnClickListener {
+            liteRtCompileModel.initClassifier()
+            "init success".toast(this)
+        }
     }
 
     private fun classifyDrawing() {
@@ -68,7 +76,18 @@ class DigitalClassificationActivity : AppCompatActivity() {
 
         if ((bitmap != null) && (digitClassifier.isInitialized)) {
             digitClassifier.classifyAsync(bitmap)
-                .addOnSuccessListener { resultText -> predictedTextView?.text = resultText }.addOnFailureListener { e ->
+                .addOnSuccessListener { resultText -> predictedTextView?.text = resultText }
+                .addOnFailureListener { e ->
+                    predictedTextView?.text = getString(
+                        R.string.classification_error_message, e.localizedMessage
+                    )
+                    Log.e(TAG, "Error classifying drawing.", e)
+                }
+        }
+        if(bitmap != null && liteRtCompileModel.isInitialized) {
+            liteRtCompileModel.classifyAsync(bitmap)
+                .addOnSuccessListener { resultText -> predictedTextView?.text = resultText }
+                .addOnFailureListener { e ->
                     predictedTextView?.text = getString(
                         R.string.classification_error_message, e.localizedMessage
                     )
