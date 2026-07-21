@@ -180,8 +180,8 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.1.0")
     implementation("com.github.prostory:AndroidZdog:v1.0.0")
 
-    testImplementation("androidx.test:core:1.6.1")
-    testImplementation("androidx.test:rules:1.6.1")
+    testImplementation("androidx.test:core:1.7.0")
+    testImplementation("androidx.test:rules:1.7.0")
     testImplementation(libs.androidx.espresso.core)
     testImplementation("com.facebook.soloader:soloader:0.12.1")
 

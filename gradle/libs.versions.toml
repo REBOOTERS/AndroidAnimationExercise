@@ -1,9 +1,9 @@
 [versions]
 # Plugin versions
-agp = "9.1.0"
+agp = "9.3.0"
 kotlin = "2.2.10"
 #ksp = "2.2.10-2.0.2"
-ksp = "2.3.2"
+ksp = "2.3.10"
 # Library versions
 dagger = "2.57"
 daggerCompiler = "2.57"
@@ -89,7 +89,7 @@ tensorflowLiteSupport = "0.4.4"
 
 litert = "2.1.0"
 litertSupportAndMetadata = "1.0.0"
-undercouchDownload = "5.6.0"
+undercouchDownload = "5.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
