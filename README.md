@@ -187,7 +187,7 @@ imitate 内的内容全部由 kotlin 语言实现，后续所有内容都会往�
 
 </details>
 
-[![Star History Chart](https://api.star-history.com/svg?repos=REBOOTERS/AndroidAnimationExercise&type=Date)](https://star-history.com/#REBOOTERS/AndroidAnimationExercise)
+[![Star History Chart](https://star-history.dera.page/svg?repos=REBOOTERS/AndroidAnimationExercise&type=date&legend=top-left)](https://star-history.dera.page/#REBOOTERS/AndroidAnimationExercise&type=date&legend=top-left)
 
 ## diagram 
 
